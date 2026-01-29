@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://cxj0fwjqxc5ny"]
+
+[ext_resource type="Texture2D" uid="uid://bu4nef47vhnkw" path="res://addons/kenney_prototype_textures/green/texture_06.png" id="1_v37y2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yu77d"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yopjc"]
+albedo_texture = ExtResource("1_v37y2")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_m2mks"]
+
+[node name="Boxes" type="Node3D" unique_id=1594444897]
+
+[node name="Box_01" type="StaticBody3D" parent="." unique_id=1471492844]
+transform = Transform3D(0.88086593, 0, 0.4733658, 0, 1, 0, -0.4733658, 0, 0.88086593, 0, 0, -0.77225244)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box_01" unique_id=299544692]
+shape = SubResource("BoxShape3D_yu77d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Box_01/CollisionShape3D" unique_id=99173554]
+material_override = SubResource("StandardMaterial3D_yopjc")
+mesh = SubResource("BoxMesh_m2mks")
+
+[node name="Box_02" type="StaticBody3D" parent="." unique_id=1319227166]
+transform = Transform3D(0.9303216, 0, -0.3667448, 0, 1, 0, 0.3667448, 0, 0.9303216, 0, 1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box_02" unique_id=1416904311]
+shape = SubResource("BoxShape3D_yu77d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Box_02/CollisionShape3D" unique_id=420648452]
+material_override = SubResource("StandardMaterial3D_yopjc")
+mesh = SubResource("BoxMesh_m2mks")
+
+[node name="Box_03" type="StaticBody3D" parent="." unique_id=1745371062]
+transform = Transform3D(0.76183236, 0, -0.6477743, 0, 1, 0, 0.6477743, 0, 0.76183236, 0.3041768, 0, 0.50508875)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box_03" unique_id=1240922925]
+shape = SubResource("BoxShape3D_yu77d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Box_03/CollisionShape3D" unique_id=1153851732]
+material_override = SubResource("StandardMaterial3D_yopjc")
+mesh = SubResource("BoxMesh_m2mks")

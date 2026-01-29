@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://8roa2xkb2ipl"]
+
+[ext_resource type="Script" uid="uid://73e4pxuhc2sk" path="res://src/PlayerController.cs" id="1_ormyk"]
+[ext_resource type="Material" uid="uid://d2nimaxg7nwjy" path="res://assets/materials/basic_blue.material" id="1_uyr3s"]
+[ext_resource type="Script" uid="uid://brp6gsap0s2ok" path="res://src/HealthBar.cs" id="4_8d03m"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xmmeu"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_uyr3s"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_jffvu"]
+viewport_path = NodePath("HealthBar/SubViewport")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t0fpx"]
+bg_color = Color(0.74509805, 0, 0, 1)
+border_width_bottom = 3
+border_color = Color(0.39748856, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_bottom = 3.0
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v80ek"]
+bg_color = Color(0, 0.6, 0, 1)
+border_width_bottom = 3
+border_color = Color(2.1057204e-07, 0.27337572, 4.813075e-08, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_bottom = 3.0
+shadow_size = 3
+
+[node name="Player" type="CharacterBody3D" unique_id=489937195]
+script = ExtResource("1_ormyk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1437107689]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_xmmeu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1615911266]
+material_override = ExtResource("1_uyr3s")
+mesh = SubResource("CapsuleMesh_uyr3s")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="." unique_id=814154132]
+
+[node name="HealthBar" type="Sprite3D" parent="." unique_id=1418769330]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_jffvu")
+
+[node name="SubViewport" type="SubViewport" parent="HealthBar" unique_id=157568505]
+size = Vector2i(200, 30)
+
+[node name="ProgressBar" type="ProgressBar" parent="HealthBar/SubViewport" unique_id=1304985123]
+offset_right = 200.0
+offset_bottom = 26.0
+theme_override_styles/background = SubResource("StyleBoxFlat_t0fpx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_v80ek")
+value = 50.0
+show_percentage = false
+script = ExtResource("4_8d03m")
