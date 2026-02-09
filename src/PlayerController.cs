@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+<<<<<<< HEAD
 
 public partial class PlayerController : CharacterBody3D
 {
@@ -55,6 +56,36 @@ public partial class PlayerController : CharacterBody3D
         {
             isFromOurDevice = (currentDevice == -1); // Keyboard/mouse device
         }
+=======
+using System.ComponentModel;
+using System.Numerics;
+using System.Transactions;
+
+public partial class PlayerController : CharacterBody3D
+{
+	// ========================================== Player Movement ========================================== 
+	[ExportGroup("Player Movement Controls")]
+	[Export]
+	private float speed = 5.0f;
+	[Export]
+	private int maxHealth = 100;
+	[Export]
+	private int health;
+	[Export]
+
+	// ========================================== Device Managment ========================================== 
+	public int deviceID {get; private set;}
+	[Export]
+	public int playerIndex {get; set;} = 0;
+
+	// InputManger inputManager;
+	private int curretnDevice = -2; // No Device Found
+
+
+	// ========================================== Signals ========================================== 
+	[Signal]
+	public delegate void HealthChangedEventHandler(int current, int max);
+>>>>>>> 94fd57d701da740d2fc84b1618676b6336058e41
 
         if (!isFromOurDevice)
             return;
@@ -156,6 +187,7 @@ public partial class PlayerController : CharacterBody3D
                 input = Vector2.Zero;
         }
 
+<<<<<<< HEAD
         return input.Normalized() * (input.Length() > 0 ? 1 : 0);
     }
     
@@ -163,6 +195,15 @@ public partial class PlayerController : CharacterBody3D
     {
         return actionsPressed.Contains(action);
     }
+=======
+	public override void _Input(InputEvent @event)
+	{
+		base._Input(@event);
+		
+	}
+
+
+>>>>>>> 94fd57d701da740d2fc84b1618676b6336058e41
 
     private bool IsActionJustPressed(string action)
     {
