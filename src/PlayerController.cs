@@ -1,13 +1,32 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Numerics;
 using System.Transactions;
 
 public partial class PlayerController : CharacterBody3D
 {
+	// ========================================== Player Movement ========================================== 
+	[ExportGroup("Player Movement Controls")]
+	[Export]
 	private float speed = 5.0f;
+	[Export]
 	private int maxHealth = 100;
+	[Export]
 	private int health;
+	[Export]
 
+	// ========================================== Device Managment ========================================== 
+	public int deviceID {get; private set;}
+	[Export]
+	public int playerIndex {get; set;} = 0;
+
+	// InputManger inputManager;
+	private int curretnDevice = -2; // No Device Found
+
+
+	// ========================================== Signals ========================================== 
 	[Signal]
 	public delegate void HealthChangedEventHandler(int current, int max);
 
@@ -29,6 +48,13 @@ public partial class PlayerController : CharacterBody3D
 			Die();
 		}
 	}
+
+	public override void _Input(InputEvent @event)
+	{
+		base._Input(@event);
+		
+	}
+
 
 
 	public override void _PhysicsProcess(double delta)
