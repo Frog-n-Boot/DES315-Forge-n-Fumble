@@ -4,18 +4,18 @@ using System.Collections.Generic;
 
 public partial class PlayerController : CharacterBody3D
 {
+    [ExportCategory("Player Attributes")]
     [Export] public int PlayerIndex { get; set; } = 0;
     
-    private float speed = 5.0f;
-    private int maxHealth = 100;
-    private int health;
+    [Export] private float speed = 5.0f;
+    [Export] private int maxHealth = 100;
+    [Export] private int health;
     
     private InputManager inputManager;
     private int currentDevice = -2;
     private HashSet<string> actionsPressed = new HashSet<string>();
     private HashSet<string> actionsPressedLastFrame = new HashSet<string>();
     
-    // Get gravity from project settings
     private float gravity = ProjectSettings.GetSetting("physics/3d/default_gravity").AsSingle();
     
     [Signal]
@@ -36,12 +36,10 @@ public partial class PlayerController : CharacterBody3D
         }
     }
     
-    // Called by PlayerSpawner when spawning
     public void SetPlayerIndex(int index)
     {
         PlayerIndex = index;
         
-        // Null safety check
         if (inputManager == null)
         {
             inputManager = GetNode<InputManager>("/root/InputManager");
@@ -57,7 +55,6 @@ public partial class PlayerController : CharacterBody3D
             GD.PrintErr($"Player {PlayerIndex}: Could not find InputManager!");
         }
         
-        // Set player color/appearance based on index
         UpdatePlayerAppearance();
     }
     
@@ -66,26 +63,24 @@ public partial class PlayerController : CharacterBody3D
         if (currentDevice == -2 || inputManager == null)
             return;
 
-        // Filter events by device
         bool isFromOurDevice = false;
         
         if (@event is InputEventJoypadButton joyButton)
         {
-            isFromOurDevice = (joyButton.Device == currentDevice);
+            isFromOurDevice = joyButton.Device == currentDevice;
         }
         else if (@event is InputEventJoypadMotion joyMotion)
         {
-            isFromOurDevice = (joyMotion.Device == currentDevice);
+            isFromOurDevice = joyMotion.Device == currentDevice;
         }
         else if (@event is InputEventKey || @event is InputEventMouse)
         {
-            isFromOurDevice = (currentDevice == -1); // Keyboard/mouse device
+            isFromOurDevice = currentDevice == -1;
         }
 
         if (!isFromOurDevice)
             return;
 
-        // Track which actions are pressed
         foreach (var action in InputMap.GetActions())
         {
             if (@event.IsAction(action))
@@ -105,10 +100,8 @@ public partial class PlayerController : CharacterBody3D
         if (inputManager == null)
             return;
         
-        // Update current device assignment
         currentDevice = inputManager.GetDeviceForPlayer(PlayerIndex);
         
-        // Hide/disable player if no device assigned
         if (currentDevice == -2)
         {
             Visible = false;
@@ -119,7 +112,6 @@ public partial class PlayerController : CharacterBody3D
         Visible = true;
         SetPhysicsProcess(true);
         
-        // Update previous frame state
         actionsPressedLastFrame.Clear();
         foreach (var action in actionsPressed)
         {
@@ -138,20 +130,17 @@ public partial class PlayerController : CharacterBody3D
         
         Vector3 velocity = Velocity;
         
-        // Add gravity (2.5D - only affects Y axis)
         if (!IsOnFloor())
         {
             velocity.Y -= gravity * (float)delta;
         }
         
-        // Get movement input (2D movement on XZ plane)
         Vector2 inputDir = GetMovementVector();
         
-        // Convert 2D input to 3D movement (X and Z only)
         if (inputDir != Vector2.Zero)
         {
             velocity.X = inputDir.X * speed;
-            velocity.Z = inputDir.Y * speed;  // Note: inputDir.Y controls Z axis movement
+            velocity.Z = inputDir.Y * speed;
         }
         else
         {
@@ -163,43 +152,38 @@ public partial class PlayerController : CharacterBody3D
         MoveAndSlide();
     }
     
-    // Input helper methods
     private Vector2 GetMovementVector()
     {
         if (currentDevice == -2)
             return Vector2.Zero;
 
-        Vector2 input = Vector2.Zero;
+        if (currentDevice == -1)
+        {
+            Vector2 input = Vector2.Zero;
 
-        if (currentDevice == -1) // Keyboard - ONLY read actual keyboard keys
-        {
-            // Use raw key inputs instead of Input.GetAxis to avoid reading controller
-            float horizontal = 0;
-            float vertical = 0;
-            
-            if (Input.IsKeyPressed(Key.A) || Input.IsKeyPressed(Key.Left))
-                horizontal -= 1;
-            if (Input.IsKeyPressed(Key.D) || Input.IsKeyPressed(Key.Right))
-                horizontal += 1;
-            if (Input.IsKeyPressed(Key.W) || Input.IsKeyPressed(Key.Up))
-                vertical -= 1;
-            if (Input.IsKeyPressed(Key.S) || Input.IsKeyPressed(Key.Down))
-                vertical += 1;
-            
-            input.X = horizontal;
-            input.Y = vertical;
+            if (IsActionPressed("move_left"))
+                input.X -= 1;
+            if (IsActionPressed("move_right"))
+                input.X += 1;
+            if (IsActionPressed("move_up"))
+                input.Y -= 1;
+            if (IsActionPressed("move_down"))
+                input.Y += 1;
+
+            return input.Normalized();
         }
-        else // Gamepad - read from specific device
+        else
         {
-            input.X = Input.GetJoyAxis(currentDevice, JoyAxis.LeftX);
-            input.Y = Input.GetJoyAxis(currentDevice, JoyAxis.LeftY);
-            
-            // Apply deadzone
+            Vector2 input = new Vector2(
+                Input.GetJoyAxis(currentDevice, JoyAxis.LeftX),
+                Input.GetJoyAxis(currentDevice, JoyAxis.LeftY)
+            );
+
             if (input.Length() < 0.2f)
-                input = Vector2.Zero;
-        }
+                return Vector2.Zero;
 
-        return input.Normalized() * (input.Length() > 0 ? 1 : 0);
+            return input;
+        }
     }
     
     private bool IsActionPressed(string action)
@@ -217,8 +201,6 @@ public partial class PlayerController : CharacterBody3D
         return !actionsPressed.Contains(action) && actionsPressedLastFrame.Contains(action);
     }
     
-   
-    // Player appearance
     private void UpdatePlayerAppearance()
     {
         Color[] playerColors =
@@ -239,7 +221,6 @@ public partial class PlayerController : CharacterBody3D
             return;
         }
 
-        // Create a new material instance so players don't share materials
         var material = new StandardMaterial3D
         {
             AlbedoColor = playerColor
@@ -249,9 +230,7 @@ public partial class PlayerController : CharacterBody3D
 
         GD.Print($"Set player {PlayerIndex} color to {playerColor}");
     }
-
     
-    // Game methods
     public void TakeDamage(int amount)
     {
         health -= amount;
