@@ -1,12 +1,12 @@
 using Godot;
 using System;
-using System.ComponentModel;
+using System.Collections.Generic;
+using System.Linq;
 
 public partial class CameraController : Camera3D
 {
     [ExportGroup("Camera Controls")]
-    [Export(PropertyHint.NodeType, "CharacterBody3D")]
-    private NodePath targetPath;
+    [Export] private PlayerSpawner playerSpawner;
     [Export(PropertyHint.Range, "0.0, 10.0")]
     private float smoothSpeed = 5;
     [Export(PropertyHint.Range, "0.0, 400")]
@@ -32,34 +32,64 @@ public partial class CameraController : Camera3D
         screenCenter = viewportSize / 2;
         Size = minSize;
         targetSize = minSize;
+        
+        if (playerSpawner == null)
+        {
+            GD.PrintErr("CameraController: PlayerSpawner not assigned!");
+        }
     }
     
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
-        CharacterBody3D player = GetNode<CharacterBody3D>(targetPath);
-        Vector2 screenPos = UnprojectPosition(player.GlobalPosition);
-        Vector2 distFromCenter = (screenPos - screenCenter).Abs();
         
-        if (!isTransitioning)
+        if (playerSpawner == null)
+            return;
+        
+        // Get all active players
+        List<Node3D> activePlayers = GetActivePlayers();
+        
+        if (activePlayers.Count == 0)
+            return;
+        
+        // Check if ANY player is out of bounds
+        bool anyPlayerOutOfBounds = false;
+        
+        foreach (Node3D player in activePlayers)
         {
+            Vector2 screenPos = UnprojectPosition(player.GlobalPosition);
+            Vector2 distFromCenter = (screenPos - screenCenter).Abs();
+            
             Vector2 checkBounds = isZoomedOut ? innerBounds : outerBounds;
             bool withinBounds = distFromCenter.X <= checkBounds.X && distFromCenter.Y <= checkBounds.Y;
             
-            if (!withinBounds && !isZoomedOut)
+            if (!withinBounds)
             {
+                anyPlayerOutOfBounds = true;
+                break; // No need to check other players
+            }
+        }
+        
+        // Handle zoom transitions
+        if (!isTransitioning)
+        {
+            if (anyPlayerOutOfBounds && !isZoomedOut)
+            {
+                // At least one player is out of bounds - zoom out
                 targetSize = maxSize;
                 isZoomedOut = true;
                 isTransitioning = true;
             }
-            else if (withinBounds && isZoomedOut)
+            else if (!anyPlayerOutOfBounds && isZoomedOut)
             {
+                // All players are within bounds - zoom in
                 targetSize = minSize;
                 isZoomedOut = false;
                 isTransitioning = true;
             }
         }
         
+        // Smooth zoom
         Size = Mathf.Lerp(Size, targetSize, smoothSpeed * (float)delta);
         
         if (isTransitioning && Mathf.Abs(Size - targetSize) < 0.01f)
@@ -67,5 +97,22 @@ public partial class CameraController : Camera3D
             Size = targetSize;
             isTransitioning = false;
         }
+    }
+    
+    private List<Node3D> GetActivePlayers()
+    {
+        List<Node3D> players = new List<Node3D>();
+        
+        for (int i = 0; i < InputManager.MAX_PLAYERS; i++)
+        {
+            Node playerNode = playerSpawner.GetPlayer(i);
+            
+            if (playerNode != null && playerNode is Node3D player3D && playerNode.IsInsideTree())
+            {
+                players.Add(player3D);
+            }
+        }
+        
+        return players;
     }
 }

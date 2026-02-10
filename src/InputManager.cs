@@ -6,7 +6,7 @@ public partial class InputManager : Node
 {
     private Dictionary<int, int> deviceToPlayer = new Dictionary<int, int>();
     private Dictionary<int, int> playerToDevice = new Dictionary<int, int>();
-    private const int MAX_PLAYERS = 4;
+    public const int MAX_PLAYERS = 4;
     private const int KEYBOARD_DEVICE = -1;
     
     public override void _Ready()

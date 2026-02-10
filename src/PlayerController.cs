@@ -15,6 +15,9 @@ public partial class PlayerController : CharacterBody3D
     private HashSet<string> actionsPressed = new HashSet<string>();
     private HashSet<string> actionsPressedLastFrame = new HashSet<string>();
     
+    // Get gravity from project settings
+    private float gravity = ProjectSettings.GetSetting("physics/3d/default_gravity").AsSingle();
+    
     [Signal]
     public delegate void HealthChangedEventHandler(int current, int max);
     [Signal]
@@ -27,11 +30,40 @@ public partial class PlayerController : CharacterBody3D
         
         inputManager = GetNode<InputManager>("/root/InputManager");
         
+        if (inputManager == null)
+        {
+            GD.PrintErr("PlayerController: InputManager not found!");
+        }
+    }
+    
+    // Called by PlayerSpawner when spawning
+    public void SetPlayerIndex(int index)
+    {
+        PlayerIndex = index;
+        
+        // Null safety check
+        if (inputManager == null)
+        {
+            inputManager = GetNode<InputManager>("/root/InputManager");
+        }
+        
+        if (inputManager != null)
+        {
+            currentDevice = inputManager.GetDeviceForPlayer(PlayerIndex);
+            GD.Print($"Player initialized with index {PlayerIndex}, device {currentDevice}");
+        }
+        else
+        {
+            GD.PrintErr($"Player {PlayerIndex}: Could not find InputManager!");
+        }
+        
+        // Set player color/appearance based on index
+        UpdatePlayerAppearance();
     }
     
     public override void _Input(InputEvent @event)
     {
-        if (currentDevice == -2)
+        if (currentDevice == -2 || inputManager == null)
             return;
 
         // Filter events by device
@@ -70,6 +102,9 @@ public partial class PlayerController : CharacterBody3D
     {
         base._Process(delta);
         
+        if (inputManager == null)
+            return;
+        
         // Update current device assignment
         currentDevice = inputManager.GetDeviceForPlayer(PlayerIndex);
         
@@ -103,19 +138,20 @@ public partial class PlayerController : CharacterBody3D
         
         Vector3 velocity = Velocity;
         
+        // Add gravity (2.5D - only affects Y axis)
         if (!IsOnFloor())
         {
-            velocity += GetGravity() * (float)delta;
+            velocity.Y -= gravity * (float)delta;
         }
         
-        // Get movement input
+        // Get movement input (2D movement on XZ plane)
         Vector2 inputDir = GetMovementVector();
-        Vector3 direction = (Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
         
-        if (direction != Vector3.Zero)
+        // Convert 2D input to 3D movement (X and Z only)
+        if (inputDir != Vector2.Zero)
         {
-            velocity.X = direction.X * speed;
-            velocity.Z = direction.Z * speed;
+            velocity.X = inputDir.X * speed;
+            velocity.Z = inputDir.Y * speed;  // Note: inputDir.Y controls Z axis movement
         }
         else
         {
@@ -135,12 +171,25 @@ public partial class PlayerController : CharacterBody3D
 
         Vector2 input = Vector2.Zero;
 
-        if (currentDevice == -1) // Keyboard
+        if (currentDevice == -1) // Keyboard - ONLY read actual keyboard keys
         {
-            input.X = Input.GetAxis("move_left", "move_right");
-            input.Y = Input.GetAxis("move_up", "move_down");
+            // Use raw key inputs instead of Input.GetAxis to avoid reading controller
+            float horizontal = 0;
+            float vertical = 0;
+            
+            if (Input.IsKeyPressed(Key.A) || Input.IsKeyPressed(Key.Left))
+                horizontal -= 1;
+            if (Input.IsKeyPressed(Key.D) || Input.IsKeyPressed(Key.Right))
+                horizontal += 1;
+            if (Input.IsKeyPressed(Key.W) || Input.IsKeyPressed(Key.Up))
+                vertical -= 1;
+            if (Input.IsKeyPressed(Key.S) || Input.IsKeyPressed(Key.Down))
+                vertical += 1;
+            
+            input.X = horizontal;
+            input.Y = vertical;
         }
-        else // Gamepad
+        else // Gamepad - read from specific device
         {
             input.X = Input.GetJoyAxis(currentDevice, JoyAxis.LeftX);
             input.Y = Input.GetJoyAxis(currentDevice, JoyAxis.LeftY);
@@ -158,7 +207,6 @@ public partial class PlayerController : CharacterBody3D
         return actionsPressed.Contains(action);
     }
 
-
     private bool IsActionJustPressed(string action)
     {
         return actionsPressed.Contains(action) && !actionsPressedLastFrame.Contains(action);
@@ -168,6 +216,40 @@ public partial class PlayerController : CharacterBody3D
     {
         return !actionsPressed.Contains(action) && actionsPressedLastFrame.Contains(action);
     }
+    
+   
+    // Player appearance
+    private void UpdatePlayerAppearance()
+    {
+        Color[] playerColors =
+        {
+            Colors.Blue,
+            Colors.Red,
+            Colors.Green,
+            Colors.Yellow
+        };
+
+        Color playerColor = playerColors[PlayerIndex % playerColors.Length];
+
+        var meshInstance = GetNodeOrNull<MeshInstance3D>("CollisionShape3D/MeshInstance3D");
+
+        if (meshInstance == null)
+        {
+            GD.PrintErr($"Player {PlayerIndex}: MeshInstance3D not found");
+            return;
+        }
+
+        // Create a new material instance so players don't share materials
+        var material = new StandardMaterial3D
+        {
+            AlbedoColor = playerColor
+        };
+
+        meshInstance.MaterialOverride = material;
+
+        GD.Print($"Set player {PlayerIndex} color to {playerColor}");
+    }
+
     
     // Game methods
     public void TakeDamage(int amount)
