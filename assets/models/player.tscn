@@ -1,12 +1,40 @@
 [gd_scene format=3 uid="uid://8roa2xkb2ipl"]
 
-[ext_resource type="Script" uid="uid://73e4pxuhc2sk" path="res://src/PlayerController.cs" id="1_ormyk"]
+[ext_resource type="Script" uid="uid://bwwhlpy6hxupd" path="res://src/PlayerController.cs" id="1_ormyk"]
 [ext_resource type="Material" uid="uid://d2nimaxg7nwjy" path="res://assets/materials/basic_blue.material" id="1_uyr3s"]
+[ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/Sword.tscn" id="3_8d03m"]
 [ext_resource type="Script" uid="uid://brp6gsap0s2ok" path="res://src/HealthBar.cs" id="4_8d03m"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xmmeu"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_uyr3s"]
+
+[sub_resource type="Animation" id="Animation_8d03m"]
+resource_name = "Anim_Attack"
+length = 0.4
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.99999994, 0.13333334, 1, 0.6986713, 0, 0, 0.7154428, 0.26, 1, 0, 0, 0, 0.99999994)
+
+[sub_resource type="Animation" id="Animation_t0fpx"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t0fpx"]
+_data = {
+&"Anim_Attack": SubResource("Animation_8d03m"),
+&"RESET": SubResource("Animation_t0fpx")
+}
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_jffvu"]
 viewport_path = NodePath("HealthBar/SubViewport")
@@ -33,8 +61,16 @@ corner_radius_bottom_left = 3
 expand_margin_bottom = 3.0
 shadow_size = 3
 
-[node name="Player" type="CharacterBody3D" unique_id=489937195]
+[sub_resource type="BoxShape3D" id="BoxShape3D_8d03m"]
+size = Vector3(1, 2.5361938, 1)
+
+[node name="Player" type="CharacterBody3D" unique_id=489937195 node_paths=PackedStringArray("animPlayer", "hand")]
+velocity = Vector3(0, -228.01021, 0)
 script = ExtResource("1_ormyk")
+health = 100
+swordObject = ExtResource("3_8d03m")
+animPlayer = NodePath("CollisionShape3D/Hand/AnimationPlayer")
+hand = NodePath("CollisionShape3D/Hand")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1437107689]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -43,6 +79,14 @@ shape = SubResource("CapsuleShape3D_xmmeu")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1615911266]
 material_override = ExtResource("1_uyr3s")
 mesh = SubResource("CapsuleMesh_uyr3s")
+
+[node name="Hand" type="Node3D" parent="CollisionShape3D" unique_id=798116510]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -1.0015911, -0.26676977, 0)
+
+[node name="Sword" parent="CollisionShape3D/Hand" unique_id=689345526 instance=ExtResource("3_8d03m")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CollisionShape3D/Hand" unique_id=1458741370]
+libraries/ = SubResource("AnimationLibrary_t0fpx")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="." unique_id=814154132]
 
@@ -62,3 +106,9 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_v80ek")
 value = 50.0
 show_percentage = false
 script = ExtResource("4_8d03m")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1712685090]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=48449025]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7680969, 0)
+shape = SubResource("BoxShape3D_8d03m")

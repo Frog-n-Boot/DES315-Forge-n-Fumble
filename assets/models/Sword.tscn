@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c37xqn66ss1o8"]
 
-[ext_resource type="Script" uid="uid://c25evsd3j0b" path="res://Scripts/Sword.cs" id="1_4uorx"]
+[ext_resource type="Script" uid="uid://c25evsd3j0b" path="res://src/Sword.cs" id="1_4uorx"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_micgq"]
 
@@ -9,41 +9,18 @@
 [sub_resource type="BoxMesh" id="BoxMesh_pg1v4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xv1ii"]
-size = Vector3(16.525434, 1.578125, 18.698938)
+size = Vector3(16.525434, 2.1694336, 18.698938)
 
-[sub_resource type="Animation" id="Animation_micgq"]
-resource_name = "Anim_attack"
-length = 0.4
-tracks/0/type = "rotation_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0.0667, 1, 0, 0, -0.14349262, 0.9896514, 0.2, 1, -0.6261577, -0.09078855, -0.111119635, 0.76637876, 0.3333, 1, 0, 0, -0.14349262, 0.9896514)
-
-[sub_resource type="Animation" id="Animation_4uorx"]
-length = 0.001
-tracks/0/type = "rotation_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_pg1v4"]
-_data = {
-&"Anim_Attack": SubResource("Animation_micgq"),
-&"RESET": SubResource("Animation_4uorx")
-}
-
-[node name="Sword" type="Node3D" unique_id=689345526 groups=["Sword"]]
+[node name="Sword" type="Node3D" unique_id=689345526 node_paths=PackedStringArray("_animPlayer") groups=["Sword"]]
 script = ExtResource("1_4uorx")
 damage = 10
-durability = 6
+durability = 1
+_animPlayer = NodePath("")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1636120554 groups=["Sword"]]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+collision_layer = 4
+collision_mask = 4
 
 [node name="Hilt" type="MeshInstance3D" parent="StaticBody3D" unique_id=650740940]
 transform = Transform3D(0.12052679, 0, 0, 0, 1, 0, 0, 0, 0.08459415, 0, 0, 0)
@@ -58,8 +35,5 @@ transform = Transform3D(0.094345585, 0, 0.039038073, 0, 1.648608, 0, -0.03620832
 mesh = SubResource("BoxMesh_pg1v4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=481175609 groups=["Sword"]]
-transform = Transform3D(0.09335804, 0, 0.035836797, 0, 1.64, 0, -0.035836797, 0, 0.09335804, 0.06625143, 1.5821251, -0.00447423)
+transform = Transform3D(0.09335804, 0, 0.035836797, 0, 1.64, -3.7252903e-09, -0.035836797, 0, 0.09335804, 0.06625143, 1.097252, -0.0044742525)
 shape = SubResource("BoxShape3D_xv1ii")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="StaticBody3D" unique_id=2020944860]
-libraries/ = SubResource("AnimationLibrary_pg1v4")

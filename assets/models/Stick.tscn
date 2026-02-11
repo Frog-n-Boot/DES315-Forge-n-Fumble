@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bp4fm727bn0cj"]
 
-[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://Scripts/Pickable.cs" id="1_ep6bg"]
+[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Pickable.cs" id="1_ep6bg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tyqbv"]
 albedo_color = Color(0.30099627, 0.1285471, 0.0353672, 1)
@@ -9,7 +9,7 @@ albedo_color = Color(0.30099627, 0.1285471, 0.0353672, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bk0rn"]
 
-[node name="Stick" type="Node3D" unique_id=70957572]
+[node name="Stick" type="Node3D" unique_id=70957572 groups=["pickable"]]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=978192712 groups=["pickable"]]
 transform = Transform3D(0.13241065, 0, 0, 0, 0.11347759, 0, 0, 0, 1, 0, 0, 0)

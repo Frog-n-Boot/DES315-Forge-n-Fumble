@@ -7,6 +7,7 @@ public partial class Sword : Node3D
 	[Export] public int damage;
 	[Export] public int durability;
 
+
 	[Signal] public delegate void CheckDurabilityEventHandler();
 
 	private void DestroyWeapon()
@@ -16,6 +17,7 @@ public partial class Sword : Node3D
 			QueueFree();
 		}
 	}
+	
 
 	public void DamageWeapon(int durability)
 	{
@@ -23,4 +25,6 @@ public partial class Sword : Node3D
 		EmitSignal(SignalName.CheckDurability);
 		DestroyWeapon();
 	}
+
+
 }

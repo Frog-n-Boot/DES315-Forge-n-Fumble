@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://begt1fluvonim"
-path.s3tc="res://.godot/imported/brickwall_low_initialShadingGroup_Height.tga-c06bf67afeae6928a49f683c0e291954.s3tc.ctex"
+path.s3tc="res://.godot/imported/brickwall_low_initialShadingGroup_Height.tga-c2c0dcb043b51fdfea89739932c600bd.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/CobbleWall/brickwall_low_initialShadingGroup_Height.tga"
-dest_files=["res://.godot/imported/brickwall_low_initialShadingGroup_Height.tga-c06bf67afeae6928a49f683c0e291954.s3tc.ctex"]
+source_file="res://assets/textures/CobbleWall/brickwall_low_initialShadingGroup_Height.tga"
+dest_files=["res://.godot/imported/brickwall_low_initialShadingGroup_Height.tga-c2c0dcb043b51fdfea89739932c600bd.s3tc.ctex"]
 
 [params]
 

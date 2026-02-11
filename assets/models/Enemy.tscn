@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://b8a87u3vesy3q"]
 
-[ext_resource type="Script" uid="uid://bqbrwko4kb7sp" path="res://Scripts/Enemy.cs" id="1_pfjfy"]
-[ext_resource type="Script" uid="uid://mv3bvjhkqfww" path="res://Components/HealthComponent.cs" id="2_8ks7m"]
-[ext_resource type="Script" uid="uid://bf02wgjk36psn" path="res://Components/EnemyData.cs" id="2_a5uau"]
-[ext_resource type="Script" uid="uid://bqldcijarxrcr" path="res://Components/MovementComponent.cs" id="3_a5uau"]
-[ext_resource type="Script" uid="uid://cgfdpddcgsee" path="res://Components/CollissionHandlerComponent.cs" id="4_v6vhh"]
+[ext_resource type="Script" uid="uid://bqbrwko4kb7sp" path="res://src/Enemy.cs" id="1_pfjfy"]
+[ext_resource type="Script" uid="uid://mv3bvjhkqfww" path="res://assets/components/HealthComponent.cs" id="2_8ks7m"]
+[ext_resource type="Script" uid="uid://bf02wgjk36psn" path="res://assets/components/EnemyData.cs" id="2_a5uau"]
+[ext_resource type="Script" uid="uid://bqldcijarxrcr" path="res://assets/components/MovementComponent.cs" id="3_a5uau"]
+[ext_resource type="Script" uid="uid://cgfdpddcgsee" path="res://assets/components/CollissionHandlerComponent.cs" id="4_v6vhh"]
 
 [sub_resource type="Resource" id="Resource_v6vhh"]
 script = ExtResource("2_a5uau")
@@ -27,6 +27,7 @@ collisionArea = NodePath("CharacterBody3D/Area3D")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=590602209]
 collision_layer = 2
+collision_mask = 4
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=542464969]
 material_override = SubResource("StandardMaterial3D_pfjfy")
@@ -36,7 +37,8 @@ mesh = SubResource("CylinderMesh_elc20")
 shape = SubResource("CylinderShape3D_pfjfy")
 
 [node name="Area3D" type="Area3D" parent="CharacterBody3D" unique_id=1859868463]
-collision_layer = 2
+collision_layer = 4
+collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/Area3D" unique_id=1172694664]
 shape = SubResource("CylinderShape3D_82iww")

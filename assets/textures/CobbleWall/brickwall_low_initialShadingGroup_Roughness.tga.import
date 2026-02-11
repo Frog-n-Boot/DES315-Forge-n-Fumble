@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ciecf2w2crs78"
-path="res://.godot/imported/brickwall_low_initialShadingGroup_Roughness.tga-89014ff3830ddad97506174b75e1dab0.ctex"
+path="res://.godot/imported/brickwall_low_initialShadingGroup_Roughness.tga-7a81075ba72e35129d9ce16133e20725.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/CobbleWall/brickwall_low_initialShadingGroup_Roughness.tga"
-dest_files=["res://.godot/imported/brickwall_low_initialShadingGroup_Roughness.tga-89014ff3830ddad97506174b75e1dab0.ctex"]
+source_file="res://assets/textures/CobbleWall/brickwall_low_initialShadingGroup_Roughness.tga"
+dest_files=["res://.godot/imported/brickwall_low_initialShadingGroup_Roughness.tga-7a81075ba72e35129d9ce16133e20725.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://crk88mvr7m27v"
-path.s3tc="res://.godot/imported/woodenhalfwall_low_initialShadingGroup_Height.tga-9e68994bc7ff5d6859b416d71c53f3dc.s3tc.ctex"
+path.s3tc="res://.godot/imported/woodenhalfwall_low_initialShadingGroup_Height.tga-d55c7566173a300aaab8ddb55bc29c9f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/WoodenWall/woodenhalfwall_low_initialShadingGroup_Height.tga"
-dest_files=["res://.godot/imported/woodenhalfwall_low_initialShadingGroup_Height.tga-9e68994bc7ff5d6859b416d71c53f3dc.s3tc.ctex"]
+source_file="res://assets/textures/WoodenWall/woodenhalfwall_low_initialShadingGroup_Height.tga"
+dest_files=["res://.godot/imported/woodenhalfwall_low_initialShadingGroup_Height.tga-d55c7566173a300aaab8ddb55bc29c9f.s3tc.ctex"]
 
 [params]
 

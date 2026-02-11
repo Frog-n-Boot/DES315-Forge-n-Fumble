@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b4ujshxnsyo77"
-path.s3tc="res://.godot/imported/woodenhalfwall_low_initialShadingGroup_Roughness.tga-226e8726e3cb066861bc5cbd49a09173.s3tc.ctex"
+path.s3tc="res://.godot/imported/woodenhalfwall_low_initialShadingGroup_Roughness.tga-e1b4d56ee500fa8ff5b15d86f523e503.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/WoodenWall/woodenhalfwall_low_initialShadingGroup_Roughness.tga"
-dest_files=["res://.godot/imported/woodenhalfwall_low_initialShadingGroup_Roughness.tga-226e8726e3cb066861bc5cbd49a09173.s3tc.ctex"]
+source_file="res://assets/textures/WoodenWall/woodenhalfwall_low_initialShadingGroup_Roughness.tga"
+dest_files=["res://.godot/imported/woodenhalfwall_low_initialShadingGroup_Roughness.tga-e1b4d56ee500fa8ff5b15d86f523e503.s3tc.ctex"]
 
 [params]
 

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://jnghu007q1m"]
 
-[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://Scripts/Pickable.cs" id="1_6yd4e"]
+[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Pickable.cs" id="1_6yd4e"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ho6yl"]
 

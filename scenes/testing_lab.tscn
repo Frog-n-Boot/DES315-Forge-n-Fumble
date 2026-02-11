@@ -1,11 +1,20 @@
 [gd_scene format=3 uid="uid://88oq7ysmwuhi"]
 
 [ext_resource type="Texture2D" uid="uid://dhqovf0vvc8vq" path="res://addons/kenney_prototype_textures/dark/texture_08.png" id="1_3lnvk"]
-[ext_resource type="PackedScene" uid="uid://bm6vf4tjk48gj" path="res://assets/models/forge.tscn" id="2_ptwec"]
+[ext_resource type="PackedScene" uid="uid://bm6vf4tjk48gj" path="res://assets/models/Forge.tscn" id="2_ptwec"]
 [ext_resource type="PackedScene" uid="uid://8roa2xkb2ipl" path="res://assets/models/player.tscn" id="3_81oh0"]
 [ext_resource type="PackedScene" uid="uid://cxj0fwjqxc5ny" path="res://assets/models/boxes.tscn" id="3_a3bqn"]
 [ext_resource type="Script" uid="uid://dnqtfi3fpu8ue" path="res://src/CameraController.cs" id="3_mndrt"]
 [ext_resource type="Script" uid="uid://bk2uam5leqcv8" path="res://src/PlayerSpawner.cs" id="6_42n6d"]
+[ext_resource type="Script" uid="uid://bj4pcgxjt3ru7" path="res://src/WaveManager.cs" id="7_53x3i"]
+[ext_resource type="PackedScene" uid="uid://b8a87u3vesy3q" path="res://assets/models/Enemy.tscn" id="8_1bgfi"]
+[ext_resource type="Script" uid="uid://taddex4cilqa" path="res://src/LootTable.cs" id="9_7cc0k"]
+[ext_resource type="Resource" uid="uid://calih72lg8n07" path="res://assets/resources/NormalEnemyData.tres" id="9_mehdq"]
+[ext_resource type="Resource" uid="uid://cdki2c88hftlb" path="res://assets/resources/FastEnemyData.tres" id="10_7p7bj"]
+[ext_resource type="PackedScene" uid="uid://bp4fm727bn0cj" path="res://assets/models/Stick.tscn" id="10_mehdq"]
+[ext_resource type="PackedScene" uid="uid://dq8nubqatqhum" path="res://assets/models/Ingot.tscn" id="11_7p7bj"]
+[ext_resource type="Resource" uid="uid://cvs5mxaqpoflx" path="res://assets/resources/StrongEnemyData.tres" id="11_gwggj"]
+[ext_resource type="PackedScene" uid="uid://jnghu007q1m" path="res://assets/models/Healthpack.tscn" id="12_gwggj"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_wko22"]
 
@@ -109,3 +118,55 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.95199704)
 
 [node name="SpawnPoint3" type="Marker3D" parent="PlayerSpawner" unique_id=2030002562]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.498033, 0, -1.7967122)
+
+[node name="EnemySpawner" type="Node" parent="." unique_id=1191566733]
+
+[node name="EnemySpawn1" type="Node3D" parent="EnemySpawner" unique_id=1718648085]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7845936, 0, 17.104359)
+
+[node name="EnemySpawn2" type="Node3D" parent="EnemySpawner" unique_id=1695434176]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.031636, 0, -15.903209)
+
+[node name="EnemySpawn3" type="Node3D" parent="EnemySpawner" unique_id=7115967]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2715778, 0, 11.7636175)
+
+[node name="EnemySpawn4" type="Node3D" parent="EnemySpawner" unique_id=2064537093]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6233778, 0, -14.734726)
+
+[node name="EnemySpawn5" type="Node3D" parent="EnemySpawner" unique_id=1928785983]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.758142, 0, 13.082964)
+
+[node name="EnemySpawn6" type="Node3D" parent="EnemySpawner" unique_id=1941373508]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.164171, 0, -11.79693)
+
+[node name="WaveManager" type="Node3D" parent="." unique_id=107125337 node_paths=PackedStringArray("spawnParent", "targetNode", "lootTable", "spawnPositions")]
+script = ExtResource("7_53x3i")
+enemyScene = ExtResource("8_1bgfi")
+spawnParent = NodePath(".")
+targetNode = NodePath("../World/Forge")
+normalEnemyData = ExtResource("9_mehdq")
+fastEnemyData = ExtResource("10_7p7bj")
+strongEnemyData = ExtResource("11_gwggj")
+lootTable = NodePath("../LootTable")
+strongEnemyChance = 20
+spawnPositions = [NodePath("../EnemySpawner/EnemySpawn1"), NodePath("../EnemySpawner/EnemySpawn2"), NodePath("../EnemySpawner/EnemySpawn3"), NodePath("../EnemySpawner/EnemySpawn4"), NodePath("../EnemySpawner/EnemySpawn5"), NodePath("../EnemySpawner/EnemySpawn6")]
+
+[node name="LootTable" type="Node3D" parent="." unique_id=537718464]
+script = ExtResource("9_7cc0k")
+stickDropChance = 100
+ingotDropChance = 50
+stickObject = ExtResource("10_mehdq")
+ingotObject = ExtResource("11_7p7bj")
+healthPackObject = ExtResource("12_gwggj")
+
+[node name="Stick" parent="." unique_id=70957572 instance=ExtResource("10_mehdq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7222824, 0.18933196, 7.799149)
+
+[node name="Ingot" parent="." unique_id=474887611 instance=ExtResource("11_7p7bj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15269208, 0.09471922, 5.7284813)
+
+[node name="Ingot2" parent="." unique_id=889112198 instance=ExtResource("11_7p7bj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7752476, 0.09471922, 5.8421764)
+
+[node name="Stick2" parent="." unique_id=987795340 instance=ExtResource("10_mehdq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19483829, 0.18933196, 7.873662)

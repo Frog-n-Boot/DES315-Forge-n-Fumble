@@ -160,11 +160,13 @@ public partial class Enemy: Node3D
 			forgeScript.TakeDamage(enemyData.damage);
 			Die();
         }
+        
 		else if( groupName == "Sword")
         {
 			Sword sword = FindSwordInHierarchy(body);
 			if(sword != null)
             {
+                GD.Print("Enemy took damage");
                 sword.DamageWeapon(1);
  				TakeDamage(10);
             }
