@@ -1,245 +1,322 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Numerics;
+using System.Runtime.CompilerServices;
+
+namespace Godot;
+
+[Tool]
+
 
 public partial class PlayerController : CharacterBody3D
 {
-    [ExportCategory("Player Attributes")]
-    [Export] public int PlayerIndex { get; set; } = 0;
+    #region Variables
+    [Export] public float speed;
+
+    [Export] public float sprintMultiplier = 1.8f;
+
+    [Export] public float jumpVelocity = 4.5f;
+
+    [Export] public int maxHealth = 100;
+
+    [Export]  public int health;
+
+    [Export] public float gravity = -9.8f;
+
+    [Export] public int damage = 10;
+
+    [Export] public AnimationPlayer animPlayer;
+
+    private Node3D hand;
+
+    private Node3D world;
+    private Camera3D camera;
+    // private AnimationPlayer animPlayer;
+
+    [Signal] public delegate void PlayerHealthChangedEventHandler(int current, int max);
+
+    [Export] public PackedScene swordObject { get; private set; }
+
+    InventorySystem inventory;
+    Forge forge;
+    HealthPack healthPack;
+
+    private bool _collissionHandled = false;
+    private int _healthPack;
+    private Godot.Vector3 currentLookTarget;
+
+    private Node node;
+    private ItemData data;
+    private Node3D sword;
+
+    private Sword swordClass;
+    #endregion
     
-    [Export] private float speed = 5.0f;
-    [Export] private int maxHealth = 100;
-    [Export] private int health;
-    
-    private InputManager inputManager;
-    private int currentDevice = -2;
-    private HashSet<string> actionsPressed = new HashSet<string>();
-    private HashSet<string> actionsPressedLastFrame = new HashSet<string>();
-    
-    private float gravity = ProjectSettings.GetSetting("physics/3d/default_gravity").AsSingle();
-    
-    [Signal]
-    public delegate void HealthChangedEventHandler(int current, int max);
-    [Signal]
-    public delegate void DiedEventHandler();
-    
+    #region Ready function
     public override void _Ready()
     {
-        base._Ready();
+  
         health = maxHealth;
-        
-        inputManager = GetNode<InputManager>("/root/InputManager");
-        
-        if (inputManager == null)
-        {
-            GD.PrintErr("PlayerController: InputManager not found!");
-        }
+        world = GetTree().Root.GetNode<Node3D>("Level1");
+        camera = world.GetNode<Camera3D>("Camera3D");
+        forge = GetNode<Forge>("/root/Forge");
+        healthPack = GetNode<HealthPack>("/root/HealthPack");
+
+        //inventory = GetNodeOrNull<InventorySystem>("/root/Level1/Player/CharacterBody3D/InventorySystem");
+        swordClass = GetNodeOrNull<Sword>("/root/Level1/Player/CharacterBody3D/Hand/Sword");
+       	swordObject = GD.Load<PackedScene>("res://Objects/Sword.tscn");
+        hand = GetNodeOrNull<Node3D>("/root/Level1/Player/CharacterBody3D/Hand");
+        inventory = GetNode<InventorySystem>("/root/InventorySystem");
+       // animPlayer = GetNode<AnimationPlayer>("res://Objects/Swprd/StaticBody3D/AnimationPlayer");
+
     }
-    
-    public void SetPlayerIndex(int index)
+    #endregion
+
+
+    #region Physics Update
+    public override void _PhysicsProcess(double delta)
     {
-        PlayerIndex = index;
-        
-        if (inputManager == null)
+        if (!Engine.IsEditorHint())
         {
-            inputManager = GetNode<InputManager>("/root/InputManager");
-        }
-        
-        if (inputManager != null)
-        {
-            currentDevice = inputManager.GetDeviceForPlayer(PlayerIndex);
-            GD.Print($"Player initialized with index {PlayerIndex}, device {currentDevice}");
-        }
-        else
-        {
-            GD.PrintErr($"Player {PlayerIndex}: Could not find InputManager!");
-        }
-        
-        UpdatePlayerAppearance();
-    }
-    
-    public override void _Input(InputEvent @event)
-    {
-        if (currentDevice == -2 || inputManager == null)
-            return;
-
-        bool isFromOurDevice = false;
-        
-        if (@event is InputEventJoypadButton joyButton)
-        {
-            isFromOurDevice = joyButton.Device == currentDevice;
-        }
-        else if (@event is InputEventJoypadMotion joyMotion)
-        {
-            isFromOurDevice = joyMotion.Device == currentDevice;
-        }
-        else if (@event is InputEventKey || @event is InputEventMouse)
-        {
-            isFromOurDevice = currentDevice == -1;
-        }
-
-        if (!isFromOurDevice)
-            return;
-
-        foreach (var action in InputMap.GetActions())
-        {
-            if (@event.IsAction(action))
+            if (!IsInsideTree())
             {
-                if (@event.IsPressed())
-                    actionsPressed.Add(action);
-                else if (@event.IsReleased())
-                    actionsPressed.Remove(action);
+                return;
             }
+            PlayerInput(delta);
         }
     }
-    
+    #endregion
+
+    #region Update
     public override void _Process(double delta)
     {
-        base._Process(delta);
-        
-        if (inputManager == null)
-            return;
-        
-        currentDevice = inputManager.GetDeviceForPlayer(PlayerIndex);
-        
-        if (currentDevice == -2)
+ 
+        if (!Engine.IsEditorHint())
         {
-            Visible = false;
-            SetPhysicsProcess(false);
-            return;
+ 
+            LookAtMouse();
+            PlayerInput(delta);
+            Craft();
         }
-        
-        Visible = true;
-        SetPhysicsProcess(true);
-        
-        actionsPressedLastFrame.Clear();
-        foreach (var action in actionsPressed)
-        {
-            actionsPressedLastFrame.Add(action);
-        }
-        
-        if (health <= 0)
+        if(health <= 0)
         {
             Die();
         }
+        
     }
-    
-    public override void _PhysicsProcess(double delta)
-    {
-        base._PhysicsProcess(delta);
-        
-        Vector3 velocity = Velocity;
-        
+   #endregion
+
+    #region PlayerInput
+
+    private void PlayerInput(double delta)
+    {  
+        Vector2 inputDirection = Input.GetVector("act_left", "act_right", "act_forward", "act_backward");
+        Vector3 direction =  new Vector3(inputDirection.X, 0, inputDirection.Y).Normalized();
         if (!IsOnFloor())
         {
-            velocity.Y -= gravity * (float)delta;
+            Velocity += GetGravity() * (float)delta;
         }
-        
-        Vector2 inputDir = GetMovementVector();
-        
-        if (inputDir != Vector2.Zero)
+        if(direction != Vector3.Zero)
         {
-            velocity.X = inputDir.X * speed;
-            velocity.Z = inputDir.Y * speed;
+            Velocity = new Vector3(direction.X * speed, Velocity.Y, direction.Z * speed);
+
         }
         else
         {
-            velocity.X = Mathf.MoveToward(Velocity.X, 0, speed);
-            velocity.Z = Mathf.MoveToward(Velocity.Z, 0, speed);
+            Velocity = new Vector3(0, Velocity.Y, 0);
         }
-        
-        Velocity = velocity;
+
+
+        if(Input.IsActionJustPressed("act_jump") ){
+            Velocity = new Vector3(0, jumpVelocity, 0);
+        }
+
+        // --- Sprint --- //
+
+        if (Input.IsActionPressed("act_sprint"))
+        {
+            Velocity = new Vector3(direction.X * speed * sprintMultiplier, Velocity.Y, direction.Z * speed * sprintMultiplier);
+        }
+        else
+        {
+            Velocity = new Vector3(direction.X * speed, Velocity.Y, direction.Z * speed);
+        }
+
+        // --- Attack --- //
+        if (Input.IsActionJustPressed("act_attack"))
+        {
+            if (animPlayer != null && IsInstanceValid(animPlayer))
+            {
+                animPlayer.Play("Anim_Attack");
+                //animPlayer  = GetNode<AnimationPlayer>("AnimationPlayer");
+    
+            }
+            else
+            {
+                animPlayer = null;
+                return;
+            }
+        }
+
+        if (Input.IsActionJustPressed("act_pickup"))
+        {
+            CheckPickable();
+        }
+
         MoveAndSlide();
+
     }
     
-    private Vector2 GetMovementVector()
+    #endregion
+
+    #region Player Rotation
+    //Rotates the player in the direction of the mouse
+    //returns a target
+    private Vector3 LookAtMouse()
     {
-        if (currentDevice == -2)
-            return Vector2.Zero;
+        var position = Position;
+        var mousePos = GetViewport().GetMousePosition();
+        var rayOrigin = camera.ProjectRayOrigin(mousePos);
+        var rayDir = camera.ProjectRayNormal(mousePos);
+        var plane = new Plane(Vector3.Up, Position.Y);
 
-        if (currentDevice == -1)
+        var intersect = plane.IntersectsRay(rayOrigin, rayDir);
+        if (intersect != null)
         {
-            Vector2 input = Vector2.Zero;
+            var target = new Vector3(intersect.Value.X, position.Y, intersect.Value.Z);
 
-            if (IsActionPressed("move_left"))
-                input.X -= 1;
-            if (IsActionPressed("move_right"))
-                input.X += 1;
-            if (IsActionPressed("move_up"))
-                input.Y -= 1;
-            if (IsActionPressed("move_down"))
-                input.Y += 1;
-
-            return input.Normalized();
+            if(target.DistanceTo(Position) > 0.1f)
+            {
+                
+                LookAt(target, Vector3.Up);
+                currentLookTarget = target;
+            }
+     
+            return target;
         }
-        else
+        return currentLookTarget;
+    }
+    
+    #endregion
+    private void CheckPickable()
+    {
+
+        var spaceState = GetWorld3D().DirectSpaceState;
+        var camera = GetViewport().GetCamera3D();
+        var mousePos = GetViewport().GetMousePosition();
+
+        var start = camera.ProjectRayOrigin(mousePos);
+        var end = camera.ProjectRayNormal(mousePos) * 1000;
+
+        var query = PhysicsRayQueryParameters3D.Create(start, end);
+        query.CollideWithAreas = true;
+        query.CollideWithBodies = true;
+
+        var result = spaceState.IntersectRay(query);
+
+        if(result.Count > 0)
         {
-            Vector2 input = new Vector2(
-                Input.GetJoyAxis(currentDevice, JoyAxis.LeftX),
-                Input.GetJoyAxis(currentDevice, JoyAxis.LeftY)
-            );
+            var hitObject = result["collider"].As<Node3D>();
+            if (hitObject.IsInGroup("pickable"))
+            {
+                GD.Print("Object is pickable");
+                Pickable pickable = hitObject as Pickable;
+                data = pickable.GetItemData();
 
-            if (input.Length() < 0.2f)
-                return Vector2.Zero;
-
-            return input;
+                if (inventory.AddItem(data))
+                {
+                    pickable.PickUp();
+                    GD.Print($"Picked up: {data.name}");
+                    //GD.Print($" {data.name}s Picked up: {data.count}");
+                    OnBodyEntered(hitObject);
+                    GD.Print("I picked up the: ", data.name);
+                    if(data.name == "HealthPack")
+                    {
+                        _healthPack++;
+                    }
+                }                                  
+            }
+            
+            if(hitObject.IsInGroup("Forge")){
+                var items = inventory.GetItems();
+                foreach(var item in items){
+                    if(items[0].name == "HealthPack" || items[1].name == "HealthPack")
+                    {
+                        forge.HealForge(5);
+                        inventory.RemoveItem(data);         
+                        _healthPack--;
+                        break;
+                    }
+                }
+           
+            }
         }
     }
-    
-    private bool IsActionPressed(string action)
+
+    public void TakeDamage(int damage)
     {
-        return actionsPressed.Contains(action);
+        this.health -= damage;
+        EmitSignal(SignalName.PlayerHealthChanged, health, maxHealth);
     }
 
-    private bool IsActionJustPressed(string action)
+    private void Die()
     {
-        return actionsPressed.Contains(action) && !actionsPressedLastFrame.Contains(action);
+        GlobalPosition = new Vector3(0, 1, 0);
     }
 
-    private bool IsActionJustReleased(string action)
+    private void OnBodyEntered(Node3D body)
     {
-        return !actionsPressed.Contains(action) && actionsPressedLastFrame.Contains(action);
-    }
-    
-    private void UpdatePlayerAppearance()
-    {
-        Color[] playerColors =
+        if (_collissionHandled) return;
+        _collissionHandled = true;
+        var hit = LookAtMouse();
+
+        if (body.IsInGroup("Forge") && _healthPack >= 1)
         {
-            Colors.Blue,
-            Colors.Red,
-            Colors.Green,
-            Colors.Yellow
-        };
+            forge.HealForge(10);
+            _healthPack--;
+        }
+            GetTree().CreateTimer(0.05f).Timeout += () => _collissionHandled = false;
+    }
 
-        Color playerColor = playerColors[PlayerIndex % playerColors.Length];
-
-        var meshInstance = GetNodeOrNull<MeshInstance3D>("CollisionShape3D/MeshInstance3D");
-
-        if (meshInstance == null)
+    private void Craft()
+    {
+        var items = inventory.GetItems();
+        if(items.Count < 2)
         {
-            GD.PrintErr($"Player {PlayerIndex}: MeshInstance3D not found");
             return;
         }
 
-        var material = new StandardMaterial3D
+        ItemData stick = null;
+        ItemData ingot = null;
+
+        foreach(var item in items)
         {
-            AlbedoColor = playerColor
-        };
+            if(item.name == "Stick" && item.count > 0 )
+            {
+                stick = item;
+            }
+            if(item.name =="Ingot" && item.count > 0)
+            {
+                ingot = item;
+            }
+        }
+        
+        if(stick != null && ingot != null && hand.GetChildCount() == 0)
+        {
+            Node3D sword = swordObject.Instantiate<Node3D>();
+            sword.AddToGroup("Sword");
+            this.AddChild(sword);
+            sword.Reparent(hand);
 
-        meshInstance.MaterialOverride = material;
+            animPlayer = sword.GetNode<AnimationPlayer>("StaticBody3D/AnimationPlayer");
+            sword.GlobalPosition = hand.GlobalPosition;
 
-        GD.Print($"Set player {PlayerIndex} color to {playerColor}");
-    }
-    
-    public void TakeDamage(int amount)
-    {
-        health -= amount;
-        EmitSignal(SignalName.HealthChanged, health, maxHealth);
-    }
-    
-    private void Die()
-    {
-        EmitSignal(SignalName.Died);
-        QueueFree();
+            inventory.RemoveItem(stick);
+            inventory.RemoveItem(ingot);
+        }
+   
     }
 }
