@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://calih72lg8n07"]
+
+[ext_resource type="Script" uid="uid://bf02wgjk36psn" path="res://Components/EnemyData.cs" id="1_ptvci"]
+
+[resource]
+script = ExtResource("1_ptvci")
+lootDropChance = 60.0
+metadata/_custom_type_script = "uid://bf02wgjk36psn"
