@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://jnghu007q1m"]
+
+[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://Scripts/Pickable.cs" id="1_6yd4e"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ho6yl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6yd4e"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_6yd4e"]
+
+[node name="Healthpack" type="Node3D" unique_id=1749123252 groups=["pickable"]]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1633201418 groups=["HealthPack", "pickable"]]
+script = ExtResource("1_6yd4e")
+itemDataPath = "uid://bmycncridbhyq"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=429522382]
+shape = SubResource("BoxShape3D_ho6yl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=2092674983]
+material_override = SubResource("StandardMaterial3D_6yd4e")
+mesh = SubResource("PrismMesh_6yd4e")

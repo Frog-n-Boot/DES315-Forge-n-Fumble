@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://c84ubnhphcs48"]
+
+[ext_resource type="Texture2D" uid="uid://74qquvhu8wl1" path="res://Textures/CobbleWall/brickwall_low_initialShadingGroup_BaseColor.tga" id="1_4a4fe"]
+[ext_resource type="Texture2D" uid="uid://begt1fluvonim" path="res://Textures/CobbleWall/brickwall_low_initialShadingGroup_Height.tga" id="2_vycdr"]
+[ext_resource type="Texture2D" uid="uid://bpjvy4piddxdt" path="res://Textures/CobbleWall/brickwall_low_initialShadingGroup_Normal.tga" id="3_0o6fv"]
+[ext_resource type="ArrayMesh" uid="uid://bvqs5bd4ihcp1" path="res://Mdlr_cobble_wall_low (1).obj" id="4_d82wv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eud7b"]
+albedo_texture = ExtResource("1_4a4fe")
+normal_enabled = true
+normal_texture = ExtResource("3_0o6fv")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_vycdr")
+
+[node name="ShortWall" type="Node3D" unique_id=2001509618]
+
+[node name="MdlrCobbleWallLow(1)" type="MeshInstance3D" parent="." unique_id=998857901]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3804684, 0, 0)
+material_override = SubResource("StandardMaterial3D_eud7b")
+mesh = ExtResource("4_d82wv")
+
+[node name="MdlrCobbleWallLow(1)2" type="MeshInstance3D" parent="." unique_id=220960386]
+material_override = SubResource("StandardMaterial3D_eud7b")
+mesh = ExtResource("4_d82wv")
+
+[node name="MdlrCobbleWallLow(1)3" type="MeshInstance3D" parent="." unique_id=720841696]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3723335, 0, 0)
+material_override = SubResource("StandardMaterial3D_eud7b")
+mesh = ExtResource("4_d82wv")
+
+[node name="MdlrCobbleWallLow(1)4" type="MeshInstance3D" parent="." unique_id=329130303]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7421412, 0, 0)
+material_override = SubResource("StandardMaterial3D_eud7b")
+mesh = ExtResource("4_d82wv")
