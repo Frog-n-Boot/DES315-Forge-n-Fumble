@@ -115,39 +115,62 @@ public partial class WaveManager : Node
 	}
 	
 	private void FindSpawnPositions()
+{
+	// Try to find an EnemySpawner parent node
+	Node spawnerParent = GetNodeOrNull("../EnemySpawner");
+	
+	if (spawnerParent == null)
 	{
-		// Try to find an EnemySpawner parent node
-		Node spawnerParent = GetNodeOrNull("../EnemySpawner");
-		
-		if (spawnerParent == null)
+		spawnerParent = GetTree().CurrentScene.FindChild("EnemySpawner", true, false);
+	}
+	
+	if (spawnerParent == null)
+	{
+		GD.PrintErr("Could not find EnemySpawner node!");
+		return;
+	}
+	
+	// Find all valid spawn points (exclude those at 0,0,0)
+	var points = new List<Node3D>();
+	var invalidPoints = new List<string>();
+	
+	foreach (Node child in spawnerParent.GetChildren())
+	{
+		if (child is Node3D point)
 		{
-			// Try to find it in the current scene
-			spawnerParent = GetTree().CurrentScene.FindChild("EnemySpawner", true, false);
-		}
-		
-		if (spawnerParent == null)
-		{
-			GD.PrintErr("Could not find EnemySpawner node!");
-			return;
-		}
-		
-		// Use the same pattern as PlayerSpawner
-		var points = new List<Node3D>();
-		foreach (Node child in spawnerParent.GetChildren())
-		{
-			if (child is Node3D point)
+			// Check if position is valid (not at origin)
+			if (point.GlobalPosition != Vector3.Zero)
+			{
 				points.Add(point);
-		}
-		spawnPositions = points.ToArray();
-		
-		GD.Print($"Auto-found {spawnPositions.Length} spawn positions");
-		
-		// Debug print each position
-		for (int i = 0; i < spawnPositions.Length; i++)
-		{
-			GD.Print($"Spawn {i}: {spawnPositions[i].Name} at {spawnPositions[i].GlobalPosition}");
+				GD.Print($"✓ Valid spawn: {point.Name} at {point.GlobalPosition}");
+			}
+			else
+			{
+				invalidPoints.Add(point.Name);
+				GD.PrintErr($"✗ SKIPPED: {point.Name} is at (0,0,0) - move it in the editor!");
+			}
 		}
 	}
+	
+	spawnPositions = points.ToArray();
+	
+	GD.Print($"Found {spawnPositions.Length} VALID spawn positions");
+	
+	if (invalidPoints.Count > 0)
+	{
+		GD.PrintErr($"WARNING: {invalidPoints.Count} spawn points were skipped because they're at (0,0,0):");
+		foreach (var name in invalidPoints)
+		{
+			GD.PrintErr($"  - {name}");
+		}
+		GD.PrintErr("Go to Godot editor and move these spawn points to proper positions!");
+	}
+	
+	if (spawnPositions.Length == 0)
+	{
+		GD.PrintErr("CRITICAL: No valid spawn positions! All are at (0,0,0)!");
+	}
+}
 	
 	private EnemyData CreateDefaultEnemyData(string name, int health, int damage, float speed, Color color)
 	{
