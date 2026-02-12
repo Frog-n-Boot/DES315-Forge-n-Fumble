@@ -127,7 +127,6 @@ normalEnemyData = ExtResource("9_mehdq")
 fastEnemyData = ExtResource("10_7p7bj")
 strongEnemyData = ExtResource("11_gwggj")
 lootTable = NodePath("../LootTable")
-strongEnemyChance = 20
 
 [node name="EnemySpawn1" type="Marker3D" parent="EnemySpawner" unique_id=829387820]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.679407, 0, 23.813654)
@@ -165,3 +164,26 @@ ingotDropChance = 50
 stickObject = ExtResource("10_mehdq")
 ingotObject = ExtResource("11_7p7bj")
 healthPackObject = ExtResource("12_gwggj")
+
+[node name="WaveManager" type="Node3D" parent="." unique_id=158649672 node_paths=PackedStringArray("spawnParent", "targetNode", "lootTable", "spawnPositions", "enemyUI")]
+script = ExtResource("7_53x3i")
+enemyScene = ExtResource("8_1bgfi")
+spawnParent = NodePath(".")
+targetNode = NodePath("../World/Forge")
+normalEnemyData = ExtResource("9_mehdq")
+fastEnemyData = ExtResource("10_7p7bj")
+strongEnemyData = ExtResource("11_gwggj")
+lootTable = NodePath("../LootTable")
+normalEnemyChance = 50
+fastEnemyChance = 40
+strongEnemyChance = 10
+maxWaves = 10
+startingEnemiesPerWave = 4
+enemyIncreasedPerWave = 2
+spawnPositions = [NodePath("../EnemySpawner/EnemySpawn1"), NodePath("../EnemySpawner/EnemySpawn2"), NodePath("../EnemySpawner/EnemySpawn3"), NodePath("../EnemySpawner/EnemySpawn4"), NodePath("../EnemySpawner/EnemySpawn5"), NodePath("../EnemySpawner/EnemySpawn6"), NodePath("../EnemySpawner/EnemySpawn7"), NodePath("../EnemySpawner/EnemySpawn8")]
+enemyUI = NodePath("../EnemyUI")
+
+[node name="EnemyUI" type="Label" parent="." unique_id=754514857]
+offset_right = 66.0
+offset_bottom = 23.0
+text = "Enemies"

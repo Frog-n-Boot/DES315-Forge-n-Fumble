@@ -5,7 +5,7 @@ public partial class Enemy : Node3D
 {
     #region Signals
     [Signal] public delegate void DiedEventHandler(Enemy enemy, Vector3 deathPosition);
-    [Signal] public delegate void HealthChangedEventHandler(int currentHealth, int maxHealth);
+    [Signal] public delegate void EnemyHealthChangedEventHandler(int currentHealth, int maxHealth);
     [Signal] public delegate void DamagedTargetEventHandler(Node3D target, int damage);
     #endregion
 
@@ -23,6 +23,7 @@ public partial class Enemy : Node3D
     #endregion
 
     #region Properties
+    public int health => enemyData?.health ?? 100;
     public int Damage => enemyData?.damage ?? 10;
     public string enemyName => enemyData?.enemyName ?? "Unknown";
     private Forge forgeScript;
@@ -118,12 +119,11 @@ public partial class Enemy : Node3D
         }
     }
 
-    private void ConnectSignals()
-    {
+    private void ConnectSignals(){
         if (healthComponent != null)
         {
             healthComponent.Died += OnHealthDepleted;
-            healthComponent.HealthChanged += (current, max) => EmitSignal(SignalName.HealthChanged, current, max);
+            healthComponent.HealthChanged += (current, max) => EmitSignal(SignalName.EnemyHealthChanged, current, max);
         }
 
         if (collisionComponent != null)
@@ -162,7 +162,8 @@ public partial class Enemy : Node3D
     private Forge GetForge()
     {
         if (forgeScript == null)
-            forgeScript = GetTree().GetFirstNodeInGroup("Forge") as Forge;
+            forgeScript = GetNode<Forge>("/root/Forge"); 
+            //forgeScript = GetTree().GetFirstNodeInGroup("Forge") as Forge; //It's returning null
         return forgeScript;
     }
     #endregion
@@ -177,8 +178,9 @@ public partial class Enemy : Node3D
     {
         if (isDying) return; // Ignore further collisions once dying
 
-        if (groupName == "Player" || groupName == "Forge")
+        if (groupName == "Forge")
         {
+           
             isDying = true;
             EmitSignal(SignalName.DamagedTarget, body, Damage);
 
@@ -186,9 +188,22 @@ public partial class Enemy : Node3D
             if (forge != null && enemyData != null)
             {
                 forge.TakeDamage(enemyData.damage);
+                GD.Print(forge.health);
+                GD.Print("Forge took damage");
+              
             }
 
             Die();
+        }
+        else if(groupName == "Player"){
+            isDying = true;
+            EmitSignal(SignalName.DamagedTarget, body, Damage);
+
+            if(body is PlayerController playerController&& enemyData !=null){
+                playerController.TakeDamage(enemyData.damage);
+            }
+
+            Die();  
         }
         else if (groupName == "Sword")
         {
@@ -217,6 +232,7 @@ public partial class Enemy : Node3D
     public void TakeDamage(int amount)
     {
         healthComponent?.TakeDamage(amount);
+        EmitSignal(SignalName.EnemyHealthChanged, health, 100);
     }
 
     public void Die()

@@ -17,18 +17,20 @@ public partial class WaveManager : Node
 
 	[Export(PropertyHint.Range, "0,100,1")] public int normalEnemyChance = 60;
 	[Export(PropertyHint.Range, "0,100,1")] public int fastEnemyChance = 20;
-	[Export(PropertyHint.Range, "0,100,1")] public int strongEnemyChance = 62;
+	[Export(PropertyHint.Range, "0,100,1")] public int strongEnemyChance = 20;
 
 	// Wave Exports
-
-	[Export] public int maxWaves { get; set;} = 10;
+	[Export] public int maxWaves { get; set;} = 3;
 	[Export] public float timeBetweenWaves { get; private set;} = 2.0f;
-	[Export] public int startingEnemiesPerWave {get; set;} = 5;
-	[Export] public int enemyIncreasedPerWave {get; set;} = 2;
+	[Export] public int startingEnemiesPerWave {get; set;}
+	[Export] public int enemyIncreasedPerWave {get; set;}
 
 	// Spawn position //
 
 	[Export] public Node3D[] spawnPositions = new Node3D[0];
+	[Export] private Label enemyUI;
+	
+	
 	#endregion
 
 	#region Signals
@@ -47,6 +49,11 @@ public partial class WaveManager : Node
 	private RandomNumberGenerator rnd = new RandomNumberGenerator();
 
 	private List<Enemy> activeEnemies = new List<Enemy>();
+
+	private InputManager inputManager;
+
+	private int enemiesMultiplier;
+	private int enemeisLeft;
 	#endregion
 
 	#region LifeCycle
@@ -54,6 +61,15 @@ public partial class WaveManager : Node
 	{
 		SetupDefaults();
 		SetupTimer();
+
+	
+		inputManager = GetNode<InputManager>("/root/InputManager");
+        
+        if (inputManager == null)
+        {
+            GD.PrintErr("InputManager not found!");
+            return;
+        }
 		
 		// Debug spawn positions
 		GD.Print($"WaveManager Ready - Checking spawn positions...");
@@ -73,11 +89,17 @@ public partial class WaveManager : Node
 				}
 			}
 		}
-		
 		StartNewWave();
 	}
 	#endregion
 
+	public override void _Process(double delta)
+    {
+		if(enemyUI == null){
+            return;
+        }
+        enemyUI.Text = $" Enemies alive: {enemeisLeft} \n Max Waves: {maxWaves}  Current wave: {currentWave} ";
+    }
 	#region Setup
 	private void SetupDefaults()
 	{
@@ -195,6 +217,28 @@ public partial class WaveManager : Node
 		spawnTimer.WaitTime = timeBetweenWaves;
 		spawnTimer.Timeout += OnSpawnTimerTimeout;
 	}
+
+	private int SetupEnemyMultiplier()
+    {
+        if(inputManager.GetAssignedPlayerCount() == 1)
+        {
+            enemiesMultiplier = 2;
+        }
+		else if(inputManager.GetAssignedPlayerCount() == 2)
+        {
+            enemiesMultiplier = 3;
+        }
+		else if(inputManager.GetAssignedPlayerCount() == 3)
+        {
+            enemiesMultiplier = 4;
+        }
+		else
+        {
+            enemiesMultiplier = 5;
+        }
+
+		return enemiesMultiplier;
+    }
 	#endregion
 
 	#region Wave Management
@@ -204,6 +248,7 @@ public partial class WaveManager : Node
 		if(currentWave >= maxWaves)
 		{
 			OnAllWavesCompleted();
+			GetTree().Quit();
 			return;
 		}
 
@@ -214,13 +259,14 @@ public partial class WaveManager : Node
 
 		EmitSignal(SignalName.WaveStarted, currentWave);
 		GD.Print($"Wave {currentWave} started - Spawning {enemiesToSpawnThisWave} enemies");
-
+		enemeisLeft = enemiesToSpawnThisWave;
 		spawnTimer.Start();
 	}
 
 	private int CalculateEnemiesForWave()
 	{
-		return startingEnemiesPerWave + ((currentWave -1) * enemyIncreasedPerWave);
+		enemiesMultiplier = SetupEnemyMultiplier();
+		return startingEnemiesPerWave  + ((currentWave -1) * enemiesMultiplier * enemyIncreasedPerWave);
 	}
 
 	private void OnWaveCompleted()
@@ -332,6 +378,7 @@ public partial class WaveManager : Node
 	{
 		activeEnemies.Remove(enemy);
 		enemiesAliveThisWave--;
+		enemeisLeft--;
 
 		if(lootTable != null)
 		{
@@ -341,6 +388,7 @@ public partial class WaveManager : Node
 		{
 			OnWaveCompleted();
 		}
+	
 
 	}
 
