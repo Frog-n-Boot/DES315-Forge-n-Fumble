@@ -142,12 +142,12 @@ public partial class WaveManager : Node
 			if (point.GlobalPosition != Vector3.Zero)
 			{
 				points.Add(point);
-				GD.Print($"✓ Valid spawn: {point.Name} at {point.GlobalPosition}");
+				//GD.Print($"Valid spawn: {point.Name} at {point.GlobalPosition}");
 			}
 			else
 			{
 				invalidPoints.Add(point.Name);
-				GD.PrintErr($"✗ SKIPPED: {point.Name} is at (0,0,0) - move it in the editor!");
+				//GD.PrintErr($"SKIPPED: {point.Name} is at (0,0,0) - move it in the editor!");
 			}
 		}
 	}
@@ -158,17 +158,17 @@ public partial class WaveManager : Node
 	
 	if (invalidPoints.Count > 0)
 	{
-		GD.PrintErr($"WARNING: {invalidPoints.Count} spawn points were skipped because they're at (0,0,0):");
+		//GD.PrintErr($"WARNING: {invalidPoints.Count} spawn points were skipped because they're at (0,0,0):");
 		foreach (var name in invalidPoints)
 		{
 			GD.PrintErr($"  - {name}");
 		}
-		GD.PrintErr("Go to Godot editor and move these spawn points to proper positions!");
+		//GD.PrintErr("Go to Godot editor and move these spawn points to proper positions!");
 	}
 	
 	if (spawnPositions.Length == 0)
 	{
-		GD.PrintErr("CRITICAL: No valid spawn positions! All are at (0,0,0)!");
+		//GD.PrintErr("CRITICAL: No valid spawn positions! All are at (0,0,0)!");
 	}
 }
 	
@@ -309,7 +309,7 @@ public partial class WaveManager : Node
 	{
 		if(spawnPositions == null || spawnPositions.Length == 0)
 		{
-			GD.PrintErr("WaveManager: No spawn positions set! Spawning at default position.");
+			//GD.PrintErr("WaveManager: No spawn positions set! Spawning at default position.");
 			// Return a position away from 0,0,0 so you can see the issue
 			return new Vector3(10, 1, 10);
 		}
@@ -318,12 +318,12 @@ public partial class WaveManager : Node
 		
 		if (spawnPositions[index] == null)
 		{
-			GD.PrintErr($"WaveManager: Spawn position at index {index} is null!");
+			//GD.PrintErr($"WaveManager: Spawn position at index {index} is null!");
 			return new Vector3(10, 1, 10);
 		}
 		
 		Vector3 spawnPos = spawnPositions[index].GlobalPosition;
-		GD.Print($"Spawning enemy at spawn point {index}: {spawnPos}");
+		//GD.Print($"Spawning enemy at spawn point {index}: {spawnPos}");
 		
 		return spawnPos;
 	}
