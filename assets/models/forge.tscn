@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dojlu4h4kkh7a" path="res://addons/kenney_prototype_textures/orange/texture_05.png" id="1_8m51e"]
 [ext_resource type="Texture2D" uid="uid://dogk5fh7yt38t" path="res://addons/kenney_prototype_textures/orange/texture_03.png" id="2_i5jg4"]
+[ext_resource type="PackedScene" uid="uid://ceepwtmv7qxv2" path="res://assets/models/ForgeHealthBar.tscn" id="3_g2ei8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i5jg4"]
 
@@ -33,6 +34,9 @@ uv1_triplanar = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5b8nd"]
 size = Vector3(0.704834, 0.51831055, 1.1091309)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_g2ei8"]
+viewport_path = NodePath("SubViewport")
 
 [node name="Forge" type="Node3D" unique_id=994045895 groups=["Forge"]]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
@@ -148,3 +152,7 @@ collision_mask = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=250762080]
 transform = Transform3D(30, 0, 0, 0, 20, 0, 0, 0, 35, 0.72143555, 4.816896, -1.90979)
 shape = SubResource("BoxShape3D_5b8nd")
+
+[node name="ForgeHealthBar" parent="." unique_id=1328028810 instance=ExtResource("3_g2ei8")]
+transform = Transform3D(-8.742278e-07, 0, -20, 0, 20, 0, 20, 0, -8.742278e-07, 0, 24.47832, -0.85522586)
+texture = SubResource("ViewportTexture_g2ei8")

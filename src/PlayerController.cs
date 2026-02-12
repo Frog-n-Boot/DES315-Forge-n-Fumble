@@ -135,7 +135,10 @@ private void FindExistingSword()
 
         if (health <= 0)
             Die();
+
         Craft();
+        
+       
 
         if (IsActionPressed("attack") && !isAttacking)
         {
@@ -414,6 +417,8 @@ private void FindExistingSword()
     private void Die()
     {
         GlobalPosition = new Vector3(0, 1, 0);
+        health = maxHealth;
+        EmitSignal(SignalName. PlayerHealthChanged, health, maxHealth);
     }
 
     private void OnSwordDurabilityChecked()
@@ -469,6 +474,8 @@ private void FindExistingSword()
             this.AddChild(swordNode);
             swordNode.Reparent(hand);
             swordNode.GlobalPosition = hand.GlobalPosition;
+            hand.Rotation = Vector3.Zero;
+            swordNode.Rotation = hand.Rotation;
 
             currentSword = swordNode as Sword;
             if (currentSword != null)

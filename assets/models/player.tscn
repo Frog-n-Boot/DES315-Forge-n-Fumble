@@ -64,7 +64,8 @@ shadow_size = 3
 [sub_resource type="BoxShape3D" id="BoxShape3D_8d03m"]
 size = Vector3(1, 2.5361938, 1)
 
-[node name="Player" type="CharacterBody3D" unique_id=489937195 node_paths=PackedStringArray("animPlayer", "hand")]
+[node name="Player" type="CharacterBody3D" unique_id=489937195 node_paths=PackedStringArray("animPlayer", "hand") groups=["Player"]]
+collision_layer = 5
 velocity = Vector3(0, -228.01021, 0)
 script = ExtResource("1_ormyk")
 speed = 7.5
@@ -72,7 +73,7 @@ swordObject = ExtResource("3_8d03m")
 animPlayer = NodePath("CollisionShape3D/Hand/AnimationPlayer")
 hand = NodePath("CollisionShape3D/Hand")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1437107689]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1437107689 groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_xmmeu")
 
@@ -106,6 +107,8 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_v80ek")
 value = 50.0
 show_percentage = false
 script = ExtResource("4_8d03m")
+targetPath = NodePath("../../..")
+isForge = false
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1712685090]
 

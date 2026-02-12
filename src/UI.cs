@@ -6,15 +6,26 @@ using System.Transactions;
 
 public partial class UI : ProgressBar
 {
-    Forge forge;
+    [Export] private NodePath targetPath;
+    [Export] private bool isForge = true;
+
+    private Forge forge;
+    private PlayerController playerController;
+
     public override void _Ready()
     {
         MaxValue = 100;
-        forge = GetNode<Forge>("/root/Forge");
-
-        forge.ForgeTookDamage += SetHealth;
-
-        SetHealth(forge.health, forge.maxHealth);
+        if(isForge){
+            forge = GetNode<Forge>("/root/Forge");
+            forge.ForgeTookDamage += SetHealth;
+            SetHealth(forge.health, forge.maxHealth);
+        }
+        else{
+            playerController = GetNode<PlayerController>("res://src/PlayerController.cs");
+            playerController.PlayerHealthChanged += SetHealth;
+            SetHealth(playerController.health, playerController.maxHealth);
+        }
+        
 
     }
     
@@ -23,24 +34,13 @@ public partial class UI : ProgressBar
         Value = (float)current / (float)max * 100;
     }
 
-
-}
-
-public partial class playerUI : ProgressBar
-{
-    PlayerController playerController;
-    public override void _Ready()
-    {
-        MaxValue = 100;
-
-        playerController = GetNode<PlayerController>("/root/PlayerController");
-        playerController.PlayerHealthChanged += playerSetHealth;
-
-        playerSetHealth(playerController.health, playerController.maxHealth);
-    }
-
-    private void playerSetHealth(int current, int max)
-    {
-        Value = (float)current / (float)max * 100;
+    public override void _ExitTree(){
+        if(forge != null)
+            forge.ForgeTookDamage -= SetHealth;
+        
+        if(playerController != null)
+            playerController.PlayerHealthChanged -= SetHealth;
+        
     }
 }
+

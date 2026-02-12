@@ -36,3 +36,4 @@ mesh = SubResource("BoxMesh_pg1v4")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=481175609 groups=["Sword"]]
 transform = Transform3D(0.09335804, 0, 0.035836797, 0, 1.64, -3.7252903e-09, -0.035836797, 0, 0.09335804, 0.06625143, 1.097252, -0.0044742525)
 shape = SubResource("BoxShape3D_xv1ii")
+disabled = true
