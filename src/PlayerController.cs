@@ -19,12 +19,12 @@ public partial class PlayerController : CharacterBody3D
     [Export] public AnimationPlayer animPlayer;
 
     [Export] private Node3D hand;
-    private StaticBody3D world;
     private Camera3D camera;
+    private StaticBody3D world;
     private InputManager inputManager;
-    private int currentDevice = -1;
-    private HashSet<string> actionsPressed = new();
-    private HashSet<string> actionsPressedLastFrame = new();
+    private int currentDevice = -2;
+    private HashSet<string> actionsPressed = new HashSet<string>();
+    private HashSet<string> actionsPressedLastFrame = new HashSet<string>();
 
     [Signal] public delegate void PlayerHealthChangedEventHandler(int current, int max);
     [Signal] public delegate void DiedEventHandler();
@@ -35,29 +35,81 @@ public partial class PlayerController : CharacterBody3D
 
     private int _healthPack;
     private Vector3 currentLookTarget;
-    private Sword swordClass;
+    private Sword currentSword;
+    private bool isAttacking = false;
 
     public override void _Ready()
+{
+    health = maxHealth;
+
+    inputManager = GetNode<InputManager>("/root/InputManager");
+    if (inputManager == null)
+        GD.PrintErr("PlayerController: InputManager not found!");
+
+    world = GetTree().Root.GetNodeOrNull<StaticBody3D>("testing_lab");
+    if (world != null)
+        camera = world.GetNodeOrNull<Camera3D>("Camera3D");
+
+    if (camera == null)
+        camera = GetViewport().GetCamera3D();
+
+    forge = GetNodeOrNull<Forge>("/root/Forge");
+    healthPack = GetNodeOrNull<HealthPack>("/root/HealthPack");
+    inventory = GetNodeOrNull<InventorySystem>("/root/InventorySystem");
+
+    var pickupArea = GetNode<Area3D>("Area3D");
+    pickupArea.BodyEntered += OnPickupBodyEntered;
+    pickupArea.AreaEntered += OnPickupAreaEntered;
+
+    animPlayer.AnimationFinished += OnAnimationFinished;
+    
+    // ADD THIS: Find existing sword in hand
+    hand = GetNodeOrNull<Node3D>("CollisionShape3D/Hand");
+    if (hand != null)
     {
-        inputManager = GetNode<InputManager>("/root/InputManager");
-        health = maxHealth;
+        FindExistingSword();
+    }
+    else
+    {
+        GD.PrintErr("Hand node not found!");
+    }
+}
+private void FindExistingSword()
+{
+    if (hand == null) return;
+    
+    foreach (Node child in hand.GetChildren())
+    {
+        if (child is Sword sword)
+        {
+            currentSword = sword;
+            currentSword.CheckDurability += OnSwordDurabilityChecked;
+            currentSword.Broke += OnSwordBroke;
+            GD.Print($"Player {PlayerIndex} found existing sword in hand!");
+            return;
+        }
+    }
+}
 
-        world = GetTree().Root.GetNodeOrNull<StaticBody3D>("testing_lab");
-        if (world != null)
-            camera = world.GetNodeOrNull<Camera3D>("Camera3D");
+    // Called by PlayerSpawner after spawning — sets index, device and colour
+    public void SetPlayerIndex(int index)
+    {
+        PlayerIndex = index;
 
-        if (camera == null)
-            camera = GetViewport().GetCamera3D();
+        if (inputManager == null)
+            inputManager = GetNode<InputManager>("/root/InputManager");
 
-        forge = GetNodeOrNull<Forge>("/root/Forge");
-        healthPack = GetNodeOrNull<HealthPack>("/root/HealthPack");
-        //hand = GetNodeOrNull<Node3D>("Hand");
-        inventory = GetNodeOrNull<InventorySystem>("/root/InventorySystem");
+        if (inputManager != null)
+        {
+            currentDevice = inputManager.GetDeviceForPlayer(PlayerIndex);
+            GD.Print($"Player initialized with index {PlayerIndex}, device {currentDevice}");
+        }
+        else
+        {
+            GD.PrintErr($"Player {PlayerIndex}: Could not find InputManager!");
+        }
 
-        var pickupArea = GetNode<Area3D>("Area3D");
-        pickupArea.BodyEntered += OnPickupBodyEntered;
-        pickupArea.AreaEntered += OnPickupAreaEntered;
-        animPlayer.Play("Anim_Attack");
+        UpdatePlayerAppearance();
     }
 
     public override void _Process(double delta)
@@ -81,16 +133,14 @@ public partial class PlayerController : CharacterBody3D
         foreach (var action in actionsPressed)
             actionsPressedLastFrame.Add(action);
 
-        PlayerInput(delta);
-
         if (health <= 0)
             Die();
-
         Craft();
 
-        if (Input.IsActionJustPressed("attack"))
+        if (IsActionPressed("attack") && !isAttacking)
         {
-            animPlayer.Play("Anim_Attack");
+            GD.Print($"Player {PlayerIndex} attack input detected!");
+            StartAttack();
         }
     }
 
@@ -127,37 +177,77 @@ public partial class PlayerController : CharacterBody3D
     }
 
     public override void _Input(InputEvent @event)
+{
+    if (currentDevice == -2 || inputManager == null)
+        return;
+
+    bool isFromOurDevice = false;
+
+    // KEYBOARD PLAYER
+    if (currentDevice == -1 && (@event is InputEventKey || @event is InputEventMouseButton))
     {
-        if (currentDevice == -2 || inputManager == null)
-            return;
-
-        bool isFromOurDevice = false;
-
-        if (@event is InputEventJoypadButton joyButton)
-            isFromOurDevice = joyButton.Device == currentDevice;
-        else if (@event is InputEventJoypadMotion joyMotion)
-            isFromOurDevice = joyMotion.Device == currentDevice;
-        else if (@event is InputEventKey || @event is InputEventMouse)
-            isFromOurDevice = currentDevice == -1;
-
-        if (!isFromOurDevice)
-            return;
-
-        foreach (var action in InputMap.GetActions())
-        {
-            if (@event.IsAction(action))
-            {
-                if (@event.IsPressed())
-                    actionsPressed.Add(action);
-                else if (@event.IsReleased())
-                    actionsPressed.Remove(action);
-            }
-        }
+        isFromOurDevice = true;
     }
 
-    private void PlayerInput(double delta)
+    // CONTROLLER PLAYER
+    if (currentDevice >= 0)
     {
-   
+        if (@event is InputEventJoypadButton joyButton)
+            isFromOurDevice = joyButton.Device == currentDevice;
+
+        if (@event is InputEventJoypadMotion joyMotion)
+            isFromOurDevice = joyMotion.Device == currentDevice;
+    }
+
+    if (!isFromOurDevice)
+        return;
+
+    foreach (var action in InputMap.GetActions())
+    {
+        if (@event.IsActionPressed(action))
+        {
+            actionsPressed.Add(action);
+        }
+
+        if (@event.IsActionReleased(action))
+        {
+            actionsPressed.Remove(action);
+        }
+    }
+}
+
+
+    private void StartAttack()
+{
+    GD.Print($"Player {PlayerIndex} StartAttack called");
+    GD.Print($"currentSword is null: {currentSword == null}");
+    GD.Print($"animPlayer is null: {animPlayer == null}");
+    GD.Print($"isAttacking: {isAttacking}");
+    
+    if (currentSword == null)
+    {
+        GD.Print("No sword to attack with!");
+        return;
+    }
+
+    isAttacking = true;
+    currentSword.SetHitboxEnabled(true);
+    animPlayer.Play("Anim_Attack");
+    GD.Print($"Player {PlayerIndex} attacking!");
+}
+
+    private void OnAnimationFinished(StringName animName)
+    {
+        if (animName == "Anim_Attack")
+        {
+            isAttacking = false;
+
+            // Disable hitbox when swing is done
+            if (currentSword != null)
+                currentSword.SetHitboxEnabled(false);
+
+            GD.Print($"Player {PlayerIndex} attack finished.");
+        }
     }
 
     private void OnPickupBodyEntered(Node body)
@@ -233,7 +323,7 @@ public partial class PlayerController : CharacterBody3D
         }
         else
         {
-            Vector2 input = new(
+            Vector2 input = new Vector2(
                 Input.GetJoyAxis(currentDevice, JoyAxis.RightX),
                 Input.GetJoyAxis(currentDevice, JoyAxis.RightY)
             );
@@ -261,7 +351,7 @@ public partial class PlayerController : CharacterBody3D
         }
         else
         {
-            Vector2 input = new(
+            Vector2 input = new Vector2(
                 Input.GetJoyAxis(currentDevice, JoyAxis.LeftX),
                 Input.GetJoyAxis(currentDevice, JoyAxis.LeftY)
             );
@@ -283,6 +373,38 @@ public partial class PlayerController : CharacterBody3D
         return actionsPressed.Contains(action) && !actionsPressedLastFrame.Contains(action);
     }
 
+    private bool IsActionJustReleased(string action)
+    {
+        return !actionsPressed.Contains(action) && actionsPressedLastFrame.Contains(action);
+    }
+
+    private void UpdatePlayerAppearance()
+    {
+        Color[] playerColors =
+        {
+            Colors.Blue,
+            Colors.Red,
+            Colors.Green,
+            Colors.Yellow
+        };
+
+        Color playerColor = playerColors[PlayerIndex % playerColors.Length];
+
+        var meshInstance = GetNodeOrNull<MeshInstance3D>("CollisionShape3D/MeshInstance3D");
+        if (meshInstance == null)
+        {
+            GD.PrintErr($"Player {PlayerIndex}: MeshInstance3D not found at CollisionShape3D/MeshInstance3D");
+            return;
+        }
+
+        meshInstance.MaterialOverride = new StandardMaterial3D
+        {
+            AlbedoColor = playerColor
+        };
+
+        GD.Print($"Set player {PlayerIndex} color to {playerColor}");
+    }
+
     public void TakeDamage(int damage)
     {
         health -= damage;
@@ -293,64 +415,72 @@ public partial class PlayerController : CharacterBody3D
     {
         GlobalPosition = new Vector3(0, 1, 0);
     }
-    
-    private void Craft(){
-   
-        
-        if (inventory == null)
-        {
-            GD.Print("Inventory object is null");
-             return;
-        }
 
-        if (hand == null)
-           {
-            GD.Print("hand object is null");
-             return;
-        }
+    private void OnSwordDurabilityChecked()
+    {
+        if (currentSword == null) return;
+        GD.Print($"Sword durability remaining: {currentSword.durability}");
+    }
 
-        if (swordObject == null)
-        {
-            GD.Print("Sword object is null");
-             return;
-        }
-        
+    private void OnSwordBroke()
+    {
+        GD.Print("Sword broke! Auto crafting a new one if ingredients are available...");
+        currentSword = null;
+        isAttacking = false;
+    }
 
-        if (hand == null || inventory == null || swordObject == null)
+    private void Craft()
+    {
+        if (inventory == null || hand == null || swordObject == null)
             return;
 
-        if (hand.GetChildCount() != 1)
+       
+        bool hasSword = false;
+        foreach (Node child in hand.GetChildren()){
+            if (child is Sword || child.IsInGroup("Sword")){
+             hasSword = true;
+                break;
+            }
+        }
+
+        if (hasSword)
             return;
 
         var items = inventory.GetItems();
         if (items.Count < 2)
             return;
-        
+
         ItemData stick = null;
         ItemData ingot = null;
 
         foreach (var item in items)
-        { 
+        {
             if (item.name == "Stick" && item.count > 0)
                 stick = item;
-            
+
             if (item.name == "Ingot" && item.count > 0)
                 ingot = item;
-         
         }
 
-        if(stick != null && ingot != null && hand.GetChildCount() == 0)
+        if (stick != null && ingot != null)
         {
-           Node3D sword = swordObject.Instantiate<Node3D>();
-            sword.AddToGroup("Sword");
-            this.AddChild(sword);
-            sword.Reparent(hand);
-            sword.GlobalPosition = hand.GlobalPosition;
+            Node3D swordNode = swordObject.Instantiate<Node3D>();
+            swordNode.AddToGroup("Sword");
+            this.AddChild(swordNode);
+            swordNode.Reparent(hand);
+            swordNode.GlobalPosition = hand.GlobalPosition;
 
+            currentSword = swordNode as Sword;
+            if (currentSword != null)
+            {
+                currentSword.CheckDurability += OnSwordDurabilityChecked;
+                currentSword.Broke += OnSwordBroke;
+            }
 
             inventory.RemoveItem(stick);
             inventory.RemoveItem(ingot);
+
+            GD.Print("Sword crafted!");
         }
     }
-
 }

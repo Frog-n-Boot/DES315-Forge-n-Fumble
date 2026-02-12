@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://88oq7ysmwuhi"]
 
 [ext_resource type="Texture2D" uid="uid://dhqovf0vvc8vq" path="res://addons/kenney_prototype_textures/dark/texture_08.png" id="1_3lnvk"]
-[ext_resource type="PackedScene" uid="uid://bm6vf4tjk48gj" path="res://assets/models/Forge.tscn" id="2_ptwec"]
+[ext_resource type="PackedScene" uid="uid://bm6vf4tjk48gj" path="res://assets/models/forge.tscn" id="2_ptwec"]
 [ext_resource type="PackedScene" uid="uid://8roa2xkb2ipl" path="res://assets/models/player.tscn" id="3_81oh0"]
 [ext_resource type="PackedScene" uid="uid://cxj0fwjqxc5ny" path="res://assets/models/boxes.tscn" id="3_a3bqn"]
 [ext_resource type="Script" uid="uid://dnqtfi3fpu8ue" path="res://src/CameraController.cs" id="3_mndrt"]
@@ -101,11 +101,10 @@ size = 15.0
 script = ExtResource("3_mndrt")
 playerSpawner = NodePath("../PlayerSpawner")
 
-[node name="PlayerSpawner" type="Node" parent="." unique_id=1347135134 node_paths=PackedStringArray("spawnParent", "spawnPoints")]
+[node name="PlayerSpawner" type="Node" parent="." unique_id=1347135134 node_paths=PackedStringArray("spawnParent")]
 script = ExtResource("6_42n6d")
 playerScene = ExtResource("3_81oh0")
 spawnParent = NodePath("..")
-spawnPoints = [NodePath("SpawnPoint0"), NodePath("SpawnPoint1"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3")]
 
 [node name="SpawnPoint0" type="Marker3D" parent="PlayerSpawner" unique_id=1722202336]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7532635, 0, 2.060317)
@@ -119,37 +118,45 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.95199704)
 [node name="SpawnPoint3" type="Marker3D" parent="PlayerSpawner" unique_id=2030002562]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.498033, 0, -1.7967122)
 
-[node name="EnemySpawner" type="Node" parent="." unique_id=1191566733]
-
-[node name="EnemySpawn1" type="Node3D" parent="EnemySpawner" unique_id=1718648085]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7845936, 0, 17.104359)
-
-[node name="EnemySpawn2" type="Node3D" parent="EnemySpawner" unique_id=1695434176]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.031636, 0, -15.903209)
-
-[node name="EnemySpawn3" type="Node3D" parent="EnemySpawner" unique_id=7115967]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2715778, 0, 11.7636175)
-
-[node name="EnemySpawn4" type="Node3D" parent="EnemySpawner" unique_id=2064537093]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6233778, 0, -14.734726)
-
-[node name="EnemySpawn5" type="Node3D" parent="EnemySpawner" unique_id=1928785983]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.758142, 0, 13.082964)
-
-[node name="EnemySpawn6" type="Node3D" parent="EnemySpawner" unique_id=1941373508]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.164171, 0, -11.79693)
-
-[node name="WaveManager" type="Node3D" parent="." unique_id=107125337 node_paths=PackedStringArray("spawnParent", "targetNode", "lootTable", "spawnPositions")]
+[node name="EnemySpawner" type="Node" parent="." unique_id=1191566733 node_paths=PackedStringArray("spawnParent", "targetNode", "lootTable")]
 script = ExtResource("7_53x3i")
 enemyScene = ExtResource("8_1bgfi")
-spawnParent = NodePath(".")
+spawnParent = NodePath("Enemies")
 targetNode = NodePath("../World/Forge")
 normalEnemyData = ExtResource("9_mehdq")
 fastEnemyData = ExtResource("10_7p7bj")
 strongEnemyData = ExtResource("11_gwggj")
 lootTable = NodePath("../LootTable")
 strongEnemyChance = 20
-spawnPositions = [NodePath("../EnemySpawner/EnemySpawn1"), NodePath("../EnemySpawner/EnemySpawn2"), NodePath("../EnemySpawner/EnemySpawn3"), NodePath("../EnemySpawner/EnemySpawn4"), NodePath("../EnemySpawner/EnemySpawn5"), NodePath("../EnemySpawner/EnemySpawn6")]
+
+[node name="EnemySpawn1" type="Marker3D" parent="EnemySpawner" unique_id=829387820]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.679407, 0, 23.813654)
+
+[node name="EnemySpawn2" type="Marker3D" parent="EnemySpawner" unique_id=1036047724]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.767622, 0, -23.965092)
+
+[node name="EnemySpawn3" type="Marker3D" parent="EnemySpawner" unique_id=269155436]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.08134, 0, 28.875797)
+
+[node name="EnemySpawn9" type="Marker3D" parent="EnemySpawner" unique_id=348894196]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.341758, 0, 28.875797)
+
+[node name="EnemySpawn4" type="Marker3D" parent="EnemySpawner" unique_id=732551147]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.181042, 0, -25.05046)
+
+[node name="EnemySpawn5" type="Marker3D" parent="EnemySpawner" unique_id=1147873908]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.798166, 0, 13.082964)
+
+[node name="EnemySpawn6" type="Marker3D" parent="EnemySpawner" unique_id=890423285]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.81321, 0, -4.90823)
+
+[node name="EnemySpawn7" type="Marker3D" parent="EnemySpawner" unique_id=1941235768]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.031914, 0, -4.90823)
+
+[node name="EnemySpawn8" type="Marker3D" parent="EnemySpawner" unique_id=1838745660]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.031914, 0, 10.609423)
+
+[node name="Enemies" type="Node3D" parent="EnemySpawner" unique_id=663500412]
 
 [node name="LootTable" type="Node3D" parent="." unique_id=537718464]
 script = ExtResource("9_7cc0k")
@@ -158,15 +165,3 @@ ingotDropChance = 50
 stickObject = ExtResource("10_mehdq")
 ingotObject = ExtResource("11_7p7bj")
 healthPackObject = ExtResource("12_gwggj")
-
-[node name="Stick" parent="." unique_id=70957572 instance=ExtResource("10_mehdq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7222824, 0.18933196, 7.799149)
-
-[node name="Ingot" parent="." unique_id=474887611 instance=ExtResource("11_7p7bj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15269208, 0.09471922, 5.7284813)
-
-[node name="Ingot2" parent="." unique_id=889112198 instance=ExtResource("11_7p7bj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7752476, 0.09471922, 5.8421764)
-
-[node name="Stick2" parent="." unique_id=987795340 instance=ExtResource("10_mehdq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19483829, 0.18933196, 7.873662)

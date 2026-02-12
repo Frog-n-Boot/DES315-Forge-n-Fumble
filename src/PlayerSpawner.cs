@@ -6,7 +6,7 @@ public partial class PlayerSpawner : Node
 {
     [Export] private PackedScene playerScene;
     [Export] private Node3D spawnParent;
-    [Export] private Node3D[] spawnPoints;
+    private Node3D[] spawnPoints;
     
     private InputManager inputManager;
     private Dictionary<int, Node> activePlayers = new Dictionary<int, Node>();
@@ -20,6 +20,15 @@ public partial class PlayerSpawner : Node
             GD.PrintErr("InputManager not found!");
             return;
         }
+
+        // Auto fill with spawn points (only Node3D children)
+        var points = new List<Node3D>();
+        foreach (Node child in GetChildren())
+        {
+            if (child is Node3D point)
+                points.Add(point);
+        }
+        spawnPoints = points.ToArray();
         
         // Validate spawn points array
         if (spawnPoints == null || spawnPoints.Length < InputManager.MAX_PLAYERS)
@@ -80,7 +89,6 @@ public partial class PlayerSpawner : Node
         {
             if (spawnPoints != null && spawnPoints.Length > playerIndex && spawnPoints[playerIndex] != null)
             {
-                // Set position and rotation
                 player3D.GlobalPosition = spawnPoints[playerIndex].GlobalPosition;
                 player3D.GlobalRotation = spawnPoints[playerIndex].GlobalRotation;
                 

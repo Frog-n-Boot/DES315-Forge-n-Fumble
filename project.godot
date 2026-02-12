@@ -80,10 +80,6 @@ block={
 , Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":4,"axis_value":1.0,"script":null)
 ]
 }
-act_pickup={
-"deadzone": 0.2,
-"events": []
-}
 
 [physics]
 

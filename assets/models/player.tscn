@@ -67,7 +67,7 @@ size = Vector3(1, 2.5361938, 1)
 [node name="Player" type="CharacterBody3D" unique_id=489937195 node_paths=PackedStringArray("animPlayer", "hand")]
 velocity = Vector3(0, -228.01021, 0)
 script = ExtResource("1_ormyk")
-health = 100
+speed = 7.5
 swordObject = ExtResource("3_8d03m")
 animPlayer = NodePath("CollisionShape3D/Hand/AnimationPlayer")
 hand = NodePath("CollisionShape3D/Hand")
