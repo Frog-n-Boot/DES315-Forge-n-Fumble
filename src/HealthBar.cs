@@ -10,7 +10,7 @@ public partial class HealthBar : ProgressBar
 	{	
 		base._Ready();
 		player = GetNode<PlayerController>($"../../../");
-		player.HealthChanged += OnHealthChange;
+		player.PlayerHealthChanged += OnHealthChange;
 
 		MaxValue = 100;
 		Value = 100;

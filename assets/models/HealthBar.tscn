@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://ceepwtmv7qxv2"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8r7yd"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8r7yd"]
+bg_color = Color(1, 0, 0, 1)
+border_width_bottom = 3
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_bottom = 3.0
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6db0"]
+bg_color = Color(0.0039172415, 0.4446821, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_bottom = 3.0
+
+[node name="Sprite3D" type="Sprite3D" unique_id=1328028810]
+texture = SubResource("ViewportTexture_8r7yd")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=667985267]
+size = Vector2i(200, 42)
+
+[node name="ProgressBar" type="ProgressBar" parent="SubViewport" unique_id=1852592398]
+offset_right = 200.0
+offset_bottom = 40.0
+theme_override_styles/background = SubResource("StyleBoxFlat_8r7yd")
+theme_override_styles/fill = SubResource("StyleBoxFlat_n6db0")
+value = 100.0

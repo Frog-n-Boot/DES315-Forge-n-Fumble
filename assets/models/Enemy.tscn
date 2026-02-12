@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://b8a87u3vesy3q"]
+
+[ext_resource type="Script" uid="uid://bqbrwko4kb7sp" path="res://src/Enemy.cs" id="1_pfjfy"]
+[ext_resource type="Script" uid="uid://mv3bvjhkqfww" path="res://assets/components/HealthComponent.cs" id="2_8ks7m"]
+[ext_resource type="Script" uid="uid://bf02wgjk36psn" path="res://assets/components/EnemyData.cs" id="2_a5uau"]
+[ext_resource type="Script" uid="uid://bqldcijarxrcr" path="res://assets/components/MovementComponent.cs" id="3_a5uau"]
+[ext_resource type="Script" uid="uid://cgfdpddcgsee" path="res://assets/components/CollissionHandlerComponent.cs" id="4_v6vhh"]
+
+[sub_resource type="Resource" id="Resource_v6vhh"]
+script = ExtResource("2_a5uau")
+metadata/_custom_type_script = "uid://bf02wgjk36psn"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pfjfy"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_elc20"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_pfjfy"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_82iww"]
+
+[node name="Enemy" type="Node3D" unique_id=2041307673 node_paths=PackedStringArray("mesh", "collisionArea") groups=["Enemy"]]
+script = ExtResource("1_pfjfy")
+enemyData = SubResource("Resource_v6vhh")
+mesh = NodePath("CharacterBody3D/MeshInstance3D")
+collisionArea = NodePath("CharacterBody3D/Area3D")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=590602209]
+collision_layer = 2
+collision_mask = 4
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=542464969]
+material_override = SubResource("StandardMaterial3D_pfjfy")
+mesh = SubResource("CylinderMesh_elc20")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1909118665]
+shape = SubResource("CylinderShape3D_pfjfy")
+
+[node name="Area3D" type="Area3D" parent="CharacterBody3D" unique_id=1859868463]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/Area3D" unique_id=1172694664]
+shape = SubResource("CylinderShape3D_82iww")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=220422716]
+script = ExtResource("2_8ks7m")
+
+[node name="MovementComponent" type="Node" parent="." unique_id=1160935092]
+script = ExtResource("3_a5uau")
+
+[node name="CollisionHandlerComponent" type="Node" parent="." unique_id=910746232]
+script = ExtResource("4_v6vhh")
+
+[connection signal="body_entered" from="CharacterBody3D/Area3D" to="." method="OnBodyEntered"]

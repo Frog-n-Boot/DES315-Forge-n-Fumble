@@ -22,10 +22,19 @@ config/icon="res://icon.svg"
 [autoload]
 
 InputManager="*uid://cpmas3er6cuol"
+InventorySystem="*uid://bc434alj4ge0"
+Forge="*uid://csp7j7pbfs6rf"
 
 [dotnet]
 
 project/assembly_name="Forge-n-Fumble"
+
+[global_group]
+
+Forge=""
+Enemy=""
+Player=""
+pickable=""
 
 [input]
 
