@@ -94,7 +94,6 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_xlhxd")
 value = 50.0
 show_percentage = false
 script = ExtResource("6_c2ay5")
-targetPath = NodePath("../../..")
 isForge = false
 isEnemy = true
 
