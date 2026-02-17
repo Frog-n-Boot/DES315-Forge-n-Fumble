@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 
 namespace Godot;
 
@@ -74,6 +75,7 @@ public partial class PlayerController : CharacterBody3D
         GD.PrintErr("Hand node not found!");
     }
 }
+
 private void FindExistingSword()
 {
     if (hand == null) return;
@@ -136,7 +138,7 @@ private void FindExistingSword()
         if (health <= 0)
             Die();
 
-        Craft();
+        //Craft();
         
        
 
@@ -257,12 +259,49 @@ private void FindExistingSword()
     {
         if (body.IsInGroup("pickable"))
             ProcessPickable(body);
+        
     }
 
     private void OnPickupAreaEntered(Area3D area)
     {
+        
         if (area.IsInGroup("pickable"))
             ProcessPickable(area);
+
+        bool hasSword = false;
+        foreach (Node child in hand.GetChildren()){
+            if (child is Sword || child.IsInGroup("Sword")){
+             hasSword = true;
+             
+                break;
+            }
+        }
+
+        if (hasSword)
+            return;
+
+        if (area.IsInGroup("Sword"))
+        {
+            StaticBody3D areaParent = area.GetParent() as StaticBody3D;
+            Node3D swordNode = areaParent.GetParent() as Node3D;
+            if(swordNode != null)
+            {
+                swordNode.Reparent(hand);
+                swordNode.GlobalPosition = hand.GlobalPosition;
+                swordNode.Rotation = Vector3.Zero;
+                hand.Rotation = Vector3.Zero;
+
+                currentSword = swordNode as Sword;
+                if (currentSword != null)
+                {
+                    currentSword.CheckDurability += OnSwordDurabilityChecked;
+                    currentSword.Broke += OnSwordBroke;
+                }
+            }
+            
+            GD.Print("Sword has been collided");
+            
+        }
     }
 
     private void ProcessPickable(Node hitObject)
@@ -418,7 +457,7 @@ private void FindExistingSword()
     {
         GlobalPosition = new Vector3(0, 1, 0);
         health = maxHealth;
-        EmitSignal(SignalName. PlayerHealthChanged, health, maxHealth);
+        EmitSignal(SignalName.PlayerHealthChanged, health, maxHealth);
     }
 
     private void OnSwordDurabilityChecked()

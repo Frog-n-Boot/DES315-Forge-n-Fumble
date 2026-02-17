@@ -15,6 +15,7 @@ public partial class Forge : Node3D
 	#region Ready
 	public override void _Ready()
 	{
+		
 		health = maxHealth;
 	}
 	#endregion

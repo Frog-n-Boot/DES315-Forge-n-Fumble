@@ -93,13 +93,13 @@ public partial class WaveManager : Node
 	}
 	#endregion
 
-	public override void _Process(double delta)
-    {
-		if(enemyUI == null){
-            return;
-        }
-        enemyUI.Text = $" Enemies alive: {enemeisLeft} \n Max Waves: {maxWaves}  Current wave: {currentWave} ";
-    }
+	// public override void _Process(double delta)
+    // {
+	// 	if(enemyUI == null){
+    //         return;
+    //     }
+    //     enemyUI.Text = $" Enemies alive: {enemeisLeft} \n Max Waves: {maxWaves}  Current wave: {currentWave} ";
+    // }
 	#region Setup
 	private void SetupDefaults()
 	{

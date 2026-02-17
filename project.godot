@@ -35,6 +35,7 @@ Forge=""
 Enemy=""
 Player=""
 pickable=""
+Station=""
 
 [input]
 
