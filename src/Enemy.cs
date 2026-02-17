@@ -38,7 +38,7 @@ public partial class Enemy : Node3D
         ConnectSignals();
     }
 
-    public override void _Process(double delta)
+    public override void _PhysicsProcess(double delta)
     {
         if (movementComponent != null && moveTarget != null)
         {
@@ -189,7 +189,7 @@ public partial class Enemy : Node3D
             {
                 forge.TakeDamage(enemyData.damage);
                 GD.Print(forge.health);
-                GD.Print("Forge took damage");
+                //GD.Print("Forge took damage");
               
             }
 
@@ -200,7 +200,7 @@ public partial class Enemy : Node3D
             EmitSignal(SignalName.DamagedTarget, body, Damage);
 
             if(body is PlayerController playerController&& enemyData !=null){
-                playerController.TakeDamage(enemyData.damage);
+                //playerController.TakeDamage(enemyData.damage);
             }
 
             Die();  
@@ -210,7 +210,7 @@ public partial class Enemy : Node3D
             Sword sword = FindSwordInHierarchy(body);
             if (sword != null)
             {
-                GD.Print("Enemy took damage");
+                //GD.Print("Enemy took damage");
                 sword.DamageWeapon(1);
                 TakeDamage(10);
             }

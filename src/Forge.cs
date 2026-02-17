@@ -10,6 +10,7 @@ public partial class Forge : Node3D
 	[Signal] public delegate void ForgeTookDamageEventHandler(int current, int max);
     [Signal] public delegate void ForgeHealedEventHandler(int current, int max);
 
+	private int tick = 0;
 	#endregion
 
 	#region Ready
@@ -23,11 +24,16 @@ public partial class Forge : Node3D
 	#region Process
 	public override void _Process(double delta)
 	{
-		if(health <= 0)
-		{
-			Destroyed();
-			GetTree().Quit();
-		}
+		tick += 1;
+		if(tick % 10 == 0)
+        {
+            if(health <= 0)
+			{
+				Destroyed();
+				GetTree().Quit();
+			}
+        }
+
 	}
 	#endregion
 

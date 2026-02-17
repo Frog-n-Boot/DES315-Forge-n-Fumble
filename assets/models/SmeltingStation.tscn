@@ -3,8 +3,7 @@
 [ext_resource type="Script" uid="uid://gnlsm1cq0oaj" path="res://src/BaseStationScript.cs" id="1_0q7ni"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="1_rdc31"]
 [ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/Sword.tscn" id="2_vwqen"]
-[ext_resource type="Texture2D" uid="uid://bls4viimnixv7" path="res://assets/textures/StickTexture.png" id="4_w3u6e"]
-[ext_resource type="Texture2D" uid="uid://bjl7oorhweq0y" path="res://assets/textures/IngotTexture.png" id="5_2sej5"]
+[ext_resource type="PackedScene" uid="uid://bff5da5u2kggn" path="res://assets/models/MeltedIngot.tscn" id="3_ufqn5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdc31"]
 
@@ -13,13 +12,14 @@
 [sub_resource type="ViewportTexture" id="ViewportTexture_w3u6e"]
 viewport_path = NodePath("Sprite3D/SubViewport")
 
-[node name="SmeltingStation" type="Node3D" unique_id=1158721071 node_paths=PackedStringArray("inputNode", "outputNode", "stickCount", "ingotCount") groups=["Station"]]
+[node name="SmeltingStation" type="Node3D" unique_id=1158721071 node_paths=PackedStringArray("inputNode", "outputNode", "timeProgressBar", "stationName") groups=["Station"]]
 script = ExtResource("1_0q7ni")
 inputNode = NodePath("InputPort")
 outputNode = NodePath("OutputPort")
 swordObject = ExtResource("2_vwqen")
-stickCount = NodePath("Sprite3D/SubViewport/Stick/StickCount")
-ingotCount = NodePath("Sprite3D/SubViewport/Ingot/IngotCount")
+meltedIngot = ExtResource("3_ufqn5")
+timeProgressBar = NodePath("Sprite3D/SubViewport/ProgressBar")
+stationName = NodePath("Sprite3D/SubViewport/Label")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=90114362]
 
@@ -36,37 +36,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.74402034, 0.07920647, -0.09
 mesh = SubResource("BoxMesh_fq0eu")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=840510996]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -1.6165295, 2.155568, 0)
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -0.022883892, 2.155568, 0)
 texture = SubResource("ViewportTexture_w3u6e")
 
 [node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=2072696855]
 transparent_bg = true
-size = Vector2i(100, 50)
+size = Vector2i(50, 50)
 
-[node name="Stick" type="TextureRect" parent="Sprite3D/SubViewport" unique_id=45987781]
+[node name="ProgressBar" type="ProgressBar" parent="Sprite3D/SubViewport" unique_id=104158359]
 offset_right = 50.0
 offset_bottom = 50.0
-texture = ExtResource("4_w3u6e")
 
-[node name="StickCount" type="Label" parent="Sprite3D/SubViewport/Stick" unique_id=1247685032]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 30.0
-offset_right = 80.0
-offset_bottom = 79.0
-text = "0
+[node name="Label" type="Label" parent="Sprite3D/SubViewport" unique_id=1293063617]
+offset_left = 5.0
+offset_top = -5.0
+offset_right = 45.0
+offset_bottom = 44.0
+text = "
 "
-
-[node name="Ingot" type="TextureRect" parent="Sprite3D/SubViewport" unique_id=1567325753]
-offset_left = 47.0
-offset_right = 97.0
-offset_bottom = 50.0
-texture = ExtResource("5_2sej5")
-
-[node name="IngotCount" type="Label" parent="Sprite3D/SubViewport/Ingot" unique_id=1254459488]
-layout_mode = 0
-offset_left = 45.0
-offset_top = 30.0
-offset_right = 85.0
-offset_bottom = 53.0
-text = "0"
