@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_r3mip")
 enemyName = "FastEnemy"
-damage = 5
+damage = 1
 speed = 8.0
 color = Color(0, 0, 1, 1)
 lootDropChance = 60.0
