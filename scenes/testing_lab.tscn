@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://dq8nubqatqhum" path="res://assets/models/Ingot.tscn" id="11_7p7bj"]
 [ext_resource type="Resource" uid="uid://cvs5mxaqpoflx" path="res://assets/resources/StrongEnemyData.tres" id="11_gwggj"]
 [ext_resource type="PackedScene" uid="uid://jnghu007q1m" path="res://assets/models/Healthpack.tscn" id="12_gwggj"]
+[ext_resource type="PackedScene" uid="uid://cwveleo07x41o" path="res://level take 3.blend" id="16_7p7bj"]
+[ext_resource type="PackedScene" uid="uid://7rfigc0m1vmp" path="res://Basic level start.blend" id="17_gwggj"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_wko22"]
 
@@ -48,7 +50,7 @@ transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_wko22")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1902630742]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+transform = Transform3D(17.807888, 0, 0, 0, 10, 0, 0, 0, 17.146748, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_ptwec")
 mesh = SubResource("PlaneMesh_3lnvk")
 
@@ -62,7 +64,7 @@ shadow_enabled = true
 environment = SubResource("Environment_81oh0")
 
 [node name="Forge" parent="World" unique_id=994045895 instance=ExtResource("2_ptwec")]
-transform = Transform3D(4.5896954e-08, 0, 0.35, 0, 0.35, 0, -0.35, 0, 4.5896954e-08, 0, 0, 0)
+transform = Transform3D(4.5896954e-08, 0, 0.35, 0, 0.35, 0, -0.35, 0, 4.5896954e-08, 0, -2.6613016, 0)
 
 [node name="Boxes" parent="World" unique_id=1594444897 instance=ExtResource("3_a3bqn")]
 transform = Transform3D(0.8820364, 0, -0.47118118, 0, 1, 0, 0.47118118, 0, 0.8820364, -24.306755, 0.5, 2.1330853)
@@ -95,11 +97,15 @@ transform = Transform3D(0.6630513, 0, -0.74857396, 0, 1, 0, 0.74857396, 0, 0.663
 transform = Transform3D(0.5850001, 0, 0.8110332, 0, 1, 0, -0.8110332, 0, 0.5850001, 18.261032, 0.5, -16.599575)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=254897524 node_paths=PackedStringArray("playerSpawner")]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 39, 38)
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 39, 37.42)
 projection = 1
-size = 15.0
+size = 28.411
 script = ExtResource("3_mndrt")
 playerSpawner = NodePath("../PlayerSpawner")
+outerBounds = Vector2(380, 180)
+innerBounds = Vector2(375, 175)
+minSize = 20.0
+maxSize = 40.0
 
 [node name="PlayerSpawner" type="Node" parent="." unique_id=1347135134 node_paths=PackedStringArray("spawnParent")]
 script = ExtResource("6_42n6d")
@@ -187,3 +193,9 @@ enemyUI = NodePath("../EnemyUI")
 offset_right = 66.0
 offset_bottom = 23.0
 text = "Enemies"
+
+[node name="level take 3" parent="." unique_id=1943673488 instance=ExtResource("16_7p7bj")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -80.09131, -0.37799168, -175.52596)
+
+[node name="Basic level start" parent="." unique_id=1346561129 instance=ExtResource("17_gwggj")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, -0.59477234, -1.5251532)
