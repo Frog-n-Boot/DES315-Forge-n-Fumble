@@ -43,7 +43,7 @@ sky = SubResource("Sky_ptwec")
 tonemap_mode = 2
 glow_enabled = true
 
-[node name="TestingLab" type="StaticBody3D" unique_id=127569902]
+[node name="First level prototype" type="StaticBody3D" unique_id=127569902]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1286559043]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
