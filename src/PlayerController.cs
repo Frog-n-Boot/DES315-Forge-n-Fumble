@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 
 namespace Godot;
 
@@ -19,6 +20,7 @@ public partial class PlayerController : CharacterBody3D
     [Export] public AnimationPlayer animPlayer;
 
     [Export] private Node3D hand;
+    [Export] private Node3D leftHand;
     private Camera3D camera;
     private StaticBody3D world;
     private InputManager inputManager;
@@ -37,6 +39,7 @@ public partial class PlayerController : CharacterBody3D
     private Vector3 currentLookTarget;
     private Sword currentSword;
     private bool isAttacking = false;
+    private int tick = 0;
 
     public override void _Ready()
 {
@@ -73,7 +76,10 @@ public partial class PlayerController : CharacterBody3D
     {
         GD.PrintErr("Hand node not found!");
     }
+
+    leftHand = GetNodeOrNull<Node3D>("CollisionShape3D/LeftHand");
 }
+
 private void FindExistingSword()
 {
     if (hand == null) return;
@@ -114,6 +120,7 @@ private void FindExistingSword()
 
     public override void _Process(double delta)
     {
+
         if (inputManager == null)
             return;
 
@@ -132,17 +139,10 @@ private void FindExistingSword()
         actionsPressedLastFrame.Clear();
         foreach (var action in actionsPressed)
             actionsPressedLastFrame.Add(action);
-
-        if (health <= 0)
-            Die();
-
-        Craft();
         
-       
-
         if (IsActionPressed("attack") && !isAttacking)
         {
-            GD.Print($"Player {PlayerIndex} attack input detected!");
+            //GD.Print($"Player {PlayerIndex} attack input detected!");
             StartAttack();
         }
     }
@@ -174,6 +174,12 @@ private void FindExistingSword()
         {
             float targetAngle = Mathf.Atan2(lookDir.X, lookDir.Z);
             Rotation = new Vector3(Rotation.X, targetAngle, Rotation.Z);
+        }
+
+        tick += 1;
+        if(tick % 10 == 0)
+        {
+            if (health <= 0) Die();
         }
 
         MoveAndSlide();
@@ -222,10 +228,10 @@ private void FindExistingSword()
 
     private void StartAttack()
 {
-    GD.Print($"Player {PlayerIndex} StartAttack called");
-    GD.Print($"currentSword is null: {currentSword == null}");
-    GD.Print($"animPlayer is null: {animPlayer == null}");
-    GD.Print($"isAttacking: {isAttacking}");
+    //GD.Print($"Player {PlayerIndex} StartAttack called");
+    //GD.Print($"currentSword is null: {currentSword == null}");
+   // GD.Print($"animPlayer is null: {animPlayer == null}");
+    //GD.Print($"isAttacking: {isAttacking}");
     
     if (currentSword == null)
     {
@@ -236,7 +242,7 @@ private void FindExistingSword()
     isAttacking = true;
     currentSword.SetHitboxEnabled(true);
     animPlayer.Play("Anim_Attack");
-    GD.Print($"Player {PlayerIndex} attacking!");
+    //GD.Print($"Player {PlayerIndex} attacking!");
 }
 
     private void OnAnimationFinished(StringName animName)
@@ -249,7 +255,7 @@ private void FindExistingSword()
             if (currentSword != null)
                 currentSword.SetHitboxEnabled(false);
 
-            GD.Print($"Player {PlayerIndex} attack finished.");
+            //GD.Print($"Player {PlayerIndex} attack finished.");
         }
     }
 
@@ -257,12 +263,48 @@ private void FindExistingSword()
     {
         if (body.IsInGroup("pickable"))
             ProcessPickable(body);
+        
     }
 
     private void OnPickupAreaEntered(Area3D area)
     {
+        
         if (area.IsInGroup("pickable"))
             ProcessPickable(area);
+
+        bool hasSword = false;
+        foreach (Node child in hand.GetChildren()){
+            if (child is Sword || child.IsInGroup("Sword")){
+             hasSword = true;
+             
+                break;
+            }
+        }
+
+        if (hasSword)
+            return;
+
+        if (area.IsInGroup("Sword"))
+        {
+            StaticBody3D areaParent = area.GetParent() as StaticBody3D;
+            Node3D swordNode = areaParent.GetParent() as Node3D;
+            if(swordNode != null)
+            {
+                swordNode.Reparent(hand);
+                swordNode.GlobalPosition = hand.GlobalPosition;
+                swordNode.Rotation = Vector3.Zero;
+                hand.Rotation = Vector3.Zero;
+
+                currentSword = swordNode as Sword;
+                if (currentSword != null)
+                {
+                    currentSword.CheckDurability += OnSwordDurabilityChecked;
+                    currentSword.Broke += OnSwordBroke;
+                }
+            }
+            
+            //GD.Print("Sword has been collided"); 
+        }
     }
 
     private void ProcessPickable(Node hitObject)
@@ -418,76 +460,19 @@ private void FindExistingSword()
     {
         GlobalPosition = new Vector3(0, 1, 0);
         health = maxHealth;
-        EmitSignal(SignalName. PlayerHealthChanged, health, maxHealth);
+        EmitSignal(SignalName.PlayerHealthChanged, health, maxHealth);
     }
 
     private void OnSwordDurabilityChecked()
     {
         if (currentSword == null) return;
-        GD.Print($"Sword durability remaining: {currentSword.durability}");
+        //GD.Print($"Sword durability remaining: {currentSword.durability}");
     }
 
     private void OnSwordBroke()
     {
-        GD.Print("Sword broke! Auto crafting a new one if ingredients are available...");
+        //GD.Print("Sword broke! Auto crafting a new one if ingredients are available...");
         currentSword = null;
         isAttacking = false;
-    }
-
-    private void Craft()
-    {
-        if (inventory == null || hand == null || swordObject == null)
-            return;
-
-       
-        bool hasSword = false;
-        foreach (Node child in hand.GetChildren()){
-            if (child is Sword || child.IsInGroup("Sword")){
-             hasSword = true;
-                break;
-            }
-        }
-
-        if (hasSword)
-            return;
-
-        var items = inventory.GetItems();
-        if (items.Count < 2)
-            return;
-
-        ItemData stick = null;
-        ItemData ingot = null;
-
-        foreach (var item in items)
-        {
-            if (item.name == "Stick" && item.count > 0)
-                stick = item;
-
-            if (item.name == "Ingot" && item.count > 0)
-                ingot = item;
-        }
-
-        if (stick != null && ingot != null)
-        {
-            Node3D swordNode = swordObject.Instantiate<Node3D>();
-            swordNode.AddToGroup("Sword");
-            this.AddChild(swordNode);
-            swordNode.Reparent(hand);
-            swordNode.GlobalPosition = hand.GlobalPosition;
-            hand.Rotation = Vector3.Zero;
-            swordNode.Rotation = hand.Rotation;
-
-            currentSword = swordNode as Sword;
-            if (currentSword != null)
-            {
-                currentSword.CheckDurability += OnSwordDurabilityChecked;
-                currentSword.Broke += OnSwordBroke;
-            }
-
-            inventory.RemoveItem(stick);
-            inventory.RemoveItem(ingot);
-
-            GD.Print("Sword crafted!");
-        }
     }
 }

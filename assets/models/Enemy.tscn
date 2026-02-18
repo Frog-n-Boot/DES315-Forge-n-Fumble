@@ -53,7 +53,7 @@ collisionArea = NodePath("CharacterBody3D/Area3D")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=590602209]
 collision_layer = 4
-collision_mask = 4
+collision_mask = 6
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=542464969]
 material_override = SubResource("StandardMaterial3D_pfjfy")
@@ -64,7 +64,7 @@ shape = SubResource("CylinderShape3D_pfjfy")
 
 [node name="Area3D" type="Area3D" parent="CharacterBody3D" unique_id=1859868463]
 collision_layer = 4
-collision_mask = 4
+collision_mask = 15
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/Area3D" unique_id=1172694664]
 shape = SubResource("CylinderShape3D_82iww")
