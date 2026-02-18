@@ -5,299 +5,164 @@ using System.Runtime.CompilerServices;
 using System.Collections.Generic;
 using System.Linq;
 
-public partial class BaseStationScript : Node3D
+public abstract partial class BaseStationScript : Node3D
 {
-	[Export] private Node3D inputNode;
-	[Export] private Node3D outputNode;
-	[Export] private bool isAnvil;
-	[Export] public PackedScene swordObject { get; private set; }
-	[Export]  private PackedScene meltedIngot;
-	[Export] private ProgressBar timeProgressBar;
-	[Export] private Label stationName;
+	[Export] protected Node3D inputNode;
+	[Export] protected Node3D outputNode;
+	[Export] protected ProgressBar timeProgressBar;
+	[Export] protected Label stationName;
+	[Export] protected float craftDuration = 3.0f;
+	[Export] protected CraftingRecipes[] recipes;
 
-	private double timeLeft = 3;
-	private float timeDuration = 3;
-
-	[Signal] public delegate void InputPortEventHandler();
-	[Signal] public delegate void CheckItemsEventHandler(bool Check);
-
-	[Signal] public delegate void CheckCraftingEventHandler();
-	[Signal] public delegate void StartSmeltingEventHandler();
-	[Signal] public delegate void StartCraftingEventHandler();
-
-	InventorySystem inventory;
+	protected InventorySystem inventory;
 	protected PlayerController player;
-	public List<ItemData> requiredItems = new List<ItemData>();
 
-	Area3D inputArea;
-	Area3D outputArea;
+	protected bool outputOccupied = false;
 
-	private int totalStickCount = 0;
-	private int totalIngotCount = 0;
-	private int totalMeltedIngotCount = 0;
-
-	private Timer smeltingTimer;
-	private Timer forgingTimer;
-	private bool smeltingOutputOccupied = false;
-	private bool forgingOutputOccupied = false;
-	private int tick = 0;
+	protected Timer craftingTimer;
 	
+	private CraftingRecipes pendingRecipe;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		inventory = GetNode<InventorySystem>("/root/InventorySystem");
-		if(meltedIngot == null)
-        {
-            meltedIngot = GD.Load<PackedScene>("res://assets/models/MeltedIngot.tscn");
-        }
-
-		CheckCrafting += Craft;
-        if (isAnvil)
-        {
-			
-            StartCrafting += ForgeSword;
-        }
-
-		else
-        {
-            StartSmelting += Smelt;
-        }
 
 		SetupArea();
 		SetupTimer();
-		SetupUI();
+		stationName.Text = GetStationName();
+		OnReady();
+	}
+
+	protected virtual void OnReady(){}
+
+    public override void _Process(double delta)
+    {
+        if(!craftingTimer.IsStopped() && !outputOccupied)
+		{
+			timeProgressBar.Value = (1.0 - craftingTimer.TimeLeft / craftDuration) * 100.0f;
+		}
+    }
+
+
+	protected abstract string GetStationName();
+
+	protected bool GetRequiredItems(out List<ItemData> itemsToConsume, out CraftingRecipes matchingRecipe)
+	{
+		itemsToConsume = new List<ItemData>();
+		matchingRecipe = null;
+		var inventoryItems = inventory.GetItems();
+
+		foreach(var recipe in recipes)
+		{
+			var found = new List<ItemData>();
+			bool recipeMatched = true;
+			foreach(var requiredName in recipe.requiredItemNames)
+			{
+				var match = inventoryItems.FirstOrDefault(i => i.name == requiredName && !found.Contains(i));
+				if(match == null)
+				{
+					recipeMatched = false;
+					break;
+				}
+				found.Add(match);
+			}
+			if (recipeMatched)
+			{
+				itemsToConsume = found;
+				matchingRecipe = recipe;
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	protected void ProduceOutput()
+	{
+		if(pendingRecipe == null) return;
+
+		var instance = pendingRecipe.ouputScene.Instantiate<Node3D>();
+
+		if(!string.IsNullOrEmpty(pendingRecipe.ouputGroup))
+			instance.AddToGroup(pendingRecipe.ouputGroup);
+
+		GetTree().Root.AddChild(instance);
+		instance.GlobalPosition = outputNode.GlobalPosition;
+		timeProgressBar.Value = 0;
+		outputOccupied = true;
+		pendingRecipe = null;
+		
+
+	}
+
+	protected void StartCrafting()
+	{
+		if(outputOccupied || !craftingTimer.IsStopped())
+		{
+			return;
+		}
+		if(GetRequiredItems(out var itemsToConsume, out var recipes))
+		{
+			foreach(var item in itemsToConsume)
+				inventory.RemoveItem(item);
+			
+			pendingRecipe = recipes;
+			craftingTimer.Start();
+		}
 	}
 
 	private void SetupArea()
 	{
-		inputArea = inputNode.GetNode<Area3D>("Area3D");
-		if(inputArea == null)
+		if(inputNode == null || outputNode == null)
 		{
-			GD.Print("Area is null");
+			GD.Print($"{Name}: inputNode or outputNode is not assigned");
 			return;
 		}
-		inputArea.BodyEntered += OnInputBodyEntered;
 
-		outputArea = outputNode.GetNode<Area3D>("Area3D");
-		if(outputArea == null)
+		var inputArea = inputNode.GetNode<Area3D>("Area3D");
+		if(inputArea != null)
 		{
-			GD.Print("Area is null");
-			return;
+			inputArea.BodyEntered += OnInputBodyEntered;
 		}
-		outputArea.BodyExited += OnOutputBodyExit;
+		else
+			GD.Print("Input are not found");
+		
+
+		var outputArea = outputNode.GetNode<Area3D>("Area3D");
+		if(outputArea != null)
+		{
+			outputArea.BodyExited += OnOutputBodyExit;
+		}
+		else
+			GD.Print("Output area not found");
 
 	}
 	private void SetupTimer()
 	{
-		smeltingTimer = new Timer();
-		smeltingTimer.WaitTime = 3.0f;
-		smeltingTimer.OneShot = true;
-		smeltingTimer.Name = "SmeltingTimer";
-		AddChild(smeltingTimer);
+		craftingTimer = new Timer
+		{
+			WaitTime = craftDuration,
+			OneShot = true,
+			Name = "CraftingTimer"
+		};
+		AddChild(craftingTimer);
+		craftingTimer.Timeout += OnCraftingTimerTimeout;
 
-		smeltingTimer.Timeout += OnSmeltTimerTimeout;
-
-		forgingTimer = new Timer();
-		forgingTimer.WaitTime = 3.0f;
-		forgingTimer.OneShot = true;
-		forgingTimer.Name = "ForgingTimer";
-		AddChild(forgingTimer);
-
-		forgingTimer.Timeout += OnForgeTimerTimeout;
 	}
-
-	private void SetupUI()
-    {
-        if (isAnvil)
-        {
-            stationName.Text = "Anvil";
-        }
-        else
-        {
-            stationName.Text = "Forge";
-        }
-    }
-	private void OnSmeltTimerTimeout()
-    {
-		if(smeltingOutputOccupied == false)
-        {
-            Smelt();
-        }
-		//GetTree().CreateTimer(3.0f).Timeout += Smelt;
-    	//EmitSignal(SignalName.CheckCrafting);
-    }
-
-	private void OnForgeTimerTimeout()
-    {
-		if(forgingOutputOccupied == false)
-        {
-            ForgeSword();
-        }
-
-		//GetTree().CreateTimer(3.0f).Timeout += ForgeSword;
-    	//EmitSignal(SignalName.CheckCrafting);
-    }
-
-	public override void _Process(double delta)
-    {
-		if(forgingOutputOccupied == false)
-        	{
-            	if(forgingTimer != null && forgingTimer.IsStopped() == false)
-        		{
-					timeLeft -= delta;
-					timeProgressBar.Value = (timeLeft / timeDuration) * 100.0;
-        		}
-       		}
-
-		if(smeltingOutputOccupied == false)
-       	{
-            if(smeltingTimer != null && smeltingTimer.IsStopped() == false)
-        	{
-				timeLeft -= delta;
-				timeProgressBar.Value = (timeLeft / timeDuration) * 100.0;
-        	}
-        }
-    }
-
-	private void Checkitems()
+	private void OnCraftingTimerTimeout()
 	{
-		 if (inventory == null)
+		if (!outputOccupied)
 		{
-		 	GD.Print("Inventory is null");
-            return;
+			ProduceOutput();
 		}
-
-		var items = inventory.GetItems();
-
-		List<ItemData> itemsToRemove = new List<ItemData>();
-
-
-		foreach(var item in items){
-            if (isAnvil)
-            {
-                if(item.name == "Stick")
-				{
-					GD.Print("Stick was put in");
-					requiredItems.Add(item);
-					itemsToRemove.Add(item);
-				}
-
-				else if(item.name == "MeltedIngot")
-				{
-					GD.Print("Melted Ingot was put in");
-					requiredItems.Add(item);
-					itemsToRemove.Add(item);
-				}
-            }
-            else
-            {
-            	if(item.name == "Ingot")
-				{
-					GD.Print("Ingot was put in");
-					requiredItems.Add(item);
-					itemsToRemove.Add(item);
-				}
-            }
-
-
-		}
-
-		foreach(var item in itemsToRemove)
-		{
-			inventory.RemoveItem(item);
-		}
-
-		Craft();
-
 	}
-
-	private void Craft()
-	{
-		if(requiredItems.Count <=0)
-			return;
-
-		ItemData stick = null;
-        ItemData ingot = null;
-		ItemData meltedOre = null;
-
-		foreach(var item in requiredItems)
-		{
-			if(item.name == "Stick")
-			{
-				stick = item;
-			}
-			if(item.name == "Ingot")
-			{
-				ingot = item;
-			}
-			if(item.name == "MeltedIngot")
-			{
-				meltedOre = item;
-				
-			}
-		}
-
-        if (isAnvil)
-        {
-			if(stick != null && meltedOre != null)
-            {
-				forgingTimer.Start();		
-				requiredItems.Remove(stick);
-				requiredItems.Remove(meltedOre);
-            }
-        }
-
-        else
-        {
-    		if(ingot != null)
-        	{
-				smeltingTimer.Start();
-				//EmitSignal(SignalName.StartSmelting);		
-				requiredItems.Remove(ingot);
-        	}
-        }
-	}
-
-	private void Smelt()
-    {
-		
-        GD.Print("Smelting");
-		Node3D droppedItem = null;
-		droppedItem = meltedIngot.Instantiate<Node3D>();
-
-		if(droppedItem != null)
-		{
-			smeltingTimer.Stop();
-			timeProgressBar.Value = 0;
-			timeLeft = 3;
-			GetTree().Root.AddChild(droppedItem);
-			droppedItem.GlobalPosition = outputNode.GlobalPosition;
-			smeltingOutputOccupied = true;
-		}
-    }
-
-	private void ForgeSword()
-    {
-		Node3D swordNode = swordObject.Instantiate<Node3D>();
-        swordNode.AddToGroup("Sword");
-		GetTree().Root.AddChild(swordNode);
-		//player.AddChild(swordNode);
-		//swordNode.Reparent(player);
-		swordNode.GlobalPosition = outputNode.GlobalPosition;
-
-		GD.Print("Sword was crafted");
-		forgingTimer.Stop();
-		timeProgressBar.Value = 0;
-		timeLeft = 3;
-		forgingOutputOccupied = true;
-    }
 
 	public void OnInputBodyEntered(Node3D body)
 	{
 		if (body.IsInGroup("Player"))
 		{
 			player = body as PlayerController;
-			Checkitems();
+			StartCrafting();
 		}
 		
 	}
@@ -305,15 +170,24 @@ public partial class BaseStationScript : Node3D
 	public void OnOutputBodyExit(Node3D body)
 	{
 		if (body.IsInGroup("Player")){
-            if (isAnvil)
-            {
-                forgingOutputOccupied = false;
-            }
-            else
-            {
-                smeltingOutputOccupied = false;
-            }
+         	outputOccupied = false;
+		 	StartCrafting();
 		}
 		
+	}
+
+	protected void SpawnAtOutput(PackedScene scene)
+	{
+		if(scene == null)
+		{
+			GD.Print("Scene is null");
+			return;
+		}
+
+		var instance = scene.Instantiate<Node3D>();
+		GetTree().Root.AddChild(instance);
+		instance.GlobalPosition = outputNode.GlobalPosition;
+		timeProgressBar.Value = 0;
+		outputOccupied = true;
 	}
 }

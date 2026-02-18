@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CraftingRecipes" format=3 uid="uid://cpreanwxwry2u"]
+
+[ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/DullSword.tscn" id="1_akapq"]
+[ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/CraftingRecipes.cs" id="1_u872h"]
+
+[resource]
+script = ExtResource("1_u872h")
+recipeName = "DullSword"
+requiredItemNames = PackedStringArray("Stick", "MeltedIngot")
+ouputName = "DullSword"
+ouputScene = ExtResource("1_akapq")
+ouputGroup = "pickable"
+metadata/_custom_type_script = "uid://1bo1o367ybgk"
