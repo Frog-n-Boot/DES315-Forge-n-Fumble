@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CraftingRecipes" format=3 uid="uid://cgsgoisaxb6rf"]
+
+[ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/CraftingRecipes.cs" id="1_t82vg"]
+[ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/Sword.tscn" id="1_ufdbt"]
+
+[resource]
+script = ExtResource("1_t82vg")
+requiredItemNames = PackedStringArray("DullSword")
+ouputScene = ExtResource("1_ufdbt")
+metadata/_custom_type_script = "uid://1bo1o367ybgk"

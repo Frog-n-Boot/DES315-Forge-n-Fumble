@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://i3hf4fb7cghh"]
+
+[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Pickable.cs" id="1_mn0cs"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_mn0cs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6tsm4"]
+size = Vector3(1, 2.1992188, 1)
+
+[node name="DullSword" type="Node3D" unique_id=778246616 groups=["pickable"]]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1332799271 groups=["pickable"]]
+script = ExtResource("1_mn0cs")
+itemDataPath = "uid://ddoliql37n67l"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1917270002]
+transform = Transform3D(0.2604546, 0, 0, 0, 1, 0, 0, 0, 0.25087947, 0, 0, 0)
+mesh = SubResource("BoxMesh_mn0cs")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="StaticBody3D" unique_id=1443253515]
+transform = Transform3D(0.2604546, 0, 0, 0, 1.3741641, 0, 0, 0, 0.25087947, 0, 1.4333365, 0)
+mesh = SubResource("BoxMesh_mn0cs")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="StaticBody3D" unique_id=1785342464]
+transform = Transform3D(0.9357139, 0, 0, 0, 0.1408838, 0, 0, 0, 0.5657488, 0, 0.65509045, 0)
+mesh = SubResource("BoxMesh_mn0cs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1017160636]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.98016167, 0)
+shape = SubResource("BoxShape3D_6tsm4")

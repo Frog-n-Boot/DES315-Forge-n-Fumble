@@ -17,6 +17,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="Forge-n-Fumble"
 run/main_scene="uid://88oq7ysmwuhi"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
@@ -24,6 +25,10 @@ config/icon="res://icon.svg"
 InputManager="*uid://cpmas3er6cuol"
 InventorySystem="*uid://bc434alj4ge0"
 Forge="*uid://csp7j7pbfs6rf"
+
+[display]
+
+window/vsync/vsync_mode=0
 
 [dotnet]
 
@@ -35,6 +40,7 @@ Forge=""
 Enemy=""
 Player=""
 pickable=""
+Station=""
 
 [input]
 

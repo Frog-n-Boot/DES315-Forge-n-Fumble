@@ -26,6 +26,10 @@ public partial class Pickable : Node3D
         {
             itemData = ResourceLoader.Load<ItemData>(itemDataPath);
         }
+		else
+		{
+			GD.Print("Failed to load resource");
+		}
 
 		if(itemData == null)
         {

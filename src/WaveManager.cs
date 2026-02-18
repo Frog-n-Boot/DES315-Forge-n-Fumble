@@ -166,6 +166,7 @@ public partial class WaveManager : Node
 				points.Add(point);
 				//GD.Print($"Valid spawn: {point.Name} at {point.GlobalPosition}");
 			}
+
 			else
 			{
 				invalidPoints.Add(point.Name);
@@ -193,7 +194,6 @@ public partial class WaveManager : Node
 		//GD.PrintErr("CRITICAL: No valid spawn positions! All are at (0,0,0)!");
 	}
 }
-	
 	private EnemyData CreateDefaultEnemyData(string name, int health, int damage, float speed, Color color)
 	{
 		return new EnemyData
