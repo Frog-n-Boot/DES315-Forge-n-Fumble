@@ -132,11 +132,15 @@ meltedIngotScene = null
 recipes = Array[Object]([SubResource("Resource_20nwc")])
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=254897524 node_paths=PackedStringArray("playerSpawner")]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 39, 38)
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 39, 37.42)
 projection = 1
-size = 15.0
+size = 28.411
 script = ExtResource("3_mndrt")
 playerSpawner = NodePath("../PlayerSpawner")
+outerBounds = Vector2(380, 180)
+innerBounds = Vector2(375, 175)
+minSize = 20.0
+maxSize = 40.0
 
 [node name="PlayerSpawner" type="Node" parent="." unique_id=1347135134 node_paths=PackedStringArray("spawnParent")]
 script = ExtResource("6_42n6d")
