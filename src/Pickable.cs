@@ -51,7 +51,7 @@ public partial class Pickable : Node3D
 	public void PickUp()
 	{
 		EmitSignal(SignalName.PickedUp);
-		QueueFree();
+		//QueueFree();
 	}
 	#endregion
 

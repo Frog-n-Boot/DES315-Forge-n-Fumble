@@ -5,7 +5,7 @@ using System.Numerics;
 
 namespace Godot;
 
-public partial class PlayerController : CharacterBody3D
+public partial class PlayerController : CharacterBody3D, ItemCarrier
 {
     [ExportCategory("Player Attributes")]
     [Export] public int PlayerIndex { get; set; } = 0;
@@ -19,7 +19,7 @@ public partial class PlayerController : CharacterBody3D
     [Export] public PackedScene swordObject { get; private set; }
     [Export] public AnimationPlayer animPlayer;
 
-    [Export] private Node3D hand;
+    [Export] private Node3D rightHand;
     [Export] private Node3D leftHand;
     private Camera3D camera;
     private StaticBody3D world;
@@ -41,6 +41,9 @@ public partial class PlayerController : CharacterBody3D
     private bool isAttacking = false;
     private int tick = 0;
 
+
+    public IEnumerable<ItemData> GetCarriedItems() => inventory.GetItems();
+    public void RemoveItem(ItemData item) => inventory.RemoveItem(item);
     public override void _Ready()
 {
     health = maxHealth;
@@ -67,8 +70,9 @@ public partial class PlayerController : CharacterBody3D
     animPlayer.AnimationFinished += OnAnimationFinished;
     
     // ADD THIS: Find existing sword in hand
-    hand = GetNodeOrNull<Node3D>("CollisionShape3D/Hand");
-    if (hand != null)
+    rightHand = GetNodeOrNull<Node3D>("CollisionShape3D/Hand");
+    leftHand = GetNodeOrNull<Node3D>("CollisionShape3D/LeftHand");
+    if (rightHand != null)
     {
         FindExistingSword();
     }
@@ -76,15 +80,13 @@ public partial class PlayerController : CharacterBody3D
     {
         GD.PrintErr("Hand node not found!");
     }
-
-    leftHand = GetNodeOrNull<Node3D>("CollisionShape3D/LeftHand");
 }
 
 private void FindExistingSword()
 {
-    if (hand == null) return;
+    if (rightHand == null) return;
     
-    foreach (Node child in hand.GetChildren())
+    foreach (Node child in rightHand.GetChildren())
     {
         if (child is Sword sword)
         {
@@ -273,7 +275,7 @@ private void FindExistingSword()
             ProcessPickable(area);
 
         bool hasSword = false;
-        foreach (Node child in hand.GetChildren()){
+        foreach (Node child in rightHand.GetChildren()){
             if (child is Sword || child.IsInGroup("Sword")){
              hasSword = true;
              
@@ -290,10 +292,10 @@ private void FindExistingSword()
             Node3D swordNode = areaParent.GetParent() as Node3D;
             if(swordNode != null)
             {
-                swordNode.Reparent(hand);
-                swordNode.GlobalPosition = hand.GlobalPosition;
+                swordNode.Reparent(rightHand);
+                swordNode.GlobalPosition = rightHand.GlobalPosition;
                 swordNode.Rotation = Vector3.Zero;
-                hand.Rotation = Vector3.Zero;
+                rightHand.Rotation = Vector3.Zero;
 
                 currentSword = swordNode as Sword;
                 if (currentSword != null)
@@ -319,7 +321,13 @@ private void FindExistingSword()
                 return;
 
             ItemData itemData = pickable.GetItemData();
-
+            if(leftHand.GetChildCount() <=0)
+            {
+                GD.Print("LeftHand is available");
+                pickable.Reparent(leftHand);
+                pickable.GetNode<CollisionShape3D>("CollisionShape3D").SetDeferred("disabled", true);
+                pickable.GlobalPosition = leftHand.GlobalPosition;
+            }
             if (inventory.AddItem(itemData))
             {
                 pickable.PickUp();

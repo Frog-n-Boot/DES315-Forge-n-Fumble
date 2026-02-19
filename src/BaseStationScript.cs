@@ -14,19 +14,18 @@ public abstract partial class BaseStationScript : Node3D
 	[Export] protected float craftDuration = 3.0f;
 	[Export] protected CraftingRecipes[] recipes;
 
-	protected InventorySystem inventory;
 	protected PlayerController player;
 
 	protected bool outputOccupied = false;
 
 	protected Timer craftingTimer;
+
+	protected ItemCarrier itemCarrier;
 	
 	private CraftingRecipes pendingRecipe;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		inventory = GetNode<InventorySystem>("/root/InventorySystem");
-
 		SetupArea();
 		SetupTimer();
 		stationName.Text = GetStationName();
@@ -50,7 +49,12 @@ public abstract partial class BaseStationScript : Node3D
 	{
 		itemsToConsume = new List<ItemData>();
 		matchingRecipe = null;
-		var inventoryItems = inventory.GetItems();
+		if(itemCarrier == null)
+		{
+			return false;
+		}
+
+		var inventoryItems = itemCarrier.GetCarriedItems();
 
 		foreach(var recipe in recipes)
 		{
@@ -97,14 +101,14 @@ public abstract partial class BaseStationScript : Node3D
 
 	protected void StartCrafting()
 	{
-		if(outputOccupied || !craftingTimer.IsStopped())
+		if(outputOccupied || !craftingTimer.IsStopped() || itemCarrier == null)
 		{
 			return;
 		}
 		if(GetRequiredItems(out var itemsToConsume, out var recipes))
 		{
 			foreach(var item in itemsToConsume)
-				inventory.RemoveItem(item);
+				itemCarrier.RemoveItem(item);
 			
 			pendingRecipe = recipes;
 			craftingTimer.Start();
@@ -162,6 +166,7 @@ public abstract partial class BaseStationScript : Node3D
 		if (body.IsInGroup("Player"))
 		{
 			player = body as PlayerController;
+			itemCarrier = player as ItemCarrier;
 			StartCrafting();
 		}
 		
