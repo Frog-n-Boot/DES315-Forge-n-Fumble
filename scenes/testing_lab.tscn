@@ -5,8 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://8roa2xkb2ipl" path="res://assets/models/player.tscn" id="3_81oh0"]
 [ext_resource type="PackedScene" uid="uid://cxj0fwjqxc5ny" path="res://assets/models/boxes.tscn" id="3_a3bqn"]
 [ext_resource type="Script" uid="uid://dnqtfi3fpu8ue" path="res://src/CameraController.cs" id="3_mndrt"]
-[ext_resource type="Script" uid="uid://bdwnaqw5jg3si" path="res://src/SmeltingStation.cs" id="4_20nwc"]
-[ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/DullSword.tscn" id="4_gwggj"]
 [ext_resource type="Script" uid="uid://bk2uam5leqcv8" path="res://src/PlayerSpawner.cs" id="6_42n6d"]
 [ext_resource type="Script" uid="uid://bj4pcgxjt3ru7" path="res://src/WaveManager.cs" id="7_53x3i"]
 [ext_resource type="PackedScene" uid="uid://b8a87u3vesy3q" path="res://assets/models/Enemy.tscn" id="8_1bgfi"]
@@ -17,12 +15,11 @@
 [ext_resource type="PackedScene" uid="uid://dq8nubqatqhum" path="res://assets/models/Ingot.tscn" id="11_7p7bj"]
 [ext_resource type="Resource" uid="uid://cvs5mxaqpoflx" path="res://assets/resources/StrongEnemyData.tres" id="11_gwggj"]
 [ext_resource type="PackedScene" uid="uid://jnghu007q1m" path="res://assets/models/Healthpack.tscn" id="12_gwggj"]
-[ext_resource type="PackedScene" uid="uid://dbn6yhmklk8dm" path="res://assets/models/Station.tscn" id="16_gwggj"]
-[ext_resource type="Script" uid="uid://f7buye2dboqr" path="res://src/GrindstoneStation.cs" id="17_y1p1r"]
-[ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/Sword.tscn" id="18_xo2gm"]
 [ext_resource type="PackedScene" uid="uid://bff5da5u2kggn" path="res://assets/models/MeltedIngot.tscn" id="19_amgg8"]
-[ext_resource type="Script" uid="uid://bkgt1ax3obdva" path="res://src/ForgingStation.cs" id="20_amgg8"]
+[ext_resource type="PackedScene" uid="uid://cmd758glwlnly" path="res://assets/models/Grindstone.tscn" id="20_5vgrt"]
+[ext_resource type="PackedScene" uid="uid://706c56ie3ke" path="res://assets/models/Turret.tscn" id="20_20nwc"]
 [ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/CraftingRecipes.cs" id="20_gax05"]
+[ext_resource type="PackedScene" uid="uid://g1gfmktihg8t" path="res://assets/models/Anvil.tscn" id="22_3w1al"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_wko22"]
 
@@ -56,23 +53,6 @@ requiredItemNames = PackedStringArray("Ingot")
 ouputName = "MeltedIngot"
 ouputScene = ExtResource("19_amgg8")
 ouputGroup = "pickable"
-metadata/_custom_type_script = "uid://1bo1o367ybgk"
-
-[sub_resource type="Resource" id="Resource_gax05"]
-script = ExtResource("20_gax05")
-recipeName = "DullSword"
-requiredItemNames = PackedStringArray("Stick", "MeltedIngot")
-ouputName = "DullSword"
-ouputScene = ExtResource("4_gwggj")
-ouputGroup = "pickable"
-metadata/_custom_type_script = "uid://1bo1o367ybgk"
-
-[sub_resource type="Resource" id="Resource_3w1al"]
-script = ExtResource("20_gax05")
-recipeName = "Sword"
-requiredItemNames = PackedStringArray("DullSword")
-ouputName = "Sword"
-ouputScene = ExtResource("18_xo2gm")
 metadata/_custom_type_script = "uid://1bo1o367ybgk"
 
 [node name="TestingLab" type="StaticBody3D" unique_id=127569902]
@@ -127,8 +107,6 @@ transform = Transform3D(1.1700002, 0, 1.6220664, 0, 2, 0, -1.6220664, 0, 1.17000
 
 [node name="Forge2" parent="World" unique_id=994045895 instance=ExtResource("2_ptwec")]
 transform = Transform3D(0.006403178, 0, 0.15329519, 0, 0.35, 0, -0.19041358, 0, 0.00515497, 0.37146854, 0.017500043, 0.8259249)
-script = ExtResource("4_20nwc")
-meltedIngotScene = null
 recipes = Array[Object]([SubResource("Resource_20nwc")])
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=254897524 node_paths=PackedStringArray("playerSpawner")]
@@ -137,6 +115,7 @@ projection = 1
 size = 15.0
 script = ExtResource("3_mndrt")
 playerSpawner = NodePath("../PlayerSpawner")
+maxSize = 50.0
 
 [node name="PlayerSpawner" type="Node" parent="." unique_id=1347135134 node_paths=PackedStringArray("spawnParent")]
 script = ExtResource("6_42n6d")
@@ -218,14 +197,26 @@ offset_bottom = 23.0
 text = "Enemies"
 metadata/_edit_use_anchors_ = true
 
-[node name="SmeltingStation" parent="." unique_id=1158721071 instance=ExtResource("16_gwggj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.236674, 0.5, 0.35713768)
-script = ExtResource("20_amgg8")
-dullSwordScene = null
-recipes = Array[Object]([SubResource("Resource_gax05")])
+[node name="MeltedIngot" parent="." unique_id=577231431 instance=ExtResource("19_amgg8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.754943, 0.01504321, 3.8069115)
 
-[node name="SmeltingStation2" parent="." unique_id=1191682270 instance=ExtResource("16_gwggj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.842392, 0.5, -0.45057487)
-script = ExtResource("17_y1p1r")
-swordScene = ExtResource("18_xo2gm")
-recipes = Array[Resource]([SubResource("Resource_3w1al")])
+[node name="Stick" parent="." unique_id=70957572 instance=ExtResource("10_mehdq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4553576, 0.18933196, 3.5318594)
+
+[node name="Grindstone" parent="." unique_id=1599248455 instance=ExtResource("20_5vgrt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.4461565, 0.5265527, -0.1874628)
+
+[node name="Anvil" parent="." unique_id=1158721071 instance=ExtResource("22_3w1al")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.693582, 0.50000095, -0.27104568)
+
+[node name="Turret" parent="." unique_id=1571022317 instance=ExtResource("20_20nwc")]
+transform = Transform3D(0.4865031, 0, -0.8736788, 0, 1, 0, 0.8736788, 0, 0.4865031, 2.7786689, 3.7449908, 2.4238353)
+
+[node name="Turret2" parent="." unique_id=1657700586 instance=ExtResource("20_20nwc")]
+transform = Transform3D(-0.73575443, 0, -0.6772485, 0, 1, 0, 0.6772485, 0, -0.73575443, -2.205937, 3.905345, 2.2349224)
+
+[node name="Turret3" parent="." unique_id=1992312639 instance=ExtResource("20_20nwc")]
+transform = Transform3D(0.69787794, 0, 0.7162166, 0, 1, 0, -0.7162166, 0, 0.69787794, 3.0091875, 3.7897806, -0.87479496)
+
+[node name="Turret4" parent="." unique_id=83936569 instance=ExtResource("20_20nwc")]
+transform = Transform3D(-0.57957995, 0, 0.8149154, 0, 1, 0, -0.8149154, 0, -0.57957995, -2.350094, 3.7289462, -0.877923)

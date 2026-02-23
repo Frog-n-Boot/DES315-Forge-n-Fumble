@@ -22,7 +22,7 @@ public abstract partial class BaseStationScript : Node3D
 
 	protected ItemCarrier itemCarrier;
 	
-	private CraftingRecipes pendingRecipe;
+	protected CraftingRecipes pendingRecipe;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -98,8 +98,11 @@ public abstract partial class BaseStationScript : Node3D
 		
 
 	}
-
-	protected void StartCrafting()
+	protected virtual void OnCraftingRequirementsMet()
+	{
+		craftingTimer.Start();
+	}
+	public void StartCrafting()
 	{
 		if(outputOccupied || !craftingTimer.IsStopped() || itemCarrier == null)
 		{
@@ -107,11 +110,9 @@ public abstract partial class BaseStationScript : Node3D
 		}
 		if(GetRequiredItems(out var itemsToConsume, out var recipes))
 		{
-			foreach(var item in itemsToConsume)
-				itemCarrier.RemoveItem(item);
 			
 			pendingRecipe = recipes;
-			craftingTimer.Start();
+			OnCraftingRequirementsMet();
 		}
 	}
 
@@ -127,6 +128,7 @@ public abstract partial class BaseStationScript : Node3D
 		if(inputArea != null)
 		{
 			inputArea.BodyEntered += OnInputBodyEntered;
+			inputArea.BodyExited += OnInputBodyExited;
 		}
 		else
 			GD.Print("Input are not found");
@@ -161,7 +163,7 @@ public abstract partial class BaseStationScript : Node3D
 		}
 	}
 
-	public void OnInputBodyEntered(Node3D body)
+	protected virtual void OnInputBodyEntered(Node3D body)
 	{
 		if (body.IsInGroup("Player"))
 		{
@@ -170,6 +172,11 @@ public abstract partial class BaseStationScript : Node3D
 			StartCrafting();
 		}
 		
+	}
+	protected virtual void OnInputBodyExited(Node3D body)
+	{
+		if(body.IsInGroup("Player"))
+			player.SetCurrentStation(null);
 	}
 
 	public void OnOutputBodyExit(Node3D body)
@@ -195,4 +202,6 @@ public abstract partial class BaseStationScript : Node3D
 		timeProgressBar.Value = 0;
 		outputOccupied = true;
 	}
+
+	public virtual SequenceMinigame GetSequenceMinigame() => null;
 }

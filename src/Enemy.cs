@@ -23,11 +23,12 @@ public partial class Enemy : Node3D
     #endregion
 
     #region Properties
-    public int health => enemyData?.health ?? 100;
+    public int maxHealth => enemyData?.maxHealth ?? 10;
     public int Damage => enemyData?.damage ?? 10;
     public string enemyName => enemyData?.enemyName ?? "Unknown";
     private Forge forgeScript;
     private bool isDying = false;
+    private int health;
     #endregion
 
     #region LifeCycle
@@ -36,6 +37,7 @@ public partial class Enemy : Node3D
         SetupComponents();
         SetEnemyData();
         ConnectSignals();
+        health = maxHealth;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -97,8 +99,8 @@ public partial class Enemy : Node3D
 
         if (healthComponent != null)
         {
-            healthComponent.maxHealth = enemyData.health;
-            healthComponent.CurrentHealth = enemyData.health;
+            healthComponent.maxHealth = enemyData.maxHealth;
+            healthComponent.CurrentHealth = enemyData.maxHealth;
         }
 
         if (movementComponent != null)
@@ -200,7 +202,7 @@ public partial class Enemy : Node3D
             EmitSignal(SignalName.DamagedTarget, body, Damage);
 
             if(body is PlayerController playerController&& enemyData !=null){
-                //playerController.TakeDamage(enemyData.damage);
+                playerController.TakeDamage(enemyData.damage);
             }
 
             Die();  
@@ -212,9 +214,24 @@ public partial class Enemy : Node3D
             {
                 //GD.Print("Enemy took damage");
                 sword.DamageWeapon(1);
-                TakeDamage(10);
+                TakeDamage(sword.damage);
             }
         }
+        else if(groupName == "Bullet")
+        {
+            Bullet bullet = body.GetParent() as Bullet;
+            if(bullet != null)
+            {
+                TakeDamage(bullet.damage);
+                bullet.QueueFree();
+            }
+            else
+            {
+                GD.Print("Bullet is null");
+            }
+         
+        }
+        
     }
 
     private Sword FindSwordInHierarchy(Node3D body)
@@ -232,7 +249,8 @@ public partial class Enemy : Node3D
     public void TakeDamage(int amount)
     {
         healthComponent?.TakeDamage(amount);
-        EmitSignal(SignalName.EnemyHealthChanged, health, 100);
+        health = healthComponent.CurrentHealth;
+        EmitSignal(SignalName.EnemyHealthChanged, health, maxHealth);
     }
 
     public void Die()

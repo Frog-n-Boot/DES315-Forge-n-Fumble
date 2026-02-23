@@ -14,5 +14,16 @@ public partial class SmeltingStation : BaseStationScript
         }
     }
 
+    protected override void OnCraftingRequirementsMet()
+    {
+        if(GetRequiredItems(out var items, out var recipe))
+        {
+            foreach(var item in items)
+                itemCarrier.RemoveItem(item);
+            
+            craftingTimer.Start();
+        }
+    }
+
     protected override string GetStationName() => "Forge";
 }

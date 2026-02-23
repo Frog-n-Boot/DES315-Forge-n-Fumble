@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_mvv2o")
-health = 20
-damage = 1
+maxHealth = 30
+damage = 5
 speed = 3.0
 color = Color(1, 0, 1, 1)
 scale = Vector3(2, 2, 2)

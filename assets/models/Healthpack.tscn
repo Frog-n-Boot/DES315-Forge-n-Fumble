@@ -12,6 +12,7 @@ albedo_color = Color(0, 1, 0, 1)
 [node name="Healthpack" type="Node3D" unique_id=1749123252 groups=["pickable"]]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1633201418 groups=["HealthPack", "pickable"]]
+collision_layer = 16
 script = ExtResource("1_6yd4e")
 itemDataPath = "uid://bmycncridbhyq"
 

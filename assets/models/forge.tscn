@@ -1,11 +1,21 @@
 [gd_scene format=3 uid="uid://bm6vf4tjk48gj"]
 
-[ext_resource type="Script" uid="uid://bkgt1ax3obdva" path="res://src/ForgingStation.cs" id="1_0ahcc"]
 [ext_resource type="Texture2D" uid="uid://dojlu4h4kkh7a" path="res://addons/kenney_prototype_textures/orange/texture_05.png" id="1_8m51e"]
+[ext_resource type="Script" uid="uid://bdwnaqw5jg3si" path="res://src/SmeltingStation.cs" id="1_ph4aw"]
+[ext_resource type="PackedScene" uid="uid://bff5da5u2kggn" path="res://assets/models/MeltedIngot.tscn" id="2_0ahcc"]
 [ext_resource type="Texture2D" uid="uid://dogk5fh7yt38t" path="res://addons/kenney_prototype_textures/orange/texture_03.png" id="2_i5jg4"]
-[ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/Sword.tscn" id="2_oiry0"]
 [ext_resource type="PackedScene" uid="uid://ceepwtmv7qxv2" path="res://assets/models/ForgeHealthBar.tscn" id="3_g2ei8"]
+[ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/CraftingRecipes.cs" id="3_oiry0"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="4_0l8vc"]
+
+[sub_resource type="Resource" id="Resource_04qyv"]
+script = ExtResource("3_oiry0")
+recipeName = "MeltedIngot"
+requiredItemNames = PackedStringArray("Ingot")
+ouputName = "MeltedIngot"
+ouputScene = ExtResource("2_0ahcc")
+ouputGroup = "pickable"
+metadata/_custom_type_script = "uid://1bo1o367ybgk"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i5jg4"]
 
@@ -38,7 +48,7 @@ uv1_triplanar = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_5b8nd"]
 size = Vector3(0.704834, 0.51831055, 1.1091309)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ph4aw"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_oiry0"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ohbk7"]
@@ -46,12 +56,13 @@ viewport_path = NodePath("Sprite3D/SubViewport")
 
 [node name="Forge" type="Node3D" unique_id=994045895 node_paths=PackedStringArray("inputNode", "outputNode", "timeProgressBar", "stationName") groups=["Forge", "Station"]]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
-script = ExtResource("1_0ahcc")
-swordScene = ExtResource("2_oiry0")
+script = ExtResource("1_ph4aw")
+meltedIngotScene = ExtResource("2_0ahcc")
 inputNode = NodePath("StationPort")
 outputNode = NodePath("StationPort2")
 timeProgressBar = NodePath("Sprite3D/SubViewport/ProgressBar")
 stationName = NodePath("Sprite3D/SubViewport/Label")
+recipes = Array[Object]([SubResource("Resource_04qyv")])
 
 [node name="Wall_01" type="Node3D" parent="." unique_id=551910469]
 transform = Transform3D(0.5, 0, 0, 0, 2, 0, 0, 0, 6, 10, 4, 5)
@@ -158,8 +169,8 @@ material_override = SubResource("StandardMaterial3D_0l8vc")
 mesh = SubResource("BoxMesh_ph4aw")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1067101710 groups=["Forge"]]
-collision_layer = 8
-collision_mask = 9
+collision_layer = 128
+collision_mask = 6
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=250762080]
 transform = Transform3D(30, 0, 0, 0, 20, 0, 0, 0, 35, 0.72143555, 4.816896, -1.90979)
@@ -167,7 +178,7 @@ shape = SubResource("BoxShape3D_5b8nd")
 
 [node name="ForgeHealthBar" parent="." unique_id=1328028810 instance=ExtResource("3_g2ei8")]
 transform = Transform3D(-8.742278e-07, 0, -20, 0, 20, 0, 20, 0, -8.742278e-07, 0, 18.932394, -0.85522586)
-texture = SubResource("ViewportTexture_ph4aw")
+texture = SubResource("ViewportTexture_oiry0")
 
 [node name="StationPort" parent="." unique_id=750325492 instance=ExtResource("4_0l8vc")]
 transform = Transform3D(8.527927, 0, 0, 0, 2.857143, 0, 0, 0, 11.971165, -16.13795, 2.507278, -16.516914)

@@ -5,7 +5,7 @@ using System;
 public partial class EnemyData : Resource
 {
 	[Export] public string enemyName = "Enemy";
-	[Export] public int health = 10;
+	[Export] public int maxHealth = 10;
 	[Export] public int damage = 10;
 	[Export] public float speed = 5.0f;
 	[Export] public Color color = new Color(1, 0, 0);

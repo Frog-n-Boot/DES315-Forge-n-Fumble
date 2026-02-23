@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://706c56ie3ke"]
+
+[ext_resource type="Script" uid="uid://bdt0s16a5rcia" path="res://src/Turret.cs" id="1_m1e06"]
+[ext_resource type="PackedScene" uid="uid://ceb1l3gxwlc4l" path="res://assets/models/Bullet.tscn" id="2_n82r5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e7812"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_gv8vl"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_m1e06"]
+
+[node name="Turret" type="Node3D" unique_id=1571022317 node_paths=PackedStringArray("bulletSpawnLocation")]
+script = ExtResource("1_m1e06")
+bulletSpawnLocation = NodePath("Nuzzle")
+bulletScene = ExtResource("2_n82r5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=440704571]
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1945830702]
+shape = SubResource("CapsuleShape3D_e7812")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=12669867]
+mesh = SubResource("CapsuleMesh_gv8vl")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="StaticBody3D" unique_id=1444911399]
+transform = Transform3D(1, 0, 0, 0, 0.33043814, 0, 0, 0, 0.2738446, 1.1055518, 0.5955267, 0)
+mesh = SubResource("BoxMesh_m1e06")
+
+[node name="Nuzzle" type="Node3D" parent="." unique_id=1309432331]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2069244, 0.8360743, 0.6878842)
