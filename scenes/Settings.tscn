@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://m0yx3e0w0rir"]
+
+[ext_resource type="Script" uid="uid://cq2hdafsss4y7" path="res://src/MainMenu.cs" id="1_rbmmp"]
+
+[node name="Settings" type="Node2D" unique_id=2013459249]
+
+[node name="Control" type="Control" parent="." unique_id=693573093 node_paths=PackedStringArray("startButton")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_rbmmp")
+startButton = NodePath("BackButton")
+
+[node name="Label" type="Label" parent="Control" unique_id=1679748900]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 16.0
+offset_right = 672.0
+offset_bottom = 99.0
+theme_override_font_sizes/font_size = 60
+text = "Settings"
+
+[node name="BackButton" type="Button" parent="Control" unique_id=1299695499]
+layout_mode = 0
+offset_left = 8.000006
+offset_top = 552.0
+offset_right = 456.0
+offset_bottom = 672.0
+scale = Vector2(0.8400012, 0.7599994)
+focus_neighbor_top = NodePath("../CheckBox")
+focus_next = NodePath("../CheckBox")
+theme_override_font_sizes/font_size = 40
+text = "Back
+"
+
+[node name="CheckBox" type="CheckBox" parent="Control" unique_id=1622636175]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 248.0
+offset_right = 273.0
+offset_bottom = 311.0
+focus_neighbor_bottom = NodePath("../BackButton")
+focus_next = NodePath(".")
+theme_override_font_sizes/font_size = 40
+text = "Fullscreen"
+
+[connection signal="pressed" from="Control/BackButton" to="Control" method="OnBackButtonPressed"]
+[connection signal="pressed" from="Control/CheckBox" to="Control" method="ToggleFullscreen"]

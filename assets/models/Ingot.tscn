@@ -16,7 +16,7 @@ transform = Transform3D(1, 0, 0, 0, 0.1894375, 0, 0, 0, 0.7128166, 0, 0, 0)
 collision_layer = 16
 collision_mask = 3
 script = ExtResource("1_rqadj")
-itemDataPath = "uid://bxytqrtn06201"
+itemDataPath = "uid://bkb1nmonfcm1o"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1467295014]
 material_override = SubResource("StandardMaterial3D_rqadj")

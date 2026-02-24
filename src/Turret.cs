@@ -7,44 +7,60 @@ public partial class Turret : Node3D
 	[Export] private Node3D bulletSpawnLocation;
 	[Export] private PackedScene bulletScene;
 	[Export] private float range = 20.0f;
-	[Export] private float coneAngle = 45.0f;
+	[Export] private float coneAngle = 65.0f;
+	[Export] protected Node3D inputNode;
+	[Export] protected Label label;
 
 	protected ItemCarrier itemCarrier;
 	protected PlayerController player;
     private List<PlayerController> playersInZone = new List<PlayerController>();
-	private int bulletCount= 2;
+	private int bulletCount= 10;
 
 	private Node3D currentTarget;
 	private float reloadTime = 1;
 	Timer shootTimer;
 
-
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		shootTimer = new Timer();
+		label.Text = $"{bulletCount}";
+		SetupTimer();
+		SetupArea();
+	}
+
+	private void SetupTimer()
+    {
+        shootTimer = new Timer();
 		shootTimer.WaitTime = 1.0f;
 		shootTimer.OneShot= false;
 		AddChild(shootTimer);
 		shootTimer.Timeout += SpawnBullet;
 		shootTimer.Start();
-	}
+    }
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	private void SetupArea()
+    {
+		if(inputNode == null)
+		{
+			GD.Print($"{Name}: inputNode is not assigned");
+			return;
+		}
+
+        var inputArea = inputNode.GetNode<Area3D>("Area3D");
+		if(inputArea != null)
+		{
+			inputArea.BodyEntered += OnInputBodyEntered;
+		}
+		else
+			GD.Print("Input are not found");
+    }
+
 	public override void _Process(double delta)
 	{
 		currentTarget = FindClosestEnemy();
 
 		if(currentTarget == null) return;
 
-		Vector3 direction = currentTarget.GlobalPosition - GlobalPosition;
-		direction.Y = 0;
-		if(direction != Vector3.Zero)
-		{
-			float targetAngle = Mathf.Atan2(-direction.Z, direction.X);
-			Rotation = new Vector3(Rotation.X, targetAngle, Rotation.Z);
-		}
-		//int playerCount = GetTree().GetNodesInGroup("Player").Count;
+		bulletSpawnLocation.LookAt(currentTarget.GlobalPosition, Vector3.Up);
 	}
 
 	private void SpawnBullet()
@@ -61,12 +77,14 @@ public partial class Turret : Node3D
 		var bullet = bulletScene.Instantiate<Bullet>();
 		bullet.AddToGroup("Bullet");
 		GetTree().Root.AddChild(bullet);
-		bullet.GlobalPosition = new Vector3(bulletSpawnLocation.GlobalPosition.X, currentTarget.GlobalPosition.Y, bulletSpawnLocation.GlobalPosition.Z);
 
-		Vector3 direction = (target.GlobalPosition - bulletSpawnLocation.GlobalPosition);
-		direction.Y = 0;
-		bullet.SetDirection(direction);
+		bullet.GlobalPosition = bulletSpawnLocation.GlobalPosition;
+
+		Vector3 forward = -bulletSpawnLocation.GlobalTransform.Basis.Z;
+
+		bullet.SetDirection(forward);
 		bulletCount--;
+		label.Text = $"{bulletCount}";
 
 		
 	}
@@ -118,11 +136,13 @@ public partial class Turret : Node3D
 		var items= itemCarrier.GetCarriedItems();
 		foreach(var item in items)
 		{
-			if(item.name == "Stick")
+			if(item.name == "Ingot")
 			{
 				GD.Print("Ingot was added");
 				bulletCount += 10;
+				label.Text = $"{bulletCount}";
 				shootTimer.Start();
+				itemCarrier.RemoveItem(item);
 			}
 		}
 	}

@@ -23,6 +23,8 @@ public abstract partial class BaseStationScript : Node3D
 	protected ItemCarrier itemCarrier;
 	
 	protected CraftingRecipes pendingRecipe;
+
+	 private List<PlayerController> playersInZone = new List<PlayerController>();
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -165,18 +167,23 @@ public abstract partial class BaseStationScript : Node3D
 
 	protected virtual void OnInputBodyEntered(Node3D body)
 	{
-		if (body.IsInGroup("Player"))
-		{
-			player = body as PlayerController;
-			itemCarrier = player as ItemCarrier;
-			StartCrafting();
-		}
+        if (body.IsInGroup("Player"))
+        {
+            var p= body as PlayerController;
+            itemCarrier = p as ItemCarrier;
+            player = p;
+            playersInZone.Add(p);
+            p.SetCurrentStation(this);
+        }
 		
 	}
 	protected virtual void OnInputBodyExited(Node3D body)
 	{
-		if(body.IsInGroup("Player"))
-			player.SetCurrentStation(null);
+        if(body.IsInGroup("Player")){
+            var p = body as PlayerController;
+            playersInZone.Remove(p);
+            p?.SetCurrentStation(null);
+        }
 	}
 
 	public void OnOutputBodyExit(Node3D body)

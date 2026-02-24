@@ -56,11 +56,12 @@ texture = SubResource("ViewportTexture_yb3nn")
 transparent_bg = true
 size = Vector2i(120, 70)
 
-[node name="SequenceText" type="Label" parent="Sprite3D/SubViewport" unique_id=283606671]
+[node name="SequenceText" type="RichTextLabel" parent="Sprite3D/SubViewport" unique_id=266869838]
+offset_left = 15.0
 offset_top = 20.0
-offset_right = 100.0
+offset_right = 115.0
 offset_bottom = 79.0
-theme_override_font_sizes/font_size = 10
+bbcode_enabled = true
 
 [node name="ProgressBar" type="ProgressBar" parent="Sprite3D/SubViewport" unique_id=624823659]
 visible = false
@@ -68,13 +69,14 @@ offset_top = 10.0
 offset_right = 100.0
 offset_bottom = 60.0
 
-[node name="Label" type="Label" parent="Sprite3D/SubViewport" unique_id=391754200]
+[node name="Label" type="Label" parent="Sprite3D/SubViewport" unique_id=1153088540]
 offset_left = 20.0
 offset_right = 60.0
 offset_bottom = 49.0
 text = "
 "
 
-[node name="SequenceMinigame" type="Node" parent="." unique_id=290722974 node_paths=PackedStringArray("sequenceText")]
+[node name="SequenceMinigame" type="Node" parent="." unique_id=290722974 node_paths=PackedStringArray("sequenceText", "sprite3D")]
 script = ExtResource("4_yb3nn")
 sequenceText = NodePath("../Sprite3D/SubViewport/SequenceText")
+sprite3D = NodePath("../Sprite3D")

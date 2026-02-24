@@ -3,7 +3,12 @@ using System;
 
 public partial class SequenceMinigame : Node
 {
-	[Export] Label sequenceText;
+	[Export] RichTextLabel sequenceText;
+	[Export] Sprite3D sprite3D;
+
+	[Signal] public delegate void SequenceCompletedEventHandler();
+	[Signal] public delegate void SequenceFailedEventHandler();
+
 	private string[] sequence;
 	public bool isActive = false;
 	private float timePerInput = 3.0f;
@@ -12,13 +17,13 @@ public partial class SequenceMinigame : Node
 	private string[] possibleInputs = { "Left", "Right", "Up", "Down"};
 	private PlayerController activePlayer;
 	private int activeDevice;
+	private CameraController cameraController;
 
 
-	[Signal] public delegate void SequenceCompletedEventHandler();
-	[Signal] public delegate void SequenceFailedEventHandler();
 	
 	public void Start(int length, PlayerController player)
 	{
+		cameraController = GetTree().Root.GetNode<CameraController>("TestingLab/Camera3D");
 		activePlayer = player;
 		activeDevice = player.currentDevice;
 		sequence = new string[length];
@@ -37,6 +42,16 @@ public partial class SequenceMinigame : Node
 	{
 		if(!isActive) return;
 
+		bool isZommedOut = cameraController.GetCameraZoomOut();
+        if (isZommedOut)
+        {
+            sprite3D.Scale = new Vector3(10, 10, 10);
+        }
+        else if(isZommedOut == false)
+        {
+             sprite3D.Scale = new Vector3(5.39f, 4.0f, 4.0f);
+        }
+
 		timeLeft -= (float)delta;
 
 		if(timeLeft <= 0)
@@ -50,26 +65,28 @@ public partial class SequenceMinigame : Node
 
 	private void UpdateLabel()
 	{
+		bool isZommedOut = cameraController.GetCameraZoomOut();
+
 		bool isController = activeDevice >= 0;
 		string display = "";
 		for(int i = 0; i < sequence.Length; i++)
 		{
 			if(i == currentStep)
-				display += $"[{GetArrow(sequence[i], isController)}] ";
+				display += $"[color=yellow]{GetArrow(sequence[i], isController)}[/color]";
 			else if(i < currentStep)
-				display += $"✔";
+				display += $"[color=green]{GetArrow(sequence[i], isController)}[/color]";
 			else
-				display += $"{GetArrow(sequence[i], isController)} ";
+				display += $"[color=white]{GetArrow(sequence[i], isController)}[/color]";
 		}
 		sequenceText.Text = display;
 
 	}
 	private string GetArrow(string input, bool isController) => input switch
 	{
-		"Left" => isController ? "D-LEFT" : "A",
-		"Right" => isController ? "D-RIGHT" : "D",
-		"Up" => isController ? "D-UP" : "W",
-		"Down"=> isController ? "D-DOWN" : "S",
+		"Left" => isController ? "←" : "←",
+		"Right" => isController ? "→" : "→",
+		"Up" => isController ? "↑" : "↑",
+		"Down"=> isController ? "↓" : "↓",
 		_ => "?"
 	};
 
@@ -129,5 +146,4 @@ public partial class SequenceMinigame : Node
 		return isActive && activePlayer == player;
 	}
 	
-
 }

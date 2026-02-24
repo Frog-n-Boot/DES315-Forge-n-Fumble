@@ -19,7 +19,9 @@
 [ext_resource type="PackedScene" uid="uid://cmd758glwlnly" path="res://assets/models/Grindstone.tscn" id="20_5vgrt"]
 [ext_resource type="PackedScene" uid="uid://706c56ie3ke" path="res://assets/models/Turret.tscn" id="20_20nwc"]
 [ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/CraftingRecipes.cs" id="20_gax05"]
+[ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="21_20nwc"]
 [ext_resource type="PackedScene" uid="uid://g1gfmktihg8t" path="res://assets/models/Anvil.tscn" id="22_3w1al"]
+[ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/DullSword.tscn" id="22_amgg8"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_wko22"]
 
@@ -106,8 +108,42 @@ transform = Transform3D(1.3261026, 0, -1.4971479, 0, 2, 0, 1.4971479, 0, 1.32610
 transform = Transform3D(1.1700002, 0, 1.6220664, 0, 2, 0, -1.6220664, 0, 1.1700002, 18.261032, 0.5, -16.599575)
 
 [node name="Forge2" parent="World" unique_id=994045895 instance=ExtResource("2_ptwec")]
-transform = Transform3D(0.006403178, 0, 0.15329519, 0, 0.35, 0, -0.19041358, 0, 0.00515497, 0.37146854, 0.017500043, 0.8259249)
+transform = Transform3D(0.0124412505, 0, 0.28506547, 0, 0.35, 0, -0.36996993, 0, 0.009586106, 0.37146854, 0.017500043, 0.8259249)
 recipes = Array[Object]([SubResource("Resource_20nwc")])
+
+[node name="Turret" parent="World" unique_id=1571022317 node_paths=PackedStringArray("inputNode") instance=ExtResource("20_20nwc")]
+transform = Transform3D(-0.4729353, 0, -0.8810972, 0, 1, 0, 0.8810972, 0, -0.4729353, -4.6669455, 3.6053066, 3.4638782)
+inputNode = NodePath("StationPort4")
+
+[node name="StationPort4" parent="World/Turret" unique_id=1812803613 instance=ExtResource("21_20nwc")]
+transform = Transform3D(-2.615958, 0, -1.3762058, 0, 1, 0, 1.3889388, 0, -2.5919764, -2.2345748, -3.1234941, -0.58680224)
+
+[node name="Turret2" parent="World" unique_id=353788340 node_paths=PackedStringArray("inputNode") instance=ExtResource("20_20nwc")]
+transform = Transform3D(0.807084, 0, -0.5904367, 0, 1, 0, 0.5904367, 0, 0.807084, 4.7185926, 3.6053066, 3.824185)
+inputNode = NodePath("StationPort3")
+
+[node name="StationPort3" parent="World/Turret2" unique_id=1915723754 instance=ExtResource("21_20nwc")]
+transform = Transform3D(-1.737944, 0, 2.3763328, 0, 1, 0, -2.398319, 0, -1.7220117, -0.3306508, -3.1234941, 0.20035172)
+
+[node name="Turret3" parent="World" unique_id=1604294998 node_paths=PackedStringArray("inputNode") instance=ExtResource("20_20nwc")]
+transform = Transform3D(0.4554051, 0, 0.8902845, 0, 1, 0, -0.8902845, 0, 0.4554051, 4.8824754, 3.6053066, -2.527573)
+inputNode = NodePath("StationPort")
+
+[node name="StationPort" parent="World/Turret3" unique_id=750325492 instance=ExtResource("21_20nwc")]
+transform = Transform3D(2.6429331, 0, 1.3246388, 0, 1, 0, -1.3368946, 0, 2.6187043, -1.8930666, -3.1234941, 0.3516538)
+
+[node name="Turret4" parent="World" unique_id=1789132715 node_paths=PackedStringArray("inputNode") instance=ExtResource("20_20nwc")]
+transform = Transform3D(-0.7744369, 0, 0.6326513, 0, 1, 0, -0.6326513, 0, -0.7744369, -4.6147814, 3.6053066, -3.0040874)
+inputNode = NodePath("StationPort2")
+
+[node name="StationPort2" parent="World/Turret4" unique_id=1365024135 instance=ExtResource("21_20nwc")]
+transform = Transform3D(1.8634118, 0, -2.2810848, 0, 1, 0, 2.30219, 0, 1.8463291, -0.8566718, -3.1234941, 0.023492694)
+
+[node name="Grindstone" parent="World" unique_id=1599248455 instance=ExtResource("20_5vgrt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.424134, 0.5265527, -0.1874628)
+
+[node name="Anvil" parent="World" unique_id=1158721071 instance=ExtResource("22_3w1al")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.903208, 0.50000095, -0.27104568)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=254897524 node_paths=PackedStringArray("playerSpawner")]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 39, 38)
@@ -115,7 +151,7 @@ projection = 1
 size = 15.0
 script = ExtResource("3_mndrt")
 playerSpawner = NodePath("../PlayerSpawner")
-maxSize = 50.0
+maxSize = 30.525
 
 [node name="PlayerSpawner" type="Node" parent="." unique_id=1347135134 node_paths=PackedStringArray("spawnParent")]
 script = ExtResource("6_42n6d")
@@ -134,8 +170,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.95199704)
 [node name="SpawnPoint3" type="Marker3D" parent="PlayerSpawner" unique_id=2030002562]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.498033, 0, -1.7967122)
 
-[node name="EnemySpawner" type="Node" parent="." unique_id=1191566733]
+[node name="EnemySpawner" type="Node" parent="." unique_id=1191566733 node_paths=PackedStringArray("spawnParent", "targetNode", "lootTable", "spawnPositions", "enemyUI")]
 script = ExtResource("7_53x3i")
+enemyScene = ExtResource("8_1bgfi")
+spawnParent = NodePath(".")
+targetNode = NodePath("../World/Forge2")
+normalEnemyData = ExtResource("9_mehdq")
+fastEnemyData = ExtResource("10_7p7bj")
+strongEnemyData = ExtResource("11_gwggj")
+lootTable = NodePath("../LootTable")
+maxWaves = 5
+timeBetweenWaves = 0.01
+startingEnemiesPerWave = 10
+enemyIncreasedPerWave = 2
+spawnPositions = [NodePath("EnemySpawn1"), NodePath("EnemySpawn2"), NodePath("EnemySpawn3"), NodePath("EnemySpawn4"), NodePath("EnemySpawn5"), NodePath("EnemySpawn6")]
+enemyUI = NodePath("../EnemyUI")
 
 [node name="EnemySpawn1" type="Marker3D" parent="EnemySpawner" unique_id=829387820]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.047226, 0, 23.813654)
@@ -174,49 +223,11 @@ stickObject = ExtResource("10_mehdq")
 ingotObject = ExtResource("11_7p7bj")
 healthPackObject = ExtResource("12_gwggj")
 
-[node name="WaveManager" type="Node3D" parent="." unique_id=158649672 node_paths=PackedStringArray("spawnParent", "targetNode", "lootTable", "spawnPositions", "enemyUI")]
-unique_name_in_owner = true
-script = ExtResource("7_53x3i")
-enemyScene = ExtResource("8_1bgfi")
-spawnParent = NodePath(".")
-targetNode = NodePath("../World/Forge2")
-normalEnemyData = ExtResource("9_mehdq")
-fastEnemyData = ExtResource("10_7p7bj")
-strongEnemyData = ExtResource("11_gwggj")
-lootTable = NodePath("../LootTable")
-maxWaves = 5
-timeBetweenWaves = 0.01
-startingEnemiesPerWave = 4
-enemyIncreasedPerWave = 2
-spawnPositions = [NodePath("../EnemySpawner/EnemySpawn1"), NodePath("../EnemySpawner/EnemySpawn2"), NodePath("../EnemySpawner/EnemySpawn3"), NodePath("../EnemySpawner/EnemySpawn4"), NodePath("../EnemySpawner/EnemySpawn5"), NodePath("../EnemySpawner/EnemySpawn6")]
-enemyUI = NodePath("../EnemyUI")
-
 [node name="EnemyUI" type="Label" parent="." unique_id=754514857]
 offset_right = 66.0
 offset_bottom = 23.0
 text = "Enemies"
 metadata/_edit_use_anchors_ = true
 
-[node name="MeltedIngot" parent="." unique_id=577231431 instance=ExtResource("19_amgg8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.754943, 0.01504321, 3.8069115)
-
-[node name="Stick" parent="." unique_id=70957572 instance=ExtResource("10_mehdq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4553576, 0.18933196, 3.5318594)
-
-[node name="Grindstone" parent="." unique_id=1599248455 instance=ExtResource("20_5vgrt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.4461565, 0.5265527, -0.1874628)
-
-[node name="Anvil" parent="." unique_id=1158721071 instance=ExtResource("22_3w1al")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.693582, 0.50000095, -0.27104568)
-
-[node name="Turret" parent="." unique_id=1571022317 instance=ExtResource("20_20nwc")]
-transform = Transform3D(0.4865031, 0, -0.8736788, 0, 1, 0, 0.8736788, 0, 0.4865031, 2.7786689, 3.7449908, 2.4238353)
-
-[node name="Turret2" parent="." unique_id=1657700586 instance=ExtResource("20_20nwc")]
-transform = Transform3D(-0.73575443, 0, -0.6772485, 0, 1, 0, 0.6772485, 0, -0.73575443, -2.205937, 3.905345, 2.2349224)
-
-[node name="Turret3" parent="." unique_id=1992312639 instance=ExtResource("20_20nwc")]
-transform = Transform3D(0.69787794, 0, 0.7162166, 0, 1, 0, -0.7162166, 0, 0.69787794, 3.0091875, 3.7897806, -0.87479496)
-
-[node name="Turret4" parent="." unique_id=83936569 instance=ExtResource("20_20nwc")]
-transform = Transform3D(-0.57957995, 0, 0.8149154, 0, 1, 0, -0.8149154, 0, -0.57957995, -2.350094, 3.7289462, -0.877923)
+[node name="DullSword" parent="." unique_id=778246616 instance=ExtResource("22_amgg8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.750275, 0.5, 4.2739916)

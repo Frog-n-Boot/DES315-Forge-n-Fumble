@@ -559,7 +559,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
         if(child is Sword sword)
         {
             sword.Reparent(GetTree().Root);
-            sword.GlobalPosition = GlobalPosition + (Transform.Basis.Z * 1.5f);
+            sword.GlobalPosition = GlobalPosition + (Transform.Basis.Z * 2.5f);
             sword.Rotation = Vector3.Zero;
 
             currentSword.CheckDurability -= OnSwordDurabilityChecked;
@@ -573,7 +573,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
         pickable.Reparent(GetTree().Root);
         pickable.GetNode<CollisionShape3D>("CollisionShape3D").SetDeferred("disabled", false);
-        pickable.GlobalPosition = GlobalPosition + (Transform.Basis.Z * 1.5f);
+        pickable.GlobalPosition = GlobalPosition + (Transform.Basis.Z * 2.5f);
         pickable.Rotation = Vector3.Zero;
     }
 

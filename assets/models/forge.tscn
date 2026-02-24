@@ -187,22 +187,22 @@ transform = Transform3D(8.527927, 0, 0, 0, 2.857143, 0, 0, 0, 11.971165, -16.137
 transform = Transform3D(11.053028, 0, 0, 0, 2.857143, 0, 0, 0, 11.348969, -13.714303, 1.582895, 15.987601)
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=741148502]
-transform = Transform3D(-0.08228702, 0, -5.8806133, 0, 28.352789, 0, 76.0432, 0, -0.0063634347, -0.022883892, 30.50011, -0.21802153)
+transform = Transform3D(-0.042867456, 0, -5.8842516, 0, 28.352789, 0, 39.614723, 0, -0.0063673714, -0.022883892, 30.50011, -1.8400894)
 texture = SubResource("ViewportTexture_ohbk7")
 
 [node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=1009488754]
 transparent_bg = true
-size = Vector2i(50, 50)
+size = Vector2i(100, 50)
 
 [node name="ProgressBar" type="ProgressBar" parent="Sprite3D/SubViewport" unique_id=1436996828]
-offset_left = -10.0
-offset_right = 40.0
-offset_bottom = 50.0
+offset_left = 25.0
+offset_top = 10.0
+offset_right = 75.0
+offset_bottom = 60.0
+show_percentage = false
 
 [node name="Label" type="Label" parent="Sprite3D/SubViewport" unique_id=1037346905]
-offset_left = 5.0
-offset_top = -5.0
-offset_right = 45.0
-offset_bottom = 44.0
-text = "
-"
+offset_left = 27.0
+offset_top = 20.0
+offset_right = 67.0
+offset_bottom = 69.0
