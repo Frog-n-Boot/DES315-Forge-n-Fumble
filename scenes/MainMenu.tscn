@@ -4,13 +4,16 @@
 
 [node name="MainMenu" type="Node2D" unique_id=1633550726]
 
-[node name="Control" type="Control" parent="." unique_id=793476221 node_paths=PackedStringArray("startButton")]
+[node name="Control" type="Control" parent="." unique_id=793476221 node_paths=PackedStringArray("startButton", "settingsButton", "quitMenu")]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_yqorp")
 startButton = NodePath("StartButton")
+settingsButton = NodePath("SettingsButton")
+quitMenu = NodePath("QuitButton")
 
 [node name="StartButton" type="Button" parent="Control" unique_id=1277000304]
 layout_mode = 0

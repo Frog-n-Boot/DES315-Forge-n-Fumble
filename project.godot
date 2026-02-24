@@ -20,13 +20,23 @@ config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 run/max_fps=60
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://bw3inhejuaaq6"
+
 [autoload]
 
 InputManager="*uid://cpmas3er6cuol"
 Forge="*uid://csp7j7pbfs6rf"
+SettingsManager="*uid://bmvu35qw3l2o1"
+SceneManager="*uid://whjx5ow2exj4"
 
 [display]
 
+window/size/mode=3
+window/size/borderless=true
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 window/vsync/vsync_mode=0
 
 [dotnet]

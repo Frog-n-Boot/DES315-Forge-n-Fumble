@@ -1,3 +1,4 @@
+#if TOOLS
 using Godot;
 using System;
 
@@ -21,3 +22,4 @@ public partial class FixResources : EditorScript
 		GD.Print("Resources created successfully ");
     }
 }
+#endif

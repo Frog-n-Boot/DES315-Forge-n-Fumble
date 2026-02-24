@@ -1,41 +1,145 @@
 [gd_scene format=3 uid="uid://m0yx3e0w0rir"]
 
-[ext_resource type="Script" uid="uid://cq2hdafsss4y7" path="res://src/MainMenu.cs" id="1_rbmmp"]
+[ext_resource type="Script" uid="uid://bs44u3pohek1t" path="res://src/SettingsMenu.cs" id="1_rbmmp"]
 
 [node name="Settings" type="Node2D" unique_id=2013459249]
 
-[node name="Control" type="Control" parent="." unique_id=693573093 node_paths=PackedStringArray("startButton")]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1917096709 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton")]
+process_mode = 3
 script = ExtResource("1_rbmmp")
-startButton = NodePath("BackButton")
+masterSlider = NodePath("MasterVolumeLabel/MasterVolumeSlider")
+musicSlider = NodePath("MusicVolumeLabel/MusicVolumeSlider")
+sfxSlider = NodePath("SFXVolumeLabel/SFXVolumeSlider")
+fullScreenCheckBox = NodePath("FullScreenCheckBox")
+vsyncCheckBox = NodePath("VSyncCheckBox")
+showFPSCheckBox = NodePath("ShowFPSCheckBox")
+resolutionDropdown = NodePath("ResolutionLabel/ResolutionOptionButton")
+maxFPSDropdown = NodePath("FPSLabel/FPSOptionButton")
+applyButton = NodePath("ApplyButton")
+metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="Control" unique_id=1679748900]
-layout_mode = 0
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1679748900]
 offset_left = 440.0
 offset_top = 16.0
 offset_right = 672.0
 offset_bottom = 99.0
 theme_override_font_sizes/font_size = 60
 text = "Settings"
+metadata/_edit_use_anchors_ = true
 
-[node name="BackButton" type="Button" parent="Control" unique_id=1299695499]
+[node name="MasterVolumeLabel" type="Label" parent="CanvasLayer" unique_id=1690702881]
+offset_left = 96.0
+offset_top = 103.0
+offset_right = 226.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 30
+text = "Master Volume
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="MasterVolumeSlider" type="HSlider" parent="CanvasLayer/MasterVolumeLabel" unique_id=640626161]
 layout_mode = 0
+offset_left = 233.0
+offset_right = 343.0
+offset_bottom = 50.0
+metadata/_edit_use_anchors_ = true
+
+[node name="MusicVolumeLabel" type="Label" parent="CanvasLayer" unique_id=1724888755]
+offset_left = 92.0
+offset_top = 136.0
+offset_right = 295.0
+offset_bottom = 183.0
+theme_override_font_sizes/font_size = 30
+text = "Music Volume"
+metadata/_edit_use_anchors_ = true
+
+[node name="MusicVolumeSlider" type="HSlider" parent="CanvasLayer/MusicVolumeLabel" unique_id=928261697]
+layout_mode = 0
+offset_left = 234.0
+offset_top = 7.0
+offset_right = 344.0
+offset_bottom = 57.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ResolutionLabel" type="Label" parent="CanvasLayer" unique_id=412566759]
+offset_left = 542.0
+offset_top = 99.0
+offset_right = 672.0
+offset_bottom = 146.0
+theme_override_font_sizes/font_size = 30
+text = "Resolution"
+metadata/_edit_use_anchors_ = true
+
+[node name="ResolutionOptionButton" type="OptionButton" parent="CanvasLayer/ResolutionLabel" unique_id=406450757]
+layout_mode = 0
+offset_left = 169.0
+offset_top = 11.0
+offset_right = 297.0
+offset_bottom = 43.0
+metadata/_edit_use_anchors_ = true
+
+[node name="FPSLabel" type="Label" parent="CanvasLayer" unique_id=1779503924]
+offset_left = 587.0
+offset_top = 141.0
+offset_right = 658.0
+offset_bottom = 188.0
+theme_override_font_sizes/font_size = 30
+text = "FPS"
+metadata/_edit_use_anchors_ = true
+
+[node name="FPSOptionButton" type="OptionButton" parent="CanvasLayer/FPSLabel" unique_id=67388654]
+layout_mode = 0
+offset_left = 121.0
+offset_top = 11.0
+offset_right = 249.0
+offset_bottom = 43.0
+metadata/_edit_use_anchors_ = true
+
+[node name="SFXVolumeLabel" type="Label" parent="CanvasLayer" unique_id=172781238]
+offset_left = 95.0
+offset_top = 178.0
+offset_right = 264.0
+offset_bottom = 225.0
+theme_override_font_sizes/font_size = 30
+text = "SFX Volume"
+metadata/_edit_use_anchors_ = true
+
+[node name="SFXVolumeSlider" type="HSlider" parent="CanvasLayer/SFXVolumeLabel" unique_id=2140574341]
+layout_mode = 0
+offset_left = 234.0
+offset_top = 4.0
+offset_right = 344.0
+offset_bottom = 54.0
+metadata/_edit_use_anchors_ = true
+
+[node name="BackButton" type="Button" parent="CanvasLayer" unique_id=1299695499]
 offset_left = 8.000006
 offset_top = 552.0
 offset_right = 456.0
 offset_bottom = 672.0
 scale = Vector2(0.8400012, 0.7599994)
-focus_neighbor_top = NodePath("../CheckBox")
-focus_next = NodePath("../CheckBox")
+focus_neighbor_top = NodePath("../FullScreenCheckBox")
+focus_next = NodePath("../FullScreenCheckBox")
 theme_override_font_sizes/font_size = 40
 text = "Back
 "
+metadata/_edit_use_anchors_ = true
 
-[node name="CheckBox" type="CheckBox" parent="Control" unique_id=1622636175]
-layout_mode = 0
+[node name="ApplyButton" type="Button" parent="CanvasLayer" unique_id=1739649388]
+offset_left = 759.99994
+offset_top = 552.0
+offset_right = 1208.0
+offset_bottom = 672.0
+scale = Vector2(0.8400012, 0.7599994)
+focus_neighbor_top = NodePath("../FullScreenCheckBox")
+focus_next = NodePath("../FullScreenCheckBox")
+theme_override_font_sizes/font_size = 40
+text = "Apply
+
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="FullScreenCheckBox" type="CheckBox" parent="CanvasLayer" unique_id=1622636175]
 offset_left = 48.0
 offset_top = 248.0
 offset_right = 273.0
@@ -44,6 +148,32 @@ focus_neighbor_bottom = NodePath("../BackButton")
 focus_next = NodePath(".")
 theme_override_font_sizes/font_size = 40
 text = "Fullscreen"
+metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="Control/BackButton" to="Control" method="OnBackButtonPressed"]
-[connection signal="pressed" from="Control/CheckBox" to="Control" method="ToggleFullscreen"]
+[node name="VSyncCheckBox" type="CheckBox" parent="CanvasLayer" unique_id=1028722197]
+offset_left = 50.0
+offset_top = 301.0
+offset_right = 275.0
+offset_bottom = 364.0
+focus_neighbor_bottom = NodePath("../BackButton")
+focus_next = NodePath(".")
+theme_override_font_sizes/font_size = 40
+text = "VSync
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="ShowFPSCheckBox" type="CheckBox" parent="CanvasLayer" unique_id=8727718]
+offset_left = 50.0
+offset_top = 352.0
+offset_right = 275.0
+offset_bottom = 415.0
+focus_neighbor_bottom = NodePath("../BackButton")
+focus_next = NodePath(".")
+theme_override_font_sizes/font_size = 40
+text = "ShowFPS
+
+"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="CanvasLayer/BackButton" to="CanvasLayer" method="OnBackPressed"]
+[connection signal="pressed" from="CanvasLayer/ApplyButton" to="CanvasLayer" method="OnBackPressed"]

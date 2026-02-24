@@ -22,6 +22,8 @@
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="21_20nwc"]
 [ext_resource type="PackedScene" uid="uid://g1gfmktihg8t" path="res://assets/models/Anvil.tscn" id="22_3w1al"]
 [ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/DullSword.tscn" id="22_amgg8"]
+[ext_resource type="Script" uid="uid://dnliu2440i283" path="res://src/PauseMenu.cs" id="23_amgg8"]
+[ext_resource type="Script" uid="uid://bs44u3pohek1t" path="res://src/SettingsMenu.cs" id="24_gax05"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_wko22"]
 
@@ -231,3 +233,262 @@ metadata/_edit_use_anchors_ = true
 
 [node name="DullSword" parent="." unique_id=778246616 instance=ExtResource("22_amgg8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.750275, 0.5, 4.2739916)
+
+[node name="MeltedIngot" parent="." unique_id=577231431 instance=ExtResource("19_amgg8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.162161, 0.015042733, 3.3623934)
+
+[node name="Stick" parent="." unique_id=70957572 instance=ExtResource("10_mehdq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.445796, 0.18933196, 3.4927015)
+
+[node name="PauseMenu" type="CanvasLayer" parent="." unique_id=385949872 node_paths=PackedStringArray("resumeButton", "settingsButton", "mainMenuButton", "settingsMenu")]
+process_mode = 3
+script = ExtResource("23_amgg8")
+resumeButton = NodePath("ResumeButton")
+settingsButton = NodePath("SettingsButton")
+mainMenuButton = NodePath("QuitButton")
+settingsMenu = NodePath("../SettingsMenu")
+
+[node name="ResumeButton" type="Button" parent="PauseMenu" unique_id=1461095151]
+offset_left = 376.0
+offset_top = 160.0
+offset_right = 824.0
+offset_bottom = 280.0
+scale = Vector2(0.8400012, 0.7599994)
+focus_neighbor_top = NodePath(".")
+focus_neighbor_bottom = NodePath("../SettingsButton")
+focus_next = NodePath("../SettingsButton")
+focus_previous = NodePath("../QuitButton")
+theme_override_font_sizes/font_size = 40
+text = "Resume"
+
+[node name="SettingsButton" type="Button" parent="PauseMenu" unique_id=284510241]
+offset_left = 376.0
+offset_top = 320.0
+offset_right = 824.0
+offset_bottom = 440.0
+scale = Vector2(0.8400012, 0.7599994)
+focus_neighbor_top = NodePath("../ResumeButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+focus_next = NodePath("../QuitButton")
+focus_previous = NodePath("../ResumeButton")
+theme_override_font_sizes/font_size = 40
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="PauseMenu" unique_id=1753223593]
+offset_left = 376.0
+offset_top = 480.0
+offset_right = 824.0
+offset_bottom = 600.0
+scale = Vector2(0.8400012, 0.7599994)
+focus_neighbor_top = NodePath("../SettingsButton")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath("../ResumeButton")
+focus_previous = NodePath("../SettingsButton")
+theme_override_font_sizes/font_size = 40
+text = "Main Menu"
+
+[node name="Label" type="Label" parent="PauseMenu" unique_id=1356341263]
+offset_left = 367.0
+offset_top = 11.0
+offset_right = 764.0
+offset_bottom = 94.0
+theme_override_font_sizes/font_size = 60
+text = "Game Paused"
+
+[node name="SettingsMenu" type="CanvasLayer" parent="." unique_id=1617405091 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton", "pauseMenu")]
+script = ExtResource("24_gax05")
+masterSlider = NodePath("Control/MasterVolumeLabel/MasterVolumeSlider")
+musicSlider = NodePath("Control/MusicVolumeLabel/MusicVolumeSlider")
+sfxSlider = NodePath("Control/SFXVolumeLabel/SFXVolumeSlider")
+fullScreenCheckBox = NodePath("Control/FullScreenCheckBox")
+vsyncCheckBox = NodePath("Control/VSyncCheckBox")
+showFPSCheckBox = NodePath("Control/ShowFPSCheckBox")
+resolutionDropdown = NodePath("Control/ResolutionLabel/ResolutionOptionButton")
+maxFPSDropdown = NodePath("Control/FPSLabel/FPSOptionButton")
+applyButton = NodePath("Control/ApplyButton")
+pauseMenu = NodePath("../PauseMenu")
+
+[node name="Control" type="Control" parent="SettingsMenu" unique_id=1260098093]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="SettingsMenu/Control" unique_id=1153745692]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 16.0
+offset_right = 672.0
+offset_bottom = 99.0
+theme_override_font_sizes/font_size = 60
+text = "Settings"
+metadata/_edit_use_anchors_ = true
+
+[node name="MasterVolumeLabel" type="Label" parent="SettingsMenu/Control" unique_id=320632212]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 103.0
+offset_right = 226.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 30
+text = "Master Volume
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="MasterVolumeSlider" type="HSlider" parent="SettingsMenu/Control/MasterVolumeLabel" unique_id=184752821]
+layout_mode = 0
+offset_left = 233.0
+offset_right = 343.0
+offset_bottom = 50.0
+metadata/_edit_use_anchors_ = true
+
+[node name="MusicVolumeLabel" type="Label" parent="SettingsMenu/Control" unique_id=511471504]
+layout_mode = 0
+offset_left = 92.0
+offset_top = 136.0
+offset_right = 295.0
+offset_bottom = 183.0
+theme_override_font_sizes/font_size = 30
+text = "Music Volume"
+metadata/_edit_use_anchors_ = true
+
+[node name="MusicVolumeSlider" type="HSlider" parent="SettingsMenu/Control/MusicVolumeLabel" unique_id=999295876]
+layout_mode = 0
+offset_left = 234.0
+offset_top = 7.0
+offset_right = 344.0
+offset_bottom = 57.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ResolutionLabel" type="Label" parent="SettingsMenu/Control" unique_id=2040101089]
+layout_mode = 0
+offset_left = 542.0
+offset_top = 99.0
+offset_right = 672.0
+offset_bottom = 146.0
+theme_override_font_sizes/font_size = 30
+text = "Resolution"
+metadata/_edit_use_anchors_ = true
+
+[node name="ResolutionOptionButton" type="OptionButton" parent="SettingsMenu/Control/ResolutionLabel" unique_id=725924476]
+layout_mode = 0
+offset_left = 169.0
+offset_top = 11.0
+offset_right = 297.0
+offset_bottom = 43.0
+metadata/_edit_use_anchors_ = true
+
+[node name="FPSLabel" type="Label" parent="SettingsMenu/Control" unique_id=1818394363]
+layout_mode = 0
+offset_left = 587.0
+offset_top = 141.0
+offset_right = 658.0
+offset_bottom = 188.0
+theme_override_font_sizes/font_size = 30
+text = "FPS"
+metadata/_edit_use_anchors_ = true
+
+[node name="FPSOptionButton" type="OptionButton" parent="SettingsMenu/Control/FPSLabel" unique_id=1593413049]
+layout_mode = 0
+offset_left = 121.0
+offset_top = 11.0
+offset_right = 249.0
+offset_bottom = 43.0
+metadata/_edit_use_anchors_ = true
+
+[node name="SFXVolumeLabel" type="Label" parent="SettingsMenu/Control" unique_id=963344192]
+layout_mode = 0
+offset_left = 95.0
+offset_top = 178.0
+offset_right = 264.0
+offset_bottom = 225.0
+theme_override_font_sizes/font_size = 30
+text = "SFX Volume"
+metadata/_edit_use_anchors_ = true
+
+[node name="SFXVolumeSlider" type="HSlider" parent="SettingsMenu/Control/SFXVolumeLabel" unique_id=203011154]
+layout_mode = 0
+offset_left = 234.0
+offset_top = 4.0
+offset_right = 344.0
+offset_bottom = 54.0
+metadata/_edit_use_anchors_ = true
+
+[node name="BackButton" type="Button" parent="SettingsMenu/Control" unique_id=1181943130]
+layout_mode = 0
+offset_left = 8.000006
+offset_top = 552.0
+offset_right = 456.0
+offset_bottom = 672.0
+scale = Vector2(0.8400012, 0.7599994)
+focus_neighbor_top = NodePath("../FullScreenCheckBox")
+focus_next = NodePath("../FullScreenCheckBox")
+theme_override_font_sizes/font_size = 40
+text = "Back
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="ApplyButton" type="Button" parent="SettingsMenu/Control" unique_id=950909908]
+layout_mode = 0
+offset_left = 759.99994
+offset_top = 552.0
+offset_right = 1208.0
+offset_bottom = 672.0
+scale = Vector2(0.8400012, 0.7599994)
+focus_neighbor_top = NodePath("../FullScreenCheckBox")
+focus_next = NodePath("../FullScreenCheckBox")
+theme_override_font_sizes/font_size = 40
+text = "Apply
+
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="FullScreenCheckBox" type="CheckBox" parent="SettingsMenu/Control" unique_id=1911057212]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 248.0
+offset_right = 273.0
+offset_bottom = 311.0
+focus_neighbor_bottom = NodePath("../BackButton")
+focus_next = NodePath(".")
+theme_override_font_sizes/font_size = 40
+text = "Fullscreen"
+metadata/_edit_use_anchors_ = true
+
+[node name="VSyncCheckBox" type="CheckBox" parent="SettingsMenu/Control" unique_id=1919008185]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 301.0
+offset_right = 275.0
+offset_bottom = 364.0
+focus_neighbor_bottom = NodePath("../BackButton")
+focus_next = NodePath(".")
+theme_override_font_sizes/font_size = 40
+text = "VSync
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="ShowFPSCheckBox" type="CheckBox" parent="SettingsMenu/Control" unique_id=1388860018]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 352.0
+offset_right = 275.0
+offset_bottom = 415.0
+focus_neighbor_bottom = NodePath("../BackButton")
+focus_next = NodePath(".")
+theme_override_font_sizes/font_size = 40
+text = "ShowFPS
+
+"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="PauseMenu/ResumeButton" to="PauseMenu" method="OnResumePressed"]
+[connection signal="pressed" from="PauseMenu/SettingsButton" to="PauseMenu" method="OnSettingsPressed"]
+[connection signal="pressed" from="PauseMenu/QuitButton" to="PauseMenu" method="OnQuitPressed"]
+[connection signal="pressed" from="SettingsMenu/Control/BackButton" to="SettingsMenu" method="OnBackPressed"]
+[connection signal="pressed" from="SettingsMenu/Control/ApplyButton" to="SettingsMenu" method="OnApplyPressed"]
+[connection signal="pressed" from="SettingsMenu/Control/FullScreenCheckBox" to="SettingsMenu/Control" method="ToggleFullscreen"]
+[connection signal="pressed" from="SettingsMenu/Control/VSyncCheckBox" to="SettingsMenu/Control" method="ToggleFullscreen"]
+[connection signal="pressed" from="SettingsMenu/Control/ShowFPSCheckBox" to="SettingsMenu/Control" method="ToggleFullscreen"]
