@@ -1,10 +1,15 @@
 [gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://calih72lg8n07"]
 
+[ext_resource type="Material" uid="uid://btwle4bal72vo" path="res://assets/materials/skeleton_material.tres" id="1_7n161"]
 [ext_resource type="Script" uid="uid://bf02wgjk36psn" path="res://assets/components/EnemyData.cs" id="1_ptvci"]
+[ext_resource type="ArrayMesh" uid="uid://8wpolus5qbva" path="res://assets/models/FinalAssets_Low/Character_Models/Skeleton_low.obj" id="2_mq6ke"]
 
 [resource]
 script = ExtResource("1_ptvci")
 enemyName = "NormalEnemy"
 damage = 1
+color = Color(1, 1, 1, 1)
 lootDropChance = 60.0
+enemyMat = ExtResource("1_7n161")
+enemyMesh = ExtResource("2_mq6ke")
 metadata/_custom_type_script = "uid://bf02wgjk36psn"

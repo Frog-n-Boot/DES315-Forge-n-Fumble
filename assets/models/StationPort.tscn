@@ -6,7 +6,7 @@ albedo_color = Color(0, 0, 1, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_g7eth"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vl1yp"]
-size = Vector3(2.0776367, 1, 1.7797241)
+size = Vector3(0.6976929, 1, 0.6383629)
 
 [node name="StationPort" type="Node3D" unique_id=750325492]
 
@@ -22,5 +22,5 @@ collision_layer = 32
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=280831638]
-transform = Transform3D(0.17999986, 0, 0, 0, 0.9999963, 0, 0, 0, 0.18999994, 0.02518067, 0, 0.012182292)
+transform = Transform3D(0.17999986, 0, 0, 0, 0.9999873, 0, 0, 0, 0.18999994, 0.0013348593, 0, -0.006333612)
 shape = SubResource("BoxShape3D_vl1yp")

@@ -1,0 +1,11 @@
+[gd_resource type="ORMMaterial3D" format=3 uid="uid://dp140br76vlls"]
+
+[ext_resource type="Texture2D" uid="uid://d2ubmsqb1core" path="res://assets/materials/Texture_sets/Fixed_textureSets/Cobble_forge_comb_BaseCol.tga" id="1_xou3k"]
+[ext_resource type="Texture2D" uid="uid://lebupyvb8f7m" path="res://assets/materials/Texture_sets/Fixed_textureSets/Cobble_forge_comb_Normal.tga" id="2_0glei"]
+[ext_resource type="Texture2D" uid="uid://dgao88qvj21y7" path="res://assets/materials/Texture_sets/Fixed_textureSets/Cobble_forge_comb_ORM.tga" id="3_wjenh"]
+
+[resource]
+albedo_texture = ExtResource("1_xou3k")
+orm_texture = ExtResource("3_wjenh")
+normal_enabled = true
+normal_texture = ExtResource("2_0glei")

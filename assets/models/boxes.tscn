@@ -1,43 +1,73 @@
 [gd_scene format=3 uid="uid://cxj0fwjqxc5ny"]
 
-[ext_resource type="Texture2D" uid="uid://bu4nef47vhnkw" path="res://addons/kenney_prototype_textures/green/texture_06.png" id="1_v37y2"]
+[ext_resource type="ArrayMesh" uid="uid://cj4vd8w4uwvi0" path="res://assets/models/FinalAssets_Low/Environment_Models/Rock_3_low.obj" id="1_yopjc"]
+[ext_resource type="ArrayMesh" uid="uid://d0xhjv8gumn4f" path="res://assets/models/FinalAssets_Low/Environment_Models/Rock_2_low.obj" id="2_m2mks"]
+[ext_resource type="Texture2D" uid="uid://0sox0c1ku1r4" path="res://assets/materials/Texture_sets/Environment_Textures/rocks_comb_low_BaseCol.tga" id="2_yca05"]
+[ext_resource type="ArrayMesh" uid="uid://dbkrgi37lqmtg" path="res://assets/models/FinalAssets_Low/Environment_Models/Rock_4_low.obj" id="3_16gwp"]
+[ext_resource type="Texture2D" uid="uid://bsktj0376vxd6" path="res://assets/materials/Texture_sets/Environment_Textures/rocks_comb_low_ORM.tga" id="4_ro2gg"]
+[ext_resource type="Texture2D" uid="uid://c4shuorrdwytl" path="res://assets/materials/Texture_sets/Environment_Textures/rocks_comb_low_Normal.tga" id="5_bodrn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yca05"]
+albedo_texture = ExtResource("2_yca05")
+normal_enabled = true
+normal_texture = ExtResource("5_bodrn")
+heightmap_enabled = true
+heightmap_texture = ExtResource("4_ro2gg")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yu77d"]
+size = Vector3(1.152008, 1, 1.086792)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yopjc"]
-albedo_texture = ExtResource("1_v37y2")
-uv1_triplanar = true
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nt3go"]
+albedo_texture = ExtResource("2_yca05")
+normal_enabled = true
+normal_texture = ExtResource("5_bodrn")
+heightmap_enabled = true
+heightmap_texture = ExtResource("4_ro2gg")
 
-[sub_resource type="BoxMesh" id="BoxMesh_m2mks"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4fjov"]
+albedo_texture = ExtResource("2_yca05")
+normal_enabled = true
+normal_texture = ExtResource("5_bodrn")
+heightmap_enabled = true
+heightmap_texture = ExtResource("4_ro2gg")
 
-[node name="Boxes" type="Node3D" unique_id=1594444897]
+[node name="Rock" type="Node3D" unique_id=1594444897]
 
-[node name="Box_01" type="StaticBody3D" parent="." unique_id=1471492844]
+[node name="Rock_01" type="StaticBody3D" parent="." unique_id=1471492844]
 transform = Transform3D(0.88086593, 0, 0.4733658, 0, 1, 0, -0.4733658, 0, 0.88086593, 0, 0, -0.77225244)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Box_01" unique_id=299544692]
+[node name="Rock3Low" type="MeshInstance3D" parent="Rock_01" unique_id=1756550068]
+transform = Transform3D(0.88086593, 0, -0.4733658, 0, 1, 0, 0.4733658, 0, 0.88086593, 0.05368346, 0.023423731, 0.06661749)
+material_override = SubResource("StandardMaterial3D_yca05")
+mesh = ExtResource("1_yopjc")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Rock_01" unique_id=299544692]
+transform = Transform3D(0.99999994, 0, -8.940697e-08, 0, 1, 0, 8.940697e-08, 0, 0.99999994, 0.04296872, 0.2068761, -0.093566954)
 shape = SubResource("BoxShape3D_yu77d")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Box_01/CollisionShape3D" unique_id=99173554]
-material_override = SubResource("StandardMaterial3D_yopjc")
-mesh = SubResource("BoxMesh_m2mks")
-
-[node name="Box_02" type="StaticBody3D" parent="." unique_id=1319227166]
+[node name="Rock_02" type="StaticBody3D" parent="." unique_id=1319227166]
 transform = Transform3D(0.9303216, 0, -0.3667448, 0, 1, 0, 0.3667448, 0, 0.9303216, 0, 1, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Box_02" unique_id=1416904311]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock_02" unique_id=1416904311]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3626757, 0, -0.08020273)
 shape = SubResource("BoxShape3D_yu77d")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Box_02/CollisionShape3D" unique_id=420648452]
-material_override = SubResource("StandardMaterial3D_yopjc")
-mesh = SubResource("BoxMesh_m2mks")
+[node name="Rock2Low" type="MeshInstance3D" parent="Rock_02" unique_id=358785633]
+transform = Transform3D(0.9303216, 0, 0.3667448, 0, 1, 0, -0.3667448, 0, 0.9303216, 0.27463487, -0.34407187, -0.12413111)
+material_override = SubResource("StandardMaterial3D_nt3go")
+mesh = ExtResource("2_m2mks")
+skeleton = NodePath("../..")
 
-[node name="Box_03" type="StaticBody3D" parent="." unique_id=1745371062]
+[node name="Rock_03" type="StaticBody3D" parent="." unique_id=1745371062]
 transform = Transform3D(0.76183236, 0, -0.6477743, 0, 1, 0, 0.6477743, 0, 0.76183236, 0.3041768, 0, 0.50508875)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Box_03" unique_id=1240922925]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock_03" unique_id=1240922925]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.30120873, 0, -0.050171018)
 shape = SubResource("BoxShape3D_yu77d")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Box_03/CollisionShape3D" unique_id=1153851732]
-material_override = SubResource("StandardMaterial3D_yopjc")
-mesh = SubResource("BoxMesh_m2mks")
+[node name="Rock4Low" type="MeshInstance3D" parent="Rock_03" unique_id=1730378531]
+transform = Transform3D(0.76183236, 0, 0.5111772, 0, 1, 0, -0.6477743, 0, 0.60118365, 0.26062208, 0, -0.23870486)
+material_override = SubResource("StandardMaterial3D_4fjov")
+mesh = ExtResource("3_16gwp")
+skeleton = NodePath("../..")

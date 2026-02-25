@@ -100,6 +100,7 @@ public partial class WaveManager : Node
         }
         enemyUI.Text = $" Enemies alive: {enemeisLeft} \n Max Waves: {maxWaves}  Current wave: {currentWave} ";
     }
+
 	#region Setup
 	private void SetupDefaults()
 	{
@@ -123,15 +124,15 @@ public partial class WaveManager : Node
 
 		if(normalEnemyData == null)
 		{
-			normalEnemyData = CreateDefaultEnemyData("Normal", 10, 10, 5.0f, new Color(1, 0, 0));
+			//normalEnemyData = CreateDefaultEnemyData("Normal", 10, 10, 20.0f, new Color(0, 0, 0));
 		}
 		if(fastEnemyData == null)
 		{
-			fastEnemyData = CreateDefaultEnemyData("Fast", 10, 5, 8.0f, new Color(0, 0, 1));
+			fastEnemyData = CreateDefaultEnemyData("Fast", 10, 5, 20.0f, new Color(0, 0, 0));
 		}
 		if(strongEnemyData == null)
 		{
-			strongEnemyData = CreateDefaultEnemyData("Strong", 20, 15, 3.0f, new Color(1, 0, 1));
+			strongEnemyData = CreateDefaultEnemyData("Strong", 20, 15, 20.0f, new Color(0, 0, 0));
 			strongEnemyData.scale = new Vector3 (2, 2, 2);
 		}
 	}
@@ -203,7 +204,7 @@ public partial class WaveManager : Node
 			damage = damage,
 			speed = speed,
 			color = color,
-			scale = Vector3.One
+			scale = Vector3.One,
 		};
 	}
 	

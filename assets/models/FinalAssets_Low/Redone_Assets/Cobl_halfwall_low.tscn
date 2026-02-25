@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://can50oleeolkm"]
+
+[ext_resource type="ArrayMesh" uid="uid://de066p5djjprs" path="res://assets/models/FinalAssets_Low/Redone_Assets/cobl_halfwall_low.obj" id="1_b0ex8"]
+[ext_resource type="Material" uid="uid://dp140br76vlls" path="res://assets/materials/cobble_forge.tres" id="2_ugasw"]
+
+[node name="CoblHalfwallLow" type="Node3D" unique_id=1553971924]
+
+[node name="CoblHalfwallLow" type="MeshInstance3D" parent="." unique_id=1834300693]
+transform = Transform3D(0.72, 0, 0, 0, 0.72, 0, 0, 0, 0.72, 0, 0, 0)
+mesh = ExtResource("1_b0ex8")
+surface_material_override/0 = ExtResource("2_ugasw")

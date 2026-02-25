@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bf02wgjk36psn" path="res://assets/components/EnemyData.cs" id="1_mvv2o"]
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_cs3ww"]
+
 [resource]
 script = ExtResource("1_mvv2o")
 maxHealth = 30
@@ -10,4 +12,5 @@ speed = 3.0
 color = Color(1, 0, 1, 1)
 scale = Vector3(2, 2, 2)
 lootDropChance = 60.0
+enemyMesh = SubResource("CylinderMesh_cs3ww")
 metadata/_custom_type_script = "uid://bf02wgjk36psn"

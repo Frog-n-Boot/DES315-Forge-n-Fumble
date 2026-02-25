@@ -110,8 +110,8 @@ public partial class Enemy : Node3D
 
         if (mesh != null)
         {
-            var material = new StandardMaterial3D();
-            material.AlbedoColor = enemyData.color;
+            mesh.Mesh = enemyData.enemyMesh;
+            var material = enemyData.enemyMat;
             mesh.MaterialOverride = material;
         }
 

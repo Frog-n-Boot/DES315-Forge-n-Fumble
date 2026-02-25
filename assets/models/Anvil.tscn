@@ -4,7 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/DullSword.tscn" id="2_fj0e1"]
 [ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/CraftingRecipes.cs" id="3_1latb"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="3_yb3nn"]
+[ext_resource type="ArrayMesh" uid="uid://mmh030obulkw" path="res://assets/models/FinalAssets_Low/WorkStations/Anvil_low.obj" id="4_1latb"]
+[ext_resource type="Texture2D" uid="uid://d0b62wsx8gdhv" path="res://assets/materials/Texture_sets/WorkStations/anvil_low_BaseCol.tga" id="4_813ft"]
 [ext_resource type="Script" uid="uid://cqdmkhuvmmyck" path="res://src/SequenceMinigame.cs" id="4_yb3nn"]
+[ext_resource type="Texture2D" uid="uid://klsyonb1xfst" path="res://assets/materials/Texture_sets/WorkStations/anvil_low_Normal.tga" id="5_o5b8a"]
+[ext_resource type="Texture2D" uid="uid://bet17bbe1leks" path="res://assets/materials/Texture_sets/WorkStations/anvil_low_ORM.tga" id="5_u3lgt"]
 
 [sub_resource type="Resource" id="Resource_813ft"]
 script = ExtResource("3_1latb")
@@ -16,8 +20,14 @@ ouputGroup = "pickable"
 metadata/_custom_type_script = "uid://1bo1o367ybgk"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdc31"]
+size = Vector3(2.3283691, 0.8360596, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_fq0eu"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5b8a"]
+albedo_texture = ExtResource("4_813ft")
+normal_enabled = true
+normal_texture = ExtResource("5_o5b8a")
+heightmap_enabled = true
+heightmap_texture = ExtResource("5_u3lgt")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yb3nn"]
 viewport_path = NodePath("Sprite3D/SubViewport")
@@ -37,19 +47,22 @@ collision_layer = 32
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=712020585]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, -0.03161621, 0.31784487, 0)
 shape = SubResource("BoxShape3D_rdc31")
 
+[node name="AnvilLow" type="MeshInstance3D" parent="StaticBody3D" unique_id=1240263121]
+material_override = SubResource("StandardMaterial3D_o5b8a")
+mesh = ExtResource("4_1latb")
+skeleton = NodePath("../..")
+
 [node name="InputPort" parent="." unique_id=750325492 instance=ExtResource("3_yb3nn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.061491847, 0.27267706, 0.6788373)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.061491847, 0.27267706, 1.0028932)
 
 [node name="OutputPort" parent="." unique_id=1109718632 instance=ExtResource("3_yb3nn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.74402034, 0.07920647, -0.09812653)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1120443892]
-mesh = SubResource("BoxMesh_fq0eu")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2706177, 0.07920647, 0.20777464)
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=840510996]
-transform = Transform3D(5.3975496, 0, 0, 0, 4, 0, 0, 0, 4, 1.1470783, 2.155568, 0)
+transform = Transform3D(-2.359344e-07, 0, 4, 0, 4, 0, -5.3975496, 0, -1.7484555e-07, 1.1470785, 2.8673096, -1.0136977)
 texture = SubResource("ViewportTexture_yb3nn")
 
 [node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=2072696855]

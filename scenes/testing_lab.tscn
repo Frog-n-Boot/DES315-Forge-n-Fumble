@@ -1,10 +1,14 @@
 [gd_scene format=3 uid="uid://88oq7ysmwuhi"]
 
 [ext_resource type="Texture2D" uid="uid://dhqovf0vvc8vq" path="res://addons/kenney_prototype_textures/dark/texture_08.png" id="1_3lnvk"]
+[ext_resource type="PackedScene" uid="uid://bycamsjulrcwe" path="res://assets/models/FinalAssets_Low/Redone_Assets/Cobl_wall_low.tscn" id="2_3qum0"]
 [ext_resource type="PackedScene" uid="uid://bm6vf4tjk48gj" path="res://assets/models/forge.tscn" id="2_ptwec"]
 [ext_resource type="PackedScene" uid="uid://8roa2xkb2ipl" path="res://assets/models/player.tscn" id="3_81oh0"]
 [ext_resource type="PackedScene" uid="uid://cxj0fwjqxc5ny" path="res://assets/models/boxes.tscn" id="3_a3bqn"]
 [ext_resource type="Script" uid="uid://dnqtfi3fpu8ue" path="res://src/CameraController.cs" id="3_mndrt"]
+[ext_resource type="PackedScene" uid="uid://dvhojin78rtxa" path="res://assets/models/FinalAssets_Low/Redone_Assets/Cobl_pillar_low.tscn" id="3_wt1ef"]
+[ext_resource type="PackedScene" uid="uid://bmre2ran8suad" path="res://assets/models/FinalAssets_Low/Redone_Assets/Cobl_archway_low.tscn" id="4_7gden"]
+[ext_resource type="PackedScene" uid="uid://can50oleeolkm" path="res://assets/models/FinalAssets_Low/Redone_Assets/Cobl_halfwall_low.tscn" id="5_7dxqx"]
 [ext_resource type="Script" uid="uid://bk2uam5leqcv8" path="res://src/PlayerSpawner.cs" id="6_42n6d"]
 [ext_resource type="Script" uid="uid://bj4pcgxjt3ru7" path="res://src/WaveManager.cs" id="7_53x3i"]
 [ext_resource type="PackedScene" uid="uid://b8a87u3vesy3q" path="res://assets/models/Enemy.tscn" id="8_1bgfi"]
@@ -70,6 +74,120 @@ transform = Transform3D(17, 0, 0, 0, 17, 0, 0, 0, 17, 0, -0.001, 0)
 material_override = SubResource("StandardMaterial3D_ptwec")
 mesh = SubResource("PlaneMesh_3lnvk")
 
+[node name="CoblWallLow" parent="CollisionShape3D" unique_id=1416519307 instance=ExtResource("2_3qum0")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -2.6666667, 0, 0)
+
+[node name="CoblWallLow2" parent="CollisionShape3D" unique_id=1431987842 instance=ExtResource("2_3qum0")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -2.6666667, 0, 0.40969414)
+
+[node name="CoblWallLow3" parent="CollisionShape3D" unique_id=815430767 instance=ExtResource("2_3qum0")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -2.6666667, 0, 0.8203714)
+
+[node name="CoblWallLow4" parent="CollisionShape3D" unique_id=1967419142 instance=ExtResource("2_3qum0")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -2.6666667, 0, 1.2310483)
+
+[node name="CoblWallLow8" parent="CollisionShape3D" unique_id=1696366159 instance=ExtResource("2_3qum0")]
+transform = Transform3D(-7.2852315e-09, 0, 0.16666666, 0, 0.16666666, 0, -0.16666666, 0, -7.2852315e-09, -2.3708024, 0, 1.5401602)
+
+[node name="CoblWallLow9" parent="CollisionShape3D" unique_id=713894369 instance=ExtResource("2_3qum0")]
+transform = Transform3D(-7.2852315e-09, 0, 0.16666666, 0, 0.16666666, 0, -0.16666666, 0, -7.2852315e-09, -1.9601252, 0, 1.5401602)
+
+[node name="CoblWallLow5" parent="CollisionShape3D" unique_id=1918928077 instance=ExtResource("2_3qum0")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -2.6666667, 0, -1.2330147)
+
+[node name="CoblWallLow6" parent="CollisionShape3D" unique_id=898749725 instance=ExtResource("2_3qum0")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -2.6666667, 0, -0.8223374)
+
+[node name="CoblWallLow7" parent="CollisionShape3D" unique_id=296003925 instance=ExtResource("2_3qum0")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -2.6666667, 0, -0.41166043)
+
+[node name="CoblPillarLow" parent="CollisionShape3D" unique_id=1439026198 instance=ExtResource("3_wt1ef")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -2.6667259, 0, 1.5310061)
+
+[node name="CoblWallLow12" parent="CollisionShape3D" unique_id=379413883 instance=ExtResource("2_3qum0")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.6288831, 0, 0)
+
+[node name="CoblWallLow13" parent="CollisionShape3D" unique_id=1099368755 instance=ExtResource("2_3qum0")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.6288831, 0, 0.40969414)
+
+[node name="CoblWallLow14" parent="CollisionShape3D" unique_id=618082129 instance=ExtResource("2_3qum0")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.6288831, 0, 0.8203714)
+
+[node name="CoblWallLow15" parent="CollisionShape3D" unique_id=1872490793 instance=ExtResource("2_3qum0")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.6288831, 0, 1.2310483)
+
+[node name="CoblWallLow16" parent="CollisionShape3D" unique_id=46930400 instance=ExtResource("2_3qum0")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.6288831, 0, -1.2330148)
+
+[node name="CoblWallLow17" parent="CollisionShape3D" unique_id=354474456 instance=ExtResource("2_3qum0")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.6288831, 0, -0.8223374)
+
+[node name="CoblWallLow18" parent="CollisionShape3D" unique_id=1224995520 instance=ExtResource("2_3qum0")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.6288831, 0, -0.41166043)
+
+[node name="CoblPillarLow2" parent="CollisionShape3D" unique_id=1254528860 instance=ExtResource("3_wt1ef")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.628824, 0, 1.5310062)
+
+[node name="CoblPillarLow3" parent="CollisionShape3D" unique_id=432616846 instance=ExtResource("3_wt1ef")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -2.6667259, 0, -1.5329523)
+
+[node name="CoblPillarLow4" parent="CollisionShape3D" unique_id=1579942417 instance=ExtResource("3_wt1ef")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.628824, 0, -1.5329523)
+
+[node name="CoblArchwayLow" parent="CollisionShape3D" unique_id=1216911531 instance=ExtResource("4_7gden")]
+transform = Transform3D(-7.2852315e-09, 0, 0.16666666, 0, 0.16666666, 0, -0.16666666, 0, -7.2852315e-09, -1.5505886, -2.0345053e-05, 1.5302829)
+
+[node name="CoblWallLow10" parent="CollisionShape3D" unique_id=440549137 instance=ExtResource("2_3qum0")]
+transform = Transform3D(-7.28523e-09, 0, -0.16666666, 0, 0.16666666, 0, 0.16666666, 0, -7.28523e-09, 1.3245316, 0, 1.5247438)
+
+[node name="CoblWallLow11" parent="CollisionShape3D" unique_id=1126242759 instance=ExtResource("2_3qum0")]
+transform = Transform3D(-7.28523e-09, 0, -0.16666666, 0, 0.16666666, 0, 0.16666666, 0, -7.28523e-09, 0.9138546, 0, 1.5247438)
+
+[node name="CoblArchwayLow2" parent="CollisionShape3D" unique_id=1506245751 instance=ExtResource("4_7gden")]
+transform = Transform3D(-7.28523e-09, 0, -0.16666666, 0, 0.16666666, 0, 0.16666666, 0, -7.28523e-09, 0.50431794, -2.0345053e-05, 1.5346211)
+
+[node name="CoblHalfwallLow" parent="CollisionShape3D" unique_id=1553971924 instance=ExtResource("5_7dxqx")]
+transform = Transform3D(-7.2852315e-09, 0, 0.16666666, 0, 0.16666666, 0, -0.16666666, 0, -7.2852315e-09, -1.1451416, -2.0345053e-05, 1.5260115)
+
+[node name="CoblHalfwallLow2" parent="CollisionShape3D" unique_id=40219667 instance=ExtResource("5_7dxqx")]
+transform = Transform3D(-7.2852315e-09, 0, 0.16666666, 0, 0.16666666, 0, -0.16666666, 0, -7.2852315e-09, -0.73888034, -2.0345053e-05, 1.5260115)
+
+[node name="CoblHalfwallLow3" parent="CollisionShape3D" unique_id=414799906 instance=ExtResource("5_7dxqx")]
+transform = Transform3D(-7.2852315e-09, 0, 0.16666666, 0, 0.16666666, 0, -0.16666666, 0, -7.2852315e-09, -0.3326192, -2.0345053e-05, 1.5260115)
+
+[node name="CoblHalfwallLow4" parent="CollisionShape3D" unique_id=1315843904 instance=ExtResource("5_7dxqx")]
+transform = Transform3D(-7.2852315e-09, 0, 0.16666666, 0, 0.16666666, 0, -0.16666666, 0, -7.2852315e-09, 0.078057766, -2.0345053e-05, 1.5260115)
+
+[node name="CoblWallLow19" parent="CollisionShape3D" unique_id=658619459 instance=ExtResource("2_3qum0")]
+transform = Transform3D(-7.2852315e-09, 0, 0.16666666, 0, 0.16666666, 0, -0.16666666, 0, -7.2852315e-09, -2.3708024, 0, -1.5177908)
+
+[node name="CoblWallLow20" parent="CollisionShape3D" unique_id=2009392105 instance=ExtResource("2_3qum0")]
+transform = Transform3D(-7.2852315e-09, 0, 0.16666666, 0, 0.16666666, 0, -0.16666666, 0, -7.2852315e-09, -1.9601253, 0, -1.5177908)
+
+[node name="CoblArchwayLow3" parent="CollisionShape3D" unique_id=1819727384 instance=ExtResource("4_7gden")]
+transform = Transform3D(-7.2852315e-09, 0, 0.16666666, 0, 0.16666666, 0, -0.16666666, 0, -7.2852315e-09, -1.5505886, -2.0345053e-05, -1.5276682)
+
+[node name="CoblWallLow21" parent="CollisionShape3D" unique_id=1000700366 instance=ExtResource("2_3qum0")]
+transform = Transform3D(-7.28523e-09, 0, -0.16666666, 0, 0.16666666, 0, 0.16666666, 0, -7.28523e-09, 1.3245316, 0, -1.5332073)
+
+[node name="CoblWallLow22" parent="CollisionShape3D" unique_id=1620960607 instance=ExtResource("2_3qum0")]
+transform = Transform3D(-7.28523e-09, 0, -0.16666666, 0, 0.16666666, 0, 0.16666666, 0, -7.28523e-09, 0.9138546, 0, -1.5332073)
+
+[node name="CoblArchwayLow4" parent="CollisionShape3D" unique_id=1967972201 instance=ExtResource("4_7gden")]
+transform = Transform3D(-7.28523e-09, 0, -0.16666666, 0, 0.16666666, 0, 0.16666666, 0, -7.28523e-09, 0.50431794, -2.0345053e-05, -1.52333)
+
+[node name="CoblHalfwallLow5" parent="CollisionShape3D" unique_id=1773607771 instance=ExtResource("5_7dxqx")]
+transform = Transform3D(-7.2852315e-09, 0, 0.16666666, 0, 0.16666666, 0, -0.16666666, 0, -7.2852315e-09, -1.1451416, -2.0345053e-05, -1.5319395)
+
+[node name="CoblHalfwallLow6" parent="CollisionShape3D" unique_id=1505918997 instance=ExtResource("5_7dxqx")]
+transform = Transform3D(-7.2852315e-09, 0, 0.16666666, 0, 0.16666666, 0, -0.16666666, 0, -7.2852315e-09, -0.73888034, -2.0345053e-05, -1.5319395)
+
+[node name="CoblHalfwallLow7" parent="CollisionShape3D" unique_id=1499988876 instance=ExtResource("5_7dxqx")]
+transform = Transform3D(-7.2852315e-09, 0, 0.16666666, 0, 0.16666666, 0, -0.16666666, 0, -7.2852315e-09, -0.3326192, -2.0345053e-05, -1.5319395)
+
+[node name="CoblHalfwallLow8" parent="CollisionShape3D" unique_id=138317120 instance=ExtResource("5_7dxqx")]
+transform = Transform3D(-7.2852315e-09, 0, 0.16666666, 0, 0.16666666, 0, -0.16666666, 0, -7.2852315e-09, 0.078057766, -2.0345053e-05, -1.5319395)
+
 [node name="World" type="Node" parent="." unique_id=1495741313]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="World" unique_id=447220386]
@@ -86,74 +204,81 @@ transform = Transform3D(1.7640729, 0, -0.9423624, 0, 2, 0, 0.9423624, 0, 1.76407
 transform = Transform3D(0.12892519, 0, -1.9958402, 0, 2, 0, 1.9958402, 0, 0.12892519, 25.664726, 0.4999981, -11.783998)
 
 [node name="Boxes3" parent="World" unique_id=1756956899 instance=ExtResource("3_a3bqn")]
-transform = Transform3D(-1.9707505, 0, 0.34079742, 0, 2, 0, -0.34079742, 0, -1.9707505, 1.1130228, 0.5, -18.741966)
+transform = Transform3D(-1.9707505, 0, 0.34079742, 0, 2, 0, -0.34079742, 0, -1.9707505, 5.7885, 0.5, -12.66143)
 
 [node name="Boxes4" parent="World" unique_id=1307583488 instance=ExtResource("3_a3bqn")]
-transform = Transform3D(-0.8910207, 0, -1.7905536, 0, 2, 0, 1.7905536, 0, -0.8910207, -23.39663, 0.4999981, -17.003946)
+transform = Transform3D(-0.8910207, 0, -1.7905536, 0, 2, 0, 1.7905536, 0, -0.8910207, -15.74906, 0.4999981, -17.85883)
 
 [node name="Boxes5" parent="World" unique_id=500950248 instance=ExtResource("3_a3bqn")]
-transform = Transform3D(1.2538605, 0, -1.5581508, 0, 2, 0, 1.5581508, 0, 1.2538605, -25.392845, 0.5, 14.8009405)
+transform = Transform3D(1.2538605, 0, -1.5581508, 0, 2, 0, 1.5581508, 0, 1.2538605, -0.7551384, 0.5, 14.43851)
 
 [node name="Boxes6" parent="World" unique_id=684356168 instance=ExtResource("3_a3bqn")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 22.69911, 0.5000019, 20.819078)
 
 [node name="Boxes7" parent="World" unique_id=381762733 instance=ExtResource("3_a3bqn")]
-transform = Transform3D(0.43086842, 0, 1.9530367, 0, 2, 0, -1.9530367, 0, 0.43086842, 1.2256598, 0.5000019, 21.601873)
+transform = Transform3D(0.43086842, 0, 1.9530367, 0, 2, 0, -1.9530367, 0, 0.43086842, 12.8392315, 0.5000019, 21.601873)
 
 [node name="Boxes8" parent="World" unique_id=1636415216 instance=ExtResource("3_a3bqn")]
-transform = Transform3D(0.9282621, 0, 1.7715331, 0, 2, 0, -1.7715331, 0, 0.9282621, -16.812477, 0.5, 19.973251)
+transform = Transform3D(0.9282621, 0, 1.7715331, 0, 2, 0, -1.7715331, 0, 0.9282621, -12.42491, 0.5, 19.973251)
 
 [node name="Boxes9" parent="World" unique_id=1147151917 instance=ExtResource("3_a3bqn")]
-transform = Transform3D(1.3261026, 0, -1.4971479, 0, 2, 0, 1.4971479, 0, 1.3261026, 26.200312, 0.5000019, 2.7029285)
+transform = Transform3D(1.3261026, 0, -1.4971479, 0, 2, 0, 1.4971479, 0, 1.3261026, 17.78981, 0.5000019, 12.178682)
 
 [node name="Boxes10" parent="World" unique_id=1531049353 instance=ExtResource("3_a3bqn")]
 transform = Transform3D(1.1700002, 0, 1.6220664, 0, 2, 0, -1.6220664, 0, 1.1700002, 18.261032, 0.5, -16.599575)
 
 [node name="Forge2" parent="World" unique_id=994045895 instance=ExtResource("2_ptwec")]
-transform = Transform3D(0.0124412505, 0, 0.28506547, 0, 0.35, 0, -0.36996993, 0, 0.009586106, 0.37146854, 0.017500043, 0.8259249)
+transform = Transform3D(-0.37017906, 0, -2.4935302e-08, 0, 0.34999993, 0, 3.236208e-08, 0, -0.2852266, -13.875138, 0.017500043, 0.8259249)
 recipes = Array[Object]([SubResource("Resource_20nwc")])
 
 [node name="Turret" parent="World" unique_id=1571022317 node_paths=PackedStringArray("inputNode") instance=ExtResource("20_20nwc")]
-transform = Transform3D(-0.4729353, 0, -0.8810972, 0, 1, 0, 0.8810972, 0, -0.4729353, -4.6669455, 3.6053066, 3.4638782)
+transform = Transform3D(-0.4729353, 0, -0.8810972, 0, 1, 0, 0.8810972, 0, -0.4729353, -4.6669455, 3.6053066, -44.761284)
+visible = false
 inputNode = NodePath("StationPort4")
 
 [node name="StationPort4" parent="World/Turret" unique_id=1812803613 instance=ExtResource("21_20nwc")]
 transform = Transform3D(-2.615958, 0, -1.3762058, 0, 1, 0, 1.3889388, 0, -2.5919764, -2.2345748, -3.1234941, -0.58680224)
 
 [node name="Turret2" parent="World" unique_id=353788340 node_paths=PackedStringArray("inputNode") instance=ExtResource("20_20nwc")]
-transform = Transform3D(0.807084, 0, -0.5904367, 0, 1, 0, 0.5904367, 0, 0.807084, 4.7185926, 3.6053066, 3.824185)
+transform = Transform3D(0.807084, 0, -0.5904367, 0, 1, 0, 0.5904367, 0, 0.807084, 4.7185926, 3.6053066, -44.400978)
+visible = false
 inputNode = NodePath("StationPort3")
 
 [node name="StationPort3" parent="World/Turret2" unique_id=1915723754 instance=ExtResource("21_20nwc")]
 transform = Transform3D(-1.737944, 0, 2.3763328, 0, 1, 0, -2.398319, 0, -1.7220117, -0.3306508, -3.1234941, 0.20035172)
 
 [node name="Turret3" parent="World" unique_id=1604294998 node_paths=PackedStringArray("inputNode") instance=ExtResource("20_20nwc")]
-transform = Transform3D(0.4554051, 0, 0.8902845, 0, 1, 0, -0.8902845, 0, 0.4554051, 4.8824754, 3.6053066, -2.527573)
+transform = Transform3D(0.4554051, 0, 0.8902845, 0, 1, 0, -0.8902845, 0, 0.4554051, 4.8824754, 3.6053066, -50.752735)
+visible = false
 inputNode = NodePath("StationPort")
 
 [node name="StationPort" parent="World/Turret3" unique_id=750325492 instance=ExtResource("21_20nwc")]
 transform = Transform3D(2.6429331, 0, 1.3246388, 0, 1, 0, -1.3368946, 0, 2.6187043, -1.8930666, -3.1234941, 0.3516538)
 
 [node name="Turret4" parent="World" unique_id=1789132715 node_paths=PackedStringArray("inputNode") instance=ExtResource("20_20nwc")]
-transform = Transform3D(-0.7744369, 0, 0.6326513, 0, 1, 0, -0.6326513, 0, -0.7744369, -4.6147814, 3.6053066, -3.0040874)
+transform = Transform3D(-0.7744369, 0, 0.6326513, 0, 1, 0, -0.6326513, 0, -0.7744369, -4.6147814, 3.6053066, -51.229248)
+visible = false
 inputNode = NodePath("StationPort2")
 
 [node name="StationPort2" parent="World/Turret4" unique_id=1365024135 instance=ExtResource("21_20nwc")]
 transform = Transform3D(1.8634118, 0, -2.2810848, 0, 1, 0, 2.30219, 0, 1.8463291, -0.8566718, -3.1234941, 0.023492694)
 
 [node name="Grindstone" parent="World" unique_id=1599248455 instance=ExtResource("20_5vgrt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.424134, 0.5265527, -0.1874628)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8.563174, 0.004228592, 4.7973003)
 
 [node name="Anvil" parent="World" unique_id=1158721071 instance=ExtResource("22_3w1al")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.903208, 0.50000095, -0.27104568)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8.753744, 0.32512164, -4.6725025)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=254897524 node_paths=PackedStringArray("playerSpawner")]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 39, 37.42)
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -3.1877332, 39, 36.24997)
 projection = 1
 size = 28.411
 script = ExtResource("3_mndrt")
 playerSpawner = NodePath("../PlayerSpawner")
-maxSize = 30.525
+outerBounds = Vector2(350, 200)
+innerBounds = Vector2(200, 100)
+minSize = 20.337
+maxSize = 35.0
 
 [node name="PlayerSpawner" type="Node" parent="." unique_id=1347135134 node_paths=PackedStringArray("spawnParent")]
 script = ExtResource("6_42n6d")
@@ -167,10 +292,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7532635, 0, 2.060317)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2516978, 0, 0)
 
 [node name="SpawnPoint2" type="Marker3D" parent="PlayerSpawner" unique_id=411742392]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.95199704)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0428693, 0, -3.2011)
 
 [node name="SpawnPoint3" type="Marker3D" parent="PlayerSpawner" unique_id=2030002562]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.498033, 0, -1.7967122)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.479903, 0, 0.9416392)
 
 [node name="EnemySpawner" type="Node" parent="." unique_id=1191566733 node_paths=PackedStringArray("spawnParent", "targetNode", "lootTable", "spawnPositions", "enemyUI")]
 script = ExtResource("7_53x3i")
@@ -181,7 +306,7 @@ normalEnemyData = ExtResource("9_mehdq")
 fastEnemyData = ExtResource("10_7p7bj")
 strongEnemyData = ExtResource("11_gwggj")
 lootTable = NodePath("../LootTable")
-maxWaves = 5
+maxWaves = 7
 timeBetweenWaves = 0.01
 startingEnemiesPerWave = 10
 enemyIncreasedPerWave = 2
@@ -219,7 +344,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.031914, 0, 10.609423)
 
 [node name="LootTable" type="Node3D" parent="." unique_id=537718464]
 script = ExtResource("9_7cc0k")
-stickDropChance = 100
+stickDropChance = 50
 ingotDropChance = 50
 stickObject = ExtResource("10_mehdq")
 ingotObject = ExtResource("11_7p7bj")
@@ -232,13 +357,7 @@ text = "Enemies"
 metadata/_edit_use_anchors_ = true
 
 [node name="DullSword" parent="." unique_id=778246616 instance=ExtResource("22_amgg8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.750275, 0.5, 4.2739916)
-
-[node name="MeltedIngot" parent="." unique_id=577231431 instance=ExtResource("19_amgg8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.162161, 0.015042733, 3.3623934)
-
-[node name="Stick" parent="." unique_id=70957572 instance=ExtResource("10_mehdq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.445796, 0.18933196, 3.4927015)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8441973, 0.5, -0.59229565)
 
 [node name="PauseMenu" type="CanvasLayer" parent="." unique_id=385949872 node_paths=PackedStringArray("resumeButton", "settingsButton", "mainMenuButton", "settingsMenu")]
 process_mode = 3
@@ -300,9 +419,9 @@ script = ExtResource("24_gax05")
 masterSlider = NodePath("Control/MasterVolumeLabel/MasterVolumeSlider")
 musicSlider = NodePath("Control/MusicVolumeLabel/MusicVolumeSlider")
 sfxSlider = NodePath("Control/SFXVolumeLabel/SFXVolumeSlider")
-fullScreenCheckBox = NodePath("Control/FullScreenCheckBox")
-vsyncCheckBox = NodePath("Control/VSyncCheckBox")
-showFPSCheckBox = NodePath("Control/ShowFPSCheckBox")
+fullScreenCheckBox = NodePath("Control/FullscreenLabel/FullScreenCheckBox")
+vsyncCheckBox = NodePath("Control/VSyncLabel/VSyncCheckBox")
+showFPSCheckBox = NodePath("Control/ShowFPSLabel/ShowFPSCheckBox")
 resolutionDropdown = NodePath("Control/ResolutionLabel/ResolutionOptionButton")
 maxFPSDropdown = NodePath("Control/FPSLabel/FPSOptionButton")
 applyButton = NodePath("Control/ApplyButton")
@@ -316,179 +435,253 @@ offset_right = 40.0
 offset_bottom = 40.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="SettingsMenu/Control" unique_id=1153745692]
+[node name="Label" type="Label" parent="SettingsMenu/Control" unique_id=100261695]
 layout_mode = 0
-offset_left = 440.0
-offset_top = 16.0
-offset_right = 672.0
-offset_bottom = 99.0
+offset_left = 32.0
+offset_top = 24.0
+offset_right = 264.0
+offset_bottom = 107.0
 theme_override_font_sizes/font_size = 60
 text = "Settings"
 metadata/_edit_use_anchors_ = true
 
-[node name="MasterVolumeLabel" type="Label" parent="SettingsMenu/Control" unique_id=320632212]
+[node name="MasterVolumeLabel" type="Label" parent="SettingsMenu/Control" unique_id=1591004952]
 layout_mode = 0
-offset_left = 96.0
-offset_top = 103.0
-offset_right = 226.0
-offset_bottom = 150.0
+offset_left = 32.0
+offset_top = 120.0
+offset_right = 252.0
+offset_bottom = 207.0
 theme_override_font_sizes/font_size = 30
 text = "Master Volume
 "
 metadata/_edit_use_anchors_ = true
 
-[node name="MasterVolumeSlider" type="HSlider" parent="SettingsMenu/Control/MasterVolumeLabel" unique_id=184752821]
-layout_mode = 0
+[node name="MasterVolumeSlider" type="HSlider" parent="SettingsMenu/Control/MasterVolumeLabel" unique_id=485278808]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.0045454544
 offset_left = 233.0
 offset_right = 343.0
 offset_bottom = 50.0
+focus_neighbor_bottom = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
 metadata/_edit_use_anchors_ = true
 
-[node name="MusicVolumeLabel" type="Label" parent="SettingsMenu/Control" unique_id=511471504]
+[node name="MusicVolumeLabel" type="Label" parent="SettingsMenu/Control" unique_id=1028329062]
 layout_mode = 0
-offset_left = 92.0
-offset_top = 136.0
-offset_right = 295.0
-offset_bottom = 183.0
+offset_left = 32.0
+offset_top = 176.0
+offset_right = 235.0
+offset_bottom = 223.0
 theme_override_font_sizes/font_size = 30
 text = "Music Volume"
 metadata/_edit_use_anchors_ = true
 
-[node name="MusicVolumeSlider" type="HSlider" parent="SettingsMenu/Control/MusicVolumeLabel" unique_id=999295876]
-layout_mode = 0
+[node name="MusicVolumeSlider" type="HSlider" parent="SettingsMenu/Control/MusicVolumeLabel" unique_id=513898678]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.009852217
+anchor_top = -0.14893617
+anchor_right = -0.009852217
+anchor_bottom = -0.14893617
 offset_left = 234.0
 offset_top = 7.0
 offset_right = 344.0
 offset_bottom = 57.0
+focus_neighbor_top = NodePath("../../MasterVolumeLabel/MasterVolumeSlider")
+focus_neighbor_right = NodePath("../../SFXVolumeLabel/SFXVolumeSlider")
 metadata/_edit_use_anchors_ = true
 
-[node name="ResolutionLabel" type="Label" parent="SettingsMenu/Control" unique_id=2040101089]
+[node name="ResolutionLabel" type="Label" parent="SettingsMenu/Control" unique_id=1794153192]
 layout_mode = 0
-offset_left = 542.0
-offset_top = 99.0
-offset_right = 672.0
-offset_bottom = 146.0
+offset_left = 32.0
+offset_top = 432.0
+offset_right = 186.0
+offset_bottom = 479.0
 theme_override_font_sizes/font_size = 30
 text = "Resolution"
 metadata/_edit_use_anchors_ = true
 
-[node name="ResolutionOptionButton" type="OptionButton" parent="SettingsMenu/Control/ResolutionLabel" unique_id=725924476]
-layout_mode = 0
+[node name="ResolutionOptionButton" type="OptionButton" parent="SettingsMenu/Control/ResolutionLabel" unique_id=827977499]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4090909
+anchor_top = -0.06382979
+anchor_right = 0.4090909
+anchor_bottom = -0.06382979
 offset_left = 169.0
 offset_top = 11.0
 offset_right = 297.0
 offset_bottom = 43.0
+focus_neighbor_top = NodePath("../../ShowFPSLabel/ShowFPSCheckBox")
+focus_neighbor_bottom = NodePath("../../FPSLabel/FPSOptionButton")
 metadata/_edit_use_anchors_ = true
 
-[node name="FPSLabel" type="Label" parent="SettingsMenu/Control" unique_id=1818394363]
+[node name="FPSLabel" type="Label" parent="SettingsMenu/Control" unique_id=1616124073]
 layout_mode = 0
-offset_left = 587.0
-offset_top = 141.0
-offset_right = 658.0
-offset_bottom = 188.0
+offset_left = 32.0
+offset_top = 488.0
+offset_right = 103.0
+offset_bottom = 535.0
 theme_override_font_sizes/font_size = 30
 text = "FPS"
 metadata/_edit_use_anchors_ = true
 
-[node name="FPSOptionButton" type="OptionButton" parent="SettingsMenu/Control/FPSLabel" unique_id=1593413049]
-layout_mode = 0
+[node name="FPSOptionButton" type="OptionButton" parent="SettingsMenu/Control/FPSLabel" unique_id=1628876376]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.5633802
+anchor_top = -0.06382979
+anchor_right = 1.5633802
+anchor_bottom = -0.06382979
 offset_left = 121.0
 offset_top = 11.0
 offset_right = 249.0
 offset_bottom = 43.0
+focus_neighbor_top = NodePath("../../ResolutionLabel/ResolutionOptionButton")
+focus_neighbor_bottom = NodePath("../../BackButton")
 metadata/_edit_use_anchors_ = true
 
-[node name="SFXVolumeLabel" type="Label" parent="SettingsMenu/Control" unique_id=963344192]
+[node name="SFXVolumeLabel" type="Label" parent="SettingsMenu/Control" unique_id=1506815955]
 layout_mode = 0
-offset_left = 95.0
-offset_top = 178.0
-offset_right = 264.0
-offset_bottom = 225.0
+offset_left = 32.0
+offset_top = 224.0
+offset_right = 201.0
+offset_bottom = 271.0
 theme_override_font_sizes/font_size = 30
 text = "SFX Volume"
 metadata/_edit_use_anchors_ = true
 
-[node name="SFXVolumeSlider" type="HSlider" parent="SettingsMenu/Control/SFXVolumeLabel" unique_id=203011154]
-layout_mode = 0
+[node name="SFXVolumeSlider" type="HSlider" parent="SettingsMenu/Control/SFXVolumeLabel" unique_id=1872170403]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.01183432
+anchor_top = -0.23404256
+anchor_right = -0.01183432
+anchor_bottom = -0.23404256
 offset_left = 234.0
 offset_top = 4.0
 offset_right = 344.0
 offset_bottom = 54.0
+focus_neighbor_top = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
+focus_neighbor_bottom = NodePath("../../FullscreenLabel/FullScreenCheckBox")
 metadata/_edit_use_anchors_ = true
 
-[node name="BackButton" type="Button" parent="SettingsMenu/Control" unique_id=1181943130]
+[node name="FullscreenLabel" type="Label" parent="SettingsMenu/Control" unique_id=1560838557]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 272.0
+offset_right = 201.0
+offset_bottom = 319.0
+theme_override_font_sizes/font_size = 30
+text = "FullScreen"
+metadata/_edit_use_anchors_ = true
+
+[node name="FullScreenCheckBox" type="CheckBox" parent="SettingsMenu/Control/FullscreenLabel" unique_id=1108551976]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.38700002
+anchor_right = 0.38700002
+offset_left = 166.59698
+offset_top = 10.0
+offset_right = 195.59698
+offset_bottom = 34.0
+focus_neighbor_top = NodePath("../../SFXVolumeLabel/SFXVolumeSlider")
+focus_neighbor_bottom = NodePath("../../VSyncLabel/VSyncCheckBox")
+theme_override_font_sizes/font_size = 40
+metadata/_edit_use_anchors_ = true
+
+[node name="VSyncLabel" type="Label" parent="SettingsMenu/Control" unique_id=909808435]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 320.0
+offset_right = 201.0
+offset_bottom = 367.0
+theme_override_font_sizes/font_size = 30
+text = "VSync"
+metadata/_edit_use_anchors_ = true
+
+[node name="VSyncCheckBox" type="CheckBox" parent="SettingsMenu/Control/VSyncLabel" unique_id=913072526]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2366864
+anchor_right = 0.2366864
+offset_left = 192.0
+offset_top = -7.9999986
+offset_right = 217.0
+offset_bottom = 55.0
+focus_neighbor_top = NodePath("../../FullscreenLabel/FullScreenCheckBox")
+focus_neighbor_bottom = NodePath("../../ShowFPSLabel/ShowFPSCheckBox")
+theme_override_font_sizes/font_size = 40
+text = "
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="ShowFPSLabel" type="Label" parent="SettingsMenu/Control" unique_id=277186055]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 376.0
+offset_right = 201.0
+offset_bottom = 423.0
+theme_override_font_sizes/font_size = 30
+text = "ShowFPS"
+metadata/_edit_use_anchors_ = true
+
+[node name="ShowFPSCheckBox" type="CheckBox" parent="SettingsMenu/Control/ShowFPSLabel" unique_id=1148104484]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.16568047
+anchor_top = 0.06382979
+anchor_right = 0.16568047
+anchor_bottom = 0.06382979
+offset_left = 204.0
+offset_top = -11.0
+offset_right = 228.0
+offset_bottom = 52.0
+focus_neighbor_top = NodePath("../../VSyncLabel/VSyncCheckBox")
+focus_neighbor_bottom = NodePath("../../ResolutionLabel/ResolutionOptionButton")
+theme_override_font_sizes/font_size = 40
+text = "
+
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="BackButton" type="Button" parent="SettingsMenu/Control" unique_id=1184552180]
 layout_mode = 0
 offset_left = 8.000006
 offset_top = 552.0
 offset_right = 456.0
 offset_bottom = 672.0
 scale = Vector2(0.8400012, 0.7599994)
-focus_neighbor_top = NodePath("../FullScreenCheckBox")
-focus_next = NodePath("../FullScreenCheckBox")
+focus_neighbor_top = NodePath("../FPSLabel/FPSOptionButton")
+focus_neighbor_right = NodePath("../ApplyButton")
 theme_override_font_sizes/font_size = 40
 text = "Back
 "
 metadata/_edit_use_anchors_ = true
 
-[node name="ApplyButton" type="Button" parent="SettingsMenu/Control" unique_id=950909908]
+[node name="ApplyButton" type="Button" parent="SettingsMenu/Control" unique_id=1142629580]
 layout_mode = 0
 offset_left = 759.99994
 offset_top = 552.0
 offset_right = 1208.0
 offset_bottom = 672.0
 scale = Vector2(0.8400012, 0.7599994)
-focus_neighbor_top = NodePath("../FullScreenCheckBox")
-focus_next = NodePath("../FullScreenCheckBox")
+focus_neighbor_left = NodePath("../BackButton")
+focus_neighbor_top = NodePath("../FPSLabel/FPSOptionButton")
 theme_override_font_sizes/font_size = 40
 text = "Apply
 
 "
 metadata/_edit_use_anchors_ = true
 
-[node name="FullScreenCheckBox" type="CheckBox" parent="SettingsMenu/Control" unique_id=1911057212]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 248.0
-offset_right = 273.0
-offset_bottom = 311.0
-focus_neighbor_bottom = NodePath("../BackButton")
-focus_next = NodePath(".")
-theme_override_font_sizes/font_size = 40
-text = "Fullscreen"
-metadata/_edit_use_anchors_ = true
+[node name="MeltedIngot" parent="." unique_id=577231431 instance=ExtResource("19_amgg8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.853459, 0.64943117, 3.3785572)
 
-[node name="VSyncCheckBox" type="CheckBox" parent="SettingsMenu/Control" unique_id=1919008185]
-layout_mode = 0
-offset_left = 50.0
-offset_top = 301.0
-offset_right = 275.0
-offset_bottom = 364.0
-focus_neighbor_bottom = NodePath("../BackButton")
-focus_next = NodePath(".")
-theme_override_font_sizes/font_size = 40
-text = "VSync
-"
-metadata/_edit_use_anchors_ = true
-
-[node name="ShowFPSCheckBox" type="CheckBox" parent="SettingsMenu/Control" unique_id=1388860018]
-layout_mode = 0
-offset_left = 50.0
-offset_top = 352.0
-offset_right = 275.0
-offset_bottom = 415.0
-focus_neighbor_bottom = NodePath("../BackButton")
-focus_next = NodePath(".")
-theme_override_font_sizes/font_size = 40
-text = "ShowFPS
-
-"
-metadata/_edit_use_anchors_ = true
+[node name="Stick" parent="." unique_id=70957572 instance=ExtResource("10_mehdq")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -11.707829, 0.098678, 2.990038)
 
 [connection signal="pressed" from="PauseMenu/ResumeButton" to="PauseMenu" method="OnResumePressed"]
 [connection signal="pressed" from="PauseMenu/SettingsButton" to="PauseMenu" method="OnSettingsPressed"]
 [connection signal="pressed" from="PauseMenu/QuitButton" to="PauseMenu" method="OnQuitPressed"]
 [connection signal="pressed" from="SettingsMenu/Control/BackButton" to="SettingsMenu" method="OnBackPressed"]
 [connection signal="pressed" from="SettingsMenu/Control/ApplyButton" to="SettingsMenu" method="OnApplyPressed"]
-[connection signal="pressed" from="SettingsMenu/Control/FullScreenCheckBox" to="SettingsMenu/Control" method="ToggleFullscreen"]
-[connection signal="pressed" from="SettingsMenu/Control/VSyncCheckBox" to="SettingsMenu/Control" method="ToggleFullscreen"]
-[connection signal="pressed" from="SettingsMenu/Control/ShowFPSCheckBox" to="SettingsMenu/Control" method="ToggleFullscreen"]

@@ -1,13 +1,15 @@
 [gd_scene format=3 uid="uid://8roa2xkb2ipl"]
 
 [ext_resource type="Script" uid="uid://bwwhlpy6hxupd" path="res://src/PlayerController.cs" id="1_ormyk"]
-[ext_resource type="Material" uid="uid://d2nimaxg7nwjy" path="res://assets/materials/basic_blue.material" id="1_uyr3s"]
 [ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/Sword.tscn" id="3_8d03m"]
+[ext_resource type="Texture2D" uid="uid://fywbkplmkbgs" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/Dwarf_low_BaseCol.tga" id="3_v0ggv"]
 [ext_resource type="Script" uid="uid://brp6gsap0s2ok" path="res://src/HealthBar.cs" id="4_8d03m"]
+[ext_resource type="Texture2D" uid="uid://bx0rnncaa27mi" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/Dwarf_low_ORM.tga" id="4_jnlb4"]
+[ext_resource type="ArrayMesh" uid="uid://dewjvcdn4tcwe" path="res://assets/models/FinalAssets_Low/Character_Models/Dwarf_low.obj" id="4_t0fpx"]
+[ext_resource type="Texture2D" uid="uid://bgk03fcoiqv1l" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/Dwarf_low_Normal.tga" id="5_bw8qq"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xmmeu"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_uyr3s"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_t0fpx"]
+size = Vector3(1.6055908, 2.0847168, 0.8642578)
 
 [sub_resource type="Animation" id="Animation_8d03m"]
 resource_name = "Anim_Attack"
@@ -36,6 +38,13 @@ _data = {
 &"RESET": SubResource("Animation_t0fpx")
 }
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vpvqr"]
+albedo_texture = ExtResource("3_v0ggv")
+normal_enabled = true
+normal_texture = ExtResource("5_bw8qq")
+heightmap_enabled = true
+heightmap_texture = ExtResource("4_jnlb4")
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_jffvu"]
 viewport_path = NodePath("HealthBar/SubViewport")
 
@@ -62,9 +71,9 @@ expand_margin_bottom = 3.0
 shadow_size = 3
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8d03m"]
-size = Vector3(1, 2.5361938, 1)
+size = Vector3(1.5324149, 2.0884094, 1.533226)
 
-[node name="Player" type="CharacterBody3D" unique_id=489937195 node_paths=PackedStringArray("animPlayer", "rightHand", "leftHand") groups=["Player"]]
+[node name="Player" type="CharacterBody3D" unique_id=489937195 node_paths=PackedStringArray("animPlayer", "rightHand", "leftHand", "areaPickup") groups=["Player"]]
 collision_layer = 2
 collision_mask = 53
 velocity = Vector3(0, -228.01021, 0)
@@ -74,26 +83,30 @@ swordObject = ExtResource("3_8d03m")
 animPlayer = NodePath("CollisionShape3D/AnimationPlayer")
 rightHand = NodePath("CollisionShape3D/RightHand")
 leftHand = NodePath("CollisionShape3D/LeftHand")
+areaPickup = NodePath("Area3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1437107689 groups=["Player"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_xmmeu")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1615911266]
-material_override = ExtResource("1_uyr3s")
-mesh = SubResource("CapsuleMesh_uyr3s")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.039611816, 0.9244385, 0.058440506)
+shape = SubResource("BoxShape3D_t0fpx")
 
 [node name="RightHand" type="Node3D" parent="CollisionShape3D" unique_id=798116510]
-transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -1.0006692, -0.26676977, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -1.3024197, -0.5818844, 0.067871094)
 
 [node name="Sword" parent="CollisionShape3D/RightHand" unique_id=689345526 instance=ExtResource("3_8d03m")]
+transform = Transform3D(0.850049, 0, -0.5267036, 0, 1, 0, 0.5267036, 0, 0.850049, -0.14849663, 0, 0)
 
 [node name="LeftHand" type="Node3D" parent="CollisionShape3D" unique_id=2112562012]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.70927954, 0.22382474, 0.34267867)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.04, -0.17419434, 0.067871094)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CollisionShape3D" unique_id=1458741370]
 root_node = NodePath("../RightHand")
 libraries/ = SubResource("AnimationLibrary_t0fpx")
+
+[node name="DwarfLow" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1876459174]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.039611816, -0.9244385, 0.067871094)
+material_override = SubResource("StandardMaterial3D_vpvqr")
+mesh = ExtResource("4_t0fpx")
+skeleton = NodePath("../..")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="." unique_id=814154132]
 
@@ -121,5 +134,5 @@ collision_layer = 2
 collision_mask = 53
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=48449025]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7680969, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.026974827, 0.99198914, -0.0689888)
 shape = SubResource("BoxShape3D_8d03m")

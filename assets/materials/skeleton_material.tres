@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://btwle4bal72vo"]
+
+[ext_resource type="Texture2D" uid="uid://daqb1lrcdcjg7" path="res://assets/materials/Texture_sets/Character_Textures/Skeleton Textures/Skeleton_low_BaseCol.tga" id="1_goj3c"]
+[ext_resource type="Texture2D" uid="uid://cwrhv1tp6r3sd" path="res://assets/materials/Texture_sets/Character_Textures/Skeleton Textures/Skeleton_low_Emmisive.tga" id="2_e5n31"]
+[ext_resource type="Texture2D" uid="uid://b8wt8n7ratup4" path="res://assets/materials/Texture_sets/Character_Textures/Skeleton Textures/Skeleton_low_Normal.tga" id="2_mdk5v"]
+[ext_resource type="Texture2D" uid="uid://cyw36383hhogv" path="res://assets/materials/Texture_sets/Character_Textures/Skeleton Textures/Skeleton_low_ORM.tga" id="2_p5at1"]
+
+[resource]
+albedo_texture = ExtResource("1_goj3c")
+emission_enabled = true
+emission_texture = ExtResource("2_e5n31")
+normal_enabled = true
+normal_texture = ExtResource("2_mdk5v")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_p5at1")

@@ -1,18 +1,13 @@
 [gd_scene format=3 uid="uid://c37xqn66ss1o8"]
 
 [ext_resource type="Script" uid="uid://c25evsd3j0b" path="res://src/Sword.cs" id="1_4uorx"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_micgq"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_4uorx"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_pg1v4"]
+[ext_resource type="ArrayMesh" uid="uid://vmdklfvgul40" path="res://assets/models/FinalAssets_Low/Items_Models/Sword_first_low.obj" id="2_hbd7i"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xv1ii"]
-size = Vector3(5.340587, 2.1694336, 18.698938)
+size = Vector3(5.340587, 1.6914063, 8.853933)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kpo4t"]
-size = Vector3(1.742096, 1.9012451, 11.503204)
+size = Vector3(1.742096, 1.6395874, 4.7293167)
 
 [node name="Sword" type="Node3D" unique_id=689345526 groups=["Sword"]]
 script = ExtResource("1_4uorx")
@@ -24,20 +19,8 @@ transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 collision_layer = 8
 collision_mask = 4
 
-[node name="Hilt" type="MeshInstance3D" parent="StaticBody3D" unique_id=650740940]
-transform = Transform3D(0.12052679, 0, 0, 0, 1, 0, 0, 0, 0.08459415, 0, 0, 0)
-mesh = SubResource("BoxMesh_micgq")
-
-[node name="Block" type="MeshInstance3D" parent="StaticBody3D" unique_id=1851722779]
-transform = Transform3D(0.8717983, 0, 0, 0, 0.10611987, 0, 0, 0, 0.3826616, 0, 0.5573069, 0.031022074)
-mesh = SubResource("BoxMesh_4uorx")
-
-[node name="Blade" type="MeshInstance3D" parent="StaticBody3D" unique_id=345029922]
-transform = Transform3D(0.094345585, 0, 0.039038073, 0, 1.648608, 0, -0.03620832, 0, 0.10171888, 0.01343259, 1.4538383, 0.035000402)
-mesh = SubResource("BoxMesh_pg1v4")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=481175609 groups=["Sword"]]
-transform = Transform3D(0.09335804, 0, 0.035836797, 0, 1.639988, -3.7252679e-09, -0.03583642, 0, 0.09335729, 0.0043361485, 1.0972515, 0.019292241)
+transform = Transform3D(0.09335804, 0, 0.035836797, 0, 1.6399679, -3.7252306e-09, -0.035835795, 0, 0.093356036, 0.0032437593, 1.0115695, 0.01644627)
 shape = SubResource("BoxShape3D_xv1ii")
 disabled = true
 
@@ -46,5 +29,9 @@ collision_layer = 24
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/Area3D" unique_id=1446767842]
-transform = Transform3D(0.3016428, 0, 0.0665279, 0, 1.6399678, 0, -0.11578782, 0, 0.17330706, 0.060495928, 0.76243585, 0.16467948)
+transform = Transform3D(0.3016428, 0, 0.0665279, 0, 1.639953, 0, -0.115786895, 0, 0.17330521, 0.0062087923, 0.9769906, 0.023261486)
 shape = SubResource("BoxShape3D_kpo4t")
+
+[node name="SwordFirstLow" type="MeshInstance3D" parent="." unique_id=31124853]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+mesh = ExtResource("2_hbd7i")
