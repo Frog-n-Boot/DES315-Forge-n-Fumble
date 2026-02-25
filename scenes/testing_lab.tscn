@@ -204,13 +204,13 @@ transform = Transform3D(1.7640729, 0, -0.9423624, 0, 2, 0, 0.9423624, 0, 1.76407
 transform = Transform3D(0.12892519, 0, -1.9958402, 0, 2, 0, 1.9958402, 0, 0.12892519, 25.664726, 0.4999981, -11.783998)
 
 [node name="Boxes3" parent="World" unique_id=1756956899 instance=ExtResource("3_a3bqn")]
-transform = Transform3D(-1.9707505, 0, 0.34079742, 0, 2, 0, -0.34079742, 0, -1.9707505, 5.7885, 0.5, -12.66143)
+transform = Transform3D(-1.9707505, 0, 0.34079742, 0, 2, 0, -0.34079742, 0, -1.9707505, 5.7885, 0.5, -15.853542)
 
 [node name="Boxes4" parent="World" unique_id=1307583488 instance=ExtResource("3_a3bqn")]
 transform = Transform3D(-0.8910207, 0, -1.7905536, 0, 2, 0, 1.7905536, 0, -0.8910207, -15.74906, 0.4999981, -17.85883)
 
 [node name="Boxes5" parent="World" unique_id=500950248 instance=ExtResource("3_a3bqn")]
-transform = Transform3D(1.2538605, 0, -1.5581508, 0, 2, 0, 1.5581508, 0, 1.2538605, -0.7551384, 0.5, 14.43851)
+transform = Transform3D(1.2538605, 0, -1.5581508, 0, 2, 0, 1.5581508, 0, 1.2538605, -0.7551384, 0.5, 14.886943)
 
 [node name="Boxes6" parent="World" unique_id=684356168 instance=ExtResource("3_a3bqn")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 22.69911, 0.5000019, 20.819078)
@@ -228,7 +228,7 @@ transform = Transform3D(1.3261026, 0, -1.4971479, 0, 2, 0, 1.4971479, 0, 1.32610
 transform = Transform3D(1.1700002, 0, 1.6220664, 0, 2, 0, -1.6220664, 0, 1.1700002, 18.261032, 0.5, -16.599575)
 
 [node name="Forge2" parent="World" unique_id=994045895 instance=ExtResource("2_ptwec")]
-transform = Transform3D(-0.37017906, 0, -2.4935302e-08, 0, 0.34999993, 0, 3.236208e-08, 0, -0.2852266, -13.875138, 0.017500043, 0.8259249)
+transform = Transform3D(-0.37017906, 0, -2.4935302e-08, 0, 0.34999993, 0, 3.236208e-08, 0, -0.2852266, -4.449326, 0.017500043, 0.8259249)
 recipes = Array[Object]([SubResource("Resource_20nwc")])
 
 [node name="Turret" parent="World" unique_id=1571022317 node_paths=PackedStringArray("inputNode") instance=ExtResource("20_20nwc")]
@@ -264,10 +264,10 @@ inputNode = NodePath("StationPort2")
 transform = Transform3D(1.8634118, 0, -2.2810848, 0, 1, 0, 2.30219, 0, 1.8463291, -0.8566718, -3.1234941, 0.023492694)
 
 [node name="Grindstone" parent="World" unique_id=1599248455 instance=ExtResource("20_5vgrt")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8.563174, 0.004228592, 4.7973003)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8.563174, 0.004228592, -3.643423)
 
 [node name="Anvil" parent="World" unique_id=1158721071 instance=ExtResource("22_3w1al")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8.753744, 0.32512164, -4.6725025)
+transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, -10.119087, 0.3251226, 4.830947)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=254897524 node_paths=PackedStringArray("playerSpawner")]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -3.1877332, 39, 36.24997)
@@ -275,7 +275,7 @@ projection = 1
 size = 28.411
 script = ExtResource("3_mndrt")
 playerSpawner = NodePath("../PlayerSpawner")
-outerBounds = Vector2(350, 200)
+outerBounds = Vector2(350, 250)
 innerBounds = Vector2(200, 100)
 minSize = 20.337
 maxSize = 35.0
@@ -675,10 +675,10 @@ text = "Apply
 metadata/_edit_use_anchors_ = true
 
 [node name="MeltedIngot" parent="." unique_id=577231431 instance=ExtResource("19_amgg8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.853459, 0.64943117, 3.3785572)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.853459, 0.64943594, -3.6792202)
 
 [node name="Stick" parent="." unique_id=70957572 instance=ExtResource("10_mehdq")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -11.707829, 0.098678, 2.990038)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -11.707829, 0.098678, -4.0677395)
 
 [connection signal="pressed" from="PauseMenu/ResumeButton" to="PauseMenu" method="OnResumePressed"]
 [connection signal="pressed" from="PauseMenu/SettingsButton" to="PauseMenu" method="OnSettingsPressed"]
