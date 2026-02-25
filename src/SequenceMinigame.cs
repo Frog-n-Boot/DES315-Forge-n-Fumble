@@ -5,6 +5,7 @@ public partial class SequenceMinigame : Node
 {
 	[Export] RichTextLabel sequenceText;
 	[Export] Sprite3D sprite3D;
+	[Export] AudioStreamPlayer3D audio;
 
 	[Signal] public delegate void SequenceCompletedEventHandler();
 	[Signal] public delegate void SequenceFailedEventHandler();
@@ -43,14 +44,14 @@ public partial class SequenceMinigame : Node
 		if(!isActive) return;
 
 		bool isZommedOut = cameraController.GetCameraZoomOut();
-        if (isZommedOut)
-        {
-            sprite3D.Scale = new Vector3(10, 10, 10);
-        }
-        else if(isZommedOut == false)
-        {
-             sprite3D.Scale = new Vector3(5.39f, 4.0f, 4.0f);
-        }
+		if (isZommedOut)
+		{
+			sprite3D.Scale = new Vector3(10, 10, 10);
+		}
+		else if(isZommedOut == false)
+		{
+			 sprite3D.Scale = new Vector3(5.39f, 4.0f, 4.0f);
+		}
 
 		timeLeft -= (float)delta;
 
@@ -123,6 +124,7 @@ public partial class SequenceMinigame : Node
 	{
 		if(input == sequence[currentStep]){
 			currentStep++;
+			audio.Play();
 			timeLeft = timePerInput;
 			UpdateLabel();
 			if(currentStep >= sequence.Length)

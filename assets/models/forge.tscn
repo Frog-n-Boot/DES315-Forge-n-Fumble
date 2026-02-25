@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://bll315yt7blkd" path="res://assets/materials/Texture_sets/WorkStations/Furance_low_BaseCol.tga" id="6_ohbk7"]
 [ext_resource type="Texture2D" uid="uid://bj6c60ek3rd8c" path="res://assets/materials/Texture_sets/WorkStations/Furance_low_ORM.tga" id="7_2jum7"]
 [ext_resource type="Texture2D" uid="uid://cw0s6r8rhgp8c" path="res://assets/materials/Texture_sets/WorkStations/Furance_low_Normal.tga" id="8_yd14g"]
+[ext_resource type="AudioStream" uid="uid://b55rsdiqrjrsq" path="res://assets/Sounds/WorldSounds/InitalForgeActivation.wav" id="10_yd14g"]
+[ext_resource type="AudioStream" uid="uid://svia4vnatnhi" path="res://assets/Sounds/WorldSounds/ForgeAfterActivation.wav" id="11_i2ejw"]
 
 [sub_resource type="Resource" id="Resource_04qyv"]
 script = ExtResource("3_oiry0")
@@ -22,7 +24,7 @@ metadata/_custom_type_script = "uid://1bo1o367ybgk"
 [sub_resource type="BoxShape3D" id="BoxShape3D_5b8nd"]
 size = Vector3(0.38000727, 0.51831055, 0.24706268)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_2jum7"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_rgbbq"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ohbk7"]
@@ -35,14 +37,22 @@ normal_texture = ExtResource("8_yd14g")
 heightmap_enabled = true
 heightmap_texture = ExtResource("7_2jum7")
 
-[node name="Forge" type="Node3D" unique_id=994045895 node_paths=PackedStringArray("inputNode", "outputNode", "timeProgressBar", "stationName") groups=["Forge", "Station"]]
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_yd14g"]
+loop = false
+stream_count = 2
+stream_0 = ExtResource("10_yd14g")
+stream_1 = ExtResource("11_i2ejw")
+
+[node name="Forge" type="Node3D" unique_id=994045895 node_paths=PackedStringArray("audio", "inputNode", "outputNode", "timeProgressBar", "stationName") groups=["Forge", "Station"]]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
 script = ExtResource("1_ph4aw")
 meltedIngotScene = ExtResource("2_0ahcc")
+audio = NodePath("AudioStreamPlayer3D")
 inputNode = NodePath("InputPort")
 outputNode = NodePath("OutputPort")
 timeProgressBar = NodePath("Sprite3D/SubViewport/ProgressBar")
 stationName = NodePath("Sprite3D/SubViewport/Label")
+craftDuration = 10.0
 recipes = Array[Object]([SubResource("Resource_04qyv")])
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1067101710 groups=["Forge"]]
@@ -55,7 +65,7 @@ shape = SubResource("BoxShape3D_5b8nd")
 
 [node name="ForgeHealthBar" parent="." unique_id=1328028810 instance=ExtResource("3_g2ei8")]
 transform = Transform3D(-20, 0, 1.7484554e-06, 0, 20, 0, -1.7484554e-06, 0, -20, 0, 18.932394, -0.85522586)
-texture = SubResource("ViewportTexture_2jum7")
+texture = SubResource("ViewportTexture_rgbbq")
 
 [node name="InputPort" parent="." unique_id=750325492 instance=ExtResource("4_0l8vc")]
 transform = Transform3D(5.40544, 0, 0, 0, 2.857143, 0, 0, 0, 5.718407, -7.2779765, 2.0441356, -2.5328603)
@@ -88,3 +98,8 @@ offset_bottom = 69.0
 transform = Transform3D(-2.857143, 0, -2.4977936e-07, 0, 2.857143, 0, 2.4977936e-07, 0, -2.857143, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_i2ejw")
 mesh = ExtResource("6_0ahcc")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1841039846]
+stream = SubResource("AudioStreamPlaylist_yd14g")
+volume_db = -50.0
+max_db = -24.0

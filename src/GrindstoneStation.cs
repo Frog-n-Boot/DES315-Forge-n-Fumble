@@ -5,26 +5,27 @@ using System.Collections.Generic;
 public partial class GrindstoneStation : BaseStationScript
 {
 	[Export] public PackedScene swordScene {get; private set;}
-	
+	[Export] private AudioStreamPlayer3D grindstoneSound;
 	protected override void OnReady()
-    {
-       	if(swordScene == null)
-        {
-            swordScene = GD.Load<PackedScene>("res://assets/models/MeltedIngot.tscn");
-        }
-    }
+	{
+	   	if(swordScene == null)
+		{
+			swordScene = GD.Load<PackedScene>("res://assets/models/MeltedIngot.tscn");	
+		}
+	}
 
-    protected override string GetStationName() => "Grindstone";
+	protected override string GetStationName() => "Grindstone";
 
-    protected override void OnCraftingRequirementsMet()
-    {
-        if(GetRequiredItems(out var items, out var recipe))
-        {
-            foreach(var item in items)
-                itemCarrier.RemoveItem(item);
-            
-            craftingTimer.Start();
-        }
-    }
+	protected override void OnCraftingRequirementsMet()
+	{
+		if(GetRequiredItems(out var items, out var recipe))
+		{
+			foreach(var item in items)
+				itemCarrier.RemoveItem(item);
+			
+			craftingTimer.Start();
+			grindstoneSound.Play();
+		}
+	}
 
 }
