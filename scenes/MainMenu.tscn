@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://gss55unqbc70"]
+
+[ext_resource type="Script" uid="uid://cq2hdafsss4y7" path="res://src/MainMenu.cs" id="1_yqorp"]
+
+[node name="MainMenu" type="Node2D" unique_id=1633550726]
+
+[node name="Control" type="Control" parent="." unique_id=793476221 node_paths=PackedStringArray("startButton", "settingsButton", "quitMenu")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_yqorp")
+startButton = NodePath("StartButton")
+settingsButton = NodePath("SettingsButton")
+quitMenu = NodePath("QuitButton")
+
+[node name="StartButton" type="Button" parent="Control" unique_id=1277000304]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 160.0
+offset_right = 824.0
+offset_bottom = 280.0
+scale = Vector2(0.8400012, 0.7599994)
+focus_neighbor_top = NodePath(".")
+focus_neighbor_bottom = NodePath("../SettingsButton")
+focus_next = NodePath("../SettingsButton")
+focus_previous = NodePath("../QuitButton")
+theme_override_font_sizes/font_size = 40
+text = "Start"
+
+[node name="SettingsButton" type="Button" parent="Control" unique_id=1975986720]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 320.0
+offset_right = 824.0
+offset_bottom = 440.0
+scale = Vector2(0.8400012, 0.7599994)
+focus_neighbor_top = NodePath("../StartButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+focus_next = NodePath("../QuitButton")
+focus_previous = NodePath("../StartButton")
+theme_override_font_sizes/font_size = 40
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="Control" unique_id=1290285225]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 480.0
+offset_right = 824.0
+offset_bottom = 600.0
+scale = Vector2(0.8400012, 0.7599994)
+focus_neighbor_top = NodePath("../SettingsButton")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath("../StartButton")
+focus_previous = NodePath("../SettingsButton")
+theme_override_font_sizes/font_size = 40
+text = "Quit"
+
+[node name="Label" type="Label" parent="Control" unique_id=182675081]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 16.0
+offset_right = 791.0
+offset_bottom = 99.0
+theme_override_font_sizes/font_size = 60
+text = "Forge-n-Fumble"
+
+[connection signal="pressed" from="Control/StartButton" to="Control" method="OnStartButtonPressed"]
+[connection signal="pressed" from="Control/SettingsButton" to="Control" method="OnSettingsButtonPressed"]
+[connection signal="pressed" from="Control/QuitButton" to="Control" method="OnQuitButtonPressed"]

@@ -115,4 +115,5 @@ public partial class CameraController : Camera3D
         
         return players;
     }
+    public bool GetCameraZoomOut() => isZoomedOut;
 }

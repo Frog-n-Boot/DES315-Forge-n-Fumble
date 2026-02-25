@@ -21,6 +21,8 @@ durability = 6
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1636120554 groups=["Sword"]]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+collision_layer = 8
+collision_mask = 4
 
 [node name="Hilt" type="MeshInstance3D" parent="StaticBody3D" unique_id=650740940]
 transform = Transform3D(0.12052679, 0, 0, 0, 1, 0, 0, 0, 0.08459415, 0, 0, 0)
@@ -40,6 +42,8 @@ shape = SubResource("BoxShape3D_xv1ii")
 disabled = true
 
 [node name="Area3D" type="Area3D" parent="StaticBody3D" unique_id=1796072919 groups=["Sword"]]
+collision_layer = 24
+collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/Area3D" unique_id=1446767842]
 transform = Transform3D(0.3016428, 0, 0.0665279, 0, 1.6399678, 0, -0.11578782, 0, 0.17330706, 0.060495928, 0.76243585, 0.16467948)

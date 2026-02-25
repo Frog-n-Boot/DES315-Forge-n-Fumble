@@ -2,10 +2,11 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Numerics;
+using System.Reflection.Metadata;
 
 namespace Godot;
 
-public partial class PlayerController : CharacterBody3D
+public partial class PlayerController : CharacterBody3D, ItemCarrier
 {
     [ExportCategory("Player Attributes")]
     [Export] public int PlayerIndex { get; set; } = 0;
@@ -19,19 +20,24 @@ public partial class PlayerController : CharacterBody3D
     [Export] public PackedScene swordObject { get; private set; }
     [Export] public AnimationPlayer animPlayer;
 
-    [Export] private Node3D hand;
+    private SequenceMinigame sequenceMinigame;
+
+    [Export] private Node3D rightHand;
     [Export] private Node3D leftHand;
+    [Export] private Area3D areaPickup;
+
     private Camera3D camera;
     private StaticBody3D world;
     private InputManager inputManager;
-    private int currentDevice = -2;
+    public int currentDevice = -2;
     private HashSet<string> actionsPressed = new HashSet<string>();
     private HashSet<string> actionsPressedLastFrame = new HashSet<string>();
+    private HashSet<Node> processPickable = new HashSet<Node>();
+
+    private BaseStationScript currentStation;
 
     [Signal] public delegate void PlayerHealthChangedEventHandler(int current, int max);
     [Signal] public delegate void DiedEventHandler();
-
-    InventorySystem inventory;
     Forge forge;
     HealthPack healthPack;
 
@@ -41,6 +47,39 @@ public partial class PlayerController : CharacterBody3D
     private bool isAttacking = false;
     private int tick = 0;
 
+    public IEnumerable<ItemData> GetCarriedItems()
+    {
+        if(leftHand.GetChildCount() > 0)
+        {
+            var pickable = leftHand.GetChild(0) as Pickable;
+            if(pickable != null)
+                yield return pickable.GetItemData();
+        }
+
+        if(rightHand.GetChildCount() > 0)
+        {
+            var pickable = rightHand.GetChild(0) as Pickable;
+            if(pickable != null)
+            {
+                yield return pickable.GetItemData();
+            }
+        }
+    }
+
+    public void RemoveItem(ItemData item)
+    {
+        foreach(var hand in new[] { leftHand, rightHand })
+        {
+            if(hand.GetChildCount() == 0) continue;
+
+            var pickable = hand.GetChild(0) as Pickable;
+            if(pickable != null && pickable.GetItemData() == item)
+            {
+                pickable.QueueFree();
+                return;
+            }
+        }
+    }
     public override void _Ready()
 {
     health = maxHealth;
@@ -58,17 +97,16 @@ public partial class PlayerController : CharacterBody3D
 
     forge = GetNodeOrNull<Forge>("/root/Forge");
     healthPack = GetNodeOrNull<HealthPack>("/root/HealthPack");
-    inventory = GetNodeOrNull<InventorySystem>("/root/InventorySystem");
-
-    var pickupArea = GetNode<Area3D>("Area3D");
-    pickupArea.BodyEntered += OnPickupBodyEntered;
-    pickupArea.AreaEntered += OnPickupAreaEntered;
+    areaPickup = GetNodeOrNull<Area3D>("Area3D");
+    areaPickup.BodyEntered += OnPickupBodyEntered;
+    areaPickup.AreaEntered += OnPickupAreaEntered;
 
     animPlayer.AnimationFinished += OnAnimationFinished;
     
     // ADD THIS: Find existing sword in hand
-    hand = GetNodeOrNull<Node3D>("CollisionShape3D/Hand");
-    if (hand != null)
+    rightHand = GetNodeOrNull<Node3D>("CollisionShape3D/RightHand");
+    leftHand = GetNodeOrNull<Node3D>("CollisionShape3D/LeftHand");
+    if (rightHand != null)
     {
         FindExistingSword();
     }
@@ -76,26 +114,25 @@ public partial class PlayerController : CharacterBody3D
     {
         GD.PrintErr("Hand node not found!");
     }
-
-    leftHand = GetNodeOrNull<Node3D>("CollisionShape3D/LeftHand");
 }
 
-private void FindExistingSword()
-{
-    if (hand == null) return;
-    
-    foreach (Node child in hand.GetChildren())
+
+    private void FindExistingSword()
     {
-        if (child is Sword sword)
+        if (rightHand == null) return;
+    
+        foreach (Node child in rightHand.GetChildren())
         {
-            currentSword = sword;
-            currentSword.CheckDurability += OnSwordDurabilityChecked;
-            currentSword.Broke += OnSwordBroke;
-            GD.Print($"Player {PlayerIndex} found existing sword in hand!");
-            return;
+            if (child is Sword sword)
+            {
+                currentSword = sword;
+                currentSword.CheckDurability += OnSwordDurabilityChecked;
+                currentSword.Broke += OnSwordBroke;
+                GD.Print($"Player {PlayerIndex} found existing sword in hand!");
+                return;
+            }
         }
     }
-}
 
     // Called by PlayerSpawner after spawning — sets index, device and colour
     public void SetPlayerIndex(int index)
@@ -120,6 +157,8 @@ private void FindExistingSword()
 
     public override void _Process(double delta)
     {
+        if(sequenceMinigame != null && sequenceMinigame.IsActiveFor(this))
+            return;
 
         if (inputManager == null)
             return;
@@ -145,10 +184,21 @@ private void FindExistingSword()
             //GD.Print($"Player {PlayerIndex} attack input detected!");
             StartAttack();
         }
+        if (IsActionPressed("attack") && currentStation != null)
+        {
+           currentStation.StartCrafting();
+        }
     }
 
     public override void _PhysicsProcess(double delta)
     {
+        if(sequenceMinigame != null && sequenceMinigame.IsActiveFor(this))
+        {
+            GD.Print("PlayerLocked");
+            return;
+        }
+    
+
         Vector3 velocity = Velocity;
 
         if (!IsOnFloor())
@@ -206,7 +256,7 @@ private void FindExistingSword()
 
         if (@event is InputEventJoypadMotion joyMotion)
             isFromOurDevice = joyMotion.Device == currentDevice;
-    }
+    }  
 
     if (!isFromOurDevice)
         return;
@@ -222,6 +272,15 @@ private void FindExistingSword()
         {
             actionsPressed.Remove(action);
         }
+    }
+
+    if (IsActionJustPressed("drop_left"))
+    {
+        DropItem(leftHand);
+    }
+    if (IsActionJustPressed("drop_right"))
+    {
+        DropItem(rightHand);
     }
 }
 
@@ -261,19 +320,31 @@ private void FindExistingSword()
 
     private void OnPickupBodyEntered(Node body)
     {
+        if(body.IsInGroup("Player")) return;
+        if(processPickable.Contains(body)) return;
+
+        GD.Print($"BodyEntered: {body.Name} groups: {string.Join(", ", body.GetGroups())}");
         if (body.IsInGroup("pickable"))
+        {
+            processPickable.Add(body);
             ProcessPickable(body);
+        }
+      
         
     }
 
     private void OnPickupAreaEntered(Area3D area)
     {
-        
+        GD.Print($"AreaEntered: {area.Name} groups: {string.Join(", ", area.GetGroups())}");
+
+        if(area.GetGroups().Count == 0) return;
+
         if (area.IsInGroup("pickable"))
             ProcessPickable(area);
 
+
         bool hasSword = false;
-        foreach (Node child in hand.GetChildren()){
+        foreach (Node child in rightHand.GetChildren()){
             if (child is Sword || child.IsInGroup("Sword")){
              hasSword = true;
              
@@ -284,16 +355,16 @@ private void FindExistingSword()
         if (hasSword)
             return;
 
-        if (area.IsInGroup("Sword"))
+        if (area.IsInGroup("Sword") && rightHand.GetChildCount() == 0)
         {
             StaticBody3D areaParent = area.GetParent() as StaticBody3D;
             Node3D swordNode = areaParent.GetParent() as Node3D;
             if(swordNode != null)
             {
-                swordNode.Reparent(hand);
-                swordNode.GlobalPosition = hand.GlobalPosition;
+                swordNode.Reparent(rightHand);
+                swordNode.GlobalPosition = rightHand.GlobalPosition;
                 swordNode.Rotation = Vector3.Zero;
-                hand.Rotation = Vector3.Zero;
+                rightHand.Rotation = Vector3.Zero;
 
                 currentSword = swordNode as Sword;
                 if (currentSword != null)
@@ -309,39 +380,44 @@ private void FindExistingSword()
 
     private void ProcessPickable(Node hitObject)
     {
-        if (hitObject == null || inventory == null)
+        
+        //GD.Print($"ProcessPickable called for {hitObject.Name}");
+        //.Print($"Left available: {leftHandAvailable}, Right available: {rightHandAvailable}");
+        GD.Print($"Left children: {leftHand.GetChildCount()}, Right children: {rightHand.GetChildCount()}");
+        if (hitObject == null)
             return;
 
-        if (hitObject.IsInGroup("pickable"))
+        Pickable pickable = hitObject as Pickable;
+        if (pickable == null)
+            return;
+
+        Node3D targetHand = null;
+            
+        if(leftHand.GetChildCount() == 0)
         {
-            Pickable pickable = hitObject as Pickable;
-            if (pickable == null)
-                return;
-
-            ItemData itemData = pickable.GetItemData();
-
-            if (inventory.AddItem(itemData))
-            {
-                pickable.PickUp();
-                if (itemData.name == "HealthPack")
-                    _healthPack++;
-            }
+            targetHand = leftHand;
+        }
+        else if(rightHand.GetChildCount() == 0)
+        {
+            targetHand = rightHand;
+        }
+        else
+        {
+            processPickable.Remove(hitObject);
+            return;
         }
 
-        if (hitObject.IsInGroup("Forge") && forge != null)
-        {
-            var items = inventory.GetItems();
-            foreach (var item in items)
-            {
-                if (item.name == "HealthPack")
-                {
-                    forge.HealForge(5);
-                    inventory.RemoveItem(item);
-                    _healthPack--;
-                    break;
-                }
-            }
-        }
+        GD.Print($"Picking up into {targetHand.Name}");
+        //ItemData itemData = pickable.GetItemData();
+        //areaPickup.SetDeferred("monitoring", false);
+        pickable.Reparent(targetHand);
+        pickable.GetNode<CollisionShape3D>("CollisionShape3D").SetDeferred("disabled", true);
+            
+        pickable.GlobalPosition = targetHand.GlobalPosition;
+        pickable.Rotation = targetHand.Rotation;
+        //GetTree().CreateTimer(0.1f).Timeout += () => areaPickup.SetDeferred("monitoring", true);
+        GetTree().CreateTimer(0.2f).Timeout += () => processPickable.Remove(hitObject);
+        
     }
 
     private Vector3 GetLookVector()
@@ -474,5 +550,36 @@ private void FindExistingSword()
         //GD.Print("Sword broke! Auto crafting a new one if ingredients are available...");
         currentSword = null;
         isAttacking = false;
+    }
+    private void DropItem(Node3D hand)
+    {
+        if(hand.GetChildCount() == 0) return;
+
+        var child = hand.GetChild(0);
+        if(child is Sword sword)
+        {
+            sword.Reparent(GetTree().Root);
+            sword.GlobalPosition = GlobalPosition + (Transform.Basis.Z * 2.5f);
+            sword.Rotation = Vector3.Zero;
+
+            currentSword.CheckDurability -= OnSwordDurabilityChecked;
+            currentSword.Broke -= OnSwordBroke;
+            currentSword = null;
+            return;
+        }
+
+        var pickable = hand.GetChild(0) as Pickable;
+        if(pickable == null) return;
+
+        pickable.Reparent(GetTree().Root);
+        pickable.GetNode<CollisionShape3D>("CollisionShape3D").SetDeferred("disabled", false);
+        pickable.GlobalPosition = GlobalPosition + (Transform.Basis.Z * 2.5f);
+        pickable.Rotation = Vector3.Zero;
+    }
+
+    public void SetCurrentStation(BaseStationScript station)
+    {
+        currentStation = station;
+        sequenceMinigame = station?.GetSequenceMinigame();
     }
 }

@@ -199,7 +199,7 @@ public partial class WaveManager : Node
 		return new EnemyData
 		{
 			enemyName = name,
-			health = health,
+			maxHealth = health,
 			damage = damage,
 			speed = speed,
 			color = color,

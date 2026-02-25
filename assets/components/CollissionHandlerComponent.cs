@@ -33,6 +33,7 @@ public partial class CollissionHandlerComponent : Node
 		if(body.IsInGroup("Forge")) return "Forge";
 		if(body.IsInGroup("Sword")) return "Sword";
 		if(body.IsInGroup("Enemy")) return "Enemy";
+        if(body.IsInGroup("Bullet")) return "Bullet";
 		return "";
     }
 }

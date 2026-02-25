@@ -20,11 +20,16 @@ public partial class Pickable : Node3D
 	#endregion
 
 	#region Ready
+
+	public void Initialize(ItemData itemdata)
+    {
+        itemData = itemdata;
+    }
     public override void _Ready()
     {
         if (!string.IsNullOrEmpty(itemDataPath))
         {
-            itemData = ResourceLoader.Load<ItemData>(itemDataPath);
+            itemData = GD.Load<ItemData>(itemDataPath);
         }
 		else
 		{
@@ -51,7 +56,7 @@ public partial class Pickable : Node3D
 	public void PickUp()
 	{
 		EmitSignal(SignalName.PickedUp);
-		QueueFree();
+		//QueueFree();
 	}
 	#endregion
 

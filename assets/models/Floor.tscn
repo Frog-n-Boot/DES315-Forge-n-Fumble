@@ -10,8 +10,7 @@ albedo_color = Color(0, 0.2784314, 0, 1)
 [node name="Floor" type="Node3D" unique_id=1232964611]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=173877090]
-collision_layer = 2
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=173877090 groups=["World"]]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1655990644]
 material_override = SubResource("StandardMaterial3D_l4k4j")

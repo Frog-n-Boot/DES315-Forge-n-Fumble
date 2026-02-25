@@ -64,14 +64,16 @@ shadow_size = 3
 [sub_resource type="BoxShape3D" id="BoxShape3D_8d03m"]
 size = Vector3(1, 2.5361938, 1)
 
-[node name="Player" type="CharacterBody3D" unique_id=489937195 node_paths=PackedStringArray("animPlayer", "hand") groups=["Player"]]
-collision_mask = 5
+[node name="Player" type="CharacterBody3D" unique_id=489937195 node_paths=PackedStringArray("animPlayer", "rightHand", "leftHand") groups=["Player"]]
+collision_layer = 2
+collision_mask = 53
 velocity = Vector3(0, -228.01021, 0)
 script = ExtResource("1_ormyk")
 speed = 12.0
 swordObject = ExtResource("3_8d03m")
-animPlayer = NodePath("CollisionShape3D/Hand/AnimationPlayer")
-hand = NodePath("CollisionShape3D/Hand")
+animPlayer = NodePath("CollisionShape3D/AnimationPlayer")
+rightHand = NodePath("CollisionShape3D/RightHand")
+leftHand = NodePath("CollisionShape3D/LeftHand")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1437107689 groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -81,12 +83,16 @@ shape = SubResource("CapsuleShape3D_xmmeu")
 material_override = ExtResource("1_uyr3s")
 mesh = SubResource("CapsuleMesh_uyr3s")
 
-[node name="Hand" type="Node3D" parent="CollisionShape3D" unique_id=798116510]
+[node name="RightHand" type="Node3D" parent="CollisionShape3D" unique_id=798116510]
 transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -1.0006692, -0.26676977, 0)
 
-[node name="Sword" parent="CollisionShape3D/Hand" unique_id=689345526 instance=ExtResource("3_8d03m")]
+[node name="Sword" parent="CollisionShape3D/RightHand" unique_id=689345526 instance=ExtResource("3_8d03m")]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CollisionShape3D/Hand" unique_id=1458741370]
+[node name="LeftHand" type="Node3D" parent="CollisionShape3D" unique_id=2112562012]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.70927954, 0.22382474, 0.34267867)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CollisionShape3D" unique_id=1458741370]
+root_node = NodePath("../RightHand")
 libraries/ = SubResource("AnimationLibrary_t0fpx")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="." unique_id=814154132]
@@ -111,11 +117,9 @@ targetPath = NodePath("../../..")
 isForge = false
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1712685090]
-collision_mask = 7
+collision_layer = 2
+collision_mask = 53
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=48449025]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7680969, 0)
 shape = SubResource("BoxShape3D_8d03m")
-
-[node name="LeftHand" type="Node3D" parent="." unique_id=2112562012]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5226797, 1.2238247, 0.34267867)
