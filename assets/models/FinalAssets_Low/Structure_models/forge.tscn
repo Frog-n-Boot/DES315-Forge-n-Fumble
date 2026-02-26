@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bm6vf4tjk48gj"]
 
 [ext_resource type="Script" uid="uid://bdwnaqw5jg3si" path="res://src/SmeltingStation.cs" id="1_ph4aw"]
-[ext_resource type="PackedScene" uid="uid://bff5da5u2kggn" path="res://assets/models/MeltedIngot.tscn" id="2_0ahcc"]
+[ext_resource type="PackedScene" uid="uid://bff5da5u2kggn" path="res://assets/models/FinalAssets_Low/Items_Models/MeltedIngot.tscn" id="2_0ahcc"]
 [ext_resource type="PackedScene" uid="uid://ceepwtmv7qxv2" path="res://assets/models/ForgeHealthBar.tscn" id="3_g2ei8"]
 [ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/CraftingRecipes.cs" id="3_oiry0"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="4_0l8vc"]

@@ -2,20 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gp745j4j7ci0"
-path="res://.godot/imported/pillar_low_BaseCol.tga-a38174a53cd4f389670b76e6c647e951.ctex"
+uid="uid://d2ubmsqb1core"
+path.s3tc="res://.godot/imported/Cobble_forge_comb_BaseCol.tga-b92350f25f9568f33070e65645146346.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://assets/materials/Texture_sets/Structurte_Textures/pillar_low_BaseCol.tga"
-dest_files=["res://.godot/imported/pillar_low_BaseCol.tga-a38174a53cd4f389670b76e6c647e951.ctex"]
+source_file="res://assets/materials/Texture_sets/Structurte_Textures/Cobble_forge_comb_BaseCol.tga"
+dest_files=["res://.godot/imported/Cobble_forge_comb_BaseCol.tga-b92350f25f9568f33070e65645146346.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -23,7 +24,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -37,4 +38,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0
