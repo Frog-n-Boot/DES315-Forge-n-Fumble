@@ -448,14 +448,14 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8.56
 transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, -10.119087, 0.3251226, 4.830947)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=254897524 node_paths=PackedStringArray("playerSpawner")]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -3.1877332, 39, 36.24997)
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -3.1877332, 39, 39.193367)
 projection = 1
 size = 28.411
 script = ExtResource("3_mndrt")
 playerSpawner = NodePath("../PlayerSpawner")
-outerBounds = Vector2(350, 250)
-innerBounds = Vector2(200, 100)
-minSize = 20.337
+outerBounds = Vector2(400, 225)
+innerBounds = Vector2(350, 175)
+minSize = 20.0
 maxSize = 35.0
 
 [node name="PlayerSpawner" type="Node" parent="." unique_id=1347135134 node_paths=PackedStringArray("spawnParent")]
