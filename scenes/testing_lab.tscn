@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://can50oleeolkm" path="res://assets/models/FinalAssets_Low/Redone_Assets/Cobl_halfwall_low.tscn" id="5_7dxqx"]
 [ext_resource type="Script" uid="uid://bk2uam5leqcv8" path="res://src/PlayerSpawner.cs" id="6_42n6d"]
 [ext_resource type="Script" uid="uid://bj4pcgxjt3ru7" path="res://src/WaveManager.cs" id="7_53x3i"]
-[ext_resource type="PackedScene" uid="uid://b8a87u3vesy3q" path="res://assets/models/Enemy.tscn" id="8_1bgfi"]
 [ext_resource type="Script" uid="uid://taddex4cilqa" path="res://src/LootTable.cs" id="9_7cc0k"]
 [ext_resource type="Resource" uid="uid://calih72lg8n07" path="res://assets/resources/NormalEnemyData.tres" id="9_mehdq"]
 [ext_resource type="Resource" uid="uid://cdki2c88hftlb" path="res://assets/resources/FastEnemyData.tres" id="10_7p7bj"]
@@ -303,13 +302,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.479903, 0, 0.9416392)
 
 [node name="EnemySpawner" type="Node" parent="." unique_id=1191566733 node_paths=PackedStringArray("spawnParent", "targetNode", "lootTable", "spawnPositions", "enemyUI")]
 script = ExtResource("7_53x3i")
-enemyScene = ExtResource("8_1bgfi")
 spawnParent = NodePath(".")
 targetNode = NodePath("../World/Forge2")
+lootTable = NodePath("../LootTable")
 normalEnemyData = ExtResource("9_mehdq")
 fastEnemyData = ExtResource("10_7p7bj")
 strongEnemyData = ExtResource("11_gwggj")
-lootTable = NodePath("../LootTable")
 maxWaves = 7
 timeBetweenWaves = 0.01
 startingEnemiesPerWave = 10

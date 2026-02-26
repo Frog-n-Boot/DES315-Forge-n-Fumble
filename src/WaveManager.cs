@@ -4,404 +4,311 @@ using System.Collections.Generic;
 
 public partial class WaveManager : Node
 {
-	#region Exports
-	[Export] public PackedScene enemyScene {get; private set;}
-	[Export] public Node spawnParent { get; private set;}
-	[Export] public Node3D targetNode { get; private set;}
+    #region Exports
+    [ExportGroup("References")]
+    [Export] public Node spawnParent     { get; private set; }
+    [Export] public Node3D targetNode    { get; private set; }
+    [Export] public LootTable lootTable;
 
-	// Enemy type resources //
-	[Export] public EnemyData normalEnemyData;
-	[Export] public EnemyData fastEnemyData;
-	[Export] public EnemyData strongEnemyData;
-	[Export] public LootTable lootTable;
+    [ExportGroup("Enemy Data")]
+    [Export] public EnemyData normalEnemyData;
+    [Export] public EnemyData fastEnemyData;
+    [Export] public EnemyData strongEnemyData;
 
-	[Export(PropertyHint.Range, "0,100,1")] public int normalEnemyChance = 60;
-	[Export(PropertyHint.Range, "0,100,1")] public int fastEnemyChance = 20;
-	[Export(PropertyHint.Range, "0,100,1")] public int strongEnemyChance = 20;
+    [ExportGroup("Enemy Spawn Chances")]
+    [Export(PropertyHint.Range, "0,100,1")] public int normalEnemyChance = 60;
+    [Export(PropertyHint.Range, "0,100,1")] public int fastEnemyChance   = 20;
+    [Export(PropertyHint.Range, "0,100,1")] public int strongEnemyChance = 20;
 
-	// Wave Exports
-	[Export] public int maxWaves { get; set;} = 3;
-	[Export] public float timeBetweenWaves { get; private set;} = 2.0f;
-	[Export] public int startingEnemiesPerWave {get; set;}
-	[Export] public int enemyIncreasedPerWave {get; set;}
+    [ExportGroup("Wave Settings")]
+    [Export] public int   maxWaves               { get; set; } = 3;
+    [Export] public float timeBetweenWaves        { get; private set; } = 2.0f;
+    [Export] public int   startingEnemiesPerWave  { get; set; }
+    [Export] public int   enemyIncreasedPerWave   { get; set; }
 
-	// Spawn position //
+    [ExportGroup("Spawn Positions")]
+    [Export] public Node3D[] spawnPositions = new Node3D[0];
 
-	[Export] public Node3D[] spawnPositions = new Node3D[0];
-	[Export] private Label enemyUI;
-	
-	
-	#endregion
+    [ExportGroup("UI")]
+    [Export] private Label enemyUI;
+    #endregion
 
-	#region Signals
-	[Signal] public delegate void WaveStartedEventHandler(int waveNumber);
-	[Signal] public delegate void WaveCompletedEventHandler(int waveNumber);
-	[Signal] public delegate void AllWavesCompletedEventHandler();
-	#endregion
+    #region Signals
+    [Signal] public delegate void WaveStartedEventHandler(int waveNumber);
+    [Signal] public delegate void WaveCompletedEventHandler(int waveNumber);
+    [Signal] public delegate void AllWavesCompletedEventHandler();
+    #endregion
 
-	#region Private Variables
-	private int currentWave= 0;
-	private int enemiesSpawnedThisWave = 0;
-	private int enemiesToSpawnThisWave = 0;
-	private int enemiesAliveThisWave = 0;
+    #region Private Variables
+    private int currentWave            = 0;
+    private int enemiesSpawnedThisWave = 0;
+    private int enemiesToSpawnThisWave = 0;
+    private int enemiesAliveThisWave   = 0;
+    private int enemiesLeft            = 0;
+    private int enemiesMultiplier      = 1;
 
-	private Timer spawnTimer;
-	private RandomNumberGenerator rnd = new RandomNumberGenerator();
+    private Timer spawnTimer;
+    private RandomNumberGenerator rnd           = new RandomNumberGenerator();
+    private List<EnemyController> activeEnemies = new List<EnemyController>();
+    private InputManager inputManager;
+    #endregion
 
-	private List<Enemy> activeEnemies = new List<Enemy>();
+    #region Lifecycle
+    public override void _Ready()
+    {
+        SetupDefaults();
+        SetupTimer();
 
-	private InputManager inputManager;
-
-	private int enemiesMultiplier;
-	private int enemeisLeft;
-	#endregion
-
-	#region LifeCycle
-	public override void _Ready()
-	{
-		SetupDefaults();
-		SetupTimer();
-
-	
-		inputManager = GetNode<InputManager>("/root/InputManager");
-        
+        inputManager = GetNode<InputManager>("/root/InputManager");
         if (inputManager == null)
         {
-            GD.PrintErr("InputManager not found!");
+            GD.PrintErr("WaveManager: InputManager not found!");
             return;
         }
-		
-		// Debug spawn positions
-		GD.Print($"WaveManager Ready - Checking spawn positions...");
-		GD.Print($"spawnPositions array length: {spawnPositions?.Length ?? 0}");
-		
-		if (spawnPositions != null)
-		{
-			for (int i = 0; i < spawnPositions.Length; i++)
-			{
-				if (spawnPositions[i] != null)
-				{
-					GD.Print($"Spawn {i}: {spawnPositions[i].Name} at {spawnPositions[i].GlobalPosition}");
-				}
-				else
-				{
-					GD.Print($"Spawn {i}: NULL");
-				}
-			}
-		}
-		StartNewWave();
-	}
-	#endregion
 
-	public override void _Process(double delta)
+        GD.Print($"WaveManager Ready — {spawnPositions?.Length ?? 0} spawn position(s) found.");
+        if (spawnPositions != null)
+        {
+            for (int i = 0; i < spawnPositions.Length; i++)
+            {
+                if (spawnPositions[i] != null)
+                    GD.Print($"  Spawn {i}: {spawnPositions[i].Name} at {spawnPositions[i].GlobalPosition}");
+                else
+                    GD.Print($"  Spawn {i}: NULL");
+            }
+        }
+
+        StartNewWave();
+    }
+
+    public override void _Process(double delta)
     {
-		if(enemyUI == null){
+        if (enemyUI == null) return;
+        enemyUI.Text = $" Enemies alive: {enemiesLeft} \n Max Waves: {maxWaves}  Current wave: {currentWave} ";
+    }
+    #endregion
+
+    #region Setup
+    private void SetupDefaults()
+    {
+        rnd.Randomize();
+
+        if (spawnParent == null)
+            spawnParent = this;
+
+        if (spawnPositions == null || spawnPositions.Length == 0)
+        {
+            GD.Print("Spawn positions not set, attempting to auto-find...");
+            FindSpawnPositions();
+        }
+
+        // Fallback EnemyData if none assigned in Inspector
+        if (normalEnemyData == null)
+            normalEnemyData = CreateFallbackData("NormalEnemy", 10, 1, 5.0f, Vector3.One);
+
+        if (fastEnemyData == null)
+            fastEnemyData = CreateFallbackData("FastEnemy", 6, 1, 9.0f, Vector3.One);
+
+        if (strongEnemyData == null)
+        {
+            strongEnemyData = CreateFallbackData("StrongEnemy", 25, 3, 3.0f, new Vector3(2, 2, 2));
+        }
+    }
+
+    private EnemyData CreateFallbackData(string name, int health, int damage, float speed, Vector3 scale)
+    {
+        return new EnemyData
+        {
+            enemyName = name,
+            maxHealth = health,
+            damage    = damage,
+            speed     = speed,
+            scale     = scale,
+        };
+    }
+
+    private void FindSpawnPositions()
+    {
+        Node spawnerParent = GetNodeOrNull("../EnemySpawner")
+            ?? GetTree().CurrentScene.FindChild("EnemySpawner", true, false);
+
+        if (spawnerParent == null)
+        {
+            GD.PrintErr("WaveManager: Could not find EnemySpawner node!");
             return;
         }
-        enemyUI.Text = $" Enemies alive: {enemeisLeft} \n Max Waves: {maxWaves}  Current wave: {currentWave} ";
+
+        var points       = new List<Node3D>();
+        var invalidNames = new List<string>();
+
+        foreach (Node child in spawnerParent.GetChildren())
+        {
+            if (child is Node3D point)
+            {
+                if (point.GlobalPosition != Vector3.Zero)
+                    points.Add(point);
+                else
+                    invalidNames.Add(point.Name);
+            }
+        }
+
+        spawnPositions = points.ToArray();
+        GD.Print($"WaveManager: Found {spawnPositions.Length} valid spawn position(s).");
+
+        foreach (var name in invalidNames)
+            GD.PrintErr($"  Skipped spawn point '{name}' — positioned at (0,0,0).");
     }
 
-	#region Setup
-	private void SetupDefaults()
-	{
-		rnd.Randomize();
-
-		if(enemyScene == null)
-		{
-			enemyScene = GD.Load<PackedScene>("res://assets/models/Enemy.tscn");
-		} 
-		if(spawnParent == null)
-		{
-			spawnParent = this;
-		}
-
-		// AUTO-FIND SPAWN POSITIONS IF NOT SET
-		if(spawnPositions == null || spawnPositions.Length == 0)
-		{
-			GD.Print("Spawn positions not set, attempting to auto-find...");
-			FindSpawnPositions();
-		}
-
-		if(normalEnemyData == null)
-		{
-			//normalEnemyData = CreateDefaultEnemyData("Normal", 10, 10, 20.0f, new Color(0, 0, 0));
-		}
-		if(fastEnemyData == null)
-		{
-			fastEnemyData = CreateDefaultEnemyData("Fast", 10, 5, 20.0f, new Color(0, 0, 0));
-		}
-		if(strongEnemyData == null)
-		{
-			strongEnemyData = CreateDefaultEnemyData("Strong", 20, 15, 20.0f, new Color(0, 0, 0));
-			strongEnemyData.scale = new Vector3 (2, 2, 2);
-		}
-	}
-	
-	private void FindSpawnPositions()
-{
-	// Try to find an EnemySpawner parent node
-	Node spawnerParent = GetNodeOrNull("../EnemySpawner");
-	
-	if (spawnerParent == null)
-	{
-		spawnerParent = GetTree().CurrentScene.FindChild("EnemySpawner", true, false);
-	}
-	
-	if (spawnerParent == null)
-	{
-		GD.PrintErr("Could not find EnemySpawner node!");
-		return;
-	}
-	
-	// Find all valid spawn points (exclude those at 0,0,0)
-	var points = new List<Node3D>();
-	var invalidPoints = new List<string>();
-	
-	foreach (Node child in spawnerParent.GetChildren())
-	{
-		if (child is Node3D point)
-		{
-			// Check if position is valid (not at origin)
-			if (point.GlobalPosition != Vector3.Zero)
-			{
-				points.Add(point);
-				//GD.Print($"Valid spawn: {point.Name} at {point.GlobalPosition}");
-			}
-
-			else
-			{
-				invalidPoints.Add(point.Name);
-				//GD.PrintErr($"SKIPPED: {point.Name} is at (0,0,0) - move it in the editor!");
-			}
-		}
-	}
-	
-	spawnPositions = points.ToArray();
-	
-	GD.Print($"Found {spawnPositions.Length} VALID spawn positions");
-	
-	if (invalidPoints.Count > 0)
-	{
-		//GD.PrintErr($"WARNING: {invalidPoints.Count} spawn points were skipped because they're at (0,0,0):");
-		foreach (var name in invalidPoints)
-		{
-			GD.PrintErr($"  - {name}");
-		}
-		//GD.PrintErr("Go to Godot editor and move these spawn points to proper positions!");
-	}
-	
-	if (spawnPositions.Length == 0)
-	{
-		//GD.PrintErr("CRITICAL: No valid spawn positions! All are at (0,0,0)!");
-	}
-}
-	private EnemyData CreateDefaultEnemyData(string name, int health, int damage, float speed, Color color)
-	{
-		return new EnemyData
-		{
-			enemyName = name,
-			maxHealth = health,
-			damage = damage,
-			speed = speed,
-			color = color,
-			scale = Vector3.One,
-		};
-	}
-	
-	private void SetupTimer()
-	{
-		spawnTimer = new Timer();
-		spawnTimer.Name = "SpawnTimer";
-		AddChild(spawnTimer);
-
-		spawnTimer.OneShot = false;
-		spawnTimer.WaitTime = timeBetweenWaves;
-		spawnTimer.Timeout += OnSpawnTimerTimeout;
-	}
-
-	private int SetupEnemyMultiplier()
+    private void SetupTimer()
     {
-        if(inputManager.GetAssignedPlayerCount() == 1)
-        {
-            enemiesMultiplier = 2;
-        }
-		else if(inputManager.GetAssignedPlayerCount() == 2)
-        {
-            enemiesMultiplier = 3;
-        }
-		else if(inputManager.GetAssignedPlayerCount() == 3)
-        {
-            enemiesMultiplier = 4;
-        }
-		else
-        {
-            enemiesMultiplier = 5;
-        }
-
-		return enemiesMultiplier;
+        spawnTimer          = new Timer();
+        spawnTimer.Name     = "SpawnTimer";
+        spawnTimer.OneShot  = false;
+        spawnTimer.WaitTime = timeBetweenWaves;
+        spawnTimer.Timeout += OnSpawnTimerTimeout;
+        AddChild(spawnTimer);
     }
-	#endregion
 
-	#region Wave Management
+    private int SetupEnemyMultiplier()
+    {
+        int playerCount = inputManager.GetAssignedPlayerCount();
+        enemiesMultiplier = playerCount switch
+        {
+            1 => 2,
+            2 => 3,
+            3 => 4,
+            _ => 5
+        };
+        return enemiesMultiplier;
+    }
+    #endregion
 
-	private void StartNewWave()
-	{
-		if(currentWave >= maxWaves)
-		{
-			OnAllWavesCompleted();
-			GetTree().Quit();
-			return;
-		}
+    #region Wave Management
+    private void StartNewWave()
+    {
+        if (currentWave >= maxWaves)
+        {
+            OnAllWavesCompleted();
+            GetTree().Quit();
+            return;
+        }
 
-		currentWave++;
-		enemiesSpawnedThisWave = 0;
-		enemiesToSpawnThisWave = CalculateEnemiesForWave();
-		enemiesAliveThisWave = 0;
+        currentWave++;
+        enemiesSpawnedThisWave = 0;
+        enemiesToSpawnThisWave = CalculateEnemiesForWave();
+        enemiesAliveThisWave   = 0;
+        enemiesLeft            = enemiesToSpawnThisWave;
 
-		EmitSignal(SignalName.WaveStarted, currentWave);
-		GD.Print($"Wave {currentWave} started - Spawning {enemiesToSpawnThisWave} enemies");
-		enemeisLeft = enemiesToSpawnThisWave;
-		spawnTimer.Start();
-	}
+        EmitSignal(SignalName.WaveStarted, currentWave);
+        GD.Print($"Wave {currentWave} started — spawning {enemiesToSpawnThisWave} enemies.");
+        spawnTimer.Start();
+    }
 
-	private int CalculateEnemiesForWave()
-	{
-		enemiesMultiplier = SetupEnemyMultiplier();
-		return startingEnemiesPerWave  + ((currentWave -1) * enemiesMultiplier * enemyIncreasedPerWave);
-	}
+    private int CalculateEnemiesForWave()
+    {
+        enemiesMultiplier = SetupEnemyMultiplier();
+        return startingEnemiesPerWave + ((currentWave - 1) * enemiesMultiplier * enemyIncreasedPerWave);
+    }
 
-	private void OnWaveCompleted()
-	{
-		EmitSignal(SignalName.WaveCompleted, currentWave);
-		GetTree().CreateTimer(3.0f).Timeout += StartNewWave;
-	}
+    private void OnWaveCompleted()
+    {
+        EmitSignal(SignalName.WaveCompleted, currentWave);
+        GetTree().CreateTimer(3.0f).Timeout += StartNewWave;
+    }
 
-	private void OnAllWavesCompleted()
-	{
-		spawnTimer.Stop();
-		EmitSignal(SignalName.AllWavesCompleted);
-	}
-	#endregion
+    private void OnAllWavesCompleted()
+    {
+        spawnTimer.Stop();
+        EmitSignal(SignalName.AllWavesCompleted);
+    }
+    #endregion
 
-	private void OnSpawnTimerTimeout()
-	{
-		if(enemiesSpawnedThisWave < enemiesToSpawnThisWave)
-		{
-			SpawnEnemy();
-			enemiesSpawnedThisWave++;
-		}
+    #region Spawning
+    private void OnSpawnTimerTimeout()
+    {
+        if (enemiesSpawnedThisWave < enemiesToSpawnThisWave)
+        {
+            SpawnEnemy();
+            enemiesSpawnedThisWave++;
+        }
 
-		if(enemiesSpawnedThisWave >= enemiesToSpawnThisWave)
-		{
-			spawnTimer.Stop();
-		}
-	}
-	
-	private void SpawnEnemy()
-	{
-		if(enemyScene == null || spawnParent == null)
-		{
-			return;
-		}
-		if(targetNode == null)
-		{
-			return;
-		}
-		
-		EnemyData selectedData = GetRandomEnemyType();
+        if (enemiesSpawnedThisWave >= enemiesToSpawnThisWave)
+            spawnTimer.Stop();
+    }
 
-		Enemy enemy = enemyScene.Instantiate<Enemy>();
-		
-		// Add to scene tree FIRST
-		spawnParent.AddChild(enemy);
-		
-		// Then set GLOBAL position (after it's in the tree)
-		enemy.GlobalPosition = GetRandomSpawnPosition();
-		
-		enemy.Initialize(selectedData, targetNode);
+    private void SpawnEnemy()
+    {
+        if (spawnParent == null || targetNode == null) return;
 
-		activeEnemies.Add(enemy);
-		enemiesAliveThisWave++;
+        EnemyData selectedData = GetRandomEnemyData();
+        if (selectedData == null) return;
 
-		enemy.Died += OnEnemyDied;
-		enemy.DamagedTarget += OnEnemyDamagedTarget;
-	}
+        EnemyController enemy = EnemyController.Create(selectedData, targetNode, spawnParent);
 
-	#region Enemy Type
-	private EnemyData GetRandomEnemyType()
-	{
-		int total = normalEnemyChance + fastEnemyChance + strongEnemyChance;
-		if (total == 0) total = 100;
+        // GlobalPosition must be set AFTER AddChild (enemy is in the tree at this point)
+        enemy.GlobalPosition = GetRandomSpawnPosition();
 
-		float normalChance = (float)normalEnemyChance / total * 100;
-		float fastChance = (float)fastEnemyChance / total * 100;
+        activeEnemies.Add(enemy);
+        enemiesAliveThisWave++;
 
-		int roll = rnd.RandiRange(1, 100);
-		if(roll <= normalChance)
-		{
-			return normalEnemyData;
-		}
-		else if (roll <= normalChance + fastChance)
-		{
-			return fastEnemyData;
-		}
-		else
-		{
-			return strongEnemyData;
-		}
-	}
-	#endregion
+        enemy.Died          += OnEnemyDied;
+        enemy.DamagedTarget += OnEnemyDamagedTarget;
+    }
 
-	private Vector3 GetRandomSpawnPosition()
-	{
-		if(spawnPositions == null || spawnPositions.Length == 0)
-		{
-			//GD.PrintErr("WaveManager: No spawn positions set! Spawning at default position.");
-			// Return a position away from 0,0,0 so you can see the issue
-			return new Vector3(10, 1, 10);
-		}
-		
-		int index = rnd.RandiRange(0, spawnPositions.Length - 1);
-		
-		if (spawnPositions[index] == null)
-		{
-			//GD.PrintErr($"WaveManager: Spawn position at index {index} is null!");
-			return new Vector3(10, 1, 10);
-		}
-		
-		Vector3 spawnPos = spawnPositions[index].GlobalPosition;
-		//GD.Print($"Spawning enemy at spawn point {index}: {spawnPos}");
-		
-		return spawnPos;
-	}
+    private EnemyData GetRandomEnemyData()
+    {
+        int total = normalEnemyChance + fastEnemyChance + strongEnemyChance;
+        if (total == 0) total = 100;
 
-	private void OnEnemyDied(Enemy enemy, Vector3 deathPosition)
-	{
-		activeEnemies.Remove(enemy);
-		enemiesAliveThisWave--;
-		enemeisLeft--;
+        float normalThreshold = (float)normalEnemyChance / total * 100;
+        float fastThreshold   = normalThreshold + (float)fastEnemyChance / total * 100;
 
-		if(lootTable != null)
-		{
-			lootTable.GetLoot(enemy, deathPosition);
-		}
-		if(enemiesAliveThisWave <= 0 && enemiesSpawnedThisWave >= enemiesToSpawnThisWave)
-		{
-			OnWaveCompleted();
-		}
-	
+        int roll = rnd.RandiRange(1, 100);
 
-	}
+        if (roll <= normalThreshold) return normalEnemyData;
+        if (roll <= fastThreshold)   return fastEnemyData;
+        return                              strongEnemyData;
+    }
 
-	private void OnEnemyDamagedTarget(Node3D target, int damage)
-	{
-		
-	}
+    private Vector3 GetRandomSpawnPosition()
+    {
+        if (spawnPositions == null || spawnPositions.Length == 0)
+        {
+            GD.PrintErr("WaveManager: No spawn positions available, using fallback.");
+            return new Vector3(10, 1, 10);
+        }
 
-	#region Public Methods
-	public int GetCurrentWave() => currentWave;
-	public int GetEnemiesAlive() => enemiesAliveThisWave;
-	public int GetTotalEnemiesThisWave() => enemiesToSpawnThisWave;
-	#endregion
+        int index = rnd.RandiRange(0, spawnPositions.Length - 1);
 
+        if (spawnPositions[index] == null)
+        {
+            GD.PrintErr($"WaveManager: Spawn position [{index}] is null, using fallback.");
+            return new Vector3(10, 1, 10);
+        }
+
+        return spawnPositions[index].GlobalPosition;
+    }
+    #endregion
+
+    #region Enemy Events
+    private void OnEnemyDied(EnemyController enemy, Vector3 deathPosition)
+    {
+        activeEnemies.Remove(enemy);
+        enemiesAliveThisWave--;
+        enemiesLeft--;
+
+        lootTable?.GetLoot(enemy, deathPosition);
+
+        if (enemiesAliveThisWave <= 0 && enemiesSpawnedThisWave >= enemiesToSpawnThisWave)
+            OnWaveCompleted();
+    }
+
+    private void OnEnemyDamagedTarget(Node3D target, int damage) { }
+    #endregion
+
+    #region Public Methods
+    public int GetCurrentWave()          => currentWave;
+    public int GetEnemiesAlive()         => enemiesAliveThisWave;
+    public int GetTotalEnemiesThisWave() => enemiesToSpawnThisWave;
+    #endregion
 }
