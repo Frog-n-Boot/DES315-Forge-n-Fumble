@@ -44,7 +44,7 @@ public partial class Bullet : Node3D
 		if (body.IsInGroup("Enemy"))
 		{
 			GD.Print("Enemy hit");
-			Enemy enemy = body as Enemy;
+			EnemyController enemy = body as EnemyController;
 			if(enemy == null) return;
 			enemy.TakeDamage(10);
 			QueueFree();

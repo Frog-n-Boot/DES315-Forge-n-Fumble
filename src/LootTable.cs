@@ -54,7 +54,7 @@ public partial class LootTable : Node3D
 	#region GetLoot
 
 
-	public void GetLoot(Enemy enemy, Vector3 dropPosition)
+	public void GetLoot(EnemyController enemy, Vector3 dropPosition)
 	{
 
 		float random = num.RandfRange(0, 100);

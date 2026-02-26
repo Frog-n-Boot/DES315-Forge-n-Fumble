@@ -1,10 +1,7 @@
 [gd_scene format=3 uid="uid://b8a87u3vesy3q"]
 
-[ext_resource type="Script" uid="uid://bqbrwko4kb7sp" path="res://src/Enemy.cs" id="1_pfjfy"]
-[ext_resource type="Script" uid="uid://mv3bvjhkqfww" path="res://assets/components/HealthComponent.cs" id="2_8ks7m"]
+[ext_resource type="Script" uid="uid://bqbrwko4kb7sp" path="res://src/EnemyController.cs" id="1_pfjfy"]
 [ext_resource type="Script" uid="uid://bf02wgjk36psn" path="res://assets/components/EnemyData.cs" id="2_a5uau"]
-[ext_resource type="Script" uid="uid://bqldcijarxrcr" path="res://assets/components/MovementComponent.cs" id="3_a5uau"]
-[ext_resource type="Script" uid="uid://cgfdpddcgsee" path="res://assets/components/CollissionHandlerComponent.cs" id="4_v6vhh"]
 [ext_resource type="Script" uid="uid://brp6gsap0s2ok" path="res://src/HealthBar.cs" id="6_c2ay5"]
 
 [sub_resource type="Resource" id="Resource_v6vhh"]
@@ -45,9 +42,10 @@ corner_radius_bottom_left = 3
 expand_margin_bottom = 3.0
 shadow_size = 3
 
-[node name="Enemy" type="Node3D" unique_id=2041307673 node_paths=PackedStringArray("mesh", "collisionArea") groups=["Enemy"]]
+[node name="Enemy" type="Node3D" unique_id=2041307673 node_paths=PackedStringArray("moveTarget", "mesh", "collisionArea") groups=["Enemy"]]
 script = ExtResource("1_pfjfy")
 enemyData = SubResource("Resource_v6vhh")
+moveTarget = NodePath("CharacterBody3D")
 mesh = NodePath("CharacterBody3D/MeshInstance3D")
 collisionArea = NodePath("CharacterBody3D/Area3D")
 
@@ -68,15 +66,6 @@ collision_mask = 235
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/Area3D" unique_id=1172694664]
 shape = SubResource("CylinderShape3D_82iww")
-
-[node name="HealthComponent" type="Node" parent="." unique_id=220422716]
-script = ExtResource("2_8ks7m")
-
-[node name="MovementComponent" type="Node" parent="." unique_id=1160935092]
-script = ExtResource("3_a5uau")
-
-[node name="CollisionHandlerComponent" type="Node" parent="." unique_id=910746232]
-script = ExtResource("4_v6vhh")
 
 [node name="HealthBar" type="Sprite3D" parent="." unique_id=833760103]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0)

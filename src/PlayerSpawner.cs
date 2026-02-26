@@ -21,7 +21,6 @@ public partial class PlayerSpawner : Node
             return;
         }
 
-        // Auto fill with spawn points (only Node3D children)
         var points = new List<Node3D>();
         foreach (Node child in GetChildren())
         {
