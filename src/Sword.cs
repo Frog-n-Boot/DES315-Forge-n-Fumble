@@ -10,6 +10,8 @@ public partial class Sword : Node3D
 	[Signal] public delegate void CheckDurabilityEventHandler();
 	[Signal] public delegate void BrokeEventHandler();
 
+	public bool isBeingPickedUp = false;
+
 	private CollisionShape3D hitbox;
 
 	public override void _Ready()

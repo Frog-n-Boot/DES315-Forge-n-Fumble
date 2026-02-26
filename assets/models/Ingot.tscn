@@ -17,19 +17,19 @@ heightmap_enabled = true
 heightmap_texture = ExtResource("3_tw3uh")
 
 [node name="Ingot" type="Node3D" unique_id=474887611]
-
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1362579820 groups=["pickable"]]
-transform = Transform3D(1, 0, 0, 0, 0.1894375, 0, 0, 0, 0.7128166, 0, 0, 0)
-collision_layer = 16
-collision_mask = 3
 script = ExtResource("1_rqadj")
 itemDataPath = "uid://bkb1nmonfcm1o"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1055089518]
+[node name="Area3D" type="Area3D" parent="." unique_id=162248685 groups=["pickable"]]
+transform = Transform3D(1, 0, 0, 0, 0.1894375, 0, 0, 0, 0.7128166, 0, 0, 0)
+collision_layer = 16
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1055089518]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0068206787, 0.3935852, 0.08666992)
 shape = SubResource("BoxShape3D_rqadj")
 
-[node name="IngCopperLow" type="MeshInstance3D" parent="StaticBody3D" unique_id=284386029]
+[node name="IngCopperLow" type="MeshInstance3D" parent="Area3D" unique_id=284386029]
 transform = Transform3D(1, 0, 0, 0, 5.278786, 0, 0, 0, 1.4028854, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_pkkf6")
 mesh = ExtResource("5_76tt6")

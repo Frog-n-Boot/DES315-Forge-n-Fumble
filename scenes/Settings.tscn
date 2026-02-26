@@ -266,5 +266,12 @@ offset_bottom = 772.0
 texture = ExtResource("2_i47rn")
 stretch_mode = 1
 
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=316014818]
+z_index = -1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.750067, 16.369858)
+color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
+
 [connection signal="pressed" from="CanvasLayer/BackButton" to="CanvasLayer" method="OnBackPressed"]
 [connection signal="pressed" from="CanvasLayer/ApplyButton" to="CanvasLayer" method="OnApplyPressed"]

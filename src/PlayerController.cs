@@ -47,6 +47,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	private Sword currentSword;
 	private bool isAttacking = false;
 	private int tick = 0;
+	private Pickable nearbyPickable;
 
 	public IEnumerable<ItemData> GetCarriedItems()
 	{
@@ -99,8 +100,8 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	forge = GetNodeOrNull<Forge>("/root/Forge");
 	healthPack = GetNodeOrNull<HealthPack>("/root/HealthPack");
 	areaPickup = GetNodeOrNull<Area3D>("Area3D");
-	areaPickup.BodyEntered += OnPickupBodyEntered;
 	areaPickup.AreaEntered += OnPickupAreaEntered;
+	areaPickup.AreaExited += OnPickUpAreaExited;
 
 	animPlayer.AnimationFinished += OnAnimationFinished;
 	
@@ -186,9 +187,13 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			StartAttack();
 			
 		}
-		if (IsActionPressed("attack") && currentStation != null)
+		if (IsActionPressed("interact") && currentStation != null)
 		{
 		   currentStation.StartCrafting();
+		}
+		if (IsActionPressed("pick_up") && nearbyPickable != null)
+		{
+			ProcessPickable(nearbyPickable);
 		}
 	}
 
@@ -284,6 +289,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	{
 		DropItem(rightHand);
 	}
+
 }
 
 
@@ -322,20 +328,20 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		}
 	}
 
-	private void OnPickupBodyEntered(Node body)
-	{
-		if(body.IsInGroup("Player")) return;
-		if(processPickable.Contains(body)) return;
+	// private void OnPickupBodyEntered(Node body)
+	// {
+	// 	if(body.IsInGroup("Player")) return;
+	// 	if(processPickable.Contains(body)) return;
 
-		GD.Print($"BodyEntered: {body.Name} groups: {string.Join(", ", body.GetGroups())}");
-		if (body.IsInGroup("pickable"))
-		{
-			processPickable.Add(body);
-			ProcessPickable(body);
-		}
+	// 	GD.Print($"BodyEntered: {body.Name} groups: {string.Join(", ", body.GetGroups())}");
+	// 	if (body.IsInGroup("pickable"))
+	// 	{
+	// 		processPickable.Add(body);
+	// 		ProcessPickable(body);
+	// 	}
 	  
 		
-	}
+	// }
 
 	private void OnPickupAreaEntered(Area3D area)
 	{
@@ -344,7 +350,11 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		if(area.GetGroups().Count == 0) return;
 
 		if (area.IsInGroup("pickable"))
-			ProcessPickable(area);
+		{
+			nearbyPickable = area.GetParent() as Pickable;
+			GD.Print($"NearbyPickable: {nearbyPickable?.Name ?? "null"}");
+		}
+		
 
 
 		bool hasSword = false;
@@ -363,64 +373,60 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		{
 			StaticBody3D areaParent = area.GetParent() as StaticBody3D;
 			Node3D swordNode = areaParent.GetParent() as Node3D;
-			if(swordNode != null)
+			if(swordNode == null) return;
+
+			Sword sword = swordNode as Sword;
+			if(sword != null && sword.isBeingPickedUp) return;
+			if(sword != null) sword.isBeingPickedUp = true;
+			swordNode.CallDeferred("reparent", rightHand);
+			GetTree().CreateTimer(0.1f).Timeout += () =>
 			{
-				swordNode.Reparent(rightHand);
+				if(!IsInstanceValid(swordNode)) return;
 				swordNode.GlobalPosition = rightHand.GlobalPosition;
 				swordNode.Rotation = Vector3.Zero;
 				rightHand.Rotation = Vector3.Zero;
-
+				
 				currentSword = swordNode as Sword;
 				if (currentSword != null)
 				{
 					currentSword.CheckDurability += OnSwordDurabilityChecked;
 					currentSword.Broke += OnSwordBroke;
+					currentSword.isBeingPickedUp = false;
 				}
-			}
-			
-			//GD.Print("Sword has been collided"); 
+			};
 		}
 	}
 
-	private void ProcessPickable(Node hitObject)
+	private void OnPickUpAreaExited(Area3D area)
 	{
+		if(area.IsInGroup("pickable"))
+			nearbyPickable = null;
+	}
+
+	private void ProcessPickable(Pickable pickable)
+	{
+		if(!IsInstanceValid(pickable)) return;
+		if(processPickable.Contains(pickable)) return;
+		processPickable.Add(pickable);
 		
-		//GD.Print($"ProcessPickable called for {hitObject.Name}");
-		//.Print($"Left available: {leftHandAvailable}, Right available: {rightHandAvailable}");
-		GD.Print($"Left children: {leftHand.GetChildCount()}, Right children: {rightHand.GetChildCount()}");
-		if (hitObject == null)
-			return;
-
-		Pickable pickable = hitObject as Pickable;
-		if (pickable == null)
-			return;
-
-		Node3D targetHand = null;
+		
 			
-		if(leftHand.GetChildCount() == 0)
+		if(leftHand.GetChildCount() > 0)
 		{
-			targetHand = leftHand;
-		}
-		else if(rightHand.GetChildCount() == 0)
-		{
-			targetHand = rightHand;
-		}
-		else
-		{
-			processPickable.Remove(hitObject);
+			processPickable.Remove(pickable);
 			return;
 		}
 
-		GD.Print($"Picking up into {targetHand.Name}");
-		//ItemData itemData = pickable.GetItemData();
-		//areaPickup.SetDeferred("monitoring", false);
-		pickable.Reparent(targetHand);
-		pickable.GetNode<CollisionShape3D>("CollisionShape3D").SetDeferred("disabled", true);
-			
-		pickable.GlobalPosition = targetHand.GlobalPosition;
-		pickable.Rotation = targetHand.Rotation;
-		//GetTree().CreateTimer(0.1f).Timeout += () => areaPickup.SetDeferred("monitoring", true);
-		GetTree().CreateTimer(0.2f).Timeout += () => processPickable.Remove(hitObject);
+		pickable.CallDeferred("reparent", leftHand);
+
+		GetTree().CreateTimer(0.1f).Timeout += () => {
+			if (IsInstanceValid(pickable))
+			{
+				pickable.GlobalPosition = leftHand.GlobalPosition;
+				pickable.Rotation = leftHand.Rotation;
+			}
+			processPickable.Remove(pickable);
+		};
 		
 	}
 
@@ -560,25 +566,53 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		if(hand.GetChildCount() == 0) return;
 
 		var child = hand.GetChild(0);
+		if(child == null || !IsInstanceValid(child)) return;
+
+		areaPickup.SetDeferred("monitoring", false);
+
+		Vector3 dropPosition = GlobalPosition + (Transform.Basis.Z * 2.5f);
+
 		if(child is Sword sword)
 		{
-			sword.Reparent(GetTree().Root);
-			sword.GlobalPosition = GlobalPosition + (Transform.Basis.Z * 2.5f);
-			sword.Rotation = Vector3.Zero;
+			sword.CallDeferred("reparent", GetTree().Root);
+			sword.SetDeferred("global_position", dropPosition);
+			sword.SetDeferred("rotation", Vector3.Zero);
 
 			currentSword.CheckDurability -= OnSwordDurabilityChecked;
 			currentSword.Broke -= OnSwordBroke;
 			currentSword = null;
+			GetTree().CreateTimer(0.1f).Timeout += () =>
+				areaPickup.SetDeferred("monitoring", true);
 			return;
 		}
 
-		var pickable = hand.GetChild(0) as Pickable;
-		if(pickable == null) return;
+		var pickable = child as Pickable;
+		if(pickable != null)
+		{
+			pickable.CallDeferred("reparent", GetTree().Root);
+			GetTree().CreateTimer(0.1f).Timeout += () =>
+			{
+				if(IsInstanceValid(pickable))
+					pickable.GlobalPosition = dropPosition;
+				areaPickup.SetDeferred("monitoring", true);
+			};
+			pickable.SetDeferred("rotation", Vector3.Zero);
+			return;
+		}
 
-		pickable.Reparent(GetTree().Root);
-		pickable.GetNode<CollisionShape3D>("CollisionShape3D").SetDeferred("disabled", false);
-		pickable.GlobalPosition = GlobalPosition + (Transform.Basis.Z * 2.5f);
-		pickable.Rotation = Vector3.Zero;
+		var node = child as Node3D;
+		if(node != null)
+		{
+			node.CallDeferred("reparent", GetTree().Root);
+			GetTree().CreateTimer(0.1f).Timeout += () =>
+			{
+				if(IsInstanceValid(node))
+					node.GlobalPosition = dropPosition;
+				areaPickup.SetDeferred("monitoring", true);
+			};
+			node.SetDeferred("rotation", Vector3.Zero);
+		}
+
 	}
 
 	public void SetCurrentStation(BaseStationScript station)

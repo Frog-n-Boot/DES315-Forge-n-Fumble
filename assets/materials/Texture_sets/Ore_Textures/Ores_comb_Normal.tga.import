@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfllkfsxak7hb"
-path.s3tc="res://.godot/imported/sword_frts_rough_low_Normal.tga-47287ba49b8df75c739b476d55db83cd.s3tc.ctex"
+uid="uid://dmckkpafqq3bq"
+path.s3tc="res://.godot/imported/Ores_comb_Normal.tga-80c1876429552c761b8f3ed2072ba75d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/materials/Texture_sets/Item_Textures/sword_frts_rough_low_Normal.tga"
-dest_files=["res://.godot/imported/sword_frts_rough_low_Normal.tga-47287ba49b8df75c739b476d55db83cd.s3tc.ctex"]
+source_file="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_Normal.tga"
+dest_files=["res://.godot/imported/Ores_comb_Normal.tga-80c1876429552c761b8f3ed2072ba75d.s3tc.ctex"]
 
 [params]
 
@@ -27,7 +27,7 @@ compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=1
-roughness/src_normal="res://assets/materials/Texture_sets/Item_Textures/sword_frts_rough_low_Normal.tga"
+roughness/src_normal="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_Normal.tga"
 process/channel_remap/red=0
 process/channel_remap/green=1
 process/channel_remap/blue=2

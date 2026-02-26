@@ -9,14 +9,14 @@ public partial class LootTable : Node3D
 	#region Variables
 
 	/* ---- Percentage range for the items ----- */
-	[Export(PropertyHint.Range, "0,100,1")] public int stickDropChance;
-    [Export(PropertyHint.Range, "0,100,1")] public int ingotDropChance;
+	[Export(PropertyHint.Range, "0,100,1")] public int oreDropChance;
+    //[Export(PropertyHint.Range, "0,100,1")] public int ingotDropChance;
     [Export(PropertyHint.Range, "0,100,1")] public int healthPackDropChance;
 
 	/* ---- Packed scenes ---- */
 	private PackedScene item;
-    [Export] public PackedScene stickObject { get; private set; }
-	[Export] public PackedScene ingotObject { get; private set; }
+    [Export] public PackedScene oreObject { get; private set; }
+	//[Export] public PackedScene ingotObject { get; private set; }
 	[Export] public PackedScene healthPackObject { get; private set; }
 
 	/* ---- Random number generators ---- */
@@ -34,17 +34,17 @@ public partial class LootTable : Node3D
 	{
 		
 		num.Randomize();
-		if(stickObject == null)
+		if(oreObject == null)
         {
-        	stickObject = GD.Load<PackedScene>("res://Objects/Stick.tscn");
+        	oreObject = GD.Load<PackedScene>("res://assets/models/Ore.tscn");
         }
-		if(ingotObject == null)
-        {
-        	ingotObject = GD.Load<PackedScene>("res://Objects/Ingot.tscn");
-        }
+		// if(ingotObject == null)
+        // {
+        // 	ingotObject = GD.Load<PackedScene>("res://Objects/Ingot.tscn");
+        // }
 		if(healthPackObject == null)
         {
-        	healthPackObject = GD.Load<PackedScene>("res://Objects/Healthpack.tscn");
+        	healthPackObject = GD.Load<PackedScene>("res://assets/models/Healthpack.tscn");
         }
 
 	}
@@ -62,32 +62,32 @@ public partial class LootTable : Node3D
 		//Compare if random value is less then enemy dropChance
 		if(random < 60)
 		{
-			int stick = Mathf.Clamp(stickDropChance, 0, 100);
-			int ingot = Mathf.Clamp(ingotDropChance, 0, 100);
+			int ore = Mathf.Clamp(oreDropChance, 0, 100);
+			//int ingot = Mathf.Clamp(ingotDropChance, 0, 100);
 			int healthPack = Mathf.Clamp(healthPackDropChance, 0, 100);
-			int total = stick + ingot + healthPack;
+			int total = ore  + healthPack;
 
 			if(total != 100)
 			{
 				float scale = 100.0f/ total;
-				stick = Mathf.RoundToInt(stick * scale);
-				ingot = Mathf.RoundToInt(ingot * scale);
-				healthPack = 100 - stick - ingot;
+				ore = Mathf.RoundToInt(ore * scale);
+				//ingot = Mathf.RoundToInt(ingot * scale);
+				healthPack = 100 - ore; //- ingot;
 			}
 			dropType.Randomize();
 			int dropCase = dropType.RandiRange(1, 100);
 			
 			Node3D droppedItem = null;
-			if(dropCase <= stick)
+			if(dropCase <= ore)
 			{
-				item = stickObject;
+				item = oreObject;
 				droppedItem = item.Instantiate<Node3D>();
 			}
-			else if(dropCase <= stick + ingot)
-			{
-				item = ingotObject;
-				droppedItem = item.Instantiate<Node3D>();
-			}
+			// else if(dropCase <= stick + ingot)
+			// {
+			// 	item = ingotObject;
+			// 	droppedItem = item.Instantiate<Node3D>();
+			// }
 			else
 			{
 				item = healthPackObject;

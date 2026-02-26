@@ -24,7 +24,7 @@ metadata/_custom_type_script = "uid://1bo1o367ybgk"
 [sub_resource type="BoxShape3D" id="BoxShape3D_5b8nd"]
 size = Vector3(0.38000727, 0.51831055, 0.24706268)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_rgbbq"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_yd14g"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ohbk7"]
@@ -52,7 +52,7 @@ inputNode = NodePath("InputPort")
 outputNode = NodePath("OutputPort")
 timeProgressBar = NodePath("Sprite3D/SubViewport/ProgressBar")
 stationName = NodePath("Sprite3D/SubViewport/Label")
-craftDuration = 10.0
+craftDuration = 1.0
 recipes = Array[Object]([SubResource("Resource_04qyv")])
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1067101710 groups=["Forge"]]
@@ -65,7 +65,7 @@ shape = SubResource("BoxShape3D_5b8nd")
 
 [node name="ForgeHealthBar" parent="." unique_id=1328028810 instance=ExtResource("3_g2ei8")]
 transform = Transform3D(-20, 0, 1.7484554e-06, 0, 20, 0, -1.7484554e-06, 0, -20, 0, 18.932394, -0.85522586)
-texture = SubResource("ViewportTexture_rgbbq")
+texture = SubResource("ViewportTexture_yd14g")
 
 [node name="InputPort" parent="." unique_id=750325492 instance=ExtResource("4_0l8vc")]
 transform = Transform3D(5.40544, 0, 0, 0, 2.857143, 0, 0, 0, 5.718407, -7.2779765, 2.0441356, -2.5328603)

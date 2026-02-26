@@ -73,11 +73,11 @@ public partial class SequenceMinigame : Node
 		for(int i = 0; i < sequence.Length; i++)
 		{
 			if(i == currentStep)
-				display += $"[color=yellow]{GetArrow(sequence[i], isController)}[/color]";
+				display += $"[b][font_size=28][color=yellow]{GetArrow(sequence[i], isController)}[/color][/font_size][/b]";
 			else if(i < currentStep)
-				display += $"[color=green]{GetArrow(sequence[i], isController)}[/color]";
+				display += $"[b][font_size=28][color=green]{GetArrow(sequence[i], isController)}[/color][/font_size][/b]";
 			else
-				display += $"[color=white]{GetArrow(sequence[i], isController)}[/color]";
+				display += $"[b][font_size=28][color=white]{GetArrow(sequence[i], isController)}[/color][/font_size][/b]";
 		}
 		sequenceText.Text = display;
 
@@ -99,10 +99,10 @@ public partial class SequenceMinigame : Node
 		if(activeDevice == -1){
 			if(@event is not InputEventKey) return;
 
-			if(@event.IsActionPressed("move_left")) input = "Left";
-			if(@event.IsActionPressed("move_right")) input = "Right";
-			if(@event.IsActionPressed("move_up")) input = "Up";
-			if(@event.IsActionPressed("move_down")) input = "Down";
+			if(@event.IsActionPressed("ui_left")) input = "Left";
+			if(@event.IsActionPressed("ui_right")) input = "Right";
+			if(@event.IsActionPressed("ui_up")) input = "Up";
+			if(@event.IsActionPressed("ui_down")) input = "Down";
 			
 		}
 		else

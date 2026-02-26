@@ -2,12 +2,22 @@
 
 [ext_resource type="Script" uid="uid://c25evsd3j0b" path="res://src/Sword.cs" id="1_4uorx"]
 [ext_resource type="ArrayMesh" uid="uid://vmdklfvgul40" path="res://assets/models/FinalAssets_Low/Items_Models/Sword_first_low.obj" id="2_hbd7i"]
+[ext_resource type="Texture2D" uid="uid://urty3b4mhqm3" path="res://assets/materials/Texture_sets/Item_Textures/sword_frts_rough_low_BaseCol.tga" id="2_m8ogb"]
+[ext_resource type="Texture2D" uid="uid://dc3r4qxj536qx" path="res://assets/materials/Texture_sets/Item_Textures/sword_frts_rough_low_ORM.tga" id="3_f13ar"]
+[ext_resource type="Texture2D" uid="uid://cfllkfsxak7hb" path="res://assets/materials/Texture_sets/Item_Textures/sword_frts_rough_low_Normal.tga" id="4_b28ks"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xv1ii"]
 size = Vector3(5.340587, 1.6914063, 8.853933)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kpo4t"]
 size = Vector3(1.742096, 1.6395874, 4.7293167)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_hbd7i"]
+albedo_texture = ExtResource("2_m8ogb")
+normal_enabled = true
+normal_texture = ExtResource("4_b28ks")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_f13ar")
 
 [node name="Sword" type="Node3D" unique_id=689345526 groups=["Sword"]]
 script = ExtResource("1_4uorx")
@@ -21,6 +31,7 @@ collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=481175609 groups=["Sword"]]
 transform = Transform3D(0.09335804, 0, 0.035836797, 0, 1.6399679, -3.7252306e-09, -0.035835795, 0, 0.093356036, 0.0032437593, 1.0115695, 0.01644627)
+visible = false
 shape = SubResource("BoxShape3D_xv1ii")
 disabled = true
 
@@ -30,8 +41,10 @@ collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/Area3D" unique_id=1446767842]
 transform = Transform3D(0.3016428, 0, 0.0665279, 0, 1.639953, 0, -0.115786895, 0, 0.17330521, 0.0062087923, 0.9769906, 0.023261486)
+visible = false
 shape = SubResource("BoxShape3D_kpo4t")
 
 [node name="SwordFirstLow" type="MeshInstance3D" parent="." unique_id=31124853]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+material_override = SubResource("ORMMaterial3D_hbd7i")
 mesh = ExtResource("2_hbd7i")

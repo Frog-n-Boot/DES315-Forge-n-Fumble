@@ -1,32 +1,35 @@
 [gd_scene format=3 uid="uid://i3hf4fb7cghh"]
 
 [ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Pickable.cs" id="1_mn0cs"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_mn0cs"]
+[ext_resource type="ArrayMesh" uid="uid://vmdklfvgul40" path="res://assets/models/FinalAssets_Low/Items_Models/Sword_first_low.obj" id="2_6tsm4"]
+[ext_resource type="Texture2D" uid="uid://urty3b4mhqm3" path="res://assets/materials/Texture_sets/Item_Textures/sword_frts_rough_low_BaseCol.tga" id="2_8nlyw"]
+[ext_resource type="Texture2D" uid="uid://dc3r4qxj536qx" path="res://assets/materials/Texture_sets/Item_Textures/sword_frts_rough_low_ORM.tga" id="3_q10j4"]
+[ext_resource type="Texture2D" uid="uid://cfllkfsxak7hb" path="res://assets/materials/Texture_sets/Item_Textures/sword_frts_rough_low_Normal.tga" id="4_w6hee"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6tsm4"]
-size = Vector3(1, 2.1992188, 1)
+size = Vector3(0.68066406, 2.2209473, 0.59484863)
 
-[node name="DullSword" type="Node3D" unique_id=778246616 groups=["pickable"]]
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_pswvq"]
+albedo_texture = ExtResource("2_8nlyw")
+albedo_texture_force_srgb = true
+normal_enabled = true
+normal_texture = ExtResource("4_w6hee")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_q10j4")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1332799271 groups=["pickable"]]
-collision_layer = 16
-collision_mask = 3
+[node name="DullSword" type="Node3D" unique_id=778246616]
 script = ExtResource("1_mn0cs")
 itemDataPath = "uid://ddoliql37n67l"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1917270002]
-transform = Transform3D(0.2604546, 0, 0, 0, 1, 0, 0, 0, 0.25087947, 0, 0, 0)
-mesh = SubResource("BoxMesh_mn0cs")
+[node name="Area3D" type="Area3D" parent="." unique_id=12144372 groups=["pickable"]]
+collision_layer = 16
+collision_mask = 3
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="StaticBody3D" unique_id=1443253515]
-transform = Transform3D(0.2604546, 0, 0, 0, 1.3741641, 0, 0, 0, 0.25087947, 0, 1.4333365, 0)
-mesh = SubResource("BoxMesh_mn0cs")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="StaticBody3D" unique_id=1785342464]
-transform = Transform3D(0.9357139, 0, 0, 0, 0.1408838, 0, 0, 0, 0.5657488, 0, 0.65509045, 0)
-mesh = SubResource("BoxMesh_mn0cs")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1017160636]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.98016167, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1017160636]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012207031, 1.2588482, -0.0038452148)
+visible = false
 shape = SubResource("BoxShape3D_6tsm4")
+
+[node name="SwordFirstLow" type="MeshInstance3D" parent="." unique_id=1500591981]
+material_override = SubResource("ORMMaterial3D_pswvq")
+mesh = ExtResource("2_6tsm4")

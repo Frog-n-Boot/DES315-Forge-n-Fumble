@@ -70,6 +70,14 @@ offset_bottom = 132.0
 theme_override_font_sizes/font_size = 60
 text = "Forge-N-Fumble"
 
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=322622548]
+z_index = -1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.750067, 16.369858)
+color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
+
 [node name="BackgroundImage" type="TextureRect" parent="." unique_id=2007621218]
 visible = false
 visibility_layer = 2

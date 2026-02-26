@@ -18,4 +18,5 @@ public partial class MainMenu : Control
 	public void OnSettingsButtonPressed() => SceneManager.instance.LoadSettings();
 	public void OnQuitButtonPressed() => SceneManager.instance.QuitGame();
 
+
 }
