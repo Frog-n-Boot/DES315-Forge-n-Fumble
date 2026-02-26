@@ -28,6 +28,8 @@ public partial class EnemyController : Node3D
     public string EnemyName      { get; private set; }
     public int    MaxHealth       { get; private set; }
     public int    Damage          { get; private set; }
+
+    public int    DamageToPlayer { get; private set;}
     public float  Speed           { get; private set; }
     public float  LootDropChance  { get; private set; }
     #endregion
@@ -155,6 +157,7 @@ public partial class EnemyController : Node3D
         EnemyName     = enemyData.enemyName;
         MaxHealth     = enemyData.maxHealth;
         Damage        = enemyData.damage;
+        DamageToPlayer = enemyData.damageToPlayer;
         Speed         = enemyData.speed;
         LootDropChance = enemyData.lootDropChance;
     }
@@ -252,7 +255,7 @@ public partial class EnemyController : Node3D
                 isDying = true;
                 EmitSignal(SignalName.DamagedTarget, body, Damage);
                 if (body is PlayerController playerController)
-                    playerController.TakeDamage(Damage);
+                    playerController.TakeDamage(DamageToPlayer);
                 Die();
                 break;
 

@@ -544,9 +544,29 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 	private void Die()
 	{
-		GlobalPosition = new Vector3(0, 1, 0);
-		health = maxHealth;
-		EmitSignal(SignalName.PlayerHealthChanged, health, maxHealth);
+		Visible = false;
+		SetPhysicsProcess(false);
+		SetProcess(false);
+
+		GetNode<CollisionShape3D>("CollisionShape3D").SetDeferred("disabled", true);
+
+		areaPickup.SetDeferred("monitoring", false);
+		areaPickup.SetDeferred("monitorable", false);
+
+		GetTree().CreateTimer(3.0f).Timeout += () =>{
+			GlobalPosition = new Vector3(0, 1, 0);
+			health = maxHealth;
+			Visible = true;
+			SetPhysicsProcess(true);
+			SetProcess(true);
+
+			GetNode<CollisionShape3D>("CollisionShape3D").SetDeferred("disabled", false);
+			areaPickup.SetDeferred("monitoring", true);
+			areaPickup.SetDeferred("monitorable", true);
+
+			EmitSignal(SignalName.PlayerHealthChanged, health, maxHealth);
+		};
+
 	}
 
 	private void OnSwordDurabilityChecked()

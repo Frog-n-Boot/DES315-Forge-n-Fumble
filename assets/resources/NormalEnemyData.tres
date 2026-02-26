@@ -8,6 +8,7 @@
 script = ExtResource("1_ptvci")
 enemyName = "NormalEnemy"
 damage = 1
+damageToPlayer = 15
 color = Color(1, 1, 1, 1)
 lootDropChance = 60.0
 enemyMat = ExtResource("1_7n161")
