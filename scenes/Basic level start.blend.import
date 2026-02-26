@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cwveleo07x41o"
-path="res://.godot/imported/level take 3.blend-4fd75fc40673c4ce5931b605e4d5a905.scn"
+uid="uid://7rfigc0m1vmp"
+path="res://.godot/imported/Basic level start.blend-ba468fba00680d46a3e602337a078390.scn"
 
 [deps]
 
-source_file="res://level take 3.blend"
-dest_files=["res://.godot/imported/level take 3.blend-4fd75fc40673c4ce5931b605e4d5a905.scn"]
+source_file="res://scenes/Basic level start.blend"
+dest_files=["res://.godot/imported/Basic level start.blend-ba468fba00680d46a3e602337a078390.scn"]
 
 [params]
 

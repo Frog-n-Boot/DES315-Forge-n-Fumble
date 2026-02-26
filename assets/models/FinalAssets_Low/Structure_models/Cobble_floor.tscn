@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://v1d86mn3ofwb"]
 
-[ext_resource type="Texture2D" uid="uid://bn1rhu1nrpxh0" path="res://assets/materials/Texture_sets/Fixed_textureSets/Floor_cobble_BaseCol.tga" id="1_i4nys"]
-[ext_resource type="Texture2D" uid="uid://bk2n5lxk61nu0" path="res://assets/materials/Texture_sets/Fixed_textureSets/Floor_cobble_Normal.tga" id="2_kxdsq"]
-[ext_resource type="Texture2D" uid="uid://bjyauoxyvo30s" path="res://assets/materials/Texture_sets/Fixed_textureSets/Floor_cobble_ORM.tga" id="3_pq28a"]
+[ext_resource type="Texture2D" uid="uid://bn1rhu1nrpxh0" path="res://assets/materials/Texture_sets/Structurte_Textures/Floor_cobble_BaseCol.tga" id="1_i4nys"]
+[ext_resource type="Texture2D" uid="uid://bk2n5lxk61nu0" path="res://assets/materials/Texture_sets/Structurte_Textures/Floor_cobble_Normal.tga" id="2_kxdsq"]
+[ext_resource type="Texture2D" uid="uid://bjyauoxyvo30s" path="res://assets/materials/Texture_sets/Structurte_Textures/Floor_cobble_ORM.tga" id="3_pq28a"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_i75uk"]
 

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://8roa2xkb2ipl"]
 
 [ext_resource type="Script" uid="uid://bwwhlpy6hxupd" path="res://src/PlayerController.cs" id="1_ormyk"]
-[ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/Sword.tscn" id="3_8d03m"]
+[ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/FinalAssets_Low/Items_Models/Sword.tscn" id="3_8d03m"]
 [ext_resource type="Texture2D" uid="uid://fywbkplmkbgs" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/Dwarf_low_BaseCol.tga" id="3_v0ggv"]
 [ext_resource type="Script" uid="uid://brp6gsap0s2ok" path="res://src/HealthBar.cs" id="4_8d03m"]
 [ext_resource type="Texture2D" uid="uid://bx0rnncaa27mi" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/Dwarf_low_ORM.tga" id="4_jnlb4"]

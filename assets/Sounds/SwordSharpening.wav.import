@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://b4c81r30mgpwx"
-path="res://.godot/imported/SwordSharpening.wav-dc6aaf4eba523af70bf77405affe1a8c.sample"
+path="res://.godot/imported/SwordSharpening.wav-913ef3eb83bd0501bd8a7924c57e94a3.sample"
 
 [deps]
 
-source_file="res://SwordSharpening.wav"
-dest_files=["res://.godot/imported/SwordSharpening.wav-dc6aaf4eba523af70bf77405affe1a8c.sample"]
+source_file="res://assets/Sounds/SwordSharpening.wav"
+dest_files=["res://.godot/imported/SwordSharpening.wav-913ef3eb83bd0501bd8a7924c57e94a3.sample"]
 
 [params]
 

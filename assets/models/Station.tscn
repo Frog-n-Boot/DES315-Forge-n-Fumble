@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bdwnaqw5jg3si" path="res://src/SmeltingStation.cs" id="1_0q7ni"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="1_rdc31"]
-[ext_resource type="PackedScene" uid="uid://bff5da5u2kggn" path="res://assets/models/MeltedIngot.tscn" id="3_ufqn5"]
+[ext_resource type="PackedScene" uid="uid://bff5da5u2kggn" path="res://assets/models/FinalAssets_Low/Items_Models/MeltedIngot.tscn" id="3_ufqn5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdc31"]
 
