@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://d1twjqnwuwntn"]
+
+[ext_resource type="Texture2D" uid="uid://c0j7fa7xo3ld7" path="res://assets/materials/Texture_sets/Fixed_textureSets/Floor_wooden_BaseCol.tga" id="1_cdwrb"]
+[ext_resource type="Texture2D" uid="uid://bqwvtgfb2gpj3" path="res://assets/materials/Texture_sets/Fixed_textureSets/Floor_wooden_Normal.tga" id="2_hkhlj"]
+[ext_resource type="Texture2D" uid="uid://bevygbghgpqv7" path="res://assets/materials/Texture_sets/Fixed_textureSets/Floor_wooden_ORM.tga" id="3_bj48l"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_i75uk"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_x0h2i"]
+albedo_texture = ExtResource("1_cdwrb")
+orm_texture = ExtResource("3_bj48l")
+normal_enabled = true
+normal_texture = ExtResource("2_hkhlj")
+
+[node name="Node3D" type="Node3D" unique_id=436733411]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1911837763]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=141253894]
+mesh = SubResource("PlaneMesh_i75uk")
+surface_material_override/0 = SubResource("ORMMaterial3D_x0h2i")
