@@ -57,10 +57,10 @@ mesh = ExtResource("5_fgmgg")
 skeleton = NodePath("../..")
 
 [node name="InputPort" parent="." unique_id=750325492 instance=ExtResource("3_fgmgg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.061491847, 0.27267706, 0.7406943)
+transform = Transform3D(9.291697, 0, 0, 0, 1.837871, 0, 0, 0, 6.8115783, 0.00969851, 0.88491654, -0.01149559)
 
 [node name="OutputPort" parent="." unique_id=1109718632 instance=ExtResource("3_fgmgg")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.1454782, 0.07920647, -0.09812653)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.0206666, 0.3782071, 0.9554943)
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=840510996]
 transform = Transform3D(-1.7484555e-07, 0, 4, 0, 4, 0, -4, 0, -1.7484555e-07, -0.022883892, 2.961748, 0)
@@ -86,4 +86,4 @@ text = "
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1808461735]
 stream = ExtResource("9_8jrxj")
-volume_db = -60.0
+volume_db = -50.0
