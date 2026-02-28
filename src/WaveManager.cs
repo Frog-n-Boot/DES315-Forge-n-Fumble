@@ -296,8 +296,12 @@ public partial class WaveManager : Node
 		activeEnemies.Remove(enemy);
 		enemiesAliveThisWave--;
 		enemiesLeft--;
+		float roll = (float)GD.RandRange(0, 99);
+		if(roll <= enemy.LootDropChance)
+		{
+			lootTable?.GetLoot(enemy, deathPosition);
+		}
 
-		lootTable?.GetLoot(enemy, deathPosition);
 
 		if (enemiesAliveThisWave <= 0 && enemiesSpawnedThisWave >= enemiesToSpawnThisWave)
 			OnWaveCompleted();
