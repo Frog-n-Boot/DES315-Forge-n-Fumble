@@ -9,7 +9,7 @@ public partial class HealthBar : ProgressBar
 
     private Forge forge;
     private PlayerController playerController;
-	private Enemy enemy;
+	private EnemyController enemy;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -21,9 +21,9 @@ public partial class HealthBar : ProgressBar
             SetHealth(forge.health, forge.maxHealth);
 		}
 		else if(isEnemy){
-			enemy = GetNode<Enemy>($"../../../");
+			enemy = GetNode<EnemyController>($"../../../");
 			enemy.EnemyHealthChanged += SetHealth;
-			SetHealth(enemy.maxHealth, 100);
+			SetHealth(enemy.MaxHealth, 100);
 		}
 		else{
 			playerController = GetNode<PlayerController>($"../../../");

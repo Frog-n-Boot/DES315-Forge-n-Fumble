@@ -1,35 +1,39 @@
 [gd_scene format=3 uid="uid://88oq7ysmwuhi"]
 
-[ext_resource type="Texture2D" uid="uid://dhqovf0vvc8vq" path="res://addons/kenney_prototype_textures/dark/texture_08.png" id="1_3lnvk"]
-[ext_resource type="PackedScene" uid="uid://bm6vf4tjk48gj" path="res://assets/models/forge.tscn" id="2_ptwec"]
+[ext_resource type="PackedScene" uid="uid://bycamsjulrcwe" path="res://assets/models/FinalAssets_Low/Redone_Assets/Cobl_wall_low.tscn" id="2_3qum0"]
+[ext_resource type="PackedScene" uid="uid://bm6vf4tjk48gj" path="res://assets/models/FinalAssets_Low/Structure_models/forge.tscn" id="2_ptwec"]
 [ext_resource type="PackedScene" uid="uid://8roa2xkb2ipl" path="res://assets/models/player.tscn" id="3_81oh0"]
 [ext_resource type="PackedScene" uid="uid://cxj0fwjqxc5ny" path="res://assets/models/boxes.tscn" id="3_a3bqn"]
 [ext_resource type="Script" uid="uid://dnqtfi3fpu8ue" path="res://src/CameraController.cs" id="3_mndrt"]
+[ext_resource type="PackedScene" uid="uid://dvhojin78rtxa" path="res://assets/models/FinalAssets_Low/Redone_Assets/Cobl_pillar_low.tscn" id="3_wt1ef"]
+[ext_resource type="PackedScene" uid="uid://bmre2ran8suad" path="res://assets/models/FinalAssets_Low/Redone_Assets/Cobl_archway_low.tscn" id="4_7gden"]
+[ext_resource type="PackedScene" uid="uid://can50oleeolkm" path="res://assets/models/FinalAssets_Low/Redone_Assets/Cobl_halfwall_low.tscn" id="5_7dxqx"]
+[ext_resource type="PackedScene" uid="uid://d1twjqnwuwntn" path="res://assets/models/FinalAssets_Low/Structure_models/Wooden_floor.tscn" id="6_7gden"]
 [ext_resource type="Script" uid="uid://bk2uam5leqcv8" path="res://src/PlayerSpawner.cs" id="6_42n6d"]
 [ext_resource type="Script" uid="uid://bj4pcgxjt3ru7" path="res://src/WaveManager.cs" id="7_53x3i"]
-[ext_resource type="PackedScene" uid="uid://b8a87u3vesy3q" path="res://assets/models/Enemy.tscn" id="8_1bgfi"]
 [ext_resource type="Script" uid="uid://taddex4cilqa" path="res://src/LootTable.cs" id="9_7cc0k"]
 [ext_resource type="Resource" uid="uid://calih72lg8n07" path="res://assets/resources/NormalEnemyData.tres" id="9_mehdq"]
 [ext_resource type="Resource" uid="uid://cdki2c88hftlb" path="res://assets/resources/FastEnemyData.tres" id="10_7p7bj"]
-[ext_resource type="PackedScene" uid="uid://bp4fm727bn0cj" path="res://assets/models/Stick.tscn" id="10_mehdq"]
-[ext_resource type="PackedScene" uid="uid://dq8nubqatqhum" path="res://assets/models/Ingot.tscn" id="11_7p7bj"]
+[ext_resource type="PackedScene" uid="uid://dq8nubqatqhum" path="res://assets/models/FinalAssets_Low/Items_Models/Ingot.tscn" id="11_7p7bj"]
 [ext_resource type="Resource" uid="uid://cvs5mxaqpoflx" path="res://assets/resources/StrongEnemyData.tres" id="11_gwggj"]
-[ext_resource type="PackedScene" uid="uid://jnghu007q1m" path="res://assets/models/Healthpack.tscn" id="12_gwggj"]
-[ext_resource type="PackedScene" uid="uid://bff5da5u2kggn" path="res://assets/models/MeltedIngot.tscn" id="19_amgg8"]
-[ext_resource type="PackedScene" uid="uid://cmd758glwlnly" path="res://assets/models/Grindstone.tscn" id="20_5vgrt"]
+[ext_resource type="PackedScene" uid="uid://jnghu007q1m" path="res://assets/models/FinalAssets_Low/Items_Models/Healthpack.tscn" id="12_gwggj"]
+[ext_resource type="PackedScene" uid="uid://cmd758glwlnly" path="res://assets/models/FinalAssets_Low/WorkStations/Grindstone.tscn" id="20_5vgrt"]
 [ext_resource type="PackedScene" uid="uid://706c56ie3ke" path="res://assets/models/Turret.tscn" id="20_20nwc"]
 [ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/CraftingRecipes.cs" id="20_gax05"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="21_20nwc"]
-[ext_resource type="PackedScene" uid="uid://g1gfmktihg8t" path="res://assets/models/Anvil.tscn" id="22_3w1al"]
-[ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/DullSword.tscn" id="22_amgg8"]
+[ext_resource type="PackedScene" uid="uid://g1gfmktihg8t" path="res://assets/models/FinalAssets_Low/WorkStations/Anvil.tscn" id="22_3w1al"]
+[ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/FinalAssets_Low/Items_Models/DullSword.tscn" id="22_amgg8"]
+[ext_resource type="PackedScene" uid="uid://cgv7jdbgqsgql" path="res://assets/models/FinalAssets_Low/Ore/Ore.tscn" id="23_3qum0"]
 [ext_resource type="Script" uid="uid://dnliu2440i283" path="res://src/PauseMenu.cs" id="23_amgg8"]
 [ext_resource type="Script" uid="uid://bs44u3pohek1t" path="res://src/SettingsMenu.cs" id="24_gax05"]
+[ext_resource type="Texture2D" uid="uid://bvw5yhtbch6ht" path="res://assets/materials/Texture_sets/2DTextures/anvilImage.webp" id="29_7dxqx"]
+[ext_resource type="Texture2D" uid="uid://dy1wiwwij327x" path="res://assets/materials/Texture_sets/2DTextures/furnaceImage.webp" id="30_f5rak"]
+[ext_resource type="Texture2D" uid="uid://dwexwmybryvpl" path="res://assets/materials/Texture_sets/2DTextures/grindstoneImage.webp" id="31_xw70q"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_wko22"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ptwec"]
-albedo_color = Color(0.6706895, 0.6706895, 0.6706895, 1)
-albedo_texture = ExtResource("1_3lnvk")
+albedo_color = Color(0, 0.16470589, 0, 1)
 uv1_scale = Vector3(10, 10, 10)
 uv1_triplanar = true
 
@@ -52,12 +56,14 @@ glow_enabled = true
 
 [sub_resource type="Resource" id="Resource_20nwc"]
 script = ExtResource("20_gax05")
-recipeName = "MeltedIngot"
-requiredItemNames = PackedStringArray("Ingot")
-ouputName = "MeltedIngot"
-ouputScene = ExtResource("19_amgg8")
+recipeName = "Ingot"
+requiredItemNames = PackedStringArray("Copper_Ore")
+ouputName = "Ingot"
+ouputScene = ExtResource("11_7p7bj")
 ouputGroup = "pickable"
 metadata/_custom_type_script = "uid://1bo1o367ybgk"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7dxqx"]
 
 [node name="TestingLab" type="StaticBody3D" unique_id=127569902]
 
@@ -66,9 +72,312 @@ transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_wko22")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1902630742]
-transform = Transform3D(17, 0, 0, 0, 17, 0, 0, 0, 17, 0, -0.001, 0)
+transform = Transform3D(17, 0, 0, 0, 17, 0, 0, 0, 17.623268, 0.02392022, -0.0010001585, 0.040840626)
 material_override = SubResource("StandardMaterial3D_ptwec")
 mesh = SubResource("PlaneMesh_3lnvk")
+
+[node name="CoblWallLow" parent="CollisionShape3D" unique_id=1416519307 instance=ExtResource("2_3qum0")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -2.6666667, 0, 0)
+
+[node name="CoblWallLow2" parent="CollisionShape3D" unique_id=1431987842 instance=ExtResource("2_3qum0")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -2.6666667, 0, 0.40969414)
+
+[node name="CoblWallLow3" parent="CollisionShape3D" unique_id=815430767 instance=ExtResource("2_3qum0")]
+transform = Transform3D(0.16666451, 3.7128012e-11, 0.00084938994, -3.7128012e-11, 0.16666666, -9.4662925e-14, -0.00084938994, -9.4662925e-14, 0.16666451, -2.6666667, 0, 0.8203714)
+
+[node name="CoblWallLow4" parent="CollisionShape3D" unique_id=1967419142 instance=ExtResource("2_3qum0")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -2.6666667, 0, 1.2310483)
+
+[node name="CoblWallLow8" parent="CollisionShape3D" unique_id=1696366159 instance=ExtResource("2_3qum0")]
+transform = Transform3D(-7.2852315e-09, 0, 0.16666666, 0, 0.16666666, 0, -0.16666666, 0, -7.2852315e-09, -2.3708024, 0, 1.5401602)
+
+[node name="CoblWallLow9" parent="CollisionShape3D" unique_id=713894369 instance=ExtResource("2_3qum0")]
+transform = Transform3D(-7.2852315e-09, 0, 0.16666666, 0, 0.16666666, 0, -0.16666666, 0, -7.2852315e-09, -1.9601252, 0, 1.5401602)
+
+[node name="CoblWallLow5" parent="CollisionShape3D" unique_id=1918928077 instance=ExtResource("2_3qum0")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -2.6666667, 0, -1.2330147)
+
+[node name="CoblWallLow6" parent="CollisionShape3D" unique_id=898749725 instance=ExtResource("2_3qum0")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -2.6666667, 0, -0.8223374)
+
+[node name="CoblWallLow7" parent="CollisionShape3D" unique_id=296003925 instance=ExtResource("2_3qum0")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -2.6666667, 0, -0.41166043)
+
+[node name="CoblPillarLow" parent="CollisionShape3D" unique_id=1439026198 instance=ExtResource("3_wt1ef")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -2.6667259, 0, 1.5310061)
+
+[node name="CoblWallLow12" parent="CollisionShape3D" unique_id=379413883 instance=ExtResource("2_3qum0")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.6641873, 0, 0)
+
+[node name="CoblWallLow13" parent="CollisionShape3D" unique_id=1099368755 instance=ExtResource("2_3qum0")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.6641873, 0, 0.40969414)
+
+[node name="CoblWallLow14" parent="CollisionShape3D" unique_id=618082129 instance=ExtResource("2_3qum0")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.6641873, 0, 0.8203714)
+
+[node name="CoblWallLow15" parent="CollisionShape3D" unique_id=1872490793 instance=ExtResource("2_3qum0")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.6641873, 0, 1.2310483)
+
+[node name="CoblWallLow16" parent="CollisionShape3D" unique_id=46930400 instance=ExtResource("2_3qum0")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.6641873, 0, -1.2330148)
+
+[node name="CoblWallLow17" parent="CollisionShape3D" unique_id=354474456 instance=ExtResource("2_3qum0")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.6641873, 0, -0.8223374)
+
+[node name="CoblWallLow18" parent="CollisionShape3D" unique_id=1224995520 instance=ExtResource("2_3qum0")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.6641873, 0, -0.41166043)
+
+[node name="CoblPillarLow2" parent="CollisionShape3D" unique_id=1254528860 instance=ExtResource("3_wt1ef")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.6641282, 0, 1.5310062)
+
+[node name="CoblPillarLow3" parent="CollisionShape3D" unique_id=432616846 instance=ExtResource("3_wt1ef")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -2.6667259, 0, -1.5329523)
+
+[node name="CoblPillarLow4" parent="CollisionShape3D" unique_id=1579942417 instance=ExtResource("3_wt1ef")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.6641282, 0, -1.5329523)
+
+[node name="CoblArchwayLow" parent="CollisionShape3D" unique_id=1216911531 instance=ExtResource("4_7gden")]
+transform = Transform3D(-7.2852315e-09, 0, 0.16666666, 0, 0.16666666, 0, -0.16666666, 0, -7.2852315e-09, -1.5505886, -2.0345053e-05, 1.5302829)
+
+[node name="CoblWallLow10" parent="CollisionShape3D" unique_id=440549137 instance=ExtResource("2_3qum0")]
+transform = Transform3D(-7.28523e-09, 0, -0.16666666, 0, 0.16666666, 0, 0.16666666, 0, -7.28523e-09, 1.3645952, 0, 1.5366507)
+
+[node name="CoblWallLow11" parent="CollisionShape3D" unique_id=1126242759 instance=ExtResource("2_3qum0")]
+transform = Transform3D(-7.28523e-09, 0, -0.16666666, 0, 0.16666666, 0, 0.16666666, 0, -7.28523e-09, 0.9579809, 0, 1.538925)
+
+[node name="CoblArchwayLow2" parent="CollisionShape3D" unique_id=1506245751 instance=ExtResource("4_7gden")]
+transform = Transform3D(-7.28523e-09, 0, -0.16666666, 0, 0.16666666, 0, 0.16666666, 0, -7.28523e-09, 0.55101955, -2.0345053e-05, 1.5346211)
+
+[node name="CoblHalfwallLow" parent="CollisionShape3D" unique_id=1553971924 instance=ExtResource("5_7dxqx")]
+transform = Transform3D(-7.2852315e-09, 0, 0.16666666, 0, 0.16666666, 0, -0.16666666, 0, -7.2852315e-09, -1.1451416, -2.0345053e-05, 1.5260115)
+
+[node name="CoblHalfwallLow2" parent="CollisionShape3D" unique_id=40219667 instance=ExtResource("5_7dxqx")]
+transform = Transform3D(-7.2852315e-09, 0, 0.16666666, 0, 0.16666666, 0, -0.16666666, 0, -7.2852315e-09, -0.73888034, -2.0345053e-05, 1.5260115)
+
+[node name="CoblHalfwallLow3" parent="CollisionShape3D" unique_id=414799906 instance=ExtResource("5_7dxqx")]
+transform = Transform3D(-7.2852315e-09, 0, 0.18934241, 0, 0.16666666, 0, -0.16666666, 0, -8.2764195e-09, -0.29954624, -2.0345053e-05, 1.5260115)
+
+[node name="CoblHalfwallLow4" parent="CollisionShape3D" unique_id=1315843904 instance=ExtResource("5_7dxqx")]
+transform = Transform3D(-7.2852315e-09, 0, 0.16666666, 0, 0.16666666, 0, -0.16666666, 0, -7.2852315e-09, 0.13093103, -2.0345053e-05, 1.5260115)
+
+[node name="CoblWallLow19" parent="CollisionShape3D" unique_id=658619459 instance=ExtResource("2_3qum0")]
+transform = Transform3D(-7.2852315e-09, 0, 0.16666666, 0, 0.16666666, 0, -0.16666666, 0, -7.2852315e-09, -2.3708024, 0, -1.5177908)
+
+[node name="CoblWallLow20" parent="CollisionShape3D" unique_id=2009392105 instance=ExtResource("2_3qum0")]
+transform = Transform3D(-7.2852315e-09, 0, 0.16666666, 0, 0.16666666, 0, -0.16666666, 0, -7.2852315e-09, -1.9601253, 0, -1.5177908)
+
+[node name="CoblArchwayLow3" parent="CollisionShape3D" unique_id=1819727384 instance=ExtResource("4_7gden")]
+transform = Transform3D(-7.2852315e-09, 0, 0.16666666, 0, 0.16666666, 0, -0.16666666, 0, -7.2852315e-09, -1.5505886, -2.0345053e-05, -1.5276682)
+
+[node name="CoblWallLow21" parent="CollisionShape3D" unique_id=1000700366 instance=ExtResource("2_3qum0")]
+transform = Transform3D(-7.28523e-09, 0, -0.16666666, 0, 0.16666666, 0, 0.16666666, 0, -7.28523e-09, 1.3650358, 0, -1.5332073)
+
+[node name="CoblWallLow22" parent="CollisionShape3D" unique_id=1620960607 instance=ExtResource("2_3qum0")]
+transform = Transform3D(-7.28523e-09, 0, -0.16666666, 0, 0.16666666, 0, 0.16666666, 0, -7.28523e-09, 0.95746064, 0, -1.5332073)
+
+[node name="CoblArchwayLow4" parent="CollisionShape3D" unique_id=1967972201 instance=ExtResource("4_7gden")]
+transform = Transform3D(-7.28523e-09, 0, -0.16666666, 0, 0.16666666, 0, 0.16666666, 0, -7.28523e-09, 0.5511198, -2.0345053e-05, -1.5331429)
+
+[node name="CoblHalfwallLow5" parent="CollisionShape3D" unique_id=1773607771 instance=ExtResource("5_7dxqx")]
+transform = Transform3D(-7.2852315e-09, 0, 0.16666666, 0, 0.16666666, 0, -0.16666666, 0, -7.2852315e-09, -1.1451416, -2.0345053e-05, -1.5319395)
+
+[node name="CoblHalfwallLow6" parent="CollisionShape3D" unique_id=1505918997 instance=ExtResource("5_7dxqx")]
+transform = Transform3D(-7.2852315e-09, 0, 0.16666666, 0, 0.16666666, 0, -0.16666666, 0, -7.2852315e-09, -0.73888034, -2.0345053e-05, -1.5319395)
+
+[node name="CoblHalfwallLow7" parent="CollisionShape3D" unique_id=1499988876 instance=ExtResource("5_7dxqx")]
+transform = Transform3D(-7.2852315e-09, 0, 0.19605368, 0, 0.16666666, 0, -0.16666666, 0, -8.56978e-09, -0.309596, -2.0345053e-05, -1.5319395)
+
+[node name="CoblHalfwallLow8" parent="CollisionShape3D" unique_id=138317120 instance=ExtResource("5_7dxqx")]
+transform = Transform3D(-7.2852315e-09, 0, 0.16666666, 0, 0.16666666, 0, -0.16666666, 0, -7.2852315e-09, 0.13250594, -2.0345053e-05, -1.5386164)
+
+[node name="Node3D2" parent="CollisionShape3D" unique_id=1681703975 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.17277715, -2.2508492, 0.018518686, -1.2689235)
+
+[node name="Node3D3" parent="CollisionShape3D" unique_id=436733411 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.17277715, -1.5841825, 0.018518686, -1.2689235)
+
+[node name="Node3D4" parent="CollisionShape3D" unique_id=589520764 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.17277715, -0.91751575, 0.018518686, -1.2689235)
+
+[node name="Node3D5" parent="CollisionShape3D" unique_id=127780381 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.17277715, -0.2508491, 0.018518686, -1.2689235)
+
+[node name="Node3D6" parent="CollisionShape3D" unique_id=1641502793 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.17277715, 0.4158176, 0.018518686, -1.2689235)
+
+[node name="Node3D7" parent="CollisionShape3D" unique_id=653196869 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.17277715, 1.0824842, 0.018518686, -1.2689235)
+
+[node name="Node3D14" parent="CollisionShape3D" unique_id=858166432 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -2.4175153, 0.018518686, -0.9297964)
+
+[node name="Node3D15" parent="CollisionShape3D" unique_id=1617596270 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -1.9175156, 0.018518686, -0.9297964)
+
+[node name="Node3D16" parent="CollisionShape3D" unique_id=561597280 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -1.250849, 0.018518686, -0.9297964)
+
+[node name="Node3D17" parent="CollisionShape3D" unique_id=614001480 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.5841824, 0.018518686, -0.9297964)
+
+[node name="Node3D18" parent="CollisionShape3D" unique_id=574469737 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.08248429, 0.018518686, -0.9297964)
+
+[node name="Node3D19" parent="CollisionShape3D" unique_id=1402911835 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.749151, 0.018518686, -0.9297964)
+
+[node name="Node3D20" parent="CollisionShape3D" unique_id=1678679467 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.4158176, 0.018518686, -0.9297964)
+
+[node name="Node3D8" parent="CollisionShape3D" unique_id=588174834 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -2.2508492, 0.018518686, -0.5964631)
+
+[node name="Node3D9" parent="CollisionShape3D" unique_id=654398853 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -1.5841825, 0.018518686, -0.5964631)
+
+[node name="Node3D10" parent="CollisionShape3D" unique_id=53897550 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.91751575, 0.018518686, -0.5964631)
+
+[node name="Node3D11" parent="CollisionShape3D" unique_id=2068797369 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.2508491, 0.018518686, -0.5964631)
+
+[node name="Node3D12" parent="CollisionShape3D" unique_id=1479382125 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.4158176, 0.018518686, -0.5964631)
+
+[node name="Node3D13" parent="CollisionShape3D" unique_id=31068933 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.0824842, 0.018518686, -0.5964631)
+
+[node name="Node3D21" parent="CollisionShape3D" unique_id=36757243 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -2.4175153, 0.018518686, -0.2631297)
+
+[node name="Node3D22" parent="CollisionShape3D" unique_id=2084540495 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -1.9175156, 0.018518686, -0.2631297)
+
+[node name="Node3D23" parent="CollisionShape3D" unique_id=1818799803 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -1.250849, 0.018518686, -0.2631297)
+
+[node name="Node3D24" parent="CollisionShape3D" unique_id=1627460654 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.5841824, 0.018518686, -0.2631297)
+
+[node name="Node3D25" parent="CollisionShape3D" unique_id=1598690619 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.08248429, 0.018518686, -0.2631297)
+
+[node name="Node3D26" parent="CollisionShape3D" unique_id=1259723187 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.749151, 0.018518686, -0.2631297)
+
+[node name="Node3D27" parent="CollisionShape3D" unique_id=1612736428 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.4158176, 0.018518686, -0.2631297)
+
+[node name="Node3D28" parent="CollisionShape3D" unique_id=1308181120 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -2.2508492, 0.018518686, 0.07020359)
+
+[node name="Node3D29" parent="CollisionShape3D" unique_id=210788167 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -1.5841825, 0.018518686, 0.07020359)
+
+[node name="Node3D30" parent="CollisionShape3D" unique_id=896765270 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.91751575, 0.018518686, 0.07020359)
+
+[node name="Node3D31" parent="CollisionShape3D" unique_id=397138103 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.2508491, 0.018518686, 0.07020359)
+
+[node name="Node3D32" parent="CollisionShape3D" unique_id=611587681 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.4158176, 0.018518686, 0.07020359)
+
+[node name="Node3D33" parent="CollisionShape3D" unique_id=101943736 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.0824842, 0.018518686, 0.07020359)
+
+[node name="Node3D34" parent="CollisionShape3D" unique_id=1594235199 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -2.4175153, 0.018518686, 0.40353698)
+
+[node name="Node3D35" parent="CollisionShape3D" unique_id=1590572407 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -1.9175156, 0.018518686, 0.40353698)
+
+[node name="Node3D36" parent="CollisionShape3D" unique_id=1354785392 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -1.250849, 0.018518686, 0.40353698)
+
+[node name="Node3D37" parent="CollisionShape3D" unique_id=1954861275 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.5841824, 0.018518686, 0.40353698)
+
+[node name="Node3D38" parent="CollisionShape3D" unique_id=1256903440 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.08248429, 0.018518686, 0.40353698)
+
+[node name="Node3D39" parent="CollisionShape3D" unique_id=695878504 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.749151, 0.018518686, 0.40353698)
+
+[node name="Node3D40" parent="CollisionShape3D" unique_id=73280147 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.4158176, 0.018518686, 0.40353698)
+
+[node name="Node3D41" parent="CollisionShape3D" unique_id=756641087 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -2.2508492, 0.018518686, 0.7368703)
+
+[node name="Node3D42" parent="CollisionShape3D" unique_id=425609252 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -1.5841825, 0.018518686, 0.7368703)
+
+[node name="Node3D43" parent="CollisionShape3D" unique_id=870652358 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.91751575, 0.018518686, 0.7368703)
+
+[node name="Node3D44" parent="CollisionShape3D" unique_id=280968686 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.2508491, 0.018518686, 0.7368703)
+
+[node name="Node3D45" parent="CollisionShape3D" unique_id=350388308 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.4158176, 0.018518686, 0.7368703)
+
+[node name="Node3D46" parent="CollisionShape3D" unique_id=649423376 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.0824842, 0.018518686, 0.7368703)
+
+[node name="Node3D54" parent="CollisionShape3D" unique_id=39385522 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -2.2508492, 0.018518686, 1.403537)
+
+[node name="Node3D55" parent="CollisionShape3D" unique_id=948698652 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -1.5841825, 0.018518686, 1.403537)
+
+[node name="Node3D56" parent="CollisionShape3D" unique_id=1532065868 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.91751575, 0.018518686, 1.403537)
+
+[node name="Node3D57" parent="CollisionShape3D" unique_id=1391445830 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.2508491, 0.018518686, 1.403537)
+
+[node name="Node3D58" parent="CollisionShape3D" unique_id=1793563598 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.4158176, 0.018518686, 1.403537)
+
+[node name="Node3D59" parent="CollisionShape3D" unique_id=232899155 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.0824842, 0.018518686, 1.403537)
+
+[node name="Node3D47" parent="CollisionShape3D" unique_id=1222870141 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -2.4175153, 0.018518686, 1.0702037)
+
+[node name="Node3D48" parent="CollisionShape3D" unique_id=387596082 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -1.9175156, 0.018518686, 1.0702037)
+
+[node name="Node3D49" parent="CollisionShape3D" unique_id=1969478840 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -1.250849, 0.018518686, 1.0702037)
+
+[node name="Node3D50" parent="CollisionShape3D" unique_id=532274333 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -0.5841824, 0.018518686, 1.0702037)
+
+[node name="Node3D51" parent="CollisionShape3D" unique_id=2083126089 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.08248429, 0.018518686, 1.0702037)
+
+[node name="Node3D52" parent="CollisionShape3D" unique_id=1603619864 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.749151, 0.018518686, 1.0702037)
+
+[node name="Node3D53" parent="CollisionShape3D" unique_id=1214386744 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.4158176, 0.018518686, 1.0702037)
+
+[node name="Node3D60" parent="CollisionShape3D" unique_id=510736170 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.12583749, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.5416291, 0.018518686, 0.7391299)
+
+[node name="Node3D62" parent="CollisionShape3D" unique_id=1743301442 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.12583749, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.5416292, 0.018518686, 0.07132344)
+
+[node name="Node3D63" parent="CollisionShape3D" unique_id=563818013 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.12583749, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.5416292, 0.018518686, -0.59823954)
+
+[node name="Node3D64" parent="CollisionShape3D" unique_id=2047084815 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.12583749, 0, 0, 0, 0.16666667, 0, 0, 0, 0.17277715, 1.5420421, 0.018518647, -1.2680956)
+
+[node name="Node3D61" parent="CollisionShape3D" unique_id=667194806 instance=ExtResource("6_7gden")]
+transform = Transform3D(0.12583749, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.5416292, 0.018518686, 1.4023657)
 
 [node name="World" type="Node" parent="." unique_id=1495741313]
 
@@ -86,74 +395,81 @@ transform = Transform3D(1.7640729, 0, -0.9423624, 0, 2, 0, 0.9423624, 0, 1.76407
 transform = Transform3D(0.12892519, 0, -1.9958402, 0, 2, 0, 1.9958402, 0, 0.12892519, 25.664726, 0.4999981, -11.783998)
 
 [node name="Boxes3" parent="World" unique_id=1756956899 instance=ExtResource("3_a3bqn")]
-transform = Transform3D(-1.9707505, 0, 0.34079742, 0, 2, 0, -0.34079742, 0, -1.9707505, 1.1130228, 0.5, -18.741966)
+transform = Transform3D(-1.9707505, 0, 0.34079742, 0, 2, 0, -0.34079742, 0, -1.9707505, 5.7885, 0.5, -15.853542)
 
 [node name="Boxes4" parent="World" unique_id=1307583488 instance=ExtResource("3_a3bqn")]
-transform = Transform3D(-0.8910207, 0, -1.7905536, 0, 2, 0, 1.7905536, 0, -0.8910207, -23.39663, 0.4999981, -17.003946)
+transform = Transform3D(-0.8910207, 0, -1.7905536, 0, 2, 0, 1.7905536, 0, -0.8910207, -15.74906, 0.4999981, -17.85883)
 
 [node name="Boxes5" parent="World" unique_id=500950248 instance=ExtResource("3_a3bqn")]
-transform = Transform3D(1.2538605, 0, -1.5581508, 0, 2, 0, 1.5581508, 0, 1.2538605, -25.392845, 0.5, 14.8009405)
+transform = Transform3D(1.2538605, 0, -1.5581508, 0, 2, 0, 1.5581508, 0, 1.2538605, -0.7551384, 0.5, 14.886943)
 
 [node name="Boxes6" parent="World" unique_id=684356168 instance=ExtResource("3_a3bqn")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 22.69911, 0.5000019, 20.819078)
 
 [node name="Boxes7" parent="World" unique_id=381762733 instance=ExtResource("3_a3bqn")]
-transform = Transform3D(0.43086842, 0, 1.9530367, 0, 2, 0, -1.9530367, 0, 0.43086842, 1.2256598, 0.5000019, 21.601873)
+transform = Transform3D(0.43086842, 0, 1.9530367, 0, 2, 0, -1.9530367, 0, 0.43086842, 12.8392315, 0.5000019, 21.601873)
 
 [node name="Boxes8" parent="World" unique_id=1636415216 instance=ExtResource("3_a3bqn")]
-transform = Transform3D(0.9282621, 0, 1.7715331, 0, 2, 0, -1.7715331, 0, 0.9282621, -16.812477, 0.5, 19.973251)
+transform = Transform3D(0.9282621, 0, 1.7715331, 0, 2, 0, -1.7715331, 0, 0.9282621, -12.42491, 0.5, 19.973251)
 
 [node name="Boxes9" parent="World" unique_id=1147151917 instance=ExtResource("3_a3bqn")]
-transform = Transform3D(1.3261026, 0, -1.4971479, 0, 2, 0, 1.4971479, 0, 1.3261026, 26.200312, 0.5000019, 2.7029285)
+transform = Transform3D(1.3261026, 0, -1.4971479, 0, 2, 0, 1.4971479, 0, 1.3261026, 17.78981, 0.5000019, 12.178682)
 
 [node name="Boxes10" parent="World" unique_id=1531049353 instance=ExtResource("3_a3bqn")]
 transform = Transform3D(1.1700002, 0, 1.6220664, 0, 2, 0, -1.6220664, 0, 1.1700002, 18.261032, 0.5, -16.599575)
 
 [node name="Forge2" parent="World" unique_id=994045895 instance=ExtResource("2_ptwec")]
-transform = Transform3D(0.0124412505, 0, 0.28506547, 0, 0.35, 0, -0.36996993, 0, 0.009586106, 0.37146854, 0.017500043, 0.8259249)
+transform = Transform3D(-0.37017906, 0, -2.4935302e-08, 0, 0.34999993, 0, 3.236208e-08, 0, -0.2852266, -4.449326, 0.017500043, 0.8259249)
 recipes = Array[Object]([SubResource("Resource_20nwc")])
 
 [node name="Turret" parent="World" unique_id=1571022317 node_paths=PackedStringArray("inputNode") instance=ExtResource("20_20nwc")]
-transform = Transform3D(-0.4729353, 0, -0.8810972, 0, 1, 0, 0.8810972, 0, -0.4729353, -4.6669455, 3.6053066, 3.4638782)
+transform = Transform3D(-0.4729353, 0, -0.8810972, 0, 1, 0, 0.8810972, 0, -0.4729353, -4.6669455, 3.6053066, -44.761284)
+visible = false
 inputNode = NodePath("StationPort4")
 
 [node name="StationPort4" parent="World/Turret" unique_id=1812803613 instance=ExtResource("21_20nwc")]
 transform = Transform3D(-2.615958, 0, -1.3762058, 0, 1, 0, 1.3889388, 0, -2.5919764, -2.2345748, -3.1234941, -0.58680224)
 
 [node name="Turret2" parent="World" unique_id=353788340 node_paths=PackedStringArray("inputNode") instance=ExtResource("20_20nwc")]
-transform = Transform3D(0.807084, 0, -0.5904367, 0, 1, 0, 0.5904367, 0, 0.807084, 4.7185926, 3.6053066, 3.824185)
+transform = Transform3D(0.807084, 0, -0.5904367, 0, 1, 0, 0.5904367, 0, 0.807084, 4.7185926, 3.6053066, -44.400978)
+visible = false
 inputNode = NodePath("StationPort3")
 
 [node name="StationPort3" parent="World/Turret2" unique_id=1915723754 instance=ExtResource("21_20nwc")]
 transform = Transform3D(-1.737944, 0, 2.3763328, 0, 1, 0, -2.398319, 0, -1.7220117, -0.3306508, -3.1234941, 0.20035172)
 
 [node name="Turret3" parent="World" unique_id=1604294998 node_paths=PackedStringArray("inputNode") instance=ExtResource("20_20nwc")]
-transform = Transform3D(0.4554051, 0, 0.8902845, 0, 1, 0, -0.8902845, 0, 0.4554051, 4.8824754, 3.6053066, -2.527573)
+transform = Transform3D(0.4554051, 0, 0.8902845, 0, 1, 0, -0.8902845, 0, 0.4554051, 4.8824754, 3.6053066, -50.752735)
+visible = false
 inputNode = NodePath("StationPort")
 
 [node name="StationPort" parent="World/Turret3" unique_id=750325492 instance=ExtResource("21_20nwc")]
 transform = Transform3D(2.6429331, 0, 1.3246388, 0, 1, 0, -1.3368946, 0, 2.6187043, -1.8930666, -3.1234941, 0.3516538)
 
 [node name="Turret4" parent="World" unique_id=1789132715 node_paths=PackedStringArray("inputNode") instance=ExtResource("20_20nwc")]
-transform = Transform3D(-0.7744369, 0, 0.6326513, 0, 1, 0, -0.6326513, 0, -0.7744369, -4.6147814, 3.6053066, -3.0040874)
+transform = Transform3D(-0.7744369, 0, 0.6326513, 0, 1, 0, -0.6326513, 0, -0.7744369, -4.6147814, 3.6053066, -51.229248)
+visible = false
 inputNode = NodePath("StationPort2")
 
 [node name="StationPort2" parent="World/Turret4" unique_id=1365024135 instance=ExtResource("21_20nwc")]
 transform = Transform3D(1.8634118, 0, -2.2810848, 0, 1, 0, 2.30219, 0, 1.8463291, -0.8566718, -3.1234941, 0.023492694)
 
 [node name="Grindstone" parent="World" unique_id=1599248455 instance=ExtResource("20_5vgrt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.424134, 0.5265527, -0.1874628)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8.563174, 0.004228592, -3.643423)
 
 [node name="Anvil" parent="World" unique_id=1158721071 instance=ExtResource("22_3w1al")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.903208, 0.50000095, -0.27104568)
+transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, -11.693699, 0.3251226, 3.7593546)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=254897524 node_paths=PackedStringArray("playerSpawner")]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 39, 37.42)
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -3.1877332, 39, 39.193367)
 projection = 1
 size = 28.411
 script = ExtResource("3_mndrt")
 playerSpawner = NodePath("../PlayerSpawner")
-maxSize = 30.525
+outerBounds = Vector2(400, 225)
+innerBounds = Vector2(350, 175)
+minSize = 20.0
+maxSize = 35.0
 
 [node name="PlayerSpawner" type="Node" parent="." unique_id=1347135134 node_paths=PackedStringArray("spawnParent")]
 script = ExtResource("6_42n6d")
@@ -167,25 +483,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7532635, 0, 2.060317)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2516978, 0, 0)
 
 [node name="SpawnPoint2" type="Marker3D" parent="PlayerSpawner" unique_id=411742392]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.95199704)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0428693, 0, -3.2011)
 
 [node name="SpawnPoint3" type="Marker3D" parent="PlayerSpawner" unique_id=2030002562]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.498033, 0, -1.7967122)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.479903, 0, 0.9416392)
 
-[node name="EnemySpawner" type="Node" parent="." unique_id=1191566733 node_paths=PackedStringArray("spawnParent", "targetNode", "lootTable", "spawnPositions", "enemyUI")]
+[node name="EnemySpawner" type="Node" parent="." unique_id=1191566733 node_paths=PackedStringArray("spawnParent", "targetNode", "lootTable", "enemyUI")]
 script = ExtResource("7_53x3i")
-enemyScene = ExtResource("8_1bgfi")
 spawnParent = NodePath(".")
 targetNode = NodePath("../World/Forge2")
+lootTable = NodePath("../LootTable")
 normalEnemyData = ExtResource("9_mehdq")
 fastEnemyData = ExtResource("10_7p7bj")
 strongEnemyData = ExtResource("11_gwggj")
-lootTable = NodePath("../LootTable")
-maxWaves = 5
-timeBetweenWaves = 0.01
+normalEnemyChance = 70
+strongEnemyChance = 10
+maxWaves = 7
+timeBetweenWaves = 0.5
 startingEnemiesPerWave = 10
 enemyIncreasedPerWave = 2
-spawnPositions = [NodePath("EnemySpawn1"), NodePath("EnemySpawn2"), NodePath("EnemySpawn3"), NodePath("EnemySpawn4"), NodePath("EnemySpawn5"), NodePath("EnemySpawn6")]
 enemyUI = NodePath("../EnemyUI")
 
 [node name="EnemySpawn1" type="Marker3D" parent="EnemySpawner" unique_id=829387820]
@@ -219,10 +535,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.031914, 0, 10.609423)
 
 [node name="LootTable" type="Node3D" parent="." unique_id=537718464]
 script = ExtResource("9_7cc0k")
-stickDropChance = 100
-ingotDropChance = 50
-stickObject = ExtResource("10_mehdq")
-ingotObject = ExtResource("11_7p7bj")
+oreDropChance = 100
+oreObject = ExtResource("23_3qum0")
 healthPackObject = ExtResource("12_gwggj")
 
 [node name="EnemyUI" type="Label" parent="." unique_id=754514857]
@@ -232,13 +546,7 @@ text = "Enemies"
 metadata/_edit_use_anchors_ = true
 
 [node name="DullSword" parent="." unique_id=778246616 instance=ExtResource("22_amgg8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.750275, 0.5, 4.2739916)
-
-[node name="MeltedIngot" parent="." unique_id=577231431 instance=ExtResource("19_amgg8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.162161, 0.015042733, 3.3623934)
-
-[node name="Stick" parent="." unique_id=70957572 instance=ExtResource("10_mehdq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.445796, 0.18933196, 3.4927015)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8441973, 0.5, -0.59229565)
 
 [node name="PauseMenu" type="CanvasLayer" parent="." unique_id=385949872 node_paths=PackedStringArray("resumeButton", "settingsButton", "mainMenuButton", "settingsMenu")]
 process_mode = 3
@@ -249,10 +557,10 @@ mainMenuButton = NodePath("QuitButton")
 settingsMenu = NodePath("../SettingsMenu")
 
 [node name="ResumeButton" type="Button" parent="PauseMenu" unique_id=1461095151]
-offset_left = 376.0
-offset_top = 160.0
-offset_right = 824.0
-offset_bottom = 280.0
+offset_left = 30.000029
+offset_top = 163.0
+offset_right = 478.00003
+offset_bottom = 283.0
 scale = Vector2(0.8400012, 0.7599994)
 focus_neighbor_top = NodePath(".")
 focus_neighbor_bottom = NodePath("../SettingsButton")
@@ -262,10 +570,10 @@ theme_override_font_sizes/font_size = 40
 text = "Resume"
 
 [node name="SettingsButton" type="Button" parent="PauseMenu" unique_id=284510241]
-offset_left = 376.0
-offset_top = 320.0
-offset_right = 824.0
-offset_bottom = 440.0
+offset_left = 30.000029
+offset_top = 323.0
+offset_right = 478.00003
+offset_bottom = 443.0
 scale = Vector2(0.8400012, 0.7599994)
 focus_neighbor_top = NodePath("../ResumeButton")
 focus_neighbor_bottom = NodePath("../QuitButton")
@@ -275,34 +583,90 @@ theme_override_font_sizes/font_size = 40
 text = "Settings"
 
 [node name="QuitButton" type="Button" parent="PauseMenu" unique_id=1753223593]
-offset_left = 376.0
-offset_top = 480.0
-offset_right = 824.0
-offset_bottom = 600.0
+offset_left = 30.000029
+offset_top = 483.0
+offset_right = 478.00003
+offset_bottom = 603.0
 scale = Vector2(0.8400012, 0.7599994)
 focus_neighbor_top = NodePath("../SettingsButton")
-focus_neighbor_bottom = NodePath(".")
-focus_next = NodePath("../ResumeButton")
 focus_previous = NodePath("../SettingsButton")
 theme_override_font_sizes/font_size = 40
 text = "Main Menu"
 
 [node name="Label" type="Label" parent="PauseMenu" unique_id=1356341263]
-offset_left = 367.0
-offset_top = 11.0
-offset_right = 764.0
-offset_bottom = 94.0
+offset_left = 21.0
+offset_top = 14.0
+offset_right = 418.0
+offset_bottom = 97.0
 theme_override_font_sizes/font_size = 60
 text = "Game Paused"
 
+[node name="FurnaceImahe" type="TextureRect" parent="PauseMenu" unique_id=1306127748]
+offset_left = 582.0
+offset_top = 7.0
+offset_right = 1082.0
+offset_bottom = 107.0
+scale = Vector2(0.8930303, 1)
+texture = ExtResource("30_f5rak")
+expand_mode = 1
+
+[node name="AnvilImage" type="TextureRect" parent="PauseMenu" unique_id=1655853165]
+offset_left = 581.0
+offset_top = 107.0
+offset_right = 1081.0
+offset_bottom = 207.0
+scale = Vector2(0.8930303, 1)
+texture = ExtResource("29_7dxqx")
+expand_mode = 1
+
+[node name="GrindstoneImage" type="TextureRect" parent="PauseMenu" unique_id=983736741]
+offset_left = 582.0
+offset_top = 207.0
+offset_right = 1082.0
+offset_bottom = 307.0
+scale = Vector2(0.8930303, 1)
+texture = ExtResource("31_xw70q")
+expand_mode = 1
+
+[node name="ControlsLabel" type="Label" parent="PauseMenu" unique_id=1322837801]
+offset_left = 487.0
+offset_top = 315.0
+offset_right = 1149.0
+offset_bottom = 672.0
+scale = Vector2(1, 0.92)
+theme_override_font_sizes/font_size = 30
+text = "Actions                  Keyboard    │  Controller
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Pick-Up               │  Right Click │  Left Trigger
+Attack/Interact │  Left Click   │  Right Trigger
+Drop-Left-Item  │  Q                 │  Left Shoulder
+Drop-Right-Item│  E                 │  Right Shoulder
+Pause                  │  ESC             │  ☰
+Sequence           │  ←↑→↓          │  < > v ^"
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu" unique_id=261957256]
+z_index = -1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.860407, 16.15729)
+texture = SubResource("CompressedTexture2D_7dxqx")
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu" unique_id=25129296]
+z_index = -1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.750067, 16.369858)
+color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
+
 [node name="SettingsMenu" type="CanvasLayer" parent="." unique_id=1617405091 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton", "pauseMenu")]
+visible = false
 script = ExtResource("24_gax05")
 masterSlider = NodePath("Control/MasterVolumeLabel/MasterVolumeSlider")
 musicSlider = NodePath("Control/MusicVolumeLabel/MusicVolumeSlider")
 sfxSlider = NodePath("Control/SFXVolumeLabel/SFXVolumeSlider")
-fullScreenCheckBox = NodePath("Control/FullScreenCheckBox")
-vsyncCheckBox = NodePath("Control/VSyncCheckBox")
-showFPSCheckBox = NodePath("Control/ShowFPSCheckBox")
+fullScreenCheckBox = NodePath("Control/FullscreenLabel/FullScreenCheckBox")
+vsyncCheckBox = NodePath("Control/VSyncLabel/VSyncCheckBox")
+showFPSCheckBox = NodePath("Control/ShowFPSLabel/ShowFPSCheckBox")
 resolutionDropdown = NodePath("Control/ResolutionLabel/ResolutionOptionButton")
 maxFPSDropdown = NodePath("Control/FPSLabel/FPSOptionButton")
 applyButton = NodePath("Control/ApplyButton")
@@ -316,179 +680,254 @@ offset_right = 40.0
 offset_bottom = 40.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="SettingsMenu/Control" unique_id=1153745692]
+[node name="Label" type="Label" parent="SettingsMenu/Control" unique_id=100261695]
 layout_mode = 0
-offset_left = 440.0
-offset_top = 16.0
-offset_right = 672.0
-offset_bottom = 99.0
+offset_left = 32.0
+offset_top = 24.0
+offset_right = 264.0
+offset_bottom = 107.0
 theme_override_font_sizes/font_size = 60
 text = "Settings"
 metadata/_edit_use_anchors_ = true
 
-[node name="MasterVolumeLabel" type="Label" parent="SettingsMenu/Control" unique_id=320632212]
+[node name="MasterVolumeLabel" type="Label" parent="SettingsMenu/Control" unique_id=1591004952]
 layout_mode = 0
-offset_left = 96.0
-offset_top = 103.0
-offset_right = 226.0
-offset_bottom = 150.0
+offset_left = 32.0
+offset_top = 120.0
+offset_right = 252.0
+offset_bottom = 207.0
 theme_override_font_sizes/font_size = 30
 text = "Master Volume
 "
 metadata/_edit_use_anchors_ = true
 
-[node name="MasterVolumeSlider" type="HSlider" parent="SettingsMenu/Control/MasterVolumeLabel" unique_id=184752821]
-layout_mode = 0
+[node name="MasterVolumeSlider" type="HSlider" parent="SettingsMenu/Control/MasterVolumeLabel" unique_id=485278808]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.0045454544
 offset_left = 233.0
 offset_right = 343.0
 offset_bottom = 50.0
+focus_neighbor_bottom = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
 metadata/_edit_use_anchors_ = true
 
-[node name="MusicVolumeLabel" type="Label" parent="SettingsMenu/Control" unique_id=511471504]
+[node name="MusicVolumeLabel" type="Label" parent="SettingsMenu/Control" unique_id=1028329062]
 layout_mode = 0
-offset_left = 92.0
-offset_top = 136.0
-offset_right = 295.0
-offset_bottom = 183.0
+offset_left = 32.0
+offset_top = 176.0
+offset_right = 235.0
+offset_bottom = 223.0
 theme_override_font_sizes/font_size = 30
 text = "Music Volume"
 metadata/_edit_use_anchors_ = true
 
-[node name="MusicVolumeSlider" type="HSlider" parent="SettingsMenu/Control/MusicVolumeLabel" unique_id=999295876]
-layout_mode = 0
+[node name="MusicVolumeSlider" type="HSlider" parent="SettingsMenu/Control/MusicVolumeLabel" unique_id=513898678]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.009852217
+anchor_top = -0.14893617
+anchor_right = -0.009852217
+anchor_bottom = -0.14893617
 offset_left = 234.0
 offset_top = 7.0
 offset_right = 344.0
 offset_bottom = 57.0
+focus_neighbor_top = NodePath("../../MasterVolumeLabel/MasterVolumeSlider")
+focus_neighbor_right = NodePath("../../SFXVolumeLabel/SFXVolumeSlider")
 metadata/_edit_use_anchors_ = true
 
-[node name="ResolutionLabel" type="Label" parent="SettingsMenu/Control" unique_id=2040101089]
+[node name="ResolutionLabel" type="Label" parent="SettingsMenu/Control" unique_id=1794153192]
 layout_mode = 0
-offset_left = 542.0
-offset_top = 99.0
-offset_right = 672.0
-offset_bottom = 146.0
+offset_left = 32.0
+offset_top = 432.0
+offset_right = 186.0
+offset_bottom = 479.0
 theme_override_font_sizes/font_size = 30
 text = "Resolution"
 metadata/_edit_use_anchors_ = true
 
-[node name="ResolutionOptionButton" type="OptionButton" parent="SettingsMenu/Control/ResolutionLabel" unique_id=725924476]
-layout_mode = 0
+[node name="ResolutionOptionButton" type="OptionButton" parent="SettingsMenu/Control/ResolutionLabel" unique_id=827977499]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4090909
+anchor_top = -0.06382979
+anchor_right = 0.4090909
+anchor_bottom = -0.06382979
 offset_left = 169.0
 offset_top = 11.0
 offset_right = 297.0
 offset_bottom = 43.0
+focus_neighbor_top = NodePath("../../ShowFPSLabel/ShowFPSCheckBox")
+focus_neighbor_bottom = NodePath("../../FPSLabel/FPSOptionButton")
 metadata/_edit_use_anchors_ = true
 
-[node name="FPSLabel" type="Label" parent="SettingsMenu/Control" unique_id=1818394363]
+[node name="FPSLabel" type="Label" parent="SettingsMenu/Control" unique_id=1616124073]
 layout_mode = 0
-offset_left = 587.0
-offset_top = 141.0
-offset_right = 658.0
-offset_bottom = 188.0
+offset_left = 32.0
+offset_top = 488.0
+offset_right = 103.0
+offset_bottom = 535.0
 theme_override_font_sizes/font_size = 30
 text = "FPS"
 metadata/_edit_use_anchors_ = true
 
-[node name="FPSOptionButton" type="OptionButton" parent="SettingsMenu/Control/FPSLabel" unique_id=1593413049]
-layout_mode = 0
+[node name="FPSOptionButton" type="OptionButton" parent="SettingsMenu/Control/FPSLabel" unique_id=1628876376]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.5633802
+anchor_top = -0.06382979
+anchor_right = 1.5633802
+anchor_bottom = -0.06382979
 offset_left = 121.0
 offset_top = 11.0
 offset_right = 249.0
 offset_bottom = 43.0
+focus_neighbor_top = NodePath("../../ResolutionLabel/ResolutionOptionButton")
+focus_neighbor_bottom = NodePath("../../BackButton")
 metadata/_edit_use_anchors_ = true
 
-[node name="SFXVolumeLabel" type="Label" parent="SettingsMenu/Control" unique_id=963344192]
+[node name="SFXVolumeLabel" type="Label" parent="SettingsMenu/Control" unique_id=1506815955]
 layout_mode = 0
-offset_left = 95.0
-offset_top = 178.0
-offset_right = 264.0
-offset_bottom = 225.0
+offset_left = 32.0
+offset_top = 224.0
+offset_right = 201.0
+offset_bottom = 271.0
 theme_override_font_sizes/font_size = 30
 text = "SFX Volume"
 metadata/_edit_use_anchors_ = true
 
-[node name="SFXVolumeSlider" type="HSlider" parent="SettingsMenu/Control/SFXVolumeLabel" unique_id=203011154]
-layout_mode = 0
+[node name="SFXVolumeSlider" type="HSlider" parent="SettingsMenu/Control/SFXVolumeLabel" unique_id=1872170403]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.01183432
+anchor_top = -0.23404256
+anchor_right = -0.01183432
+anchor_bottom = -0.23404256
 offset_left = 234.0
 offset_top = 4.0
 offset_right = 344.0
 offset_bottom = 54.0
+focus_neighbor_top = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
+focus_neighbor_bottom = NodePath("../../FullscreenLabel/FullScreenCheckBox")
 metadata/_edit_use_anchors_ = true
 
-[node name="BackButton" type="Button" parent="SettingsMenu/Control" unique_id=1181943130]
+[node name="FullscreenLabel" type="Label" parent="SettingsMenu/Control" unique_id=1560838557]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 272.0
+offset_right = 201.0
+offset_bottom = 319.0
+theme_override_font_sizes/font_size = 30
+text = "FullScreen"
+metadata/_edit_use_anchors_ = true
+
+[node name="FullScreenCheckBox" type="CheckBox" parent="SettingsMenu/Control/FullscreenLabel" unique_id=1108551976]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.38700002
+anchor_right = 0.38700002
+offset_left = 166.59698
+offset_top = 10.0
+offset_right = 195.59698
+offset_bottom = 34.0
+focus_neighbor_top = NodePath("../../SFXVolumeLabel/SFXVolumeSlider")
+focus_neighbor_bottom = NodePath("../../VSyncLabel/VSyncCheckBox")
+theme_override_font_sizes/font_size = 40
+metadata/_edit_use_anchors_ = true
+
+[node name="VSyncLabel" type="Label" parent="SettingsMenu/Control" unique_id=909808435]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 320.0
+offset_right = 201.0
+offset_bottom = 367.0
+theme_override_font_sizes/font_size = 30
+text = "VSync"
+metadata/_edit_use_anchors_ = true
+
+[node name="VSyncCheckBox" type="CheckBox" parent="SettingsMenu/Control/VSyncLabel" unique_id=913072526]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2366864
+anchor_right = 0.2366864
+offset_left = 192.0
+offset_top = -7.9999986
+offset_right = 217.0
+offset_bottom = 55.0
+focus_neighbor_top = NodePath("../../FullscreenLabel/FullScreenCheckBox")
+focus_neighbor_bottom = NodePath("../../ShowFPSLabel/ShowFPSCheckBox")
+theme_override_font_sizes/font_size = 40
+text = "
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="ShowFPSLabel" type="Label" parent="SettingsMenu/Control" unique_id=277186055]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 376.0
+offset_right = 201.0
+offset_bottom = 423.0
+theme_override_font_sizes/font_size = 30
+text = "ShowFPS"
+metadata/_edit_use_anchors_ = true
+
+[node name="ShowFPSCheckBox" type="CheckBox" parent="SettingsMenu/Control/ShowFPSLabel" unique_id=1148104484]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.16568047
+anchor_top = 0.06382979
+anchor_right = 0.16568047
+anchor_bottom = 0.06382979
+offset_left = 204.0
+offset_top = -11.0
+offset_right = 228.0
+offset_bottom = 52.0
+focus_neighbor_top = NodePath("../../VSyncLabel/VSyncCheckBox")
+focus_neighbor_bottom = NodePath("../../ResolutionLabel/ResolutionOptionButton")
+theme_override_font_sizes/font_size = 40
+text = "
+
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="BackButton" type="Button" parent="SettingsMenu/Control" unique_id=1184552180]
 layout_mode = 0
 offset_left = 8.000006
 offset_top = 552.0
 offset_right = 456.0
 offset_bottom = 672.0
 scale = Vector2(0.8400012, 0.7599994)
-focus_neighbor_top = NodePath("../FullScreenCheckBox")
-focus_next = NodePath("../FullScreenCheckBox")
+focus_neighbor_top = NodePath("../FPSLabel/FPSOptionButton")
+focus_neighbor_right = NodePath("../ApplyButton")
 theme_override_font_sizes/font_size = 40
 text = "Back
 "
 metadata/_edit_use_anchors_ = true
 
-[node name="ApplyButton" type="Button" parent="SettingsMenu/Control" unique_id=950909908]
+[node name="ApplyButton" type="Button" parent="SettingsMenu/Control" unique_id=1142629580]
 layout_mode = 0
 offset_left = 759.99994
 offset_top = 552.0
 offset_right = 1208.0
 offset_bottom = 672.0
 scale = Vector2(0.8400012, 0.7599994)
-focus_neighbor_top = NodePath("../FullScreenCheckBox")
-focus_next = NodePath("../FullScreenCheckBox")
+focus_neighbor_left = NodePath("../BackButton")
+focus_neighbor_top = NodePath("../FPSLabel/FPSOptionButton")
 theme_override_font_sizes/font_size = 40
 text = "Apply
 
 "
 metadata/_edit_use_anchors_ = true
 
-[node name="FullScreenCheckBox" type="CheckBox" parent="SettingsMenu/Control" unique_id=1911057212]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 248.0
-offset_right = 273.0
-offset_bottom = 311.0
-focus_neighbor_bottom = NodePath("../BackButton")
-focus_next = NodePath(".")
-theme_override_font_sizes/font_size = 40
-text = "Fullscreen"
-metadata/_edit_use_anchors_ = true
-
-[node name="VSyncCheckBox" type="CheckBox" parent="SettingsMenu/Control" unique_id=1919008185]
-layout_mode = 0
-offset_left = 50.0
-offset_top = 301.0
-offset_right = 275.0
-offset_bottom = 364.0
-focus_neighbor_bottom = NodePath("../BackButton")
-focus_next = NodePath(".")
-theme_override_font_sizes/font_size = 40
-text = "VSync
-"
-metadata/_edit_use_anchors_ = true
-
-[node name="ShowFPSCheckBox" type="CheckBox" parent="SettingsMenu/Control" unique_id=1388860018]
-layout_mode = 0
-offset_left = 50.0
-offset_top = 352.0
-offset_right = 275.0
-offset_bottom = 415.0
-focus_neighbor_bottom = NodePath("../BackButton")
-focus_next = NodePath(".")
-theme_override_font_sizes/font_size = 40
-text = "ShowFPS
-
-"
-metadata/_edit_use_anchors_ = true
+[node name="ColorRect" type="ColorRect" parent="SettingsMenu" unique_id=1181463912]
+z_index = -1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.750067, 16.369858)
+color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
 
 [connection signal="pressed" from="PauseMenu/ResumeButton" to="PauseMenu" method="OnResumePressed"]
 [connection signal="pressed" from="PauseMenu/SettingsButton" to="PauseMenu" method="OnSettingsPressed"]
 [connection signal="pressed" from="PauseMenu/QuitButton" to="PauseMenu" method="OnQuitPressed"]
 [connection signal="pressed" from="SettingsMenu/Control/BackButton" to="SettingsMenu" method="OnBackPressed"]
 [connection signal="pressed" from="SettingsMenu/Control/ApplyButton" to="SettingsMenu" method="OnApplyPressed"]
-[connection signal="pressed" from="SettingsMenu/Control/FullScreenCheckBox" to="SettingsMenu/Control" method="ToggleFullscreen"]
-[connection signal="pressed" from="SettingsMenu/Control/VSyncCheckBox" to="SettingsMenu/Control" method="ToggleFullscreen"]
-[connection signal="pressed" from="SettingsMenu/Control/ShowFPSCheckBox" to="SettingsMenu/Control" method="ToggleFullscreen"]

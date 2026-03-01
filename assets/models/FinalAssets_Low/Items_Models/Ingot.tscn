@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dq8nubqatqhum"]
+
+[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Pickable.cs" id="1_rqadj"]
+[ext_resource type="Texture2D" uid="uid://l45fkj74rs44" path="res://assets/materials/Texture_sets/Item_Textures/Ingots_comb_low_BaseCol.tga" id="2_uanvj"]
+[ext_resource type="Texture2D" uid="uid://c4lqlcwn73h60" path="res://assets/materials/Texture_sets/Item_Textures/Ingots_comb_low_ORM.tga" id="3_tw3uh"]
+[ext_resource type="Texture2D" uid="uid://dt7t6tu8lnf8y" path="res://assets/materials/Texture_sets/Item_Textures/Ingots_comb_low_Normal.tga" id="4_7qjih"]
+[ext_resource type="ArrayMesh" uid="uid://cnx63eofodk83" path="res://assets/models/FinalAssets_Low/Items_Models/Ing_copper_low.obj" id="5_76tt6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rqadj"]
+size = Vector3(0.41238403, 1.7871704, 1.1733398)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pkkf6"]
+albedo_texture = ExtResource("2_uanvj")
+normal_enabled = true
+normal_texture = ExtResource("4_7qjih")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_tw3uh")
+
+[node name="Ingot" type="Node3D" unique_id=474887611]
+script = ExtResource("1_rqadj")
+itemDataPath = "uid://bkb1nmonfcm1o"
+
+[node name="Area3D" type="Area3D" parent="." unique_id=162248685 groups=["pickable"]]
+transform = Transform3D(1, 0, 0, 0, 0.1894375, 0, 0, 0, 0.7128166, 0, 0, 0)
+collision_layer = 16
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1055089518]
+transform = Transform3D(1.6660101, 0, 0, 0, 1.7407122, 0, 0, 0, 1.2056247, 0.0068206787, 0.3935852, 0.08666992)
+shape = SubResource("BoxShape3D_rqadj")
+
+[node name="IngCopperLow" type="MeshInstance3D" parent="Area3D" unique_id=284386029]
+transform = Transform3D(1, 0, 0, 0, 5.278786, 0, 0, 0, 1.4028854, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_pkkf6")
+mesh = ExtResource("5_76tt6")
+skeleton = NodePath("../..")

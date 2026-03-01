@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://gss55unqbc70"]
 
 [ext_resource type="Script" uid="uid://cq2hdafsss4y7" path="res://src/MainMenu.cs" id="1_yqorp"]
+[ext_resource type="Texture2D" uid="uid://b0h4rjwc5lgiv" path="res://scenes/Forge.webp" id="2_0ykhv"]
 
 [node name="MainMenu" type="Node2D" unique_id=1633550726]
 
@@ -16,6 +17,7 @@ settingsButton = NodePath("SettingsButton")
 quitMenu = NodePath("QuitButton")
 
 [node name="StartButton" type="Button" parent="Control" unique_id=1277000304]
+z_index = 1
 layout_mode = 0
 offset_left = 376.0
 offset_top = 160.0
@@ -30,6 +32,7 @@ theme_override_font_sizes/font_size = 40
 text = "Start"
 
 [node name="SettingsButton" type="Button" parent="Control" unique_id=1975986720]
+z_index = 1
 layout_mode = 0
 offset_left = 376.0
 offset_top = 320.0
@@ -44,6 +47,7 @@ theme_override_font_sizes/font_size = 40
 text = "Settings"
 
 [node name="QuitButton" type="Button" parent="Control" unique_id=1290285225]
+z_index = 1
 layout_mode = 0
 offset_left = 376.0
 offset_top = 480.0
@@ -57,14 +61,31 @@ focus_previous = NodePath("../SettingsButton")
 theme_override_font_sizes/font_size = 40
 text = "Quit"
 
-[node name="Label" type="Label" parent="Control" unique_id=182675081]
+[node name="Label" type="Label" parent="Control" unique_id=1589327339]
 layout_mode = 0
-offset_left = 336.0
-offset_top = 16.0
-offset_right = 791.0
-offset_bottom = 99.0
+offset_left = 348.0
+offset_top = 49.0
+offset_right = 793.0
+offset_bottom = 132.0
 theme_override_font_sizes/font_size = 60
-text = "Forge-n-Fumble"
+text = "Forge-N-Fumble"
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=322622548]
+z_index = -1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.750067, 16.369858)
+color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
+
+[node name="BackgroundImage" type="TextureRect" parent="." unique_id=2007621218]
+visible = false
+visibility_layer = 2
+offset_left = -22.0
+offset_right = 1351.0
+offset_bottom = 772.0
+texture = ExtResource("2_0ykhv")
+stretch_mode = 1
 
 [connection signal="pressed" from="Control/StartButton" to="Control" method="OnStartButtonPressed"]
 [connection signal="pressed" from="Control/SettingsButton" to="Control" method="OnSettingsButtonPressed"]

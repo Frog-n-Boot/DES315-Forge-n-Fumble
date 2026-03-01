@@ -8,7 +8,7 @@ public partial class Forge : Node3D
 	public int health;
 
 	[Signal] public delegate void ForgeTookDamageEventHandler(int current, int max);
-    [Signal] public delegate void ForgeHealedEventHandler(int current, int max);
+	[Signal] public delegate void ForgeHealedEventHandler(int current, int max);
 
 	private int tick = 0;
 	#endregion
@@ -26,13 +26,13 @@ public partial class Forge : Node3D
 	{
 		tick += 1;
 		if(tick % 10 == 0)
-        {
-            if(health <= 0)
+		{
+			if(health <= 0)
 			{
 				Destroyed();
 				GetTree().Quit();
 			}
-        }
+		}
 
 	}
 	#endregion
@@ -42,7 +42,7 @@ public partial class Forge : Node3D
 	{
 		this.health += health;
 		EmitSignal(SignalName.ForgeTookDamage, this.health, maxHealth);
-    }
+	}
 	#endregion
 
 	#region TakeDamage

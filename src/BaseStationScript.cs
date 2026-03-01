@@ -38,7 +38,7 @@ public abstract partial class BaseStationScript : Node3D
 
     public override void _Process(double delta)
     {
-        if(!craftingTimer.IsStopped() && !outputOccupied)
+        if(!craftingTimer.IsStopped() && !isOutputOccupied())
 		{
 			timeProgressBar.Value = (1.0 - craftingTimer.TimeLeft / craftDuration) * 100.0f;
 		}
@@ -92,10 +92,9 @@ public abstract partial class BaseStationScript : Node3D
 		if(!string.IsNullOrEmpty(pendingRecipe.ouputGroup))
 			instance.AddToGroup(pendingRecipe.ouputGroup);
 
-		GetTree().Root.AddChild(instance);
+		outputNode.AddChild(instance);
 		instance.GlobalPosition = outputNode.GlobalPosition;
 		timeProgressBar.Value = 0;
-		outputOccupied = true;
 		pendingRecipe = null;
 		
 
@@ -106,7 +105,7 @@ public abstract partial class BaseStationScript : Node3D
 	}
 	public void StartCrafting()
 	{
-		if(outputOccupied || !craftingTimer.IsStopped() || itemCarrier == null)
+		if(isOutputOccupied() || !craftingTimer.IsStopped() || itemCarrier == null)
 		{
 			return;
 		}
@@ -136,14 +135,6 @@ public abstract partial class BaseStationScript : Node3D
 			GD.Print("Input are not found");
 		
 
-		var outputArea = outputNode.GetNode<Area3D>("Area3D");
-		if(outputArea != null)
-		{
-			outputArea.BodyExited += OnOutputBodyExit;
-		}
-		else
-			GD.Print("Output area not found");
-
 	}
 	private void SetupTimer()
 	{
@@ -159,7 +150,7 @@ public abstract partial class BaseStationScript : Node3D
 	}
 	private void OnCraftingTimerTimeout()
 	{
-		if (!outputOccupied)
+		if (!isOutputOccupied())
 		{
 			ProduceOutput();
 		}
@@ -183,17 +174,15 @@ public abstract partial class BaseStationScript : Node3D
             var p = body as PlayerController;
             playersInZone.Remove(p);
             p?.SetCurrentStation(null);
+
+			if(player == p)
+			{
+				player = playersInZone.Count > 0 ? playersInZone[0] : null;
+				itemCarrier = player as ItemCarrier;
+			}
         }
 	}
 
-	public void OnOutputBodyExit(Node3D body)
-	{
-		if (body.IsInGroup("Player")){
-         	outputOccupied = false;
-		 	StartCrafting();
-		}
-		
-	}
 
 	protected void SpawnAtOutput(PackedScene scene)
 	{
@@ -210,5 +199,15 @@ public abstract partial class BaseStationScript : Node3D
 		outputOccupied = true;
 	}
 
+	protected bool isOutputOccupied()
+	{
+		foreach(Node3D child in outputNode.GetChildren())
+		{
+			if(child.IsInGroup("pickable"))
+				return true;
+		}
+		return false;
+	}
 	public virtual SequenceMinigame GetSequenceMinigame() => null;
+
 }

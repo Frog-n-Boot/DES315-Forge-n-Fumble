@@ -5,6 +5,7 @@ public partial class SequenceMinigame : Node
 {
 	[Export] RichTextLabel sequenceText;
 	[Export] Sprite3D sprite3D;
+	[Export] AudioStreamPlayer3D audio;
 
 	[Signal] public delegate void SequenceCompletedEventHandler();
 	[Signal] public delegate void SequenceFailedEventHandler();
@@ -43,14 +44,14 @@ public partial class SequenceMinigame : Node
 		if(!isActive) return;
 
 		bool isZommedOut = cameraController.GetCameraZoomOut();
-        if (isZommedOut)
-        {
-            sprite3D.Scale = new Vector3(10, 10, 10);
-        }
-        else if(isZommedOut == false)
-        {
-             sprite3D.Scale = new Vector3(5.39f, 4.0f, 4.0f);
-        }
+		if (isZommedOut)
+		{
+			sprite3D.Scale = new Vector3(10, 10, 10);
+		}
+		else if(isZommedOut == false)
+		{
+			 sprite3D.Scale = new Vector3(5.39f, 4.0f, 4.0f);
+		}
 
 		timeLeft -= (float)delta;
 
@@ -72,11 +73,11 @@ public partial class SequenceMinigame : Node
 		for(int i = 0; i < sequence.Length; i++)
 		{
 			if(i == currentStep)
-				display += $"[color=yellow]{GetArrow(sequence[i], isController)}[/color]";
+				display += $"[b][font_size=28][color=yellow]{GetArrow(sequence[i], isController)}[/color][/font_size][/b]";
 			else if(i < currentStep)
-				display += $"[color=green]{GetArrow(sequence[i], isController)}[/color]";
+				display += $"[b][font_size=28][color=green]{GetArrow(sequence[i], isController)}[/color][/font_size][/b]";
 			else
-				display += $"[color=white]{GetArrow(sequence[i], isController)}[/color]";
+				display += $"[b][font_size=28][color=white]{GetArrow(sequence[i], isController)}[/color][/font_size][/b]";
 		}
 		sequenceText.Text = display;
 
@@ -98,10 +99,10 @@ public partial class SequenceMinigame : Node
 		if(activeDevice == -1){
 			if(@event is not InputEventKey) return;
 
-			if(@event.IsActionPressed("move_left")) input = "Left";
-			if(@event.IsActionPressed("move_right")) input = "Right";
-			if(@event.IsActionPressed("move_up")) input = "Up";
-			if(@event.IsActionPressed("move_down")) input = "Down";
+			if(@event.IsActionPressed("ui_left")) input = "Left";
+			if(@event.IsActionPressed("ui_right")) input = "Right";
+			if(@event.IsActionPressed("ui_up")) input = "Up";
+			if(@event.IsActionPressed("ui_down")) input = "Down";
 			
 		}
 		else
@@ -123,6 +124,7 @@ public partial class SequenceMinigame : Node
 	{
 		if(input == sequence[currentStep]){
 			currentStep++;
+			audio.Play();
 			timeLeft = timePerInput;
 			UpdateLabel();
 			if(currentStep >= sequence.Length)

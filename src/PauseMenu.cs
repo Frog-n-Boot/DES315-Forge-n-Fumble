@@ -3,9 +3,10 @@ using System;
 
 public partial class PauseMenu : CanvasLayer
 {
-	[Export] Button resumeButton;
+	[Export] public Button resumeButton;
 	[Export] Button settingsButton;
 	[Export] Button mainMenuButton;
+	[Export] Button helpButton;
 	//[Export] private CanvasLayer settingsMenu;
 	[Export] private SettingsMenu settingsMenu;
 	public override void _Ready()
@@ -29,17 +30,21 @@ public partial class PauseMenu : CanvasLayer
 	{
 		if(GetTree().Paused)
 			Resume();
-		else
+        else
+        {
 			Pause();
+        }
 	}
 	private void Pause()
 	{
 		Show();
 		settingsMenu.Hide();
+		resumeButton.GrabFocus();
 		GetTree().Paused = true;
 	}
 	private void Resume()
 	{
+		settingsMenu?.Hide();
 		Hide();
 		GetTree().Paused = false;
 	}
@@ -48,6 +53,7 @@ public partial class PauseMenu : CanvasLayer
 	public void OnSettingsPressed(){
 		settingsMenu.isInGame = true;
 		settingsMenu.Show();
+		settingsMenu.masterSlider.GrabFocus();
 		Hide();
 	}
 	public void OnMainMenuPressed()

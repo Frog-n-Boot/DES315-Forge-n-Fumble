@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://crmqy16elnyqm"
+path="res://.godot/imported/Sword_second_low.obj-a5eee9b3f3fc39e4213c596d1c2b4b93.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Sword_second_low.obj-a5eee9b3f3fc39e4213c596d1c2b4b93.mesh"]
+
+source_file="res://assets/models/FinalAssets_Low/Items_Models/Sword_second_low.obj"
+dest_files=["res://.godot/imported/Sword_second_low.obj-a5eee9b3f3fc39e4213c596d1c2b4b93.mesh", "res://.godot/imported/Sword_second_low.obj-a5eee9b3f3fc39e4213c596d1c2b4b93.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

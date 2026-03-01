@@ -3,7 +3,7 @@ using System;
 
 public partial class SettingsMenu : CanvasLayer
 {
-	[Export] private HSlider masterSlider;
+	[Export] public HSlider masterSlider;
 	[Export] private HSlider musicSlider;
 	[Export] private HSlider sfxSlider;
 	[Export] private CheckBox fullScreenCheckBox;
@@ -13,13 +13,16 @@ public partial class SettingsMenu : CanvasLayer
 	[Export] private OptionButton maxFPSDropdown;
 	[Export] private Button applyButton;
 
-	[Export] private CanvasLayer pauseMenu;
+	[Export] private PauseMenu pauseMenu;
 
 	public bool isInGame = false;
 
 	private Vector2I[] resolution =
 	{
-		new Vector2I(1280, 720),
+		new Vector2I(640, 480),
+		new Vector2I(800, 600),
+		new Vector2I(1366, 768),
+		new Vector2I(1600, 900),
 		new Vector2I(1920, 1080),
 		new Vector2I(2560, 1440),
 		new Vector2I(3840, 2160)
@@ -71,6 +74,8 @@ public partial class SettingsMenu : CanvasLayer
 		resolutionDropdown.ItemSelected +=OnResolutionSelected;
 		maxFPSDropdown.ItemSelected += OnMaxFPSSelected;
 		applyButton.Pressed += OnApplyPressed;
+
+		masterSlider.GrabFocus();
 	}
 
 	public void OnMasterVolumeChanged( double value) => SettingsManager.instance.SetMasterVolume((float)value);
@@ -90,6 +95,7 @@ public partial class SettingsMenu : CanvasLayer
 		{
 			Hide();
 			pauseMenu.Show();
+			pauseMenu.resumeButton.GrabFocus();
 		}
 		else
 		{
