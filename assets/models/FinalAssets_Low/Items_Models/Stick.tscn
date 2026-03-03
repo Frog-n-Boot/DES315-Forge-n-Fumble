@@ -28,6 +28,7 @@ itemDataPath = "uid://bonxxcw20fc18"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=542827446]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.30743405, -0.24470523, -0.00024414063)
+visible = false
 shape = SubResource("BoxShape3D_bk0rn")
 
 [node name="StickLow" type="MeshInstance3D" parent="StaticBody3D" unique_id=1602883904]
