@@ -10,12 +10,12 @@ public partial class LootTable : Node3D
 
 	/* ---- Percentage range for the items ----- */
 	[Export(PropertyHint.Range, "0,100,1")] public int oreDropChance;
-    //[Export(PropertyHint.Range, "0,100,1")] public int ingotDropChance;
-    [Export(PropertyHint.Range, "0,100,1")] public int healthPackDropChance;
+	//[Export(PropertyHint.Range, "0,100,1")] public int ingotDropChance;
+	[Export(PropertyHint.Range, "0,100,1")] public int healthPackDropChance;
 
 	/* ---- Packed scenes ---- */
 	private PackedScene item;
-    [Export] public PackedScene oreObject { get; private set; }
+	[Export] public PackedScene oreObject { get; private set; }
 	//[Export] public PackedScene ingotObject { get; private set; }
 	[Export] public PackedScene healthPackObject { get; private set; }
 
@@ -35,17 +35,17 @@ public partial class LootTable : Node3D
 		
 		num.Randomize();
 		if(oreObject == null)
-        {
-        	oreObject = GD.Load<PackedScene>("res://assets/models/Ore.tscn");
-        }
+		{
+			oreObject = GD.Load<PackedScene>("res://assets/models/Ore.tscn");
+		}
 		// if(ingotObject == null)
-        // {
-        // 	ingotObject = GD.Load<PackedScene>("res://Objects/Ingot.tscn");
-        // }
+		// {
+		// 	ingotObject = GD.Load<PackedScene>("res://Objects/Ingot.tscn");
+		// }
 		if(healthPackObject == null)
-        {
-        	healthPackObject = GD.Load<PackedScene>("res://assets/models/Healthpack.tscn");
-        }
+		{
+			healthPackObject = GD.Load<PackedScene>("res://assets/models/Healthpack.tscn");
+		}
 
 	}
 
