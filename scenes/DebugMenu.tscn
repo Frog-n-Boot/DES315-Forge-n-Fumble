@@ -1,0 +1,199 @@
+[gd_scene format=3 uid="uid://176tgqxxk3p7"]
+
+[ext_resource type="Script" uid="uid://eq2143vlw65v" path="res://src/DebugMenu.cs" id="1_15w0a"]
+
+[node name="DebugMenu" type="CanvasLayer" unique_id=731638094 node_paths=PackedStringArray("playerMaxHealth", "playerSpeed", "enemyMaxHealth", "enemySpeed", "enemyDamage", "enemyDamageToPlayer", "weaponDurability", "weaponDamage", "forgeHealth", "forgeSmeltTimer", "grindstoneSmeltTimer")]
+process_mode = 3
+script = ExtResource("1_15w0a")
+playerMaxHealth = NodePath("TabContainer/Player/HealthSpinBox")
+playerSpeed = NodePath("TabContainer/Player/SpeedSpinBox")
+enemyMaxHealth = NodePath("TabContainer/Enemy/EnemyMaxHealthSpinBox")
+enemySpeed = NodePath("TabContainer/Enemy/EnemySpeedSpinBox")
+enemyDamage = NodePath("TabContainer/Enemy/EnemyDamageSpinbox")
+enemyDamageToPlayer = NodePath("TabContainer/Enemy/EnemyDamageToPlayerSpinBox")
+weaponDurability = NodePath("TabContainer/Weapons/DurabilitySpinBox")
+weaponDamage = NodePath("TabContainer/Weapons/DamageSpinBox")
+forgeHealth = NodePath("TabContainer/Structures/ForgeHealthSpinBox")
+forgeSmeltTimer = NodePath("TabContainer/Structures/ForgeSmeltTimerSpinBox")
+grindstoneSmeltTimer = NodePath("TabContainer/Structures/GrindstoneSmeltTimerSpinBox")
+
+[node name="Panel" type="Panel" parent="." unique_id=1084575992]
+offset_right = 1149.0
+offset_bottom = 642.0
+
+[node name="TabContainer" type="TabContainer" parent="." unique_id=733798386]
+offset_right = 1143.0
+offset_bottom = 634.0
+current_tab = 3
+
+[node name="Player" type="Control" parent="TabContainer" unique_id=1700338665]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="HealrhLabel" type="Label" parent="TabContainer/Player" unique_id=1192580899]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 12.0
+offset_right = 61.0
+offset_bottom = 35.0
+text = "Health"
+
+[node name="HealthSpinBox" type="SpinBox" parent="TabContainer/Player" unique_id=2030089478]
+layout_mode = 0
+offset_left = 79.0
+offset_top = 10.0
+offset_right = 165.5
+offset_bottom = 41.0
+
+[node name="SpeedLabel" type="Label" parent="TabContainer/Player" unique_id=1977116290]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 55.0
+offset_right = 61.0
+offset_bottom = 78.0
+text = "Speed"
+
+[node name="SpeedSpinBox" type="SpinBox" parent="TabContainer/Player" unique_id=32890984]
+layout_mode = 0
+offset_left = 79.0
+offset_top = 53.0
+offset_right = 165.5
+offset_bottom = 84.0
+
+[node name="Enemy" type="Control" parent="TabContainer" unique_id=2078640708]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="EnemyMaxHealthLabel" type="Label" parent="TabContainer/Enemy" unique_id=1229638311]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Max Health"
+
+[node name="EnemyMaxHealthSpinBox" type="SpinBox" parent="TabContainer/Enemy" unique_id=1938816201]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 3.0
+offset_right = 184.5
+offset_bottom = 34.0
+
+[node name="EnemyDamageLabel" type="Label" parent="TabContainer/Enemy" unique_id=705325671]
+layout_mode = 0
+offset_top = 43.0
+offset_right = 89.0
+offset_bottom = 66.0
+text = "Damage"
+
+[node name="EnemyDamageSpinbox" type="SpinBox" parent="TabContainer/Enemy" unique_id=1093241271]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 46.0
+offset_right = 184.5
+offset_bottom = 77.0
+
+[node name="EnemySpeedLabel" type="Label" parent="TabContainer/Enemy" unique_id=1736253527]
+layout_mode = 0
+offset_top = 85.0
+offset_right = 89.0
+offset_bottom = 108.0
+text = "Speed"
+
+[node name="EnemySpeedSpinBox" type="SpinBox" parent="TabContainer/Enemy" unique_id=127798028]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 88.0
+offset_right = 184.5
+offset_bottom = 119.0
+
+[node name="EnemyDamageToPlayerLabel" type="Label" parent="TabContainer/Enemy" unique_id=274976828]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 123.0
+offset_right = 87.0
+offset_bottom = 146.0
+text = "Damage To Player"
+
+[node name="EnemyDamageToPlayerSpinBox" type="SpinBox" parent="TabContainer/Enemy" unique_id=636467938]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 126.0
+offset_right = 274.5
+offset_bottom = 157.0
+
+[node name="Weapons" type="Control" parent="TabContainer" unique_id=1754960734]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="DurabilityLabel" type="Label" parent="TabContainer/Weapons" unique_id=200785043]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Durability"
+
+[node name="DurabilitySpinBox" type="SpinBox" parent="TabContainer/Weapons" unique_id=1153597986]
+layout_mode = 0
+offset_left = 90.0
+offset_right = 176.5
+offset_bottom = 31.0
+
+[node name="DamageLabel" type="Label" parent="TabContainer/Weapons" unique_id=1165830374]
+layout_mode = 0
+offset_top = 42.0
+offset_right = 77.0
+offset_bottom = 65.0
+text = "Damage"
+
+[node name="DamageSpinBox" type="SpinBox" parent="TabContainer/Weapons" unique_id=634597814]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 42.0
+offset_right = 176.5
+offset_bottom = 73.0
+
+[node name="Structures" type="Control" parent="TabContainer" unique_id=281370049]
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="ForgeSmeltTimerLabel" type="Label" parent="TabContainer/Structures" unique_id=557611666]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Forge Smelting Timer"
+
+[node name="ForgeSmeltTimerSpinBox" type="SpinBox" parent="TabContainer/Structures" unique_id=1756741126]
+layout_mode = 0
+offset_left = 233.0
+offset_right = 319.5
+offset_bottom = 31.0
+
+[node name="GrindstoneSmeltTimerLabel2" type="Label" parent="TabContainer/Structures" unique_id=1507646172]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 40.0
+offset_right = 164.0
+offset_bottom = 63.0
+text = "Grindstone Smelting Timer"
+
+[node name="GrindstoneSmeltTimerSpinBox" type="SpinBox" parent="TabContainer/Structures" unique_id=1895046571]
+layout_mode = 0
+offset_left = 234.0
+offset_top = 39.0
+offset_right = 320.5
+offset_bottom = 70.0
+
+[node name="ForgeHealthLabel" type="Label" parent="TabContainer/Structures" unique_id=2109132637]
+layout_mode = 0
+offset_top = 83.0
+offset_right = 208.0
+offset_bottom = 106.0
+text = "Forge Health"
+
+[node name="ForgeHealthSpinBox" type="SpinBox" parent="TabContainer/Structures" unique_id=405501023]
+layout_mode = 0
+offset_left = 235.0
+offset_top = 82.0
+offset_right = 321.5
+offset_bottom = 113.0

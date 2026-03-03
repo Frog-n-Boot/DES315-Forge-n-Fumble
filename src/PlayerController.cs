@@ -521,7 +521,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 		Color playerColor = playerColors[PlayerIndex % playerColors.Length];
 
-		var meshInstance = GetNodeOrNull<MeshInstance3D>("CollisionShape3D/MeshInstance3D");
+		var meshInstance = GetNodeOrNull<MeshInstance3D>("CollisionShape3D/DwarfLow");
 		if (meshInstance == null)
 		{
 			GD.PrintErr($"Player {PlayerIndex}: MeshInstance3D not found at CollisionShape3D/MeshInstance3D");

@@ -10,6 +10,11 @@ public partial class ForgingStation : BaseStationScript
 
 	protected override void OnReady()
 	{
+		if (DebugMenu.SmeltingTimeOverride >= 0)
+		{
+			craftDuration = DebugMenu.SmeltingTimeOverride;
+		}
+		
 		sequenceMinigame.SequenceCompleted += OnSequenceCompleted;
 		sequenceMinigame.SequenceFailed += OnSequenceFailed;
 

@@ -23,7 +23,7 @@ public partial class HealthBar : ProgressBar
 		else if(isEnemy){
 			enemy = GetNode<EnemyController>($"../../../");
 			enemy.EnemyHealthChanged += SetHealth;
-			SetHealth(enemy.MaxHealth, 100);
+			SetHealth(enemy.currentHealth, enemy.MaxHealth);
 		}
 		else{
 			playerController = GetNode<PlayerController>($"../../../");

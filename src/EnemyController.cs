@@ -26,16 +26,16 @@ public partial class EnemyController : Node3D
 
 	#region Runtime Stats (populated from EnemyData in _Ready)
 	public string EnemyName      { get; private set; }
-	public int    MaxHealth       { get; private set; }
-	public int    Damage          { get; private set; }
+	public int    MaxHealth       { get; set; }
+	public int    Damage          { get; set; }
 
-	public int    DamageToPlayer { get; private set;}
-	public float  Speed           { get; private set; }
+	public int    DamageToPlayer { get; set;}
+	public float  Speed           { get; set; }
 	public float  LootDropChance  { get; private set; }
 	#endregion
 
 	#region Health
-	private int currentHealth;
+	public int currentHealth { get; set;}
 	public int CurrentHealth => currentHealth;
 
 	private void InitHealth()
