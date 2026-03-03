@@ -43,6 +43,18 @@ public partial class PlayerSpawner : Node
 		{
 			CallDeferred(MethodName.SpawnPlayer, 0);
 		}
+
+		GetTree().CreateTimer(0.5f).Timeout += () =>
+        {
+            foreach(int device in Input.GetConnectedJoypads())
+            {
+                int playerIndex = inputManager.GetPlayerForDevice(device);
+                if(playerIndex != -1)
+                {
+                    SpawnPlayer(playerIndex);
+                }
+            }
+        };
 	}
 	
 	private void OnControllerConnectionChanged(long device, bool connected)
