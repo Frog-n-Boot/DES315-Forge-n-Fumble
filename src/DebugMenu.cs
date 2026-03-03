@@ -15,9 +15,19 @@ public partial class DebugMenu : CanvasLayer
 	[Export] private SpinBox forgeHealth;
 	[Export] private SpinBox forgeSmeltTimer;
 	[Export] private SpinBox grindstoneSmeltTimer;
+	[Export] private CheckBox showCollisions;
 
+	public static float playerMaxHealthOverride = -1;
+	public static float playerSpeedOverride = -1;
 	public static float SmeltingTimeOverride = -1;
 	public static float GrindstoneTimeOverride = -1;
+	public static float enemyMaxHealthOverride = -1;
+	public static float enemySpeedOverride = -1;
+	public static float enemyDamageOverride = -1;
+	public static float enemyDamageToPlayerOverride = -1;
+
+	public static float weaponDurabilityOverride = -1;
+	public static float weaponDamageOverride = -1;
 	
 
 
@@ -45,6 +55,7 @@ public partial class DebugMenu : CanvasLayer
 		forgeSmeltTimer.ValueChanged += value => SetForgeSmeltTimer((float) value);
 
 		grindstoneSmeltTimer.ValueChanged += value => SetGrindstoneSmeltTimer((float) value);
+		showCollisions.Toggled += value => ShowCollisionShapes((bool) value);
 
 	}
 
@@ -87,10 +98,13 @@ public partial class DebugMenu : CanvasLayer
 			if(player == null) continue;
 			playerMaxHealth.Value = player.maxHealth;
 			playerSpeed.Value= player.speed;
+			
+			var playerSword = player.currentSword;
+			var sword = playerSword as Sword;
+
+			weaponDurability.Value = sword.durability;
+			weaponDamage.Value = sword.damage;
 		}
-		
-
-
 	}
 
     public override void _Input(InputEvent @event)
@@ -113,6 +127,7 @@ public partial class DebugMenu : CanvasLayer
 
 	private void SetPlayerMaxHealth(float value)
 	{
+		playerMaxHealthOverride = value;
 		foreach(Node p in GetTree().GetNodesInGroup("Player"))
 		{
 			var player = p as PlayerController;
@@ -125,14 +140,17 @@ public partial class DebugMenu : CanvasLayer
 	}
 	private void SetPlayerSpeed(float value)
 	{
+		playerSpeedOverride = value;
 		foreach(Node p in GetTree().GetNodesInGroup("Player"))
 		{
 			var player = p as PlayerController;
 			if(player != null) player.speed = (int)value;
 		}
 	}
+
 	private void SetEnemyMaxHealth(float value)
 	{
+		enemyMaxHealthOverride = value;
 		foreach(Node e in GetTree().GetNodesInGroup("Enemy"))
 		{
 			var enemy = e as EnemyController;
@@ -142,32 +160,40 @@ public partial class DebugMenu : CanvasLayer
 			}
 		}
 	}
+
 	private void SetEnemySpeed(float value)
 	{
+		enemySpeedOverride = value;
 		foreach(Node e in GetTree().GetNodesInGroup("Enemy"))
 		{
 			var enemy = e as EnemyController;
 			if(enemy !=null) enemy.Speed = (int)value;
 		}
 	}
+
 	private void SetEnemyDamage(float value)
 	{
+		enemyDamageOverride = value;
 		foreach(Node e in GetTree().GetNodesInGroup("Enemy"))
 		{
 			var enemy = e as EnemyController;
 			if(enemy !=null) enemy.Damage = (int)value;
 		}
 	}
+
 	private void SetEnemyDamageToPlayer(float value)
 	{
+		enemyDamageToPlayerOverride = value;
 		foreach(Node e in GetTree().GetNodesInGroup("Enemy"))
 		{
 			var enemy = e as EnemyController;
 			if(enemy !=null) enemy.DamageToPlayer = (int)value;
 		}
 	}
+
 	private void SetWeaponDamage(float value)
 	{
+		weaponDamageOverride = value;
 		foreach(Node s in GetTree().GetNodesInGroup("Sword"))
 		{
 			var sword = s as Sword;
@@ -176,6 +202,7 @@ public partial class DebugMenu : CanvasLayer
 	}
 	private void SetWeaponDurability(float value)
 	{
+		weaponDurabilityOverride = value;
 		foreach(Node s in GetTree().GetNodesInGroup("Sword"))
 		{
 			var sword = s as Sword;
@@ -219,4 +246,9 @@ public partial class DebugMenu : CanvasLayer
 			}
 		}
 	}
+
+	private void ShowCollisionShapes(bool value)
+    {
+        GetTree().DebugCollisionsHint = value;
+    }
 }

@@ -44,7 +44,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 	private int _healthPack;
 	private Vector3 currentLookTarget;
-	private Sword currentSword;
+	public Sword currentSword;
 	private bool isAttacking = false;
 	private int tick = 0;
 	private Pickable nearbyPickable;
@@ -116,6 +116,12 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	{
 		GD.PrintErr("Hand node not found!");
 	}
+
+	if(DebugMenu.playerMaxHealthOverride >= 0)
+		maxHealth = (int)DebugMenu.playerMaxHealthOverride;
+
+	if(DebugMenu.playerSpeedOverride >= 0)
+		speed = (int)DebugMenu.playerSpeedOverride;
 }
 
 

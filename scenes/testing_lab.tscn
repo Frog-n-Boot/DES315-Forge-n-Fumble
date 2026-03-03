@@ -461,6 +461,9 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8.56
 [node name="Anvil" parent="World" unique_id=1158721071 instance=ExtResource("22_3w1al")]
 transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, -11.693699, 0.3251226, 3.7593546)
 
+[node name="Ore" parent="World" unique_id=2110523039 instance=ExtResource("23_3qum0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8751584, 0.014982047, 4.1817455)
+
 [node name="Camera3D" type="Camera3D" parent="." unique_id=254897524 node_paths=PackedStringArray("playerSpawner")]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -3.1877332, 39, 39.193367)
 projection = 1
@@ -930,7 +933,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.320782, 0.000985, -0.164741
 
 [node name="DebugMenu" parent="." unique_id=731638094 instance=ExtResource("30_7gden")]
 
-[node name="Ore" parent="." unique_id=2110523039 groups=["pickable"] instance=ExtResource("23_3qum0")]
+[node name="Ore" parent="." unique_id=1618473424 groups=["pickable"] instance=ExtResource("23_3qum0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13379955, 0.014983, 2.2856941)
 
 [connection signal="pressed" from="PauseMenu/ResumeButton" to="PauseMenu" method="OnResumePressed"]

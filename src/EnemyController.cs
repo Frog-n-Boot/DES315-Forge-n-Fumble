@@ -160,6 +160,26 @@ public partial class EnemyController : Node3D
 		DamageToPlayer = enemyData.damageToPlayer;
 		Speed         = enemyData.speed;
 		LootDropChance = enemyData.lootDropChance;
+
+		if(DebugMenu.enemyMaxHealthOverride >= 0)
+        {
+            MaxHealth = (int)DebugMenu.enemyMaxHealthOverride;
+        }
+
+		if(DebugMenu.enemySpeedOverride >= 0)
+        {
+            Speed = (int)DebugMenu.enemySpeedOverride;
+        }
+
+		if(DebugMenu.enemyDamageOverride >= 0)
+        {
+            Damage = (int)DebugMenu.enemyDamageOverride;
+        }
+
+		if(DebugMenu.enemyDamageToPlayerOverride >= 0)
+        {
+            DamageToPlayer = (int)DebugMenu.enemyDamageToPlayerOverride;
+        }
 	}
 
 	private void ApplyVisuals()
