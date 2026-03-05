@@ -8,6 +8,10 @@ public partial class GrindstoneStation : BaseStationScript
 	[Export] private AudioStreamPlayer3D grindstoneSound;
 	protected override void OnReady()
 	{
+		if(DebugMenu.GrindstoneTimeOverride >= 0)
+		{
+			craftDuration= DebugMenu.GrindstoneTimeOverride;
+		}
 	   	if(swordScene == null)
 		{
 			swordScene = GD.Load<PackedScene>("res://assets/models/MeltedIngot.tscn");	
@@ -27,5 +31,6 @@ public partial class GrindstoneStation : BaseStationScript
 			grindstoneSound.Play();
 		}
 	}
+	public float GetCraftDuration()=> craftDuration;
 
 }

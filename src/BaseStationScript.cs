@@ -168,6 +168,7 @@ public abstract partial class BaseStationScript : Node3D
         }
 		
 	}
+	
 	protected virtual void OnInputBodyExited(Node3D body)
 	{
         if(body.IsInGroup("Player")){
@@ -209,5 +210,11 @@ public abstract partial class BaseStationScript : Node3D
 		return false;
 	}
 	public virtual SequenceMinigame GetSequenceMinigame() => null;
+
+	public void SetCraftDuration(float duration)
+	{
+		craftDuration = duration;
+		craftingTimer.WaitTime = duration;
+	}
 
 }

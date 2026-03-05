@@ -3,8 +3,6 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 
-
-[Tool]
 [GlobalClass]
 public partial class Pickable : Node3D
 {

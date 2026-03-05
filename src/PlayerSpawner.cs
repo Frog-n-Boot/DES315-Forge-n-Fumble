@@ -6,6 +6,8 @@ public partial class PlayerSpawner : Node
 {
 	[Export] private PackedScene playerScene;
 	[Export] private Node3D spawnParent;
+
+	[Signal] public delegate void PlayerSpawnedEventHandler(PlayerController player, int playerIndex);
 	private Node3D[] spawnPoints;
 	
 	private InputManager inputManager;
@@ -43,6 +45,18 @@ public partial class PlayerSpawner : Node
 		{
 			CallDeferred(MethodName.SpawnPlayer, 0);
 		}
+
+		GetTree().CreateTimer(0.5f).Timeout += () =>
+        {
+            foreach(int device in Input.GetConnectedJoypads())
+            {
+                int playerIndex = inputManager.GetPlayerForDevice(device);
+                if(playerIndex != -1)
+                {
+                    SpawnPlayer(playerIndex);
+                }
+            }
+        };
 	}
 	
 	private void OnControllerConnectionChanged(long device, bool connected)
@@ -110,6 +124,10 @@ public partial class PlayerSpawner : Node
 		}
 		
 		activePlayers[playerIndex] = player;
+
+		if(player is PlayerController pc)
+			EmitSignal(SignalName.PlayerSpawned, pc, playerIndex);
+
 		GD.Print($"Successfully spawned player {playerIndex} - Total active: {activePlayers.Count}");
 	}
 	

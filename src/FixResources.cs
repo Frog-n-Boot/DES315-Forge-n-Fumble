@@ -2,7 +2,6 @@
 using Godot;
 using System;
 
-[Tool]
 public partial class FixResources : EditorScript
 {
 	public override void _Run()
