@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bdwnaqw5jg3si" path="res://src/SmeltingStation.cs" id="1_ph4aw"]
 [ext_resource type="PackedScene" uid="uid://dq8nubqatqhum" path="res://assets/models/FinalAssets_Low/Items_Models/Ingot.tscn" id="2_n8y7r"]
-[ext_resource type="PackedScene" uid="uid://ceepwtmv7qxv2" path="res://assets/models/ForgeHealthBar.tscn" id="3_g2ei8"]
 [ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/CraftingRecipes.cs" id="3_oiry0"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="4_0l8vc"]
 [ext_resource type="ArrayMesh" uid="uid://o2fxtu8po2fr" path="res://assets/models/FinalAssets_Low/WorkStations/Furnace_low.obj" id="6_0ahcc"]
@@ -23,9 +22,6 @@ metadata/_custom_type_script = "uid://1bo1o367ybgk"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5b8nd"]
 size = Vector3(0.38000727, 0.51831055, 0.24706268)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_twstk"]
-viewport_path = NodePath("SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ohbk7"]
 viewport_path = NodePath("Sprite3D/SubViewport")
@@ -63,10 +59,6 @@ collision_mask = 6
 transform = Transform3D(30, 0, 0, 0, 20, 0, 0, 0, 35, -0.90197325, 4.816896, -0.24419785)
 shape = SubResource("BoxShape3D_5b8nd")
 
-[node name="ForgeHealthBar" parent="." unique_id=1328028810 instance=ExtResource("3_g2ei8")]
-transform = Transform3D(-20, 0, 1.7484554e-06, 0, 20, 0, -1.7484554e-06, 0, -20, 0, 18.932394, -0.85522586)
-texture = SubResource("ViewportTexture_twstk")
-
 [node name="InputPort" parent="." unique_id=750325492 instance=ExtResource("4_0l8vc")]
 transform = Transform3D(31.928226, 0, 0, 0, 6.3082385, 0, 0, 0, 44.96865, -4.0128264, 3.270673, -0.43483275)
 
@@ -74,7 +66,7 @@ transform = Transform3D(31.928226, 0, 0, 0, 6.3082385, 0, 0, 0, 44.96865, -4.012
 transform = Transform3D(5.2756314, 0, 0, 0, 2.857143, 0, 0, 0, 5.4322386, -8.55842, 1.7136235, -0.27193514)
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=741148502]
-transform = Transform3D(-39.614746, 0, -5.144179e-07, 0, 28.352789, 0, 3.463231e-06, 0, -5.884255, -0.022883892, 30.50011, -1.8400894)
+transform = Transform3D(-27.69681, 0, -5.144179e-07, 0, 19.48352, 0, 2.4213318e-06, 0, -5.884255, -0.022883892, 25.633549, -1.8400894)
 texture = SubResource("ViewportTexture_ohbk7")
 
 [node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=1009488754]

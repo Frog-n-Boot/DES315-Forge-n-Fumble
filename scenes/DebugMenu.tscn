@@ -7,11 +7,13 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_15w0a"]
 
-[node name="DebugMenu" type="CanvasLayer" unique_id=731638094 node_paths=PackedStringArray("playerMaxHealth", "playerSpeed", "normalContainer", "fastContainer", "strongContainer", "weaponDurability", "weaponDamage", "forgeHealth", "forgeSmeltTimer", "grindstoneSmeltTimer", "showCollisions")]
+[node name="DebugMenu" type="CanvasLayer" unique_id=731638094 node_paths=PackedStringArray("playerControlNode", "playerMaxHealth", "playerSpeed", "playerSpawnTimer", "normalContainer", "fastContainer", "strongContainer", "weaponDurability", "weaponDamage", "forgeHealth", "forgeSmeltTimer", "grindstoneSmeltTimer", "showCollisions", "maxWaves", "timeBetweenEnemies", "startingEnemies", "enemyIncreasePerWave", "timeBetweenWaves", "goblinEnemySpawnChance", "skeletonEnemySpawnChance", "HobgoblinEnemySpawnChance")]
 process_mode = 3
 script = ExtResource("1_15w0a")
+playerControlNode = NodePath("TabContainer/Player")
 playerMaxHealth = NodePath("TabContainer/Player/HealthSpinBox")
 playerSpeed = NodePath("TabContainer/Player/SpeedSpinBox")
+playerSpawnTimer = NodePath("TabContainer/Player/PlayerSpawnTimerSpinBox")
 normalEnemy = ExtResource("2_ll2f6")
 fastEnemy = ExtResource("3_4j2py")
 strongEnemy = ExtResource("4_jp8kx")
@@ -24,6 +26,14 @@ forgeHealth = NodePath("TabContainer/Structures/ForgeHealthSpinBox")
 forgeSmeltTimer = NodePath("TabContainer/Structures/ForgeSmeltTimerSpinBox")
 grindstoneSmeltTimer = NodePath("TabContainer/Structures/GrindstoneSmeltTimerSpinBox")
 showCollisions = NodePath("TabContainer/Debug/ShowCollisionsCheckBox")
+maxWaves = NodePath("TabContainer/GameLoop/MaxWavesSpinBox")
+timeBetweenEnemies = NodePath("TabContainer/GameLoop/TimebetweenEnemiesSpinBox")
+startingEnemies = NodePath("TabContainer/GameLoop/StartingEnemiesSpinBox")
+enemyIncreasePerWave = NodePath("TabContainer/GameLoop/EnemyIncreasePerWaveSpinBox")
+timeBetweenWaves = NodePath("TabContainer/GameLoop/TimeBetweenWavesSpinBox")
+goblinEnemySpawnChance = NodePath("TabContainer/GameLoop/GoblinSpawnChanceSpinBox")
+skeletonEnemySpawnChance = NodePath("TabContainer/GameLoop/SkeletonSpawnChanceSpinBox")
+HobgoblinEnemySpawnChance = NodePath("TabContainer/GameLoop/HobgoblinSpawnChanceSpinBox")
 
 [node name="Panel" type="Panel" parent="." unique_id=1084575992]
 offset_right = 1149.0
@@ -32,11 +42,11 @@ offset_bottom = 642.0
 [node name="TabContainer" type="TabContainer" parent="." unique_id=733798386]
 offset_right = 1143.0
 offset_bottom = 634.0
-current_tab = 5
+current_tab = 0
 
 [node name="Player" type="Control" parent="TabContainer" unique_id=1700338665]
-visible = false
 layout_mode = 2
+focus_neighbor_bottom = NodePath("HealthSpinBox")
 metadata/_tab_index = 0
 
 [node name="HealrhLabel" type="Label" parent="TabContainer/Player" unique_id=1192580899]
@@ -49,10 +59,12 @@ text = "Health"
 
 [node name="HealthSpinBox" type="SpinBox" parent="TabContainer/Player" unique_id=2030089478]
 layout_mode = 0
-offset_left = 79.0
-offset_top = 10.0
-offset_right = 165.5
-offset_bottom = 41.0
+offset_left = 133.0
+offset_top = 9.0
+offset_right = 219.5
+offset_bottom = 40.0
+focus_neighbor_top = NodePath("..")
+focus_neighbor_bottom = NodePath("../SpeedSpinBox")
 
 [node name="SpeedLabel" type="Label" parent="TabContainer/Player" unique_id=1977116290]
 layout_mode = 0
@@ -64,14 +76,34 @@ text = "Speed"
 
 [node name="SpeedSpinBox" type="SpinBox" parent="TabContainer/Player" unique_id=32890984]
 layout_mode = 0
-offset_left = 79.0
-offset_top = 53.0
-offset_right = 165.5
-offset_bottom = 84.0
+offset_left = 133.0
+offset_top = 52.0
+offset_right = 219.5
+offset_bottom = 83.0
+focus_neighbor_top = NodePath("../HealthSpinBox")
+focus_neighbor_bottom = NodePath(".")
+
+[node name="PlayerSpawnTimerLabel" type="Label" parent="TabContainer/Player" unique_id=98438515]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 96.0
+offset_right = 59.0
+offset_bottom = 119.0
+text = "Spawn Time"
+
+[node name="PlayerSpawnTimerSpinBox" type="SpinBox" parent="TabContainer/Player" unique_id=1091822058]
+layout_mode = 0
+offset_left = 131.0
+offset_top = 93.0
+offset_right = 217.5
+offset_bottom = 124.0
+focus_neighbor_top = NodePath("../HealthSpinBox")
+focus_neighbor_bottom = NodePath(".")
 
 [node name="Enemy" type="Control" parent="TabContainer" unique_id=2078640708]
 visible = false
 layout_mode = 2
+focus_neighbor_bottom = NodePath("NormalEnemyFoldableContainer/Panel/SpeedSpinBox")
 metadata/_tab_index = 1
 
 [node name="NormalEnemyFoldableContainer" type="FoldableContainer" parent="TabContainer/Enemy" unique_id=862349779]
@@ -117,6 +149,10 @@ offset_left = 127.442604
 offset_top = 26.372402
 offset_right = 213.94263
 offset_bottom = 57.372402
+focus_neighbor_left = NodePath("../../../StrongEnemyFoldableContainer/Panel/SpeedSpinBox")
+focus_neighbor_top = NodePath("../../..")
+focus_neighbor_right = NodePath("../../../FastEnemyFoldableContainer/Panel/SpeedSpinBox")
+focus_neighbor_bottom = NodePath("../MaxHealthSpinBox")
 
 [node name="MaxHealthLabel" type="Label" parent="TabContainer/Enemy/NormalEnemyFoldableContainer/Panel" unique_id=1530803040]
 layout_mode = 0
@@ -132,6 +168,10 @@ offset_left = 128.43549
 offset_top = 64.60439
 offset_right = 214.93549
 offset_bottom = 95.60439
+focus_neighbor_left = NodePath("../../../StrongEnemyFoldableContainer/Panel/MaxHealthSpinBox")
+focus_neighbor_top = NodePath("../SpeedSpinBox")
+focus_neighbor_right = NodePath("../../../FastEnemyFoldableContainer/Panel/MaxHealthSpinBox")
+focus_neighbor_bottom = NodePath("../DamageSpinBox")
 
 [node name="DamageLabel" type="Label" parent="TabContainer/Enemy/NormalEnemyFoldableContainer/Panel" unique_id=1683949283]
 layout_mode = 0
@@ -147,6 +187,10 @@ offset_left = 128.81772
 offset_top = 100.824165
 offset_right = 215.31772
 offset_bottom = 131.82416
+focus_neighbor_left = NodePath("../../../StrongEnemyFoldableContainer/Panel/DamageSpinBox")
+focus_neighbor_top = NodePath("../MaxHealthSpinBox")
+focus_neighbor_right = NodePath("../../../FastEnemyFoldableContainer/Panel/DamageSpinBox")
+focus_neighbor_bottom = NodePath("../PlayerDamageSpinBox")
 
 [node name="PlayerDamageLabel" type="Label" parent="TabContainer/Enemy/NormalEnemyFoldableContainer/Panel" unique_id=1687183200]
 layout_mode = 0
@@ -162,6 +206,10 @@ offset_left = 130.19292
 offset_top = 139.05617
 offset_right = 216.69293
 offset_bottom = 170.05617
+focus_neighbor_left = NodePath("../../../StrongEnemyFoldableContainer/Panel/PlayerDamageSpinBox")
+focus_neighbor_top = NodePath("../DamageSpinBox")
+focus_neighbor_right = NodePath("../../../FastEnemyFoldableContainer/Panel/PlayerDamageSpinBox")
+focus_neighbor_bottom = NodePath("../LootChanceSpinBox")
 
 [node name="LootChanceLabel" type="Label" parent="TabContainer/Enemy/NormalEnemyFoldableContainer/Panel" unique_id=57241782]
 layout_mode = 0
@@ -177,6 +225,10 @@ offset_left = 130.03885
 offset_top = 174.26982
 offset_right = 216.53885
 offset_bottom = 205.26982
+focus_neighbor_left = NodePath("../../../StrongEnemyFoldableContainer/Panel/LootChanceSpinBox")
+focus_neighbor_top = NodePath("../PlayerDamageSpinBox")
+focus_neighbor_right = NodePath("../../../FastEnemyFoldableContainer/Panel/PlayerDamageSpinBox")
+focus_neighbor_bottom = NodePath("../SpeedSpinBox")
 
 [node name="FastEnemyFoldableContainer" type="FoldableContainer" parent="TabContainer/Enemy" unique_id=677825705]
 layout_mode = 0
@@ -222,6 +274,10 @@ offset_left = 127.44269
 offset_top = 27.378508
 offset_right = 213.9427
 offset_bottom = 58.37851
+focus_neighbor_left = NodePath("../../../NormalEnemyFoldableContainer/Panel/SpeedSpinBox")
+focus_neighbor_top = NodePath("../../..")
+focus_neighbor_right = NodePath("../../../StrongEnemyFoldableContainer/Panel/SpeedSpinBox")
+focus_neighbor_bottom = NodePath("../MaxHealthSpinBox")
 
 [node name="MaxHealthLabel" type="Label" parent="TabContainer/Enemy/FastEnemyFoldableContainer/Panel" unique_id=565073967]
 layout_mode = 0
@@ -237,6 +293,10 @@ offset_left = 128.43555
 offset_top = 61.58608
 offset_right = 214.93555
 offset_bottom = 92.586075
+focus_neighbor_left = NodePath("../../../NormalEnemyFoldableContainer/Panel/MaxHealthSpinBox")
+focus_neighbor_top = NodePath("../SpeedSpinBox")
+focus_neighbor_right = NodePath("../../../StrongEnemyFoldableContainer/Panel/MaxHealthSpinBox")
+focus_neighbor_bottom = NodePath("../DamageSpinBox")
 
 [node name="DamageLabel" type="Label" parent="TabContainer/Enemy/FastEnemyFoldableContainer/Panel" unique_id=178160706]
 layout_mode = 0
@@ -252,6 +312,10 @@ offset_left = 128.81772
 offset_top = 100.824165
 offset_right = 215.31772
 offset_bottom = 131.82416
+focus_neighbor_left = NodePath("../../../NormalEnemyFoldableContainer/Panel/DamageSpinBox")
+focus_neighbor_top = NodePath("../MaxHealthSpinBox")
+focus_neighbor_right = NodePath("../../../StrongEnemyFoldableContainer/Panel/DamageSpinBox")
+focus_neighbor_bottom = NodePath("../PlayerDamageSpinBox")
 
 [node name="PlayerDamageLabel" type="Label" parent="TabContainer/Enemy/FastEnemyFoldableContainer/Panel" unique_id=714839206]
 layout_mode = 0
@@ -267,6 +331,10 @@ offset_left = 130.19292
 offset_top = 139.05617
 offset_right = 216.69293
 offset_bottom = 170.05617
+focus_neighbor_left = NodePath("../../../NormalEnemyFoldableContainer/Panel/PlayerDamageSpinBox")
+focus_neighbor_top = NodePath("../DamageSpinBox")
+focus_neighbor_right = NodePath("../../../StrongEnemyFoldableContainer/Panel/PlayerDamageSpinBox")
+focus_neighbor_bottom = NodePath("../LootChanceSpinBox")
 
 [node name="LootChanceLabel" type="Label" parent="TabContainer/Enemy/FastEnemyFoldableContainer/Panel" unique_id=1605974632]
 layout_mode = 0
@@ -282,6 +350,10 @@ offset_left = 130.03885
 offset_top = 174.26982
 offset_right = 216.53885
 offset_bottom = 205.26982
+focus_neighbor_left = NodePath("../../../NormalEnemyFoldableContainer/Panel/LootChanceSpinBox")
+focus_neighbor_top = NodePath("../PlayerDamageSpinBox")
+focus_neighbor_right = NodePath("../../../StrongEnemyFoldableContainer/Panel/LootChanceSpinBox")
+focus_neighbor_bottom = NodePath("../SpeedSpinBox")
 
 [node name="StrongEnemyFoldableContainer" type="FoldableContainer" parent="TabContainer/Enemy" unique_id=888618515]
 layout_mode = 0
@@ -327,6 +399,10 @@ offset_left = 127.44269
 offset_top = 24.360193
 offset_right = 213.9427
 offset_bottom = 55.36019
+focus_neighbor_left = NodePath("../../../FastEnemyFoldableContainer/Panel/SpeedSpinBox")
+focus_neighbor_top = NodePath("../../..")
+focus_neighbor_right = NodePath("../../../NormalEnemyFoldableContainer/Panel/SpeedSpinBox")
+focus_neighbor_bottom = NodePath("../MaxHealthSpinBox")
 
 [node name="MaxHealthLabel" type="Label" parent="TabContainer/Enemy/StrongEnemyFoldableContainer/Panel" unique_id=38750119]
 layout_mode = 0
@@ -342,6 +418,10 @@ offset_left = 128.43558
 offset_top = 56.55555
 offset_right = 214.93558
 offset_bottom = 87.55555
+focus_neighbor_left = NodePath("../../../FastEnemyFoldableContainer/Panel/MaxHealthSpinBox")
+focus_neighbor_top = NodePath("../SpeedSpinBox")
+focus_neighbor_right = NodePath("../../../NormalEnemyFoldableContainer/Panel/MaxHealthSpinBox")
+focus_neighbor_bottom = NodePath("../DamageSpinBox")
 
 [node name="DamageLabel" type="Label" parent="TabContainer/Enemy/StrongEnemyFoldableContainer/Panel" unique_id=1668935675]
 layout_mode = 0
@@ -357,6 +437,10 @@ offset_left = 128.81772
 offset_top = 100.824165
 offset_right = 215.31772
 offset_bottom = 131.82416
+focus_neighbor_left = NodePath("../../../FastEnemyFoldableContainer/Panel/DamageSpinBox")
+focus_neighbor_top = NodePath("../MaxHealthSpinBox")
+focus_neighbor_right = NodePath("../../../NormalEnemyFoldableContainer/Panel/DamageSpinBox")
+focus_neighbor_bottom = NodePath("../PlayerDamageSpinBox")
 
 [node name="PlayerDamageLabel" type="Label" parent="TabContainer/Enemy/StrongEnemyFoldableContainer/Panel" unique_id=856246006]
 layout_mode = 0
@@ -372,6 +456,10 @@ offset_left = 130.19292
 offset_top = 139.05617
 offset_right = 216.69293
 offset_bottom = 170.05617
+focus_neighbor_left = NodePath("../../../FastEnemyFoldableContainer/Panel/PlayerDamageSpinBox")
+focus_neighbor_top = NodePath("../DamageSpinBox")
+focus_neighbor_right = NodePath("../../../NormalEnemyFoldableContainer/Panel/PlayerDamageSpinBox")
+focus_neighbor_bottom = NodePath("../LootChanceSpinBox")
 
 [node name="LootChanceLabel" type="Label" parent="TabContainer/Enemy/StrongEnemyFoldableContainer/Panel" unique_id=1111488171]
 layout_mode = 0
@@ -387,10 +475,15 @@ offset_left = 130.03885
 offset_top = 174.26982
 offset_right = 216.53885
 offset_bottom = 205.26982
+focus_neighbor_left = NodePath("../../../FastEnemyFoldableContainer/Panel/LootChanceSpinBox")
+focus_neighbor_top = NodePath("../PlayerDamageSpinBox")
+focus_neighbor_right = NodePath("../../../NormalEnemyFoldableContainer/Panel/LootChanceSpinBox")
+focus_neighbor_bottom = NodePath("../SpeedSpinBox")
 
 [node name="Weapons" type="Control" parent="TabContainer" unique_id=1754960734]
 visible = false
 layout_mode = 2
+focus_neighbor_bottom = NodePath("DurabilitySpinBox")
 metadata/_tab_index = 2
 
 [node name="DurabilityLabel" type="Label" parent="TabContainer/Weapons" unique_id=200785043]
@@ -407,6 +500,8 @@ offset_left = 101.0
 offset_top = 22.0
 offset_right = 187.5
 offset_bottom = 53.0
+focus_neighbor_top = NodePath("..")
+focus_neighbor_bottom = NodePath("../DamageSpinBox")
 
 [node name="DamageLabel" type="Label" parent="TabContainer/Weapons" unique_id=1165830374]
 layout_mode = 0
@@ -422,10 +517,13 @@ offset_left = 101.0
 offset_top = 64.0
 offset_right = 187.5
 offset_bottom = 95.0
+focus_neighbor_top = NodePath("../DurabilitySpinBox")
+focus_neighbor_bottom = NodePath("../DurabilitySpinBox")
 
 [node name="Structures" type="Control" parent="TabContainer" unique_id=281370049]
 visible = false
 layout_mode = 2
+focus_neighbor_bottom = NodePath("ForgeSmeltTimerSpinBox")
 metadata/_tab_index = 3
 
 [node name="ForgeSmeltTimerLabel" type="Label" parent="TabContainer/Structures" unique_id=557611666]
@@ -442,6 +540,8 @@ offset_left = 244.0
 offset_top = 20.0
 offset_right = 330.5
 offset_bottom = 51.0
+focus_neighbor_top = NodePath("..")
+focus_neighbor_bottom = NodePath("../GrindstoneSmeltTimerSpinBox")
 
 [node name="GrindstoneSmeltTimerLabel2" type="Label" parent="TabContainer/Structures" unique_id=1507646172]
 layout_mode = 0
@@ -457,6 +557,8 @@ offset_left = 245.0
 offset_top = 59.0
 offset_right = 331.5
 offset_bottom = 90.0
+focus_neighbor_top = NodePath("../ForgeSmeltTimerSpinBox")
+focus_neighbor_bottom = NodePath("../ForgeHealthSpinBox")
 
 [node name="ForgeHealthLabel" type="Label" parent="TabContainer/Structures" unique_id=2109132637]
 layout_mode = 0
@@ -472,10 +574,13 @@ offset_left = 246.0
 offset_top = 102.0
 offset_right = 332.5
 offset_bottom = 133.0
+focus_neighbor_top = NodePath("../GrindstoneSmeltTimerSpinBox")
+focus_neighbor_bottom = NodePath("../ForgeSmeltTimerSpinBox")
 
 [node name="Debug" type="Control" parent="TabContainer" unique_id=999264312]
 visible = false
 layout_mode = 2
+focus_neighbor_bottom = NodePath("ShowCollisionsCheckBox")
 metadata/_tab_index = 4
 
 [node name="ShowCollisionsCheckBox" type="CheckBox" parent="TabContainer/Debug" unique_id=2130303281]
@@ -484,6 +589,7 @@ offset_left = 141.0
 offset_top = 25.0
 offset_right = 165.0
 offset_bottom = 49.0
+focus_neighbor_top = NodePath("..")
 
 [node name="ShowCollisionsLabel" type="Label" parent="TabContainer/Debug" unique_id=1495091614]
 layout_mode = 0
@@ -494,50 +600,143 @@ offset_bottom = 46.0
 text = "Show Collisions"
 
 [node name="GameLoop" type="Control" parent="TabContainer" unique_id=986683232]
+visible = false
 layout_mode = 2
+focus_neighbor_bottom = NodePath("GoblinSpawnChanceSpinBox")
 metadata/_tab_index = 5
+
+[node name="MaxWavesLabel" type="Label" parent="TabContainer/GameLoop" unique_id=1557683981]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 35.0
+offset_right = 180.0
+offset_bottom = 58.0
+text = "Max Waves"
+
+[node name="MaxWavesSpinBox" type="SpinBox" parent="TabContainer/GameLoop" unique_id=2073425841]
+layout_mode = 0
+offset_left = 229.0
+offset_top = 32.0
+offset_right = 315.5
+offset_bottom = 63.0
+focus_neighbor_top = NodePath("..")
+focus_neighbor_bottom = NodePath("../SkeletonSpawnChanceSpinBox")
+
+[node name="TimeBetweenEnemiesLabel" type="Label" parent="TabContainer/GameLoop" unique_id=67985072]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 74.0
+offset_right = 196.0
+offset_bottom = 97.0
+text = "Time Between Enemies"
+
+[node name="TimebetweenEnemiesSpinBox" type="SpinBox" parent="TabContainer/GameLoop" unique_id=1449158933]
+layout_mode = 0
+offset_left = 228.0
+offset_top = 71.0
+offset_right = 314.5
+offset_bottom = 102.0
+focus_neighbor_top = NodePath("../GoblinSpawnChanceSpinBox")
+focus_neighbor_bottom = NodePath("../HobgoblinSpawnChanceSpinBox")
+
+[node name="StartingEnemiesLabel" type="Label" parent="TabContainer/GameLoop" unique_id=596996375]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 116.0
+offset_right = 207.0
+offset_bottom = 139.0
+text = "Starting Enemies"
+
+[node name="StartingEnemiesSpinBox" type="SpinBox" parent="TabContainer/GameLoop" unique_id=1529948569]
+layout_mode = 0
+offset_left = 227.0
+offset_top = 113.0
+offset_right = 313.5
+offset_bottom = 144.0
+focus_neighbor_top = NodePath("../SkeletonSpawnChanceSpinBox")
+focus_neighbor_bottom = NodePath("../GoblinSpawnChanceSpinBox")
+
+[node name="EnemyIncreasePerWaveLabel" type="Label" parent="TabContainer/GameLoop" unique_id=445735451]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 156.0
+offset_right = 210.0
+offset_bottom = 179.0
+text = "Enemy Increase Per Wave"
+
+[node name="EnemyIncreasePerWaveSpinBox" type="SpinBox" parent="TabContainer/GameLoop" unique_id=1550832794]
+layout_mode = 0
+offset_left = 227.0
+offset_top = 153.0
+offset_right = 313.5
+offset_bottom = 184.0
+focus_neighbor_top = NodePath("../SkeletonSpawnChanceSpinBox")
+focus_neighbor_bottom = NodePath("../GoblinSpawnChanceSpinBox")
+
+[node name="TimeBetweenWavesLabel" type="Label" parent="TabContainer/GameLoop" unique_id=1323983595]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 193.0
+offset_right = 206.0
+offset_bottom = 216.0
+text = "Time Between Waves"
+
+[node name="TimeBetweenWavesSpinBox" type="SpinBox" parent="TabContainer/GameLoop" unique_id=1068601801]
+layout_mode = 0
+offset_left = 226.0
+offset_top = 190.0
+offset_right = 312.5
+offset_bottom = 221.0
+focus_neighbor_top = NodePath("../SkeletonSpawnChanceSpinBox")
+focus_neighbor_bottom = NodePath("../GoblinSpawnChanceSpinBox")
 
 [node name="GoblinSpawnLabel" type="Label" parent="TabContainer/GameLoop" unique_id=1423395183]
 layout_mode = 0
-offset_left = 12.0
-offset_top = 23.0
-offset_right = 132.0
-offset_bottom = 46.0
+offset_left = 11.0
+offset_top = 230.0
+offset_right = 178.0
+offset_bottom = 253.0
 text = "Goblin Spawn Chance"
 
 [node name="GoblinSpawnChanceSpinBox" type="SpinBox" parent="TabContainer/GameLoop" unique_id=1558451260]
 layout_mode = 0
-offset_left = 228.0
-offset_top = 20.0
-offset_right = 314.5
-offset_bottom = 51.0
+offset_left = 227.0
+offset_top = 227.0
+offset_right = 313.5
+offset_bottom = 258.0
+focus_neighbor_top = NodePath("..")
+focus_neighbor_bottom = NodePath("../SkeletonSpawnChanceSpinBox")
 
 [node name="SkeletonSpawnLabel" type="Label" parent="TabContainer/GameLoop" unique_id=2037238890]
 layout_mode = 0
-offset_left = 11.0
-offset_top = 62.0
-offset_right = 178.0
-offset_bottom = 85.0
+offset_left = 10.0
+offset_top = 269.0
+offset_right = 194.0
+offset_bottom = 292.0
 text = "Skeleton Spawn Chance"
 
 [node name="SkeletonSpawnChanceSpinBox" type="SpinBox" parent="TabContainer/GameLoop" unique_id=991692664]
 layout_mode = 0
-offset_left = 227.0
-offset_top = 59.0
-offset_right = 313.5
-offset_bottom = 90.0
+offset_left = 226.0
+offset_top = 266.0
+offset_right = 312.5
+offset_bottom = 297.0
+focus_neighbor_top = NodePath("../GoblinSpawnChanceSpinBox")
+focus_neighbor_bottom = NodePath("../HobgoblinSpawnChanceSpinBox")
 
 [node name="HobgoblinSpawnLabel" type="Label" parent="TabContainer/GameLoop" unique_id=15773220]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 104.0
-offset_right = 177.0
-offset_bottom = 127.0
+offset_left = 9.0
+offset_top = 311.0
+offset_right = 205.0
+offset_bottom = 334.0
 text = "Hobgoblin Spawn Chance"
 
 [node name="HobgoblinSpawnChanceSpinBox" type="SpinBox" parent="TabContainer/GameLoop" unique_id=424663387]
 layout_mode = 0
-offset_left = 226.0
-offset_top = 101.0
-offset_right = 312.5
-offset_bottom = 132.0
+offset_left = 225.0
+offset_top = 308.0
+offset_right = 311.5
+offset_bottom = 339.0
+focus_neighbor_top = NodePath("../SkeletonSpawnChanceSpinBox")
+focus_neighbor_bottom = NodePath("../GoblinSpawnChanceSpinBox")

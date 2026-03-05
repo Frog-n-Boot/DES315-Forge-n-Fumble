@@ -31,5 +31,6 @@ public partial class GrindstoneStation : BaseStationScript
 			grindstoneSound.Play();
 		}
 	}
+	public float GetCraftDuration()=> craftDuration;
 
 }

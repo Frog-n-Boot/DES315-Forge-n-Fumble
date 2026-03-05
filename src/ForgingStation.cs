@@ -92,4 +92,6 @@ public partial class ForgingStation : BaseStationScript
 	public override SequenceMinigame GetSequenceMinigame() => sequenceMinigame;
 
 
+
+
 }

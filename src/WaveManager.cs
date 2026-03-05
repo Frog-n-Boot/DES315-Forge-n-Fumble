@@ -22,15 +22,18 @@ public partial class WaveManager : Node
 
 	[ExportGroup("Wave Settings")]
 	[Export] public int   maxWaves               { get; set; } = 3;
-	[Export] public float timeBetweenWaves        { get; private set; } = 2.0f;
+	[Export] public float timeBetweenEnemySpawns        { get; private set; } = 2.0f;
 	[Export] public int   startingEnemiesPerWave  { get; set; }
 	[Export] public int   enemyIncreasedPerWave   { get; set; }
+	[Export] public float timeBetweemWaves { get; set;}
 
 	[ExportGroup("Spawn Positions")]
 	[Export] public Node3D[] spawnPositions = new Node3D[0];
 
 	[ExportGroup("UI")]
 	[Export] private Label enemyUI;
+	[Export] private Label3D waveTimerLabel3D;
+
 	#endregion
 
 	#region Signals
@@ -56,6 +59,8 @@ public partial class WaveManager : Node
 	#region Lifecycle
 	public override void _Ready()
 	{
+		waveTimerLabel3D.Visible = false;
+
 		SetupDefaults();
 		SetupTimer();
 
@@ -78,7 +83,8 @@ public partial class WaveManager : Node
 			}
 		}
 
-		StartNewWave();
+		GetTree().CreateTimer(2.0f).Timeout += StartNewWave;
+	
 	}
 
 	public override void _Process(double delta)
@@ -164,7 +170,7 @@ public partial class WaveManager : Node
 		spawnTimer          = new Timer();
 		spawnTimer.Name     = "SpawnTimer";
 		spawnTimer.OneShot  = false;
-		spawnTimer.WaitTime = timeBetweenWaves;
+		spawnTimer.WaitTime = timeBetweenEnemySpawns;
 		spawnTimer.Timeout += OnSpawnTimerTimeout;
 		AddChild(spawnTimer);
 	}
@@ -212,8 +218,13 @@ public partial class WaveManager : Node
 
 	private void OnWaveCompleted()
 	{
+		waveTimerLabel3D.Visible = true;
+		
+		waveTimerLabel3D.Text = $"Time until next Wave: {timeBetweemWaves}";
+
 		EmitSignal(SignalName.WaveCompleted, currentWave);
-		GetTree().CreateTimer(3.0f).Timeout += StartNewWave;
+		GetTree().CreateTimer(timeBetweemWaves).Timeout += StartNewWave;
+
 	}
 
 	private void OnAllWavesCompleted()
@@ -257,6 +268,7 @@ public partial class WaveManager : Node
 
 	private EnemyData GetRandomEnemyData()
 	{
+
 		int total = normalEnemyChance + fastEnemyChance + strongEnemyChance;
 		if (total == 0) total = 100;
 

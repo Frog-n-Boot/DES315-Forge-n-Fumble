@@ -66,4 +66,5 @@ public partial class Forge : Node3D
 		health = newHealth;
 		EmitSignal(SignalName.ForgeTookDamage,health, maxHealth);
 	}
+
 }

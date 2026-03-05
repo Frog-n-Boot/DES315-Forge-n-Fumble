@@ -20,28 +20,25 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	[Export] public PackedScene swordObject { get; private set; }
 	[Export] public AnimationPlayer animPlayer;
 	[Export] private AudioStreamPlayer3D audio;
-
-	private SequenceMinigame sequenceMinigame;
-
 	[Export] private Node3D rightHand;
 	[Export] private Node3D leftHand;
 	[Export] private Area3D areaPickup;
-
 	[Export] public Texture2D[] playerTextures;
-
-	[Export] private Label3D pickupPrompt;
+	[Export] private Node3D pickupNode;
+	[Export] public float playerSpawnTimer;
 
 	public Texture2D GetPortraitTexture() => playerTextures[PlayerIndex];
+	public int currentDevice = -2;
 
+	private SequenceMinigame sequenceMinigame;
 	private Camera3D camera;
 	private StaticBody3D world;
 	private InputManager inputManager;
-	public int currentDevice = -2;
 	private HashSet<string> actionsPressed = new HashSet<string>();
 	private HashSet<string> actionsPressedLastFrame = new HashSet<string>();
 	private HashSet<Node> processPickable = new HashSet<Node>();
-
 	private BaseStationScript currentStation;
+	private Label3D pickupPrompt;
 
 	[Signal] public delegate void PlayerHealthChangedEventHandler(int current, int max);
 	[Signal] public delegate void DiedEventHandler();
@@ -129,9 +126,12 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 	if(DebugMenu.playerSpeedOverride >= 0)
 		speed = (int)DebugMenu.playerSpeedOverride;
+
+	if(DebugMenu.playerSpawnTimerOverride >= 0)
+		playerSpawnTimer = (int)DebugMenu.playerSpawnTimerOverride;
+
+	pickupPrompt = pickupNode.GetNode<Label3D>("Label3D");
 }
-
-
 	private void FindExistingSword()
 	{
 		if (rightHand == null) return;
@@ -371,15 +371,18 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		{
 			nearbyPickable = area.GetParent() as Pickable;
 			GD.Print($"NearbyPickable: {nearbyPickable?.Name ?? "null"}");
+			pickupNode.GlobalPosition = new Vector3(nearbyPickable.GlobalPosition.X, nearbyPickable.GlobalPosition.Y + 2, nearbyPickable.GlobalPosition.Z);
 		}
 
 		if (area.IsInGroup("Sword")){
 			StaticBody3D areaParent = area.GetParent() as StaticBody3D;
 			nearbySword = areaParent?.GetParent() as Sword;
+			pickupNode.GlobalPosition = new Vector3(nearbySword.GlobalPosition.X, nearbySword.GlobalPosition.Y + 3, nearbySword.GlobalPosition.Z);
 		}
 		
 		pickupPrompt.Visible = true;
-		pickupPrompt.Text = IsUsingController() ? "A" : "Right Click";
+		pickupPrompt.Text = IsUsingController() ? "LT" : "Right Click";
+		pickupPrompt.FontSize = 40;
 		//pickupPrompt.GlobalPosition = new Vector3(nearbyPickable.GlobalPosition.X, nearbyPickable.GlobalPosition.Y + 3, nearbyPickable.GlobalPosition.Z);
 
 	}
@@ -446,7 +449,6 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			currentSword.Connect(Sword.SignalName.Broke, Callable.From(OnSwordBroke));
 
 			currentSword.isBeingPickedUp = false;
-
 			nearbySword = null;
 
 		};
@@ -575,7 +577,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		areaPickup.SetDeferred("monitoring", false);
 		areaPickup.SetDeferred("monitorable", false);
 
-		GetTree().CreateTimer(3.0f).Timeout += () =>{
+		GetTree().CreateTimer(playerSpawnTimer).Timeout += () =>{
 			GlobalPosition = new Vector3(0, 1, 0);
 			health = maxHealth;
 			Visible = true;

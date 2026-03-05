@@ -4,14 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/FinalAssets_Low/Items_Models/Sword.tscn" id="3_8d03m"]
 [ext_resource type="Texture2D" uid="uid://2lg75ncgvu3q" path="res://assets/textures/DwarfTexture.png" id="3_bw8qq"]
 [ext_resource type="Texture2D" uid="uid://fywbkplmkbgs" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/Dwarf_low_BaseCol.tga" id="3_v0ggv"]
+[ext_resource type="Texture2D" uid="uid://wsa4piaey4k3" path="res://assets/textures/CaleDwarf.png" id="3_vpvqr"]
 [ext_resource type="Texture2D" uid="uid://bx0rnncaa27mi" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/Dwarf_low_ORM.tga" id="4_jnlb4"]
 [ext_resource type="ArrayMesh" uid="uid://dewjvcdn4tcwe" path="res://assets/models/FinalAssets_Low/Character_Models/Dwarf_low.obj" id="4_t0fpx"]
 [ext_resource type="Texture2D" uid="uid://ct4j4j3x4nj5o" path="res://assets/textures/AlexDwarfText.png" id="4_vpvqr"]
 [ext_resource type="Texture2D" uid="uid://bgk03fcoiqv1l" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/Dwarf_low_Normal.tga" id="5_bw8qq"]
+[ext_resource type="Texture2D" uid="uid://bls4viimnixv7" path="res://assets/textures/StickTexture.png" id="6_ag2w6"]
 [ext_resource type="AudioStream" uid="uid://c4ymn22aaas8l" path="res://assets/Sounds/WorldSounds/SwordSwipe.mp3" id="8_jnlb4"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vpvqr"]
-load_path = "res://.godot/imported/AlexDwarfText.png-8f08e045cf7b0bb113d6cce10b9eac84.ctex"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t0fpx"]
 size = Vector3(1.6055908, 2.0847168, 0.8642578)
@@ -65,7 +64,7 @@ random_pitch = 1.7817973
 streams_count = 1
 stream_0/stream = ExtResource("8_jnlb4")
 
-[node name="Player" type="CharacterBody3D" unique_id=489937195 node_paths=PackedStringArray("animPlayer", "audio", "rightHand", "leftHand", "areaPickup", "pickupPrompt") groups=["Player"]]
+[node name="Player" type="CharacterBody3D" unique_id=489937195 node_paths=PackedStringArray("animPlayer", "audio", "rightHand", "leftHand", "areaPickup", "pickupNode") groups=["Player"]]
 collision_layer = 2
 collision_mask = 53
 velocity = Vector3(0, -228.01021, 0)
@@ -77,15 +76,16 @@ audio = NodePath("AudioStreamPlayer3D")
 rightHand = NodePath("CollisionShape3D/RightHand")
 leftHand = NodePath("CollisionShape3D/LeftHand")
 areaPickup = NodePath("Area3D")
-playerTextures = Array[Texture2D]([ExtResource("3_bw8qq"), ExtResource("4_vpvqr"), SubResource("CompressedTexture2D_vpvqr"), SubResource("CompressedTexture2D_vpvqr")])
-pickupPrompt = NodePath("Node3D/Label3D")
+playerTextures = Array[Texture2D]([ExtResource("3_vpvqr"), ExtResource("4_vpvqr"), ExtResource("6_ag2w6"), ExtResource("3_bw8qq")])
+pickupNode = NodePath("PickUpNode3D")
+playerSpawnTimer = 3.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1437107689 groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.039611816, 0.9244385, 0.058440506)
 shape = SubResource("BoxShape3D_t0fpx")
 
 [node name="RightHand" type="Node3D" parent="CollisionShape3D" unique_id=798116510]
-transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -2.0829906, -0.5383073, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -1.4623573, -0.5383073, 0)
 
 [node name="Sword" parent="CollisionShape3D/RightHand" unique_id=689345526 instance=ExtResource("3_8d03m")]
 transform = Transform3D(0.9999998, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999998, 0, 0, 0)
@@ -118,8 +118,8 @@ stream = SubResource("AudioStreamRandomizer_jnlb4")
 volume_db = -80.0
 max_db = -24.0
 
-[node name="Node3D" type="Node3D" parent="." unique_id=400310919]
+[node name="PickUpNode3D" type="Node3D" parent="." unique_id=400310919]
 transform = Transform3D(1.6779308, 0, 0, 0, 1.8431246, 0, 0, 0, 1, 0, 2.7833214, 0)
 
-[node name="Label3D" type="Label3D" parent="Node3D" unique_id=1684088306]
+[node name="Label3D" type="Label3D" parent="PickUpNode3D" unique_id=1684088306]
 visible = false
