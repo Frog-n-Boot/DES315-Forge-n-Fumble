@@ -41,7 +41,7 @@ public partial class Forge : Node3D
 	public void HealForge(int health)
 	{
 		this.health += health;
-		EmitSignal(SignalName.ForgeTookDamage, this.health, maxHealth);
+		EmitSignal(SignalName.ForgeHealed, this.health, maxHealth);
 	}
 	#endregion
 
@@ -59,4 +59,12 @@ public partial class Forge : Node3D
 		QueueFree();
 	}
 	#endregion
+
+	public void SetForgeHealth(int newHealth, int newMaxHealth)
+	{
+		maxHealth = newMaxHealth;
+		health = newHealth;
+		EmitSignal(SignalName.ForgeTookDamage,health, maxHealth);
+	}
+
 }

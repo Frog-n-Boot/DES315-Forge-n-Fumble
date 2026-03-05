@@ -23,18 +23,19 @@ public partial class HealthBar : ProgressBar
 		else if(isEnemy){
 			enemy = GetNode<EnemyController>($"../../../");
 			enemy.EnemyHealthChanged += SetHealth;
-			SetHealth(enemy.MaxHealth, 100);
-		}
-		else{
-			playerController = GetNode<PlayerController>($"../../../");
-			playerController.PlayerHealthChanged += SetHealth;
-			SetHealth(playerController.health, playerController.maxHealth);
-		}
-		
-		
+			SetHealth(enemy.currentHealth, enemy.MaxHealth);
+		}	
 	
 		MaxValue = 100;
 		Value = 100;
+	}
+
+	public void InitForPlayer(PlayerController player)
+	{
+		playerController = player;
+		MaxValue = player.maxHealth;
+		Value = player.health;
+		player.PlayerHealthChanged += SetHealth;
 	}
 
 	  private void SetHealth( int current, int max)
