@@ -37,6 +37,10 @@ public partial class DebugMenu : CanvasLayer
 	[ExportGroup("Weapon Attributes")]
 	[Export] private SpinBox weaponDurability;
 	[Export] private SpinBox weaponDamage;
+	[Export] private SpinBox turretRange;
+	[Export] private SpinBox turretConeAngle;
+	[Export] private SpinBox bulletDamage;
+	[Export] private SpinBox bulletSpeed;
 
 	[ExportGroup("Station Attributes")]
 	[Export] private SpinBox forgeHealth;
@@ -74,20 +78,6 @@ public partial class DebugMenu : CanvasLayer
 	[Export] private PackedScene ingotScene;
 	[Export] private PackedScene dullSwordScene;
 	[Export] private PackedScene healthBoxScene;
-
-	public static float playerMaxHealthOverride = -1;
-	public static float playerSpeedOverride = -1;
-	public static float playerSpawnTimerOverride = -1;
-	public static float SmeltingTimeOverride = -1;
-	public static float GrindstoneTimeOverride = -1;
-
-	public static float weaponDurabilityOverride = -1;
-	public static float weaponDamageOverride = -1;
-	public static float maxWavesOverirde = -1;
-	public static float timeBetweenEnemiesOverride = -1;
-	public static float startingEnemiesOverride = -1;
-	public static float enemyIncreasePerWaveOverride = -1;
-	public static float timeBetweenWavesOverride = -1;
 	
 	private Forge forge;
 	private WaveManager waveManager;
@@ -98,6 +88,13 @@ public partial class DebugMenu : CanvasLayer
 	private LootTable lootTable;
 	private CameraController cameraController;
 
+	private PlayerController playerController;
+	private PlayerSpawner playerSpawner;
+	private Turret turret;
+	private Bullet bullet;
+
+	private bool playerSettingsInitialized = false;
+
 	public override void _Ready()
 	{
 		Hide();
@@ -106,6 +103,8 @@ public partial class DebugMenu : CanvasLayer
 		SetupValues();
 		SetupValueRange();
 		SetCameraSettings();
+		SetupWeaponSettings();
+		SetupStationsSettings();
 		PopulatePanel(normalEnemy, normalContainer);
 		PopulatePanel(fastEnemy, fastContainer);
 		PopulatePanel(strongEnemy, strongContainer);
@@ -114,18 +113,6 @@ public partial class DebugMenu : CanvasLayer
 		UpdateLootTable();
 
 		ProcessMode=ProcessModeEnum.Always;
-		
-		playerMaxHealth.ValueChanged += value => SetPlayerMaxHealth((float) value);
-		playerSpeed.ValueChanged += value => SetPlayerSpeed((float) value);
-		playerSpawnTimer.ValueChanged += value => SetPlayerSpawnTimer((float) value);
-
-		weaponDamage.ValueChanged += value => SetWeaponDamage((float) value);
-		weaponDurability.ValueChanged += value => SetWeaponDurability((float) value);
-
-		forgeHealth.ValueChanged += value => SetForgeMaxHealth((float) value);
-		forgeSmeltTimer.ValueChanged += value => SetForgeSmeltTimer((float) value);
-
-		grindstoneSmeltTimer.ValueChanged += value => SetGrindstoneSmeltTimer((float) value);
 		showCollisions.Toggled += value => ShowCollisionShapes((bool) value);
 
 	}
@@ -143,15 +130,34 @@ public partial class DebugMenu : CanvasLayer
 
 	private void GetObjectReferences()
     {
-		cameraController = GetTree().Root.GetNode<CameraController>("TestingLab/Camera3D");
-        forge = GetNode<Forge>("/root/Forge");
-		waveManager = GetTree().Root.GetNode<Node>("TestingLab/EnemySpawner") as WaveManager;
+		cameraController = GetTree().GetFirstNodeInGroup("Camera") as CameraController;
+        forge = GetTree().Root.GetNode<Forge>("Forge");
+		waveManager = GetTree().GetFirstNodeInGroup("WaveManager") as WaveManager;
+		
+		forgeScript = GetTree().GetFirstNodeInGroup("Forge") as SmeltingStation;
+		grindstoneScript = GetTree().GetFirstNodeInGroup("Grindstone") as GrindstoneStation;
+		lootTable = GetTree().GetFirstNodeInGroup("LootTable") as LootTable;
+		playerSpawner = GetTree().GetFirstNodeInGroup("PlayerSpawner") as PlayerSpawner;
+		turret = GetTree().GetFirstNodeInGroup("Turret") as Turret;
+		bullet = GetTree().GetFirstNodeInGroup("Bullet") as Bullet;
+		
+		if(playerSpawner != null)
+			playerSpawner.PlayerSpawned += OnPlayerSpawned;
+			
 
-		forgeScript = GetTree().Root.GetNode<Node>("TestingLab/World/Forge") as SmeltingStation;
-		grindstoneScript = GetTree().Root.GetNode<Node>("TestingLab/World/Grindstone") as GrindstoneStation;
-		lootTable = GetTree().Root.GetNode<Node>("TestingLab/LootTable") as LootTable;
     }
 	
+	private void OnPlayerSpawned(PlayerController player, int playerIndex)
+	{
+		playerController = player;
+
+		if (!playerSettingsInitialized)
+		{
+			SetupPlayerSettings();
+			playerSettingsInitialized = true;
+		}
+		
+	}
 	private void SetupValueRange()
 	{
 		playerMaxHealth.MinValue= 0;
@@ -180,8 +186,18 @@ public partial class DebugMenu : CanvasLayer
 
 		HobgoblinEnemySpawnChance.MinValue = 0;
 		HobgoblinEnemySpawnChance.MaxValue = 100;
-		
 
+		outerBoundsX.MinValue = 0;
+		outerBoundsX.MaxValue = 1000;
+		
+		outerBoundsY.MinValue = 0;
+		outerBoundsY.MaxValue = 1000;
+
+		innerBoundsX.MinValue = 0;
+		innerBoundsX.MaxValue = 1000;
+
+		innerBoundsY.MinValue = 0;
+		innerBoundsY.MaxValue = 1000;
 	}
 
 	private void SetupValues()
@@ -208,6 +224,15 @@ public partial class DebugMenu : CanvasLayer
 		oreDropChance.Value = lootTable.oreDropChance;
 		healthPackDropChance.Value = lootTable.healthPackDropChance;
 
+		turretRange.Value = turret.range;
+		turretConeAngle.Value = turret.coneAngle;
+
+		if(bullet != null)
+		{
+			bulletDamage.Value = bullet.damage;
+			bulletSpeed.Value = bullet.speed;
+		}
+		
 	}
 
     public override void _Input(InputEvent @event)
@@ -235,7 +260,7 @@ public partial class DebugMenu : CanvasLayer
 		smoothSpeed.ValueChanged += v => cameraController.smoothSpeed = (int)v;
 
 		outerBoundsX.Value = cameraController.outerBounds.X;
-		outerBoundsX.ValueChanged += v => cameraController.outerBounds.X = (int)v;
+		outerBoundsX.ValueChanged += v => cameraController.outerBounds.X = (int)v;	
 
 		outerBoundsY.Value = cameraController.outerBounds.Y;
 		outerBoundsY.ValueChanged += v => cameraController.outerBounds.Y = (int)v;
@@ -254,87 +279,121 @@ public partial class DebugMenu : CanvasLayer
 		
     }
 
-	private void SetPlayerMaxHealth(float value)
+	private void SetupPlayerSettings()
 	{
-		playerMaxHealthOverride = value;
-		foreach(Node p in GetTree().GetNodesInGroup("Player"))
+		playerMaxHealth.Value = playerController.maxHealth;
+		playerMaxHealth.ValueChanged += v =>
 		{
-			var player = p as PlayerController;
-			if(player != null) {
-				player.maxHealth = (int)value;
-				player.health = player.maxHealth;
-			}
-
-		}
-	}
-	private void SetPlayerSpeed(float value)
-	{
-		playerSpeedOverride = value;
-		foreach(Node p in GetTree().GetNodesInGroup("Player"))
-		{
-			var player = p as PlayerController;
-			if(player != null) player.speed = (int)value;
-		}
-	}
-	private void SetPlayerSpawnTimer(float value)
-	{
-		playerSpawnTimerOverride = value;
-		foreach(Node p in GetTree().GetNodesInGroup("Player"))
-		{
-			var player = p as PlayerController;
-			if(player != null) player.playerSpawnTimer = (int)value;
-		}
-	}
-	private void SetWeaponDamage(float value)
-	{
-		weaponDamageOverride = value;
-		foreach(Node s in GetTree().GetNodesInGroup("Sword"))
-		{
-			var sword = s as Sword;
-			if(sword != null) sword.damage =(int)value;
-		}
-	}
-	private void SetWeaponDurability(float value)
-	{
-		weaponDurabilityOverride = value;
-		foreach(Node s in GetTree().GetNodesInGroup("Sword"))
-		{
-			var sword = s as Sword;
-			if(sword != null) sword.durability =(int)value;
-		}
-	}
-
-	private void SetForgeMaxHealth(float value)
-	{
-		if(forge != null) {
-			forge.maxHealth = (int)value;
-			forge.health = forge.maxHealth;
-			forge.EmitSignal(Forge.SignalName.ForgeTookDamage, forge.health, forge.maxHealth);
-		}		
-	}
-
-	private void SetForgeSmeltTimer(float value)
-	{
-		SmeltingTimeOverride = value;
-		foreach(Node f in GetTree().GetNodesInGroup("Station"))
-		{
-			if(f is SmeltingStation station)
+			foreach(Node p in GetTree().GetNodesInGroup("Player"))
 			{
-				station.SetCraftDuration(value);
+				var player = p as PlayerController;
+				if(player != null)
+				{
+					player.maxHealth = (int)v;
+					player.health = player.maxHealth;
+				}
 			}
-		}
+		};
+
+		playerSpeed.Value = playerController.speed;
+		playerSpeed.ValueChanged += v =>
+		{
+			foreach(Node p in GetTree().GetNodesInGroup("Player"))
+			{
+				var player = p as PlayerController;
+				if(player != null) player.speed = (float)v;
+			}
+
+		};
+
+		playerSpawnTimer.Value = playerController.playerSpawnTimer;
+		playerSpawnTimer.ValueChanged +=v =>
+		{
+			foreach(Node p in GetTree().GetNodesInGroup("Player"))
+			{
+				var player = p as PlayerController;
+				if(player != null) player.playerSpawnTimer = (int)v;
+			}
+		};
+
 	}
 
-	private void SetGrindstoneSmeltTimer(float value)
+	private void SetupWeaponSettings()
 	{
-		GrindstoneTimeOverride = value;
-		foreach(Node f in GetTree().GetNodesInGroup("Station"))
+		weaponDamage.ValueChanged += v =>
 		{
-			if(f is GrindstoneStation station)
+			foreach(Node s in GetTree().GetNodesInGroup("Sword"))
 			{
-				station.SetCraftDuration(value);
+				var sword = s as Sword;
+				if(sword != null) sword.damage = (int)v;
 			}
-		}
+		};
+
+		weaponDurability.ValueChanged += v =>
+		{
+			foreach(Node s in GetTree().GetNodesInGroup("Sword"))
+			{
+				var sword = s as Sword;
+				if(sword != null) sword.durability = (int)v;
+			}
+		};
+
+		turretRange.ValueChanged += v =>
+		{
+			foreach(Node t in GetTree().GetNodesInGroup("Turret"))
+			{
+				var turret = t as Turret;
+				if(turret != null) turret.range = (int)v;
+			}
+		};
+
+		turretConeAngle.ValueChanged += v =>
+		{
+			foreach(Node t in GetTree().GetNodesInGroup("Turret"))
+			{
+				var turret = t as Turret;
+				if(turret != null) turret.coneAngle = (int)v;
+			}
+		};
+		bulletDamage.ValueChanged += v =>Bullet.defaultDamage = (int)v;
+		bulletSpeed.ValueChanged += v =>Bullet.defaultSpeed = (float)v;
+
+		
+	}
+
+	private void SetupStationsSettings()
+	{
+		forgeHealth.ValueChanged += v =>
+		{
+			if(forge != null)
+			{
+				forge.maxHealth = (int)v;
+				forge.health = forge.maxHealth;
+				forge.EmitSignal(Forge.SignalName.ForgeTookDamage, forge.health, forge.maxHealth);
+			}
+		};
+
+		forgeSmeltTimer.ValueChanged += v =>
+		{
+			foreach(Node f in GetTree().GetNodesInGroup("Station"))
+			{
+				if(f is SmeltingStation station)
+				{
+					station.SetCraftDuration((float)v);
+				}
+			}
+		};
+
+		grindstoneSmeltTimer.ValueChanged += v =>
+		{
+			foreach(Node f in GetTree().GetNodesInGroup("Station"))
+			{
+				if(f is GrindstoneStation station)
+				{
+					station.SetCraftDuration((float)v);
+				}
+			}
+		};
 	}
 
 	public void AddForgeHealth()
@@ -471,30 +530,30 @@ public partial class DebugMenu : CanvasLayer
     {
 		var scene = oreScene.Instantiate<Node3D>();
 		GetTree().Root.AddChild(scene);
-		scene.GlobalPosition = new Vector3(4, 0, 4);
+		scene.GlobalPosition = playerController.GlobalPosition + playerController.Transform.Basis.Z * 2f;
     }
 	protected void SpawnIngot()
     {
 		var scene = ingotScene.Instantiate<Node3D>();
 		GetTree().Root.AddChild(scene);
-		scene.GlobalPosition = new Vector3(4, 0, 4);
+		scene.GlobalPosition = playerController.GlobalPosition + playerController.Transform.Basis.Z * 2f;
     }
 	protected void SpawnWeapon()
     {
 		var scene = weaponScene.Instantiate<Node3D>();
 		GetTree().Root.AddChild(scene);
-		scene.GlobalPosition = new Vector3(4, 0, 4);
+		scene.GlobalPosition = playerController.GlobalPosition + playerController.Transform.Basis.Z * 2f;
     }
 	protected void SpawnDullSword()
     {
 		var scene = dullSwordScene.Instantiate<Node3D>();
 		GetTree().Root.AddChild(scene);
-		scene.GlobalPosition = new Vector3(4, 0, 4);
+		scene.GlobalPosition = playerController.GlobalPosition + playerController.Transform.Basis.Z * 2f;
     }
 	protected void SpawnHealthBox()
     {
 		var scene = healthBoxScene.Instantiate<Node3D>();
 		GetTree().Root.AddChild(scene);
-		scene.GlobalPosition = new Vector3(4, 0, 4);
+		scene.GlobalPosition = playerController.GlobalPosition + playerController.Transform.Basis.Z * 2f;
     }
 }

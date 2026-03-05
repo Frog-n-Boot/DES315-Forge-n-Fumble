@@ -12,7 +12,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_15w0a"]
 
-[node name="DebugMenu" type="CanvasLayer" unique_id=731638094 node_paths=PackedStringArray("smoothSpeed", "outerBoundsX", "outerBoundsY", "innerBoundsX", "innerBoundsY", "minSize", "maxSize", "playerControlNode", "playerMaxHealth", "playerSpeed", "playerSpawnTimer", "normalContainer", "fastContainer", "strongContainer", "oreDropChance", "healthPackDropChance", "weaponDurability", "weaponDamage", "forgeHealth", "forgeSmeltTimer", "grindstoneSmeltTimer", "addForgeHealth", "subtractForgeHealth", "showCollisions", "maxWaves", "timeBetweenEnemies", "startingEnemies", "enemyIncreasePerWave", "timeBetweenWaves", "goblinEnemySpawnChance", "skeletonEnemySpawnChance", "HobgoblinEnemySpawnChance", "spawnWeapon", "spawnOre", "spawnIngot", "spawnDullSword", "spawnHealthBox")]
+[node name="DebugMenu" type="CanvasLayer" unique_id=731638094 node_paths=PackedStringArray("smoothSpeed", "outerBoundsX", "outerBoundsY", "innerBoundsX", "innerBoundsY", "minSize", "maxSize", "playerControlNode", "playerMaxHealth", "playerSpeed", "playerSpawnTimer", "normalContainer", "fastContainer", "strongContainer", "oreDropChance", "healthPackDropChance", "weaponDurability", "weaponDamage", "turretRange", "turretConeAngle", "bulletDamage", "bulletSpeed", "forgeHealth", "forgeSmeltTimer", "grindstoneSmeltTimer", "addForgeHealth", "subtractForgeHealth", "showCollisions", "maxWaves", "timeBetweenEnemies", "startingEnemies", "enemyIncreasePerWave", "timeBetweenWaves", "goblinEnemySpawnChance", "skeletonEnemySpawnChance", "HobgoblinEnemySpawnChance", "spawnWeapon", "spawnOre", "spawnIngot", "spawnDullSword", "spawnHealthBox")]
 process_mode = 3
 script = ExtResource("1_15w0a")
 smoothSpeed = NodePath("TabContainer/Camera/SmoothSpeedSpinBox")
@@ -36,6 +36,10 @@ oreDropChance = NodePath("TabContainer/Enemy/OreDropChanceSpinBox")
 healthPackDropChance = NodePath("TabContainer/Enemy/HealthpackDropChanceSpinBox")
 weaponDurability = NodePath("TabContainer/Weapons/DurabilitySpinBox")
 weaponDamage = NodePath("TabContainer/Weapons/DamageSpinBox")
+turretRange = NodePath("TabContainer/Weapons/TurretRangeSpinBox")
+turretConeAngle = NodePath("TabContainer/Weapons/TurretAngleConeSpinBox")
+bulletDamage = NodePath("TabContainer/Weapons/BulletDamageSpinBox")
+bulletSpeed = NodePath("TabContainer/Weapons/BulletSpeedSpinBox")
 forgeHealth = NodePath("TabContainer/Structures/ForgeHealthSpinBox")
 forgeSmeltTimer = NodePath("TabContainer/Structures/ForgeSmeltTimerSpinBox")
 grindstoneSmeltTimer = NodePath("TabContainer/Structures/GrindstoneSmeltTimerSpinBox")
@@ -68,9 +72,10 @@ offset_bottom = 642.0
 [node name="TabContainer" type="TabContainer" parent="." unique_id=733798386]
 offset_right = 1143.0
 offset_bottom = 634.0
-current_tab = 0
+current_tab = 7
 
 [node name="Camera" type="Control" parent="TabContainer" unique_id=1011013968]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -684,10 +689,10 @@ text = "Durability"
 
 [node name="DurabilitySpinBox" type="SpinBox" parent="TabContainer/Weapons" unique_id=1153597986]
 layout_mode = 0
-offset_left = 101.0
-offset_top = 22.0
-offset_right = 187.5
-offset_bottom = 53.0
+offset_left = 175.0
+offset_top = 19.0
+offset_right = 261.5
+offset_bottom = 50.0
 focus_neighbor_top = NodePath("..")
 focus_neighbor_bottom = NodePath("../DamageSpinBox")
 
@@ -701,10 +706,78 @@ text = "Damage"
 
 [node name="DamageSpinBox" type="SpinBox" parent="TabContainer/Weapons" unique_id=634597814]
 layout_mode = 0
-offset_left = 101.0
-offset_top = 64.0
-offset_right = 187.5
-offset_bottom = 95.0
+offset_left = 175.0
+offset_top = 61.0
+offset_right = 261.5
+offset_bottom = 92.0
+focus_neighbor_top = NodePath("../DurabilitySpinBox")
+focus_neighbor_bottom = NodePath("../DurabilitySpinBox")
+
+[node name="TurretRangeLabel" type="Label" parent="TabContainer/Weapons" unique_id=1553440703]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 108.0
+offset_right = 86.0
+offset_bottom = 131.0
+text = "Turret Range"
+
+[node name="TurretRangeSpinBox" type="SpinBox" parent="TabContainer/Weapons" unique_id=1848566239]
+layout_mode = 0
+offset_left = 173.0
+offset_top = 105.0
+offset_right = 259.5
+offset_bottom = 136.0
+focus_neighbor_top = NodePath("../DurabilitySpinBox")
+focus_neighbor_bottom = NodePath("../DurabilitySpinBox")
+
+[node name="TurretAngleConeLabel" type="Label" parent="TabContainer/Weapons" unique_id=2139597243]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 147.0
+offset_right = 83.0
+offset_bottom = 170.0
+text = "Turret Angle Cone"
+
+[node name="TurretAngleConeSpinBox" type="SpinBox" parent="TabContainer/Weapons" unique_id=553535142]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 144.0
+offset_right = 256.5
+offset_bottom = 175.0
+focus_neighbor_top = NodePath("../DurabilitySpinBox")
+focus_neighbor_bottom = NodePath("../DurabilitySpinBox")
+
+[node name="BulletDamageLabel" type="Label" parent="TabContainer/Weapons" unique_id=1412464153]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 191.0
+offset_right = 144.0
+offset_bottom = 214.0
+text = "Bullet Damage"
+
+[node name="BulletDamageSpinBox" type="SpinBox" parent="TabContainer/Weapons" unique_id=107615961]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 188.0
+offset_right = 254.5
+offset_bottom = 219.0
+focus_neighbor_top = NodePath("../DurabilitySpinBox")
+focus_neighbor_bottom = NodePath("../DurabilitySpinBox")
+
+[node name="BulletSpeedLabel" type="Label" parent="TabContainer/Weapons" unique_id=334820778]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 235.0
+offset_right = 143.0
+offset_bottom = 258.0
+text = "Bullet Speed"
+
+[node name="BulletSpeedSpinBox" type="SpinBox" parent="TabContainer/Weapons" unique_id=1011548477]
+layout_mode = 0
+offset_left = 167.0
+offset_top = 232.0
+offset_right = 253.5
+offset_bottom = 263.0
 focus_neighbor_top = NodePath("../DurabilitySpinBox")
 focus_neighbor_bottom = NodePath("../DurabilitySpinBox")
 
@@ -948,7 +1021,6 @@ focus_neighbor_top = NodePath("../SkeletonSpawnChanceSpinBox")
 focus_neighbor_bottom = NodePath("../GoblinSpawnChanceSpinBox")
 
 [node name="Items" type="Control" parent="TabContainer" unique_id=694562919]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 7
 

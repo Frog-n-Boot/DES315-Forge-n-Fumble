@@ -4,7 +4,10 @@ using System;
 public partial class Bullet : Node3D
 {
 	[Export] public int damage;
-	[Export] private float speed;
+	[Export] public float speed;
+
+	public static int defaultDamage = 10;
+	public static float defaultSpeed = 20f;
 	private Vector3 direction;
 	
 	private Node3D target;
@@ -20,6 +23,8 @@ public partial class Bullet : Node3D
 
     public override void _Ready()
     {
+		damage=  defaultDamage;
+		speed = defaultSpeed;
 		GetTree().CreateTimer(5.0f).Timeout += QueueFree;
     }
 

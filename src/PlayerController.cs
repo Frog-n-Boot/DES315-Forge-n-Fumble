@@ -121,15 +121,6 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			GD.PrintErr("Hand node not found!");
 		}
 
-		if(DebugMenu.playerMaxHealthOverride >= 0)
-			maxHealth = (int)DebugMenu.playerMaxHealthOverride;
-
-		if(DebugMenu.playerSpeedOverride >= 0)
-			speed = (int)DebugMenu.playerSpeedOverride;
-
-		if(DebugMenu.playerSpawnTimerOverride >= 0)
-			playerSpawnTimer = (int)DebugMenu.playerSpawnTimerOverride;
-
 		pickupPrompt = pickupNode.GetNode<Label3D>("Label3D");
 	}
 	
