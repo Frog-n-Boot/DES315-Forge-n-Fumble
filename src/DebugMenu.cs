@@ -1,30 +1,42 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 public partial class DebugMenu : CanvasLayer
 {
 
+	[ExportCategory("Player Attributes")]
 	[Export] private SpinBox playerMaxHealth;
 	[Export] private SpinBox playerSpeed;
-	[Export] private SpinBox enemyMaxHealth;
-	[Export] private SpinBox enemySpeed;
-	[Export] private SpinBox enemyDamage;
-	[Export] private SpinBox enemyDamageToPlayer;
+
+	[ExportGroup("Enemy Debug")]
+	
+	[Export] private EnemyData normalEnemy;
+	[Export] private EnemyData fastEnemy;
+	[Export] private EnemyData strongEnemy;
+
+	[Export] FoldableContainer normalContainer;
+	[Export] FoldableContainer fastContainer;
+	[Export] FoldableContainer strongContainer;
+
+	[ExportCategory("Weapon Attributes")]
 	[Export] private SpinBox weaponDurability;
 	[Export] private SpinBox weaponDamage;
+
+	[ExportCategory("Station Attributes")]
 	[Export] private SpinBox forgeHealth;
 	[Export] private SpinBox forgeSmeltTimer;
 	[Export] private SpinBox grindstoneSmeltTimer;
+
+	[ExportCategory("Game Loop Attributes")]
 	[Export] private CheckBox showCollisions;
+
 
 	public static float playerMaxHealthOverride = -1;
 	public static float playerSpeedOverride = -1;
 	public static float SmeltingTimeOverride = -1;
 	public static float GrindstoneTimeOverride = -1;
-	public static float enemyMaxHealthOverride = -1;
-	public static float enemySpeedOverride = -1;
-	public static float enemyDamageOverride = -1;
-	public static float enemyDamageToPlayerOverride = -1;
 
 	public static float weaponDurabilityOverride = -1;
 	public static float weaponDamageOverride = -1;
@@ -34,19 +46,18 @@ public partial class DebugMenu : CanvasLayer
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+
 		Hide();
 		SetupValues();
 		SetupValueRange();
+		PopulatePanel(normalEnemy, normalContainer);
+		PopulatePanel(fastEnemy, fastContainer);
+		PopulatePanel(strongEnemy, strongContainer);
 
 		ProcessMode=ProcessModeEnum.Always;
 
 		playerMaxHealth.ValueChanged += value => SetPlayerMaxHealth((float) value);
 		playerSpeed.ValueChanged += value => SetPlayerSpeed((float) value);
-
-		enemyMaxHealth.ValueChanged += value => SetEnemyMaxHealth((float) value);
-		enemySpeed.ValueChanged += value => SetEnemySpeed((float) value);
-		enemyDamage.ValueChanged += value => SetEnemyDamage((float) value);
-		enemyDamageToPlayer.ValueChanged += value => SetEnemyDamageToPlayer((float) value);
 
 		weaponDamage.ValueChanged += value => SetWeaponDamage((float) value);
 		weaponDurability.ValueChanged += value => SetWeaponDurability((float) value);
@@ -64,15 +75,6 @@ public partial class DebugMenu : CanvasLayer
 		playerMaxHealth.MinValue= 0;
 		playerMaxHealth.MaxValue= 99999;
 
-		enemyMaxHealth.MinValue= 0;
-		enemyMaxHealth.MaxValue= 99999;
-
-		enemyDamage.MinValue= 0;
-		enemyDamage.MaxValue= 99999;
-
-		enemyDamageToPlayer.MinValue= 0;
-		enemyDamageToPlayer.MaxValue= 99999;
-
 		weaponDurability.MinValue= 0;
 		weaponDurability.MaxValue= 99999;
 
@@ -87,6 +89,7 @@ public partial class DebugMenu : CanvasLayer
 
 		grindstoneSmeltTimer.MinValue= 0;
 		grindstoneSmeltTimer.MaxValue= 100;
+		
 
 	}
 
@@ -109,6 +112,7 @@ public partial class DebugMenu : CanvasLayer
 
     public override void _Input(InputEvent @event)
     {
+			
 		if (@event.IsActionPressed("debug"))
 		{
 			if(Visible){
@@ -123,6 +127,7 @@ public partial class DebugMenu : CanvasLayer
 			}
 	
 		}
+		
     }
 
 	private void SetPlayerMaxHealth(float value)
@@ -145,49 +150,6 @@ public partial class DebugMenu : CanvasLayer
 		{
 			var player = p as PlayerController;
 			if(player != null) player.speed = (int)value;
-		}
-	}
-
-	private void SetEnemyMaxHealth(float value)
-	{
-		enemyMaxHealthOverride = value;
-		foreach(Node e in GetTree().GetNodesInGroup("Enemy"))
-		{
-			var enemy = e as EnemyController;
-			if(enemy !=null){ 
-				enemy.MaxHealth = (int)value;
-				enemy.currentHealth = enemy.MaxHealth;
-			}
-		}
-	}
-
-	private void SetEnemySpeed(float value)
-	{
-		enemySpeedOverride = value;
-		foreach(Node e in GetTree().GetNodesInGroup("Enemy"))
-		{
-			var enemy = e as EnemyController;
-			if(enemy !=null) enemy.Speed = (int)value;
-		}
-	}
-
-	private void SetEnemyDamage(float value)
-	{
-		enemyDamageOverride = value;
-		foreach(Node e in GetTree().GetNodesInGroup("Enemy"))
-		{
-			var enemy = e as EnemyController;
-			if(enemy !=null) enemy.Damage = (int)value;
-		}
-	}
-
-	private void SetEnemyDamageToPlayer(float value)
-	{
-		enemyDamageToPlayerOverride = value;
-		foreach(Node e in GetTree().GetNodesInGroup("Enemy"))
-		{
-			var enemy = e as EnemyController;
-			if(enemy !=null) enemy.DamageToPlayer = (int)value;
 		}
 	}
 
@@ -250,5 +212,74 @@ public partial class DebugMenu : CanvasLayer
 	private void ShowCollisionShapes(bool value)
     {
         GetTree().DebugCollisionsHint = value;
+
+		FindCollisionShapes(GetTree().Root);
     }
+
+	private void FindCollisionShapes(Node parent)
+	{
+
+		foreach(Node child in parent.GetChildren())
+		{
+			FindCollisionShapes(child);
+			
+			if(child is CollisionObject3D body)
+			{
+				var parentNode = child.GetParent();
+				var index = child.GetIndex();
+				parentNode.RemoveChild(child);
+				parentNode.AddChild(child);
+				parentNode.MoveChild(child, index);
+			}
+		}
+	}
+	private void PopulatePanel(EnemyData data, FoldableContainer container)
+	{
+
+		container.Title = data.enemyName;
+		Panel panel = container.GetNode<Panel>("Panel");
+
+		panel.GetNode<Label>("EnemyNameLabel").Text = data.enemyName;
+
+		var healthBox = panel.GetNode<SpinBox>("MaxHealthSpinBox");
+
+		healthBox.MinValue = 0;
+		healthBox.MaxValue = 99999;
+
+		healthBox.Value = data.maxHealth;
+		healthBox.ValueChanged += v => data.maxHealth = (int)v;
+
+		var speedBox = panel.GetNode<SpinBox>("SpeedSpinBox");
+
+		speedBox.MinValue = 0;
+		speedBox.MaxValue = 100;
+
+		speedBox.Value = data.speed;
+		speedBox.ValueChanged += v => data.speed = (float)v;
+
+		var damageBox = panel.GetNode<SpinBox>("DamageSpinBox");
+
+		damageBox.MinValue = 0;
+		damageBox.MaxValue = 99999;
+
+		damageBox.Value = data.damage;
+		damageBox.ValueChanged += v => data.damage = (int)v;
+
+		var playerDamageBox = panel.GetNode<SpinBox>("PlayerDamageSpinBox");
+
+		playerDamageBox.MinValue = 0;
+		playerDamageBox.MaxValue = 99999;
+
+		playerDamageBox.Value = data.damageToPlayer;
+		playerDamageBox.ValueChanged += v => data.damageToPlayer = (int)v;
+
+		var lootDropChanceBox = panel.GetNode<SpinBox>("LootChanceSpinBox");
+		
+		lootDropChanceBox.MinValue =0;
+		lootDropChanceBox.MaxValue = 100;
+
+		lootDropChanceBox.Value = data.lootDropChance;
+		lootDropChanceBox.ValueChanged += v => data.lootDropChance = (float)v;	
+	}
+
 }

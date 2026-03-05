@@ -24,7 +24,7 @@ metadata/_custom_type_script = "uid://1bo1o367ybgk"
 [sub_resource type="BoxShape3D" id="BoxShape3D_5b8nd"]
 size = Vector3(0.38000727, 0.51831055, 0.24706268)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_5kmee"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_twstk"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ohbk7"]
@@ -65,7 +65,7 @@ shape = SubResource("BoxShape3D_5b8nd")
 
 [node name="ForgeHealthBar" parent="." unique_id=1328028810 instance=ExtResource("3_g2ei8")]
 transform = Transform3D(-20, 0, 1.7484554e-06, 0, 20, 0, -1.7484554e-06, 0, -20, 0, 18.932394, -0.85522586)
-texture = SubResource("ViewportTexture_5kmee")
+texture = SubResource("ViewportTexture_twstk")
 
 [node name="InputPort" parent="." unique_id=750325492 instance=ExtResource("4_0l8vc")]
 transform = Transform3D(31.928226, 0, 0, 0, 6.3082385, 0, 0, 0, 44.96865, -4.0128264, 3.270673, -0.43483275)

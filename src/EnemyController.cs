@@ -25,13 +25,13 @@ public partial class EnemyController : Node3D
 	#endregion
 
 	#region Runtime Stats (populated from EnemyData in _Ready)
-	public string EnemyName      { get; private set; }
-	public int    MaxHealth       { get; set; }
-	public int    Damage          { get; set; }
+	public string EnemyName => enemyData.enemyName;
+	public int    MaxHealth => enemyData.maxHealth;
+	public int    Damage    => enemyData.damage;
 
-	public int    DamageToPlayer { get; set;}
-	public float  Speed           { get; set; }
-	public float  LootDropChance  { get; private set; }
+	public int    DamageToPlayer => enemyData.damageToPlayer;
+	public float  Speed         => enemyData.speed;
+	public float  LootDropChance => enemyData.lootDropChance;
 	#endregion
 
 	#region Health
@@ -131,8 +131,13 @@ public partial class EnemyController : Node3D
 	#region Lifecycle
 	public override void _Ready()
 	{
+		if (enemyData == null)
+		{
+			GD.PrintErr($"EnemyController: enemyData is null on {Name}! Assign an EnemyData resource.");
+			return;
+		}
+
 		AutoFindNodes();
-		ApplyEnemyData();
 		ApplyVisuals();
 		SetupCollision();
 		InitHealth();
@@ -146,42 +151,6 @@ public partial class EnemyController : Node3D
 	#endregion
 
 	#region Setup
-	private void ApplyEnemyData()
-	{
-		if (enemyData == null)
-		{
-			GD.PrintErr($"EnemyController: enemyData is null on {Name}! Assign an EnemyData resource.");
-			return;
-		}
-
-		EnemyName     = enemyData.enemyName;
-		MaxHealth     = enemyData.maxHealth;
-		Damage        = enemyData.damage;
-		DamageToPlayer = enemyData.damageToPlayer;
-		Speed         = enemyData.speed;
-		LootDropChance = enemyData.lootDropChance;
-
-		if(DebugMenu.enemyMaxHealthOverride >= 0)
-        {
-            MaxHealth = (int)DebugMenu.enemyMaxHealthOverride;
-        }
-
-		if(DebugMenu.enemySpeedOverride >= 0)
-        {
-            Speed = (int)DebugMenu.enemySpeedOverride;
-        }
-
-		if(DebugMenu.enemyDamageOverride >= 0)
-        {
-            Damage = (int)DebugMenu.enemyDamageOverride;
-        }
-
-		if(DebugMenu.enemyDamageToPlayerOverride >= 0)
-        {
-            DamageToPlayer = (int)DebugMenu.enemyDamageToPlayerOverride;
-        }
-	}
-
 	private void ApplyVisuals()
 	{
 		if (enemyData == null) return;

@@ -27,6 +27,12 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	[Export] private Node3D leftHand;
 	[Export] private Area3D areaPickup;
 
+	[Export] public Texture2D[] playerTextures;
+
+	[Export] private Label3D pickupPrompt;
+
+	public Texture2D GetPortraitTexture() => playerTextures[PlayerIndex];
+
 	private Camera3D camera;
 	private StaticBody3D world;
 	private InputManager inputManager;
@@ -48,6 +54,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	private bool isAttacking = false;
 	private int tick = 0;
 	private Pickable nearbyPickable;
+	private Sword nearbySword;
 
 	public IEnumerable<ItemData> GetCarriedItems()
 	{
@@ -128,7 +135,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	private void FindExistingSword()
 	{
 		if (rightHand == null) return;
-	
+
 		foreach (Node child in rightHand.GetChildren())
 		{
 			if (child is Sword sword)
@@ -197,9 +204,15 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		{
 		   currentStation.StartCrafting();
 		}
-		if (IsActionPressed("pick_up") && nearbyPickable != null)
+		if (IsActionPressed("pick_up"))
 		{
-			ProcessPickable(nearbyPickable);
+			if(nearbySword != null && rightHand.GetChildCount() == 0)
+			{
+				PickUpSword(nearbySword);
+				
+			}
+			else if(nearbyPickable != null)
+				ProcessPickable(nearbyPickable);
 		}
 	}
 
@@ -210,7 +223,6 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			GD.Print("PlayerLocked");
 			return;
 		}
-	
 
 		Vector3 velocity = Velocity;
 
@@ -360,53 +372,27 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			nearbyPickable = area.GetParent() as Pickable;
 			GD.Print($"NearbyPickable: {nearbyPickable?.Name ?? "null"}");
 		}
-		
 
-
-		bool hasSword = false;
-		foreach (Node child in rightHand.GetChildren()){
-			if (child is Sword || child.IsInGroup("Sword")){
-			 hasSword = true;
-			 
-				break;
-			}
-		}
-
-		if (hasSword)
-			return;
-
-		if (area.IsInGroup("Sword") && rightHand.GetChildCount() == 0)
-		{
+		if (area.IsInGroup("Sword")){
 			StaticBody3D areaParent = area.GetParent() as StaticBody3D;
-			Node3D swordNode = areaParent.GetParent() as Node3D;
-			if(swordNode == null) return;
-
-			Sword sword = swordNode as Sword;
-			if(sword != null && sword.isBeingPickedUp) return;
-			if(sword != null) sword.isBeingPickedUp = true;
-			swordNode.CallDeferred("reparent", rightHand);
-			GetTree().CreateTimer(0.1f).Timeout += () =>
-			{
-				if(!IsInstanceValid(swordNode)) return;
-				swordNode.GlobalPosition = rightHand.GlobalPosition;
-				swordNode.Rotation = Vector3.Zero;
-				rightHand.Rotation = Vector3.Zero;
-				
-				currentSword = swordNode as Sword;
-				if (currentSword != null)
-				{
-					currentSword.CheckDurability += OnSwordDurabilityChecked;
-					currentSword.Broke += OnSwordBroke;
-					currentSword.isBeingPickedUp = false;
-				}
-			};
+			nearbySword = areaParent?.GetParent() as Sword;
 		}
+		
+		pickupPrompt.Visible = true;
+		pickupPrompt.Text = IsUsingController() ? "A" : "Right Click";
+		//pickupPrompt.GlobalPosition = new Vector3(nearbyPickable.GlobalPosition.X, nearbyPickable.GlobalPosition.Y + 3, nearbyPickable.GlobalPosition.Z);
+
 	}
 
 	private void OnPickUpAreaExited(Area3D area)
 	{
+	
 		if(area.IsInGroup("pickable"))
 			nearbyPickable = null;
+		if(area.IsInGroup("Sword"))
+			nearbySword = null;
+		if(nearbySword == null && nearbyPickable == null)
+			pickupPrompt.Visible = false;
 	}
 
 	private void ProcessPickable(Pickable pickable)
@@ -436,6 +422,35 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		
 	}
 
+	private void PickUpSword(Sword sword)
+	{
+		if(sword.isBeingPickedUp) return;
+		sword.isBeingPickedUp = true;
+
+		sword.CallDeferred("reparent", rightHand);
+		GetTree().CreateTimer(0.1f).Timeout += () =>
+		{
+			if(!IsInstanceValid(sword))return;
+			sword.GlobalPosition = rightHand.GlobalPosition;
+			sword.Rotation = Vector3.Zero;
+			rightHand.Rotation = Vector3.Zero;
+
+			currentSword = sword;
+			
+			if(currentSword.IsConnected(Sword.SignalName.CheckDurability, Callable.From(OnSwordDurabilityChecked)))
+				currentSword.Disconnect(Sword.SignalName.CheckDurability, Callable.From(OnSwordDurabilityChecked));
+			if(currentSword.IsConnected(Sword.SignalName.Broke, Callable.From(OnSwordBroke)))
+				currentSword.Disconnect(Sword.SignalName.Broke, Callable.From(OnSwordBroke));
+
+			currentSword.Connect(Sword.SignalName.CheckDurability, Callable.From(OnSwordDurabilityChecked));
+			currentSword.Connect(Sword.SignalName.Broke, Callable.From(OnSwordBroke));
+
+			currentSword.isBeingPickedUp = false;
+
+			nearbySword = null;
+
+		};
+	}
 	private Vector3 GetLookVector()
 	{
 		if (currentDevice == -2)
@@ -534,11 +549,6 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			return;
 		}
 
-		meshInstance.MaterialOverride = new StandardMaterial3D
-		{
-			AlbedoColor = playerColor
-		};
-
 		GD.Print($"Set player {PlayerIndex} color to {playerColor}");
 	}
 
@@ -550,6 +560,12 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 	private void Die()
 	{
+		DropItem(rightHand);
+		DropItem(leftHand);
+
+		areaPickup.SetDeferred("monitoring", true);
+		areaPickup.SetDeferred("monitorable", true);
+
 		Visible = false;
 		SetPhysicsProcess(false);
 		SetProcess(false);
@@ -568,6 +584,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 			GetNode<CollisionShape3D>("CollisionShape3D").SetDeferred("disabled", false);
 			areaPickup.SetDeferred("monitoring", true);
+			currentSword = null;
 			areaPickup.SetDeferred("monitorable", true);
 
 			EmitSignal(SignalName.PlayerHealthChanged, health, maxHealth);
@@ -646,4 +663,5 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		currentStation = station;
 		sequenceMinigame = station?.GetSequenceMinigame();
 	}
+	private bool IsUsingController() => currentDevice >= 0;
 }

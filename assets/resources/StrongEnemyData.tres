@@ -6,6 +6,7 @@
 
 [resource]
 script = ExtResource("1_mvv2o")
+enemyName = "Hobgoblins"
 maxHealth = 30
 damage = 5
 speed = 2.0
