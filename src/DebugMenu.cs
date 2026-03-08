@@ -7,6 +7,7 @@ public partial class DebugMenu : CanvasLayer
 {
 
 	[ExportGroup("Camera Attributes")]
+	[Export] private Control cameraControlNode;
 	[Export] private SpinBox smoothSpeed;
 	[Export] private SpinBox outerBoundsX;
 	[Export] private SpinBox outerBoundsY;
@@ -17,7 +18,6 @@ public partial class DebugMenu : CanvasLayer
 
 	[ExportGroup("Player Attributes")]
 
-	[Export] private Control playerControlNode;
 	[Export] private SpinBox playerMaxHealth;
 	[Export] private SpinBox playerSpeed;
 	[Export] private SpinBox playerSpawnTimer;

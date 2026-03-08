@@ -26,6 +26,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	[Export] public Texture2D[] playerTextures;
 	[Export] private Node3D pickupNode;
 	[Export] public float playerSpawnTimer;
+	[Export] private Texture2D[] playerMaterialTextures;
 
 	public Texture2D GetPortraitTexture() => playerTextures[PlayerIndex];
 	public int currentDevice = -2;
@@ -52,6 +53,8 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	private int tick = 0;
 	private Pickable nearbyPickable;
 	private Sword nearbySword;
+
+	private Vector3 knockback =  Vector3.Zero;
 
 	public IEnumerable<ItemData> GetCarriedItems()
 	{
@@ -207,9 +210,11 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 				ProcessPickable(nearbyPickable);
 		}
 	}
-
+	
 	public override void _PhysicsProcess(double delta)
 	{
+		
+		
 		if(sequenceMinigame != null && sequenceMinigame.IsActiveFor(this))
 		{
 			GD.Print("PlayerLocked");
@@ -226,16 +231,17 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 		if (inputDir != Vector2.Zero)
 		{
-			velocity.X = inputDir.X * speed;
-			velocity.Z = inputDir.Y * speed;
+			velocity.X = inputDir.X * speed + knockback.X;
+			velocity.Z = inputDir.Y * speed + knockback.Z;
 		}
 		else
 		{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, speed);
-			velocity.Z = Mathf.MoveToward(Velocity.Z, 0, speed);
+			velocity.X = Mathf.MoveToward(Velocity.X + knockback.X, 0, speed);
+			velocity.Z = Mathf.MoveToward(Velocity.Z + knockback.Z, 0, speed);
 		}
 
-		Velocity = velocity;
+		knockback = knockback.Lerp(Vector3.Zero, 0.15f);
+		Velocity = velocity;	
 
 		if (lookDir != Vector3.Zero)
 		{
@@ -526,15 +532,10 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 	private void UpdatePlayerAppearance()
 	{
-		Color[] playerColors =
-		{
-			Colors.Blue,
-			Colors.Red,
-			Colors.Green,
-			Colors.Yellow
-		};
 
-		Color playerColor = playerColors[PlayerIndex % playerColors.Length];
+		Texture2D texture = playerMaterialTextures[PlayerIndex % playerMaterialTextures.Length];
+
+		var mesh = GetNodeOrNull<MeshInstance3D>("CollisionShape3D/DwarfLow");
 
 		var meshInstance = GetNodeOrNull<MeshInstance3D>("CollisionShape3D/DwarfLow");
 		if (meshInstance == null)
@@ -543,7 +544,12 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			return;
 		}
 
-		GD.Print($"Set player {PlayerIndex} color to {playerColor}");
+		meshInstance.MaterialOverride = new StandardMaterial3D
+		{
+			AlbedoTexture = texture
+		};
+
+		// GD.Print($"Set player {PlayerIndex} color to {playerColor}");
 	}
 
 	public void TakeDamage(int damage)
@@ -659,4 +665,8 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		sequenceMinigame = station?.GetSequenceMinigame();
 	}
 	private bool IsUsingController() => currentDevice >= 0;
+
+	public void ApplyKnockback(Vector3 direction, float force){
+		knockback = direction * force;
+	}
 }

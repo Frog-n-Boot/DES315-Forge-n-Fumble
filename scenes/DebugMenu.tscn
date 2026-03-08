@@ -12,9 +12,10 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_15w0a"]
 
-[node name="DebugMenu" type="CanvasLayer" unique_id=731638094 node_paths=PackedStringArray("smoothSpeed", "outerBoundsX", "outerBoundsY", "innerBoundsX", "innerBoundsY", "minSize", "maxSize", "playerControlNode", "playerMaxHealth", "playerSpeed", "playerSpawnTimer", "normalContainer", "fastContainer", "strongContainer", "oreDropChance", "healthPackDropChance", "weaponDurability", "weaponDamage", "turretRange", "turretConeAngle", "bulletDamage", "bulletSpeed", "forgeHealth", "forgeSmeltTimer", "grindstoneSmeltTimer", "addForgeHealth", "subtractForgeHealth", "showCollisions", "maxWaves", "timeBetweenEnemies", "startingEnemies", "enemyIncreasePerWave", "timeBetweenWaves", "goblinEnemySpawnChance", "skeletonEnemySpawnChance", "HobgoblinEnemySpawnChance", "spawnWeapon", "spawnOre", "spawnIngot", "spawnDullSword", "spawnHealthBox")]
+[node name="DebugMenu" type="CanvasLayer" unique_id=731638094 node_paths=PackedStringArray("cameraControlNode", "smoothSpeed", "outerBoundsX", "outerBoundsY", "innerBoundsX", "innerBoundsY", "minSize", "maxSize", "playerMaxHealth", "playerSpeed", "playerSpawnTimer", "normalContainer", "fastContainer", "strongContainer", "oreDropChance", "healthPackDropChance", "weaponDurability", "weaponDamage", "turretRange", "turretConeAngle", "bulletDamage", "bulletSpeed", "forgeHealth", "forgeSmeltTimer", "grindstoneSmeltTimer", "addForgeHealth", "subtractForgeHealth", "showCollisions", "maxWaves", "timeBetweenEnemies", "startingEnemies", "enemyIncreasePerWave", "timeBetweenWaves", "goblinEnemySpawnChance", "skeletonEnemySpawnChance", "HobgoblinEnemySpawnChance", "spawnWeapon", "spawnOre", "spawnIngot", "spawnDullSword", "spawnHealthBox")]
 process_mode = 3
 script = ExtResource("1_15w0a")
+cameraControlNode = NodePath("TabContainer/Camera")
 smoothSpeed = NodePath("TabContainer/Camera/SmoothSpeedSpinBox")
 outerBoundsX = NodePath("TabContainer/Camera/OuterBoundsXSpinBox")
 outerBoundsY = NodePath("TabContainer/Camera/OuterBoundsYSpinBox")
@@ -22,7 +23,6 @@ innerBoundsX = NodePath("TabContainer/Camera/InnerBoundsXSpinBox")
 innerBoundsY = NodePath("TabContainer/Camera/InnerBoundsYSpinBox")
 minSize = NodePath("TabContainer/Camera/MinSizeSpinBox")
 maxSize = NodePath("TabContainer/Camera/MaxSizeSpinBox")
-playerControlNode = NodePath("TabContainer/Player")
 playerMaxHealth = NodePath("TabContainer/Player/HealthSpinBox")
 playerSpeed = NodePath("TabContainer/Player/SpeedSpinBox")
 playerSpawnTimer = NodePath("TabContainer/Player/PlayerSpawnTimerSpinBox")
@@ -72,7 +72,8 @@ offset_bottom = 642.0
 [node name="TabContainer" type="TabContainer" parent="." unique_id=733798386]
 offset_right = 1143.0
 offset_bottom = 634.0
-current_tab = 7
+focus_mode = 2
+current_tab = 2
 
 [node name="Camera" type="Control" parent="TabContainer" unique_id=1011013968]
 visible = false
@@ -94,7 +95,6 @@ offset_top = 15.0
 offset_right = 242.5
 offset_bottom = 46.0
 focus_neighbor_top = NodePath("..")
-focus_neighbor_bottom = NodePath("../GrindstoneSmeltTimerSpinBox")
 
 [node name="OuterBoundsXLabel" type="Label" parent="TabContainer/Camera" unique_id=445467244]
 layout_mode = 0
@@ -110,8 +110,8 @@ offset_left = 156.0
 offset_top = 51.0
 offset_right = 242.5
 offset_bottom = 82.0
-focus_neighbor_top = NodePath("..")
-focus_neighbor_bottom = NodePath("../GrindstoneSmeltTimerSpinBox")
+focus_neighbor_top = NodePath("../SmoothSpeedSpinBox")
+focus_neighbor_right = NodePath("../OuterBoundsYSpinBox")
 
 [node name="OuterBoundsYLabel" type="Label" parent="TabContainer/Camera" unique_id=539569819]
 layout_mode = 0
@@ -127,8 +127,8 @@ offset_left = 404.0
 offset_top = 51.0
 offset_right = 490.5
 offset_bottom = 82.0
-focus_neighbor_top = NodePath("..")
-focus_neighbor_bottom = NodePath("../GrindstoneSmeltTimerSpinBox")
+focus_neighbor_left = NodePath("../OuterBoundsXSpinBox")
+focus_neighbor_top = NodePath("../SmoothSpeedSpinBox")
 
 [node name="InnerBoundsXLabel" type="Label" parent="TabContainer/Camera" unique_id=1159376312]
 layout_mode = 0
@@ -144,8 +144,8 @@ offset_left = 156.0
 offset_top = 92.0
 offset_right = 242.5
 offset_bottom = 123.0
-focus_neighbor_top = NodePath("..")
-focus_neighbor_bottom = NodePath("../GrindstoneSmeltTimerSpinBox")
+focus_neighbor_top = NodePath("../OuterBoundsXSpinBox")
+focus_neighbor_right = NodePath("../InnerBoundsYSpinBox")
 
 [node name="InnerBoundsYLabel" type="Label" parent="TabContainer/Camera" unique_id=386686476]
 layout_mode = 0
@@ -161,8 +161,8 @@ offset_left = 404.0
 offset_top = 92.0
 offset_right = 490.5
 offset_bottom = 123.0
-focus_neighbor_top = NodePath("..")
-focus_neighbor_bottom = NodePath("../GrindstoneSmeltTimerSpinBox")
+focus_neighbor_left = NodePath("../InnerBoundsXSpinBox")
+focus_neighbor_top = NodePath("../OuterBoundsYSpinBox")
 
 [node name="MinSizeLabel" type="Label" parent="TabContainer/Camera" unique_id=1490017725]
 layout_mode = 0
@@ -178,8 +178,7 @@ offset_left = 156.0
 offset_top = 131.0
 offset_right = 242.5
 offset_bottom = 162.0
-focus_neighbor_top = NodePath("..")
-focus_neighbor_bottom = NodePath("../GrindstoneSmeltTimerSpinBox")
+focus_neighbor_top = NodePath("../InnerBoundsXSpinBox")
 
 [node name="MaxSizeLabel" type="Label" parent="TabContainer/Camera" unique_id=1310733384]
 layout_mode = 0
@@ -195,13 +194,11 @@ offset_left = 156.0
 offset_top = 171.0
 offset_right = 242.5
 offset_bottom = 202.0
-focus_neighbor_top = NodePath("..")
-focus_neighbor_bottom = NodePath("../GrindstoneSmeltTimerSpinBox")
+focus_neighbor_top = NodePath("../MinSizeSpinBox")
 
 [node name="Player" type="Control" parent="TabContainer" unique_id=1700338665]
 visible = false
 layout_mode = 2
-focus_neighbor_bottom = NodePath("HealthSpinBox")
 metadata/_tab_index = 1
 
 [node name="HealrhLabel" type="Label" parent="TabContainer/Player" unique_id=1192580899]
@@ -256,9 +253,7 @@ focus_neighbor_top = NodePath("../HealthSpinBox")
 focus_neighbor_bottom = NodePath(".")
 
 [node name="Enemy" type="Control" parent="TabContainer" unique_id=2078640708]
-visible = false
 layout_mode = 2
-focus_neighbor_bottom = NodePath("NormalEnemyFoldableContainer/Panel/SpeedSpinBox")
 metadata/_tab_index = 2
 
 [node name="NormalEnemyFoldableContainer" type="FoldableContainer" parent="TabContainer/Enemy" unique_id=862349779]
@@ -676,7 +671,6 @@ focus_neighbor_bottom = NodePath("../SpeedSpinBox")
 [node name="Weapons" type="Control" parent="TabContainer" unique_id=1754960734]
 visible = false
 layout_mode = 2
-focus_neighbor_bottom = NodePath("DurabilitySpinBox")
 metadata/_tab_index = 3
 
 [node name="DurabilityLabel" type="Label" parent="TabContainer/Weapons" unique_id=200785043]
@@ -693,8 +687,6 @@ offset_left = 175.0
 offset_top = 19.0
 offset_right = 261.5
 offset_bottom = 50.0
-focus_neighbor_top = NodePath("..")
-focus_neighbor_bottom = NodePath("../DamageSpinBox")
 
 [node name="DamageLabel" type="Label" parent="TabContainer/Weapons" unique_id=1165830374]
 layout_mode = 0
@@ -710,8 +702,6 @@ offset_left = 175.0
 offset_top = 61.0
 offset_right = 261.5
 offset_bottom = 92.0
-focus_neighbor_top = NodePath("../DurabilitySpinBox")
-focus_neighbor_bottom = NodePath("../DurabilitySpinBox")
 
 [node name="TurretRangeLabel" type="Label" parent="TabContainer/Weapons" unique_id=1553440703]
 layout_mode = 0
@@ -727,8 +717,6 @@ offset_left = 173.0
 offset_top = 105.0
 offset_right = 259.5
 offset_bottom = 136.0
-focus_neighbor_top = NodePath("../DurabilitySpinBox")
-focus_neighbor_bottom = NodePath("../DurabilitySpinBox")
 
 [node name="TurretAngleConeLabel" type="Label" parent="TabContainer/Weapons" unique_id=2139597243]
 layout_mode = 0
@@ -744,8 +732,6 @@ offset_left = 170.0
 offset_top = 144.0
 offset_right = 256.5
 offset_bottom = 175.0
-focus_neighbor_top = NodePath("../DurabilitySpinBox")
-focus_neighbor_bottom = NodePath("../DurabilitySpinBox")
 
 [node name="BulletDamageLabel" type="Label" parent="TabContainer/Weapons" unique_id=1412464153]
 layout_mode = 0
@@ -761,8 +747,6 @@ offset_left = 168.0
 offset_top = 188.0
 offset_right = 254.5
 offset_bottom = 219.0
-focus_neighbor_top = NodePath("../DurabilitySpinBox")
-focus_neighbor_bottom = NodePath("../DurabilitySpinBox")
 
 [node name="BulletSpeedLabel" type="Label" parent="TabContainer/Weapons" unique_id=334820778]
 layout_mode = 0
@@ -778,13 +762,10 @@ offset_left = 167.0
 offset_top = 232.0
 offset_right = 253.5
 offset_bottom = 263.0
-focus_neighbor_top = NodePath("../DurabilitySpinBox")
-focus_neighbor_bottom = NodePath("../DurabilitySpinBox")
 
 [node name="Structures" type="Control" parent="TabContainer" unique_id=281370049]
 visible = false
 layout_mode = 2
-focus_neighbor_bottom = NodePath("ForgeSmeltTimerSpinBox")
 metadata/_tab_index = 4
 
 [node name="ForgeSmeltTimerLabel" type="Label" parent="TabContainer/Structures" unique_id=557611666]
@@ -859,7 +840,6 @@ text = "Forge Health - 10
 [node name="Debug" type="Control" parent="TabContainer" unique_id=999264312]
 visible = false
 layout_mode = 2
-focus_neighbor_bottom = NodePath("ShowCollisionsCheckBox")
 metadata/_tab_index = 5
 
 [node name="ShowCollisionsCheckBox" type="CheckBox" parent="TabContainer/Debug" unique_id=2130303281]
@@ -881,7 +861,6 @@ text = "Show Collisions"
 [node name="GameLoop" type="Control" parent="TabContainer" unique_id=986683232]
 visible = false
 layout_mode = 2
-focus_neighbor_bottom = NodePath("GoblinSpawnChanceSpinBox")
 metadata/_tab_index = 6
 
 [node name="MaxWavesLabel" type="Label" parent="TabContainer/GameLoop" unique_id=1557683981]
@@ -898,8 +877,6 @@ offset_left = 229.0
 offset_top = 32.0
 offset_right = 315.5
 offset_bottom = 63.0
-focus_neighbor_top = NodePath("..")
-focus_neighbor_bottom = NodePath("../SkeletonSpawnChanceSpinBox")
 
 [node name="TimeBetweenEnemiesLabel" type="Label" parent="TabContainer/GameLoop" unique_id=67985072]
 layout_mode = 0
@@ -915,8 +892,6 @@ offset_left = 228.0
 offset_top = 71.0
 offset_right = 314.5
 offset_bottom = 102.0
-focus_neighbor_top = NodePath("../GoblinSpawnChanceSpinBox")
-focus_neighbor_bottom = NodePath("../HobgoblinSpawnChanceSpinBox")
 
 [node name="StartingEnemiesLabel" type="Label" parent="TabContainer/GameLoop" unique_id=596996375]
 layout_mode = 0
@@ -932,8 +907,6 @@ offset_left = 227.0
 offset_top = 113.0
 offset_right = 313.5
 offset_bottom = 144.0
-focus_neighbor_top = NodePath("../SkeletonSpawnChanceSpinBox")
-focus_neighbor_bottom = NodePath("../GoblinSpawnChanceSpinBox")
 
 [node name="EnemyIncreasePerWaveLabel" type="Label" parent="TabContainer/GameLoop" unique_id=445735451]
 layout_mode = 0
@@ -949,8 +922,6 @@ offset_left = 227.0
 offset_top = 153.0
 offset_right = 313.5
 offset_bottom = 184.0
-focus_neighbor_top = NodePath("../SkeletonSpawnChanceSpinBox")
-focus_neighbor_bottom = NodePath("../GoblinSpawnChanceSpinBox")
 
 [node name="TimeBetweenWavesLabel" type="Label" parent="TabContainer/GameLoop" unique_id=1323983595]
 layout_mode = 0
@@ -966,8 +937,6 @@ offset_left = 226.0
 offset_top = 190.0
 offset_right = 312.5
 offset_bottom = 221.0
-focus_neighbor_top = NodePath("../SkeletonSpawnChanceSpinBox")
-focus_neighbor_bottom = NodePath("../GoblinSpawnChanceSpinBox")
 
 [node name="GoblinSpawnLabel" type="Label" parent="TabContainer/GameLoop" unique_id=1423395183]
 layout_mode = 0
@@ -983,8 +952,6 @@ offset_left = 227.0
 offset_top = 227.0
 offset_right = 313.5
 offset_bottom = 258.0
-focus_neighbor_top = NodePath("..")
-focus_neighbor_bottom = NodePath("../SkeletonSpawnChanceSpinBox")
 
 [node name="SkeletonSpawnLabel" type="Label" parent="TabContainer/GameLoop" unique_id=2037238890]
 layout_mode = 0
@@ -1000,8 +967,6 @@ offset_left = 226.0
 offset_top = 266.0
 offset_right = 312.5
 offset_bottom = 297.0
-focus_neighbor_top = NodePath("../GoblinSpawnChanceSpinBox")
-focus_neighbor_bottom = NodePath("../HobgoblinSpawnChanceSpinBox")
 
 [node name="HobgoblinSpawnLabel" type="Label" parent="TabContainer/GameLoop" unique_id=15773220]
 layout_mode = 0
@@ -1017,10 +982,9 @@ offset_left = 225.0
 offset_top = 308.0
 offset_right = 311.5
 offset_bottom = 339.0
-focus_neighbor_top = NodePath("../SkeletonSpawnChanceSpinBox")
-focus_neighbor_bottom = NodePath("../GoblinSpawnChanceSpinBox")
 
 [node name="Items" type="Control" parent="TabContainer" unique_id=694562919]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 7
 
@@ -1030,6 +994,7 @@ offset_left = 21.0
 offset_top = 10.0
 offset_right = 114.0
 offset_bottom = 41.0
+focus_mode = 0
 text = "Spawn Ore
 "
 
@@ -1039,6 +1004,7 @@ offset_left = 20.0
 offset_top = 51.0
 offset_right = 147.0
 offset_bottom = 82.0
+focus_mode = 0
 text = "Spawn Weapon
 "
 
@@ -1048,6 +1014,7 @@ offset_left = 22.0
 offset_top = 93.0
 offset_right = 126.0
 offset_bottom = 124.0
+focus_mode = 0
 text = "Spawn Ingot"
 
 [node name="SpawnDullSwordItemButton" type="Button" parent="TabContainer/Items" unique_id=1853435569]
@@ -1056,6 +1023,7 @@ offset_left = 22.0
 offset_top = 135.0
 offset_right = 171.0
 offset_bottom = 166.0
+focus_mode = 0
 text = "Spawn DUll Sword"
 
 [node name="SpawnHealthBoxButton" type="Button" parent="TabContainer/Items" unique_id=1931739393]
@@ -1064,4 +1032,5 @@ offset_left = 24.0
 offset_top = 177.0
 offset_right = 169.0
 offset_bottom = 208.0
+focus_mode = 0
 text = "Spawn HealthBox"
