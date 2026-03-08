@@ -15,11 +15,6 @@ public partial class Sword : Node3D
 
 	public override void _Ready()
 	{
-		if(DebugMenu.weaponDamageOverride >= 0)
-			damage = (int)DebugMenu.weaponDamageOverride;
-		
-		if(DebugMenu.weaponDurabilityOverride >= 0)
-			durability = (int)DebugMenu.weaponDurabilityOverride;
 
 		hitbox = GetNodeOrNull<CollisionShape3D>("StaticBody3D/CollisionShape3D");
 

@@ -484,7 +484,7 @@ inputNode = NodePath("StationPort2")
 [node name="StationPort2" parent="World/Turret4" unique_id=1365024135 instance=ExtResource("21_20nwc")]
 transform = Transform3D(1.8634118, 0, -2.2810848, 0, 1, 0, 2.30219, 0, 1.8463291, -0.8566718, -3.1234941, 0.023492694)
 
-[node name="Grindstone" parent="World" unique_id=1599248455 instance=ExtResource("20_5vgrt")]
+[node name="Grindstone" parent="World" unique_id=1599248455 groups=["Grindstone"] instance=ExtResource("20_5vgrt")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8.563174, 0.004228592, -3.643423)
 
 [node name="Anvil" parent="World" unique_id=1158721071 instance=ExtResource("22_3w1al")]
@@ -493,7 +493,7 @@ transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, -11.
 [node name="Ore" parent="World" unique_id=2110523039 instance=ExtResource("23_3qum0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8751584, 0.014982047, 4.1817455)
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=254897524 node_paths=PackedStringArray("playerSpawner")]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=254897524 node_paths=PackedStringArray("playerSpawner") groups=["Camera"]]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -3.1877332, 39, 39.193367)
 projection = 1
 size = 28.411
@@ -504,7 +504,7 @@ innerBounds = Vector2(350, 175)
 minSize = 20.0
 maxSize = 35.0
 
-[node name="PlayerSpawner" type="Node" parent="." unique_id=1347135134 node_paths=PackedStringArray("spawnParent")]
+[node name="PlayerSpawner" type="Node" parent="." unique_id=1347135134 node_paths=PackedStringArray("spawnParent") groups=["PlayerSpawner"]]
 script = ExtResource("6_42n6d")
 playerScene = ExtResource("3_81oh0")
 spawnParent = NodePath("..")
@@ -521,7 +521,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0428693, 0, -3.2011)
 [node name="SpawnPoint3" type="Marker3D" parent="PlayerSpawner" unique_id=2030002562]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.479903, 0, 0.9416392)
 
-[node name="EnemySpawner" type="Node" parent="." unique_id=1191566733 node_paths=PackedStringArray("spawnParent", "targetNode", "lootTable", "spawnPositions", "enemyUI", "waveTimerLabel3D")]
+[node name="EnemySpawner" type="Node" parent="." unique_id=1191566733 node_paths=PackedStringArray("spawnParent", "targetNode", "lootTable", "spawnPositions", "enemyUI", "waveTimerLabel3D") groups=["WaveManager"]]
 script = ExtResource("7_53x3i")
 spawnParent = NodePath(".")
 targetNode = NodePath("../World/Forge")
@@ -534,7 +534,6 @@ strongEnemyChance = 10
 maxWaves = 7
 startingEnemiesPerWave = 1
 enemyIncreasedPerWave = 2
-timeBetweemWaves = 10.0
 spawnPositions = [NodePath("EnemySpawn1"), NodePath("EnemySpawn2"), NodePath("EnemySpawn3"), NodePath("EnemySpawn4"), NodePath("EnemySpawn5"), NodePath("EnemySpawn6")]
 enemyUI = NodePath("../EnemyUI")
 waveTimerLabel3D = NodePath("../EnemyUI/Label3D")
@@ -568,7 +567,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.031914, 0, 10.609423)
 
 [node name="Enemies" type="Node3D" parent="EnemySpawner" unique_id=663500412]
 
-[node name="LootTable" type="Node3D" parent="." unique_id=537718464]
+[node name="LootTable" type="Node3D" parent="." unique_id=537718464 groups=["LootTable"]]
 script = ExtResource("9_7cc0k")
 oreDropChance = 100
 oreObject = ExtResource("23_3qum0")

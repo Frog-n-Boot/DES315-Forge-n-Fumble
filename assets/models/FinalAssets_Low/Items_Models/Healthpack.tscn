@@ -1,13 +1,19 @@
 [gd_scene format=3 uid="uid://jnghu007q1m"]
 
 [ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Pickable.cs" id="1_6yd4e"]
+[ext_resource type="Texture2D" uid="uid://bdnp2pelon8t8" path="res://assets/materials/Texture_sets/Item_Textures/Boxstick_comb_low_BaseCol.tga" id="2_mifg4"]
+[ext_resource type="ArrayMesh" uid="uid://crx852n177rh5" path="res://assets/models/FinalAssets_Low/Items_Models/Healthbox_low.obj" id="2_rtuan"]
+[ext_resource type="Texture2D" uid="uid://dfytb5ad7y8k3" path="res://assets/materials/Texture_sets/Item_Textures/Boxstick_comb_low_Normal.tga" id="3_p6oyn"]
+[ext_resource type="Texture2D" uid="uid://cd8ejhf3w3lcw" path="res://assets/materials/Texture_sets/Item_Textures/Boxstick_comb_low_ORM.tga" id="4_me4og"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ho6yl"]
+size = Vector3(1.0479736, 0.58496094, 0.8105469)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6yd4e"]
-albedo_color = Color(0, 1, 0, 1)
-
-[sub_resource type="PrismMesh" id="PrismMesh_6yd4e"]
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_rtuan"]
+albedo_texture = ExtResource("2_mifg4")
+orm_texture = ExtResource("4_me4og")
+normal_enabled = true
+normal_texture = ExtResource("3_p6oyn")
 
 [node name="Healthpack" type="Node3D" unique_id=1749123252 groups=["pickable"]]
 
@@ -17,8 +23,9 @@ script = ExtResource("1_6yd4e")
 itemDataPath = "uid://bmycncridbhyq"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=429522382]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.023986816, 0.32177734, 0.09472656)
 shape = SubResource("BoxShape3D_ho6yl")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=2092674983]
-material_override = SubResource("StandardMaterial3D_6yd4e")
-mesh = SubResource("PrismMesh_6yd4e")
+[node name="HealthboxLow" type="MeshInstance3D" parent="StaticBody3D" unique_id=2049405128]
+material_override = SubResource("ORMMaterial3D_rtuan")
+mesh = ExtResource("2_rtuan")
