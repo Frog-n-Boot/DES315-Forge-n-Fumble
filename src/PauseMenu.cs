@@ -20,9 +20,9 @@ public partial class PauseMenu : CanvasLayer
 
 	}
 
-    public override void _Input(InputEvent @event)
-    {
-        if(@event.IsActionPressed("pause"))
+	public override void _Input(InputEvent @event)
+	{
+		if(@event.IsActionPressed("pause"))
 			TogglePause();
 	}
 
@@ -30,10 +30,10 @@ public partial class PauseMenu : CanvasLayer
 	{
 		if(GetTree().Paused)
 			Resume();
-        else
-        {
+		else
+		{
 			Pause();
-        }
+		}
 	}
 	private void Pause()
 	{
