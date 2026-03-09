@@ -54,6 +54,10 @@ public partial class WaveManager : Node
 	private RandomNumberGenerator rnd           = new RandomNumberGenerator();
 	private List<EnemyController> activeEnemies = new List<EnemyController>();
 	private InputManager inputManager;
+
+	private float waveTimer = 0f;
+	private bool isWaiting = false;
+
 	#endregion
 
 	#region Lifecycle
@@ -82,15 +86,29 @@ public partial class WaveManager : Node
 					GD.Print($"  Spawn {i}: NULL");
 			}
 		}
-
-		GetTree().CreateTimer(2.0f).Timeout += StartNewWave;
+		waveTimer = timeBetweemWaves;
+		isWaiting = true;
+		waveTimerLabel3D.Visible = true;
 	
 	}
 
 	public override void _Process(double delta)
 	{
-		if (enemyUI == null) return;
-		enemyUI.Text = $" Enemies alive: {enemiesLeft} \n Max Waves: {maxWaves}  Current wave: {currentWave} ";
+		if (isWaiting)
+		{
+			waveTimer -= (float)delta;
+			waveTimerLabel3D.Text = $"Time until next Wave: {Mathf.Ceil(waveTimer)}";
+
+			if(waveTimer <= 0)
+			{
+				isWaiting = false;
+				waveTimerLabel3D.Visible = false;
+				StartNewWave();
+			}
+		}
+
+		if (enemyUI != null)
+			enemyUI.Text = $" Enemies alive: {enemiesLeft} \n Max Waves: {maxWaves}  Current wave: {currentWave} ";
 	}
 	#endregion
 
@@ -219,12 +237,10 @@ public partial class WaveManager : Node
 	private void OnWaveCompleted()
 	{
 		waveTimerLabel3D.Visible = true;
+		waveTimer = timeBetweemWaves;
+		isWaiting = true;
 		
-		waveTimerLabel3D.Text = $"Time until next Wave: {timeBetweemWaves}";
-
 		EmitSignal(SignalName.WaveCompleted, currentWave);
-		GetTree().CreateTimer(timeBetweemWaves).Timeout += StartNewWave;
-
 	}
 
 	private void OnAllWavesCompleted()

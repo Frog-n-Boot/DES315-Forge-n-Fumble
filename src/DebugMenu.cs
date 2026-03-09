@@ -210,7 +210,7 @@ public partial class DebugMenu : CanvasLayer
 			playerSpeed.Value= player.speed;
 			playerSpawnTimer.Value = player.playerSpawnTimer;
 			
-			var playerSword = player.currentSword;
+			var playerSword = player.currentWeapon;
 			var sword = playerSword as Sword;
 
 			weaponDurability.Value = sword.durability;

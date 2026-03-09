@@ -1,48 +1,75 @@
 using Godot;
 using System;
 
-public partial class Sword : Node3D
+public partial class Sword : MeleeWeapon
 {
-	[Export] public int damage;
-	[Export] public int durability;
 
 	[Signal] public delegate void CheckDurabilityEventHandler();
-	[Signal] public delegate void BrokeEventHandler();
+	[Signal] public delegate void ComboResetEventHandler();
+	private int comboCount = 0;
+	private const int maxCombo = 3;
+	private float comboResetTimer = 0f;
+	private const float comboWindow = 1.0f;
 
-	public bool isBeingPickedUp = false;
-
-	private CollisionShape3D hitbox;
-
-	public override void _Ready()
+	protected override void OnReady()
 	{
 
-		hitbox = GetNodeOrNull<CollisionShape3D>("StaticBody3D/CollisionShape3D");
-
-		if (hitbox == null)
-			GD.PrintErr("Sword: CollisionShape3D not found at StaticBody3D/CollisionShape3D");
-			
-		SetHitboxEnabled(false);
+		base.OnReady();
 	}
 
-	public void SetHitboxEnabled(bool enabled)
-	{
-		if (hitbox != null)
-			hitbox.Disabled = !enabled;
-	}
-
-	private void DestroyWeapon()
-	{
-		if (durability <= 0)
+    public override void _Process(double delta)
+    {
+        if(comboResetTimer > 0)
 		{
-			EmitSignal(SignalName.Broke);
-			QueueFree();
+			comboResetTimer -= (float)delta;
+			if(comboResetTimer <=0 && comboCount > 0)
+			{
+				comboCount = 0;
+				EmitSignal(SignalName.ComboReset);
+			}
+				
 		}
+    }
+
+	public bool PerformComboAttack(InputBuffer buffer)
+	{
+		if (buffer.ConsumeInput("attack"))
+		{
+			comboCount++;
+			if(comboCount > maxCombo)
+				comboCount = 1;
+
+			comboResetTimer = comboWindow;
+			return true;			
+		}
+
+		return false;
 	}
 
-	public void DamageWeapon(int durability)
+	public string GetComboAnimation()
 	{
-		this.durability = this.durability - durability;
+		return comboCount switch
+		{
+			1 => "Sword_Attack_1",
+			2 => "Sword_Attack_2",
+			3 => "Sword_Attack_3",
+			_ => "Sword_Idle"
+		};
+	}
+	public int GetComboDamage()
+	{
+		return comboCount switch
+		{
+			1 => 1,
+			2 => 2,
+			3 => 20,
+			_ => 1
+		};
+	}
+	public void DamageWeapon(int amount)
+	{
+		durability -= amount;
 		EmitSignal(SignalName.CheckDurability);
-		DestroyWeapon();
+		TakeDurabilityDamage(0);
 	}
 }

@@ -57,6 +57,7 @@ Grindstone=""
 LootTable=""
 PlayerSpawner=""
 Turret=""
+Weapon=""
 
 [input]
 
