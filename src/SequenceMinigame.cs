@@ -27,6 +27,7 @@ public partial class SequenceMinigame : Node
 		cameraController = GetTree().Root.GetNode<CameraController>("TestingLab/Camera3D");
 		activePlayer = player;
 		activeDevice = player.currentDevice;
+		GD.Print($"Minigame Started for player {player.PlayerIndex}, device: {activeDevice}");
 		sequence = new string[length];
 		for(int i = 0; i < length; i++)
 		{
@@ -94,6 +95,7 @@ public partial class SequenceMinigame : Node
 	public override void _Input(InputEvent @event)
 	{
 		if(!isActive) return;
+		GD.Print($"Input received, activeDevice: {activeDevice}, eventType: {@event.GetType().Name}");
 
 		string input = null;
 		if(activeDevice == -1){
@@ -107,7 +109,9 @@ public partial class SequenceMinigame : Node
 		}
 		else
 		{
-			if(@event is not InputEventJoypadButton) return;
+			if(@event is not InputEventJoypadButton joyEvent) return;
+			if(joyEvent.Device != activeDevice) return;
+			
 			if(@event.IsActionPressed("sequence_left")) input = "Left";
 			if(@event.IsActionPressed("sequence_right")) input = "Right";
 			if(@event.IsActionPressed("sequence_up")) input = "Up";

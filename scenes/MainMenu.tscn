@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://gss55unqbc70"]
 
 [ext_resource type="Script" uid="uid://cq2hdafsss4y7" path="res://src/MainMenu.cs" id="1_yqorp"]
-[ext_resource type="Texture2D" uid="uid://b0h4rjwc5lgiv" path="res://scenes/Forge.webp" id="2_0ykhv"]
+[ext_resource type="Texture2D" uid="uid://ct4j4j3x4nj5o" path="res://assets/textures/AlexDwarfText.png" id="2_0ykhv"]
 
 [node name="MainMenu" type="Node2D" unique_id=1633550726]
 
@@ -79,7 +79,6 @@ scale = Vector2(28.750067, 16.369858)
 color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
 
 [node name="BackgroundImage" type="TextureRect" parent="." unique_id=2007621218]
-visible = false
 visibility_layer = 2
 offset_left = -22.0
 offset_right = 1351.0

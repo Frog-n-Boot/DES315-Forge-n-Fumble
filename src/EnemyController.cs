@@ -241,17 +241,25 @@ public partial class EnemyController : Node3D
 				break;
 
 			case "Player":
-				isDying = true;
 				EmitSignal(SignalName.DamagedTarget, body, Damage);
 				if (body is PlayerController playerController)
+				{		
 					playerController.TakeDamage(DamageToPlayer);
-				Die();
+					
+					
+					Vector3 pushDirection = (playerController.GlobalPosition - GlobalPosition).Normalized();
+					pushDirection.Y = 0;
+					pushDirection = pushDirection.Normalized();
+					playerController.ApplyKnockback(pushDirection, 20f);
+					
+				}
 				break;
 
 			case "Sword":
 				Sword sword = FindSwordInHierarchy(body);
 				if (sword != null)
 				{
+					
 					sword.DamageWeapon(1);
 					TakeDamage(sword.damage);
 				}

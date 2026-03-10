@@ -26,6 +26,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	[Export] public Texture2D[] playerTextures;
 	[Export] private Node3D pickupNode;
 	[Export] public float playerSpawnTimer;
+	[Export] private Texture2D[] playerMaterialTextures;
 
 	public Texture2D GetPortraitTexture() => playerTextures[PlayerIndex];
 	public int currentDevice = -2;
@@ -52,6 +53,8 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	private int tick = 0;
 	private Pickable nearbyPickable;
 	private Sword nearbySword;
+
+	private Vector3 knockback =  Vector3.Zero;
 
 	public IEnumerable<ItemData> GetCarriedItems()
 	{
@@ -87,51 +90,43 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		}
 	}
 	public override void _Ready()
-{
-	health = maxHealth;
+	{
+		health = maxHealth;
 
-	inputManager = GetNode<InputManager>("/root/InputManager");
-	if (inputManager == null)
-		GD.PrintErr("PlayerController: InputManager not found!");
+		inputManager = GetNode<InputManager>("/root/InputManager");
+		if (inputManager == null)
+			GD.PrintErr("PlayerController: InputManager not found!");
 
-	world = GetTree().Root.GetNodeOrNull<StaticBody3D>("testing_lab");
-	if (world != null)
-		camera = world.GetNodeOrNull<Camera3D>("Camera3D");
+		world = GetTree().Root.GetNodeOrNull<StaticBody3D>("testing_lab");
+		if (world != null)
+			camera = world.GetNodeOrNull<Camera3D>("Camera3D");
 
-	if (camera == null)
-		camera = GetViewport().GetCamera3D();
+		if (camera == null)
+			camera = GetViewport().GetCamera3D();
 
-	forge = GetNodeOrNull<Forge>("/root/Forge");
-	healthPack = GetNodeOrNull<HealthPack>("/root/HealthPack");
-	areaPickup = GetNodeOrNull<Area3D>("Area3D");
-	areaPickup.AreaEntered += OnPickupAreaEntered;
-	areaPickup.AreaExited += OnPickUpAreaExited;
+		forge = GetNodeOrNull<Forge>("/root/Forge");
+		healthPack = GetNodeOrNull<HealthPack>("/root/HealthPack");
+		areaPickup = GetNodeOrNull<Area3D>("Area3D");
+		areaPickup.AreaEntered += OnPickupAreaEntered;
+		areaPickup.AreaExited += OnPickUpAreaExited;
 
-	animPlayer.AnimationFinished += OnAnimationFinished;
+		animPlayer.AnimationFinished += OnAnimationFinished;
 	
-	// ADD THIS: Find existing sword in hand
-	rightHand = GetNodeOrNull<Node3D>("CollisionShape3D/RightHand");
-	leftHand = GetNodeOrNull<Node3D>("CollisionShape3D/LeftHand");
-	if (rightHand != null)
-	{
-		FindExistingSword();
+		// ADD THIS: Find existing sword in hand
+		rightHand = GetNodeOrNull<Node3D>("CollisionShape3D/RightHand");
+		leftHand = GetNodeOrNull<Node3D>("CollisionShape3D/LeftHand");
+		if (rightHand != null)
+		{
+			FindExistingSword();
+		}
+		else
+		{
+			GD.PrintErr("Hand node not found!");
+		}
+
+		pickupPrompt = pickupNode.GetNode<Label3D>("Label3D");
 	}
-	else
-	{
-		GD.PrintErr("Hand node not found!");
-	}
-
-	if(DebugMenu.playerMaxHealthOverride >= 0)
-		maxHealth = (int)DebugMenu.playerMaxHealthOverride;
-
-	if(DebugMenu.playerSpeedOverride >= 0)
-		speed = (int)DebugMenu.playerSpeedOverride;
-
-	if(DebugMenu.playerSpawnTimerOverride >= 0)
-		playerSpawnTimer = (int)DebugMenu.playerSpawnTimerOverride;
-
-	pickupPrompt = pickupNode.GetNode<Label3D>("Label3D");
-}
+	
 	private void FindExistingSword()
 	{
 		if (rightHand == null) return;
@@ -215,9 +210,11 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 				ProcessPickable(nearbyPickable);
 		}
 	}
-
+	
 	public override void _PhysicsProcess(double delta)
 	{
+		
+		
 		if(sequenceMinigame != null && sequenceMinigame.IsActiveFor(this))
 		{
 			GD.Print("PlayerLocked");
@@ -234,16 +231,17 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 		if (inputDir != Vector2.Zero)
 		{
-			velocity.X = inputDir.X * speed;
-			velocity.Z = inputDir.Y * speed;
+			velocity.X = inputDir.X * speed + knockback.X;
+			velocity.Z = inputDir.Y * speed + knockback.Z;
 		}
 		else
 		{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, speed);
-			velocity.Z = Mathf.MoveToward(Velocity.Z, 0, speed);
+			velocity.X = Mathf.MoveToward(Velocity.X + knockback.X, 0, speed);
+			velocity.Z = Mathf.MoveToward(Velocity.Z + knockback.Z, 0, speed);
 		}
 
-		Velocity = velocity;
+		knockback = knockback.Lerp(Vector3.Zero, 0.15f);
+		Velocity = velocity;	
 
 		if (lookDir != Vector3.Zero)
 		{
@@ -261,76 +259,76 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	}
 
 	public override void _Input(InputEvent @event)
-{
-	if (currentDevice == -2 || inputManager == null)
+	{
+		if (currentDevice == -2 || inputManager == null)
 		return;
 
-	bool isFromOurDevice = false;
+		bool isFromOurDevice = false;
 
-	// KEYBOARD PLAYER
-	if (currentDevice == -1 && (@event is InputEventKey || @event is InputEventMouseButton))
-	{
-		isFromOurDevice = true;
-	}
-
-	// CONTROLLER PLAYER
-	if (currentDevice >= 0)
-	{
-		if (@event is InputEventJoypadButton joyButton)
-			isFromOurDevice = joyButton.Device == currentDevice;
-
-		if (@event is InputEventJoypadMotion joyMotion)
-			isFromOurDevice = joyMotion.Device == currentDevice;
-	}  
-
-	if (!isFromOurDevice)
-		return;
-
-	foreach (var action in InputMap.GetActions())
-	{
-		if (@event.IsActionPressed(action))
+		// KEYBOARD PLAYER
+		if (currentDevice == -1 && (@event is InputEventKey || @event is InputEventMouseButton))
 		{
-			actionsPressed.Add(action);
+			isFromOurDevice = true;
 		}
 
-		if (@event.IsActionReleased(action))
+		// CONTROLLER PLAYER
+		if (currentDevice >= 0)
 		{
-			actionsPressed.Remove(action);
+			if (@event is InputEventJoypadButton joyButton)
+				isFromOurDevice = joyButton.Device == currentDevice;
+
+			if (@event is InputEventJoypadMotion joyMotion)
+				isFromOurDevice = joyMotion.Device == currentDevice;
+		}  
+
+		if (!isFromOurDevice)
+			return;
+
+		foreach (var action in InputMap.GetActions())
+		{
+			if (@event.IsActionPressed(action))
+			{
+				actionsPressed.Add(action);
+			}
+
+			if (@event.IsActionReleased(action))
+			{
+				actionsPressed.Remove(action);
+			}
 		}
-	}
 
-	if (IsActionJustPressed("drop_left"))
-	{
-		DropItem(leftHand);
-	}
-	if (IsActionJustPressed("drop_right"))
-	{
-		DropItem(rightHand);
-	}
+		if (IsActionJustPressed("drop_left"))
+		{
+			DropItem(leftHand);
+		}
+		if (IsActionJustPressed("drop_right"))
+		{
+			DropItem(rightHand);
+		}
 
-}
+	}
 
 
 	private void StartAttack()
-{
-	//GD.Print($"Player {PlayerIndex} StartAttack called");
-	//GD.Print($"currentSword is null: {currentSword == null}");
-   // GD.Print($"animPlayer is null: {animPlayer == null}");
-	//GD.Print($"isAttacking: {isAttacking}");
-	
-	if (currentSword == null)
 	{
-		GD.Print("No sword to attack with!");
-		return;
-	}
-
-	isAttacking = true;
-	currentSword.SetHitboxEnabled(true);
-	animPlayer.Play("Anim_Attack");
-	audio.Play();
+		//GD.Print($"Player {PlayerIndex} StartAttack called");
+		//GD.Print($"currentSword is null: {currentSword == null}");
+   		// GD.Print($"animPlayer is null: {animPlayer == null}");
+		//GD.Print($"isAttacking: {isAttacking}");
 	
-	//GD.Print($"Player {PlayerIndex} attacking!");
-}
+		if (currentSword == null)
+		{
+			GD.Print("No sword to attack with!");
+			return;
+		}
+
+		isAttacking = true;
+		currentSword.SetHitboxEnabled(true);
+		animPlayer.Play("Anim_Attack");
+		audio.Play();
+	
+		//GD.Print($"Player {PlayerIndex} attacking!");
+	}
 
 	private void OnAnimationFinished(StringName animName)
 	{
@@ -534,15 +532,10 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 	private void UpdatePlayerAppearance()
 	{
-		Color[] playerColors =
-		{
-			Colors.Blue,
-			Colors.Red,
-			Colors.Green,
-			Colors.Yellow
-		};
 
-		Color playerColor = playerColors[PlayerIndex % playerColors.Length];
+		Texture2D texture = playerMaterialTextures[PlayerIndex % playerMaterialTextures.Length];
+
+		var mesh = GetNodeOrNull<MeshInstance3D>("CollisionShape3D/DwarfLow");
 
 		var meshInstance = GetNodeOrNull<MeshInstance3D>("CollisionShape3D/DwarfLow");
 		if (meshInstance == null)
@@ -551,7 +544,12 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			return;
 		}
 
-		GD.Print($"Set player {PlayerIndex} color to {playerColor}");
+		meshInstance.MaterialOverride = new StandardMaterial3D
+		{
+			AlbedoTexture = texture
+		};
+
+		// GD.Print($"Set player {PlayerIndex} color to {playerColor}");
 	}
 
 	public void TakeDamage(int damage)
@@ -606,6 +604,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		currentSword = null;
 		isAttacking = false;
 	}
+
 	private void DropItem(Node3D hand)
 	{
 		if(hand.GetChildCount() == 0) return;
@@ -666,4 +665,8 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		sequenceMinigame = station?.GetSequenceMinigame();
 	}
 	private bool IsUsingController() => currentDevice >= 0;
+
+	public void ApplyKnockback(Vector3 direction, float force){
+		knockback = direction * force;
+	}
 }

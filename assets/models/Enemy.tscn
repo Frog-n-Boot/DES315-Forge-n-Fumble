@@ -16,6 +16,7 @@ albedo_color = Color(1, 0, 0, 1)
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_pfjfy"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_82iww"]
+radius = 0.6381836
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_savg0"]
 viewport_path = NodePath("HealthBar/SubViewport")
@@ -65,6 +66,9 @@ collision_layer = 4
 collision_mask = 235
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/Area3D" unique_id=1172694664]
+shape = SubResource("CylinderShape3D_82iww")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="CharacterBody3D/Area3D" unique_id=270252028]
 shape = SubResource("CylinderShape3D_82iww")
 
 [node name="HealthBar" type="Sprite3D" parent="." unique_id=833760103]
