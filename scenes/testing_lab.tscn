@@ -732,16 +732,18 @@ spawner = NodePath("../PlayerSpawner")
 portraitContainer = NodePath("HBoxContainer")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=1200533580]
-offset_left = 25.999996
-offset_top = 501.99997
-offset_right = 66.0
-offset_bottom = 542.0
-scale = Vector2(1.6799994, 1.7199969)
+offset_left = 25.999998
+offset_top = 529.0
+offset_right = 66.00001
+offset_bottom = 569.0
+scale = Vector2(1.4340242, 1.4681656)
 theme_override_constants/separation = 100
 
 [node name="ForgeProgressBar" type="ProgressBar" parent="CanvasLayer" unique_id=847755065]
-offset_right = 1146.0
-offset_bottom = 55.0
+offset_left = 3.0
+offset_top = 11.0
+offset_right = 1149.0
+offset_bottom = 39.0
 theme_override_styles/background = SubResource("StyleBoxFlat_cvaul")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ikfag")
 value = 50.0
@@ -764,7 +766,6 @@ font_size = 200
 
 [node name="PauseMenu" type="CanvasLayer" parent="." unique_id=385949872 node_paths=PackedStringArray("resumeButton", "settingsButton", "mainMenuButton", "settingsMenu")]
 process_mode = 3
-visible = false
 script = ExtResource("23_amgg8")
 resumeButton = NodePath("ResumeButton")
 settingsButton = NodePath("SettingsButton")
@@ -772,10 +773,10 @@ mainMenuButton = NodePath("QuitButton")
 settingsMenu = NodePath("../SettingsMenu")
 
 [node name="ResumeButton" type="Button" parent="PauseMenu" unique_id=1461095151]
-offset_left = 30.000029
-offset_top = 163.0
-offset_right = 478.00003
-offset_bottom = 283.0
+offset_left = 71.00002
+offset_top = 175.0
+offset_right = 519.0
+offset_bottom = 295.0
 scale = Vector2(0.8400012, 0.7599994)
 focus_neighbor_top = NodePath(".")
 focus_neighbor_bottom = NodePath("../SettingsButton")
@@ -785,10 +786,10 @@ theme_override_font_sizes/font_size = 40
 text = "Resume"
 
 [node name="SettingsButton" type="Button" parent="PauseMenu" unique_id=284510241]
-offset_left = 30.000029
-offset_top = 323.0
-offset_right = 478.00003
-offset_bottom = 443.0
+offset_left = 71.00002
+offset_top = 335.0
+offset_right = 519.0
+offset_bottom = 455.0
 scale = Vector2(0.8400012, 0.7599994)
 focus_neighbor_top = NodePath("../ResumeButton")
 focus_neighbor_bottom = NodePath("../QuitButton")
@@ -798,10 +799,10 @@ theme_override_font_sizes/font_size = 40
 text = "Settings"
 
 [node name="QuitButton" type="Button" parent="PauseMenu" unique_id=1753223593]
-offset_left = 30.000029
-offset_top = 483.0
-offset_right = 478.00003
-offset_bottom = 603.0
+offset_left = 71.00002
+offset_top = 495.0
+offset_right = 519.0
+offset_bottom = 615.0
 scale = Vector2(0.8400012, 0.7599994)
 focus_neighbor_top = NodePath("../SettingsButton")
 focus_previous = NodePath("../SettingsButton")
@@ -809,46 +810,46 @@ theme_override_font_sizes/font_size = 40
 text = "Main Menu"
 
 [node name="Label" type="Label" parent="PauseMenu" unique_id=1356341263]
-offset_left = 21.0
-offset_top = 14.0
-offset_right = 418.0
-offset_bottom = 97.0
+offset_left = 62.0
+offset_top = 26.0
+offset_right = 459.0
+offset_bottom = 109.0
 theme_override_font_sizes/font_size = 60
 text = "Game Paused"
 
 [node name="FurnaceImahe" type="TextureRect" parent="PauseMenu" unique_id=1306127748]
-offset_left = 582.0
-offset_top = 7.0
-offset_right = 1082.0
-offset_bottom = 107.0
-scale = Vector2(0.8930303, 1)
+offset_left = 658.0
+offset_top = 64.0
+offset_right = 1158.0
+offset_bottom = 164.0
+scale = Vector2(0.6149459, 0.68860584)
 texture = ExtResource("30_f5rak")
 expand_mode = 1
 
 [node name="AnvilImage" type="TextureRect" parent="PauseMenu" unique_id=1655853165]
-offset_left = 581.0
-offset_top = 107.0
-offset_right = 1081.0
-offset_bottom = 207.0
-scale = Vector2(0.8930303, 1)
+offset_left = 658.0
+offset_top = 133.0
+offset_right = 1158.0
+offset_bottom = 233.0
+scale = Vector2(0.6149459, 0.68860584)
 texture = ExtResource("29_7dxqx")
 expand_mode = 1
 
 [node name="GrindstoneImage" type="TextureRect" parent="PauseMenu" unique_id=983736741]
-offset_left = 582.0
-offset_top = 207.0
-offset_right = 1082.0
-offset_bottom = 307.0
-scale = Vector2(0.8930303, 1)
+offset_left = 658.0
+offset_top = 201.0
+offset_right = 1158.0
+offset_bottom = 301.0
+scale = Vector2(0.6149459, 0.68860584)
 texture = ExtResource("31_xw70q")
 expand_mode = 1
 
 [node name="ControlsLabel" type="Label" parent="PauseMenu" unique_id=1322837801]
-offset_left = 487.0
-offset_top = 315.0
-offset_right = 1149.0
-offset_bottom = 672.0
-scale = Vector2(1, 0.92)
+offset_left = 592.0
+offset_top = 347.00003
+offset_right = 1254.0
+offset_bottom = 704.0
+scale = Vector2(0.68, 0.62560004)
 theme_override_font_sizes/font_size = 30
 text = "Actions                  Keyboard    │  Controller
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -874,7 +875,6 @@ scale = Vector2(28.750067, 16.369858)
 color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
 
 [node name="SettingsMenu" type="CanvasLayer" parent="." unique_id=1617405091 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton", "pauseMenu")]
-visible = false
 script = ExtResource("24_gax05")
 masterSlider = NodePath("Control/MasterVolumeLabel/MasterVolumeSlider")
 musicSlider = NodePath("Control/MusicVolumeLabel/MusicVolumeSlider")
@@ -1148,6 +1148,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.03192, 0.000985, -0.16474
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.218903, 0.014983, 2.2856941)
 
 [node name="DebugMenu" parent="." unique_id=731638094 instance=ExtResource("30_7gden")]
+visible = false
 
 [connection signal="pressed" from="PauseMenu/ResumeButton" to="PauseMenu" method="OnResumePressed"]
 [connection signal="pressed" from="PauseMenu/SettingsButton" to="PauseMenu" method="OnSettingsPressed"]
