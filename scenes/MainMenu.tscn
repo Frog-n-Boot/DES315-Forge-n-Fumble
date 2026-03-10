@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://gss55unqbc70"]
 
 [ext_resource type="Script" uid="uid://cq2hdafsss4y7" path="res://src/MainMenu.cs" id="1_yqorp"]
-[ext_resource type="Texture2D" uid="uid://ct4j4j3x4nj5o" path="res://assets/textures/AlexDwarfText.png" id="2_0ykhv"]
+[ext_resource type="Texture2D" uid="uid://40vghfsnko84" path="res://scenes/forge ss.png" id="2_0ykhv"]
 
 [node name="MainMenu" type="Node2D" unique_id=1633550726]
 
@@ -19,10 +19,10 @@ quitMenu = NodePath("QuitButton")
 [node name="StartButton" type="Button" parent="Control" unique_id=1277000304]
 z_index = 1
 layout_mode = 0
-offset_left = 376.0
-offset_top = 160.0
-offset_right = 824.0
-offset_bottom = 280.0
+offset_left = 79.0
+offset_top = 357.0
+offset_right = 399.28052
+offset_bottom = 442.78943
 scale = Vector2(0.8400012, 0.7599994)
 focus_neighbor_top = NodePath(".")
 focus_neighbor_bottom = NodePath("../SettingsButton")
@@ -34,10 +34,10 @@ text = "Start"
 [node name="SettingsButton" type="Button" parent="Control" unique_id=1975986720]
 z_index = 1
 layout_mode = 0
-offset_left = 376.0
-offset_top = 320.0
-offset_right = 824.0
-offset_bottom = 440.0
+offset_left = 79.0
+offset_top = 461.0
+offset_right = 399.28052
+offset_bottom = 546.7894
 scale = Vector2(0.8400012, 0.7599994)
 focus_neighbor_top = NodePath("../StartButton")
 focus_neighbor_bottom = NodePath("../QuitButton")
@@ -49,10 +49,10 @@ text = "Settings"
 [node name="QuitButton" type="Button" parent="Control" unique_id=1290285225]
 z_index = 1
 layout_mode = 0
-offset_left = 376.0
-offset_top = 480.0
-offset_right = 824.0
-offset_bottom = 600.0
+offset_left = 78.0
+offset_top = 561.0
+offset_right = 398.28055
+offset_bottom = 646.7894
 scale = Vector2(0.8400012, 0.7599994)
 focus_neighbor_top = NodePath("../SettingsButton")
 focus_neighbor_bottom = NodePath(".")
@@ -80,9 +80,10 @@ color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
 
 [node name="BackgroundImage" type="TextureRect" parent="." unique_id=2007621218]
 visibility_layer = 2
-offset_left = -22.0
-offset_right = 1351.0
-offset_bottom = 772.0
+offset_left = -1.0
+offset_top = 1.0
+offset_right = 1213.0
+offset_bottom = 683.0
 texture = ExtResource("2_0ykhv")
 stretch_mode = 1
 
