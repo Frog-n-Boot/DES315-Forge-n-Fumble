@@ -258,8 +258,11 @@ public partial class EnemyController : Node3D
 				{
 					forge.TakeDamage(Damage);
 					GD.Print(forge.health);
+
+	
 				}
 				Die();
+				//TakeDamage(1);
 				break;
 
 			case "Player":

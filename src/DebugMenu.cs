@@ -5,7 +5,7 @@ using System.Linq;
 
 public partial class DebugMenu : CanvasLayer
 {
-
+	#region "Export Variables"
 	[ExportGroup("Camera Attributes")]
 	[Export] private Control cameraControlNode;
 	[Export] private SpinBox smoothSpeed;
@@ -78,23 +78,24 @@ public partial class DebugMenu : CanvasLayer
 	[Export] private PackedScene ingotScene;
 	[Export] private PackedScene dullSwordScene;
 	[Export] private PackedScene healthBoxScene;
-	
+
+	#endregion
+
+	#region "Private Variables"
 	private Forge forge;
 	private WaveManager waveManager;
-
 	private SmeltingStation forgeScript;
 	private GrindstoneStation grindstoneScript;
-
 	private LootTable lootTable;
 	private CameraController cameraController;
-
 	private PlayerController playerController;
 	private PlayerSpawner playerSpawner;
 	private Turret turret;
 	private Bullet bullet;
-
 	private bool playerSettingsInitialized = false;
+	#endregion
 
+	#region "Ready"
 	public override void _Ready()
 	{
 		Hide();
@@ -114,9 +115,10 @@ public partial class DebugMenu : CanvasLayer
 
 		ProcessMode=ProcessModeEnum.Always;
 		showCollisions.Toggled += value => ShowCollisionShapes((bool) value);
-
 	}
+	#endregion
 
+	#region "Button Connection"
 	private void ConnectButtons()
     {
        	addForgeHealth.Pressed += AddForgeHealth;
@@ -127,7 +129,9 @@ public partial class DebugMenu : CanvasLayer
 		spawnDullSword.Pressed += SpawnDullSword;
 		spawnHealthBox.Pressed += SpawnHealthBox; 
     }
+	#endregion
 
+	#region "Object References"
 	private void GetObjectReferences()
     {
 		cameraController = GetTree().GetFirstNodeInGroup("Camera") as CameraController;
@@ -142,11 +146,11 @@ public partial class DebugMenu : CanvasLayer
 		bullet = GetTree().GetFirstNodeInGroup("Bullet") as Bullet;
 		
 		if(playerSpawner != null)
-			playerSpawner.PlayerSpawned += OnPlayerSpawned;
-			
-
+			playerSpawner.PlayerSpawned += OnPlayerSpawned;			
     }
+	#endregion
 	
+	#region "On Player Spawned"
 	private void OnPlayerSpawned(PlayerController player, int playerIndex)
 	{
 		playerController = player;
@@ -155,9 +159,11 @@ public partial class DebugMenu : CanvasLayer
 		{
 			SetupPlayerSettings();
 			playerSettingsInitialized = true;
-		}
-		
+		}		
 	}
+	#endregion
+
+	#region "Setup Value Ranges"
 	private void SetupValueRange()
 	{
 		playerMaxHealth.MinValue= 0;
@@ -199,7 +205,9 @@ public partial class DebugMenu : CanvasLayer
 		innerBoundsY.MinValue = 0;
 		innerBoundsY.MaxValue = 1000;
 	}
+	#endregion
 
+	#region "Populate field values with object values"
 	private void SetupValues()
 	{
 		foreach(Node p in GetTree().GetNodesInGroup("Player"))
@@ -231,10 +239,11 @@ public partial class DebugMenu : CanvasLayer
 		{
 			bulletDamage.Value = bullet.damage;
 			bulletSpeed.Value = bullet.speed;
-		}
-		
+		}		
 	}
+	#endregion
 
+	#region "Input"
     public override void _Input(InputEvent @event)
     {
 			
@@ -250,10 +259,11 @@ public partial class DebugMenu : CanvasLayer
 				SetupValues();
 				GetTree().Paused = true;
 			}
-	
-		}
-		
+		}	
     }
+	#endregion
+
+	#region "Camera Settings"
 	private void SetCameraSettings()
     {
         smoothSpeed.Value = cameraController.smoothSpeed;
@@ -278,7 +288,9 @@ public partial class DebugMenu : CanvasLayer
 		maxSize.ValueChanged += v => cameraController.maxSize = (int)v;
 		
     }
+	#endregion
 
+	#region "Player Settings"
 	private void SetupPlayerSettings()
 	{
 		playerMaxHealth.Value = playerController.maxHealth;
@@ -317,7 +329,9 @@ public partial class DebugMenu : CanvasLayer
 		};
 
 	}
+	#endregion
 
+	#region "Weapon Settings"
 	private void SetupWeaponSettings()
 	{
 		weaponDamage.ValueChanged += v =>
@@ -357,10 +371,11 @@ public partial class DebugMenu : CanvasLayer
 		};
 		bulletDamage.ValueChanged += v =>Bullet.defaultDamage = (int)v;
 		bulletSpeed.ValueChanged += v =>Bullet.defaultSpeed = (float)v;
-
 		
 	}
+	#endregion
 
+	#region "Station Settings"
 	private void SetupStationsSettings()
 	{
 		forgeHealth.ValueChanged += v =>
@@ -395,7 +410,9 @@ public partial class DebugMenu : CanvasLayer
 			}
 		};
 	}
+	#endregion
 
+	#region "Forge Settings"
 	public void AddForgeHealth()
     {
         if (forge != null)
@@ -413,13 +430,16 @@ public partial class DebugMenu : CanvasLayer
 			forge.EmitSignal(Forge.SignalName.ForgeTookDamage, forge.health, forge.maxHealth);
         }
     }
+	#endregion
 
+	#region "Collision Settings"
 	private void ShowCollisionShapes(bool value)
     {
         GetTree().DebugCollisionsHint = value;
 
 		FindCollisionShapes(GetTree().Root);
     }
+	
 
 	private void FindCollisionShapes(Node parent)
 	{
@@ -438,6 +458,9 @@ public partial class DebugMenu : CanvasLayer
 			}
 		}
 	}
+	#endregion
+
+	#region "Populate enemy values"
 	private void PopulatePanel(EnemyData data, FoldableContainer container)
 	{
 
@@ -486,7 +509,9 @@ public partial class DebugMenu : CanvasLayer
 		lootDropChanceBox.Value = data.lootDropChance;
 		lootDropChanceBox.ValueChanged += v => data.lootDropChance = (float)v;	
 	}
-	
+	#endregion
+
+	#region "Enemy Spawn Chances"
 	private void SetEnemySpawnChance()
     {
 		goblinEnemySpawnChance.Value = waveManager.normalEnemyChance;
@@ -498,7 +523,9 @@ public partial class DebugMenu : CanvasLayer
 		HobgoblinEnemySpawnChance.Value = waveManager.strongEnemyChance;	
 		HobgoblinEnemySpawnChance.ValueChanged += v => waveManager.strongEnemyChance = (int)v;
     }
-	   
+	#endregion
+	
+	#region "Update Wave Manager"
 	private void UpdateWaveManager()
     {
         maxWaves.Value = waveManager.maxWaves;
@@ -515,8 +542,10 @@ public partial class DebugMenu : CanvasLayer
 
 		timeBetweenWaves.Value = waveManager.timeBetweemWaves;
 		timeBetweenWaves.ValueChanged += v => waveManager.timeBetweemWaves = (int)v;
-
     }
+	#endregion
+
+	#region "Update Loot Table"
 	private void UpdateLootTable()
     {
 		oreDropChance.Value = lootTable.oreDropChance;
@@ -525,7 +554,9 @@ public partial class DebugMenu : CanvasLayer
 		healthPackDropChance.Value = lootTable.healthPackDropChance;
 		healthPackDropChance.ValueChanged += v => lootTable.healthPackDropChance = (int)v;
     }
+	#endregion
 
+	#region "Spawn Objects"
 	protected void SpawnOre()
     {
 		var scene = oreScene.Instantiate<Node3D>();
@@ -556,4 +587,5 @@ public partial class DebugMenu : CanvasLayer
 		GetTree().Root.AddChild(scene);
 		scene.GlobalPosition = playerController.GlobalPosition + playerController.Transform.Basis.Z * 2f;
     }
+	#endregion
 }

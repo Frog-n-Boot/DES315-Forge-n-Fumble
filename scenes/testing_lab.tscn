@@ -457,6 +457,14 @@ inputNode = NodePath("StationPort4")
 [node name="StationPort4" parent="World/Turret" unique_id=1812803613 instance=ExtResource("21_20nwc")]
 transform = Transform3D(-2.615958, 0, -1.3762058, 0, 1, 0, 1.3889388, 0, -2.5919764, -2.2345748, -3.1234941, -0.58680224)
 
+[node name="Turret5" parent="World" unique_id=782705213 node_paths=PackedStringArray("inputNode") instance=ExtResource("20_20nwc")]
+transform = Transform3D(-0.4729353, 0, -0.8810972, 0, 1, 0, 0.8810972, 0, -0.4729353, -4.6669455, 3.6053066, -44.761284)
+visible = false
+inputNode = NodePath("StationPort4")
+
+[node name="StationPort4" parent="World/Turret5" unique_id=750325492 instance=ExtResource("21_20nwc")]
+transform = Transform3D(-2.615958, 0, -1.3762058, 0, 1, 0, 1.3889388, 0, -2.5919764, -2.2345748, -3.1234941, -0.58680224)
+
 [node name="Turret2" parent="World" unique_id=353788340 node_paths=PackedStringArray("inputNode") instance=ExtResource("20_20nwc")]
 transform = Transform3D(0.807084, 0, -0.5904367, 0, 1, 0, 0.5904367, 0, 0.807084, 4.7185926, 3.6053066, -44.400978)
 visible = false
@@ -470,7 +478,7 @@ transform = Transform3D(0.4554051, 0, 0.8902845, 0, 1, 0, -0.8902845, 0, 0.45540
 visible = false
 inputNode = NodePath("StationPort")
 
-[node name="StationPort" parent="World/Turret3" unique_id=750325492 instance=ExtResource("21_20nwc")]
+[node name="StationPort" parent="World/Turret3" unique_id=2011192210 instance=ExtResource("21_20nwc")]
 transform = Transform3D(2.6429331, 0, 1.3246388, 0, 1, 0, -1.3368946, 0, 2.6187043, -1.8930666, -3.1234941, 0.3516538)
 
 [node name="Turret4" parent="World" unique_id=1789132715 node_paths=PackedStringArray("inputNode") instance=ExtResource("20_20nwc")]
