@@ -3,8 +3,19 @@
 [ext_resource type="ArrayMesh" uid="uid://cp0p2i6u4lsc1" path="res://assets/models/FinalAssets_Low/Lowpolies_interor/Int_barrel_low.obj" id="1_tmji1"]
 [ext_resource type="Material" uid="uid://dybi0h3puja63" path="res://assets/materials/Texture_sets/Lowpolly_interior_Textures/furniture.tres" id="2_clefa"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_clefa"]
+size = Vector3(1.1280518, 0.8360596, 1.138794)
+
 [node name="IntBarrelLow" type="Node3D" unique_id=450340970]
 
 [node name="IntBarrelLow" type="MeshInstance3D" parent="." unique_id=736671146]
 mesh = ExtResource("1_tmji1")
 surface_material_override/0 = ExtResource("2_clefa")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2124340681]
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2061377404]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0.008972168, 0.5982778, -0.0018788278)
+shape = SubResource("BoxShape3D_clefa")
