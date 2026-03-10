@@ -13,7 +13,7 @@
 [sub_resource type="ViewportTexture" id="ViewportTexture_n82r5"]
 viewport_path = NodePath("Sprite3D/SubViewport")
 
-[node name="Turret" type="Node3D" unique_id=1571022317 node_paths=PackedStringArray("bulletSpawnLocation", "label")]
+[node name="Turret" type="Node3D" unique_id=1571022317 node_paths=PackedStringArray("bulletSpawnLocation", "label") groups=["Turret"]]
 script = ExtResource("1_m1e06")
 bulletSpawnLocation = NodePath("Nuzzle")
 bulletScene = ExtResource("2_n82r5")

@@ -1,7 +1,6 @@
 using Godot;
 using System;
 
-[Tool]
 public partial class Sword : Node3D
 {
 	[Export] public int damage;
@@ -16,6 +15,7 @@ public partial class Sword : Node3D
 
 	public override void _Ready()
 	{
+
 		hitbox = GetNodeOrNull<CollisionShape3D>("StaticBody3D/CollisionShape3D");
 
 		if (hitbox == null)

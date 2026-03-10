@@ -30,4 +30,6 @@ public partial class SmeltingStation : BaseStationScript
 	}
 
 	protected override string GetStationName() => "Forge";
+
+	public float GetCraftDuration()=> craftDuration;
 }

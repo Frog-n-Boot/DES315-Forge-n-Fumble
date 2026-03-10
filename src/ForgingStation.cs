@@ -10,6 +10,7 @@ public partial class ForgingStation : BaseStationScript
 
 	protected override void OnReady()
 	{
+		
 		sequenceMinigame.SequenceCompleted += OnSequenceCompleted;
 		sequenceMinigame.SequenceFailed += OnSequenceFailed;
 
@@ -85,6 +86,8 @@ public partial class ForgingStation : BaseStationScript
 	protected override string GetStationName() => "Anvil";
 
 	public override SequenceMinigame GetSequenceMinigame() => sequenceMinigame;
+
+
 
 
 }

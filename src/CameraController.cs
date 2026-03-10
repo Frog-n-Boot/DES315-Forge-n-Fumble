@@ -8,15 +8,15 @@ public partial class CameraController : Camera3D
     [ExportGroup("Camera Controls")]
     [Export] private PlayerSpawner playerSpawner;
     [Export(PropertyHint.Range, "0.0, 10.0")]
-    private float smoothSpeed = 5;
+    public float smoothSpeed = 5;
     [Export(PropertyHint.Range, "0.0, 400")]
-    private Vector2 outerBounds = new Vector2(200f, 100f);
+    public Vector2 outerBounds = new Vector2(200f, 100f);
     [Export(PropertyHint.Range, "0.0, 400")]
-    private Vector2 innerBounds = new Vector2(150f, 75f);
+    public Vector2 innerBounds = new Vector2(150f, 75f);
     [Export(PropertyHint.Range, "1.0, 50.0")]
-    private float minSize = 15f;
+    public float minSize = 15f;
     [Export(PropertyHint.Range, "1.0, 50.0")]
-    private float maxSize = 30f;
+    public float maxSize = 30f;
     
     private Vector2 viewportSize;
     private Vector2 screenCenter;

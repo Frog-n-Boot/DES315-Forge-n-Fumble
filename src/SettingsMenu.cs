@@ -75,7 +75,7 @@ public partial class SettingsMenu : CanvasLayer
 		maxFPSDropdown.ItemSelected += OnMaxFPSSelected;
 		applyButton.Pressed += OnApplyPressed;
 
-		masterSlider.GrabFocus();
+		applyButton.GrabFocus();
 	}
 
 	public void OnMasterVolumeChanged( double value) => SettingsManager.instance.SetMasterVolume((float)value);

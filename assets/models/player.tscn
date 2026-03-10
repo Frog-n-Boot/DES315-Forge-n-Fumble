@@ -2,12 +2,18 @@
 
 [ext_resource type="Script" uid="uid://bwwhlpy6hxupd" path="res://src/PlayerController.cs" id="1_ormyk"]
 [ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/FinalAssets_Low/Items_Models/Sword.tscn" id="3_8d03m"]
+[ext_resource type="Texture2D" uid="uid://bdv8d8m0mmw4o" path="res://assets/textures/BlueDwarf.png" id="3_ob8sk"]
 [ext_resource type="Texture2D" uid="uid://fywbkplmkbgs" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/Dwarf_low_BaseCol.tga" id="3_v0ggv"]
-[ext_resource type="Script" uid="uid://brp6gsap0s2ok" path="res://src/HealthBar.cs" id="4_8d03m"]
+[ext_resource type="Texture2D" uid="uid://bmhg5m3p24cqb" path="res://assets/textures/RedDwarf.png" id="4_gp7mg"]
 [ext_resource type="Texture2D" uid="uid://bx0rnncaa27mi" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/Dwarf_low_ORM.tga" id="4_jnlb4"]
 [ext_resource type="ArrayMesh" uid="uid://dewjvcdn4tcwe" path="res://assets/models/FinalAssets_Low/Character_Models/Dwarf_low.obj" id="4_t0fpx"]
+[ext_resource type="Texture2D" uid="uid://c7ffbeee7twxq" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/DwarfGreen_low_BaseCol.tga" id="5_ag2w6"]
 [ext_resource type="Texture2D" uid="uid://bgk03fcoiqv1l" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/Dwarf_low_Normal.tga" id="5_bw8qq"]
+[ext_resource type="Texture2D" uid="uid://cdlum5v1gnmv7" path="res://assets/textures/GreenDwarf.png" id="5_yv8gf"]
+[ext_resource type="Texture2D" uid="uid://p55rbagysnlo" path="res://assets/textures/PurpleDwarf.png" id="6_glr06"]
+[ext_resource type="Texture2D" uid="uid://bojhtl0pjp5on" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/DwarfPurple_low_BaseCol.tga" id="6_so67x"]
 [ext_resource type="AudioStream" uid="uid://c4ymn22aaas8l" path="res://assets/Sounds/WorldSounds/SwordSwipe.mp3" id="8_jnlb4"]
+[ext_resource type="Texture2D" uid="uid://bwvn5hsl7jk60" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/DwarfRed_low_BaseCol.tga" id="8_ob8sk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t0fpx"]
 size = Vector3(1.6055908, 2.0847168, 0.8642578)
@@ -53,31 +59,6 @@ normal_texture = ExtResource("5_bw8qq")
 heightmap_enabled = true
 heightmap_texture = ExtResource("4_jnlb4")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_jffvu"]
-viewport_path = NodePath("HealthBar/SubViewport")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t0fpx"]
-bg_color = Color(0.74509805, 0, 0, 1)
-border_width_bottom = 3
-border_color = Color(0.39748856, 0, 0, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-expand_margin_bottom = 3.0
-shadow_size = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v80ek"]
-bg_color = Color(0, 0.6, 0, 1)
-border_width_bottom = 3
-border_color = Color(2.1057204e-07, 0.27337572, 4.813075e-08, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-expand_margin_bottom = 3.0
-shadow_size = 3
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_8d03m"]
 size = Vector3(1.5324149, 2.3322906, 1.533226)
 
@@ -86,7 +67,7 @@ random_pitch = 1.7817973
 streams_count = 1
 stream_0/stream = ExtResource("8_jnlb4")
 
-[node name="Player" type="CharacterBody3D" unique_id=489937195 node_paths=PackedStringArray("animPlayer", "audio", "rightHand", "leftHand", "areaPickup") groups=["Player"]]
+[node name="Player" type="CharacterBody3D" unique_id=489937195 node_paths=PackedStringArray("animPlayer", "audio", "rightHand", "leftHand", "areaPickup", "pickupNode") groups=["Player"]]
 collision_layer = 2
 collision_mask = 53
 velocity = Vector3(0, -228.01021, 0)
@@ -98,13 +79,17 @@ audio = NodePath("AudioStreamPlayer3D")
 rightHand = NodePath("CollisionShape3D/RightHand")
 leftHand = NodePath("CollisionShape3D/LeftHand")
 areaPickup = NodePath("Area3D")
+playerTextures = Array[Texture2D]([ExtResource("3_ob8sk"), ExtResource("4_gp7mg"), ExtResource("5_yv8gf"), ExtResource("6_glr06")])
+pickupNode = NodePath("PickUpNode3D")
+playerSpawnTimer = 3.0
+playerMaterialTextures = Array[Texture2D]([ExtResource("3_v0ggv"), ExtResource("8_ob8sk"), ExtResource("5_ag2w6"), ExtResource("6_so67x")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1437107689 groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.039611816, 0.9244385, 0.058440506)
 shape = SubResource("BoxShape3D_t0fpx")
 
 [node name="RightHand" type="Node3D" parent="CollisionShape3D" unique_id=798116510]
-transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -1.0774162, -0.5383073, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -1.4623573, -0.5383073, 0)
 
 [node name="Sword" parent="CollisionShape3D/RightHand" unique_id=689345526 instance=ExtResource("3_8d03m")]
 transform = Transform3D(0.9999998, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999998, 0, 0, 0)
@@ -124,26 +109,8 @@ skeleton = NodePath("../..")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="." unique_id=814154132]
 
-[node name="HealthBar" type="Sprite3D" parent="." unique_id=1418769330]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0)
-billboard = 1
-texture = SubResource("ViewportTexture_jffvu")
-
-[node name="SubViewport" type="SubViewport" parent="HealthBar" unique_id=157568505]
-size = Vector2i(200, 30)
-
-[node name="ProgressBar" type="ProgressBar" parent="HealthBar/SubViewport" unique_id=1304985123]
-offset_right = 200.0
-offset_bottom = 26.0
-theme_override_styles/background = SubResource("StyleBoxFlat_t0fpx")
-theme_override_styles/fill = SubResource("StyleBoxFlat_v80ek")
-value = 50.0
-show_percentage = false
-script = ExtResource("4_8d03m")
-targetPath = NodePath("../..")
-isForge = false
-
 [node name="Area3D" type="Area3D" parent="." unique_id=1712685090]
+visible = false
 collision_layer = 2
 collision_mask = 53
 
@@ -155,3 +122,9 @@ shape = SubResource("BoxShape3D_8d03m")
 stream = SubResource("AudioStreamRandomizer_jnlb4")
 volume_db = -80.0
 max_db = -24.0
+
+[node name="PickUpNode3D" type="Node3D" parent="." unique_id=400310919]
+transform = Transform3D(1.6779308, 0, 0, 0, 1.8431246, 0, 0, 0, 1, 0, 2.7833214, 0)
+
+[node name="Label3D" type="Label3D" parent="PickUpNode3D" unique_id=1684088306]
+visible = false

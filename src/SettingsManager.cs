@@ -24,6 +24,13 @@ public partial class SettingsManager : Node
 		LoadSettings();
 		ApplySettings();
 	}
+	private void SetWindowPosition()
+	{
+			Vector2I screenSize = DisplayServer.ScreenGetSize();
+			Vector2I centeredPos = new Vector2I((screenSize.X - resolution.X) / 2, (screenSize.Y - resolution.Y) / 2);
+			DisplayServer.WindowSetPosition(centeredPos);
+	}
+
 	public void ApplySettings()
 	{
 		//Audio
@@ -35,6 +42,7 @@ public partial class SettingsManager : Node
 		DisplayServer.WindowSetMode(isFullscreen ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
 
 		DisplayServer.WindowSetSize(resolution);
+		SetWindowPosition();
 
 		DisplayServer.VSyncMode vsyncMode = VSync ? DisplayServer.VSyncMode.Enabled : DisplayServer.VSyncMode.Disabled;
 		DisplayServer.WindowSetVsyncMode(vsyncMode);
@@ -72,6 +80,7 @@ public partial class SettingsManager : Node
 		{
 			DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
 			DisplayServer.WindowSetSize(resolution);
+			SetWindowPosition();
 		}
 	}
 
@@ -79,7 +88,10 @@ public partial class SettingsManager : Node
 	{
 		resolution = Resolution;
 		if(!isFullscreen)
+		{
 			DisplayServer.WindowSetSize(Resolution);
+			SetWindowPosition();
+		}
 	}
 
 	public void SetVSync(bool value)

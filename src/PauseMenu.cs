@@ -6,7 +6,6 @@ public partial class PauseMenu : CanvasLayer
 	[Export] public Button resumeButton;
 	[Export] Button settingsButton;
 	[Export] Button mainMenuButton;
-	[Export] Button helpButton;
 	//[Export] private CanvasLayer settingsMenu;
 	[Export] private SettingsMenu settingsMenu;
 	public override void _Ready()
