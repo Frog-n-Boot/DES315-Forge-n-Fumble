@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://druba1v0btww3"
+path="res://.godot/imported/Int_boards_low.obj-fa2c96dc3a138da4f5c6c18ff0e85c56.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Int_boards_low.obj-fa2c96dc3a138da4f5c6c18ff0e85c56.mesh"]
+
+source_file="res://assets/models/FinalAssets_Low/Lowpolies_interor/Int_boards_low.obj"
+dest_files=["res://.godot/imported/Int_boards_low.obj-fa2c96dc3a138da4f5c6c18ff0e85c56.mesh", "res://.godot/imported/Int_boards_low.obj-fa2c96dc3a138da4f5c6c18ff0e85c56.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

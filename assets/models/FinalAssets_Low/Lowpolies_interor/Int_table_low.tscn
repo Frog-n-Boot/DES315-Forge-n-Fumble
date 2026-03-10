@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://c84o7kaedo78k"]
+
+[ext_resource type="ArrayMesh" uid="uid://b8k25tabtwdbr" path="res://assets/models/FinalAssets_Low/Lowpolies_interor/Int_table_low.obj" id="1_2gde5"]
+[ext_resource type="Material" uid="uid://dybi0h3puja63" path="res://assets/materials/Texture_sets/Lowpolly_interior_Textures/furniture.tres" id="2_8jv3g"]
+
+[node name="IntTableLow" type="Node3D" unique_id=1401044304]
+
+[node name="IntTableLow" type="MeshInstance3D" parent="." unique_id=802275259]
+mesh = ExtResource("1_2gde5")
+surface_material_override/0 = ExtResource("2_8jv3g")

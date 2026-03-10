@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://c2tw2fxkk6sbk"]
+
+[ext_resource type="ArrayMesh" uid="uid://cp0p2i6u4lsc1" path="res://assets/models/FinalAssets_Low/Lowpolies_interor/Int_barrel_low.obj" id="1_tmji1"]
+[ext_resource type="Material" uid="uid://dybi0h3puja63" path="res://assets/materials/Texture_sets/Lowpolly_interior_Textures/furniture.tres" id="2_clefa"]
+
+[node name="IntBarrelLow" type="Node3D" unique_id=450340970]
+
+[node name="IntBarrelLow" type="MeshInstance3D" parent="." unique_id=736671146]
+mesh = ExtResource("1_tmji1")
+surface_material_override/0 = ExtResource("2_clefa")
