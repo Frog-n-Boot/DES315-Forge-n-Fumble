@@ -229,7 +229,7 @@ public partial class DebugMenu : CanvasLayer
 		forgeSmeltTimer.Value = forgeScript.GetCraftDuration();
 		grindstoneSmeltTimer.Value = grindstoneScript.GetCraftDuration();
 
-		oreDropChance.Value = lootTable.oreDropChance;
+		oreDropChance.Value = lootTable.copperDropChance;
 		healthPackDropChance.Value = lootTable.healthPackDropChance;
 
 		turretRange.Value = turret.range;
@@ -548,8 +548,8 @@ public partial class DebugMenu : CanvasLayer
 	#region "Update Loot Table"
 	private void UpdateLootTable()
     {
-		oreDropChance.Value = lootTable.oreDropChance;
-		oreDropChance.ValueChanged += v => lootTable.oreDropChance = (int)v;
+		oreDropChance.Value = lootTable.copperDropChance;
+		oreDropChance.ValueChanged += v => lootTable.copperDropChance = (int)v;
 
 		healthPackDropChance.Value = lootTable.healthPackDropChance;
 		healthPackDropChance.ValueChanged += v => lootTable.healthPackDropChance = (int)v;

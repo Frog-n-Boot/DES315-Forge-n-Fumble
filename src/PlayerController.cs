@@ -218,7 +218,6 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 				sword.PerformComboAttack(inputBuffer);
 				StartAttack();
 				
-				isAttacking = false;
 			}
 			
 		}
@@ -228,11 +227,12 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			{
 				bow.StartDraw();
 				
-				isAttacking = false;
+				isAttacking = true;
 			}
         }
-		else if(inputBuffer.ConsumeInput("attack") && !isAttacking){}
+		else if(inputBuffer.ConsumeInput("attack") && !isAttacking){
 			StartAttack();
+		}
 	}
 	
 	public override void _PhysicsProcess(double delta)
@@ -366,17 +366,19 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		{
 			if(currentWeapon is Sword sword)
 			{
+				audio.Play();
 				animPlayer.Play(sword.GetComboAnimation());
-
-				currentWeapon.damage = sword.GetComboDamage();
+				int comboDamage = sword.GetComboDamage();
+				//currentWeapon.damage = sword.GetComboDamage();
 				
 			}
 			else
 			{
+				audio.Play();
 				animPlayer.Play("Anim_Attack");
 			}
 			
-			audio.Play();
+			
 		}
 		else if(currentWeapon is Bow bow)
 		{

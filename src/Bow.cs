@@ -3,7 +3,7 @@ using System;
 
 public partial class Bow : RangedWeapon
 {
-	[Export] public float drawTime = 0.2f;
+	[Export] public float drawTime = 0.5f;
 
 	private bool isDrawing = false;
 	private float drawProgress = 0f;
@@ -26,7 +26,7 @@ public partial class Bow : RangedWeapon
 		if(!isDrawing) return;
 		isDrawing = false;
 
-		float power = Mathf.Clamp(drawProgress / drawTime, 0.3f, 10f);
+		float power = Mathf.Clamp(drawProgress / drawTime, 0.0f, 1f);
 		PowerShot(power);
 	}
 
@@ -34,7 +34,7 @@ public partial class Bow : RangedWeapon
     {
         if (isDrawing)
         {
-            drawProgress += 1;
+            drawProgress += (float)delta;
 			GD.Print($"Draw Progress: {drawProgress}");
         }
 			

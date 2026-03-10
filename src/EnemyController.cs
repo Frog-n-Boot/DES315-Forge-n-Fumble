@@ -284,10 +284,17 @@ public partial class EnemyController : Node3D
 				BaseWeapon weapon = FindWeaponInHierarchy(body);
 				if (weapon != null)
 				{
+					if(weapon is Sword sword)
+					{
+						int damageToApply = sword.GetComboDamage();
+						TakeDamage(damageToApply);
+					}
+					else
+					{
+						TakeDamage(weapon.damage);
+					}
 					
-					weapon.TakeDurabilityDamage(1);
-					TakeDamage(weapon.damage);
-					
+					weapon.TakeDurabilityDamage(1);		
 					Vector3 pushDirection = (GlobalPosition - weapon.GlobalPosition).Normalized();
 					pushDirection.Y = 0;
 					pushDirection = pushDirection.Normalized();

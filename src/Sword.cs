@@ -63,10 +63,10 @@ public partial class Sword : MeleeWeapon
 	{
 		return comboCount switch
 		{
-			1 => 1,
-			2 => 2,
-			3 => 5,
-			_ => 1
+			1 => damage,
+			2 => damage + 1,
+			3 => damage + 3,
+			_ => damage
 		};
 	}
 	public void DamageWeapon(int amount)

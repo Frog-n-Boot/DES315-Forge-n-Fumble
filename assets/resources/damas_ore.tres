@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://rj5laf73xbp8"]
+
+[ext_resource type="Script" uid="uid://cy6spy2s7uv1l" path="res://src/ItemData.cs" id="1_tyhou"]
+
+[resource]
+script = ExtResource("1_tyhou")
+name = "Damas_Ore"
+metadata/_custom_type_script = "uid://cy6spy2s7uv1l"

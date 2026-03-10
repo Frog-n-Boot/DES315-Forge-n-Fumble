@@ -1,11 +1,14 @@
 [gd_scene format=3 uid="uid://bm6vf4tjk48gj"]
 
 [ext_resource type="Script" uid="uid://bdwnaqw5jg3si" path="res://src/SmeltingStation.cs" id="1_ph4aw"]
-[ext_resource type="PackedScene" uid="uid://dq8nubqatqhum" path="res://assets/models/FinalAssets_Low/Items_Models/Ingot.tscn" id="2_n8y7r"]
+[ext_resource type="PackedScene" uid="uid://dq8nubqatqhum" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Ingot.tscn" id="2_n8y7r"]
 [ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/CraftingRecipes.cs" id="3_oiry0"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="4_0l8vc"]
+[ext_resource type="PackedScene" uid="uid://mgxyqgdlvswc" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Ingot.tscn" id="4_twstk"]
+[ext_resource type="PackedScene" uid="uid://gahj37vypwvd" path="res://assets/models/FinalAssets_Low/Items_Models/Gold_Ingot.tscn" id="5_5kmee"]
 [ext_resource type="ArrayMesh" uid="uid://o2fxtu8po2fr" path="res://assets/models/FinalAssets_Low/WorkStations/Furnace_low.obj" id="6_0ahcc"]
 [ext_resource type="Texture2D" uid="uid://bll315yt7blkd" path="res://assets/materials/Texture_sets/WorkStations/Furance_low_BaseCol.tga" id="6_ohbk7"]
+[ext_resource type="PackedScene" uid="uid://dndfmrn0hhg3t" path="res://assets/models/FinalAssets_Low/Items_Models/Damas_Ingot.tscn" id="6_wq66q"]
 [ext_resource type="Texture2D" uid="uid://bj6c60ek3rd8c" path="res://assets/materials/Texture_sets/WorkStations/Furance_low_ORM.tga" id="7_2jum7"]
 [ext_resource type="Texture2D" uid="uid://cw0s6r8rhgp8c" path="res://assets/materials/Texture_sets/WorkStations/Furance_low_Normal.tga" id="8_yd14g"]
 [ext_resource type="AudioStream" uid="uid://b55rsdiqrjrsq" path="res://assets/Sounds/WorldSounds/InitalForgeActivation.wav" id="10_yd14g"]
@@ -13,10 +16,37 @@
 
 [sub_resource type="Resource" id="Resource_04qyv"]
 script = ExtResource("3_oiry0")
-recipeName = "Ingot"
+recipeName = "Copper_Ingot"
 requiredItemNames = PackedStringArray("Copper_Ore")
-ouputName = "Ingot"
+ouputName = "Copper_Ingot"
 ouputScene = ExtResource("2_n8y7r")
+ouputGroup = "pickable"
+metadata/_custom_type_script = "uid://1bo1o367ybgk"
+
+[sub_resource type="Resource" id="Resource_jnxk4"]
+script = ExtResource("3_oiry0")
+recipeName = "Iron_Ingot"
+requiredItemNames = PackedStringArray("Iron_Ore")
+ouputName = "Iron_Ingot"
+ouputScene = ExtResource("4_twstk")
+ouputGroup = "pickable"
+metadata/_custom_type_script = "uid://1bo1o367ybgk"
+
+[sub_resource type="Resource" id="Resource_sx61v"]
+script = ExtResource("3_oiry0")
+recipeName = "Gold_Ingot"
+requiredItemNames = PackedStringArray("Gold_Ore")
+ouputName = "Gold_Ingot"
+ouputScene = ExtResource("5_5kmee")
+ouputGroup = "pickable"
+metadata/_custom_type_script = "uid://1bo1o367ybgk"
+
+[sub_resource type="Resource" id="Resource_i1han"]
+script = ExtResource("3_oiry0")
+recipeName = "Damas_Ingot"
+requiredItemNames = PackedStringArray("Damas_Ore")
+ouputName = "Damas_Ingot"
+ouputScene = ExtResource("6_wq66q")
 ouputGroup = "pickable"
 metadata/_custom_type_script = "uid://1bo1o367ybgk"
 
@@ -49,7 +79,7 @@ outputNode = NodePath("OutputPort")
 timeProgressBar = NodePath("Sprite3D/SubViewport/ProgressBar")
 stationName = NodePath("Sprite3D/SubViewport/Label")
 craftDuration = 1.0
-recipes = Array[Object]([SubResource("Resource_04qyv")])
+recipes = Array[Object]([SubResource("Resource_04qyv"), SubResource("Resource_jnxk4"), SubResource("Resource_sx61v"), SubResource("Resource_i1han")])
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1067101710 groups=["Forge"]]
 collision_layer = 160

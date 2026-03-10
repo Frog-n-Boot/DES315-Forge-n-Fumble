@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://b5hqxxuqxork6"]
+
+[ext_resource type="Texture2D" uid="uid://b163ru6y04fds" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_BaseCol.tga" id="1_6cu2b"]
+[ext_resource type="ArrayMesh" uid="uid://dw1l67bnyfk7s" path="res://assets/models/FinalAssets_Low/Ore/Gold_ing_low.obj" id="1_naam3"]
+[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Pickable.cs" id="1_yaxjs"]
+[ext_resource type="Texture2D" uid="uid://dmckkpafqq3bq" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_Normal.tga" id="2_yaxjs"]
+[ext_resource type="Texture2D" uid="uid://b1xjsa5p8f7rb" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_ORM.tga" id="3_tq4g8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8wu6d"]
+size = Vector3(1, 1.1378174, 0.91204834)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_vgjhu"]
+albedo_texture = ExtResource("1_6cu2b")
+orm_texture = ExtResource("3_tq4g8")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_yaxjs")
+
+[node name="GoldOre" type="Node3D" unique_id=546203985]
+script = ExtResource("1_yaxjs")
+itemDataPath = "uid://viwodjsqvjas"
+
+[node name="Area3D" type="Area3D" parent="." unique_id=599362190 groups=["pickable"]]
+collision_layer = 16
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1033343971]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06890869, 0.30264282)
+visible = false
+shape = SubResource("BoxShape3D_8wu6d")
+
+[node name="GoldIngLow" type="MeshInstance3D" parent="Area3D" unique_id=199314679]
+material_override = SubResource("ORMMaterial3D_vgjhu")
+mesh = ExtResource("1_naam3")
+skeleton = NodePath("../..")

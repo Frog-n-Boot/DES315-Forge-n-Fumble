@@ -255,31 +255,46 @@ public partial class WaveManager : Node
 	{
 		if (enemiesSpawnedThisWave < enemiesToSpawnThisWave)
 		{
-			SpawnEnemy();
-			enemiesSpawnedThisWave++;
+			int remainingEnemies = enemiesToSpawnThisWave - enemiesSpawnedThisWave;
+			int clumpSize= Mathf.Min(GD.RandRange(1, 5), remainingEnemies);
+
+			SpawnEnemy(clumpSize);
+
+			enemiesSpawnedThisWave += clumpSize;
 		}
 
 		if (enemiesSpawnedThisWave >= enemiesToSpawnThisWave)
 			spawnTimer.Stop();
 	}
 
-	private void SpawnEnemy()
+	private void SpawnEnemy(int clumpSize)
 	{
 		if (spawnParent == null || targetNode == null) return;
 
-		EnemyData selectedData = GetRandomEnemyData();
-		if (selectedData == null) return;
+		Vector3 clumpCenter = GetRandomSpawnPosition();
 
-		EnemyController enemy = EnemyController.Create(selectedData, targetNode, spawnParent);
+		for(int i = 0; i < clumpSize; i++)
+		{
+			EnemyData selectedData = GetRandomEnemyData();
+			if (selectedData == null) return;
 
-		// GlobalPosition must be set AFTER AddChild (enemy is in the tree at this point)
-		enemy.GlobalPosition = GetRandomSpawnPosition();
+			EnemyController enemy = EnemyController.Create(selectedData, targetNode, spawnParent);
+			// float angle = (i / (float)(clumpSize)) * Mathf.Tau;
+			// float radius = GD.RandRange((int)1f, (int)3f);
+			// Vector3 offset = new Vector3(Mathf.Cos(angle) * radius, 0, Mathf.Sin(angle) * radius);
+			
+			Vector3 randomOffSet = new Vector3 ( GD.RandRange(-3, 3), 0, GD.RandRange(-3, 3));
+			// GlobalPosition must be set AFTER AddChild (enemy is in the tree at this point)
+			enemy.GlobalPosition = clumpCenter + randomOffSet;
 
-		activeEnemies.Add(enemy);
-		enemiesAliveThisWave++;
+			activeEnemies.Add(enemy);
+			enemiesAliveThisWave++;
 
-		enemy.Died          += OnEnemyDied;
-		enemy.DamagedTarget += OnEnemyDamagedTarget;
+			enemy.Died          += OnEnemyDied;
+			enemy.DamagedTarget += OnEnemyDamagedTarget;
+		}
+		
+		
 	}
 
 	private EnemyData GetRandomEnemyData()
