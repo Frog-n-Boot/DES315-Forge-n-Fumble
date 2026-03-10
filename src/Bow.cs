@@ -26,14 +26,18 @@ public partial class Bow : RangedWeapon
 		if(!isDrawing) return;
 		isDrawing = false;
 
-		float power = Mathf.Clamp(drawProgress / drawTime, 0.3f, 1f);
+		float power = Mathf.Clamp(drawProgress / drawTime, 0.3f, 10f);
 		PowerShot(power);
 	}
 
     public override void _Process(double delta)
     {
-        if(isDrawing)
-			drawProgress += (float)delta;
+        if (isDrawing)
+        {
+            drawProgress += 1;
+			GD.Print($"Draw Progress: {drawProgress}");
+        }
+			
     }
 
 	private void PowerShot(float power)

@@ -24,13 +24,11 @@
 [ext_resource type="PackedScene" uid="uid://g1gfmktihg8t" path="res://assets/models/FinalAssets_Low/WorkStations/Anvil.tscn" id="22_3w1al"]
 [ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/FinalAssets_Low/Items_Models/DullSword.tscn" id="22_amgg8"]
 [ext_resource type="PackedScene" uid="uid://cgv7jdbgqsgql" path="res://assets/models/FinalAssets_Low/Ore/Ore.tscn" id="23_3qum0"]
-[ext_resource type="Script" uid="uid://dnliu2440i283" path="res://src/PauseMenu.cs" id="23_amgg8"]
 [ext_resource type="Script" uid="uid://bs44u3pohek1t" path="res://src/SettingsMenu.cs" id="24_gax05"]
-[ext_resource type="Texture2D" uid="uid://bvw5yhtbch6ht" path="res://assets/materials/Texture_sets/2DTextures/anvilImage.webp" id="29_7dxqx"]
+[ext_resource type="PackedScene" uid="uid://d3hr25hyu0vng" path="res://scenes/PauseMenu.tscn" id="27_7dxqx"]
 [ext_resource type="PackedScene" uid="uid://176tgqxxk3p7" path="res://scenes/DebugMenu.tscn" id="30_7gden"]
-[ext_resource type="Texture2D" uid="uid://dy1wiwwij327x" path="res://assets/materials/Texture_sets/2DTextures/furnaceImage.webp" id="30_f5rak"]
 [ext_resource type="Script" uid="uid://b2l2l45t253bx" path="res://src/HUD.cs" id="31_f5rak"]
-[ext_resource type="Texture2D" uid="uid://dwexwmybryvpl" path="res://assets/materials/Texture_sets/2DTextures/grindstoneImage.webp" id="31_xw70q"]
+[ext_resource type="PackedScene" uid="uid://c3r5d0p8x0nhg" path="res://scenes/FailMenu.tscn" id="32_f5rak"]
 [ext_resource type="PackedScene" uid="uid://cd12og6qvmqm7" path="res://assets/textures/PlayerPortrait.tscn" id="32_xw70q"]
 [ext_resource type="Script" uid="uid://brp6gsap0s2ok" path="res://src/HealthBar.cs" id="34_0vwtv"]
 [ext_resource type="PackedScene" uid="uid://cayfp8m51s7np" path="res://assets/models/FinalAssets_Low/Items_Models/Bow.tscn" id="34_cvaul"]
@@ -92,8 +90,6 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 expand_margin_bottom = 3.0
 shadow_size = 3
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7dxqx"]
 
 [node name="TestingLab" type="StaticBody3D" unique_id=127569902]
 
@@ -612,116 +608,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4618316, 9.772978, 0)
 text = "dsfsdfsd"
 font_size = 200
 
-[node name="PauseMenu" type="CanvasLayer" parent="." unique_id=385949872 node_paths=PackedStringArray("resumeButton", "settingsButton", "mainMenuButton", "settingsMenu")]
-process_mode = 3
-visible = false
-script = ExtResource("23_amgg8")
-resumeButton = NodePath("ResumeButton")
-settingsButton = NodePath("SettingsButton")
-mainMenuButton = NodePath("QuitButton")
+[node name="PauseMenu" parent="." unique_id=1911328891 node_paths=PackedStringArray("settingsMenu", "failMenu") instance=ExtResource("27_7dxqx")]
 settingsMenu = NodePath("../SettingsMenu")
-
-[node name="ResumeButton" type="Button" parent="PauseMenu" unique_id=1461095151]
-offset_left = 30.000029
-offset_top = 163.0
-offset_right = 478.00003
-offset_bottom = 283.0
-scale = Vector2(0.8400012, 0.7599994)
-focus_neighbor_top = NodePath(".")
-focus_neighbor_bottom = NodePath("../SettingsButton")
-focus_next = NodePath("../SettingsButton")
-focus_previous = NodePath("../QuitButton")
-theme_override_font_sizes/font_size = 40
-text = "Resume"
-
-[node name="SettingsButton" type="Button" parent="PauseMenu" unique_id=284510241]
-offset_left = 30.000029
-offset_top = 323.0
-offset_right = 478.00003
-offset_bottom = 443.0
-scale = Vector2(0.8400012, 0.7599994)
-focus_neighbor_top = NodePath("../ResumeButton")
-focus_neighbor_bottom = NodePath("../QuitButton")
-focus_next = NodePath("../QuitButton")
-focus_previous = NodePath("../ResumeButton")
-theme_override_font_sizes/font_size = 40
-text = "Settings"
-
-[node name="QuitButton" type="Button" parent="PauseMenu" unique_id=1753223593]
-offset_left = 30.000029
-offset_top = 483.0
-offset_right = 478.00003
-offset_bottom = 603.0
-scale = Vector2(0.8400012, 0.7599994)
-focus_neighbor_top = NodePath("../SettingsButton")
-focus_previous = NodePath("../SettingsButton")
-theme_override_font_sizes/font_size = 40
-text = "Main Menu"
-
-[node name="Label" type="Label" parent="PauseMenu" unique_id=1356341263]
-offset_left = 21.0
-offset_top = 14.0
-offset_right = 418.0
-offset_bottom = 97.0
-theme_override_font_sizes/font_size = 60
-text = "Game Paused"
-
-[node name="FurnaceImahe" type="TextureRect" parent="PauseMenu" unique_id=1306127748]
-offset_left = 582.0
-offset_top = 7.0
-offset_right = 1082.0
-offset_bottom = 107.0
-scale = Vector2(0.8930303, 1)
-texture = ExtResource("30_f5rak")
-expand_mode = 1
-
-[node name="AnvilImage" type="TextureRect" parent="PauseMenu" unique_id=1655853165]
-offset_left = 581.0
-offset_top = 107.0
-offset_right = 1081.0
-offset_bottom = 207.0
-scale = Vector2(0.8930303, 1)
-texture = ExtResource("29_7dxqx")
-expand_mode = 1
-
-[node name="GrindstoneImage" type="TextureRect" parent="PauseMenu" unique_id=983736741]
-offset_left = 582.0
-offset_top = 207.0
-offset_right = 1082.0
-offset_bottom = 307.0
-scale = Vector2(0.8930303, 1)
-texture = ExtResource("31_xw70q")
-expand_mode = 1
-
-[node name="ControlsLabel" type="Label" parent="PauseMenu" unique_id=1322837801]
-offset_left = 487.0
-offset_top = 315.0
-offset_right = 1149.0
-offset_bottom = 672.0
-scale = Vector2(1, 0.92)
-theme_override_font_sizes/font_size = 30
-text = "Actions                  Keyboard    │  Controller
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Pick-Up               │  Right Click │  Left Trigger
-Attack/Interact │  Left Click   │  Right Trigger
-Drop-Left-Item  │  Q                 │  Left Shoulder
-Drop-Right-Item│  E                 │  Right Shoulder
-Pause                  │  ESC             │  ☰
-Sequence           │  ←↑→↓          │  < > v ^"
-
-[node name="TextureRect" type="TextureRect" parent="PauseMenu" unique_id=261957256]
-z_index = -1
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(28.860407, 16.15729)
-texture = SubResource("CompressedTexture2D_7dxqx")
-
-[node name="ColorRect" type="ColorRect" parent="PauseMenu" unique_id=25129296]
-z_index = -1
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(28.750067, 16.369858)
-color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
+failMenu = NodePath("../FailMenu")
 
 [node name="SettingsMenu" type="CanvasLayer" parent="." unique_id=1617405091 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton", "pauseMenu")]
 visible = false
@@ -1002,8 +891,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13379955, 0.014983, 2.28569
 [node name="Bow" parent="." unique_id=1323232309 instance=ExtResource("34_cvaul")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6217904, 0.50000095, 1.6013355)
 
-[connection signal="pressed" from="PauseMenu/ResumeButton" to="PauseMenu" method="OnResumePressed"]
-[connection signal="pressed" from="PauseMenu/SettingsButton" to="PauseMenu" method="OnSettingsPressed"]
-[connection signal="pressed" from="PauseMenu/QuitButton" to="PauseMenu" method="OnQuitPressed"]
+[node name="FailMenu" parent="." unique_id=431392979 instance=ExtResource("32_f5rak")]
+
 [connection signal="pressed" from="SettingsMenu/Control/BackButton" to="SettingsMenu" method="OnBackPressed"]
 [connection signal="pressed" from="SettingsMenu/Control/ApplyButton" to="SettingsMenu" method="OnApplyPressed"]

@@ -16,6 +16,7 @@ public abstract partial class MeleeWeapon : BaseWeapon
 		if(hitbox == null)
 			GD.PrintErr("MeleeWeapon: CollisionShape3D not found at StaticBody3D/CollisionShape");
 		SetHitboxEnabled(false);
+		
     }
 
     public override void Use()

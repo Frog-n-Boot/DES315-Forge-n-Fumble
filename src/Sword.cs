@@ -10,11 +10,13 @@ public partial class Sword : MeleeWeapon
 	private const int maxCombo = 3;
 	private float comboResetTimer = 0f;
 	private const float comboWindow = 1.0f;
+	private int comboDamage;
 
 	protected override void OnReady()
 	{
-
 		base.OnReady();
+		durability = maxDurability;
+		comboDamage = damage;
 	}
 
     public override void _Process(double delta)
@@ -40,6 +42,7 @@ public partial class Sword : MeleeWeapon
 				comboCount = 1;
 
 			comboResetTimer = comboWindow;
+			comboDamage = damage;
 			return true;			
 		}
 
@@ -62,7 +65,7 @@ public partial class Sword : MeleeWeapon
 		{
 			1 => 1,
 			2 => 2,
-			3 => 20,
+			3 => 5,
 			_ => 1
 		};
 	}

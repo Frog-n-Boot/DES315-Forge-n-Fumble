@@ -217,10 +217,21 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			{
 				sword.PerformComboAttack(inputBuffer);
 				StartAttack();
+				
 				isAttacking = false;
 			}
+			
 		}
-		else if(inputBuffer.ConsumeInput("attack") && !isAttacking)
+		else if(currentWeapon is Bow bow)
+        {
+            if(inputBuffer.IsInputBuffered("attack") && !isAttacking)
+			{
+				bow.StartDraw();
+				
+				isAttacking = false;
+			}
+        }
+		else if(inputBuffer.ConsumeInput("attack") && !isAttacking){}
 			StartAttack();
 	}
 	
@@ -385,7 +396,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		{
 			if(!isAttacking) return;
 			isAttacking = false;
-			melee.SetHitboxEnabled(false);
+			//melee.SetHitboxEnabled(false);
 
 		}
 			

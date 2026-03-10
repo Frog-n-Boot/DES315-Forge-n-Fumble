@@ -11,8 +11,9 @@
 
 [node name="Bow" type="Node3D" unique_id=1323232309 groups=["Weapon"]]
 script = ExtResource("1_c8bbo")
+fireRate = 0.1
 projectileScene = ExtResource("2_2itnu")
-maxDurability = 20
+maxDurability = 38
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=745227245 groups=["Weapon"]]
 collision_layer = 8
@@ -35,4 +36,4 @@ transform = Transform3D(0.13, 0, 0, 0, 1, 0, 0, 0, 0.12, 0, 0, 0)
 shape = SubResource("BoxShape3D_c8bbo")
 
 [node name="FirePoint" type="Node3D" parent="." unique_id=1747842407]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6608641, 1.3307536)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2655601, 1.3307536)

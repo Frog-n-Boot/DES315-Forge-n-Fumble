@@ -33,4 +33,9 @@ public abstract partial class RangedWeapon : BaseWeapon
 		canFire = false;
 		GetTree().CreateTimer(fireRate).Timeout += () => canFire = true;
 	}
+	protected override void OnBroke()
+    {
+		EmitSignal(SignalName.Broke);
+		QueueFree();
+    }
 }

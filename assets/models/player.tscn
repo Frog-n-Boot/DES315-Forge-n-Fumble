@@ -55,7 +55,6 @@ tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.99999994)
 
 [sub_resource type="Animation" id="Animation_ob8sk"]
 resource_name = "Sword_Attack_1"
-length = 0.21
 tracks/0/type = "rotation_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -83,14 +82,13 @@ tracks/2/keys = {
 "args": [true],
 "method": &"SetHitboxEnabled"
 }, {
-"args": [true],
+"args": [false],
 "method": &"SetHitboxEnabled"
 }]
 }
 
 [sub_resource type="Animation" id="Animation_gp7mg"]
 resource_name = "Sword_Attack_2"
-length = 0.3
 tracks/0/type = "rotation_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -125,7 +123,6 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_yv8gf"]
 resource_name = "Sword_Attack_3"
-length = 0.34
 tracks/0/type = "rotation_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -174,6 +171,20 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, -0.6925045, -0.42909175, 0)
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sword")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"SetHitboxEnabled"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t0fpx"]
 _data = {
@@ -223,7 +234,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.039611816, 0.9244385, 0.05
 shape = SubResource("BoxShape3D_t0fpx")
 
 [node name="RightHand" type="Node3D" parent="CollisionShape3D" unique_id=798116510]
-transform = Transform3D(1.0000002, 0, 0, 0, 0.9999996, 0, 0, 0, 1, 0.65378267, -0.42909175, 0.4947592)
+transform = Transform3D(1.0000002, 0, 0, 0, 0.9999996, 0, 0, 0, 1, -0.6925045, -0.42909175, 0)
 
 [node name="Sword" parent="CollisionShape3D/RightHand" unique_id=689345526 instance=ExtResource("3_8d03m")]
 transform = Transform3D(0.9999998, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999998, 0, 0, 0)

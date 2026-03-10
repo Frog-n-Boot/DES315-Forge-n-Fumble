@@ -7,6 +7,7 @@ public abstract partial class BaseWeapon : Node3D
 	[Export] public int maxDurability;
 	public int durability;
 	public bool isBeingPickedUp = false;
+	private int lastHitDamage;
 
 	[Signal] public delegate void BrokeEventHandler();
 
@@ -14,6 +15,7 @@ public abstract partial class BaseWeapon : Node3D
 	public override void _Ready()
 	{
 		durability = maxDurability;
+		lastHitDamage = damage;
 		OnReady();
 	}
 
@@ -24,9 +26,11 @@ public abstract partial class BaseWeapon : Node3D
 		durability -= amount;
 		//EmitSignal(SignalName.DurabilityChanged, durability, maxDurability);
 
+		
 		if(durability <= 0)
 		{
 			durability = 0;
+			damage = lastHitDamage;
 			OnBroke();
 		}
 	}

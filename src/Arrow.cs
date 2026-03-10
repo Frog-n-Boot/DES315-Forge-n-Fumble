@@ -32,14 +32,13 @@ public partial class Arrow : Node3D
 	{
 		if(hasHit) return;
 
-		velocity.Y -= gravityStrength * (float)delta;
-
 		GlobalPosition += velocity * (float)delta;
 
 		if(velocity.LengthSquared() > 0.01f)
 		{
 			LookAt(GlobalPosition + velocity.Normalized(), Vector3.Up);
 		}
+		//GetTree().CreateTimer(3.0f).Timeout += () => velocity.Y -= gravityStrength * (float)delta;
 	}
 	public void OnCollisionDetected(Node3D body)
 	{

@@ -284,8 +284,6 @@ public partial class EnemyController : Node3D
 					
 					weapon.TakeDurabilityDamage(1);
 					TakeDamage(weapon.damage);
-					if(weapon is Sword sword)
-						sword.DamageWeapon(1);
 					
 					Vector3 pushDirection = (GlobalPosition - weapon.GlobalPosition).Normalized();
 					pushDirection.Y = 0;
