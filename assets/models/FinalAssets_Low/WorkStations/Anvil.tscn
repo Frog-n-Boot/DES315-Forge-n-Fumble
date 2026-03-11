@@ -80,7 +80,7 @@ skeleton = NodePath("../..")
 transform = Transform3D(12.001051, 0, 0, 0, 1.3650613, 0, 0, 0, 5.496108, -0.02589643, 0.5367638, 0.06567299)
 
 [node name="OutputPort" parent="." unique_id=1109718632 instance=ExtResource("3_yb3nn")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.07868272, 0.33549273, -0.93596953)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07868272, 0.33549273, -1.1562169)
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=840510996]
 transform = Transform3D(-2.359344e-07, 0, 4, 0, 4, 0, -5.3975496, 0, -1.7484555e-07, -0.6966152, 3.8950515, -1.6123558)

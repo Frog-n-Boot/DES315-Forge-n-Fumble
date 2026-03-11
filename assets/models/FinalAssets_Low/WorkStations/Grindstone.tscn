@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="3_fgmgg"]
 [ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/CraftingRecipes.cs" id="3_hj04q"]
 [ext_resource type="Texture2D" uid="uid://50xg82nov3j2" path="res://assets/materials/Texture_sets/WorkStations/Grinder_low_BaseCol.tga" id="4_chpgb"]
-[ext_resource type="PackedScene" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Sword.tscn" id="4_uhy0b"]
+[ext_resource type="PackedScene" uid="uid://di5odw2tmde5j" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Sword.tscn" id="4_uhy0b"]
 [ext_resource type="ArrayMesh" uid="uid://gxhgwjbmhtq6" path="res://assets/models/FinalAssets_Low/WorkStations/Grinder_low.obj" id="5_fgmgg"]
 [ext_resource type="Texture2D" uid="uid://6k5i0lfvsf5" path="res://assets/materials/Texture_sets/WorkStations/Grinder_low_ORM.tga" id="5_yoit8"]
 [ext_resource type="Texture2D" uid="uid://ui3qrxklkrbs" path="res://assets/materials/Texture_sets/WorkStations/Grinder_low_Normal.tga" id="6_8jrxj"]
@@ -70,7 +70,7 @@ skeleton = NodePath("../..")
 transform = Transform3D(9.291697, 0, 0, 0, 1.837871, 0, 0, 0, 6.8115783, 0.00969851, 0.88491654, -0.01149559)
 
 [node name="OutputPort" parent="." unique_id=1109718632 instance=ExtResource("3_fgmgg")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.0206666, 0.3782071, 0.9554943)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0206666, 0.3782071, 0.9554943)
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=840510996]
 transform = Transform3D(-1.7484555e-07, 0, 4, 0, 4, 0, -4, 0, -1.7484555e-07, -0.022883892, 2.961748, 0)

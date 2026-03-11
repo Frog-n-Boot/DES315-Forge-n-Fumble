@@ -106,8 +106,7 @@ transform = Transform3D(31.928226, 0, 0, 0, 6.3082385, 0, 0, 0, 44.96865, -4.012
 visible = false
 
 [node name="OutputPort" parent="." unique_id=1251145266 instance=ExtResource("4_0l8vc")]
-transform = Transform3D(5.2756314, 0, 0, 0, 2.857143, 0, 0, 0, 5.4322386, -8.55842, 1.7136235, -0.27193514)
-visible = false
+transform = Transform3D(5.2756314, 0, 0, 0, 2.857143, 0, 0, 0, 5.4322386, -9.265402, 1.5173415, -0.27193514)
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=741148502]
 transform = Transform3D(-27.69681, 0, -5.144179e-07, 0, 19.48352, 0, 2.4213318e-06, 0, -5.884255, -0.022883892, 25.633549, -1.8400894)
