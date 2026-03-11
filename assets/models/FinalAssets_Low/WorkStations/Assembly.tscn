@@ -13,10 +13,10 @@
 [sub_resource type="Resource" id="Resource_myl5f"]
 script = ExtResource("3_0cuso")
 recipeName = "Sword"
-requiredItemNames = PackedStringArray("DullSword")
+requiredItemNames = PackedStringArray("Copper_Ingot", "Gold_Ingot", "Copper_Ingot", "Gold_Ingot")
 ouputName = "Sword"
 ouputScene = ExtResource("2_r34y0")
-ouputGroup = "Sword"
+ouputGroup = "Weapon"
 metadata/_custom_type_script = "uid://1bo1o367ybgk"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c8yjg"]

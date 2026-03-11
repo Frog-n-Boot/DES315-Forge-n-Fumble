@@ -200,7 +200,20 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		
 		if (IsActionPressed("interact") && currentStation != null)
 		{
-		   currentStation.StartCrafting();
+			if(leftHand.GetChildCount() > 0)
+            {
+                var item = leftHand.GetChild(0) as Pickable;
+				if(item != null && item.GetItemData() != null)
+            	{
+                	if(currentStation.DepositItems(item.GetItemData()))
+						item.QueueFree();
+            	}	   
+            }
+            else
+            {
+                currentStation.StartCrafting();
+            }
+			
 		}
 		if (IsActionPressed("pick_up"))
 		{
@@ -478,6 +491,8 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	{
 		if(!IsInstanceValid(pickable)) return;
 		if(processPickable.Contains(pickable)) return;
+		
+		//currentStation.DepositItems(pickable.GetItemData());
 		processPickable.Add(pickable);
 		
 		
@@ -524,6 +539,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 				if(sword.IsConnected(Sword.SignalName.CheckDurability, Callable.From(OnSwordDurabilityChecked)))
 					sword.Disconnect(Sword.SignalName.CheckDurability, Callable.From(OnSwordDurabilityChecked));
 				sword.Connect(Sword.SignalName.CheckDurability, Callable.From(OnSwordDurabilityChecked));
+				sword.SetHitboxEnabled(true);
 			}
 
 			if(currentWeapon.IsConnected(BaseWeapon.SignalName.Broke, Callable.From(OnSwordBroke)))
@@ -532,7 +548,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 			currentWeapon.isBeingPickedUp = false;
 			nearbyWeapon = null;
-
+			
 		};
 	}
 	private Vector3 GetLookVector()

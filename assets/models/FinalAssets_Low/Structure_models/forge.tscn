@@ -50,6 +50,15 @@ ouputScene = ExtResource("6_wq66q")
 ouputGroup = "pickable"
 metadata/_custom_type_script = "uid://1bo1o367ybgk"
 
+[sub_resource type="Resource" id="Resource_5kmee"]
+script = ExtResource("3_oiry0")
+recipeName = "Damas_Ingot"
+requiredItemNames = PackedStringArray("Iron_Ingot")
+ouputName = "Damas_Ingot"
+ouputScene = ExtResource("6_wq66q")
+ouputGroup = "pickable"
+metadata/_custom_type_script = "uid://1bo1o367ybgk"
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_5b8nd"]
 size = Vector3(0.38000727, 0.51831055, 0.24706268)
 
@@ -79,7 +88,7 @@ outputNode = NodePath("OutputPort")
 timeProgressBar = NodePath("Sprite3D/SubViewport/ProgressBar")
 stationName = NodePath("Sprite3D/SubViewport/Label")
 craftDuration = 1.0
-recipes = Array[Object]([SubResource("Resource_04qyv"), SubResource("Resource_jnxk4"), SubResource("Resource_sx61v"), SubResource("Resource_i1han")])
+recipes = Array[Object]([SubResource("Resource_04qyv"), SubResource("Resource_jnxk4"), SubResource("Resource_sx61v"), SubResource("Resource_i1han"), SubResource("Resource_5kmee")])
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1067101710 groups=["Forge"]]
 collision_layer = 160

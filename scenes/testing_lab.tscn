@@ -30,7 +30,6 @@
 [ext_resource type="PackedScene" uid="uid://c3r5d0p8x0nhg" path="res://scenes/FailMenu.tscn" id="32_f5rak"]
 [ext_resource type="PackedScene" uid="uid://cd12og6qvmqm7" path="res://assets/textures/PlayerPortrait.tscn" id="32_xw70q"]
 [ext_resource type="Script" uid="uid://brp6gsap0s2ok" path="res://src/HealthBar.cs" id="34_0vwtv"]
-[ext_resource type="PackedScene" uid="uid://cayfp8m51s7np" path="res://assets/models/FinalAssets_Low/Items_Models/Bow.tscn" id="34_cvaul"]
 [ext_resource type="PackedScene" uid="uid://c3vh51tshqcxw" path="res://assets/models/FinalAssets_Low/Ore/Damas_Ore.tscn" id="34_ikfag"]
 [ext_resource type="PackedScene" uid="uid://b5hqxxuqxork6" path="res://assets/models/FinalAssets_Low/Ore/Gold_Ore.tscn" id="35_o7in3"]
 [ext_resource type="PackedScene" uid="uid://dgisu3p5x1t6w" path="res://assets/models/FinalAssets_Low/Ore/Iron_Ore.tscn" id="36_36rvu"]
@@ -565,6 +564,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.790215, 0, 0)
 
 [node name="LootTable" type="Node3D" parent="." unique_id=537718464 groups=["LootTable"]]
 script = ExtResource("9_7cc0k")
+damasDropChance = 0
 healthPackDropChance = 0
 copperOre = ExtResource("23_3qum0")
 ironOre = ExtResource("36_36rvu")
@@ -884,25 +884,10 @@ color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
 [node name="DullSword" parent="." unique_id=778246616 instance=ExtResource("22_amgg8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.320782, 0.000985, -0.16474152)
 
-[node name="Ore" parent="." unique_id=1618473424 groups=["pickable"] instance=ExtResource("23_3qum0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13379955, 0.014983, 3.9486394)
-
 [node name="DebugMenu" parent="." unique_id=731638094 instance=ExtResource("30_7gden")]
-
-[node name="Bow" parent="." unique_id=1323232309 instance=ExtResource("34_cvaul")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6217904, 0.50000095, 1.6013355)
 
 [node name="FailMenu" parent="." unique_id=431392979 instance=ExtResource("32_f5rak")]
 visible = false
-
-[node name="DamasOre" parent="." unique_id=692066931 instance=ExtResource("34_ikfag")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8153083, 0.00622, 3.8955774)
-
-[node name="GoldOre" parent="." unique_id=546203985 instance=ExtResource("35_o7in3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0513164, 0.017244, 5.1558847)
-
-[node name="IronOre" parent="." unique_id=904125942 instance=ExtResource("36_36rvu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.63385874, 0, 0.6019106)
 
 [node name="Forge" parent="." unique_id=994045895 instance=ExtResource("2_ptwec")]
 transform = Transform3D(-0.35, 0, 3.059797e-08, 0, 0.35, 0, -3.059797e-08, 0, -0.35, -4.560112, -9.536743e-07, 0.94780636)

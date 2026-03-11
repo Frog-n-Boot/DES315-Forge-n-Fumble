@@ -17,14 +17,7 @@ public partial class AssemblyStation : BaseStationScript
 
 	protected override void OnCraftingRequirementsMet()
 	{
-		if(GetRequiredItems(out var items, out var recipe))
-		{
-			foreach(var item in items)
-				itemCarrier.RemoveItem(item);
-			
-			craftingTimer.Start();
-			//assemblySoun.Play();
-		}
+		craftingTimer.Start();
 	}
 	public float GetCraftDuration()=> craftDuration;
 }

@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/CraftingRecipes.cs" id="3_1latb"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="3_yb3nn"]
 [ext_resource type="ArrayMesh" uid="uid://mmh030obulkw" path="res://assets/models/FinalAssets_Low/WorkStations/Anvil_low.obj" id="4_1latb"]
+[ext_resource type="PackedScene" uid="uid://brmfe3mgthcvt" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Dull_Sword.tscn" id="4_4m0u5"]
 [ext_resource type="Texture2D" uid="uid://d0b62wsx8gdhv" path="res://assets/materials/Texture_sets/WorkStations/anvil_low_BaseCol.tga" id="4_813ft"]
 [ext_resource type="Script" uid="uid://cqdmkhuvmmyck" path="res://src/SequenceMinigame.cs" id="4_yb3nn"]
 [ext_resource type="Texture2D" uid="uid://klsyonb1xfst" path="res://assets/materials/Texture_sets/WorkStations/anvil_low_Normal.tga" id="5_o5b8a"]
@@ -20,6 +21,15 @@ recipeName = "DullSword"
 requiredItemNames = PackedStringArray("Copper_Ingot")
 ouputName = "DullSword"
 ouputScene = ExtResource("2_fj0e1")
+ouputGroup = "pickable"
+metadata/_custom_type_script = "uid://1bo1o367ybgk"
+
+[sub_resource type="Resource" id="Resource_0gpkw"]
+script = ExtResource("3_1latb")
+recipeName = "IronDullSword"
+requiredItemNames = PackedStringArray("Iron_Ingot")
+ouputName = "IronDullSword"
+ouputScene = ExtResource("4_4m0u5")
 ouputGroup = "pickable"
 metadata/_custom_type_script = "uid://1bo1o367ybgk"
 
@@ -51,7 +61,7 @@ inputNode = NodePath("InputPort")
 outputNode = NodePath("OutputPort")
 timeProgressBar = NodePath("Sprite3D/SubViewport/ProgressBar")
 stationName = NodePath("Sprite3D/SubViewport/Label")
-recipes = Array[Object]([SubResource("Resource_813ft")])
+recipes = Array[Object]([SubResource("Resource_813ft"), SubResource("Resource_0gpkw")])
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=90114362]
 collision_layer = 32
