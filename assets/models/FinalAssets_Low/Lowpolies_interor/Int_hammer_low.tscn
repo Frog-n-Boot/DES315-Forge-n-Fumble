@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://d37147dy8d8ud"]
+
+[ext_resource type="ArrayMesh" uid="uid://bsuq87j72joom" path="res://assets/models/FinalAssets_Low/Lowpolies_interor/Int_hammer_low.obj" id="1_kv24s"]
+[ext_resource type="Material" uid="uid://dbxnf3h2p3kxk" path="res://assets/materials/Texture_sets/Lowpolly_interior_Textures/tools.tres" id="2_u1tqr"]
+
+[node name="IntHammerLow" type="Node3D" unique_id=1407326090]
+
+[node name="IntHammerLow" type="MeshInstance3D" parent="." unique_id=775549243]
+mesh = ExtResource("1_kv24s")
+surface_material_override/0 = ExtResource("2_u1tqr")

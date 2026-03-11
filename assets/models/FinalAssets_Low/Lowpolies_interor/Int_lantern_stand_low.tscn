@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cxe6cojaa4tnp"]
+
+[ext_resource type="ArrayMesh" uid="uid://cqfq4mmpuk2md" path="res://assets/models/FinalAssets_Low/Lowpolies_interor/Int_lantern_stand_low.obj" id="1_8wk5c"]
+[ext_resource type="Material" uid="uid://d0eek8gye0ugd" path="res://assets/materials/Texture_sets/Lowpolly_interior_Textures/lanterns.tres" id="2_wamqf"]
+
+[node name="IntLanternStandLow" type="Node3D" unique_id=364970141]
+
+[node name="IntLanternStandLow" type="MeshInstance3D" parent="." unique_id=1061965750]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.036211133)
+mesh = ExtResource("1_8wk5c")
+surface_material_override/0 = ExtResource("2_wamqf")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="IntLanternStandLow" unique_id=140020814]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.28899384, 0.043106258)
+light_color = Color(0.8862745, 0.3647059, 0, 1)
+omni_range = 1.77615

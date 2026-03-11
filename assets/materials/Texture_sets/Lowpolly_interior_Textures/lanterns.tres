@@ -1,0 +1,15 @@
+[gd_resource type="ORMMaterial3D" format=3 uid="uid://d0eek8gye0ugd"]
+
+[ext_resource type="Texture2D" uid="uid://cqwpb2ymdiifk" path="res://assets/materials/Texture_sets/Lowpolly_interior_Textures/lanterns_comb_BaseCol.tga" id="1_pwx24"]
+[ext_resource type="Texture2D" uid="uid://drpxny0lnyno0" path="res://assets/materials/Texture_sets/Lowpolly_interior_Textures/lanterns_comb_Emissive.tga" id="2_tjpnw"]
+[ext_resource type="Texture2D" uid="uid://cisbj6evldkwa" path="res://assets/materials/Texture_sets/Lowpolly_interior_Textures/lanterns_comb_Normal.tga" id="3_f0m3y"]
+[ext_resource type="Texture2D" uid="uid://b02o8orpedjid" path="res://assets/materials/Texture_sets/Lowpolly_interior_Textures/lanterns_comb_ORM.tga" id="4_b1p6y"]
+
+[resource]
+albedo_texture = ExtResource("1_pwx24")
+orm_texture = ExtResource("4_b1p6y")
+emission_enabled = true
+emission_energy_multiplier = 16.0
+emission_texture = ExtResource("2_tjpnw")
+normal_enabled = true
+normal_texture = ExtResource("3_f0m3y")
