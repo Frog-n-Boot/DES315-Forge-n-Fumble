@@ -22,6 +22,9 @@ public partial class EnemyController : Node3D
 
 	[ExportGroup("Collision")]
 	[Export] public float collisionCooldown = 0.01f;
+	[Export] public float flashDuration = 0.2f;
+
+	private Vector3 knockback =  Vector3.Zero;
 	#endregion
 
 	#region Runtime Stats (populated from EnemyData in _Ready)
@@ -32,11 +35,14 @@ public partial class EnemyController : Node3D
 	public int    DamageToPlayer => enemyData.damageToPlayer;
 	public float  Speed         => enemyData.speed;
 	public float  LootDropChance => enemyData.lootDropChance;
+	
 	#endregion
 
 	#region Health
 	public int currentHealth { get; set;}
 	public int CurrentHealth => currentHealth;
+
+	private StandardMaterial3D material;
 
 	private void InitHealth()
 	{
@@ -77,10 +83,18 @@ public partial class EnemyController : Node3D
 	private void MoveTowards(Vector3 targetPosition, double delta)
 	{
 		Vector3 direction = (targetPosition - GlobalPosition).Normalized();
-		velocity = direction * Speed;
+
+		if(knockback.LengthSquared() > 0.01f)
+			velocity = knockback;
+		else
+			velocity = direction * Speed;
+		
 		GlobalPosition += velocity * (float)delta;
+
 		if (direction.LengthSquared() > 0.01f)
 			RotateTowards(direction, delta);
+			
+		knockback = knockback.Lerp(Vector3.Zero, 0.15f);
 	}
 
 	private void RotateTowards(Vector3 direction, double delta)
@@ -116,9 +130,10 @@ public partial class EnemyController : Node3D
 	{
 		if (body.IsInGroup("Player")) return "Player";
 		if (body.IsInGroup("Forge"))  return "Forge";
-		if (body.IsInGroup("Sword"))  return "Sword";
+		if (body.IsInGroup("Weapon"))  return "Weapon";
 		if (body.IsInGroup("Enemy"))  return "Enemy";
 		if (body.IsInGroup("Bullet")) return "Bullet";
+		if (body.IsInGroup("Arrow")) return "Arrow";
 		return "";
 	}
 	#endregion
@@ -159,6 +174,13 @@ public partial class EnemyController : Node3D
 		{
 			if (enemyData.enemyMesh != null) mesh.Mesh             = enemyData.enemyMesh;
 			if (enemyData.enemyMat  != null) mesh.MaterialOverride = enemyData.enemyMat;
+		}
+		if(enemyData.enemyMat != null)
+		{
+			material = enemyData.enemyMat.Duplicate() as StandardMaterial3D;
+			material.EmissionEnabled = true;
+			material.EmissionEnergyMultiplier = 0f;
+			mesh.MaterialOverride = material;
 		}
 
 		if (enemyData.scale != Vector3.Zero)
@@ -236,8 +258,11 @@ public partial class EnemyController : Node3D
 				{
 					forge.TakeDamage(Damage);
 					GD.Print(forge.health);
+
+	
 				}
 				Die();
+				//TakeDamage(1);
 				break;
 
 			case "Player":
@@ -255,13 +280,25 @@ public partial class EnemyController : Node3D
 				}
 				break;
 
-			case "Sword":
-				Sword sword = FindSwordInHierarchy(body);
-				if (sword != null)
+			case "Weapon":
+				BaseWeapon weapon = FindWeaponInHierarchy(body);
+				if (weapon != null)
 				{
+					if(weapon is Sword sword)
+					{
+						int damageToApply = sword.GetComboDamage();
+						TakeDamage(damageToApply);
+					}
+					else
+					{
+						TakeDamage(weapon.damage);
+					}
 					
-					sword.DamageWeapon(1);
-					TakeDamage(sword.damage);
+					weapon.TakeDurabilityDamage(1);		
+					Vector3 pushDirection = (GlobalPosition - weapon.GlobalPosition).Normalized();
+					pushDirection.Y = 0;
+					pushDirection = pushDirection.Normalized();
+					ApplyKnockback(pushDirection, 20f);
 				}
 				break;
 
@@ -275,6 +312,18 @@ public partial class EnemyController : Node3D
 				else
 				{
 					GD.Print("Bullet is null");
+				}
+				break;
+			case "Arrow":
+				Arrow arrow = body.GetParent() as Arrow;
+				if (arrow != null)
+				{
+					TakeDamage((int)arrow.damage);
+					arrow.QueueFree();
+				}
+				else
+				{
+					GD.Print("Arrow is null");
 				}
 				break;
 		}
@@ -292,6 +341,7 @@ public partial class EnemyController : Node3D
 	#region Public API
 	public void TakeDamage(int amount)
 	{
+		Flash();
 		TakeHealthDamage(amount);
 	}
 
@@ -308,15 +358,33 @@ public partial class EnemyController : Node3D
 	#endregion
 
 	#region Helpers
-	private Sword FindSwordInHierarchy(Node3D body)
+	private BaseWeapon FindWeaponInHierarchy(Node current)
 	{
-		Node current = body;
 		while (current != null)
 		{
-			if (current is Sword sword) return sword;
+			if (current is BaseWeapon weapon) return weapon;
 			current = current.GetParent();
 		}
 		return null;
 	}
 	#endregion
+	private void Flash()
+	{
+		if(material == null) return;
+
+		Color white = new Color (1, 1, 1);
+		Color red = new Color (1, 0, 0);
+
+		var tween = CreateTween();
+
+		tween.TweenProperty(material, "emission_energy_multiplier", 2.0f, flashDuration /4);
+		tween.Parallel().TweenProperty(material, "emission", white, flashDuration / 4);
+		
+		tween.TweenProperty(material, "emission", red, flashDuration / 4);
+		tween.TweenProperty(material, "emission_energy_multiplier", 0.0f, flashDuration /2);
+	}
+
+	public void ApplyKnockback(Vector3 direction, float force){
+		knockback = direction * force;
+	}
 }

@@ -24,8 +24,8 @@ public partial class PlayerPortrait : PanelContainer
 		progressBar.MinValue = 0;
 		progressBar.MaxValue = 30;
 
-		if(player.currentSword != null)
-			progressBar.Value = player.currentSword.durability;
+		if(player.currentWeapon != null)
+			progressBar.Value = player.currentWeapon.durability;
 		else
 			progressBar.Value = 0;
 

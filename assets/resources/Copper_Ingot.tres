@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://c0323mj3xjr8w"]
+
+[ext_resource type="Script" path="res://src/ItemData.cs" id="1_vhkoe"]
+
+[resource]
+script = ExtResource("1_vhkoe")
+name = "Copper_Ingot"
+metadata/_custom_type_script = "uid://cy6spy2s7uv1l"

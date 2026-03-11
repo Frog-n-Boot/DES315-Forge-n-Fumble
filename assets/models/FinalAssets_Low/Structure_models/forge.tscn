@@ -4,8 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://dq8nubqatqhum" path="res://assets/models/FinalAssets_Low/Items_Models/Ingot.tscn" id="2_n8y7r"]
 [ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/CraftingRecipes.cs" id="3_oiry0"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="4_0l8vc"]
+[ext_resource type="PackedScene" uid="uid://o7vvnubwicff" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Ingot.tscn" id="4_5kmee"]
+[ext_resource type="PackedScene" uid="uid://bay85dbpt3qio" path="res://assets/models/FinalAssets_Low/Items_Models/Gold_Ingot.tscn" id="5_wq66q"]
 [ext_resource type="ArrayMesh" uid="uid://o2fxtu8po2fr" path="res://assets/models/FinalAssets_Low/WorkStations/Furnace_low.obj" id="6_0ahcc"]
 [ext_resource type="Texture2D" uid="uid://bll315yt7blkd" path="res://assets/materials/Texture_sets/WorkStations/Furance_low_BaseCol.tga" id="6_ohbk7"]
+[ext_resource type="PackedScene" uid="uid://kxj85aq1b0n0" path="res://assets/models/FinalAssets_Low/Items_Models/Damas_Ingot.tscn" id="6_sx61v"]
 [ext_resource type="Texture2D" uid="uid://bj6c60ek3rd8c" path="res://assets/materials/Texture_sets/WorkStations/Furance_low_ORM.tga" id="7_2jum7"]
 [ext_resource type="Texture2D" uid="uid://cw0s6r8rhgp8c" path="res://assets/materials/Texture_sets/WorkStations/Furance_low_Normal.tga" id="8_yd14g"]
 [ext_resource type="AudioStream" uid="uid://b55rsdiqrjrsq" path="res://assets/Sounds/WorldSounds/InitalForgeActivation.wav" id="10_yd14g"]
@@ -13,10 +16,46 @@
 
 [sub_resource type="Resource" id="Resource_04qyv"]
 script = ExtResource("3_oiry0")
-recipeName = "Ingot"
+recipeName = "Copper_Ingot"
 requiredItemNames = PackedStringArray("Copper_Ore")
-ouputName = "Ingot"
+ouputName = "Copper_Ingot"
 ouputScene = ExtResource("2_n8y7r")
+ouputGroup = "pickable"
+metadata/_custom_type_script = "uid://1bo1o367ybgk"
+
+[sub_resource type="Resource" id="Resource_i1han"]
+script = ExtResource("3_oiry0")
+recipeName = "Iron_Ingot"
+requiredItemNames = PackedStringArray("Iron_Ore")
+ouputName = "Iron_Ingot"
+ouputScene = ExtResource("4_5kmee")
+ouputGroup = "pickable"
+metadata/_custom_type_script = "uid://1bo1o367ybgk"
+
+[sub_resource type="Resource" id="Resource_7xevn"]
+script = ExtResource("3_oiry0")
+recipeName = "Gold_Ingot"
+requiredItemNames = PackedStringArray("Gold_Ore")
+ouputName = "Gold_Ingot"
+ouputScene = ExtResource("5_wq66q")
+ouputGroup = "pickable"
+metadata/_custom_type_script = "uid://1bo1o367ybgk"
+
+[sub_resource type="Resource" id="Resource_i7ec5"]
+script = ExtResource("3_oiry0")
+recipeName = "Damas_Ingot"
+requiredItemNames = PackedStringArray("Iron_Ingot")
+ouputName = "Damas_Ingot"
+ouputScene = ExtResource("6_sx61v")
+ouputGroup = "pickable"
+metadata/_custom_type_script = "uid://1bo1o367ybgk"
+
+[sub_resource type="Resource" id="Resource_16tjv"]
+script = ExtResource("3_oiry0")
+recipeName = "Damas_Ingot"
+requiredItemNames = PackedStringArray("Damas_Ore")
+ouputName = "Damas_Ingot"
+ouputScene = ExtResource("6_sx61v")
 ouputGroup = "pickable"
 metadata/_custom_type_script = "uid://1bo1o367ybgk"
 
@@ -48,8 +87,8 @@ inputNode = NodePath("InputPort")
 outputNode = NodePath("OutputPort")
 timeProgressBar = NodePath("Sprite3D/SubViewport/ProgressBar")
 stationName = NodePath("Sprite3D/SubViewport/Label")
-craftDuration = 1.0
-recipes = Array[Object]([SubResource("Resource_04qyv")])
+craftDuration = 4.0
+recipes = Array[Object]([SubResource("Resource_04qyv"), SubResource("Resource_i1han"), SubResource("Resource_7xevn"), SubResource("Resource_i7ec5"), SubResource("Resource_16tjv")])
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1067101710 groups=["Forge"]]
 visible = false
@@ -71,7 +110,6 @@ visible = false
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=741148502]
 transform = Transform3D(-27.69681, 0, -5.144179e-07, 0, 19.48352, 0, 2.4213318e-06, 0, -5.884255, -0.022883892, 25.633549, -1.8400894)
-visible = false
 texture = SubResource("ViewportTexture_ohbk7")
 
 [node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=1009488754]
@@ -79,7 +117,6 @@ transparent_bg = true
 size = Vector2i(100, 50)
 
 [node name="ProgressBar" type="ProgressBar" parent="Sprite3D/SubViewport" unique_id=1436996828]
-visible = false
 offset_left = 25.0
 offset_top = 10.0
 offset_right = 75.0
@@ -87,7 +124,6 @@ offset_bottom = 60.0
 show_percentage = false
 
 [node name="Label" type="Label" parent="Sprite3D/SubViewport" unique_id=1037346905]
-visible = false
 offset_left = 27.0
 offset_top = 20.0
 offset_right = 67.0

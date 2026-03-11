@@ -27,17 +27,7 @@ public partial class ForgingStation : BaseStationScript
 
 	private void OnSequenceCompleted()
 	{
-		if(itemCarrier == null) return;
-
-		if(GetRequiredItems(out var items, out var recipe))
-		{
-			foreach(var item in items)
-				itemCarrier.RemoveItem(item);
-
-			pendingRecipe = recipe;
-			ProduceOutput();
-
-		}
+		ProduceOutput();
 	}
 
 	private void OnSequenceFailed()
@@ -55,6 +45,7 @@ public partial class ForgingStation : BaseStationScript
 			//pickable.GlobalPosition = GlobalPosition + randomDir;
 			//pickable.GetNode<CollisionShape3D>("CollisionShape3D").SetDeferred("disabled", false);
 		}
+		pendingRecipe = null;
 	}
 
 	protected override void OnCraftingRequirementsMet()

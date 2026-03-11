@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bfvifq667vxvj"]
+
+[ext_resource type="Texture2D" uid="uid://b163ru6y04fds" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_BaseCol.tga" id="1_34kg5"]
+[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Pickable.cs" id="1_qeo4k"]
+[ext_resource type="ArrayMesh" uid="uid://g007ahf37syv" path="res://assets/models/FinalAssets_Low/Ore/Damas_ing_low.obj" id="1_rfw3c"]
+[ext_resource type="Texture2D" uid="uid://dmckkpafqq3bq" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_Normal.tga" id="2_qeo4k"]
+[ext_resource type="Texture2D" uid="uid://b1xjsa5p8f7rb" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_ORM.tga" id="3_we87l"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4vp4a"]
+size = Vector3(1, 1.1378174, 0.91204834)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_nbtug"]
+albedo_texture = ExtResource("1_34kg5")
+orm_texture = ExtResource("3_we87l")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_qeo4k")
+
+[node name="DamasOre" type="Node3D" unique_id=692066931]
+script = ExtResource("1_qeo4k")
+itemDataPath = "uid://rj5laf73xbp8"
+
+[node name="Area3D" type="Area3D" parent="." unique_id=929783519 groups=["pickable"]]
+collision_layer = 16
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=834248046]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06890869, 0.30264282)
+visible = false
+shape = SubResource("BoxShape3D_4vp4a")
+
+[node name="DamasIngLow" type="MeshInstance3D" parent="Area3D" unique_id=217866121]
+material_override = SubResource("ORMMaterial3D_nbtug")
+mesh = ExtResource("1_rfw3c")
+skeleton = NodePath("../..")

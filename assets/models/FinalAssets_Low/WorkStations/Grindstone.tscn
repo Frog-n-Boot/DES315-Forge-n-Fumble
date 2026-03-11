@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="3_fgmgg"]
 [ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/CraftingRecipes.cs" id="3_hj04q"]
 [ext_resource type="Texture2D" uid="uid://50xg82nov3j2" path="res://assets/materials/Texture_sets/WorkStations/Grinder_low_BaseCol.tga" id="4_chpgb"]
+[ext_resource type="PackedScene" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Sword.tscn" id="4_uhy0b"]
 [ext_resource type="ArrayMesh" uid="uid://gxhgwjbmhtq6" path="res://assets/models/FinalAssets_Low/WorkStations/Grinder_low.obj" id="5_fgmgg"]
 [ext_resource type="Texture2D" uid="uid://6k5i0lfvsf5" path="res://assets/materials/Texture_sets/WorkStations/Grinder_low_ORM.tga" id="5_yoit8"]
 [ext_resource type="Texture2D" uid="uid://ui3qrxklkrbs" path="res://assets/materials/Texture_sets/WorkStations/Grinder_low_Normal.tga" id="6_8jrxj"]
@@ -16,6 +17,15 @@ recipeName = "Sword"
 requiredItemNames = PackedStringArray("DullSword")
 ouputName = "Sword"
 ouputScene = ExtResource("2_hj04q")
+metadata/_custom_type_script = "uid://1bo1o367ybgk"
+
+[sub_resource type="Resource" id="Resource_wc540"]
+script = ExtResource("3_hj04q")
+recipeName = "Iron_Sword"
+requiredItemNames = PackedStringArray("Iron_Dull_Sword")
+ouputName = "Iron_Sword"
+ouputScene = ExtResource("4_uhy0b")
+ouputGroup = "Weapon"
 metadata/_custom_type_script = "uid://1bo1o367ybgk"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdc31"]
@@ -39,7 +49,7 @@ inputNode = NodePath("InputPort")
 outputNode = NodePath("OutputPort")
 timeProgressBar = NodePath("Sprite3D/SubViewport/ProgressBar")
 stationName = NodePath("Sprite3D/SubViewport/Label")
-recipes = Array[Object]([SubResource("Resource_fgmgg")])
+recipes = Array[Object]([SubResource("Resource_fgmgg"), SubResource("Resource_wc540")])
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=90114362]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8498851, 0)

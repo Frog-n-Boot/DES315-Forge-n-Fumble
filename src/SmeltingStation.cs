@@ -9,6 +9,7 @@ public partial class SmeltingStation : BaseStationScript
 
 	protected override void OnReady()
 	{
+
 	   	if(meltedIngotScene == null)
 		{
 			meltedIngotScene = GD.Load<PackedScene>("res://assets/models/MeltedIngot.tscn");;
@@ -18,15 +19,9 @@ public partial class SmeltingStation : BaseStationScript
 
 	protected override void OnCraftingRequirementsMet()
 	{
-		if(GetRequiredItems(out var items, out var recipe))
-		{
-			foreach(var item in items)
-				itemCarrier.RemoveItem(item);
-			
-			craftingTimer.Start();
-			audio.Play();
-			
-		}
+		craftingTimer.Start();
+		audio.Play();
+		
 	}
 
 	protected override string GetStationName() => "Forge";

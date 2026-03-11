@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://d1y4lf17i3iid"]
+
+[ext_resource type="Texture2D" uid="uid://bmsvh2x5p4847" path="res://assets/materials/Texture_sets/Item_Textures/sword_scnd_rough_low_BaseCol.tga" id="1_c726u"]
+[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Pickable.cs" id="1_j6w72"]
+[ext_resource type="Texture2D" uid="uid://dh0ha8nt5av2t" path="res://assets/materials/Texture_sets/Item_Textures/sword_scnd_rough_low_Normal.tga" id="2_j6w72"]
+[ext_resource type="Texture2D" uid="uid://cfllkfsxak7hb" path="res://assets/materials/Texture_sets/Item_Textures/sword_frts_rough_low_Normal.tga" id="3_jlpgu"]
+[ext_resource type="Texture2D" uid="uid://dw7bk1nhlrupf" path="res://assets/materials/Texture_sets/Item_Textures/sword_scnd_rough_low_ORM.tga" id="4_w7j66"]
+[ext_resource type="ArrayMesh" uid="uid://vmdklfvgul40" path="res://assets/models/FinalAssets_Low/Items_Models/Sword_first_low.obj" id="5_v6vne"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xpjli"]
+size = Vector3(0.68066406, 2.2209473, 0.59484863)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_pgajg"]
+albedo_texture = ExtResource("1_c726u")
+albedo_texture_force_srgb = true
+orm_texture = ExtResource("4_w7j66")
+normal_enabled = true
+normal_texture = ExtResource("3_jlpgu")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_j6w72")
+
+[node name="IronDullSword" type="Node3D" unique_id=803566957]
+script = ExtResource("1_j6w72")
+itemDataPath = "uid://mjifv5ikq2a1"
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1608035386 groups=["pickable"]]
+collision_layer = 16
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1431753828]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012207031, 1.2588482, -0.0038452148)
+shape = SubResource("BoxShape3D_xpjli")
+
+[node name="SwordFirstLow" type="MeshInstance3D" parent="." unique_id=1223151136]
+material_override = SubResource("ORMMaterial3D_pgajg")
+mesh = ExtResource("5_v6vne")

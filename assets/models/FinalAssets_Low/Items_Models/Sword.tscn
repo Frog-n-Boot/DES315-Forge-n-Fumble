@@ -19,22 +19,22 @@ normal_texture = ExtResource("4_b28ks")
 heightmap_enabled = true
 heightmap_texture = ExtResource("3_f13ar")
 
-[node name="Sword" type="Node3D" unique_id=689345526 groups=["Sword"]]
+[node name="Sword" type="Node3D" unique_id=689345526 groups=["Sword", "Weapon"]]
 script = ExtResource("1_4uorx")
-damage = 10
-durability = 30
+damage = 3
+maxDurability = 20
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1636120554 groups=["Sword"]]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1636120554 groups=["Sword", "Weapon"]]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 collision_layer = 8
 collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=481175609 groups=["Sword"]]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=481175609 groups=["Sword", "Weapon"]]
 transform = Transform3D(0.20340535, 7.280779e-16, 0, -9.030358e-17, 1.6399672, 0, 0, 0, 0.09999808, 0.004674003, 1.1159198, -0.022993883)
 shape = SubResource("BoxShape3D_xv1ii")
 disabled = true
 
-[node name="Area3D" type="Area3D" parent="StaticBody3D" unique_id=1796072919 groups=["Sword"]]
+[node name="Area3D" type="Area3D" parent="StaticBody3D" unique_id=1796072919 groups=["Sword", "Weapon"]]
 collision_layer = 24
 collision_mask = 4
 

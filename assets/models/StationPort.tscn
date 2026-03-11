@@ -10,6 +10,7 @@ size = Vector3(0.6976929, 1, 0.6383629)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=812032035]
 transform = Transform3D(0.18727133, 0, 0, 0, 1, 0, 0, 0, 0.1909036, 0, 0, 0)
+visible = false
 material_override = SubResource("StandardMaterial3D_vl1yp")
 transparency = 1.0
 skeleton = NodePath("")
