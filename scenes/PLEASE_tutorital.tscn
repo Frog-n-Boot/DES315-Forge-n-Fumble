@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bag1qnax1it55"]
 
-[ext_resource type="Texture2D" uid="uid://c8teme6t5qxwb" path="res://scenes/Screenshot 2026-03-03 114413.png" id="1_o5pxt"]
+[ext_resource type="Texture2D" uid="uid://oxpe6ohlhmmw" path="res://assets/textures/Screenshot 2026-03-11 111927.png" id="1_5yfar"]
 [ext_resource type="Material" uid="uid://c14d6xj6opusf" path="res://assets/materials/Texture_sets/Character_Textures/Goblin Textures/goblin_material.tres" id="2_60v6u"]
 [ext_resource type="ArrayMesh" uid="uid://bmq26ged3l0nq" path="res://assets/models/FinalAssets_Low/Character_Models/Goblin_low.obj" id="3_o2eou"]
 [ext_resource type="Material" uid="uid://btwle4bal72vo" path="res://assets/materials/Texture_sets/Character_Textures/Skeleton Textures/skeleton_material.tres" id="4_5nr6y"]
@@ -28,7 +28,7 @@
 [sub_resource type="PlaneMesh" id="PlaneMesh_3lnvk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s5o08"]
-albedo_texture = ExtResource("1_o5pxt")
+albedo_texture = ExtResource("1_5yfar")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3lnvk"]
 sky_top_color = Color(0.31378818, 0.45320868, 0.4966985, 1)
@@ -52,85 +52,85 @@ transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_wko22")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1902630742]
-transform = Transform3D(7.677211, 0, 0, 0, 17, 0, 0, 0, 6.7476673, -0.52160645, -0.0010001585, 0.008196196)
+transform = Transform3D(7.7934875, 0, 0, 0, 17, 0, 0, 0, 7.6118407, -0.23359554, -0.0047309324, 0.037344933)
 mesh = SubResource("PlaneMesh_3lnvk")
 surface_material_override/0 = SubResource("StandardMaterial3D_s5o08")
 
 [node name="GoblinLow" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1366624669]
-transform = Transform3D(0.49999914, 0.0008447158, -0.00041745178, -0.00030141877, 0.353275, 0.35383153, 0.0008927247, -0.3538307, 0.3532749, 3.0216384, -0.0350842, -2.3042424)
+transform = Transform3D(0.49999914, 0.0008447158, -0.00041745178, -0.00030141877, 0.353275, 0.35383153, 0.0008927247, -0.3538307, 0.3532749, 3.429432, -0.0350842, -2.2245412)
 material_override = ExtResource("2_60v6u")
 mesh = ExtResource("3_o2eou")
 
 [node name="GoblinLow2" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1443571527]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 4.424837, 3.1789145e-07, 2.2096686)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 4.8478594, 3.1789145e-07, 2.55266)
 material_override = ExtResource("2_60v6u")
 mesh = ExtResource("3_o2eou")
 
 [node name="SkeletonLow" type="MeshInstance3D" parent="CollisionShape3D" unique_id=714922956]
-transform = Transform3D(0.49999914, 0.0008447158, -0.00041745178, -0.00030141877, 0.353275, 0.35383153, 0.0008927247, -0.3538307, 0.3532749, 3.5016198, -0.03569307, -3.047698)
+transform = Transform3D(0.49999914, 0.0008447158, -0.00041745178, -0.00030141877, 0.353275, 0.35383153, 0.0008927247, -0.3538307, 0.3532749, 3.9094138, -0.03569307, -2.9679966)
 material_override = ExtResource("4_5nr6y")
 mesh = ExtResource("5_k01fx")
 
 [node name="IngDamasLow" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1578343592]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.6046375, 0, 1.6396135)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.269416, 0, 1.758069)
 mesh = ExtResource("6_l6s4v")
 surface_material_override/0 = ExtResource("7_kvvm8")
 
 [node name="IngDamasLow2" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1927842227]
-transform = Transform3D(0.48879814, 0, 0.10524442, 0, 0.5, 0, -0.10524442, 0, 0.48879814, 1.645392, 0, 1.8817489)
+transform = Transform3D(0.48879814, 0, 0.10524442, 0, 0.5, 0, -0.10524442, 0, 0.48879814, 1.9413695, 0, 2.2086825)
 mesh = ExtResource("6_l6s4v")
 surface_material_override/0 = ExtResource("7_kvvm8")
 
 [node name="IngDamasLow3" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1930372943]
-transform = Transform3D(0.48879814, 0, 0.10524442, 0, 0.5, 0, -0.10524442, 0, 0.48879814, 1.8927525, 0, 1.8089422)
+transform = Transform3D(0.48879814, 0, 0.10524442, 0, 0.5, 0, -0.10524442, 0, 0.48879814, 2.1887302, 0, 2.135876)
 mesh = ExtResource("6_l6s4v")
 surface_material_override/0 = ExtResource("7_kvvm8")
 
 [node name="IngGoldLow" type="MeshInstance3D" parent="CollisionShape3D" unique_id=2010009007]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.9362361, 3.1789145e-07, -2.200425)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.4893963, 3.1789145e-07, -2.4349003)
 material_override = ExtResource("7_kvvm8")
 mesh = ExtResource("7_mi8yu")
 
 [node name="IngGoldLow3" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1053418072]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.4808676, 3.1789145e-07, 3.1042557)
+transform = Transform3D(0.38894615, 0, 0.3141988, 0, 0.5, 0, -0.3141988, 0, 0.38894615, -0.2670068, 3.1789145e-07, 3.9103637)
 material_override = ExtResource("7_kvvm8")
 mesh = ExtResource("7_mi8yu")
 
 [node name="IngGoldLow2" type="MeshInstance3D" parent="CollisionShape3D" unique_id=887813991]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.24851775, 3.1789145e-07, 3.0920646)
+transform = Transform3D(0.38894615, 0, 0.3141988, 0, 0.5, 0, -0.3141988, 0, 0.38894615, -0.093924515, 3.1789145e-07, 3.754872)
 material_override = ExtResource("7_kvvm8")
 mesh = ExtResource("7_mi8yu")
 
 [node name="IngIronLow" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1963867370]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.168746, 0, 1.5325236)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.8197731, 0, 1.8105129)
 mesh = ExtResource("8_dkmvo")
 surface_material_override/0 = ExtResource("7_kvvm8")
 
 [node name="IngIronLow2" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1268395020]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -3.0198374, 0, -2.8644395)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.5729976, 0, -3.098915)
 mesh = ExtResource("8_dkmvo")
 surface_material_override/0 = ExtResource("7_kvvm8")
 
 [node name="IngCopperLow" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1444181691]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.41937217, 1.5894572e-07, 2.5107908)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.24573033, 1.5894572e-07, 2.7303386)
 mesh = ExtResource("12_fqppb")
 surface_material_override/0 = ExtResource("7_kvvm8")
 
 [node name="IngCopperLow3" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1503548529]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -3.068931, 1.5894572e-07, -3.5255172)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.6220913, 1.5894572e-07, -3.7599926)
 mesh = ExtResource("12_fqppb")
 surface_material_override/0 = ExtResource("7_kvvm8")
 
 [node name="IngCopperLow2" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1157370949]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.1933116, 1.5894572e-07, 2.474349)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.019669767, 1.5894572e-07, 2.6938968)
 mesh = ExtResource("12_fqppb")
 surface_material_override/0 = ExtResource("7_kvvm8")
 
 [node name="DullSword" parent="CollisionShape3D" unique_id=778246616 instance=ExtResource("11_60v6u")]
-transform = Transform3D(0.5, 0, 0, 0, 0.1294095, 0.48296294, 0, -0.48296294, 0.1294095, -0.96543187, 0.037648544, -2.0848453)
+transform = Transform3D(0.5, 0, 0, 0, 0.12940952, 0.48296294, 0, -0.48296294, 0.12940952, -0.60827637, 0.037648544, -2.4748387)
 
 [node name="Sword" parent="CollisionShape3D" unique_id=689345526 instance=ExtResource("12_o2eou")]
-transform = Transform3D(-2.185569e-08, -2.1855698e-08, 0.5, -0.48296294, 0.1294095, -1.5454315e-08, -0.1294095, -0.48296294, -2.6767648e-08, 1.5372503, 0.009899302, -1.9653101)
+transform = Transform3D(-2.185569e-08, -2.1855698e-08, 0.5, -0.48296294, 0.12940952, -1.5454315e-08, -0.12940952, -0.48296294, -2.6767648e-08, 1.8624179, 0.009899302, -2.058454)
 
 [node name="World" type="Node" parent="." unique_id=1495741313]
 
@@ -176,10 +176,10 @@ transform = Transform3D(-0.5, 0, 7.54979e-08, 0, 0.5, 0, -7.54979e-08, 0, -0.5, 
 transform = Transform3D(1.13246855e-07, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.13246855e-07, -1.8104725, 0, -4.5530477)
 
 [node name="Ore" parent="PlayerSpawner" unique_id=2110523039 instance=ExtResource("22_8107f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.636724, 0.014984908, 8.070587)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.434331, 0.014984908, 9.228394)
 
 [node name="Ore2" parent="PlayerSpawner" unique_id=1443343081 instance=ExtResource("22_8107f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 32.128708, 0.014983, -15.084711)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 34.44085, 0.014983, -16.517714)
 
 [node name="LootTable" type="Node3D" parent="." unique_id=537718464]
 script = ExtResource("21_jrwvx")
@@ -197,4 +197,4 @@ metadata/_edit_use_anchors_ = true
 transform = Transform3D(-6.556708e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.556708e-08, 8.82751, 0, -3.9000874)
 
 [node name="Turret" parent="." unique_id=1571022317 instance=ExtResource("26_i52xd")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 17.885166, 1, 15.80142)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 18.55472, 1, 18.002695)
