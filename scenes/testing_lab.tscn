@@ -667,7 +667,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.891476, 0, -2.7367232)
 [node name="SpawnPoint3" type="Marker3D" parent="PlayerSpawner" unique_id=2030002562]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2047462, 0, 0.9286995)
 
-[node name="EnemySpawner" type="Node" parent="." unique_id=1191566733 node_paths=PackedStringArray("spawnParent", "targetNode", "lootTable", "spawnPositions", "enemyUI", "waveTimerLabel3D") groups=["WaveManager"]]
+[node name="EnemySpawner" type="Node" parent="." unique_id=1191566733 node_paths=PackedStringArray("spawnParent", "targetNode", "lootTable", "enemyUI", "waveTimerLabel3D") groups=["WaveManager"]]
 script = ExtResource("7_53x3i")
 spawnParent = NodePath(".")
 targetNode = NodePath("../Forge")
@@ -680,7 +680,6 @@ strongEnemyChance = 10
 maxWaves = 7
 startingEnemiesPerWave = 10
 enemyIncreasedPerWave = 2
-spawnPositions = [NodePath("EnemySpawn1"), NodePath("EnemySpawn2"), NodePath("EnemySpawn3"), NodePath("EnemySpawn4"), NodePath("EnemySpawn5"), NodePath("EnemySpawn6")]
 enemyUI = NodePath("../EnemyUI")
 waveTimerLabel3D = NodePath("../EnemyUI/Label3D")
 
@@ -1151,7 +1150,7 @@ itemDataPath = ""
 visible = false
 
 [node name="Forge" parent="." unique_id=994045895 instance=ExtResource("2_ptwec")]
-transform = Transform3D(-0.34999743, 0, 0.0013377805, 0, 0.35, 0, -0.0013377805, 0, -0.34999743, -4.2486677, 0.261037, 0.6796417)
+transform = Transform3D(-0.34999743, 0, 0.0013377805, 0, 0.35, 0, -0.0013377805, 0, -0.34999743, -3.6169677, 0.261037, 0.6796417)
 
 [node name="Copper_Ore" parent="." unique_id=1272956383 instance=ExtResource("35_wu60a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7939386, 0.014983, 4.747037)
