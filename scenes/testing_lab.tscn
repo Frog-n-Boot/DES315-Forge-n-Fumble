@@ -46,7 +46,8 @@
 [ext_resource type="PackedScene" uid="uid://cd12og6qvmqm7" path="res://assets/textures/PlayerPortrait.tscn" id="32_xw70q"]
 [ext_resource type="Script" uid="uid://brp6gsap0s2ok" path="res://src/HealthBar.cs" id="34_0vwtv"]
 [ext_resource type="PackedScene" uid="uid://2dvvlktwdavs" path="res://assets/models/FinalAssets_Low/Ore/Copper_Ore.tscn" id="35_wu60a"]
-[ext_resource type="PackedScene" uid="uid://bfvifq667vxvj" path="res://assets/models/FinalAssets_Low/Ore/Damas_Ore.tscn" id="38_7q0j7"]
+[ext_resource type="PackedScene" uid="uid://lwhw0sdqw87a" path="res://assets/models/FinalAssets_Low/Ore/Damas_Ore1.tscn" id="37_lqoiw"]
+[ext_resource type="PackedScene" uid="uid://ckbl1y013dodk" path="res://assets/models/FinalAssets_Low/Ore/Iron_Ore.tscn" id="46_lqoiw"]
 [ext_resource type="PackedScene" uid="uid://dgguk5limafel" path="res://assets/models/FinalAssets_Low/Ore/Gold_Ore.tscn" id="47_68amh"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_wko22"]
@@ -666,7 +667,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.891476, 0, -2.7367232)
 [node name="SpawnPoint3" type="Marker3D" parent="PlayerSpawner" unique_id=2030002562]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2047462, 0, 0.9286995)
 
-[node name="EnemySpawner" type="Node" parent="." unique_id=1191566733 node_paths=PackedStringArray("spawnParent", "targetNode", "lootTable", "spawnPositions", "enemyUI") groups=["WaveManager"]]
+[node name="EnemySpawner" type="Node" parent="." unique_id=1191566733 node_paths=PackedStringArray("spawnParent", "targetNode", "lootTable", "spawnPositions", "enemyUI", "waveTimerLabel3D") groups=["WaveManager"]]
 script = ExtResource("7_53x3i")
 spawnParent = NodePath(".")
 targetNode = NodePath("../Forge")
@@ -681,6 +682,7 @@ startingEnemiesPerWave = 10
 enemyIncreasedPerWave = 2
 spawnPositions = [NodePath("EnemySpawn1"), NodePath("EnemySpawn2"), NodePath("EnemySpawn3"), NodePath("EnemySpawn4"), NodePath("EnemySpawn5"), NodePath("EnemySpawn6")]
 enemyUI = NodePath("../EnemyUI")
+waveTimerLabel3D = NodePath("../EnemyUI/Label3D")
 
 [node name="EnemySpawn1" type="Marker3D" parent="EnemySpawner" unique_id=829387820]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.047226, 0, 23.813654)
@@ -695,13 +697,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9449558, 0, 32.018856)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.341758, 0, 28.875797)
 
 [node name="EnemySpawn4" type="Marker3D" parent="EnemySpawner" unique_id=732551147]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.181042, 0, 2.0762467)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.521996, 0, 0.96859026)
 
 [node name="EnemySpawn5" type="Marker3D" parent="EnemySpawner" unique_id=1147873908]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.16263, 0, 8.381449)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.475105, 0, 23.120361)
 
 [node name="EnemySpawn6" type="Marker3D" parent="EnemySpawner" unique_id=890423285]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.478798, 0, -14.160038)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.42679, 0, -30.008736)
 
 [node name="EnemySpawn7" type="Marker3D" parent="EnemySpawner" unique_id=1941235768]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.031914, 0, -4.90823)
@@ -713,6 +715,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.031914, 0, 10.609423)
 
 [node name="LootTable" type="Node3D" parent="." unique_id=537718464 groups=["LootTable"]]
 script = ExtResource("9_7cc0k")
+damasDropChance = 0
+healthPackDropChance = 0
+copperOre = ExtResource("35_wu60a")
+ironOre = ExtResource("46_lqoiw")
+goldOre = ExtResource("47_68amh")
+damasOre = ExtResource("37_lqoiw")
 healthPackObject = ExtResource("12_gwggj")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1197770763 node_paths=PackedStringArray("spawner", "portraitContainer")]
@@ -1145,17 +1153,14 @@ visible = false
 [node name="Forge" parent="." unique_id=994045895 instance=ExtResource("2_ptwec")]
 transform = Transform3D(-0.34999743, 0, 0.0013377805, 0, 0.35, 0, -0.0013377805, 0, -0.34999743, -4.2486677, 0.261037, 0.6796417)
 
-[node name="Copper_Ore" parent="." unique_id=759778306 instance=ExtResource("35_wu60a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8313618, 0.014983, 3.4829073)
-itemDataPath = ""
+[node name="Copper_Ore" parent="." unique_id=1272956383 instance=ExtResource("35_wu60a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7939386, 0.014983, 4.747037)
 
 [node name="GoldOre" parent="." unique_id=546203985 instance=ExtResource("47_68amh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7168183, 0.017244, 4.9382772)
-itemDataPath = ""
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8335772, 0.017244954, 4.7685437)
 
-[node name="DamasOre" parent="." unique_id=692066931 instance=ExtResource("38_7q0j7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2263546, 0.00622, 3.0749683)
-itemDataPath = ""
+[node name="IronOre" parent="." unique_id=904125942 instance=ExtResource("46_lqoiw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7027378, 9.536743e-07, 4.748234)
 
 [connection signal="pressed" from="PauseMenu/ResumeButton" to="PauseMenu" method="OnResumePressed"]
 [connection signal="pressed" from="PauseMenu/SettingsButton" to="PauseMenu" method="OnSettingsPressed"]
