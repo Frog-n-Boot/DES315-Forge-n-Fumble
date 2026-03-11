@@ -12,12 +12,15 @@ public partial class Forge : Node3D
 	[Signal] public delegate void ForgeDestroyedEventHandler();
 
 	private int tick = 0;
+
+	[Export] TesultMenu resultMenu;
+	private bool isDestroyed = false;
+
 	#endregion
 
 	#region Ready
 	public override void _Ready()
 	{
-		
 		health = maxHealth;
 	}
 	#endregion
@@ -28,11 +31,17 @@ public partial class Forge : Node3D
 		tick += 1;
 		if(tick % 10 == 0)
 		{
-			if(health <= 0)
+			if(health <= 0 && !isDestroyed)
 			{
+				isDestroyed = true;
 				Destroyed();
 				EmitSignal(SignalName.ForgeDestroyed);
-				GetTree().Quit();
+
+				var resultMenu = GetTree().Root.FindChild("ResultsMenu", true, false) as TesultMenu;
+				if(resultMenu == null)
+					GD.PrintErr("Reult Menu not found");
+				else
+					resultMenu.ShowFail();
 			}
 		}
 

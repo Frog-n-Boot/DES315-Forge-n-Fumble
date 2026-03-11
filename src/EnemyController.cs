@@ -14,6 +14,7 @@ public partial class EnemyController : Node3D
 	#region Exports
 	[ExportGroup("Identity")]
 	[Export] public EnemyData enemyData;
+	
 
 	[ExportGroup("Scene References")]
 	[Export] public Node3D moveTarget;
@@ -23,6 +24,7 @@ public partial class EnemyController : Node3D
 	[ExportGroup("Collision")]
 	[Export] public float collisionCooldown = 0.01f;
 	[Export] public float flashDuration = 0.2f;
+	
 
 	private Vector3 knockback =  Vector3.Zero;
 	#endregion
@@ -43,6 +45,7 @@ public partial class EnemyController : Node3D
 	public int CurrentHealth => currentHealth;
 
 	private StandardMaterial3D material;
+	[Export] public bool isStationary = false;
 
 	private void InitHealth()
 	{
@@ -160,6 +163,7 @@ public partial class EnemyController : Node3D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if(isStationary) return;
 		if (moveTarget != null)
 			MoveTowards(moveTarget.GlobalPosition, delta);
 	}

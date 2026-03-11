@@ -33,11 +33,10 @@
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="21_20nwc"]
 [ext_resource type="PackedScene" uid="uid://g1gfmktihg8t" path="res://assets/models/FinalAssets_Low/WorkStations/Anvil.tscn" id="22_3w1al"]
 [ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/FinalAssets_Low/Items_Models/DullSword.tscn" id="22_amgg8"]
-[ext_resource type="PackedScene" uid="uid://cgv7jdbgqsgql" path="res://assets/models/FinalAssets_Low/Ore/Ore.tscn" id="23_3qum0"]
 [ext_resource type="Script" uid="uid://dnliu2440i283" path="res://src/PauseMenu.cs" id="23_amgg8"]
 [ext_resource type="Script" uid="uid://bs44u3pohek1t" path="res://src/SettingsMenu.cs" id="24_gax05"]
 [ext_resource type="PackedScene" uid="uid://o7vvnubwicff" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Ingot.tscn" id="24_lqoiw"]
-[ext_resource type="PackedScene" uid="uid://c36fijnqqehnq" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Ingot.tscn" id="25_68amh"]
+[ext_resource type="PackedScene" uid="uid://dq8nubqatqhum" path="res://assets/models/FinalAssets_Low/Items_Models/Ingot.tscn" id="25_68amh"]
 [ext_resource type="Texture2D" uid="uid://bvw5yhtbch6ht" path="res://assets/materials/Texture_sets/2DTextures/anvilImage.webp" id="29_7dxqx"]
 [ext_resource type="PackedScene" uid="uid://176tgqxxk3p7" path="res://scenes/DebugMenu.tscn" id="30_7gden"]
 [ext_resource type="Texture2D" uid="uid://dy1wiwwij327x" path="res://assets/materials/Texture_sets/2DTextures/furnaceImage.webp" id="30_f5rak"]
@@ -45,10 +44,11 @@
 [ext_resource type="Texture2D" uid="uid://dwexwmybryvpl" path="res://assets/materials/Texture_sets/2DTextures/grindstoneImage.webp" id="31_xw70q"]
 [ext_resource type="PackedScene" uid="uid://cd12og6qvmqm7" path="res://assets/textures/PlayerPortrait.tscn" id="32_xw70q"]
 [ext_resource type="Script" uid="uid://brp6gsap0s2ok" path="res://src/HealthBar.cs" id="34_0vwtv"]
-[ext_resource type="PackedScene" uid="uid://2dvvlktwdavs" path="res://assets/models/FinalAssets_Low/Ore/Copper_Ore.tscn" id="35_wu60a"]
+[ext_resource type="PackedScene" uid="uid://cgv7jdbgqsgql" path="res://assets/models/FinalAssets_Low/Ore/Ore.tscn" id="35_wu60a"]
 [ext_resource type="PackedScene" uid="uid://lwhw0sdqw87a" path="res://assets/models/FinalAssets_Low/Ore/Damas_Ore1.tscn" id="37_lqoiw"]
 [ext_resource type="PackedScene" uid="uid://ckbl1y013dodk" path="res://assets/models/FinalAssets_Low/Ore/Iron_Ore.tscn" id="46_lqoiw"]
 [ext_resource type="PackedScene" uid="uid://dgguk5limafel" path="res://assets/models/FinalAssets_Low/Ore/Gold_Ore.tscn" id="47_68amh"]
+[ext_resource type="Script" uid="uid://cqrm013r0malu" path="res://src/TesultMenu.cs" id="49_lqoiw"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_wko22"]
 
@@ -101,7 +101,7 @@ shadow_size = 3
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7dxqx"]
 
-[node name="TestingLab" type="StaticBody3D" unique_id=127569902]
+[node name="Forge" type="StaticBody3D" unique_id=127569902]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1286559043]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
@@ -627,7 +627,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6.79
 [node name="Anvil" parent="World" unique_id=1158721071 instance=ExtResource("22_3w1al")]
 transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, -13.173545, 0.124243736, 4.4138145)
 
-[node name="Ore" parent="World" unique_id=2110523039 instance=ExtResource("23_3qum0")]
+[node name="Ore" parent="World" unique_id=2110523039 instance=ExtResource("35_wu60a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.477543, 0.014982047, 4.1817455)
 itemDataPath = ""
 
@@ -667,11 +667,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.891476, 0, -2.7367232)
 [node name="SpawnPoint3" type="Marker3D" parent="PlayerSpawner" unique_id=2030002562]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2047462, 0, 0.9286995)
 
-[node name="EnemySpawner" type="Node" parent="." unique_id=1191566733 node_paths=PackedStringArray("spawnParent", "targetNode", "lootTable", "enemyUI", "waveTimerLabel3D") groups=["WaveManager"]]
+[node name="EnemySpawner" type="Node" parent="." unique_id=1191566733 node_paths=PackedStringArray("spawnParent", "targetNode", "lootTable", "resultMenu", "enemyUI", "waveTimerLabel3D") groups=["WaveManager"]]
 script = ExtResource("7_53x3i")
 spawnParent = NodePath(".")
 targetNode = NodePath("../Forge")
 lootTable = NodePath("../LootTable")
+resultMenu = NodePath("../ResultsMenu")
 normalEnemyData = ExtResource("9_mehdq")
 fastEnemyData = ExtResource("10_7p7bj")
 strongEnemyData = ExtResource("11_gwggj")
@@ -763,6 +764,7 @@ font_size = 200
 
 [node name="PauseMenu" type="CanvasLayer" parent="." unique_id=385949872 node_paths=PackedStringArray("resumeButton", "settingsButton", "mainMenuButton", "settingsMenu")]
 process_mode = 3
+visible = false
 script = ExtResource("23_amgg8")
 resumeButton = NodePath("ResumeButton")
 settingsButton = NodePath("SettingsButton")
@@ -872,6 +874,7 @@ scale = Vector2(28.750067, 16.369858)
 color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
 
 [node name="SettingsMenu" type="CanvasLayer" parent="." unique_id=1617405091 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton", "pauseMenu")]
+visible = false
 script = ExtResource("24_gax05")
 masterSlider = NodePath("Control/MasterVolumeLabel/MasterVolumeSlider")
 musicSlider = NodePath("Control/MusicVolumeLabel/MusicVolumeSlider")
@@ -1142,7 +1145,7 @@ color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.03192, 0.000985, -0.16474152)
 itemDataPath = ""
 
-[node name="Ore" parent="." unique_id=1618473424 groups=["pickable"] instance=ExtResource("23_3qum0")]
+[node name="Ore" parent="." unique_id=1618473424 groups=["pickable"] instance=ExtResource("35_wu60a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.218903, 0.014983, 2.2856941)
 itemDataPath = ""
 
@@ -1161,8 +1164,54 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8335772, 0.017244954, 4.76
 [node name="IronOre" parent="." unique_id=904125942 instance=ExtResource("46_lqoiw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7027378, 9.536743e-07, 4.748234)
 
+[node name="ResultsMenu" type="CanvasLayer" parent="." unique_id=470572280 node_paths=PackedStringArray("titleLabel", "retryButton", "mainMenuButton")]
+process_mode = 3
+script = ExtResource("49_lqoiw")
+titleLabel = NodePath("Label")
+retryButton = NodePath("RetryButton")
+mainMenuButton = NodePath("QuitButton")
+
+[node name="RetryButton" type="Button" parent="ResultsMenu" unique_id=837916197]
+process_mode = 3
+offset_left = 362.0
+offset_top = 270.0
+offset_right = 810.0
+offset_bottom = 390.0
+scale = Vector2(0.8400012, 0.7599994)
+focus_neighbor_bottom = NodePath("../QuitButton")
+theme_override_font_sizes/font_size = 40
+text = "Retry"
+metadata/_edit_use_anchors_ = true
+
+[node name="QuitButton" type="Button" parent="ResultsMenu" unique_id=504194181]
+offset_left = 364.0
+offset_top = 436.00003
+offset_right = 812.0
+offset_bottom = 556.0
+scale = Vector2(0.8400012, 0.7599994)
+focus_neighbor_top = NodePath("../RetryButton")
+theme_override_font_sizes/font_size = 40
+text = "Main Menu"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="ResultsMenu" unique_id=688697069]
+offset_left = 231.0
+offset_top = 121.0
+offset_right = 722.0
+offset_bottom = 204.0
+theme_override_font_sizes/font_size = 60
+text = "End Game Result"
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="ResultsMenu" unique_id=2039402556]
+z_index = -1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.750067, 16.369858)
+color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
+
 [connection signal="pressed" from="PauseMenu/ResumeButton" to="PauseMenu" method="OnResumePressed"]
 [connection signal="pressed" from="PauseMenu/SettingsButton" to="PauseMenu" method="OnSettingsPressed"]
-[connection signal="pressed" from="PauseMenu/QuitButton" to="PauseMenu" method="OnQuitPressed"]
+[connection signal="pressed" from="PauseMenu/QuitButton" to="PauseMenu" method="OnMainMenuPressed"]
 [connection signal="pressed" from="SettingsMenu/Control/BackButton" to="SettingsMenu" method="OnBackPressed"]
 [connection signal="pressed" from="SettingsMenu/Control/ApplyButton" to="SettingsMenu" method="OnApplyPressed"]

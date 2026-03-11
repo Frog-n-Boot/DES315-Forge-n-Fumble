@@ -9,6 +9,8 @@ public partial class Pickable : Node3D
 
 	#region Variables
 	[Export(PropertyHint.File, "*.tres")] public string itemDataPath = "";
+	[Export] public bool shouldDespawn = false;
+	[Export] public float despawnTime = 30f;
 
 	public ItemData itemData;
 	[ExtenderProvidedProperty] public float highLightDistance = 5.0f;
@@ -39,6 +41,8 @@ public partial class Pickable : Node3D
 			GD.Print("Failed to load path");
             return;
         }
+		if(shouldDespawn)
+			GetTree().CreateTimer(despawnTime).Timeout += QueueFree;
 	}
 	
 	#endregion

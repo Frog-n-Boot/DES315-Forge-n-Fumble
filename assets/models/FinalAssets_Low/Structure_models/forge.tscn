@@ -79,11 +79,16 @@ stream_count = 2
 stream_0 = ExtResource("10_yd14g")
 stream_1 = ExtResource("11_i2ejw")
 
-[node name="Forge" type="Node3D" unique_id=994045895 node_paths=PackedStringArray("audio", "inputNode", "outputNode", "timeProgressBar", "stationName") groups=["Forge", "Station"]]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wq66q"]
+radius = 10.211426
+height = 20.422852
+
+[node name="Forge" type="Node3D" unique_id=994045895 node_paths=PackedStringArray("audio", "healthAura", "inputNode", "outputNode", "timeProgressBar", "stationName") groups=["Forge", "Station"]]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
 script = ExtResource("1_ph4aw")
 meltedIngotScene = ExtResource("2_n8y7r")
 audio = NodePath("AudioStreamPlayer3D")
+healthAura = NodePath("Area3D")
 inputNode = NodePath("InputPort")
 outputNode = NodePath("OutputPort")
 timeProgressBar = NodePath("Sprite3D/SubViewport/ProgressBar")
@@ -146,3 +151,12 @@ transform = Transform3D(2.857143, 0, 0, 0, 2.857143, 0, 0, 0, 2.857143, -3.82030
 light_color = Color(2.4304428, 0.6644703, 0, 1)
 light_energy = 1.5
 omni_range = 2.9051983
+
+[node name="Area3D" type="Area3D" parent="." unique_id=2011341028]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5253863, 2.1853385, -0.8195835)
+collision_layer = 160
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1789318158]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18530273, 0)
+shape = SubResource("CapsuleShape3D_wq66q")

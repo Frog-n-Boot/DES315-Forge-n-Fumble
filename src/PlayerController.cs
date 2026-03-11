@@ -663,6 +663,11 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		Flash();
 		EmitSignal(SignalName.PlayerHealthChanged, health, maxHealth);
 	}
+	public void Heal(float amount)
+	{
+		health = Mathf.Min(health + (int)amount, maxHealth);
+		EmitSignal(SignalName.PlayerHealthChanged, health, maxHealth);
+	}
 
 	private void Die()
 	{
