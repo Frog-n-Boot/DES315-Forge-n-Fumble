@@ -1,17 +1,17 @@
 [gd_scene format=3 uid="uid://bag1qnax1it55"]
 
-[ext_resource type="Texture2D" uid="uid://oxpe6ohlhmmw" path="res://assets/textures/Screenshot 2026-03-11 111927.png" id="1_5yfar"]
+[ext_resource type="Texture2D" uid="uid://cwnqstnv8c4ua" path="res://assets/textures/Screenshot 2026-03-11 140338.png" id="1_5yfar"]
 [ext_resource type="Material" uid="uid://c14d6xj6opusf" path="res://assets/materials/Texture_sets/Character_Textures/Goblin Textures/goblin_material.tres" id="2_60v6u"]
 [ext_resource type="ArrayMesh" uid="uid://bmq26ged3l0nq" path="res://assets/models/FinalAssets_Low/Character_Models/Goblin_low.obj" id="3_o2eou"]
 [ext_resource type="Material" uid="uid://btwle4bal72vo" path="res://assets/materials/Texture_sets/Character_Textures/Skeleton Textures/skeleton_material.tres" id="4_5nr6y"]
 [ext_resource type="ArrayMesh" uid="uid://8wpolus5qbva" path="res://assets/models/FinalAssets_Low/Character_Models/Skeleton_low.obj" id="5_k01fx"]
-[ext_resource type="ArrayMesh" uid="uid://dvpbh4kyeprme" path="res://assets/models/FinalAssets_Low/Items_Models/Ing_damas_low.obj" id="6_l6s4v"]
 [ext_resource type="Material" uid="uid://ccaruxjogs28j" path="res://assets/materials/Texture_sets/Item_Textures/ingots.tres" id="7_kvvm8"]
-[ext_resource type="ArrayMesh" uid="uid://63ug6xq443qi" path="res://assets/models/FinalAssets_Low/Items_Models/Ing_gold_low.obj" id="7_mi8yu"]
 [ext_resource type="ArrayMesh" uid="uid://qrqif26big5o" path="res://assets/models/FinalAssets_Low/Items_Models/Ing_iron_low.obj" id="8_dkmvo"]
+[ext_resource type="Material" uid="uid://24hwnxagoffj" path="res://assets/models/FinalAssets_Low/WorkStations/Ballista/ballista.tres" id="11_5yfar"]
 [ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/FinalAssets_Low/Items_Models/DullSword.tscn" id="11_60v6u"]
 [ext_resource type="ArrayMesh" uid="uid://cnx63eofodk83" path="res://assets/models/FinalAssets_Low/Items_Models/Ing_copper_low.obj" id="12_fqppb"]
 [ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/FinalAssets_Low/Items_Models/Sword.tscn" id="12_o2eou"]
+[ext_resource type="ArrayMesh" uid="uid://cuv7ohbcv8lsn" path="res://assets/models/FinalAssets_Low/WorkStations/Ballista/bal_arrow_low.obj" id="12_r7w8j"]
 [ext_resource type="Script" uid="uid://dnqtfi3fpu8ue" path="res://src/CameraController.cs" id="14_xohv8"]
 [ext_resource type="Script" uid="uid://bk2uam5leqcv8" path="res://src/PlayerSpawner.cs" id="15_lkwvk"]
 [ext_resource type="PackedScene" uid="uid://8roa2xkb2ipl" path="res://assets/models/player.tscn" id="16_frmaf"]
@@ -52,85 +52,65 @@ transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_wko22")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1902630742]
-transform = Transform3D(7.7934875, 0, 0, 0, 17, 0, 0, 0, 7.6118407, -0.23359554, -0.0047309324, 0.037344933)
+transform = Transform3D(7.8252487, 0, 0, 0, 17, 0, 0, 0, 6.0343275, -0.3302719, -0.0047309324, -0.114155054)
 mesh = SubResource("PlaneMesh_3lnvk")
 surface_material_override/0 = SubResource("StandardMaterial3D_s5o08")
 
 [node name="GoblinLow" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1366624669]
-transform = Transform3D(0.49999914, 0.0008447158, -0.00041745178, -0.00030141877, 0.353275, 0.35383153, 0.0008927247, -0.3538307, 0.3532749, 3.429432, -0.0350842, -2.2245412)
+transform = Transform3D(0.49999914, 0.0008447158, -0.00041745178, -0.00030141877, 0.353275, 0.35383153, 0.0008927247, -0.3538307, 0.3532749, 4.393035, -0.0350842, -3.8853211)
 material_override = ExtResource("2_60v6u")
 mesh = ExtResource("3_o2eou")
 
 [node name="GoblinLow2" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1443571527]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 4.8478594, 3.1789145e-07, 2.55266)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5.872344, 3.1789145e-07, 4.059765)
 material_override = ExtResource("2_60v6u")
 mesh = ExtResource("3_o2eou")
 
 [node name="SkeletonLow" type="MeshInstance3D" parent="CollisionShape3D" unique_id=714922956]
-transform = Transform3D(0.49999914, 0.0008447158, -0.00041745178, -0.00030141877, 0.353275, 0.35383153, 0.0008927247, -0.3538307, 0.3532749, 3.9094138, -0.03569307, -2.9679966)
+transform = Transform3D(0.49999914, 0.0008447158, -0.00041745178, -0.00030141877, 0.353275, 0.35383153, 0.0008927247, -0.3538307, 0.3532749, 6.2891607, -0.03569307, -3.8939226)
 material_override = ExtResource("4_5nr6y")
 mesh = ExtResource("5_k01fx")
 
-[node name="IngDamasLow" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1578343592]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.269416, 0, 1.758069)
-mesh = ExtResource("6_l6s4v")
-surface_material_override/0 = ExtResource("7_kvvm8")
-
-[node name="IngDamasLow2" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1927842227]
-transform = Transform3D(0.48879814, 0, 0.10524442, 0, 0.5, 0, -0.10524442, 0, 0.48879814, 1.9413695, 0, 2.2086825)
-mesh = ExtResource("6_l6s4v")
-surface_material_override/0 = ExtResource("7_kvvm8")
-
-[node name="IngDamasLow3" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1930372943]
-transform = Transform3D(0.48879814, 0, 0.10524442, 0, 0.5, 0, -0.10524442, 0, 0.48879814, 2.1887302, 0, 2.135876)
-mesh = ExtResource("6_l6s4v")
-surface_material_override/0 = ExtResource("7_kvvm8")
-
-[node name="IngGoldLow" type="MeshInstance3D" parent="CollisionShape3D" unique_id=2010009007]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.4893963, 3.1789145e-07, -2.4349003)
-material_override = ExtResource("7_kvvm8")
-mesh = ExtResource("7_mi8yu")
-
-[node name="IngGoldLow3" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1053418072]
-transform = Transform3D(0.38894615, 0, 0.3141988, 0, 0.5, 0, -0.3141988, 0, 0.38894615, -0.2670068, 3.1789145e-07, 3.9103637)
-material_override = ExtResource("7_kvvm8")
-mesh = ExtResource("7_mi8yu")
-
-[node name="IngGoldLow2" type="MeshInstance3D" parent="CollisionShape3D" unique_id=887813991]
-transform = Transform3D(0.38894615, 0, 0.3141988, 0, 0.5, 0, -0.3141988, 0, 0.38894615, -0.093924515, 3.1789145e-07, 3.754872)
-material_override = ExtResource("7_kvvm8")
-mesh = ExtResource("7_mi8yu")
-
 [node name="IngIronLow" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1963867370]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.8197731, 0, 1.8105129)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.59894204, 0, 5.130863)
 mesh = ExtResource("8_dkmvo")
 surface_material_override/0 = ExtResource("7_kvvm8")
 
 [node name="IngIronLow2" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1268395020]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.5729976, 0, -3.098915)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.278942, -6.357829e-07, -4.5593753)
 mesh = ExtResource("8_dkmvo")
 surface_material_override/0 = ExtResource("7_kvvm8")
 
-[node name="IngCopperLow" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1444181691]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.24573033, 1.5894572e-07, 2.7303386)
-mesh = ExtResource("12_fqppb")
-surface_material_override/0 = ExtResource("7_kvvm8")
-
 [node name="IngCopperLow3" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1503548529]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.6220913, 1.5894572e-07, -3.7599926)
-mesh = ExtResource("12_fqppb")
-surface_material_override/0 = ExtResource("7_kvvm8")
-
-[node name="IngCopperLow2" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1157370949]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.019669767, 1.5894572e-07, 2.6938968)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.7669082, -4.7683716e-07, -4.7178507)
 mesh = ExtResource("12_fqppb")
 surface_material_override/0 = ExtResource("7_kvvm8")
 
 [node name="DullSword" parent="CollisionShape3D" unique_id=778246616 instance=ExtResource("11_60v6u")]
-transform = Transform3D(0.5, 0, 0, 0, 0.12940952, 0.48296294, 0, -0.48296294, 0.12940952, -0.60827637, 0.037648544, -2.4748387)
+transform = Transform3D(0.2966995, -0.3905308, -0.09723833, 0.17566925, 0.016980123, 0.46781623, -0.3620909, -0.31176504, 0.14728442, 1.2642493, 0.037648227, -3.6989925)
 
 [node name="Sword" parent="CollisionShape3D" unique_id=689345526 instance=ExtResource("12_o2eou")]
-transform = Transform3D(-2.185569e-08, -2.1855698e-08, 0.5, -0.48296294, 0.12940952, -1.5454315e-08, -0.12940952, -0.48296294, -2.6767648e-08, 1.8624179, 0.009899302, -2.058454)
+transform = Transform3D(0.006748192, 0.199509, 0.45842203, -0.4763155, 0.14187294, -0.05473266, -0.15191454, -0.43596816, 0.19197318, 1.8718847, 0.009899302, 0.37554747)
+
+[node name="BalArrowLow" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1101388897]
+transform = Transform3D(0.49986285, -0.010579979, 0.0050266865, 0.011160918, 0.49532017, -0.067330986, -0.0035549435, 0.06742477, 0.49542043, 2.0098083, 0.07003198, 5.2082777)
+material_override = ExtResource("11_5yfar")
+mesh = ExtResource("12_r7w8j")
+
+[node name="BalArrowLow2" type="MeshInstance3D" parent="CollisionShape3D" unique_id=513540023]
+transform = Transform3D(0.49986285, -0.010579979, 0.0050266865, 0.011160918, 0.49532017, -0.067330986, -0.0035549435, 0.06742477, 0.49542043, 1.8592008, 0.06666915, 5.209348)
+material_override = ExtResource("11_5yfar")
+mesh = ExtResource("12_r7w8j")
+
+[node name="BalArrowLow3" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1777059009]
+transform = Transform3D(0.49986285, -0.010579979, 0.0050266865, 0.011160918, 0.49532017, -0.067330986, -0.0035549435, 0.06742477, 0.49542043, 1.7129819, 0.06340443, 5.210388)
+material_override = ExtResource("11_5yfar")
+mesh = ExtResource("12_r7w8j")
+
+[node name="BalArrowLow4" type="MeshInstance3D" parent="CollisionShape3D" unique_id=323856681]
+transform = Transform3D(0.49986285, -0.010579979, 0.0050266865, 0.011160918, 0.49532017, -0.067330986, -0.0035549435, 0.06742477, 0.49542043, 1.5628942, 0.060053453, 5.211456)
+material_override = ExtResource("11_5yfar")
+mesh = ExtResource("12_r7w8j")
 
 [node name="World" type="Node" parent="." unique_id=1495741313]
 
@@ -158,28 +138,28 @@ playerScene = ExtResource("16_frmaf")
 spawnParent = NodePath("..")
 
 [node name="SpawnPoint0" type="Marker3D" parent="PlayerSpawner" unique_id=1722202336]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.639595, 0, 1.0706555)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.64654, 0, -21.532871)
 
 [node name="SpawnPoint1" type="Marker3D" parent="PlayerSpawner" unique_id=1852408077]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.141163, 0, -0.9896616)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.14811, 0, -23.59319)
 
 [node name="SpawnPoint2" type="Marker3D" parent="PlayerSpawner" unique_id=411742392]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.43573, 0, -4.1907616)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.442677, 0, -26.794289)
 
 [node name="SpawnPoint3" type="Marker3D" parent="PlayerSpawner" unique_id=2030002562]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.872765, 0, -0.04802239)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.87971, 0, -22.65155)
 
 [node name="Forge" parent="PlayerSpawner" unique_id=994045895 instance=ExtResource("16_oy7xm")]
-transform = Transform3D(-0.5, 0, 7.54979e-08, 0, 0.5, 0, -7.54979e-08, 0, -0.5, -17.470955, 0, -1.3128095)
+transform = Transform3D(-0.5, 0, 7.54979e-08, 0, 0.5, 0, -7.54979e-08, 0, -0.5, -22.261875, 0, -21.581213)
 
 [node name="Anvil" parent="PlayerSpawner" unique_id=1158721071 instance=ExtResource("17_yndxj")]
-transform = Transform3D(1.13246855e-07, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.13246855e-07, -1.8104725, 0, -4.5530477)
+transform = Transform3D(1.13246855e-07, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.13246855e-07, 1.2601411, 0, -22.351007)
 
 [node name="Ore" parent="PlayerSpawner" unique_id=2110523039 instance=ExtResource("22_8107f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.434331, 0.014984908, 9.228394)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.978325, 0.014984908, -19.674868)
 
 [node name="Ore2" parent="PlayerSpawner" unique_id=1443343081 instance=ExtResource("22_8107f")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 34.44085, 0.014983, -16.517714)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 37.827305, 0.014983, -18.271105)
 
 [node name="LootTable" type="Node3D" parent="." unique_id=537718464]
 script = ExtResource("21_jrwvx")
@@ -194,7 +174,7 @@ text = "Enemies"
 metadata/_edit_use_anchors_ = true
 
 [node name="Grindstone" parent="." unique_id=371047941 instance=ExtResource("25_0arig")]
-transform = Transform3D(-6.556708e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.556708e-08, 8.82751, 0, -3.9000874)
+transform = Transform3D(-6.556708e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.556708e-08, 8.662314, 0, -2.732452)
 
 [node name="Turret" parent="." unique_id=1571022317 instance=ExtResource("26_i52xd")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 18.55472, 1, 18.002695)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 17.775646, 0, 26.765171)

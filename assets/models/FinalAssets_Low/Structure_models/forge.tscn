@@ -52,26 +52,21 @@ craftDuration = 1.0
 recipes = Array[Object]([SubResource("Resource_04qyv")])
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1067101710 groups=["Forge"]]
-visible = false
 collision_layer = 160
 collision_mask = 6
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=250762080]
 transform = Transform3D(30, 0, 0, 0, 20, 0, 0, 0, 35, -0.90197325, 4.816896, -0.24419785)
-visible = false
 shape = SubResource("BoxShape3D_5b8nd")
 
 [node name="InputPort" parent="." unique_id=750325492 instance=ExtResource("4_0l8vc")]
 transform = Transform3D(31.928226, 0, 0, 0, 6.3082385, 0, 0, 0, 44.96865, -4.0128264, 3.270673, -0.43483275)
-visible = false
 
 [node name="OutputPort" parent="." unique_id=1251145266 instance=ExtResource("4_0l8vc")]
 transform = Transform3D(5.2756314, 0, 0, 0, 2.857143, 0, 0, 0, 5.4322386, -8.55842, 1.7136235, -0.27193514)
-visible = false
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=741148502]
 transform = Transform3D(-27.69681, 0, -5.144179e-07, 0, 19.48352, 0, 2.4213318e-06, 0, -5.884255, -0.022883892, 25.633549, -1.8400894)
-visible = false
 texture = SubResource("ViewportTexture_ohbk7")
 
 [node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=1009488754]
@@ -79,7 +74,6 @@ transparent_bg = true
 size = Vector2i(100, 50)
 
 [node name="ProgressBar" type="ProgressBar" parent="Sprite3D/SubViewport" unique_id=1436996828]
-visible = false
 offset_left = 25.0
 offset_top = 10.0
 offset_right = 75.0
@@ -87,7 +81,6 @@ offset_bottom = 60.0
 show_percentage = false
 
 [node name="Label" type="Label" parent="Sprite3D/SubViewport" unique_id=1037346905]
-visible = false
 offset_left = 27.0
 offset_top = 20.0
 offset_right = 67.0
