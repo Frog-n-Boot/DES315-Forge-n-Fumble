@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://bm6vf4tjk48gj"]
+[gd_scene format=3 uid="uid://c0miry1126p76"]
 
 [ext_resource type="Script" uid="uid://bdwnaqw5jg3si" path="res://src/SmeltingStation.cs" id="1_ph4aw"]
-[ext_resource type="PackedScene" uid="uid://dq8nubqatqhum" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Ingot.tscn" id="2_n8y7r"]
+[ext_resource type="PackedScene" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Ingot.tscn" id="2_n8y7r"]
 [ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/CraftingRecipes.cs" id="3_oiry0"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="4_0l8vc"]
 [ext_resource type="PackedScene" uid="uid://mgxyqgdlvswc" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Ingot.tscn" id="4_twstk"]
@@ -59,8 +59,8 @@ ouputScene = ExtResource("6_wq66q")
 ouputGroup = "pickable"
 metadata/_custom_type_script = "uid://1bo1o367ybgk"
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_5b8nd"]
-size = Vector3(0.38000727, 0.51831055, 0.24706268)
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_5kmee"]
+radius = 0.19238281
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ohbk7"]
 viewport_path = NodePath("Sprite3D/SubViewport")
@@ -87,7 +87,7 @@ inputNode = NodePath("InputPort")
 outputNode = NodePath("OutputPort")
 timeProgressBar = NodePath("Sprite3D/SubViewport/ProgressBar")
 stationName = NodePath("Sprite3D/SubViewport/Label")
-craftDuration = 1.0
+craftDuration = 6.0
 recipes = Array[Object]([SubResource("Resource_04qyv"), SubResource("Resource_jnxk4"), SubResource("Resource_sx61v"), SubResource("Resource_i1han"), SubResource("Resource_5kmee")])
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1067101710 groups=["Forge"]]
@@ -95,8 +95,8 @@ collision_layer = 160
 collision_mask = 6
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=250762080]
-transform = Transform3D(30, 0, 0, 0, 20, 0, 0, 0, 35, -0.90197325, 4.816896, -0.24419785)
-shape = SubResource("BoxShape3D_5b8nd")
+transform = Transform3D(30, 0, 0, 0, 20, 0, 0, 0, 22.80497, -0.90197325, 4.816896, -0.38397178)
+shape = SubResource("CylinderShape3D_5kmee")
 
 [node name="InputPort" parent="." unique_id=750325492 instance=ExtResource("4_0l8vc")]
 transform = Transform3D(31.928226, 0, 0, 0, 6.3082385, 0, 0, 0, 44.96865, -4.0128264, 3.270673, -0.43483275)

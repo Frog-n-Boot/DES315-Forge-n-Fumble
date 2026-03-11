@@ -1,36 +1,38 @@
 [gd_scene format=3 uid="uid://88oq7ysmwuhi"]
 
 [ext_resource type="PackedScene" uid="uid://bycamsjulrcwe" path="res://assets/models/FinalAssets_Low/Redone_Assets/Cobl_wall_low.tscn" id="2_3qum0"]
-[ext_resource type="PackedScene" uid="uid://bm6vf4tjk48gj" path="res://assets/models/FinalAssets_Low/Structure_models/forge.tscn" id="2_ptwec"]
+[ext_resource type="PackedScene" uid="uid://c0miry1126p76" path="res://assets/models/FinalAssets_Low/Structure_models/forge.tscn" id="2_ptwec"]
 [ext_resource type="PackedScene" uid="uid://8roa2xkb2ipl" path="res://assets/models/player.tscn" id="3_81oh0"]
 [ext_resource type="PackedScene" uid="uid://cxj0fwjqxc5ny" path="res://assets/models/boxes.tscn" id="3_a3bqn"]
 [ext_resource type="Script" uid="uid://dnqtfi3fpu8ue" path="res://src/CameraController.cs" id="3_mndrt"]
 [ext_resource type="PackedScene" uid="uid://dvhojin78rtxa" path="res://assets/models/FinalAssets_Low/Redone_Assets/Cobl_pillar_low.tscn" id="3_wt1ef"]
 [ext_resource type="PackedScene" uid="uid://bmre2ran8suad" path="res://assets/models/FinalAssets_Low/Redone_Assets/Cobl_archway_low.tscn" id="4_7gden"]
 [ext_resource type="PackedScene" uid="uid://can50oleeolkm" path="res://assets/models/FinalAssets_Low/Redone_Assets/Cobl_halfwall_low.tscn" id="5_7dxqx"]
-[ext_resource type="PackedScene" uid="uid://d1twjqnwuwntn" path="res://assets/models/FinalAssets_Low/Structure_models/Wooden_floor.tscn" id="6_7gden"]
+[ext_resource type="PackedScene" path="res://assets/models/FinalAssets_Low/Structure_models/Wooden_floor.tscn" id="6_7gden"]
 [ext_resource type="Script" uid="uid://bk2uam5leqcv8" path="res://src/PlayerSpawner.cs" id="6_42n6d"]
 [ext_resource type="Script" uid="uid://bj4pcgxjt3ru7" path="res://src/WaveManager.cs" id="7_53x3i"]
 [ext_resource type="Script" uid="uid://taddex4cilqa" path="res://src/LootTable.cs" id="9_7cc0k"]
 [ext_resource type="Resource" uid="uid://calih72lg8n07" path="res://assets/resources/NormalEnemyData.tres" id="9_mehdq"]
+[ext_resource type="PackedScene" uid="uid://du60xh5llt7u6" path="res://scenes/grindstone_2.tscn" id="10_0vwtv"]
 [ext_resource type="Resource" uid="uid://cdki2c88hftlb" path="res://assets/resources/FastEnemyData.tres" id="10_7p7bj"]
 [ext_resource type="Resource" uid="uid://cvs5mxaqpoflx" path="res://assets/resources/StrongEnemyData.tres" id="11_gwggj"]
-[ext_resource type="PackedScene" uid="uid://jnghu007q1m" path="res://assets/models/FinalAssets_Low/Items_Models/Healthpack.tscn" id="12_gwggj"]
-[ext_resource type="PackedScene" uid="uid://2nwhxfu7pfbg" path="res://assets/models/FinalAssets_Low/WorkStations/Assembly.tscn" id="15_xw70q"]
-[ext_resource type="PackedScene" uid="uid://cmd758glwlnly" path="res://assets/models/FinalAssets_Low/WorkStations/Grindstone.tscn" id="20_5vgrt"]
+[ext_resource type="PackedScene" uid="uid://cmiwl02liqv5j" path="res://scenes/anvil_2.tscn" id="12_cvaul"]
+[ext_resource type="PackedScene" path="res://assets/models/FinalAssets_Low/Items_Models/Healthpack.tscn" id="12_gwggj"]
+[ext_resource type="PackedScene" path="res://assets/models/FinalAssets_Low/WorkStations/Assembly.tscn" id="15_xw70q"]
+[ext_resource type="PackedScene" uid="uid://c0arr6buqskq0" path="res://assets/models/FinalAssets_Low/WorkStations/Grindstone.tscn" id="20_5vgrt"]
 [ext_resource type="PackedScene" uid="uid://706c56ie3ke" path="res://assets/models/Turret.tscn" id="20_20nwc"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="21_20nwc"]
-[ext_resource type="PackedScene" uid="uid://g1gfmktihg8t" path="res://assets/models/FinalAssets_Low/WorkStations/Anvil.tscn" id="22_3w1al"]
-[ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/FinalAssets_Low/Items_Models/DullSword.tscn" id="22_amgg8"]
-[ext_resource type="PackedScene" uid="uid://cgv7jdbgqsgql" path="res://assets/models/FinalAssets_Low/Ore/Copper_Ore.tscn" id="23_3qum0"]
+[ext_resource type="PackedScene" path="res://assets/models/FinalAssets_Low/WorkStations/Anvil.tscn" id="22_3w1al"]
+[ext_resource type="PackedScene" path="res://assets/models/FinalAssets_Low/Items_Models/DullSword.tscn" id="22_amgg8"]
+[ext_resource type="PackedScene" path="res://assets/models/FinalAssets_Low/Ore/Copper_Ore.tscn" id="23_3qum0"]
 [ext_resource type="Script" uid="uid://bs44u3pohek1t" path="res://src/SettingsMenu.cs" id="24_gax05"]
-[ext_resource type="PackedScene" uid="uid://d3hr25hyu0vng" path="res://scenes/PauseMenu.tscn" id="27_7dxqx"]
-[ext_resource type="PackedScene" uid="uid://176tgqxxk3p7" path="res://scenes/DebugMenu.tscn" id="30_7gden"]
-[ext_resource type="Script" uid="uid://b2l2l45t253bx" path="res://src/HUD.cs" id="31_f5rak"]
-[ext_resource type="PackedScene" uid="uid://c3r5d0p8x0nhg" path="res://scenes/FailMenu.tscn" id="32_f5rak"]
-[ext_resource type="PackedScene" uid="uid://cd12og6qvmqm7" path="res://assets/textures/PlayerPortrait.tscn" id="32_xw70q"]
+[ext_resource type="PackedScene" path="res://scenes/PauseMenu.tscn" id="27_7dxqx"]
+[ext_resource type="PackedScene" path="res://scenes/DebugMenu.tscn" id="30_7gden"]
+[ext_resource type="Script" path="res://src/HUD.cs" id="31_f5rak"]
+[ext_resource type="PackedScene" path="res://scenes/FailMenu.tscn" id="32_f5rak"]
+[ext_resource type="PackedScene" path="res://assets/textures/PlayerPortrait.tscn" id="32_xw70q"]
 [ext_resource type="Script" uid="uid://brp6gsap0s2ok" path="res://src/HealthBar.cs" id="34_0vwtv"]
-[ext_resource type="PackedScene" uid="uid://c3vh51tshqcxw" path="res://assets/models/FinalAssets_Low/Ore/Damas_Ore.tscn" id="34_ikfag"]
+[ext_resource type="PackedScene" path="res://assets/models/FinalAssets_Low/Ore/Damas_Ore.tscn" id="34_ikfag"]
 [ext_resource type="PackedScene" uid="uid://b5hqxxuqxork6" path="res://assets/models/FinalAssets_Low/Ore/Gold_Ore.tscn" id="35_o7in3"]
 [ext_resource type="PackedScene" uid="uid://dgisu3p5x1t6w" path="res://assets/models/FinalAssets_Low/Ore/Iron_Ore.tscn" id="36_36rvu"]
 
@@ -90,7 +92,7 @@ transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_wko22")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1902630742]
-transform = Transform3D(16.996313, 0, 0, 0, 16.996313, 0, 0, 0, 17.619446, 0.02392022, -0.0010001585, 0.040840626)
+transform = Transform3D(16.996313, 0, 0, 0, 16.996313, 0, 0, 0, 17.619446, 0.023437342, -0.011984262, 0.07656336)
 material_override = SubResource("StandardMaterial3D_ptwec")
 mesh = SubResource("PlaneMesh_3lnvk")
 
@@ -141,6 +143,22 @@ transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.
 
 [node name="CoblWallLow17" parent="CollisionShape3D" unique_id=354474456 instance=ExtResource("2_3qum0")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.6641873, 0, -0.8223374)
+
+[node name="MapBorderRight" parent="CollisionShape3D" unique_id=1920989873 instance=ExtResource("2_3qum0")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 11.878202, 4.761318, 0, -0.8223374)
+visible = false
+
+[node name="MapBorderLeft" parent="CollisionShape3D" unique_id=165296516 instance=ExtResource("2_3qum0")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 11.878202, -5.807213, 0, -0.8223374)
+visible = false
+
+[node name="MapBorderTop" parent="CollisionShape3D" unique_id=2047157264 instance=ExtResource("2_3qum0")]
+transform = Transform3D(-7.2852315e-09, 0, -11.878202, 0, 0.16666667, 0, 0.16666667, 0, -5.192127e-07, -0.010838827, 0, -3.323751)
+visible = false
+
+[node name="MapBorderBottom" parent="CollisionShape3D" unique_id=690625133 instance=ExtResource("2_3qum0")]
+transform = Transform3D(-7.2852315e-09, 0, -11.878202, 0, 0.16666667, 0, 0.16666667, 0, -5.192127e-07, -0.010838827, 0, 4.1090727)
+visible = false
 
 [node name="CoblWallLow18" parent="CollisionShape3D" unique_id=1224995520 instance=ExtResource("2_3qum0")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.6641873, 0, -0.41166043)
@@ -478,13 +496,19 @@ inputNode = NodePath("StationPort2")
 transform = Transform3D(1.8634118, 0, -2.2810848, 0, 1, 0, 2.30219, 0, 1.8463291, -0.8566718, -3.1234941, 0.023492694)
 
 [node name="Grindstone" parent="World" unique_id=1599248455 groups=["Grindstone"] instance=ExtResource("20_5vgrt")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8.563174, 0.004228592, -3.643423)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6.979742, 0.0042276382, -5.149287)
+
+[node name="Grindstone2" parent="World" unique_id=367259162 instance=ExtResource("10_0vwtv")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.514204, 0.0042276382, 5.9209933)
 
 [node name="Anvil" parent="World" unique_id=1567075398 instance=ExtResource("22_3w1al")]
-transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, -11.693699, 0.3251226, 3.7593546)
+transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, -12.6094475, 0.3251226, -4.6568832)
+
+[node name="Anvil2" parent="World" unique_id=556039417 instance=ExtResource("12_cvaul")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.8835297, 0.32512164, 5.8581915)
 
 [node name="Assembly" parent="World" unique_id=866925813 instance=ExtResource("15_xw70q")]
-transform = Transform3D(0.018185392, 0, -0.9998346, 0, 1, 0, 0.9998346, 0, 0.018185392, 5.834904, 0.008587953, 4.1468945)
+transform = Transform3D(0.018185392, 0, -0.9998346, 0, 1, 0, 0.9998346, 0, 0.018185392, 8.275133, 0.008587953, -0.23910856)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=254897524 node_paths=PackedStringArray("playerSpawner") groups=["Camera"]]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -3.1877332, 39, 39.193367)
@@ -503,16 +527,16 @@ playerScene = ExtResource("3_81oh0")
 spawnParent = NodePath("..")
 
 [node name="SpawnPoint0" type="Marker3D" parent="PlayerSpawner" unique_id=1722202336]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7532635, 7.5125623, 2.060317)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.452711, 0.5466087, -4.215809)
 
 [node name="SpawnPoint1" type="Marker3D" parent="PlayerSpawner" unique_id=1852408077]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2516978, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6523097, 0, 5.1855745)
 
 [node name="SpawnPoint2" type="Marker3D" parent="PlayerSpawner" unique_id=411742392]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0428693, 0, -3.2011)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.020396, 0, 5.316142)
 
 [node name="SpawnPoint3" type="Marker3D" parent="PlayerSpawner" unique_id=2030002562]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.479903, 0, 0.9416392)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.015061, 0, -4.914321)
 
 [node name="EnemySpawner" type="Node" parent="." unique_id=1191566733 node_paths=PackedStringArray("spawnParent", "targetNode", "lootTable", "spawnPositions", "enemyUI", "waveTimerLabel3D") groups=["WaveManager"]]
 script = ExtResource("7_53x3i")
@@ -564,6 +588,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.790215, 0, 0)
 
 [node name="LootTable" type="Node3D" parent="." unique_id=537718464 groups=["LootTable"]]
 script = ExtResource("9_7cc0k")
+copperDropChance = 60
+ironDropChance = 40
+goldDropChance = 0
 damasDropChance = 0
 healthPackDropChance = 0
 copperOre = ExtResource("23_3qum0")
@@ -882,7 +909,7 @@ scale = Vector2(28.750067, 16.369858)
 color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
 
 [node name="DullSword" parent="." unique_id=778246616 instance=ExtResource("22_amgg8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.320782, 0.000985, -0.16474152)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7764347, 0.000985, -4.8441715)
 
 [node name="DebugMenu" parent="." unique_id=731638094 instance=ExtResource("30_7gden")]
 
@@ -890,7 +917,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.320782, 0.000985, -0.164741
 visible = false
 
 [node name="Forge" parent="." unique_id=994045895 instance=ExtResource("2_ptwec")]
-transform = Transform3D(-0.35, 0, 3.059797e-08, 0, 0.35, 0, -3.059797e-08, 0, -0.35, -4.560112, -9.536743e-07, 0.94780636)
+transform = Transform3D(-0.35, 0, 3.059797e-08, 0, 0.35, 0, -3.059797e-08, 0, -0.35, -2.7543674, -9.536743e-07, 0.94780636)
 
 [connection signal="pressed" from="SettingsMenu/Control/BackButton" to="SettingsMenu" method="OnBackPressed"]
 [connection signal="pressed" from="SettingsMenu/Control/ApplyButton" to="SettingsMenu" method="OnApplyPressed"]
