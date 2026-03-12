@@ -240,7 +240,7 @@ projection = 1
 size = 28.411
 script = ExtResource("14_xohv8")
 playerSpawner = NodePath("../PlayerSpawner")
-minSize = 20.0
+minSize = 25.0
 maxSize = 20.0
 followPlayer = true
 
