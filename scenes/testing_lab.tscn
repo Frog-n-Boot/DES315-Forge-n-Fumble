@@ -1218,10 +1218,6 @@ transform = Transform3D(-0.34999743, 0, 0.0013377805, 0, 0.35, 0, -0.0013377805,
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7939386, 0.014983, 4.747037)
 shouldDespawn = false
 
-[node name="GoldOre" parent="." unique_id=546203985 instance=ExtResource("47_68amh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8335772, 0.017244954, 4.7685437)
-shouldDespawn = false
-
 [node name="IronOre" parent="." unique_id=904125942 instance=ExtResource("46_lqoiw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7027378, 9.536743e-07, 4.748234)
 shouldDespawn = false
