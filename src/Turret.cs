@@ -135,7 +135,7 @@ public partial class Turret : Node3D
 		var items= itemCarrier.GetCarriedItems();
 		foreach(var item in items)
 		{
-			if(item.name == "Ingot")
+			if(item.name == "Iron_Ingot")
 			{
 				GD.Print("Ingot was added");
 				bulletCount += 10;
