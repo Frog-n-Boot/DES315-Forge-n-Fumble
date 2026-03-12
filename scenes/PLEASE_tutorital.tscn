@@ -184,7 +184,6 @@ enemyData = SubResource("Resource_5nr6y")
 moveTarget = NodePath("CharacterBody3D")
 mesh = NodePath("CharacterBody3D/MeshInstance3D")
 collisionArea = NodePath("CharacterBody3D/Area3D")
-isStationary = true
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="CollisionShape3D/Enemy" unique_id=590602209]
 collision_layer = 4
@@ -272,9 +271,11 @@ transform = Transform3D(1.13246855e-07, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.13246855e-
 
 [node name="Ore" parent="PlayerSpawner" unique_id=2110523039 instance=ExtResource("22_8107f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.434331, 0.014984908, 9.228394)
+shouldDespawn = false
 
 [node name="Ore2" parent="PlayerSpawner" unique_id=1443343081 instance=ExtResource("22_8107f")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 34.44085, 0.014983, -16.517714)
+shouldDespawn = false
 
 [node name="LootTable" type="Node3D" parent="." unique_id=537718464]
 script = ExtResource("21_jrwvx")

@@ -15,11 +15,10 @@ public partial class HealthBar : ProgressBar
 	public override void _Ready()
 	{	
 		base._Ready();
-		if(isForge){
-            forge = GetNode<Forge>("/root/Forge");
-            forge.ForgeTookDamage += SetHealth;
-            SetHealth(forge.health, forge.maxHealth);
-		}
+		if(isForge)
+			CallDeferred(nameof(ConnectForge));
+            
+		
 		else if(isEnemy){
 			enemy = GetNode<EnemyController>($"../../../");
 			enemy.EnemyHealthChanged += SetHealth;
@@ -50,5 +49,15 @@ public partial class HealthBar : ProgressBar
         if(playerController != null)
             playerController.PlayerHealthChanged -= SetHealth;
         
+    }
+	private void ConnectForge()
+    {
+        forge = GetNode<Forge>("/root/Forge");
+
+		if(forge == null) {GD.PrintErr("Forge not found"); return;}
+
+        forge.ForgeTookDamage += SetHealth;
+        SetHealth(forge.health, forge.maxHealth);
+		GD.Print("Forge connected, health: " + forge.health);
     }
 }

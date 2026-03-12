@@ -66,6 +66,9 @@ size = Vector3(0.38000727, 0.51831055, 0.24706268)
 [sub_resource type="ViewportTexture" id="ViewportTexture_ohbk7"]
 viewport_path = NodePath("Sprite3D/SubViewport")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wq66q"]
+bg_color = Color(0.19014141, 0.71371996, 0.2947564, 1)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i2ejw"]
 albedo_texture = ExtResource("6_ohbk7")
 normal_enabled = true
@@ -114,25 +117,28 @@ visible = false
 transform = Transform3D(5.2756314, 0, 0, 0, 2.857143, 0, 0, 0, 5.4322386, -9.265402, 1.5173415, -0.27193514)
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=741148502]
-transform = Transform3D(-27.69681, 0, -5.144179e-07, 0, 19.48352, 0, 2.4213318e-06, 0, -5.884255, -0.022883892, 25.633549, -1.8400894)
+transform = Transform3D(-27.69681, 0, -5.144179e-07, 0, 19.48352, 0, 2.4213318e-06, 0, -5.884255, -0.022883892, 21.894945, -1.8400894)
 texture = SubResource("ViewportTexture_ohbk7")
 
 [node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=1009488754]
 transparent_bg = true
-size = Vector2i(100, 50)
+size = Vector2i(100, 100)
+
+[node name="Label" type="Label" parent="Sprite3D/SubViewport" unique_id=1037346905]
+z_index = 1
+offset_left = 27.0
+offset_top = 34.0
+offset_right = 71.0
+offset_bottom = 83.0
+text = "Forge"
 
 [node name="ProgressBar" type="ProgressBar" parent="Sprite3D/SubViewport" unique_id=1436996828]
 offset_left = 25.0
-offset_top = 10.0
+offset_top = 23.0
 offset_right = 75.0
-offset_bottom = 60.0
+offset_bottom = 73.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_wq66q")
 show_percentage = false
-
-[node name="Label" type="Label" parent="Sprite3D/SubViewport" unique_id=1037346905]
-offset_left = 27.0
-offset_top = 20.0
-offset_right = 67.0
-offset_bottom = 69.0
 
 [node name="FurnaceLow" type="MeshInstance3D" parent="." unique_id=1274855034]
 transform = Transform3D(-2.857143, 0, -2.4977936e-07, 0, 2.857143, 0, 2.4977936e-07, 0, -2.857143, 0, 0, 0.33177614)

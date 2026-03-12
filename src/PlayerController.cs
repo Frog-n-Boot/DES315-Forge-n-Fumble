@@ -344,7 +344,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			DropItem(rightHand);
 		}
 
-		if (@event.IsActionPressed("attack"))
+		if (IsActionJustPressed("attack"))
 		{
 			inputBuffer.BufferInput("attack");			
 		}
@@ -429,8 +429,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		{
 			isAttacking = false;
 
-			if(animName == "Sword_Attack_3")
-				animPlayer.Play("Sword_Idle");
+			animPlayer.Play("Sword_Idle");
 			
 		}
 	}

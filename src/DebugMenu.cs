@@ -99,7 +99,14 @@ public partial class DebugMenu : CanvasLayer
 	public override void _Ready()
 	{
 		Hide();
-		GetObjectReferences();
+		CallDeferred(nameof(LateReady));
+
+		ProcessMode=ProcessModeEnum.Always;
+		showCollisions.Toggled += value => ShowCollisionShapes((bool) value);
+	}
+	private void LateReady()
+    {
+        GetObjectReferences();
 		ConnectButtons();
 		SetupValues();
 		SetupValueRange();
@@ -112,10 +119,7 @@ public partial class DebugMenu : CanvasLayer
 		SetEnemySpawnChance();
 		UpdateWaveManager();
 		UpdateLootTable();
-
-		ProcessMode=ProcessModeEnum.Always;
-		showCollisions.Toggled += value => ShowCollisionShapes((bool) value);
-	}
+    }
 	#endregion
 
 	#region "Button Connection"
@@ -135,7 +139,7 @@ public partial class DebugMenu : CanvasLayer
 	private void GetObjectReferences()
     {
 		cameraController = GetTree().GetFirstNodeInGroup("Camera") as CameraController;
-        forge = GetTree().Root.GetNode<Forge>("Forge");
+        forge = GetNode<Forge>("/root/Forge");
 		waveManager = GetTree().GetFirstNodeInGroup("WaveManager") as WaveManager;
 		
 		forgeScript = GetTree().GetFirstNodeInGroup("Forge") as SmeltingStation;

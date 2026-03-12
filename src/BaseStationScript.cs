@@ -23,9 +23,11 @@ public abstract partial class BaseStationScript : Node3D
 	protected ItemCarrier itemCarrier;
 	
 	protected CraftingRecipes pendingRecipe;
+	protected List<ItemData> pendingConsume = new List<ItemData>();
 
-	private List<ItemData> itemsToDeposit = new List<ItemData>();
+	protected List<ItemData> itemsToDeposit = new List<ItemData>();
 	 private List<PlayerController> playersInZone = new List<PlayerController>();
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -52,9 +54,13 @@ public abstract partial class BaseStationScript : Node3D
     {
         if (!IsItemNeeded(item))
             return false;
-        ProduceOutput();
+
+        //ProduceOutput();
+
         itemsToDeposit.Add(item);
-		StartCrafting();
+
+		if(craftingTimer.IsStopped())
+			StartCrafting();
 		
 		return true;
     }
@@ -148,9 +154,9 @@ public abstract partial class BaseStationScript : Node3D
 		{	
 
 			pendingRecipe = recipes;
+			ConsumeItems();
 			OnCraftingRequirementsMet();
-			foreach(var item in itemsToConsume)
-				itemsToDeposit.Remove(item);
+			
 		}
 	}
 
@@ -253,5 +259,16 @@ public abstract partial class BaseStationScript : Node3D
 		craftDuration = duration;
 		craftingTimer.WaitTime = duration;
 	}
+
+	protected virtual void ConsumeItems()
+    {
+		if(pendingConsume == null) return;
+        foreach(var item in pendingConsume)
+        {
+            var toRemove = itemsToDeposit.FirstOrDefault(i => i.name == item.name);
+			if(toRemove != null) itemsToDeposit.Remove(toRemove);
+        }
+		pendingConsume = null;
+    }
 
 }

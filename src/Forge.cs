@@ -22,7 +22,16 @@ public partial class Forge : Node3D
 	public override void _Ready()
 	{
 		health = maxHealth;
+		GetTree().SceneChanged += OnSceneChanged;
+		
 	}
+
+	private void OnSceneChanged()
+    {
+		health = maxHealth;
+
+        CallDeferred(nameof(OnHealthChanged));
+    }
 	#endregion
 
 	#region Process
@@ -43,6 +52,10 @@ public partial class Forge : Node3D
 				else
 					resultMenu.ShowFail();
 			}
+			else if(health >= 0 && isDestroyed)
+            {
+                isDestroyed = false;
+            }
 		}
 
 	}
@@ -67,7 +80,7 @@ public partial class Forge : Node3D
 	#region Destroyed
 	private void Destroyed()
 	{
-		QueueFree();
+		//QueueFree();
 	}
 	#endregion
 
@@ -77,5 +90,9 @@ public partial class Forge : Node3D
 		health = newHealth;
 		EmitSignal(SignalName.ForgeTookDamage,health, maxHealth);
 	}
+	private void OnHealthChanged()
+    {
+        EmitSignal(SignalName.ForgeTookDamage, health, maxHealth);
+    }
 
 }

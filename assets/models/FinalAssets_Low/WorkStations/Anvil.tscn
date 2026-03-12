@@ -97,6 +97,7 @@ offset_bottom = 79.0
 bbcode_enabled = true
 
 [node name="ProgressBar" type="ProgressBar" parent="Sprite3D/SubViewport" unique_id=624823659]
+visible = false
 offset_top = 10.0
 offset_right = 100.0
 offset_bottom = 60.0

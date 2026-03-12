@@ -11,6 +11,7 @@ public partial class SmeltingStation : BaseStationScript
 	[Export] private float healInterval = 1f;
 
 	private float healTimer = 0f;
+	private bool isHealing = false;
 
 	protected override void OnReady()
 	{
@@ -23,18 +24,24 @@ public partial class SmeltingStation : BaseStationScript
 	
 	public override void _Process(double delta)
 	{
-		if(!craftingTimer.IsStopped()){
+		base._Process(delta);
+		
+		if(isHealing){
 			healTimer += (float)delta;
-			if(healTimer >= healInterval)
+
+			if(healTimer >= healInterval )
 			{
-				GetTree().CreateTimer(5f).Timeout += () => healTimer = 0f;
+				healTimer = 0f;
 				HealPlayersInAura();
+				GetTree().CreateTimer(5f).Timeout += () => isHealing = false;
+				
 			}
 		}
 	}
 
 	protected override void OnCraftingRequirementsMet()
 	{
+		isHealing = true;
 		craftingTimer.Start();
 		audio.Play();
 		
@@ -50,6 +57,7 @@ public partial class SmeltingStation : BaseStationScript
 		{
 			if(body is PlayerController player)
 				player.Heal(healAmount);
+				
 		}
 	}
 }
