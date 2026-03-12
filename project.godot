@@ -43,6 +43,10 @@ window/vsync/vsync_mode=0
 
 project/assembly_name="Forge-n-Fumble"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/proton_scatter/plugin.cfg")
+
 [global_group]
 
 Forge=""
