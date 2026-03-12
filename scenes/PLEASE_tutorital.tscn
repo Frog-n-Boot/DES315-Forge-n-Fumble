@@ -5,11 +5,8 @@
 [ext_resource type="ArrayMesh" uid="uid://bmq26ged3l0nq" path="res://assets/models/FinalAssets_Low/Character_Models/Goblin_low.obj" id="3_o2eou"]
 [ext_resource type="Material" uid="uid://btwle4bal72vo" path="res://assets/materials/Texture_sets/Character_Textures/Skeleton Textures/skeleton_material.tres" id="4_5nr6y"]
 [ext_resource type="ArrayMesh" uid="uid://8wpolus5qbva" path="res://assets/models/FinalAssets_Low/Character_Models/Skeleton_low.obj" id="5_k01fx"]
-[ext_resource type="Material" uid="uid://ccaruxjogs28j" path="res://assets/materials/Texture_sets/Item_Textures/ingots.tres" id="7_kvvm8"]
-[ext_resource type="ArrayMesh" uid="uid://qrqif26big5o" path="res://assets/models/FinalAssets_Low/Items_Models/Ing_iron_low.obj" id="8_dkmvo"]
 [ext_resource type="Material" uid="uid://24hwnxagoffj" path="res://assets/models/FinalAssets_Low/WorkStations/Ballista/ballista.tres" id="11_5yfar"]
 [ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/FinalAssets_Low/Items_Models/DullSword.tscn" id="11_60v6u"]
-[ext_resource type="ArrayMesh" uid="uid://cnx63eofodk83" path="res://assets/models/FinalAssets_Low/Items_Models/Ing_copper_low.obj" id="12_fqppb"]
 [ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/FinalAssets_Low/Items_Models/Sword.tscn" id="12_o2eou"]
 [ext_resource type="ArrayMesh" uid="uid://cuv7ohbcv8lsn" path="res://assets/models/FinalAssets_Low/WorkStations/Ballista/bal_arrow_low.obj" id="12_r7w8j"]
 [ext_resource type="Script" uid="uid://dnqtfi3fpu8ue" path="res://src/CameraController.cs" id="14_xohv8"]
@@ -121,21 +118,6 @@ mesh = ExtResource("3_o2eou")
 transform = Transform3D(0.49999914, 0.0008447158, -0.00041745178, -0.00030141877, 0.353275, 0.35383153, 0.0008927247, -0.3538307, 0.3532749, 6.2891607, -0.03569307, -3.8939226)
 material_override = ExtResource("4_5nr6y")
 mesh = ExtResource("5_k01fx")
-
-[node name="IngIronLow" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1963867370]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.59894204, 0, 5.130863)
-mesh = ExtResource("8_dkmvo")
-surface_material_override/0 = ExtResource("7_kvvm8")
-
-[node name="IngIronLow2" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1268395020]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.5980186, -6.357829e-07, -4.6558313)
-mesh = ExtResource("8_dkmvo")
-surface_material_override/0 = ExtResource("7_kvvm8")
-
-[node name="IngCopperLow3" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1503548529]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.9807613, -4.7683716e-07, -4.7152543)
-mesh = ExtResource("12_fqppb")
-surface_material_override/0 = ExtResource("7_kvvm8")
 
 [node name="DullSword" parent="CollisionShape3D" unique_id=778246616 instance=ExtResource("11_60v6u")]
 transform = Transform3D(0.2966995, -0.3905308, -0.09723833, 0.17566925, 0.016980123, 0.46781623, -0.36209092, -0.31176504, 0.14728442, 2.3297563, 0.03764791, -2.8277614)
@@ -406,6 +388,20 @@ text = "Right Trigger to
 Interact with Workstations"
 font_size = 25
 
+[node name="Label3D14" type="Label3D" parent="." unique_id=670521114]
+transform = Transform3D(1, 0, 0, 0, 0.20722876, 0.9782925, 0, -0.9782925, 0.20722876, -8.63973, 1.8689556, 7.254202)
+pixel_size = 0.035
+text = "Right Bumper to 
+drop SWORD"
+font_size = 25
+
+[node name="Label3D15" type="Label3D" parent="." unique_id=331870266]
+transform = Transform3D(1, 0, 0, 0, 0.20722876, 0.9782925, 0, -0.9782925, 0.20722876, -17.308308, 1.8689556, 8.100414)
+pixel_size = 0.035
+text = "Left Bumper to 
+drop Resources"
+font_size = 25
+
 [node name="Label3D6" type="Label3D" parent="." unique_id=948005030]
 transform = Transform3D(1, 0, 0, 0, 0.20722876, 0.9782925, 0, -0.9782925, 0.20722876, 24.714762, 1.0721159, -18.228476)
 pixel_size = 0.035
@@ -419,5 +415,14 @@ pixel_size = 0.035
 text = "Use the Arrows to 
 complete the mini game"
 font_size = 25
+
+[node name="Copper_Ingot" parent="." unique_id=746655791 instance=ExtResource("28_dkmvo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -17.758318, 0, -27.987131)
+
+[node name="IronIngot" parent="." unique_id=1864988683 instance=ExtResource("32_fqppb")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -15.356725, 0, -27.78924)
+
+[node name="IronIngot2" parent="." unique_id=1691570450 instance=ExtResource("32_fqppb")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 4.2390943, -4.7683716e-07, 31.098162)
 
 [connection signal="body_entered" from="Enemy/CharacterBody3D/Area3D" to="Enemy" method="OnBodyEntered"]
