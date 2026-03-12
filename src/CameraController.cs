@@ -17,6 +17,7 @@ public partial class CameraController : Camera3D
     public float minSize = 15f;
     [Export(PropertyHint.Range, "1.0, 50.0")]
     public float maxSize = 30f;
+    [Export] private bool followPlayer = false;
     
     private Vector2 viewportSize;
     private Vector2 screenCenter;
@@ -96,6 +97,12 @@ public partial class CameraController : Camera3D
         {
             Size = targetSize;
             isTransitioning = false;
+        }
+        if (followPlayer)
+        {
+            var players = GetActivePlayers();
+            var player = players[0];
+            GlobalPosition = new Vector3(player.GlobalPosition.X, GlobalPosition.Y, player.GlobalPosition.Z +20);
         }
     }
     

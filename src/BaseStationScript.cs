@@ -23,8 +23,11 @@ public abstract partial class BaseStationScript : Node3D
 	protected ItemCarrier itemCarrier;
 	
 	protected CraftingRecipes pendingRecipe;
+	protected List<ItemData> pendingConsume = new List<ItemData>();
 
+	protected List<ItemData> itemsToDeposit = new List<ItemData>();
 	 private List<PlayerController> playersInZone = new List<PlayerController>();
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -47,6 +50,29 @@ public abstract partial class BaseStationScript : Node3D
 
 	protected abstract string GetStationName();
 
+	public bool DepositItems(ItemData item)
+    {
+        if (!IsItemNeeded(item))
+            return false;
+
+        //ProduceOutput();
+
+        itemsToDeposit.Add(item);
+
+		if(craftingTimer.IsStopped())
+			StartCrafting();
+		
+		return true;
+    }
+
+	private bool IsItemNeeded(ItemData item)
+    {
+        foreach(var recipe in recipes)
+			foreach(var requiredName in recipe.requiredItemNames)
+				if(requiredName == item.name)
+					return true;
+		return false;
+    }
 	protected bool GetRequiredItems(out List<ItemData> itemsToConsume, out CraftingRecipes matchingRecipe)
 	{
 		itemsToConsume = new List<ItemData>();
@@ -60,17 +86,29 @@ public abstract partial class BaseStationScript : Node3D
 
 		foreach(var recipe in recipes)
 		{
+			var usedIndices = new List<int>();
 			var found = new List<ItemData>();
 			bool recipeMatched = true;
 			foreach(var requiredName in recipe.requiredItemNames)
 			{
-				var match = inventoryItems.FirstOrDefault(i => i.name == requiredName && !found.Contains(i));
-				if(match == null)
+				bool matchFound = false;
+				for(int i = 0; i < itemsToDeposit.Count; i++)
+                {
+                    if(itemsToDeposit[i].name == requiredName && !usedIndices.Contains(i))
+                    {
+                        usedIndices.Add(i);
+						found.Add(itemsToDeposit[i]);
+						matchFound = true;
+						break;
+                    }
+                }
+
+				if(!matchFound)
 				{
 					recipeMatched = false;
 					break;
 				}
-				found.Add(match);
+
 			}
 			if (recipeMatched)
 			{
@@ -96,24 +134,29 @@ public abstract partial class BaseStationScript : Node3D
 		instance.GlobalPosition = outputNode.GlobalPosition;
 		timeProgressBar.Value = 0;
 		pendingRecipe = null;
-		
 
+		CallDeferred(nameof(StartCrafting));
 	}
+	
 	protected virtual void OnCraftingRequirementsMet()
 	{
+		GD.Print("Crafting requirements met, starting timer");
 		craftingTimer.Start();
 	}
+
 	public void StartCrafting()
 	{
-		if(isOutputOccupied() || !craftingTimer.IsStopped() || itemCarrier == null)
+		if(isOutputOccupied() || !craftingTimer.IsStopped())
 		{
 			return;
 		}
 		if(GetRequiredItems(out var itemsToConsume, out var recipes))
-		{
-			
+		{	
+
 			pendingRecipe = recipes;
+			ConsumeItems();
 			OnCraftingRequirementsMet();
+			
 		}
 	}
 
@@ -204,7 +247,7 @@ public abstract partial class BaseStationScript : Node3D
 	{
 		foreach(Node3D child in outputNode.GetChildren())
 		{
-			if(child.IsInGroup("pickable"))
+			if(child.IsInGroup("pickable") || child.IsInGroup("Weapon"))
 				return true;
 		}
 		return false;
@@ -216,5 +259,16 @@ public abstract partial class BaseStationScript : Node3D
 		craftDuration = duration;
 		craftingTimer.WaitTime = duration;
 	}
+
+	protected virtual void ConsumeItems()
+    {
+		if(pendingConsume == null) return;
+        foreach(var item in pendingConsume)
+        {
+            var toRemove = itemsToDeposit.FirstOrDefault(i => i.name == item.name);
+			if(toRemove != null) itemsToDeposit.Remove(toRemove);
+        }
+		pendingConsume = null;
+    }
 
 }

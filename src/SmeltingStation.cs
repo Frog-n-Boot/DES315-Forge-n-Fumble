@@ -6,30 +6,58 @@ public partial class SmeltingStation : BaseStationScript
 {
 	[Export] private PackedScene meltedIngotScene;
 	[Export] private AudioStreamPlayer3D audio;
+	[Export] private Area3D healthAura;
+	[Export] private float healAmount = 5f;
+	[Export] private float healInterval = 1f;
+
+	private float healTimer = 0f;
+	private bool isHealing = false;
 
 	protected override void OnReady()
 	{
+
 	   	if(meltedIngotScene == null)
 		{
 			meltedIngotScene = GD.Load<PackedScene>("res://assets/models/MeltedIngot.tscn");;
 		}
+	}
+	
+	public override void _Process(double delta)
+	{
+		base._Process(delta);
 		
+		if(isHealing){
+			healTimer += (float)delta;
+
+			if(healTimer >= healInterval )
+			{
+				healTimer = 0f;
+				HealPlayersInAura();
+				GetTree().CreateTimer(5f).Timeout += () => isHealing = false;
+				
+			}
+		}
 	}
 
 	protected override void OnCraftingRequirementsMet()
 	{
-		if(GetRequiredItems(out var items, out var recipe))
-		{
-			foreach(var item in items)
-				itemCarrier.RemoveItem(item);
-			
-			craftingTimer.Start();
-			audio.Play();
-			
-		}
+		isHealing = true;
+		craftingTimer.Start();
+		audio.Play();
+		
 	}
 
 	protected override string GetStationName() => "Forge";
 
 	public float GetCraftDuration()=> craftDuration;
+
+	private void HealPlayersInAura()
+	{
+		foreach(Node3D body in healthAura.GetOverlappingBodies())
+		{
+			if(body is PlayerController player)
+				player.Heal(healAmount);
+				
+		}
+	}
 }

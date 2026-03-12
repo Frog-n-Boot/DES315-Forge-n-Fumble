@@ -8,6 +8,8 @@ public partial class PauseMenu : CanvasLayer
 	[Export] Button mainMenuButton;
 	//[Export] private CanvasLayer settingsMenu;
 	[Export] private SettingsMenu settingsMenu;
+
+	private Forge forge;
 	public override void _Ready()
 	{
 		Hide();
@@ -16,12 +18,14 @@ public partial class PauseMenu : CanvasLayer
 		resumeButton.Pressed += OnResumePressed;
 		settingsButton.Pressed +=OnSettingsPressed;
 		mainMenuButton.Pressed +=OnMainMenuPressed;
+		forge = GetTree().Root.GetNodeOrNull<Forge>("World/Forge");
+		
 
 	}
 
-	public override void _Input(InputEvent @event)
-	{
-		if(@event.IsActionPressed("pause"))
+    public override void _Input(InputEvent @event)
+    {
+        if(@event.IsActionPressed("pause"))
 			TogglePause();
 	}
 
@@ -29,10 +33,10 @@ public partial class PauseMenu : CanvasLayer
 	{
 		if(GetTree().Paused)
 			Resume();
-		else
-		{
+        else
+        {
 			Pause();
-		}
+        }
 	}
 	private void Pause()
 	{
@@ -60,4 +64,5 @@ public partial class PauseMenu : CanvasLayer
 		GetTree().Paused = false;
 		SceneManager.instance.LoadMainMenu();
 	}
+
 }

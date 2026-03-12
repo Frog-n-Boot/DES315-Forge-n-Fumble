@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://di5odw2tmde5j"]
+
+[ext_resource type="Script" uid="uid://c25evsd3j0b" path="res://src/Sword.cs" id="1_d8pt4"]
+[ext_resource type="Texture2D" uid="uid://c0bfpxgvk16um" path="res://assets/materials/Texture_sets/Item_Textures/sword_scnd_shin_low_BaseCol.tga" id="1_uek6e"]
+[ext_resource type="Texture2D" uid="uid://rddx0mwdr571" path="res://assets/materials/Texture_sets/Item_Textures/sword_scnd_shin_low_Normal.tga" id="2_d8pt4"]
+[ext_resource type="Texture2D" uid="uid://cfllkfsxak7hb" path="res://assets/materials/Texture_sets/Item_Textures/sword_frts_rough_low_Normal.tga" id="3_xvnj0"]
+[ext_resource type="Texture2D" uid="uid://dspkvve6wtnc3" path="res://assets/materials/Texture_sets/Item_Textures/sword_scnd_shin_low_ORM.tga" id="4_gsg4f"]
+[ext_resource type="ArrayMesh" uid="uid://vmdklfvgul40" path="res://assets/models/FinalAssets_Low/Items_Models/Sword_first_low.obj" id="5_acyf5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p43h7"]
+size = Vector3(7.15668, 1.6914063, 14.032881)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hgo20"]
+size = Vector3(1.742096, 1.691742, 4.7293167)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_7epq2"]
+albedo_texture = ExtResource("1_uek6e")
+orm_texture = ExtResource("4_gsg4f")
+normal_enabled = true
+normal_texture = ExtResource("3_xvnj0")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_d8pt4")
+
+[node name="IronSword" type="Node3D" unique_id=1461625584]
+script = ExtResource("1_d8pt4")
+damage = 3
+maxDurability = 20
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1544211731 groups=["Sword", "Weapon"]]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1242660499 groups=["Sword", "Weapon"]]
+transform = Transform3D(0.20340535, 7.280779e-16, 0, -9.030175e-17, 1.6399343, 0, 0, 0, 0.09999602, 0.042955518, 1.1159185, 0.018537523)
+shape = SubResource("BoxShape3D_p43h7")
+disabled = true
+
+[node name="Area3D" type="Area3D" parent="StaticBody3D" unique_id=852979152 groups=["Sword", "Weapon"]]
+collision_layer = 24
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/Area3D" unique_id=305553541]
+transform = Transform3D(0.62693906, 0, 0, 0, 1.6399509, 0, 0, 0, 0.18563555, 0.004778548, 1.1241063, -0.01556235)
+shape = SubResource("BoxShape3D_hgo20")
+
+[node name="SwordFirstLow" type="MeshInstance3D" parent="." unique_id=204139238]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+material_override = SubResource("ORMMaterial3D_7epq2")
+mesh = ExtResource("5_acyf5")

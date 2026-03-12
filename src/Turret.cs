@@ -86,7 +86,6 @@ public partial class Turret : Node3D
 		bulletCount--;
 		label.Text = $"{bulletCount}";
 
-		
 	}
 
 	private Node3D FindClosestEnemy()

@@ -9,9 +9,9 @@ public partial class MainMenu : Control
 	
 
 	public override void _Ready()
-	{
-		startButton.GrabFocus();
-	}
+    {
+        startButton.GrabFocus();
+    }
 
 	public void OnStartButtonPressed() => SceneManager.instance.LoadGame();
 
