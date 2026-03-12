@@ -83,7 +83,7 @@ stream_0 = ExtResource("10_yd14g")
 stream_1 = ExtResource("11_i2ejw")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wq66q"]
-radius = 10.211426
+radius = 5.400879
 height = 20.422852
 
 [node name="Forge" type="Node3D" unique_id=994045895 node_paths=PackedStringArray("audio", "healthAura", "inputNode", "outputNode", "timeProgressBar", "stationName") groups=["Forge", "Station"]]
@@ -105,7 +105,7 @@ collision_layer = 160
 collision_mask = 6
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=250762080]
-transform = Transform3D(30, 0, 0, 0, 20, 0, 0, 0, 35, -0.90197325, 4.816896, -0.24419785)
+transform = Transform3D(30, 0, 0, 0, 20, 0, 0, 0, 73.057686, -0.90197325, 4.816896, -0.24419785)
 visible = false
 shape = SubResource("BoxShape3D_5b8nd")
 
@@ -163,5 +163,6 @@ collision_layer = 160
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1789318158]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18530273, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.83222485, 0, 0.18530273, 0.77709883)
+visible = false
 shape = SubResource("CapsuleShape3D_wq66q")
