@@ -14,11 +14,17 @@ public partial class SceneManager : Node
 
 	public void LoadScene(string path)
 	{
+		GetTree().Paused = false;
 		GetTree().ChangeSceneToFile(path);
+	}
+	public void ReloadCurrentScene()
+	{
+		GetTree().Paused = false;
+		GetTree().ReloadCurrentScene();
 	}
 
 	public void LoadMainMenu() => LoadScene("res://scenes/MainMenu.tscn");
-	public void LoadGame() => LoadScene("res://scenes/testing_lab.tscn");
+	public void LoadGame() => LoadScene("res://scenes/PLEASE_tutorital.tscn");
 	public void LoadSettings()
 	{
 		previousScene = GetTree().CurrentScene.SceneFilePath;

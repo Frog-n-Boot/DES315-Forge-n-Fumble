@@ -6,13 +6,13 @@
 
 [resource]
 script = ExtResource("1_mvv2o")
+enemyName = "Hobgoblins"
 maxHealth = 30
 damage = 5
-damageToPlayer = 30
 speed = 2.0
 color = Color(1, 0, 1, 1)
 scale = Vector3(2, 2, 2)
-lootDropChance = 10.0
+lootDropChance = 20.0
 enemyMat = ExtResource("1_cj5mm")
 enemyMesh = ExtResource("2_pfp6m")
 metadata/_custom_type_script = "uid://bf02wgjk36psn"

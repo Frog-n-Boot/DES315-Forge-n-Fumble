@@ -6,14 +6,14 @@ public partial class Turret : Node3D
 {
 	[Export] private Node3D bulletSpawnLocation;
 	[Export] private PackedScene bulletScene;
-	[Export] private float range = 20.0f;
-	[Export] private float coneAngle = 65.0f;
+	[Export] public float range = 20.0f;
+	[Export] public float coneAngle = 65.0f;
 	[Export] protected Node3D inputNode;
 	[Export] protected Label label;
 
 	protected ItemCarrier itemCarrier;
 	protected PlayerController player;
-    private List<PlayerController> playersInZone = new List<PlayerController>();
+	private List<PlayerController> playersInZone = new List<PlayerController>();
 	private int bulletCount= 10;
 
 	private Node3D currentTarget;
@@ -28,31 +28,31 @@ public partial class Turret : Node3D
 	}
 
 	private void SetupTimer()
-    {
-        shootTimer = new Timer();
+	{
+		shootTimer = new Timer();
 		shootTimer.WaitTime = 1.0f;
 		shootTimer.OneShot= false;
 		AddChild(shootTimer);
 		shootTimer.Timeout += SpawnBullet;
 		shootTimer.Start();
-    }
+	}
 
 	private void SetupArea()
-    {
+	{
 		if(inputNode == null)
 		{
 			GD.Print($"{Name}: inputNode is not assigned");
 			return;
 		}
 
-        var inputArea = inputNode.GetNode<Area3D>("Area3D");
+		var inputArea = inputNode.GetNode<Area3D>("Area3D");
 		if(inputArea != null)
 		{
 			inputArea.BodyEntered += OnInputBodyEntered;
 		}
 		else
 			GD.Print("Input are not found");
-    }
+	}
 
 	public override void _Process(double delta)
 	{
@@ -86,7 +86,6 @@ public partial class Turret : Node3D
 		bulletCount--;
 		label.Text = $"{bulletCount}";
 
-		
 	}
 
 	private Node3D FindClosestEnemy()
@@ -121,22 +120,22 @@ public partial class Turret : Node3D
 		return closest;
 	}
 	public void OnInputBodyEntered(Node3D body)
-    {
-        if (body.IsInGroup("Player"))
-        {
-            var p= body as PlayerController;
-            itemCarrier = p as ItemCarrier;
-            player = p;
-            playersInZone.Add(p);
+	{
+		if (body.IsInGroup("Player"))
+		{
+			var p= body as PlayerController;
+			itemCarrier = p as ItemCarrier;
+			player = p;
+			playersInZone.Add(p);
 			CheckItem();
-        }
-    }
+		}
+	}
 	private void CheckItem()
 	{
 		var items= itemCarrier.GetCarriedItems();
 		foreach(var item in items)
 		{
-			if(item.name == "Ingot")
+			if(item.name == "Iron_Ingot")
 			{
 				GD.Print("Ingot was added");
 				bulletCount += 10;

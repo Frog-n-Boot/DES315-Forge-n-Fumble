@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://o7vvnubwicff"]
+
+[ext_resource type="Texture2D" uid="uid://l45fkj74rs44" path="res://assets/materials/Texture_sets/Item_Textures/Ingots_comb_low_BaseCol.tga" id="1_rw80w"]
+[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Pickable.cs" id="1_td1gg"]
+[ext_resource type="Texture2D" uid="uid://dt7t6tu8lnf8y" path="res://assets/materials/Texture_sets/Item_Textures/Ingots_comb_low_Normal.tga" id="2_td1gg"]
+[ext_resource type="Texture2D" uid="uid://c4lqlcwn73h60" path="res://assets/materials/Texture_sets/Item_Textures/Ingots_comb_low_ORM.tga" id="3_2fls7"]
+[ext_resource type="ArrayMesh" uid="uid://qrqif26big5o" path="res://assets/models/FinalAssets_Low/Items_Models/Ing_iron_low.obj" id="4_6ylmd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uaukt"]
+size = Vector3(0.41238403, 1.7871704, 1.1733398)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_vs45c"]
+albedo_texture = ExtResource("1_rw80w")
+orm_texture = ExtResource("3_2fls7")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_td1gg")
+
+[node name="IronIngot" type="Node3D" unique_id=2071596505]
+script = ExtResource("1_td1gg")
+itemDataPath = "uid://bualj2s73esd2"
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1068587397 groups=["pickable"]]
+transform = Transform3D(1, 0, 0, 0, 0.1894375, 0, 0, 0, 0.7128166, 0, 0, 0)
+collision_layer = 16
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=837575792]
+transform = Transform3D(1.6660101, 0, 0, 0, 1.7407122, 0, 0, 0, 1.2056247, 0.0068206787, 0.3935852, 0.08666992)
+shape = SubResource("BoxShape3D_uaukt")
+
+[node name="IngIronLow" type="MeshInstance3D" parent="Area3D" unique_id=926745115]
+transform = Transform3D(1, 0, 0, 0, 5.278786, 0, 0, 0, 1.4028854, 0, 0, 0)
+material_override = SubResource("ORMMaterial3D_vs45c")
+mesh = ExtResource("4_6ylmd")
+skeleton = NodePath("../..")

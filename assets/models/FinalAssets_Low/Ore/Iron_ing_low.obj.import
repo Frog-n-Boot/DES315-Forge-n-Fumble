@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c4fwx076gmst6"
+path="res://.godot/imported/Iron_ing_low.obj-25b3a1c6fb401a46bd410d6eb6fea9fa.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Iron_ing_low.obj-25b3a1c6fb401a46bd410d6eb6fea9fa.mesh"]
+
+source_file="res://assets/models/FinalAssets_Low/Ore/Iron_ing_low.obj"
+dest_files=["res://.godot/imported/Iron_ing_low.obj-25b3a1c6fb401a46bd410d6eb6fea9fa.mesh", "res://.godot/imported/Iron_ing_low.obj-25b3a1c6fb401a46bd410d6eb6fea9fa.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

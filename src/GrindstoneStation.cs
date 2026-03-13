@@ -18,14 +18,9 @@ public partial class GrindstoneStation : BaseStationScript
 
 	protected override void OnCraftingRequirementsMet()
 	{
-		if(GetRequiredItems(out var items, out var recipe))
-		{
-			foreach(var item in items)
-				itemCarrier.RemoveItem(item);
-			
-			craftingTimer.Start();
-			grindstoneSound.Play();
-		}
+		craftingTimer.Start();
+		grindstoneSound.Play();
 	}
+	public float GetCraftDuration()=> craftDuration;
 
 }

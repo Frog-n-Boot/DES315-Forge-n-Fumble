@@ -6,10 +6,10 @@
 
 [resource]
 script = ExtResource("1_r3mip")
-enemyName = "FastEnemy"
+enemyName = "Skeleton"
 damage = 1
 color = Color(0, 0, 1, 1)
-lootDropChance = 10.0
+lootDropChance = 20.0
 enemyMat = ExtResource("1_40oxs")
 enemyMesh = ExtResource("2_62tat")
 metadata/_custom_type_script = "uid://bf02wgjk36psn"

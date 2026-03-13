@@ -9,19 +9,26 @@ public partial class LootTable : Node3D
 	#region Variables
 
 	/* ---- Percentage range for the items ----- */
-	[Export(PropertyHint.Range, "0,100,1")] public int oreDropChance;
+	[Export(PropertyHint.Range, "0,100,1")] public int dropChance = 60;
+	[Export(PropertyHint.Range, "0,100,1")] public int copperDropChance = 40;
+	[Export(PropertyHint.Range, "0,100,1")] public int ironDropChance = 30;
+	[Export(PropertyHint.Range, "0,100,1")] public int goldDropChance =20;
+	[Export(PropertyHint.Range, "0,100,1")] public int damasDropChance = 10;
 	//[Export(PropertyHint.Range, "0,100,1")] public int ingotDropChance;
-	[Export(PropertyHint.Range, "0,100,1")] public int healthPackDropChance;
+	[Export(PropertyHint.Range, "0,100,1")] public int healthPackDropChance = 20;
 
 	/* ---- Packed scenes ---- */
-	private PackedScene item;
-	[Export] public PackedScene oreObject { get; private set; }
+	//private PackedScene item;
+	[Export] public PackedScene copperOre { get; private set; }
+	[Export] public PackedScene ironOre { get; private set; }
+	[Export] public PackedScene goldOre { get; private set; }
+	[Export] public PackedScene damasOre { get; private set; }
 	//[Export] public PackedScene ingotObject { get; private set; }
 	[Export] public PackedScene healthPackObject { get; private set; }
 
 	/* ---- Random number generators ---- */
-	RandomNumberGenerator num = new RandomNumberGenerator();
-	RandomNumberGenerator dropType = new RandomNumberGenerator();
+	RandomNumberGenerator rng = new RandomNumberGenerator();
+	//RandomNumberGenerator dropType = new RandomNumberGenerator();
 
 	#endregion
 
@@ -33,15 +40,16 @@ public partial class LootTable : Node3D
 	public override void _Ready()
 	{
 		
-		num.Randomize();
-		if(oreObject == null)
-		{
-			oreObject = GD.Load<PackedScene>("res://assets/models/Ore.tscn");
-		}
-		// if(ingotObject == null)
-		// {
-		// 	ingotObject = GD.Load<PackedScene>("res://Objects/Ingot.tscn");
-		// }
+		rng.Randomize();
+		if(copperOre == null)
+			copperOre = GD.Load<PackedScene>("res://assets/models/FinalAssets_Low/Ore/Copper_Ore.tscn");
+		if(ironOre == null)
+			ironOre = GD.Load<PackedScene>("res://assets/models/FinalAssets_Low/Ore/Iron_Ore.tscn");
+		if(goldOre == null)
+			goldOre = GD.Load<PackedScene>("res://assets/models/FinalAssets_Low/Ore/Gold_Ore.tscn");
+		if(damasOre == null)
+			damasOre = GD.Load<PackedScene>("res://assets/models/FinalAssets_Low/Ore/Damas_Ore.tscn");
+
 		if(healthPackObject == null)
 		{
 			healthPackObject = GD.Load<PackedScene>("res://assets/models/Healthpack.tscn");
@@ -57,50 +65,41 @@ public partial class LootTable : Node3D
 	public void GetLoot(EnemyController enemy, Vector3 dropPosition)
 	{
 
-		float random = num.RandfRange(0, 100);
+		PackedScene itemToDrop = GetRandomItem();
 
-		//Compare if random value is less then enemy dropChance
-		if(random < 60)
+		if(itemToDrop != null)
 		{
-			int ore = Mathf.Clamp(oreDropChance, 0, 100);
-			//int ingot = Mathf.Clamp(ingotDropChance, 0, 100);
-			int healthPack = Mathf.Clamp(healthPackDropChance, 0, 100);
-			int total = ore  + healthPack;
+			var droppedItem = itemToDrop.Instantiate<Node3D>();
+			GetTree().Root.AddChild(droppedItem);
+			droppedItem.GlobalPosition = dropPosition;
 
-			if(total != 100)
-			{
-				float scale = 100.0f/ total;
-				ore = Mathf.RoundToInt(ore * scale);
-				//ingot = Mathf.RoundToInt(ingot * scale);
-				healthPack = 100 - ore; //- ingot;
-			}
-			dropType.Randomize();
-			int dropCase = dropType.RandiRange(1, 100);
+			if(droppedItem is Pickable pickable)
+				pickable.shouldDespawn = true;
 			
-			Node3D droppedItem = null;
-			if(dropCase <= ore)
-			{
-				item = oreObject;
-				droppedItem = item.Instantiate<Node3D>();
-			}
-			// else if(dropCase <= stick + ingot)
-			// {
-			// 	item = ingotObject;
-			// 	droppedItem = item.Instantiate<Node3D>();
-			// }
-			else
-			{
-				item = healthPackObject;
-				droppedItem = item.Instantiate<Node3D>();
-			}
-
-			//Spawns item in the world on the enemies position
-			if(droppedItem != null)
-			{
-				GetTree().Root.AddChild(droppedItem);
-				droppedItem.GlobalPosition = dropPosition;
-			}
 		}
+		
+	}
+
+	private PackedScene GetRandomItem()
+	{
+		int totalChance = copperDropChance + ironDropChance + goldDropChance + damasDropChance + healthPackDropChance;
+
+		int roll = rng.RandiRange(0, totalChance - 1);
+		int currentChance = 0;
+		
+		currentChance += copperDropChance;
+		if(roll < currentChance) return copperOre;
+
+		currentChance += ironDropChance;
+		if(roll < currentChance) return ironOre;
+
+		currentChance += goldDropChance;
+		if(roll < currentChance) return goldOre;
+
+		currentChance += damasDropChance;
+		if(roll < currentChance) return damasOre;
+
+		return healthPackObject;
 	}
 	#endregion
 }

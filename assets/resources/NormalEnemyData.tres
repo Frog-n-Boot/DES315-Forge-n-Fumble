@@ -6,12 +6,11 @@
 
 [resource]
 script = ExtResource("1_ptvci")
-enemyName = "NormalEnemy"
+enemyName = "Goblin"
 damage = 1
-damageToPlayer = 15
 speed = 3.0
 color = Color(1, 1, 1, 1)
-lootDropChance = 10.0
+lootDropChance = 20.0
 enemyMat = ExtResource("1_7n161")
 enemyMesh = ExtResource("2_mq6ke")
 metadata/_custom_type_script = "uid://bf02wgjk36psn"
