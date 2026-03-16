@@ -56,8 +56,10 @@ public partial class EnemyController : Node3D
 	private void TakeHealthDamage(int amount)
 	{
 		if (amount <= 0) return;
+
 		int oldHealth = currentHealth;
 		currentHealth = Mathf.Clamp(currentHealth - amount, 0, MaxHealth);
+		
 		if (oldHealth != currentHealth)
 		{
 			EmitSignal(SignalName.EnemyHealthChanged, currentHealth, MaxHealth);
@@ -347,6 +349,7 @@ public partial class EnemyController : Node3D
 	{
 		Flash();
 		TakeHealthDamage(amount);
+		DamageNumbers.Spawn(amount, GlobalPosition, GetParent());
 	}
 
 	public void Die()

@@ -61,13 +61,14 @@ public partial class Sword : MeleeWeapon
 	}
 	public int GetComboDamage()
 	{
-		return comboCount switch
+		int baseDamage = comboCount switch
 		{
 			1 => damage,
 			2 => damage + 1,
 			3 => damage + 3,
 			_ => damage
 		};
+		return durability == 1 ? baseDamage * 3: baseDamage;
 	}
 	public void DamageWeapon(int amount)
 	{
@@ -75,4 +76,5 @@ public partial class Sword : MeleeWeapon
 		EmitSignal(SignalName.CheckDurability);
 		TakeDurabilityDamage(0);
 	}
+	
 }

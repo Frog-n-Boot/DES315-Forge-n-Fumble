@@ -28,6 +28,8 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	[Export] public float playerSpawnTimer;
 	[Export] private Texture2D[] playerMaterialTextures;
 	[Export] public float flashDuration = 0.2f;
+	[Export] public float spinStartThreshold = 3.0f;
+	[Export] public float spinStopThreshold = 1.0f;
 
 	public Texture2D GetPortraitTexture() => playerTextures[PlayerIndex];
 	public int currentDevice = -2;
@@ -60,6 +62,8 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 	private InputBuffer inputBuffer;
 	
+	private SpinAttack spinAttack;
+	private float lastRotation = 0f;
 
 	public IEnumerable<ItemData> GetCarriedItems()
 	{
@@ -132,6 +136,9 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		}
 
 		pickupPrompt = pickupNode.GetNode<Label3D>("Label3D");
+
+		spinAttack = GetNode<SpinAttack>("SpinAttack");
+		lastRotation = Rotation.Y;
 	}
 	
 	private void FindExistingSword()
@@ -175,6 +182,23 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 	public override void _Process(double delta)
 	{
+		if(spinAttack.IsDazed()) return;
+
+		float rotationSpeed = Mathf.Abs(Rotation.Y - lastRotation) / (float)delta;
+		lastRotation = Rotation.Y;
+
+		if(rotationSpeed > spinStartThreshold && !spinAttack.IsCharging())
+		{
+			spinAttack.StartCharging();
+		}
+			
+		
+		if(rotationSpeed < spinStopThreshold && spinAttack.IsCharging())
+		{
+			spinAttack.StopCharging();
+		}
+			
+
 		if(sequenceMinigame != null && sequenceMinigame.IsActiveFor(this))
 			return;
 
@@ -529,7 +553,8 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			rightHand.Rotation = Vector3.Zero;
 
 			currentWeapon = nearbyWeapon;
-			
+			nearbyWeapon.SetOwner(this);
+
 			if(currentWeapon is Sword sword)
 			{	
 				if(!sword.IsConnected(Sword.SignalName.ComboReset, Callable.From(OnComboReset)))
@@ -548,6 +573,8 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			currentWeapon.isBeingPickedUp = false;
 			nearbyWeapon = null;
 			
+			if(currentWeapon is MeleeWeapon melee)
+				spinAttack.SetWeapon(melee);
 		};
 	}
 	private Vector3 GetLookVector()
@@ -660,6 +687,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	{
 		health -= damage;
 		Flash();
+		DamageNumbers.Spawn(damage, GlobalPosition, GetParent());
 		EmitSignal(SignalName.PlayerHealthChanged, health, maxHealth);
 	}
 	public void Heal(float amount)

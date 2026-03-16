@@ -58,13 +58,6 @@
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_wko22"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ptwec"]
-albedo_color = Color(0, 0.16470589, 0, 1)
-uv1_scale = Vector3(10, 10, 10)
-uv1_triplanar = true
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_3lnvk"]
-
 [sub_resource type="Resource" id="Resource_ky1k5"]
 script = ExtResource("20_t8lul")
 amount = 40
@@ -202,10 +195,10 @@ fog_density = 1.0
 fog_depth_end = 242.5
 volumetric_fog_density = 0.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_dxjg1"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ky1k5"]
 viewport_path = NodePath("Sprite3D/SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_oi252"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_8sdqg"]
 viewport_path = NodePath("Sprite3D/SubViewport")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cvaul"]
@@ -232,16 +225,18 @@ shadow_size = 3
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7dxqx"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ptwec"]
+albedo_color = Color(0, 0.16470589, 0, 1)
+uv1_scale = Vector3(10, 10, 10)
+uv1_triplanar = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3lnvk"]
+
 [node name="TestingLab" type="StaticBody3D" unique_id=127569902]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1286559043]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_wko22")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1902630742]
-transform = Transform3D(16.996313, 0, 0, 0, 16.996313, 0, 0, 0, 17.619446, 0.28535032, -0.0010001585, 0.040840626)
-material_override = SubResource("StandardMaterial3D_ptwec")
-mesh = SubResource("PlaneMesh_3lnvk")
 
 [node name="CoblWallLow" parent="CollisionShape3D" unique_id=1416519307 instance=ExtResource("2_3qum0")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -2.7648456, 0, 0.053129435)
@@ -1345,7 +1340,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37649155, -0.8498851, -1.91
 
 [node name="Sprite3D" parent="World/Grindstone2" index="3" unique_id=840510996]
 transform = Transform3D(-1.7484555e-07, 0, -4, 0, 4, 0, 4, 0, -1.7484555e-07, -0.022883892, 2.9617476, 0)
-texture = SubResource("ViewportTexture_dxjg1")
+texture = SubResource("ViewportTexture_ky1k5")
 
 [node name="Anvil" parent="World" unique_id=476401340 instance=ExtResource("22_3w1al")]
 transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, -14.653336, 0.124243736, 5.9914675)
@@ -1355,7 +1350,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7.54
 
 [node name="Sprite3D" parent="World/Anvil2" index="3" unique_id=840510996]
 transform = Transform3D(-2.359344e-07, 0, -4, 0, 4, 0, 5.3975496, 0, -1.7484555e-07, -0.69661474, 3.8950515, 0.23757124)
-texture = SubResource("ViewportTexture_oi252")
+texture = SubResource("ViewportTexture_8sdqg")
 
 [node name="Forge" parent="World" unique_id=994045895 instance=ExtResource("2_ptwec")]
 transform = Transform3D(-0.34999743, 0, 0.0013377805, 0, 0.35, 0, -0.0013377805, 0, -0.34999743, -3.7808273, 0.038991988, 0.5228681)
@@ -2007,6 +2002,11 @@ text = "Apply
 
 "
 metadata/_edit_use_anchors_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1897110575]
+transform = Transform3D(60.49591, 0, 0, 0, 16.996313, 0, 0, 0, 59.656067, 0.28535032, -0.0010001585, 0.040840626)
+material_override = SubResource("StandardMaterial3D_ptwec")
+mesh = SubResource("PlaneMesh_3lnvk")
 
 [connection signal="pressed" from="PauseMenu/ResumeButton" to="PauseMenu" method="OnResumePressed"]
 [connection signal="pressed" from="PauseMenu/SettingsButton" to="PauseMenu" method="OnSettingsPressed"]

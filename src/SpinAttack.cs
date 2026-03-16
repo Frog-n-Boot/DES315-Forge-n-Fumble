@@ -1,15 +1,140 @@
 using Godot;
 using System;
+using System.ComponentModel;
 
 public partial class SpinAttack : Node
 {
+	[Export] public int maxSpinCharges = 3;
+	[Export] public float spinChargeTimeout = 1.0f;
+	[Export] public float maxSpinTime = 5.0f;
+	[Export] public float spinThreshold = 360f;
+
+	[Signal] public delegate void SpinChargeGainedEventHandler(int currentCharges, int maxCharges);
+	[Signal] public delegate void SpinAttackReadyEventHandler(int charges);
+	[Signal] public delegate void SpinAttackCancelledEventHandler();
+	[Signal] public delegate void CharacterDazedEventHandler();
+
+	private int spinCharges;
+	private float spinChargeTimer;
+	private float totalSpinTimer;
+	private float accumulatedRotation;
+	private float startRotationY;
+	private bool isCharging;
+	private Node3D parent;
+	private MeleeWeapon currentWeapon;
+	private bool isDazed;
+
 	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
+	public override void _Ready() => parent = GetParent<Node3D>();
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		if(isDazed || !isCharging) return;
+		
+		GD.Print($"Charging! Timer: {spinChargeTimer}, Rotation:{parent.Rotation.Y}");
+		totalSpinTimer += (float)delta;
+
+		if(totalSpinTimer >= maxSpinTime)
+		{
+			TriggerDaze();
+			return;
+		}
+
+		spinChargeTimer -= (float)delta;
+		if(spinChargeTimer <= 0)
+		{
+			CancelSpin();
+			return;
+		}
+
+		float currentRotation = parent.Rotation.Y;
+		float frameDelta = Mathf.AngleDifference(startRotationY, currentRotation);
+		if(Mathf.Sign(frameDelta) == Mathf.Sign(accumulatedRotation) || accumulatedRotation == 0)
+		{
+			accumulatedRotation += frameDelta;
+		}
+		else
+		{
+			accumulatedRotation = frameDelta;
+		}
+		startRotationY = currentRotation;
+		float totalDegrees = Mathf.RadToDeg(Mathf.Abs(accumulatedRotation));
+
+		if(totalDegrees >= spinThreshold)
+		{
+			spinCharges++;
+			GD.Print($">>> Charge Gained! Total: {spinCharges}/{maxSpinCharges} <<<");
+
+			accumulatedRotation = 0;
+			spinChargeTimer = spinChargeTimeout;
+
+			if(spinCharges >= maxSpinCharges)
+			{
+				ExecuteSpinAttack();
+			}
+		}
+		else
+		{
+			startRotationY = currentRotation;
+		}
 	}
+
+	public void StartCharging()
+	{
+		if(isCharging || isDazed) return;
+
+		isCharging = true;
+		spinCharges = 0;
+		spinChargeTimer = spinChargeTimeout;
+		totalSpinTimer = 0f;
+		accumulatedRotation = 0f;
+		startRotationY = parent.Rotation.Y;
+	}
+	public void StopCharging()
+	{
+		if(!isCharging) return;
+		if(spinCharges > 0)
+			ExecuteSpinAttack();
+		else
+			CancelSpin();
+	}
+
+	public void SetWeapon(MeleeWeapon weapon)
+	{
+		currentWeapon = weapon;
+	}
+	private void ExecuteSpinAttack()
+	{
+		GD.Print($"SPIN ATTACK! Power: {spinCharges}");
+
+		if(currentWeapon != null)
+		{
+			currentWeapon.SetHitboxEnabled(true);
+		}
+
+		Reset();
+	}
+
+	private void CancelSpin()
+	{
+		GD.Print("Spin Cancelled");
+		Reset();
+	}
+
+	private void TriggerDaze()
+	{
+		GD.Print("DAZED!");
+		isDazed = true;
+		parent.GetTree().CreateTimer(2.0f).Timeout += () => isDazed = false;
+		Reset();
+	}
+	private void Reset()
+	{
+		isCharging = false;
+		spinCharges = 0;
+	}
+
+	public bool IsCharging() => isCharging;
+	public bool IsDazed() => isDazed;
 }

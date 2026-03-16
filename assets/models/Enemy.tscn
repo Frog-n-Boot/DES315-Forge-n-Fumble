@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bqbrwko4kb7sp" path="res://src/EnemyController.cs" id="1_pfjfy"]
 [ext_resource type="Script" uid="uid://bf02wgjk36psn" path="res://assets/components/EnemyData.cs" id="2_a5uau"]
+[ext_resource type="PackedScene" uid="uid://cglia5ftcdjif" path="res://scenes/Forge Designs/DamageNumber.tscn" id="3_u2d28"]
 [ext_resource type="Script" uid="uid://brp6gsap0s2ok" path="res://src/HealthBar.cs" id="6_c2ay5"]
 
 [sub_resource type="Resource" id="Resource_v6vhh"]
@@ -49,6 +50,7 @@ enemyData = SubResource("Resource_v6vhh")
 moveTarget = NodePath("CharacterBody3D")
 mesh = NodePath("CharacterBody3D/MeshInstance3D")
 collisionArea = NodePath("CharacterBody3D/Area3D")
+damageNumberScene = ExtResource("3_u2d28")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=590602209]
 collision_layer = 4
