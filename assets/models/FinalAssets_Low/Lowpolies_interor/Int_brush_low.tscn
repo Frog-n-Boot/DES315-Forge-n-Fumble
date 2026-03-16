@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dqosnddn0nnq4"]
+
+[ext_resource type="ArrayMesh" uid="uid://b6xvy7781xin8" path="res://assets/models/FinalAssets_Low/Lowpolies_interor/Int_brush_low.obj" id="1_rjuxd"]
+[ext_resource type="Material" uid="uid://dbxnf3h2p3kxk" path="res://assets/materials/Texture_sets/Lowpolly_interior_Textures/tools.tres" id="2_bpwk1"]
+
+[node name="IntBrushLow" type="Node3D" unique_id=1515723218]
+
+[node name="IntBrushLow" type="MeshInstance3D" parent="." unique_id=107038392]
+mesh = ExtResource("1_rjuxd")
+surface_material_override/0 = ExtResource("2_bpwk1")

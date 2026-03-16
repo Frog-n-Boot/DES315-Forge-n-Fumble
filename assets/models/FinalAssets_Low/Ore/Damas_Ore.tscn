@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://c3vh51tshqcxw"]
+[gd_scene format=3 uid="uid://bfvifq667vxvj"]
 
 [ext_resource type="Texture2D" uid="uid://b163ru6y04fds" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_BaseCol.tga" id="1_34kg5"]
 [ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Pickable.cs" id="1_qeo4k"]
@@ -18,6 +18,7 @@ heightmap_texture = ExtResource("2_qeo4k")
 [node name="DamasOre" type="Node3D" unique_id=692066931]
 script = ExtResource("1_qeo4k")
 itemDataPath = "uid://rj5laf73xbp8"
+shouldDespawn = true
 
 [node name="Area3D" type="Area3D" parent="." unique_id=929783519 groups=["pickable"]]
 collision_layer = 16

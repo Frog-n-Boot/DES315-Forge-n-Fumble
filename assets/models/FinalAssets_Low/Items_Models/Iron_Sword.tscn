@@ -23,8 +23,8 @@ heightmap_texture = ExtResource("2_d8pt4")
 
 [node name="IronSword" type="Node3D" unique_id=1461625584]
 script = ExtResource("1_d8pt4")
-damage = 5
-maxDurability = 50
+damage = 3
+maxDurability = 20
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1544211731 groups=["Sword", "Weapon"]]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)

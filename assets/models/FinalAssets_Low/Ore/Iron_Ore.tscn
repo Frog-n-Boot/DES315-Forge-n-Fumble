@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dgisu3p5x1t6w"]
+[gd_scene format=3 uid="uid://ckbl1y013dodk"]
 
 [ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Pickable.cs" id="1_h3w5l"]
 [ext_resource type="Texture2D" uid="uid://l45fkj74rs44" path="res://assets/materials/Texture_sets/Item_Textures/Ingots_comb_low_BaseCol.tga" id="2_ggg7d"]
@@ -7,7 +7,7 @@
 [ext_resource type="ArrayMesh" uid="uid://c4fwx076gmst6" path="res://assets/models/FinalAssets_Low/Ore/Iron_ing_low.obj" id="5_wwwv2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a5fh3"]
-size = Vector3(1.3615723, 1.1378174, 1.3993378)
+size = Vector3(1, 1.1378174, 0.91204834)
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_ew43c"]
 albedo_texture = ExtResource("2_ggg7d")
@@ -18,13 +18,15 @@ heightmap_texture = ExtResource("3_me13d")
 [node name="IronOre" type="Node3D" unique_id=904125942]
 script = ExtResource("1_h3w5l")
 itemDataPath = "uid://cju2wsngeff7w"
+shouldDespawn = true
 
 [node name="Area3D" type="Area3D" parent="." unique_id=936835074 groups=["pickable"]]
 collision_layer = 16
 collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1204652050]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014045715, 0.33461, -0.021955252)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06890869, 0.30264282)
+visible = false
 shape = SubResource("BoxShape3D_a5fh3")
 
 [node name="IronIngLow" type="MeshInstance3D" parent="Area3D" unique_id=367878465]

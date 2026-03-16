@@ -225,7 +225,7 @@ rightHand = NodePath("CollisionShape3D/RightHand")
 leftHand = NodePath("CollisionShape3D/LeftHand")
 areaPickup = NodePath("Area3D")
 playerTextures = Array[Texture2D]([ExtResource("3_ob8sk"), ExtResource("4_gp7mg"), ExtResource("5_yv8gf"), ExtResource("6_glr06")])
-pickupNode = NodePath("PickUpNode3D")
+pickupNode = NodePath("CanvasLayer/PickUpNode3D")
 playerSpawnTimer = 3.0
 playerMaterialTextures = Array[Texture2D]([ExtResource("3_v0ggv"), ExtResource("8_ob8sk"), ExtResource("5_ag2w6"), ExtResource("6_so67x")])
 
@@ -269,8 +269,9 @@ volume_db = -80.0
 max_db = -24.0
 max_polyphony = 10
 
-[node name="PickUpNode3D" type="Node3D" parent="." unique_id=400310919]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1391184845]
+
+[node name="PickUpNode3D" type="Node3D" parent="CanvasLayer" unique_id=400310919]
 transform = Transform3D(1.6779308, 0, 0, 0, 1.8431246, 0, 0, 0, 1, 0, 2.7833214, 0)
 
-[node name="Label3D" type="Label3D" parent="PickUpNode3D" unique_id=1684088306]
-visible = false
+[node name="Label3D" type="Label3D" parent="CanvasLayer/PickUpNode3D" unique_id=1684088306]

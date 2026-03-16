@@ -1,0 +1,11 @@
+[gd_resource type="ORMMaterial3D" format=3 uid="uid://b48wwrdwdinn5"]
+
+[ext_resource type="Texture2D" uid="uid://c3vqmyurdxjsq" path="res://assets/models/FinalAssets_Low/Foliage/Spruce_Bark_BaseCol.tga" id="1_pawiw"]
+[ext_resource type="Texture2D" uid="uid://djnfynixuevn7" path="res://assets/models/FinalAssets_Low/Foliage/Spruce_Bark_Normal.tga" id="2_t8v8s"]
+[ext_resource type="Texture2D" uid="uid://c6tlmxmi8brto" path="res://assets/models/FinalAssets_Low/Foliage/Spruce_Bark_ORM.tga" id="3_26lem"]
+
+[resource]
+albedo_texture = ExtResource("1_pawiw")
+orm_texture = ExtResource("3_26lem")
+normal_enabled = true
+normal_texture = ExtResource("2_t8v8s")

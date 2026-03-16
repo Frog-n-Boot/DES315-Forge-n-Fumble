@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Forge-n-Fumble"
-run/main_scene="uid://88oq7ysmwuhi"
+run/main_scene="uid://gss55unqbc70"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 run/max_fps=60
 config/icon="res://icon.svg"
@@ -42,6 +42,10 @@ window/vsync/vsync_mode=0
 [dotnet]
 
 project/assembly_name="Forge-n-Fumble"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/proton_scatter/plugin.cfg")
 
 [global_group]
 

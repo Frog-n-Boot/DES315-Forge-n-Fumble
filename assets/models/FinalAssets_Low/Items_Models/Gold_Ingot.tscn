@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://gahj37vypwvd"]
+[gd_scene format=3 uid="uid://bay85dbpt3qio"]
 
 [ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Pickable.cs" id="1_ufjs1"]
 [ext_resource type="Texture2D" uid="uid://l45fkj74rs44" path="res://assets/materials/Texture_sets/Item_Textures/Ingots_comb_low_BaseCol.tga" id="1_w6pec"]

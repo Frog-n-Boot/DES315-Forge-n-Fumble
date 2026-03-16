@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://brmfe3mgthcvt"]
+[gd_scene format=3 uid="uid://d1y4lf17i3iid"]
 
 [ext_resource type="Texture2D" uid="uid://bmsvh2x5p4847" path="res://assets/materials/Texture_sets/Item_Textures/sword_scnd_rough_low_BaseCol.tga" id="1_c726u"]
 [ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Pickable.cs" id="1_j6w72"]

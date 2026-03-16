@@ -344,7 +344,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			DropItem(rightHand);
 		}
 
-		if (@event.IsActionPressed("attack"))
+		if (IsActionJustPressed("attack"))
 		{
 			inputBuffer.BufferInput("attack");			
 		}
@@ -429,8 +429,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		{
 			isAttacking = false;
 
-			if(animName == "Sword_Attack_3")
-				animPlayer.Play("Sword_Idle");
+			animPlayer.Play("Sword_Idle");
 			
 		}
 	}
@@ -661,6 +660,11 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	{
 		health -= damage;
 		Flash();
+		EmitSignal(SignalName.PlayerHealthChanged, health, maxHealth);
+	}
+	public void Heal(float amount)
+	{
+		health = Mathf.Min(health + (int)amount, maxHealth);
 		EmitSignal(SignalName.PlayerHealthChanged, health, maxHealth);
 	}
 

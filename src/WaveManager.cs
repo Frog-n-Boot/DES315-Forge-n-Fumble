@@ -9,6 +9,7 @@ public partial class WaveManager : Node
 	[Export] public Node spawnParent     { get; private set; }
 	[Export] public Node3D targetNode    { get; private set; }
 	[Export] public LootTable lootTable;
+	[Export] private TesultMenu resultMenu;
 
 	[ExportGroup("Enemy Data")]
 	[Export] public EnemyData normalEnemyData;
@@ -213,7 +214,7 @@ public partial class WaveManager : Node
 		if (currentWave >= maxWaves)
 		{
 			OnAllWavesCompleted();
-			GetTree().Quit();
+			resultMenu.ShowWin();
 			return;
 		}
 

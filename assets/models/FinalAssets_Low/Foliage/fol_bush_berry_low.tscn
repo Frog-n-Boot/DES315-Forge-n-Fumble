@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://duuv6poc2gxge"]
+
+[ext_resource type="ArrayMesh" uid="uid://coqgekq1dj3iq" path="res://assets/models/FinalAssets_Low/Foliage/fol_bush_berry_low.obj" id="1_lrlpd"]
+[ext_resource type="Texture2D" uid="uid://cvuq04ldhiixd" path="res://assets/models/FinalAssets_Low/Foliage/Sprce_foilagesheet.png" id="2_q7f7o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t6qou"]
+albedo_texture = ExtResource("2_q7f7o")
+
+[node name="FolBushBerryLow" type="Node3D" unique_id=696546659]
+
+[node name="FolBushBerryLow" type="MeshInstance3D" parent="." unique_id=1192203279]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.070349574, 0, 0.12877369)
+mesh = ExtResource("1_lrlpd")
+surface_material_override/0 = SubResource("StandardMaterial3D_t6qou")

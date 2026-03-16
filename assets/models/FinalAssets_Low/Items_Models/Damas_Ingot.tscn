@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dndfmrn0hhg3t"]
+[gd_scene format=3 uid="uid://kxj85aq1b0n0"]
 
 [ext_resource type="ArrayMesh" uid="uid://dvpbh4kyeprme" path="res://assets/models/FinalAssets_Low/Items_Models/Ing_damas_low.obj" id="1_kkjhe"]
 [ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Pickable.cs" id="1_piwwr"]

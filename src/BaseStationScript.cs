@@ -23,9 +23,11 @@ public abstract partial class BaseStationScript : Node3D
 	protected ItemCarrier itemCarrier;
 	
 	protected CraftingRecipes pendingRecipe;
+	protected List<ItemData> pendingConsume = new List<ItemData>();
 
-	private List<ItemData> itemsToDeposit = new List<ItemData>();
+	protected List<ItemData> itemsToDeposit = new List<ItemData>();
 	 private List<PlayerController> playersInZone = new List<PlayerController>();
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -37,36 +39,45 @@ public abstract partial class BaseStationScript : Node3D
 
 	protected virtual void OnReady(){}
 
-    public override void _Process(double delta)
-    {
-        if(!craftingTimer.IsStopped() && !isOutputOccupied())
+	public override void _Process(double delta)
+	{
+		if(!craftingTimer.IsStopped() && !isOutputOccupied())
 		{
 			timeProgressBar.Value = (1.0 - craftingTimer.TimeLeft / craftDuration) * 100.0f;
 		}
-    }
+	}
 
 
 	protected abstract string GetStationName();
 
 	public bool DepositItems(ItemData item)
-    {
-        if (!IsItemNeeded(item))
-            return false;
-        ProduceOutput();
-        itemsToDeposit.Add(item);
-		StartCrafting();
+	{
+		if (!IsItemNeeded(item))
+			return false;
+
+		//ProduceOutput();
+
+		itemsToDeposit.Add(item);
+
+		if(craftingTimer.IsStopped())
+			StartCrafting();
 		
 		return true;
-    }
+	}
 
 	private bool IsItemNeeded(ItemData item)
-    {
-        foreach(var recipe in recipes)
-			foreach(var requiredName in recipe.requiredItemNames)
-				if(requiredName == item.name)
-					return true;
+	{
+		foreach(var recipe in recipes){
+			var required = recipe.requiredItemNames.Count(n => n == item.name);
+			
+			var deposit = itemsToDeposit.Count(i => i.name == item.name);
+			
+			if(deposit < required)
+				return true;
+		}
+			
 		return false;
-    }
+	}
 	protected bool GetRequiredItems(out List<ItemData> itemsToConsume, out CraftingRecipes matchingRecipe)
 	{
 		itemsToConsume = new List<ItemData>();
@@ -87,15 +98,15 @@ public abstract partial class BaseStationScript : Node3D
 			{
 				bool matchFound = false;
 				for(int i = 0; i < itemsToDeposit.Count; i++)
-                {
-                    if(itemsToDeposit[i].name == requiredName && !usedIndices.Contains(i))
-                    {
-                        usedIndices.Add(i);
+				{
+					if(itemsToDeposit[i].name == requiredName && !usedIndices.Contains(i))
+					{
+						usedIndices.Add(i);
 						found.Add(itemsToDeposit[i]);
 						matchFound = true;
 						break;
-                    }
-                }
+					}
+				}
 
 				if(!matchFound)
 				{
@@ -148,9 +159,10 @@ public abstract partial class BaseStationScript : Node3D
 		{	
 
 			pendingRecipe = recipes;
+			pendingConsume = itemsToConsume;
+			ConsumeItems();
 			OnCraftingRequirementsMet();
-			foreach(var item in itemsToConsume)
-				itemsToDeposit.Remove(item);
+			
 		}
 	}
 
@@ -195,30 +207,30 @@ public abstract partial class BaseStationScript : Node3D
 
 	protected virtual void OnInputBodyEntered(Node3D body)
 	{
-        if (body.IsInGroup("Player"))
-        {
-            var p= body as PlayerController;
-            itemCarrier = p as ItemCarrier;
-            player = p;
-            playersInZone.Add(p);
-            p.SetCurrentStation(this);
-        }
+		if (body.IsInGroup("Player"))
+		{
+			var p= body as PlayerController;
+			itemCarrier = p as ItemCarrier;
+			player = p;
+			playersInZone.Add(p);
+			p.SetCurrentStation(this);
+		}
 		
 	}
 	
 	protected virtual void OnInputBodyExited(Node3D body)
 	{
-        if(body.IsInGroup("Player")){
-            var p = body as PlayerController;
-            playersInZone.Remove(p);
-            p?.SetCurrentStation(null);
+		if(body.IsInGroup("Player")){
+			var p = body as PlayerController;
+			playersInZone.Remove(p);
+			p?.SetCurrentStation(null);
 
 			if(player == p)
 			{
 				player = playersInZone.Count > 0 ? playersInZone[0] : null;
 				itemCarrier = player as ItemCarrier;
 			}
-        }
+		}
 	}
 
 
@@ -252,6 +264,17 @@ public abstract partial class BaseStationScript : Node3D
 	{
 		craftDuration = duration;
 		craftingTimer.WaitTime = duration;
+	}
+
+	protected virtual void ConsumeItems()
+	{
+		if(pendingConsume == null) return;
+		foreach(var item in pendingConsume)
+		{
+			var toRemove = itemsToDeposit.FirstOrDefault(i => i.name == item.name);
+			if(toRemove != null) itemsToDeposit.Remove(toRemove);
+		}
+		pendingConsume = null;
 	}
 
 }

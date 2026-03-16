@@ -29,6 +29,15 @@ ouputScene = ExtResource("4_uhy0b")
 ouputGroup = "Weapon"
 metadata/_custom_type_script = "uid://1bo1o367ybgk"
 
+[sub_resource type="Resource" id="Resource_wc540"]
+script = ExtResource("3_hj04q")
+recipeName = "Iron_Sword"
+requiredItemNames = PackedStringArray("Iron_Dull_Sword")
+ouputName = "Iron_Sword"
+ouputScene = ExtResource("4_uhy0b")
+ouputGroup = "Weapon"
+metadata/_custom_type_script = "uid://1bo1o367ybgk"
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdc31"]
 size = Vector3(1.8046875, 1.8239746, 1)
 
@@ -71,7 +80,7 @@ skeleton = NodePath("../..")
 transform = Transform3D(9.291697, 0, 0, 0, 1.837871, 0, 0, 0, 6.8115783, 0.00969851, 0.88491654, -0.01149559)
 
 [node name="OutputPort" parent="." unique_id=1109718632 instance=ExtResource("3_fgmgg")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.0206666, 0.3782071, 0.9554943)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0206666, 0.3782071, 0.9554943)
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=840510996]
 transform = Transform3D(-1.7484555e-07, 0, 4, 0, 4, 0, -4, 0, -1.7484555e-07, -0.022883892, 2.961748, 0)
