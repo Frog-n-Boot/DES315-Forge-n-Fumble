@@ -34,7 +34,7 @@ ouputGroup = "Weapon"
 metadata/_custom_type_script = "uid://1bo1o367ybgk"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdc31"]
-size = Vector3(2.3283691, 0.8360596, 1)
+size = Vector3(2.227539, 0.8360596, 0.89453125)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5b8a"]
 albedo_texture = ExtResource("4_813ft")
@@ -68,7 +68,7 @@ collision_layer = 32
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=712020585]
-transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, -0.03161621, 0.31784487, 0)
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, -0.055664063, 0.31784487, 0.052734375)
 shape = SubResource("BoxShape3D_rdc31")
 
 [node name="AnvilLow" type="MeshInstance3D" parent="StaticBody3D" unique_id=1240263121]

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c381khip0st2r"]
+
+[ext_resource type="Texture2D" uid="uid://cvuq04ldhiixd" path="res://assets/models/FinalAssets_Low/Foliage/Sprce_foilagesheet.png" id="1_q58vh"]
+[ext_resource type="ArrayMesh" uid="uid://bgei7kuk3q8jp" path="res://assets/models/FinalAssets_Low/Foliage/fol_flowery_patch_low.obj" id="2_0nxg1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2hent"]
+albedo_texture = ExtResource("1_q58vh")
+
+[node name="FolFloweryPatchLow" type="MeshInstance3D" unique_id=157052016]
+material_override = SubResource("StandardMaterial3D_2hent")
+mesh = ExtResource("2_0nxg1")

@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://q7low3ouo0q8"]
+
+[ext_resource type="ArrayMesh" uid="uid://d1w6n382sg3h4" path="res://assets/models/FinalAssets_Low/Foliage/fol_ferns_budded_low.obj" id="1_ed2tq"]
+[ext_resource type="Texture2D" uid="uid://cvuq04ldhiixd" path="res://assets/models/FinalAssets_Low/Foliage/Sprce_foilagesheet.png" id="2_0d081"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3rvvp"]
+albedo_texture = ExtResource("2_0d081")
+
+[node name="FolFernsBuddedLow" type="Node3D" unique_id=594717778]
+
+[node name="FolFernsBuddedLow" type="MeshInstance3D" parent="." unique_id=22010777]
+mesh = ExtResource("1_ed2tq")
+surface_material_override/0 = SubResource("StandardMaterial3D_3rvvp")
