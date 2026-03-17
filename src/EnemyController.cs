@@ -288,6 +288,7 @@ public partial class EnemyController : Node3D
 
 			case "Weapon":
 				BaseWeapon weapon = FindWeaponInHierarchy(body);
+				
 				if (weapon != null)
 				{
 					if(weapon is Sword sword)

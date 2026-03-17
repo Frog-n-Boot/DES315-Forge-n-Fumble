@@ -7,7 +7,10 @@ public partial class SpinAttack : Node
 	[Export] public int maxSpinCharges = 3;
 	[Export] public float spinChargeTimeout = 1.0f;
 	[Export] public float maxSpinTime = 5.0f;
+	[Export] public float spinDuration = 2;
 	[Export] public float spinThreshold = 360f;
+	[Export]private CollisionShape3D collisionShape;
+	//[Export] Area3D spinArea;
 
 	[Signal] public delegate void SpinChargeGainedEventHandler(int currentCharges, int maxCharges);
 	[Signal] public delegate void SpinAttackReadyEventHandler(int charges);
@@ -25,12 +28,19 @@ public partial class SpinAttack : Node
 	private bool isDazed;
 
 	// Called when the node enters the scene tree for the first time.
-	public override void _Ready() => parent = GetParent<Node3D>();
+	public override void _Ready(){
+
+		parent = GetParent<Node3D>();
+		//DisableCollision();
+
+		if(currentWeapon is Sword)
+			SetWeapon(currentWeapon);
+	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if(isDazed || !isCharging) return;
+		if(isDazed || !isCharging || currentWeapon == null) return;
 		
 		GD.Print($"Charging! Timer: {spinChargeTimer}, Rotation:{parent.Rotation.Y}");
 		totalSpinTimer += (float)delta;
@@ -82,7 +92,7 @@ public partial class SpinAttack : Node
 
 	public void StartCharging()
 	{
-		if(isCharging || isDazed) return;
+		if(isCharging || isDazed || currentWeapon == null) return;
 
 		isCharging = true;
 		spinCharges = 0;
@@ -99,18 +109,33 @@ public partial class SpinAttack : Node
 		else
 			CancelSpin();
 	}
-
-	public void SetWeapon(MeleeWeapon weapon)
-	{
-		currentWeapon = weapon;
-	}
+	
 	private void ExecuteSpinAttack()
 	{
 		GD.Print($"SPIN ATTACK! Power: {spinCharges}");
 
 		if(currentWeapon != null)
 		{
-			currentWeapon.SetHitboxEnabled(true);
+			EnableCollision();
+			// //var originalArea = currentWeapon.GetNode<Area3D>("StaticBody3D/Area3D");
+			// var originalCollision = currentWeapon.GetNode<CollisionShape3D>("StaticBody3D/CollisionShape3D");
+			// var originalShape = originalCollision.Shape;
+			// var originalPosition= originalCollision.GlobalPosition;
+			// var originalScale = originalCollision.Scale;
+
+			// var sphereShape = new SphereShape3D();
+			
+			// originalCollision.Shape = sphereShape;
+			// originalCollision.GlobalPosition = new Vector3(parent.GlobalPosition.X, parent.GlobalPosition.Y + 1, parent.GlobalPosition.Z);
+			// originalCollision.Scale = new Vector3(5, 5, 5);
+			
+			// parent.GetTree().CreateTimer(spinDuration).Timeout += () =>
+            // {
+            //     DisableCollision();
+            // };
+
+			//EnableArea();
+			TriggerDaze();
 		}
 
 		Reset();
@@ -129,12 +154,23 @@ public partial class SpinAttack : Node
 		parent.GetTree().CreateTimer(2.0f).Timeout += () => isDazed = false;
 		Reset();
 	}
+
 	private void Reset()
 	{
 		isCharging = false;
 		spinCharges = 0;
+		//DisableCollision();
 	}
 
+	private void DisableCollision(){
+		collisionShape.Disabled = true;
+	}
+
+	private void EnableCollision(){
+		collisionShape.Disabled =false;
+	}
+
+	public void SetWeapon(MeleeWeapon weapon) => currentWeapon = weapon;
 	public bool IsCharging() => isCharging;
 	public bool IsDazed() => isDazed;
 }

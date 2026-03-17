@@ -100,6 +100,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	}
 	public override void _Ready()
 	{
+
 		health = maxHealth;
 		inputBuffer = new InputBuffer();
 		AddChild(inputBuffer);
@@ -149,9 +150,11 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		{
 			if (child is BaseWeapon weapon)
 			{
+
 				currentWeapon = weapon;
 				if( weapon is Sword sword)
 					sword.CheckDurability += OnSwordDurabilityChecked;
+								
 				currentWeapon.Broke += OnSwordBroke;
 				GD.Print($"Player {PlayerIndex} found existing sword in hand!");
 				return;
@@ -760,14 +763,18 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			weapon.SetDeferred("global_position", dropPosition);
 			weapon.SetDeferred("rotation", Vector3.Zero);
 
-			if(weapon is Sword sword)
+			if(weapon is Sword sword){
+				spinAttack.SetWeapon(null);
 				sword.CheckDurability -= OnSwordDurabilityChecked;
+			}
+				
 
 			currentWeapon.Broke -= OnSwordBroke;
 			currentWeapon = null;
 
 			GetTree().CreateTimer(0.1f).Timeout += () =>
 				areaPickup.SetDeferred("monitoring", true);
+			
 			return;
 		}
 

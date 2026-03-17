@@ -213,6 +213,9 @@ random_pitch = 1.7817973
 streams_count = 1
 stream_0/stream = ExtResource("8_jnlb4")
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_gp7mg"]
+radius = 2.648853
+
 [node name="Player" type="CharacterBody3D" unique_id=489937195 node_paths=PackedStringArray("animPlayer", "audio", "rightHand", "leftHand", "areaPickup", "pickupNode") groups=["Player"]]
 collision_layer = 2
 collision_mask = 53
@@ -229,8 +232,6 @@ playerTextures = Array[Texture2D]([ExtResource("3_ob8sk"), ExtResource("4_gp7mg"
 pickupNode = NodePath("CanvasLayer/PickUpNode3D")
 playerSpawnTimer = 3.0
 playerMaterialTextures = Array[Texture2D]([ExtResource("3_v0ggv"), ExtResource("8_ob8sk"), ExtResource("5_ag2w6"), ExtResource("6_so67x")])
-spinStartThreshold = 1.5
-spinStopThreshold = 0.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1437107689 groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.039611816, 0.9244385, 0.058440506)
@@ -279,6 +280,14 @@ transform = Transform3D(1.6779308, 0, 0, 0, 1.8431246, 0, 0, 0, 1, 0, 2.7833214,
 
 [node name="Label3D" type="Label3D" parent="CanvasLayer/PickUpNode3D" unique_id=1684088306]
 
-[node name="SpinAttack" type="Node" parent="." unique_id=1808384668]
+[node name="SpinAttack" type="Node" parent="." unique_id=1808384668 node_paths=PackedStringArray("collisionShape")]
 script = ExtResource("15_gp7mg")
-spinChargeTimeout = 3.0
+collisionShape = NodePath("StaticBody3D/CollisionShape3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SpinAttack" unique_id=147964776 groups=["Sword", "Weapon"]]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpinAttack/StaticBody3D" unique_id=254676150 groups=["Sword", "Weapon"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8003911, 0)
+shape = SubResource("SphereShape3D_gp7mg")
