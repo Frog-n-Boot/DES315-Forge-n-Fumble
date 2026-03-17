@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://88oq7ysmwuhi"]
 
 [ext_resource type="PackedScene" uid="uid://bycamsjulrcwe" path="res://assets/models/FinalAssets_Low/Redone_Assets/Cobl_wall_low.tscn" id="2_3qum0"]
-[ext_resource type="PackedScene" uid="uid://bm6vf4tjk48gj" path="res://assets/models/FinalAssets_Low/Structure_models/forge.tscn" id="2_ptwec"]
 [ext_resource type="PackedScene" uid="uid://8roa2xkb2ipl" path="res://assets/models/player.tscn" id="3_81oh0"]
 [ext_resource type="PackedScene" uid="uid://cxj0fwjqxc5ny" path="res://assets/models/boxes.tscn" id="3_a3bqn"]
 [ext_resource type="Script" uid="uid://dnqtfi3fpu8ue" path="res://src/CameraController.cs" id="3_mndrt"]
@@ -50,6 +49,7 @@
 [ext_resource type="PackedScene" uid="uid://dgguk5limafel" path="res://assets/models/FinalAssets_Low/Ore/Gold_Ore.tscn" id="47_68amh"]
 [ext_resource type="Texture2D" uid="uid://b0h4rjwc5lgiv" path="res://scenes/Forge.webp" id="47_wu60a"]
 [ext_resource type="Script" uid="uid://cqrm013r0malu" path="res://src/TesultMenu.cs" id="49_lqoiw"]
+[ext_resource type="PackedScene" uid="uid://bm6vf4tjk48gj" path="res://assets/models/FinalAssets_Low/Structure_models/forge.tscn" id="50_68amh"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_wko22"]
 
@@ -890,9 +890,6 @@ shouldDespawn = false
 [node name="DebugMenu" parent="." unique_id=731638094 instance=ExtResource("30_7gden")]
 visible = false
 
-[node name="Forge" parent="." unique_id=994045895 instance=ExtResource("2_ptwec")]
-transform = Transform3D(-0.34999743, 0, 0.0013377805, 0, 0.35, 0, -0.0013377805, 0, -0.34999743, -3.6169677, 0.261037, 0.6796417)
-
 [node name="Copper_Ore" parent="." unique_id=1272956383 instance=ExtResource("35_wu60a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7939386, 0.014983, 4.747037)
 shouldDespawn = false
@@ -1306,6 +1303,9 @@ text = "Apply
 
 "
 metadata/_edit_use_anchors_ = true
+
+[node name="Forge" parent="." unique_id=994045895 instance=ExtResource("50_68amh")]
+transform = Transform3D(-0.3499955, 0, 0.0017837193, 0, 0.35000002, 0, -0.0017837193, 0, -0.3499955, -3.3694313, 0.025901914, 0.7784624)
 
 [connection signal="pressed" from="PauseMenu/ResumeButton" to="PauseMenu" method="OnResumePressed"]
 [connection signal="pressed" from="PauseMenu/SettingsButton" to="PauseMenu" method="OnSettingsPressed"]
