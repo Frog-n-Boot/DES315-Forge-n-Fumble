@@ -20,22 +20,27 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	[Export] public PackedScene swordObject { get; private set; }
 	[Export] public AnimationPlayer animPlayer;
 	[Export] private AudioStreamPlayer3D audio;
-
-	private SequenceMinigame sequenceMinigame;
-
 	[Export] private Node3D rightHand;
 	[Export] private Node3D leftHand;
 	[Export] private Area3D areaPickup;
+	[Export] public Texture2D[] playerTextures;
+	[Export] private Node3D pickupNode;
+	[Export] public float playerSpawnTimer;
+	[Export] private Texture2D[] playerMaterialTextures;
+	[Export] public float flashDuration = 0.2f;
 
+	public Texture2D GetPortraitTexture() => playerTextures[PlayerIndex];
+	public int currentDevice = -2;
+
+	private SequenceMinigame sequenceMinigame;
 	private Camera3D camera;
 	private StaticBody3D world;
 	private InputManager inputManager;
-	public int currentDevice = -2;
 	private HashSet<string> actionsPressed = new HashSet<string>();
 	private HashSet<string> actionsPressedLastFrame = new HashSet<string>();
 	private HashSet<Node> processPickable = new HashSet<Node>();
-
 	private BaseStationScript currentStation;
+	private Label3D pickupPrompt;
 
 	[Signal] public delegate void PlayerHealthChangedEventHandler(int current, int max);
 	[Signal] public delegate void DiedEventHandler();
@@ -44,10 +49,17 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 	private int _healthPack;
 	private Vector3 currentLookTarget;
-	private Sword currentSword;
+	public BaseWeapon currentWeapon;
 	private bool isAttacking = false;
 	private int tick = 0;
 	private Pickable nearbyPickable;
+	private BaseWeapon nearbyWeapon;
+
+	private Vector3 knockback =  Vector3.Zero;
+	private StandardMaterial3D material;
+
+	private InputBuffer inputBuffer;
+	
 
 	public IEnumerable<ItemData> GetCarriedItems()
 	{
@@ -83,53 +95,57 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		}
 	}
 	public override void _Ready()
-{
-	health = maxHealth;
+	{
+		health = maxHealth;
+		inputBuffer = new InputBuffer();
+		AddChild(inputBuffer);
 
-	inputManager = GetNode<InputManager>("/root/InputManager");
-	if (inputManager == null)
-		GD.PrintErr("PlayerController: InputManager not found!");
+		inputManager = GetNode<InputManager>("/root/InputManager");
+		if (inputManager == null)
+			GD.PrintErr("PlayerController: InputManager not found!");
 
-	world = GetTree().Root.GetNodeOrNull<StaticBody3D>("testing_lab");
-	if (world != null)
-		camera = world.GetNodeOrNull<Camera3D>("Camera3D");
+		world = GetTree().Root.GetNodeOrNull<StaticBody3D>("testing_lab");
+		if (world != null)
+			camera = world.GetNodeOrNull<Camera3D>("Camera3D");
 
-	if (camera == null)
-		camera = GetViewport().GetCamera3D();
+		if (camera == null)
+			camera = GetViewport().GetCamera3D();
 
-	forge = GetNodeOrNull<Forge>("/root/Forge");
-	healthPack = GetNodeOrNull<HealthPack>("/root/HealthPack");
-	areaPickup = GetNodeOrNull<Area3D>("Area3D");
-	areaPickup.AreaEntered += OnPickupAreaEntered;
-	areaPickup.AreaExited += OnPickUpAreaExited;
+		forge = GetNodeOrNull<Forge>("/root/Forge");
+		healthPack = GetNodeOrNull<HealthPack>("/root/HealthPack");
+		areaPickup = GetNodeOrNull<Area3D>("Area3D");
+		areaPickup.AreaEntered += OnPickupAreaEntered;
+		areaPickup.AreaExited += OnPickUpAreaExited;
 
-	animPlayer.AnimationFinished += OnAnimationFinished;
+		animPlayer.AnimationFinished += OnAnimationFinished;
 	
-	// ADD THIS: Find existing sword in hand
-	rightHand = GetNodeOrNull<Node3D>("CollisionShape3D/RightHand");
-	leftHand = GetNodeOrNull<Node3D>("CollisionShape3D/LeftHand");
-	if (rightHand != null)
-	{
-		FindExistingSword();
-	}
-	else
-	{
-		GD.PrintErr("Hand node not found!");
-	}
-}
+		// ADD THIS: Find existing sword in hand
+		rightHand = GetNodeOrNull<Node3D>("CollisionShape3D/RightHand");
+		leftHand = GetNodeOrNull<Node3D>("CollisionShape3D/LeftHand");
+		if (rightHand != null)
+		{
+			FindExistingSword();
+		}
+		else
+		{
+			GD.PrintErr("Hand node not found!");
+		}
 
-
+		pickupPrompt = pickupNode.GetNode<Label3D>("Label3D");
+	}
+	
 	private void FindExistingSword()
 	{
 		if (rightHand == null) return;
-	
+
 		foreach (Node child in rightHand.GetChildren())
 		{
-			if (child is Sword sword)
+			if (child is BaseWeapon weapon)
 			{
-				currentSword = sword;
-				currentSword.CheckDurability += OnSwordDurabilityChecked;
-				currentSword.Broke += OnSwordBroke;
+				currentWeapon = weapon;
+				if( weapon is Sword sword)
+					sword.CheckDurability += OnSwordDurabilityChecked;
+				currentWeapon.Broke += OnSwordBroke;
 				GD.Print($"Player {PlayerIndex} found existing sword in hand!");
 				return;
 			}
@@ -181,30 +197,66 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		foreach (var action in actionsPressed)
 			actionsPressedLastFrame.Add(action);
 		
-		if (IsActionPressed("attack") && !isAttacking)
-		{
-			//GD.Print($"Player {PlayerIndex} attack input detected!");
-			StartAttack();
-			
-		}
+		
 		if (IsActionPressed("interact") && currentStation != null)
 		{
-		   currentStation.StartCrafting();
+			if(leftHand.GetChildCount() > 0)
+            {
+                var item = leftHand.GetChild(0) as Pickable;
+				if(item != null && item.GetItemData() != null)
+            	{
+                	if(currentStation.DepositItems(item.GetItemData()))
+						item.QueueFree();
+            	}	   
+            }
+            else
+            {
+                currentStation.StartCrafting();
+            }
+			
 		}
-		if (IsActionPressed("pick_up") && nearbyPickable != null)
+		if (IsActionPressed("pick_up"))
 		{
-			ProcessPickable(nearbyPickable);
+			if(nearbyWeapon != null && rightHand.GetChildCount() == 0)
+			{
+				PickUpWeapon(nearbyWeapon);
+				
+			}
+			else if(nearbyPickable != null)
+				ProcessPickable(nearbyPickable);
+		}
+		if(currentWeapon is Sword sword){
+			if(inputBuffer.IsInputBuffered("attack") && !isAttacking)
+			{
+				sword.PerformComboAttack(inputBuffer);
+				StartAttack();
+				
+			}
+			
+		}
+		else if(currentWeapon is Bow bow)
+        {
+            if(inputBuffer.IsInputBuffered("attack") && !isAttacking)
+			{
+				bow.StartDraw();
+				
+				isAttacking = true;
+			}
+        }
+		else if(inputBuffer.ConsumeInput("attack") && !isAttacking){
+			StartAttack();
 		}
 	}
-
+	
 	public override void _PhysicsProcess(double delta)
 	{
+		
+		
 		if(sequenceMinigame != null && sequenceMinigame.IsActiveFor(this))
 		{
 			GD.Print("PlayerLocked");
 			return;
 		}
-	
 
 		Vector3 velocity = Velocity;
 
@@ -216,16 +268,17 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 		if (inputDir != Vector2.Zero)
 		{
-			velocity.X = inputDir.X * speed;
-			velocity.Z = inputDir.Y * speed;
+			velocity.X = inputDir.X * speed + knockback.X;
+			velocity.Z = inputDir.Y * speed + knockback.Z;
 		}
 		else
 		{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, speed);
-			velocity.Z = Mathf.MoveToward(Velocity.Z, 0, speed);
+			velocity.X = Mathf.MoveToward(Velocity.X + knockback.X, 0, speed);
+			velocity.Z = Mathf.MoveToward(Velocity.Z + knockback.Z, 0, speed);
 		}
 
-		Velocity = velocity;
+		knockback = knockback.Lerp(Vector3.Zero, 0.15f);
+		Velocity = velocity;	
 
 		if (lookDir != Vector3.Zero)
 		{
@@ -243,88 +296,141 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	}
 
 	public override void _Input(InputEvent @event)
-{
-	if (currentDevice == -2 || inputManager == null)
+	{
+		if (currentDevice == -2 || inputManager == null)
 		return;
 
-	bool isFromOurDevice = false;
+		bool isFromOurDevice = false;
 
-	// KEYBOARD PLAYER
-	if (currentDevice == -1 && (@event is InputEventKey || @event is InputEventMouseButton))
-	{
-		isFromOurDevice = true;
-	}
-
-	// CONTROLLER PLAYER
-	if (currentDevice >= 0)
-	{
-		if (@event is InputEventJoypadButton joyButton)
-			isFromOurDevice = joyButton.Device == currentDevice;
-
-		if (@event is InputEventJoypadMotion joyMotion)
-			isFromOurDevice = joyMotion.Device == currentDevice;
-	}  
-
-	if (!isFromOurDevice)
-		return;
-
-	foreach (var action in InputMap.GetActions())
-	{
-		if (@event.IsActionPressed(action))
+		// KEYBOARD PLAYER
+		if (currentDevice == -1 && (@event is InputEventKey || @event is InputEventMouseButton))
 		{
-			actionsPressed.Add(action);
+			isFromOurDevice = true;
 		}
 
-		if (@event.IsActionReleased(action))
+		// CONTROLLER PLAYER
+		if (currentDevice >= 0)
 		{
-			actionsPressed.Remove(action);
+			if (@event is InputEventJoypadButton joyButton)
+				isFromOurDevice = joyButton.Device == currentDevice;
+
+			if (@event is InputEventJoypadMotion joyMotion)
+				isFromOurDevice = joyMotion.Device == currentDevice;
+		}  
+		
+
+		if (!isFromOurDevice)
+			return;
+
+		foreach (var action in InputMap.GetActions())
+		{
+			if (@event.IsActionPressed(action))
+			{
+				actionsPressed.Add(action);
+			}
+
+			if (@event.IsActionReleased(action))
+			{
+				actionsPressed.Remove(action);
+			}
 		}
-	}
 
-	if (IsActionJustPressed("drop_left"))
-	{
-		DropItem(leftHand);
-	}
-	if (IsActionJustPressed("drop_right"))
-	{
-		DropItem(rightHand);
-	}
+		if (IsActionJustPressed("drop_left"))
+		{
+			DropItem(leftHand);
+		}
+		if (IsActionJustPressed("drop_right"))
+		{
+			DropItem(rightHand);
+		}
 
-}
+		if (IsActionJustPressed("attack"))
+		{
+			inputBuffer.BufferInput("attack");			
+		}
+
+		if (@event.IsActionReleased("attack"))
+		{
+			GD.Print("Attack released");
+			//GD.Print($"Player {PlayerIndex} attack input detected!");
+			EndAttack();
+			
+		}
+
+	}
 
 
 	private void StartAttack()
-{
-	//GD.Print($"Player {PlayerIndex} StartAttack called");
-	//GD.Print($"currentSword is null: {currentSword == null}");
-   // GD.Print($"animPlayer is null: {animPlayer == null}");
-	//GD.Print($"isAttacking: {isAttacking}");
-	
-	if (currentSword == null)
 	{
-		GD.Print("No sword to attack with!");
-		return;
+		//GD.Print($"Player {PlayerIndex} StartAttack called");
+		//GD.Print($"currentSword is null: {currentSword == null}");
+   		// GD.Print($"animPlayer is null: {animPlayer == null}");
+		//GD.Print($"isAttacking: {isAttacking}");
+	
+		if (currentWeapon == null)
+		{
+			GD.Print("No sword to attack with!");
+			return;
+		}
+
+		isAttacking = true;
+
+		if(currentWeapon is MeleeWeapon melee)
+		{
+			if(currentWeapon is Sword sword)
+			{
+				audio.Play();
+				animPlayer.Play(sword.GetComboAnimation());
+				int comboDamage = sword.GetComboDamage();
+				//currentWeapon.damage = sword.GetComboDamage();
+				
+			}
+			else
+			{
+				audio.Play();
+				animPlayer.Play("Anim_Attack");
+			}
+			
+			
+		}
+		else if(currentWeapon is Bow bow)
+		{
+			bow.StartDraw();
+			isAttacking = false;
+		}
+			
+	
+		//GD.Print($"Player {PlayerIndex} attacking!");
 	}
 
-	isAttacking = true;
-	currentSword.SetHitboxEnabled(true);
-	animPlayer.Play("Anim_Attack");
-	audio.Play();
-	
-	//GD.Print($"Player {PlayerIndex} attacking!");
-}
+	private void EndAttack()
+	{
+		if(currentWeapon == null) return;
+
+		if(currentWeapon is MeleeWeapon melee)
+		{
+			if(!isAttacking) return;
+			isAttacking = false;
+			//melee.SetHitboxEnabled(false);
+
+		}
+			
+		else if(currentWeapon is Bow bow)
+		{
+			isAttacking = false;
+			bow.Release();
+		}
+			
+	}
 
 	private void OnAnimationFinished(StringName animName)
 	{
-		if (animName == "Anim_Attack")
+		if (animName.ToString().Contains("Sword_Attack"))
 		{
 			isAttacking = false;
 
-			// Disable hitbox when swing is done
-			if (currentSword != null)
-				currentSword.SetHitboxEnabled(false);
-
-			//GD.Print($"Player {PlayerIndex} attack finished.");
+			animPlayer.Play("Sword_Idle");
+			
 		}
 	}
 
@@ -353,60 +459,39 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		{
 			nearbyPickable = area.GetParent() as Pickable;
 			GD.Print($"NearbyPickable: {nearbyPickable?.Name ?? "null"}");
+			pickupNode.GlobalPosition = new Vector3(nearbyPickable.GlobalPosition.X, nearbyPickable.GlobalPosition.Y + 2, nearbyPickable.GlobalPosition.Z);
+		}
+
+		if (area.IsInGroup("Weapon")){
+			StaticBody3D areaParent = area.GetParent() as StaticBody3D;
+			nearbyWeapon = areaParent?.GetParent() as BaseWeapon;
+			pickupNode.GlobalPosition = new Vector3(nearbyWeapon.GlobalPosition.X, nearbyWeapon.GlobalPosition.Y + 3, nearbyWeapon.GlobalPosition.Z);
 		}
 		
+		pickupPrompt.Visible = true;
+		pickupPrompt.Text = IsUsingController() ? "LT" : "Right Click";
+		pickupPrompt.FontSize = 40;
+		//pickupPrompt.GlobalPosition = new Vector3(nearbyPickable.GlobalPosition.X, nearbyPickable.GlobalPosition.Y + 3, nearbyPickable.GlobalPosition.Z);
 
-
-		bool hasSword = false;
-		foreach (Node child in rightHand.GetChildren()){
-			if (child is Sword || child.IsInGroup("Sword")){
-			 hasSword = true;
-			 
-				break;
-			}
-		}
-
-		if (hasSword)
-			return;
-
-		if (area.IsInGroup("Sword") && rightHand.GetChildCount() == 0)
-		{
-			StaticBody3D areaParent = area.GetParent() as StaticBody3D;
-			Node3D swordNode = areaParent.GetParent() as Node3D;
-			if(swordNode == null) return;
-
-			Sword sword = swordNode as Sword;
-			if(sword != null && sword.isBeingPickedUp) return;
-			if(sword != null) sword.isBeingPickedUp = true;
-			swordNode.CallDeferred("reparent", rightHand);
-			GetTree().CreateTimer(0.1f).Timeout += () =>
-			{
-				if(!IsInstanceValid(swordNode)) return;
-				swordNode.GlobalPosition = rightHand.GlobalPosition;
-				swordNode.Rotation = Vector3.Zero;
-				rightHand.Rotation = Vector3.Zero;
-				
-				currentSword = swordNode as Sword;
-				if (currentSword != null)
-				{
-					currentSword.CheckDurability += OnSwordDurabilityChecked;
-					currentSword.Broke += OnSwordBroke;
-					currentSword.isBeingPickedUp = false;
-				}
-			};
-		}
 	}
 
 	private void OnPickUpAreaExited(Area3D area)
 	{
+	
 		if(area.IsInGroup("pickable"))
 			nearbyPickable = null;
+		if(area.IsInGroup("Sword"))
+			nearbyWeapon = null;
+		if(nearbyWeapon == null && nearbyPickable == null)
+			pickupPrompt.Visible = false;
 	}
 
 	private void ProcessPickable(Pickable pickable)
 	{
 		if(!IsInstanceValid(pickable)) return;
 		if(processPickable.Contains(pickable)) return;
+		
+		//currentStation.DepositItems(pickable.GetItemData());
 		processPickable.Add(pickable);
 		
 		
@@ -430,6 +515,41 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		
 	}
 
+	private void PickUpWeapon(BaseWeapon nearbyWeapon)
+	{
+		if(nearbyWeapon.isBeingPickedUp) return;
+		nearbyWeapon.isBeingPickedUp = true;
+
+		nearbyWeapon.CallDeferred("reparent", rightHand);
+		GetTree().CreateTimer(0.1f).Timeout += () =>
+		{
+			if(!IsInstanceValid(nearbyWeapon))return;
+			nearbyWeapon.GlobalPosition = rightHand.GlobalPosition;
+			nearbyWeapon.Rotation = Vector3.Zero;
+			rightHand.Rotation = Vector3.Zero;
+
+			currentWeapon = nearbyWeapon;
+			
+			if(currentWeapon is Sword sword)
+			{	
+				if(!sword.IsConnected(Sword.SignalName.ComboReset, Callable.From(OnComboReset)))
+					sword.Connect(Sword.SignalName.ComboReset, Callable.From(OnComboReset));
+
+				if(sword.IsConnected(Sword.SignalName.CheckDurability, Callable.From(OnSwordDurabilityChecked)))
+					sword.Disconnect(Sword.SignalName.CheckDurability, Callable.From(OnSwordDurabilityChecked));
+				sword.Connect(Sword.SignalName.CheckDurability, Callable.From(OnSwordDurabilityChecked));
+				sword.SetHitboxEnabled(true);
+			}
+
+			if(currentWeapon.IsConnected(BaseWeapon.SignalName.Broke, Callable.From(OnSwordBroke)))
+				currentWeapon.Disconnect(BaseWeapon.SignalName.Broke, Callable.From(OnSwordBroke));
+			currentWeapon.Connect(BaseWeapon.SignalName.Broke, Callable.From(OnSwordBroke));
+
+			currentWeapon.isBeingPickedUp = false;
+			nearbyWeapon = null;
+			
+		};
+	}
 	private Vector3 GetLookVector()
 	{
 		if (currentDevice == -2)
@@ -511,39 +631,51 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 	private void UpdatePlayerAppearance()
 	{
-		Color[] playerColors =
-		{
-			Colors.Blue,
-			Colors.Red,
-			Colors.Green,
-			Colors.Yellow
-		};
 
-		Color playerColor = playerColors[PlayerIndex % playerColors.Length];
+		Texture2D texture = playerMaterialTextures[PlayerIndex % playerMaterialTextures.Length];
 
-		var meshInstance = GetNodeOrNull<MeshInstance3D>("CollisionShape3D/MeshInstance3D");
+		var mesh = GetNodeOrNull<MeshInstance3D>("CollisionShape3D/DwarfLow");
+
+		var meshInstance = GetNodeOrNull<MeshInstance3D>("CollisionShape3D/DwarfLow");
 		if (meshInstance == null)
 		{
 			GD.PrintErr($"Player {PlayerIndex}: MeshInstance3D not found at CollisionShape3D/MeshInstance3D");
 			return;
 		}
 
-		meshInstance.MaterialOverride = new StandardMaterial3D
+		material = new StandardMaterial3D
 		{
-			AlbedoColor = playerColor
+			AlbedoTexture = texture,
+			EmissionEnabled = true,
+			//Emission = flashColor,
+			EmissionEnergyMultiplier = 0f
 		};
+		
+		meshInstance.MaterialOverride = material;
 
-		GD.Print($"Set player {PlayerIndex} color to {playerColor}");
+		// GD.Print($"Set player {PlayerIndex} color to {playerColor}");
 	}
 
 	public void TakeDamage(int damage)
 	{
 		health -= damage;
+		Flash();
+		EmitSignal(SignalName.PlayerHealthChanged, health, maxHealth);
+	}
+	public void Heal(float amount)
+	{
+		health = Mathf.Min(health + (int)amount, maxHealth);
 		EmitSignal(SignalName.PlayerHealthChanged, health, maxHealth);
 	}
 
 	private void Die()
 	{
+		DropItem(rightHand);
+		DropItem(leftHand);
+
+		areaPickup.SetDeferred("monitoring", true);
+		areaPickup.SetDeferred("monitorable", true);
+
 		Visible = false;
 		SetPhysicsProcess(false);
 		SetProcess(false);
@@ -553,7 +685,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		areaPickup.SetDeferred("monitoring", false);
 		areaPickup.SetDeferred("monitorable", false);
 
-		GetTree().CreateTimer(3.0f).Timeout += () =>{
+		GetTree().CreateTimer(playerSpawnTimer).Timeout += () =>{
 			GlobalPosition = new Vector3(0, 1, 0);
 			health = maxHealth;
 			Visible = true;
@@ -562,6 +694,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 			GetNode<CollisionShape3D>("CollisionShape3D").SetDeferred("disabled", false);
 			areaPickup.SetDeferred("monitoring", true);
+			currentWeapon = null;
 			areaPickup.SetDeferred("monitorable", true);
 
 			EmitSignal(SignalName.PlayerHealthChanged, health, maxHealth);
@@ -571,16 +704,17 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 	private void OnSwordDurabilityChecked()
 	{
-		if (currentSword == null) return;
+		if (currentWeapon == null) return;
 		//GD.Print($"Sword durability remaining: {currentSword.durability}");
 	}
 
 	private void OnSwordBroke()
 	{
 		//GD.Print("Sword broke! Auto crafting a new one if ingredients are available...");
-		currentSword = null;
+		currentWeapon = null;
 		isAttacking = false;
 	}
+
 	private void DropItem(Node3D hand)
 	{
 		if(hand.GetChildCount() == 0) return;
@@ -592,15 +726,18 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 		Vector3 dropPosition = GlobalPosition + (Transform.Basis.Z * 2.5f);
 
-		if(child is Sword sword)
+		if(child is BaseWeapon weapon)
 		{
-			sword.CallDeferred("reparent", GetTree().Root);
-			sword.SetDeferred("global_position", dropPosition);
-			sword.SetDeferred("rotation", Vector3.Zero);
+			weapon.CallDeferred("reparent", GetTree().Root);
+			weapon.SetDeferred("global_position", dropPosition);
+			weapon.SetDeferred("rotation", Vector3.Zero);
 
-			currentSword.CheckDurability -= OnSwordDurabilityChecked;
-			currentSword.Broke -= OnSwordBroke;
-			currentSword = null;
+			if(weapon is Sword sword)
+				sword.CheckDurability -= OnSwordDurabilityChecked;
+
+			currentWeapon.Broke -= OnSwordBroke;
+			currentWeapon = null;
+
 			GetTree().CreateTimer(0.1f).Timeout += () =>
 				areaPickup.SetDeferred("monitoring", true);
 			return;
@@ -639,5 +776,30 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	{
 		currentStation = station;
 		sequenceMinigame = station?.GetSequenceMinigame();
+	}
+	private bool IsUsingController() => currentDevice >= 0;
+
+	public void ApplyKnockback(Vector3 direction, float force){
+		knockback = direction * force;
+	}
+	private void Flash()
+	{
+		if(material == null) return;
+
+		Color white = new Color (1, 1, 1);
+		Color red = new Color (1, 0, 0);
+
+		var tween = CreateTween();
+
+		tween.TweenProperty(material, "emission_energy_multiplier", 2.0f, flashDuration /4);
+		tween.Parallel().TweenProperty(material, "emission", white, flashDuration / 4);
+		
+		tween.TweenProperty(material, "emission", red, flashDuration / 4);
+		tween.TweenProperty(material, "emission_energy_multiplier", 0.0f, flashDuration /2);
+	}
+	private void OnComboReset()
+	{
+		isAttacking = false;
+		animPlayer.Play("Sword_Idle");
 	}
 }

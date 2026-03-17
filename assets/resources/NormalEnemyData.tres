@@ -1,17 +1,16 @@
 [gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://calih72lg8n07"]
 
-[ext_resource type="Material" uid="uid://c14d6xj6opusf" path="res://assets/materials/goblin_material.tres" id="1_7n161"]
+[ext_resource type="Material" uid="uid://c14d6xj6opusf" path="res://assets/materials/Texture_sets/Character_Textures/Goblin Textures/goblin_material.tres" id="1_7n161"]
 [ext_resource type="Script" uid="uid://bf02wgjk36psn" path="res://assets/components/EnemyData.cs" id="1_ptvci"]
 [ext_resource type="ArrayMesh" uid="uid://bmq26ged3l0nq" path="res://assets/models/FinalAssets_Low/Character_Models/Goblin_low.obj" id="2_mq6ke"]
 
 [resource]
 script = ExtResource("1_ptvci")
-enemyName = "NormalEnemy"
+enemyName = "Goblin"
 damage = 1
-damageToPlayer = 15
 speed = 3.0
 color = Color(1, 1, 1, 1)
-lootDropChance = 0.001
+lootDropChance = 30.0
 enemyMat = ExtResource("1_7n161")
 enemyMesh = ExtResource("2_mq6ke")
 metadata/_custom_type_script = "uid://bf02wgjk36psn"

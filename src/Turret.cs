@@ -6,8 +6,8 @@ public partial class Turret : Node3D
 {
 	[Export] private Node3D bulletSpawnLocation;
 	[Export] private PackedScene bulletScene;
-	[Export] private float range = 20.0f;
-	[Export] private float coneAngle = 65.0f;
+	[Export] public float range = 20.0f;
+	[Export] public float coneAngle = 65.0f;
 	[Export] protected Node3D inputNode;
 	[Export] protected Label label;
 
@@ -86,7 +86,6 @@ public partial class Turret : Node3D
 		bulletCount--;
 		label.Text = $"{bulletCount}";
 
-		
 	}
 
 	private Node3D FindClosestEnemy()

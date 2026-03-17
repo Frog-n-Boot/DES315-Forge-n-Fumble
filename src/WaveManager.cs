@@ -9,6 +9,7 @@ public partial class WaveManager : Node
 	[Export] public Node spawnParent     { get; private set; }
 	[Export] public Node3D targetNode    { get; private set; }
 	[Export] public LootTable lootTable;
+	[Export] private TesultMenu resultMenu;
 
 	[ExportGroup("Enemy Data")]
 	[Export] public EnemyData normalEnemyData;
@@ -22,15 +23,18 @@ public partial class WaveManager : Node
 
 	[ExportGroup("Wave Settings")]
 	[Export] public int   maxWaves               { get; set; } = 3;
-	[Export] public float timeBetweenWaves        { get; private set; } = 2.0f;
+	[Export] public float timeBetweenEnemySpawns        { get; private set; } = 2.0f;
 	[Export] public int   startingEnemiesPerWave  { get; set; }
 	[Export] public int   enemyIncreasedPerWave   { get; set; }
+	[Export] public float timeBetweemWaves { get; set;}
 
 	[ExportGroup("Spawn Positions")]
 	[Export] public Node3D[] spawnPositions = new Node3D[0];
 
 	[ExportGroup("UI")]
 	[Export] private Label enemyUI;
+	[Export] private Label3D waveTimerLabel3D;
+
 	#endregion
 
 	#region Signals
@@ -51,11 +55,17 @@ public partial class WaveManager : Node
 	private RandomNumberGenerator rnd           = new RandomNumberGenerator();
 	private List<EnemyController> activeEnemies = new List<EnemyController>();
 	private InputManager inputManager;
+
+	private float waveTimer = 0f;
+	private bool isWaiting = false;
+
 	#endregion
 
 	#region Lifecycle
 	public override void _Ready()
 	{
+		waveTimerLabel3D.Visible = false;
+
 		SetupDefaults();
 		SetupTimer();
 
@@ -77,14 +87,29 @@ public partial class WaveManager : Node
 					GD.Print($"  Spawn {i}: NULL");
 			}
 		}
-
-		StartNewWave();
+		waveTimer = timeBetweemWaves;
+		isWaiting = true;
+		waveTimerLabel3D.Visible = true;
+	
 	}
 
 	public override void _Process(double delta)
 	{
-		if (enemyUI == null) return;
-		enemyUI.Text = $" Enemies alive: {enemiesLeft} \n Max Waves: {maxWaves}  Current wave: {currentWave} ";
+		if (isWaiting)
+		{
+			waveTimer -= (float)delta;
+			waveTimerLabel3D.Text = $"Time until next Wave: {Mathf.Ceil(waveTimer)}";
+
+			if(waveTimer <= 0)
+			{
+				isWaiting = false;
+				waveTimerLabel3D.Visible = false;
+				StartNewWave();
+			}
+		}
+
+		if (enemyUI != null)
+			enemyUI.Text = $" Enemies alive: {enemiesLeft} \n Max Waves: {maxWaves}  Current wave: {currentWave} ";
 	}
 	#endregion
 
@@ -164,7 +189,7 @@ public partial class WaveManager : Node
 		spawnTimer          = new Timer();
 		spawnTimer.Name     = "SpawnTimer";
 		spawnTimer.OneShot  = false;
-		spawnTimer.WaitTime = timeBetweenWaves;
+		spawnTimer.WaitTime = timeBetweenEnemySpawns;
 		spawnTimer.Timeout += OnSpawnTimerTimeout;
 		AddChild(spawnTimer);
 	}
@@ -189,7 +214,7 @@ public partial class WaveManager : Node
 		if (currentWave >= maxWaves)
 		{
 			OnAllWavesCompleted();
-			GetTree().Quit();
+			resultMenu.ShowWin();
 			return;
 		}
 
@@ -212,8 +237,11 @@ public partial class WaveManager : Node
 
 	private void OnWaveCompleted()
 	{
+		waveTimerLabel3D.Visible = true;
+		waveTimer = timeBetweemWaves;
+		isWaiting = true;
+		
 		EmitSignal(SignalName.WaveCompleted, currentWave);
-		GetTree().CreateTimer(3.0f).Timeout += StartNewWave;
 	}
 
 	private void OnAllWavesCompleted()
@@ -228,35 +256,51 @@ public partial class WaveManager : Node
 	{
 		if (enemiesSpawnedThisWave < enemiesToSpawnThisWave)
 		{
-			SpawnEnemy();
-			enemiesSpawnedThisWave++;
+			int remainingEnemies = enemiesToSpawnThisWave - enemiesSpawnedThisWave;
+			int clumpSize= Mathf.Min(GD.RandRange(1, 5), remainingEnemies);
+
+			SpawnEnemy(clumpSize);
+
+			enemiesSpawnedThisWave += clumpSize;
 		}
 
 		if (enemiesSpawnedThisWave >= enemiesToSpawnThisWave)
 			spawnTimer.Stop();
 	}
 
-	private void SpawnEnemy()
+	private void SpawnEnemy(int clumpSize)
 	{
 		if (spawnParent == null || targetNode == null) return;
 
-		EnemyData selectedData = GetRandomEnemyData();
-		if (selectedData == null) return;
+		Vector3 clumpCenter = GetRandomSpawnPosition();
 
-		EnemyController enemy = EnemyController.Create(selectedData, targetNode, spawnParent);
+		for(int i = 0; i < clumpSize; i++)
+		{
+			EnemyData selectedData = GetRandomEnemyData();
+			if (selectedData == null) return;
 
-		// GlobalPosition must be set AFTER AddChild (enemy is in the tree at this point)
-		enemy.GlobalPosition = GetRandomSpawnPosition();
+			EnemyController enemy = EnemyController.Create(selectedData, targetNode, spawnParent);
+			// float angle = (i / (float)(clumpSize)) * Mathf.Tau;
+			// float radius = GD.RandRange((int)1f, (int)3f);
+			// Vector3 offset = new Vector3(Mathf.Cos(angle) * radius, 0, Mathf.Sin(angle) * radius);
+			
+			Vector3 randomOffSet = new Vector3 ( GD.RandRange(-3, 3), 0, GD.RandRange(-3, 3));
+			// GlobalPosition must be set AFTER AddChild (enemy is in the tree at this point)
+			enemy.GlobalPosition = clumpCenter + randomOffSet;
 
-		activeEnemies.Add(enemy);
-		enemiesAliveThisWave++;
+			activeEnemies.Add(enemy);
+			enemiesAliveThisWave++;
 
-		enemy.Died          += OnEnemyDied;
-		enemy.DamagedTarget += OnEnemyDamagedTarget;
+			enemy.Died          += OnEnemyDied;
+			enemy.DamagedTarget += OnEnemyDamagedTarget;
+		}
+		
+		
 	}
 
 	private EnemyData GetRandomEnemyData()
 	{
+
 		int total = normalEnemyChance + fastEnemyChance + strongEnemyChance;
 		if (total == 0) total = 100;
 
@@ -296,8 +340,12 @@ public partial class WaveManager : Node
 		activeEnemies.Remove(enemy);
 		enemiesAliveThisWave--;
 		enemiesLeft--;
+		float roll = (float)GD.RandRange(0, 99);
+		if(roll <= enemy.LootDropChance)
+		{
+			lootTable?.GetLoot(enemy, deathPosition);
+		}
 
-		lootTable?.GetLoot(enemy, deathPosition);
 
 		if (enemiesAliveThisWave <= 0 && enemiesSpawnedThisWave >= enemiesToSpawnThisWave)
 			OnWaveCompleted();

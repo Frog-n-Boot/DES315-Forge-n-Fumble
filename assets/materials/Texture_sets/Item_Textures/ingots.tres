@@ -1,0 +1,11 @@
+[gd_resource type="ORMMaterial3D" format=3 uid="uid://ccaruxjogs28j"]
+
+[ext_resource type="Texture2D" uid="uid://l45fkj74rs44" path="res://assets/materials/Texture_sets/Item_Textures/Ingots_comb_low_BaseCol.tga" id="1_l06ci"]
+[ext_resource type="Texture2D" uid="uid://dt7t6tu8lnf8y" path="res://assets/materials/Texture_sets/Item_Textures/Ingots_comb_low_Normal.tga" id="2_2h0l2"]
+[ext_resource type="Texture2D" uid="uid://c4lqlcwn73h60" path="res://assets/materials/Texture_sets/Item_Textures/Ingots_comb_low_ORM.tga" id="3_17yv1"]
+
+[resource]
+albedo_texture = ExtResource("1_l06ci")
+orm_texture = ExtResource("3_17yv1")
+normal_enabled = true
+normal_texture = ExtResource("2_2h0l2")

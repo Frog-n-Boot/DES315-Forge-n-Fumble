@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dvhojin78rtxa"]
 
 [ext_resource type="ArrayMesh" uid="uid://w3kyqtevasnv" path="res://assets/models/FinalAssets_Low/Redone_Assets/cobl_pillar_low.obj" id="1_sbfuh"]
-[ext_resource type="Material" uid="uid://dp140br76vlls" path="res://assets/materials/cobble_forge.tres" id="2_2pabr"]
+[ext_resource type="Material" uid="uid://dp140br76vlls" path="res://assets/materials/Texture_sets/Environment_Textures/cobble_forge.tres" id="2_2pabr"]
 
 [node name="CoblPillarLow" type="Node3D" unique_id=1439026198]
 
