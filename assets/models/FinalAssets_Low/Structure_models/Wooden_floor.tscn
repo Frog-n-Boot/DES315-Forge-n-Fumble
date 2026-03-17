@@ -12,10 +12,9 @@ orm_texture = ExtResource("3_bj48l")
 normal_enabled = true
 normal_texture = ExtResource("2_hkhlj")
 
-[node name="Node3D" type="Node3D" unique_id=436733411]
+[node name="Wooden_floor" type="Node3D" unique_id=436733411]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1911837763]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=141253894]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=141253894]
 mesh = SubResource("PlaneMesh_i75uk")
+skeleton = NodePath("")
 surface_material_override/0 = SubResource("ORMMaterial3D_x0h2i")

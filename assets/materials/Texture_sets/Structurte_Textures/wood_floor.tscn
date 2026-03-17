@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dltr1172ekrom"]
+
+[ext_resource type="Material" uid="uid://cxbsa47nuagq3" path="res://assets/materials/Texture_sets/Structurte_Textures/Floor_wood.tres" id="1_25f2y"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gth1o"]
+size = Vector2(4, 2)
+
+[node name="WOOD_FLOOR" type="Node3D" unique_id=898176051]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=664171286]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+mesh = SubResource("PlaneMesh_gth1o")
+surface_material_override/0 = ExtResource("1_25f2y")

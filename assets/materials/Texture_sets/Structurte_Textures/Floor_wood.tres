@@ -1,0 +1,11 @@
+[gd_resource type="ORMMaterial3D" format=3 uid="uid://cxbsa47nuagq3"]
+
+[ext_resource type="Texture2D" uid="uid://c0j7fa7xo3ld7" path="res://assets/materials/Texture_sets/Structurte_Textures/Floor_wooden_BaseCol.tga" id="1_mgxk5"]
+[ext_resource type="Texture2D" uid="uid://bqwvtgfb2gpj3" path="res://assets/materials/Texture_sets/Structurte_Textures/Floor_wooden_Normal.tga" id="2_m4tu4"]
+[ext_resource type="Texture2D" uid="uid://bevygbghgpqv7" path="res://assets/materials/Texture_sets/Structurte_Textures/Floor_wooden_ORM.tga" id="3_nfmir"]
+
+[resource]
+albedo_texture = ExtResource("1_mgxk5")
+orm_texture = ExtResource("3_nfmir")
+normal_enabled = true
+normal_texture = ExtResource("2_m4tu4")

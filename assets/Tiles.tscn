@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://7uqgvg4pkqiy"]
+
+[ext_resource type="PackedScene" uid="uid://dltr1172ekrom" path="res://assets/materials/Texture_sets/Structurte_Textures/wood_floor.tscn" id="2_3m3uf"]
+[ext_resource type="PackedScene" uid="uid://bmre2ran8suad" path="res://assets/models/FinalAssets_Low/Redone_Assets/Cobl_archway_low.tscn" id="2_kb5qt"]
+[ext_resource type="PackedScene" uid="uid://dvhojin78rtxa" path="res://assets/models/FinalAssets_Low/Redone_Assets/Cobl_pillar_low.tscn" id="3_3m3uf"]
+[ext_resource type="PackedScene" uid="uid://can50oleeolkm" path="res://assets/models/FinalAssets_Low/Redone_Assets/Cobl_halfwall_low.tscn" id="3_o520e"]
+[ext_resource type="PackedScene" uid="uid://bycamsjulrcwe" path="res://assets/models/FinalAssets_Low/Redone_Assets/Cobl_wall_low.tscn" id="5_0iubt"]
+
+[node name="Node3D" type="Node3D" unique_id=1035917049]
+
+[node name="CoblArchwayLow" parent="." unique_id=1216911531 instance=ExtResource("2_kb5qt")]
+
+[node name="WOOD_FLOOR" parent="." unique_id=898176051 instance=ExtResource("2_3m3uf")]
+
+[node name="CoblHalfwallLow" parent="." unique_id=1553971924 instance=ExtResource("3_o520e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0852676, 0)
+
+[node name="CoblPillarLow" parent="." unique_id=1439026198 instance=ExtResource("3_3m3uf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.052660614, 0)
+
+[node name="CoblWallLow" parent="." unique_id=1416519307 instance=ExtResource("5_0iubt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.07899076, 0)
