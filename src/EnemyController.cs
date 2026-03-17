@@ -285,11 +285,11 @@ public partial class EnemyController : Node3D
 				break;
 
 			case "Weapon":
-				BaseWeapon weapon = FindWeaponInHierarchy(body);
+				BaseWeapon weapon = FindWeaponInHierarchy(body);		
 
-				
 				if (weapon != null)
-				{
+				{          
+              	 	 
 					if(weapon is Sword sword)
 					{
 						int damageToApply = sword.GetComboDamage();

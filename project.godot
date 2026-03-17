@@ -31,6 +31,10 @@ Forge="*uid://csp7j7pbfs6rf"
 SettingsManager="*uid://bmvu35qw3l2o1"
 SceneManager="*uid://whjx5ow2exj4"
 
+[debug]
+
+file_logging/enable_file_logging=true
+
 [display]
 
 window/size/mode=3

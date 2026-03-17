@@ -10,6 +10,8 @@ public partial class SpinAttack : Node3D
 	[Export] public float spinDuration = 2;
 	[Export] public float spinThreshold = 360f;
 	[Export]private CollisionShape3D collisionShape;
+	[Export] private AnimationPlayer animPlayer;
+	[Export] private float dazeTimer = 2f;
 	//[Export] Area3D spinArea;
 
 	[Signal] public delegate void SpinChargeGainedEventHandler(int currentCharges, int maxCharges);
@@ -35,6 +37,10 @@ public partial class SpinAttack : Node3D
 
 		if(currentWeapon is Sword)
 			SetWeapon(currentWeapon);
+		if(animPlayer == null)
+        {
+            animPlayer = parent.GetNode<AnimationPlayer>("CollisionShape3D");
+        }
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -120,6 +126,8 @@ public partial class SpinAttack : Node3D
 
 		if(currentWeapon != null)
 		{
+			animPlayer.Play("Spin_Attack");
+			animPlayer.SpeedScale = 1.0f;
 			EnableCollision();
 			// //var originalArea = currentWeapon.GetNode<Area3D>("StaticBody3D/Area3D");
 			// var originalCollision = currentWeapon.GetNode<CollisionShape3D>("StaticBody3D/CollisionShape3D");
@@ -156,8 +164,9 @@ public partial class SpinAttack : Node3D
 	{
 		GD.Print("DAZED!");
 		isDazed = true;
-		GetTree().CreateTimer(2.0f).Timeout += () => DisableCollision();
-		parent.GetTree().CreateTimer(2.0f).Timeout += () => isDazed = false;
+		GetTree().CreateTimer(dazeTimer).Timeout += () => DisableCollision();
+		parent.GetTree().CreateTimer(dazeTimer).Timeout += () => isDazed = false;
+		parent.GetTree().CreateTimer(dazeTimer).Timeout += () => animPlayer.SpeedScale = 1.0f;
 		Reset();
 	}
 
