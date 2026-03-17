@@ -275,9 +275,7 @@ public partial class EnemyController : Node3D
 				EmitSignal(SignalName.DamagedTarget, body, Damage);
 				if (body is PlayerController playerController)
 				{		
-					playerController.TakeDamage(DamageToPlayer);
-					
-					
+					playerController.TakeDamage(DamageToPlayer);			
 					Vector3 pushDirection = (playerController.GlobalPosition - GlobalPosition).Normalized();
 					pushDirection.Y = 0;
 					pushDirection = pushDirection.Normalized();
@@ -288,6 +286,7 @@ public partial class EnemyController : Node3D
 
 			case "Weapon":
 				BaseWeapon weapon = FindWeaponInHierarchy(body);
+
 				
 				if (weapon != null)
 				{
@@ -300,6 +299,7 @@ public partial class EnemyController : Node3D
 					{
 						TakeDamage(weapon.damage);
 					}
+					
 					
 					weapon.TakeDurabilityDamage(1);		
 					Vector3 pushDirection = (GlobalPosition - weapon.GlobalPosition).Normalized();

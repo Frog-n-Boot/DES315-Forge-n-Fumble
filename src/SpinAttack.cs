@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.ComponentModel;
 
-public partial class SpinAttack : Node
+public partial class SpinAttack : Node3D
 {
 	[Export] public int maxSpinCharges = 3;
 	[Export] public float spinChargeTimeout = 1.0f;
@@ -92,7 +92,11 @@ public partial class SpinAttack : Node
 
 	public void StartCharging()
 	{
-		if(isCharging || isDazed || currentWeapon == null) return;
+		if(isCharging || isDazed || currentWeapon == null)
+        {
+            DisableCollision();
+			return;
+        } 
 
 		isCharging = true;
 		spinCharges = 0;
@@ -136,6 +140,7 @@ public partial class SpinAttack : Node
 
 			//EnableArea();
 			TriggerDaze();
+			
 		}
 
 		Reset();
@@ -151,6 +156,7 @@ public partial class SpinAttack : Node
 	{
 		GD.Print("DAZED!");
 		isDazed = true;
+		GetTree().CreateTimer(2.0f).Timeout += () => DisableCollision();
 		parent.GetTree().CreateTimer(2.0f).Timeout += () => isDazed = false;
 		Reset();
 	}
@@ -158,8 +164,8 @@ public partial class SpinAttack : Node
 	private void Reset()
 	{
 		isCharging = false;
-		spinCharges = 0;
-		//DisableCollision();
+		spinCharges = 0;	
+		
 	}
 
 	private void DisableCollision(){

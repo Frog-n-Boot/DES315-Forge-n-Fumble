@@ -690,7 +690,6 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	{
 		health -= damage;
 		Flash();
-		DamageNumbers.Spawn(damage, GlobalPosition, GetParent());
 		EmitSignal(SignalName.PlayerHealthChanged, health, maxHealth);
 	}
 	public void Heal(float amount)

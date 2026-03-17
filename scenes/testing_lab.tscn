@@ -60,7 +60,7 @@
 
 [sub_resource type="Resource" id="Resource_ky1k5"]
 script = ExtResource("20_t8lul")
-amount = 100
+amount = 2000
 override_global_seed = true
 custom_seed = 7
 restrict_height = true
@@ -101,7 +101,7 @@ metadata/_custom_type_script = "uid://caolykt85qqe7"
 
 [sub_resource type="Resource" id="Resource_aul0p"]
 script = ExtResource("20_t8lul")
-amount = 100
+amount = 2000
 override_global_seed = true
 custom_seed = 3
 restrict_height = true
@@ -140,7 +140,7 @@ size = Vector3(6, 1, 5)
 
 [sub_resource type="Resource" id="Resource_uyhl1"]
 script = ExtResource("20_t8lul")
-amount = 100
+amount = 2000
 override_global_seed = true
 custom_seed = 4
 restrict_height = true

@@ -280,7 +280,7 @@ transform = Transform3D(1.6779308, 0, 0, 0, 1.8431246, 0, 0, 0, 1, 0, 2.7833214,
 
 [node name="Label3D" type="Label3D" parent="CanvasLayer/PickUpNode3D" unique_id=1684088306]
 
-[node name="SpinAttack" type="Node" parent="." unique_id=1808384668 node_paths=PackedStringArray("collisionShape")]
+[node name="SpinAttack" type="Node3D" parent="." unique_id=589698554 node_paths=PackedStringArray("collisionShape")]
 script = ExtResource("15_gp7mg")
 collisionShape = NodePath("StaticBody3D/CollisionShape3D")
 
