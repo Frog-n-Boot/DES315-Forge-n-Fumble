@@ -6,12 +6,12 @@
 [node name="IntLanternHangLow" type="Node3D" unique_id=1872810731]
 
 [node name="IntLanternHangLow" type="MeshInstance3D" parent="." unique_id=910114636]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1756922, 0, 0.12289643)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025346994, 0, -0.11406206)
 mesh = ExtResource("1_qmdqg")
 surface_material_override/0 = ExtResource("2_ddxps")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="IntLanternHangLow" unique_id=1976458704]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39055765, 0.17972577)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025106192, 0.39055765, 0.19113772)
 light_color = Color(0.8862745, 0.3647059, 0, 1)
 light_energy = 2.0
 omni_range = 4.3388615
