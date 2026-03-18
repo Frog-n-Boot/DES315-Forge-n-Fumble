@@ -198,10 +198,10 @@ fog_density = 1.0
 fog_depth_end = 242.5
 volumetric_fog_density = 0.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ln51k"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_wu60a"]
 viewport_path = NodePath("Sprite3D/SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_m7d3y"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_7q0j7"]
 viewport_path = NodePath("Sprite3D/SubViewport")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cvaul"]
@@ -396,6 +396,12 @@ script = ExtResource("25_aul0p")
 negative = true
 shape = SubResource("Resource_oi252")
 
+[node name="IntBarrelLow" parent="CollisionShape3D" unique_id=1994316005 instance=ExtResource("6_gnry7")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -1.0310434, 0, -0.927)
+
+[node name="IntBarrelLow2" parent="CollisionShape3D" unique_id=390565347 instance=ExtResource("6_gnry7")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -1.031, 0, -0.59508705)
+
 [node name="World" type="Node" parent="." unique_id=1495741313]
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="World" unique_id=686138009]
@@ -430,7 +436,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -15.
 
 [node name="Sprite3D" parent="World/Grindstone2" index="3" unique_id=840510996]
 transform = Transform3D(-1.7484555e-07, 0, -4, 0, 4, 0, 4, 0, -1.7484555e-07, -0.022883892, 2.9617476, 0)
-texture = SubResource("ViewportTexture_ln51k")
+texture = SubResource("ViewportTexture_wu60a")
 
 [node name="Anvil" parent="World" unique_id=476401340 instance=ExtResource("22_3w1al")]
 transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, -15.975536, 0.124243736, 6.4576373)
@@ -443,7 +449,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.54991627, 0, 0.33583975)
 
 [node name="Sprite3D" parent="World/Anvil2" index="3" unique_id=840510996]
 transform = Transform3D(-2.359344e-07, 0, -4, 0, 4, 0, 5.3975496, 0, -1.7484555e-07, -0.69661474, 3.8950515, 0.23757124)
-texture = SubResource("ViewportTexture_m7d3y")
+texture = SubResource("ViewportTexture_7q0j7")
 
 [node name="Forge" parent="World" unique_id=994045895 instance=ExtResource("2_ptwec")]
 transform = Transform3D(-0.34999743, 0, 0.0013377805, 0, 0.35, 0, -0.0013377805, 0, -0.34999743, -3.7808273, 0.038991988, 0.5228681)
