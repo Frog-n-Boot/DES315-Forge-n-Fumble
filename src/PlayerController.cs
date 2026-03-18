@@ -64,6 +64,10 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	
 	private SpinAttack spinAttack;
 	private float lastRotation = 0f;
+	private float dropHoldTimer = 0f;
+	private bool dropTriggered = false;
+
+	public bool isDazed {get; private set;} = false;
 
 	public IEnumerable<ItemData> GetCarriedItems()
 	{
@@ -139,6 +143,10 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		pickupPrompt = pickupNode.GetNode<Label3D>("Label3D");
 
 		spinAttack = GetNode<SpinAttack>("SpinAttack");
+
+		if(currentWeapon is MeleeWeapon melee)
+			spinAttack.SetWeapon(melee);
+
 		lastRotation = Rotation.Y;
 	}
 	
@@ -242,6 +250,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
             }
 			
 		}
+
 		if (IsActionPressed("pick_up"))
 		{
 			if(nearbyWeapon != null && rightHand.GetChildCount() == 0)
@@ -252,6 +261,17 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			else if(nearbyPickable != null)
 				ProcessPickable(nearbyPickable);
 		}
+
+		if (Input.IsActionPressed("drop_item"))
+		{
+			dropHoldTimer += (float)delta;
+			if(dropHoldTimer >= 0.5f && !dropTriggered)
+			{
+				dropTriggered = true;
+				DropItem(rightHand);
+			}
+		}
+
 		if(currentWeapon is Sword sword){
 			if(inputBuffer.IsInputBuffered("attack") && !isAttacking)
 			{
@@ -277,8 +297,13 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	
 	public override void _PhysicsProcess(double delta)
 	{
-		
-		
+
+		if (isDazed)
+		{
+			Velocity = Vector3.Zero;
+			return;
+		}
+
 		if(sequenceMinigame != null && sequenceMinigame.IsActiveFor(this))
 		{
 			GD.Print("PlayerLocked");
@@ -362,13 +387,17 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			}
 		}
 
-		if (IsActionJustPressed("drop_left"))
+		if (@event.IsActionPressed("drop_item"))
 		{
-			DropItem(leftHand);
+			dropHoldTimer = 0f;
+			dropTriggered = false;
+
+			
 		}
-		if (IsActionJustPressed("drop_right"))
+		if (@event.IsActionReleased("drop_item"))
 		{
-			DropItem(rightHand);
+			if(!dropTriggered)
+				DropItem(leftHand);
 		}
 
 		if (IsActionJustPressed("attack"))
@@ -835,5 +864,15 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	{
 		isAttacking = false;
 		animPlayer.Play("Sword_Idle");
+	}
+
+	public void SetDazed(bool dazed)
+	{
+		isDazed = dazed;
+	}
+
+	public void GiveItem(Pickable pickable)
+	{
+		ProcessPickable(pickable);
 	}
 }

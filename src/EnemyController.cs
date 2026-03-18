@@ -139,6 +139,7 @@ public partial class EnemyController : Node3D
 		if (body.IsInGroup("Enemy"))  return "Enemy";
 		if (body.IsInGroup("Bullet")) return "Bullet";
 		if (body.IsInGroup("Arrow")) return "Arrow";
+		if (body.IsInGroup("SpinAttack")) return "SpinAttack";
 		return "";
 	}
 	#endregion
@@ -331,6 +332,24 @@ public partial class EnemyController : Node3D
 				else
 				{
 					GD.Print("Arrow is null");
+				}
+				break;
+			case "SpinAttack":
+				TakeDamage(1);
+				if(body.GetParent() is SpinAttack spinAttack)
+				{
+					var spinWeapon = spinAttack.GetCurrentWeapon();
+
+					if (spinWeapon != null)
+					{
+						int spinDamage = spinWeapon.damage * 3;
+						TakeDamage(spinDamage);
+
+						Vector3 pushDirection = (GlobalPosition - spinAttack.GetParent<Node3D>().GlobalPosition).Normalized();
+						pushDirection.Y = 0;
+						ApplyKnockback(pushDirection, 30f);
+
+					}
 				}
 				break;
 		}

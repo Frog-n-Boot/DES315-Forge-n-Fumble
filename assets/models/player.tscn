@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://fywbkplmkbgs" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/Dwarf_low_BaseCol.tga" id="3_v0ggv"]
 [ext_resource type="Texture2D" uid="uid://bmhg5m3p24cqb" path="res://assets/textures/RedDwarf.png" id="4_gp7mg"]
 [ext_resource type="Texture2D" uid="uid://bx0rnncaa27mi" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/Dwarf_low_ORM.tga" id="4_jnlb4"]
-[ext_resource type="ArrayMesh" uid="uid://dewjvcdn4tcwe" path="res://assets/models/FinalAssets_Low/Character_Models/Dwarf_low.obj" id="4_t0fpx"]
+[ext_resource type="ArrayMesh" uid="uid://dewjvcdn4tcwe" path="res://assets/models/FinalAssets_Low/Character_Models/dwarf_low.obj" id="4_t0fpx"]
 [ext_resource type="Texture2D" uid="uid://c7ffbeee7twxq" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/DwarfGreen_low_BaseCol.tga" id="5_ag2w6"]
 [ext_resource type="Texture2D" uid="uid://bgk03fcoiqv1l" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/Dwarf_low_Normal.tga" id="5_bw8qq"]
 [ext_resource type="Texture2D" uid="uid://cdlum5v1gnmv7" path="res://assets/textures/GreenDwarf.png" id="5_yv8gf"]
@@ -44,6 +44,40 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.13333334, 1, 0, 0, 0)
 
+[sub_resource type="Animation" id="Animation_46dl5"]
+resource_name = "Anim_Player_Dazed"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.033333335, 1, 0, 0, 0, 0.99999994, 1, 1, 0.7118912, 0, 0, 0.7022897)
+
+[sub_resource type="Animation" id="Animation_fanfu"]
+resource_name = "Anim_Player_Idle"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.033333335, 1, 0.7118911, 0, 0, 0.7022897, 0.96666664, 1, 0, 0, 0, 0.99999994)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0.03333334, 1, 0, 0, 0, 0.99999994)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0.033333335, 1, -0.75664777, -0.55151194, 0.44202113)
+
 [sub_resource type="Animation" id="Animation_t0fpx"]
 length = 0.001
 tracks/0/type = "rotation_3d"
@@ -63,28 +97,29 @@ tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_ktmmh"]
 resource_name = "Spin_Attack"
-length = 2.0
+length = 1.52
+loop_mode = 1
 tracks/0/type = "position_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0.033333335, 1, -1.1682286, -0.546065, 0, 0.2, 1, -0.47994602, -0.546065, 0.84313405, 1.9099998, 1, -1.1682286, -0.546065, 0)
+tracks/0/keys = PackedFloat32Array(0.016666606, 1, -0.47994602, -0.546065, 0.84313405)
 tracks/1/type = "rotation_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0.06666667, 1, 0, 0, 0, 0.99999994, 0.2, 1, 0.49257535, 0.47794753, 0.48408464, 0.5427685, 0.40833333, 1, 0.49257523, 0.4779476, 0.4840847, 0.5427684, 0.60833335, 1, 0.49257514, 0.47794765, 0.48408487, 0.54276836, 0.8, 1, 0.492575, 0.47794762, 0.48408496, 0.5427683, 1.0166667, 1, 0.49257535, 0.47794753, 0.48408464, 0.5427685, 1.1916666, 1, 0.49257523, 0.4779476, 0.4840847, 0.5427684, 1.3416666, 1, 0.49257514, 0.47794765, 0.48408487, 0.54276836, 1.4833333, 1, 0.492575, 0.47794762, 0.48408496, 0.5427683, 1.7083333, 1, 0.49257535, 0.47794753, 0.48408464, 0.5427685, 1.9433331, 1, 0, 0, 0, 0.99999994)
+tracks/1/keys = PackedFloat32Array(0.016666606, 1, 0.49257535, 0.47794753, 0.48408464, 0.5427685, 0.22499993, 1, 0.49257523, 0.4779476, 0.4840847, 0.5427684, 0.42499995, 1, 0.49257514, 0.47794765, 0.48408487, 0.54276836, 0.6166666, 1, 0.492575, 0.47794762, 0.48408496, 0.5427683, 0.83333325, 1, 0.49257535, 0.47794753, 0.48408464, 0.5427685, 1.0083332, 1, 0.49257523, 0.4779476, 0.4840847, 0.5427684, 1.1583332, 1, 0.49257514, 0.47794765, 0.48408487, 0.54276836, 1.3, 1, 0.492575, 0.47794762, 0.48408496, 0.5427683, 1.5, 1, 0.49257535, 0.47794753, 0.48408464, 0.5427685)
 tracks/2/type = "rotation_3d"
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/path = NodePath("../..")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0.16666667, 1, 0, 0, 0, 1, 0.43333334, 1, 0, 0.73403215, 0, 0.6791147, 0.6, 1, 0, 0.999602, 0, -0.028209504, 0.81666666, 1, 0, -0.6939486, 0, 0.72002447, 0.97499996, 1, 0, 0, 0, 1, 1.2166666, 1, 0, 0.73403215, 0, 0.6791147, 1.3333333, 1, 0, 0.999602, 0, -0.028209504, 1.5, 1, 0, -0.6939486, 0, 0.72002447, 1.6666666, 1, 0, 0, 0, 1)
+tracks/2/keys = PackedFloat32Array(0.016666695, 1, 0, 0, 0, 1, 0.28333336, 1, 0, 0.73403215, 0, 0.6791147, 0.45000005, 1, 0, 0.999602, 0, -0.028209504, 0.6666667, 1, 0, -0.6939486, 0, 0.72002447, 0.825, 1, 0, 0, 0, 1, 1.0666666, 1, 0, 0.73403215, 0, 0.6791147, 1.1833333, 1, 0, 0.999602, 0, -0.028209504, 1.35, 1, 0, -0.6939486, 0, 0.72002447, 1.5166667, 1, 0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_ob8sk"]
 resource_name = "Sword_Attack_1"
@@ -222,6 +257,8 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t0fpx"]
 _data = {
 &"Anim_Attack": SubResource("Animation_8d03m"),
+&"Anim_Player_Dazed": SubResource("Animation_46dl5"),
+&"Anim_Player_Idle": SubResource("Animation_fanfu"),
 &"RESET": SubResource("Animation_t0fpx"),
 &"Spin_Attack": SubResource("Animation_ktmmh"),
 &"Sword_Attack_1": SubResource("Animation_ob8sk"),
@@ -250,7 +287,7 @@ stream_0/stream = ExtResource("8_jnlb4")
 radius = 2.648853
 
 [node name="Player" type="CharacterBody3D" unique_id=489937195 node_paths=PackedStringArray("animPlayer", "audio", "rightHand", "leftHand", "areaPickup", "pickupNode") groups=["Player"]]
-transform = Transform3D(0.9999998, 0, 0, 0, 1, 0, 0, 0, 0.9999998, 0, 0, 0)
+transform = Transform3D(0.99999976, 0, 0, 0, 0.9999999, 0, 0, 0, 0.99999976, 0, 0, 0)
 collision_layer = 2
 collision_mask = 53
 velocity = Vector3(0, -228.01021, 0)
@@ -272,7 +309,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.039611816, 0.9244385, 0.05
 shape = SubResource("BoxShape3D_t0fpx")
 
 [node name="RightHand" type="Node3D" parent="CollisionShape3D" unique_id=798116510]
-transform = Transform3D(1.0000001, 0, 0, 0, 0.9999995, 0, 0, 0, 0.9999999, -1.1682286, -0.546065, 0)
+transform = Transform3D(1.0000001, 0, 0, 0, 0.9999998, 0, 0, 0, 1.0000004, -0.75664777, -0.55151194, 0.44202113)
 
 [node name="Sword" parent="CollisionShape3D/RightHand" unique_id=689345526 instance=ExtResource("3_8d03m")]
 transform = Transform3D(0.9999998, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999998, 0, 0, 0)
@@ -314,15 +351,20 @@ transform = Transform3D(1.6779308, 0, 0, 0, 1.8431246, 0, 0, 0, 1, 0, 2.7833214,
 
 [node name="Label3D" type="Label3D" parent="CanvasLayer/PickUpNode3D" unique_id=1684088306]
 
-[node name="SpinAttack" type="Node3D" parent="." unique_id=589698554 node_paths=PackedStringArray("collisionShape", "animPlayer")]
+[node name="SpinAttack" type="Node3D" parent="." unique_id=589698554 node_paths=PackedStringArray("collisionShape", "animPlayer", "spinArea") groups=["SpinAttack"]]
 script = ExtResource("15_gp7mg")
-collisionShape = NodePath("StaticBody3D/CollisionShape3D")
+maxSpinTime = 6.0
+spinDuration = 6.0
+collisionShape = NodePath("Area3D/CollisionShape3D")
 animPlayer = NodePath("../CollisionShape3D/AnimationPlayer")
+spinArea = NodePath("Area3D")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="SpinAttack" unique_id=147964776 groups=["Sword", "Weapon"]]
+[node name="Area3D" type="Area3D" parent="SpinAttack" unique_id=767540904 groups=["SpinAttack"]]
 collision_layer = 8
 collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SpinAttack/StaticBody3D" unique_id=254676150 groups=["Sword", "Weapon"]]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpinAttack/Area3D" unique_id=254676150 groups=["SpinAttack"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8003911, 0)
 shape = SubResource("SphereShape3D_gp7mg")
+
+[connection signal="body_entered" from="SpinAttack/Area3D" to="SpinAttack" method="OnSpinHit"]

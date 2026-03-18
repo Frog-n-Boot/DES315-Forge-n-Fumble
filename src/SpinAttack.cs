@@ -12,7 +12,7 @@ public partial class SpinAttack : Node3D
 	[Export]private CollisionShape3D collisionShape;
 	[Export] private AnimationPlayer animPlayer;
 	[Export] private float dazeTimer = 2f;
-	//[Export] Area3D spinArea;
+	[Export] Area3D spinArea;
 
 	[Signal] public delegate void SpinChargeGainedEventHandler(int currentCharges, int maxCharges);
 	[Signal] public delegate void SpinAttackReadyEventHandler(int charges);
@@ -32,11 +32,17 @@ public partial class SpinAttack : Node3D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready(){
 
+		
 		parent = GetParent<Node3D>();
 		//DisableCollision();
 
-		if(currentWeapon is Sword)
-			SetWeapon(currentWeapon);
+		if(spinArea != null)
+		{
+			spinArea.Monitoring = false;
+			spinArea.BodyEntered += OnSpinHit;
+
+			spinArea.AddToGroup("SpinAttack");
+		}
 		if(animPlayer == null)
         {
             animPlayer = parent.GetNode<AnimationPlayer>("CollisionShape3D");
@@ -48,7 +54,6 @@ public partial class SpinAttack : Node3D
 	{
 		if(isDazed || !isCharging || currentWeapon == null) return;
 		
-		GD.Print($"Charging! Timer: {spinChargeTimer}, Rotation:{parent.Rotation.Y}");
 		totalSpinTimer += (float)delta;
 
 		if(totalSpinTimer >= maxSpinTime)
@@ -100,7 +105,7 @@ public partial class SpinAttack : Node3D
 	{
 		if(isCharging || isDazed || currentWeapon == null)
         {
-            DisableCollision();
+            //DisableCollision();
 			return;
         } 
 
@@ -124,11 +129,29 @@ public partial class SpinAttack : Node3D
 	{
 		GD.Print($"SPIN ATTACK! Power: {spinCharges}");
 
-		if(currentWeapon != null)
+		if(currentWeapon != null && animPlayer !=null)
 		{
+			var animation = animPlayer.GetAnimation("Spin_Attack");
+			animation.LoopMode = Animation.LoopModeEnum.Linear;
+
 			animPlayer.Play("Spin_Attack");
-			animPlayer.SpeedScale = 1.0f;
-			EnableCollision();
+			
+			animPlayer.SpeedScale = 4.0f;
+
+			if(spinArea != null)
+			{
+				spinArea.Monitoring = true;
+
+				parent.GetTree().CreateTimer(spinDuration).Timeout += () =>
+				{
+					if(IsInstanceValid(spinArea))
+						spinArea.Monitoring = false;
+					
+					animPlayer.Stop();
+					TriggerDaze();
+				};
+			}
+			//EnableCollision();
 			// //var originalArea = currentWeapon.GetNode<Area3D>("StaticBody3D/Area3D");
 			// var originalCollision = currentWeapon.GetNode<CollisionShape3D>("StaticBody3D/CollisionShape3D");
 			// var originalShape = originalCollision.Shape;
@@ -147,7 +170,7 @@ public partial class SpinAttack : Node3D
             // };
 
 			//EnableArea();
-			TriggerDaze();
+			
 			
 		}
 
@@ -164,9 +187,28 @@ public partial class SpinAttack : Node3D
 	{
 		GD.Print("DAZED!");
 		isDazed = true;
-		GetTree().CreateTimer(dazeTimer).Timeout += () => DisableCollision();
-		parent.GetTree().CreateTimer(dazeTimer).Timeout += () => isDazed = false;
-		parent.GetTree().CreateTimer(dazeTimer).Timeout += () => animPlayer.SpeedScale = 1.0f;
+
+		
+
+		if(parent is PlayerController player)
+		{
+			player.SetDazed(true);
+			animPlayer.Play("Anim_Player_Dazed");
+		}
+
+		parent.GetTree().CreateTimer(dazeTimer).Timeout += () =>
+		{
+			isDazed = false;
+ 
+			if(parent is PlayerController player)
+			{
+				animPlayer.Play("Anim_Player_Idle");
+				var animLength = animPlayer.GetAnimation("Anim_Player_Idle").Length;
+				parent.GetTree().CreateTimer(animLength).Timeout += () => player.SetDazed(false);
+			}
+
+			animPlayer.SpeedScale = 1;
+		};
 		Reset();
 	}
 
@@ -177,13 +219,25 @@ public partial class SpinAttack : Node3D
 		
 	}
 
-	private void DisableCollision(){
-		collisionShape.Disabled = true;
+	private void OnSpinHit(Node3D body)
+	{
+		GD.Print($"Spin area detected: {body.Name}");
+
+		var enemyNode = body.GetParent();
+		if(enemyNode is EnemyController enemy && currentWeapon != null)
+		{
+			int damage = currentWeapon.damage;
+			enemy.TakeDamage(damage);
+
+			Vector3 pushDirection = (body.GlobalPosition - parent.GlobalPosition).Normalized();
+			pushDirection.Y = 0;
+			enemy.ApplyKnockback(pushDirection, 30f);
+
+			currentWeapon.TakeDurabilityDamage(1);
+		}
 	}
 
-	private void EnableCollision(){
-		collisionShape.Disabled =false;
-	}
+	public MeleeWeapon GetCurrentWeapon() => currentWeapon;
 
 	public void SetWeapon(MeleeWeapon weapon) => currentWeapon = weapon;
 	public bool IsCharging() => isCharging;

@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://d1wcjx47yw5st"
-path="res://.godot/imported/Goblin_low.glb-69d19b468587cd03b8207d70669ae597.scn"
+path="res://.godot/imported/goblin_low.glb-f01b13cc44910659b1729f7813076827.scn"
 
 [deps]
 
-source_file="res://assets/models/FinalAssets_Low/Character_Models/Goblin_low.glb"
-dest_files=["res://.godot/imported/Goblin_low.glb-69d19b468587cd03b8207d70669ae597.scn"]
+source_file="res://assets/models/FinalAssets_Low/Character_Models/goblin_low.glb"
+dest_files=["res://.godot/imported/goblin_low.glb-f01b13cc44910659b1729f7813076827.scn"]
 
 [params]
 
