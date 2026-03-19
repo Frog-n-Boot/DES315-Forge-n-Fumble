@@ -4,8 +4,6 @@ using System;
 public partial class LootTable : Node3D
 {
 
-
-
 	#region Variables
 
 	/* ---- Percentage range for the items ----- */

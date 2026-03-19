@@ -56,8 +56,10 @@ public partial class EnemyController : Node3D
 	private void TakeHealthDamage(int amount)
 	{
 		if (amount <= 0) return;
+
 		int oldHealth = currentHealth;
 		currentHealth = Mathf.Clamp(currentHealth - amount, 0, MaxHealth);
+		
 		if (oldHealth != currentHealth)
 		{
 			EmitSignal(SignalName.EnemyHealthChanged, currentHealth, MaxHealth);
@@ -137,6 +139,7 @@ public partial class EnemyController : Node3D
 		if (body.IsInGroup("Enemy"))  return "Enemy";
 		if (body.IsInGroup("Bullet")) return "Bullet";
 		if (body.IsInGroup("Arrow")) return "Arrow";
+		if (body.IsInGroup("SpinAttack")) return "SpinAttack";
 		return "";
 	}
 	#endregion
@@ -273,9 +276,7 @@ public partial class EnemyController : Node3D
 				EmitSignal(SignalName.DamagedTarget, body, Damage);
 				if (body is PlayerController playerController)
 				{		
-					playerController.TakeDamage(DamageToPlayer);
-					
-					
+					playerController.TakeDamage(DamageToPlayer);			
 					Vector3 pushDirection = (playerController.GlobalPosition - GlobalPosition).Normalized();
 					pushDirection.Y = 0;
 					pushDirection = pushDirection.Normalized();
@@ -285,9 +286,11 @@ public partial class EnemyController : Node3D
 				break;
 
 			case "Weapon":
-				BaseWeapon weapon = FindWeaponInHierarchy(body);
+				BaseWeapon weapon = FindWeaponInHierarchy(body);		
+
 				if (weapon != null)
-				{
+				{          
+              	 	 
 					if(weapon is Sword sword)
 					{
 						int damageToApply = sword.GetComboDamage();
@@ -297,6 +300,7 @@ public partial class EnemyController : Node3D
 					{
 						TakeDamage(weapon.damage);
 					}
+					
 					
 					weapon.TakeDurabilityDamage(1);		
 					Vector3 pushDirection = (GlobalPosition - weapon.GlobalPosition).Normalized();
@@ -330,6 +334,7 @@ public partial class EnemyController : Node3D
 					GD.Print("Arrow is null");
 				}
 				break;
+
 		}
 	}
 	#endregion
@@ -347,6 +352,7 @@ public partial class EnemyController : Node3D
 	{
 		Flash();
 		TakeHealthDamage(amount);
+		DamageNumbers.Spawn(amount, GlobalPosition, GetParent());
 	}
 
 	public void Die()

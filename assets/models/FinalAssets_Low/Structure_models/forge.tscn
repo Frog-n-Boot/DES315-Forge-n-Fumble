@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://bm6vf4tjk48gj"]
 
 [ext_resource type="Script" uid="uid://bdwnaqw5jg3si" path="res://src/SmeltingStation.cs" id="1_ph4aw"]
-[ext_resource type="PackedScene" uid="uid://dq8nubqatqhum" path="res://assets/models/FinalAssets_Low/Items_Models/Ingot.tscn" id="2_n8y7r"]
+[ext_resource type="Texture2D" uid="uid://de5i2lmkk12v1" path="res://assets/textures/UI/ui_controller_x_button.tres" id="2_sx61v"]
+[ext_resource type="Texture2D" uid="uid://cmhg5fabsggpk" path="res://assets/textures/UI/ui_keyboard_e_button.tres" id="3_i1han"]
 [ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/CraftingRecipes.cs" id="3_oiry0"]
 [ext_resource type="PackedScene" uid="uid://c36fijnqqehnq" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Ingot.tscn" id="3_wq66q"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="4_0l8vc"]
@@ -11,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bll315yt7blkd" path="res://assets/materials/Texture_sets/WorkStations/Furance_low_BaseCol.tga" id="6_ohbk7"]
 [ext_resource type="PackedScene" uid="uid://kxj85aq1b0n0" path="res://assets/models/FinalAssets_Low/Items_Models/Damas_Ingot.tscn" id="6_sx61v"]
 [ext_resource type="Texture2D" uid="uid://bj6c60ek3rd8c" path="res://assets/materials/Texture_sets/WorkStations/Furance_low_ORM.tga" id="7_2jum7"]
+[ext_resource type="Texture2D" uid="uid://c17qxymr0rbo2" path="res://assets/textures/UI/ui_button_image.webp" id="8_wq66q"]
 [ext_resource type="Texture2D" uid="uid://cw0s6r8rhgp8c" path="res://assets/materials/Texture_sets/WorkStations/Furance_low_Normal.tga" id="8_yd14g"]
 [ext_resource type="AudioStream" uid="uid://b55rsdiqrjrsq" path="res://assets/Sounds/WorldSounds/InitalForgeActivation.wav" id="10_yd14g"]
 [ext_resource type="AudioStream" uid="uid://svia4vnatnhi" path="res://assets/Sounds/WorldSounds/ForgeAfterActivation.wav" id="11_i2ejw"]
@@ -69,6 +71,10 @@ viewport_path = NodePath("Sprite3D/SubViewport")
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wq66q"]
 bg_color = Color(0.19014141, 0.71371996, 0.2947564, 1)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_sx61v"]
+atlas = ExtResource("8_wq66q")
+region = Rect2(117.9905, 372.12097, 39.020912, 40.217834)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i2ejw"]
 albedo_texture = ExtResource("6_ohbk7")
 normal_enabled = true
@@ -86,16 +92,18 @@ stream_1 = ExtResource("11_i2ejw")
 radius = 5.400879
 height = 20.422852
 
-[node name="Forge" type="Node3D" unique_id=994045895 node_paths=PackedStringArray("audio", "healthAura", "inputNode", "outputNode", "timeProgressBar", "stationName") groups=["Forge", "Station"]]
+[node name="Forge" type="Node3D" unique_id=994045895 node_paths=PackedStringArray("audio", "healthAura", "inputNode", "outputNode", "timeProgressBar", "stationName", "buttonTexture") groups=["Forge", "Station"]]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
 script = ExtResource("1_ph4aw")
-meltedIngotScene = ExtResource("2_n8y7r")
 audio = NodePath("AudioStreamPlayer3D")
 healthAura = NodePath("Area3D")
 inputNode = NodePath("InputPort")
 outputNode = NodePath("OutputPort")
 timeProgressBar = NodePath("Sprite3D/SubViewport/ProgressBar")
 stationName = NodePath("Sprite3D/SubViewport/Label")
+buttonTexture = NodePath("Sprite3D/SubViewport/TextureRect")
+controllerButtonTexture = ExtResource("2_sx61v")
+keyboardButtonTexture = ExtResource("3_i1han")
 craftDuration = 4.0
 recipes = Array[Object]([SubResource("Resource_04qyv"), SubResource("Resource_i1han"), SubResource("Resource_7xevn"), SubResource("Resource_i7ec5"), SubResource("Resource_16tjv")])
 
@@ -115,28 +123,35 @@ visible = false
 transform = Transform3D(5.2756314, 0, 0, 0, 2.857143, 0, 0, 0, 5.4322386, -9.265402, 1.5173415, -0.27193514)
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=741148502]
-transform = Transform3D(-27.69681, 0, -5.144179e-07, 0, 19.48352, 0, 2.4213318e-06, 0, -5.884255, -0.022883892, 21.894945, -1.8400894)
+transform = Transform3D(-19.73044, 0, -5.144179e-07, 0, 26.292894, 0, 1.7248897e-06, 0, -5.884255, -0.022883892, 23.910292, -1.8400894)
 texture = SubResource("ViewportTexture_ohbk7")
 
 [node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=1009488754]
 transparent_bg = true
-size = Vector2i(100, 100)
+size = Vector2i(100, 83)
 
 [node name="Label" type="Label" parent="Sprite3D/SubViewport" unique_id=1037346905]
 z_index = 1
-offset_left = 27.0
-offset_top = 34.0
-offset_right = 71.0
-offset_bottom = 83.0
+offset_left = 25.0
+offset_top = 45.0
+offset_right = 69.0
+offset_bottom = 94.0
 text = "Forge"
 
 [node name="ProgressBar" type="ProgressBar" parent="Sprite3D/SubViewport" unique_id=1436996828]
-offset_left = 25.0
-offset_top = 23.0
-offset_right = 75.0
-offset_bottom = 73.0
+offset_top = 34.0
+offset_right = 100.0
+offset_bottom = 84.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_wq66q")
 show_percentage = false
+
+[node name="TextureRect" type="TextureRect" parent="Sprite3D/SubViewport" unique_id=1873765406]
+offset_left = 30.0
+offset_top = 1.0
+offset_right = 70.0
+offset_bottom = 41.0
+scale = Vector2(0.9058403, 0.8089999)
+texture = SubResource("AtlasTexture_sx61v")
 
 [node name="FurnaceLow" type="MeshInstance3D" parent="." unique_id=1274855034]
 transform = Transform3D(-2.857143, 0, -2.4977936e-07, 0, 2.857143, 0, 2.4977936e-07, 0, -2.857143, 0, 0, 0.33177614)
@@ -156,11 +171,10 @@ light_energy = 1.5
 omni_range = 2.9051983
 
 [node name="Area3D" type="Area3D" parent="." unique_id=2011341028]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5253863, 2.1853385, -0.8195835)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.5253863, 2.1853385, -0.8195835)
 collision_layer = 160
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1789318158]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.83222485, 0, 0.18530273, 0.77709883)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18530273, 0.77709883)
 shape = SubResource("CapsuleShape3D_wq66q")

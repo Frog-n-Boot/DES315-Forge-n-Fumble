@@ -1,13 +1,11 @@
 [gd_scene format=3 uid="uid://i3hf4fb7cghh"]
 
-[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Pickable.cs" id="1_mn0cs"]
+[ext_resource type="Script" uid="uid://c25evsd3j0b" path="res://src/Sword.cs" id="1_fxara"]
 [ext_resource type="ArrayMesh" uid="uid://vmdklfvgul40" path="res://assets/models/FinalAssets_Low/Items_Models/Sword_first_low.obj" id="2_6tsm4"]
 [ext_resource type="Texture2D" uid="uid://urty3b4mhqm3" path="res://assets/materials/Texture_sets/Item_Textures/sword_frts_rough_low_BaseCol.tga" id="2_8nlyw"]
+[ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/FinalAssets_Low/Items_Models/Sword.tscn" id="2_pq0v0"]
 [ext_resource type="Texture2D" uid="uid://dc3r4qxj536qx" path="res://assets/materials/Texture_sets/Item_Textures/sword_frts_rough_low_ORM.tga" id="3_q10j4"]
 [ext_resource type="Texture2D" uid="uid://cfllkfsxak7hb" path="res://assets/materials/Texture_sets/Item_Textures/sword_frts_rough_low_Normal.tga" id="4_w6hee"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_6tsm4"]
-size = Vector3(0.68066406, 2.2209473, 0.59484863)
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_pswvq"]
 albedo_texture = ExtResource("2_8nlyw")
@@ -17,18 +15,36 @@ normal_texture = ExtResource("4_w6hee")
 heightmap_enabled = true
 heightmap_texture = ExtResource("3_q10j4")
 
-[node name="DullSword" type="Node3D" unique_id=778246616]
-script = ExtResource("1_mn0cs")
-itemDataPath = "uid://ddoliql37n67l"
+[sub_resource type="BoxShape3D" id="BoxShape3D_fxara"]
+size = Vector3(5.340587, 1.6914063, 8.853933)
 
-[node name="Area3D" type="Area3D" parent="." unique_id=12144372 groups=["pickable"]]
-collision_layer = 16
-collision_mask = 3
+[sub_resource type="BoxShape3D" id="BoxShape3D_pq0v0"]
+size = Vector3(1.742096, 1.691742, 4.7293167)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1017160636]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012207031, 1.2588482, -0.0038452148)
-shape = SubResource("BoxShape3D_6tsm4")
+[node name="DullSword" type="Node3D" unique_id=778246616 groups=["DullSword", "Sword", "Weapon"]]
+script = ExtResource("1_fxara")
+sharpenedVersion = ExtResource("2_pq0v0")
+damage = 1
+maxDurability = 10
 
 [node name="SwordFirstLow" type="MeshInstance3D" parent="." unique_id=1500591981]
 material_override = SubResource("ORMMaterial3D_pswvq")
 mesh = ExtResource("2_6tsm4")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=848161997 groups=["DullSword", "Sword", "Weapon"]]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=148260369 groups=["DullSword", "Sword", "Weapon"]]
+transform = Transform3D(0.20340535, 7.280779e-16, 0, -9.030358e-17, 1.6399672, 0, 0, 0, 0.09999808, 0.004674003, 1.1159198, -0.022993883)
+shape = SubResource("BoxShape3D_fxara")
+disabled = true
+
+[node name="Area3D" type="Area3D" parent="StaticBody3D" unique_id=1790719227 groups=["DullSword", "Sword", "Weapon"]]
+collision_layer = 24
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/Area3D" unique_id=420730757]
+transform = Transform3D(0.62693906, 0, 0, 0, 1.6399509, 0, 0, 0, 0.18563555, 0.004778548, 1.1241063, -0.01556235)
+shape = SubResource("BoxShape3D_pq0v0")

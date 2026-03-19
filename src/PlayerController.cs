@@ -28,6 +28,8 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	[Export] public float playerSpawnTimer;
 	[Export] private Texture2D[] playerMaterialTextures;
 	[Export] public float flashDuration = 0.2f;
+	[Export] public float spinStartThreshold = 3.0f;
+	[Export] public float spinStopThreshold = 1.0f;
 
 	public Texture2D GetPortraitTexture() => playerTextures[PlayerIndex];
 	public int currentDevice = -2;
@@ -60,6 +62,12 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 	private InputBuffer inputBuffer;
 	
+	private SpinAttack spinAttack;
+	private float lastRotation = 0f;
+	private float dropHoldTimer = 0f;
+	private bool dropTriggered = false;
+
+	public bool isDazed {get; private set;} = false;
 
 	public IEnumerable<ItemData> GetCarriedItems()
 	{
@@ -96,6 +104,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	}
 	public override void _Ready()
 	{
+
 		health = maxHealth;
 		inputBuffer = new InputBuffer();
 		AddChild(inputBuffer);
@@ -132,6 +141,13 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		}
 
 		pickupPrompt = pickupNode.GetNode<Label3D>("Label3D");
+
+		spinAttack = GetNode<SpinAttack>("SpinAttack");
+
+		if(currentWeapon is MeleeWeapon melee)
+			spinAttack.SetWeapon(melee);
+
+		lastRotation = Rotation.Y;
 	}
 	
 	private void FindExistingSword()
@@ -142,9 +158,11 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		{
 			if (child is BaseWeapon weapon)
 			{
+
 				currentWeapon = weapon;
 				if( weapon is Sword sword)
 					sword.CheckDurability += OnSwordDurabilityChecked;
+								
 				currentWeapon.Broke += OnSwordBroke;
 				GD.Print($"Player {PlayerIndex} found existing sword in hand!");
 				return;
@@ -175,6 +193,23 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 	public override void _Process(double delta)
 	{
+		if(spinAttack.IsDazed()) return;
+
+		float rotationSpeed = Mathf.Abs(Rotation.Y - lastRotation) / (float)delta;
+		lastRotation = Rotation.Y;
+
+		if(rotationSpeed > spinStartThreshold && !spinAttack.IsCharging())
+		{
+			spinAttack.StartCharging();
+		}
+			
+		
+		if(rotationSpeed < spinStopThreshold && spinAttack.IsCharging())
+		{
+			spinAttack.StopCharging();
+		}
+			
+
 		if(sequenceMinigame != null && sequenceMinigame.IsActiveFor(this))
 			return;
 
@@ -200,7 +235,15 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		
 		if (IsActionPressed("interact") && currentStation != null)
 		{
-			if(leftHand.GetChildCount() > 0)
+			if(currentStation is GrindstoneStation grindstone && currentWeapon is Sword sword1)
+            {
+                if (grindstone.DepositSword(sword1))
+                {
+                    rightHand.RemoveChild(sword1);
+					currentWeapon = null;
+                }
+            }
+			else if(leftHand.GetChildCount() > 0)
             {
                 var item = leftHand.GetChild(0) as Pickable;
 				if(item != null && item.GetItemData() != null)
@@ -215,6 +258,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
             }
 			
 		}
+
 		if (IsActionPressed("pick_up"))
 		{
 			if(nearbyWeapon != null && rightHand.GetChildCount() == 0)
@@ -225,6 +269,17 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			else if(nearbyPickable != null)
 				ProcessPickable(nearbyPickable);
 		}
+
+		if (Input.IsActionPressed("drop_item"))
+		{
+			dropHoldTimer += (float)delta;
+			if(dropHoldTimer >= 0.5f && !dropTriggered)
+			{
+				dropTriggered = true;
+				DropItem(rightHand);
+			}
+		}
+
 		if(currentWeapon is Sword sword){
 			if(inputBuffer.IsInputBuffered("attack") && !isAttacking)
 			{
@@ -250,8 +305,13 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	
 	public override void _PhysicsProcess(double delta)
 	{
-		
-		
+
+		if (isDazed)
+		{
+			Velocity = Vector3.Zero;
+			return;
+		}
+
 		if(sequenceMinigame != null && sequenceMinigame.IsActiveFor(this))
 		{
 			GD.Print("PlayerLocked");
@@ -335,13 +395,17 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			}
 		}
 
-		if (IsActionJustPressed("drop_left"))
+		if (@event.IsActionPressed("drop_item"))
 		{
-			DropItem(leftHand);
+			dropHoldTimer = 0f;
+			dropTriggered = false;
+
+			
 		}
-		if (IsActionJustPressed("drop_right"))
+		if (@event.IsActionReleased("drop_item"))
 		{
-			DropItem(rightHand);
+			if(!dropTriggered)
+				DropItem(leftHand);
 		}
 
 		if (IsActionJustPressed("attack"))
@@ -529,7 +593,8 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			rightHand.Rotation = Vector3.Zero;
 
 			currentWeapon = nearbyWeapon;
-			
+			nearbyWeapon.SetOwner(this);
+
 			if(currentWeapon is Sword sword)
 			{	
 				if(!sword.IsConnected(Sword.SignalName.ComboReset, Callable.From(OnComboReset)))
@@ -548,6 +613,8 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			currentWeapon.isBeingPickedUp = false;
 			nearbyWeapon = null;
 			
+			if(currentWeapon is MeleeWeapon melee)
+				spinAttack.SetWeapon(melee);
 		};
 	}
 	private Vector3 GetLookVector()
@@ -712,6 +779,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	{
 		//GD.Print("Sword broke! Auto crafting a new one if ingredients are available...");
 		currentWeapon = null;
+		spinAttack.SetWeapon(null);
 		isAttacking = false;
 	}
 
@@ -732,14 +800,18 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			weapon.SetDeferred("global_position", dropPosition);
 			weapon.SetDeferred("rotation", Vector3.Zero);
 
-			if(weapon is Sword sword)
+			if(weapon is Sword sword){
+				spinAttack.SetWeapon(null);
 				sword.CheckDurability -= OnSwordDurabilityChecked;
+			}
+				
 
 			currentWeapon.Broke -= OnSwordBroke;
 			currentWeapon = null;
 
 			GetTree().CreateTimer(0.1f).Timeout += () =>
 				areaPickup.SetDeferred("monitoring", true);
+			
 			return;
 		}
 
@@ -801,5 +873,15 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	{
 		isAttacking = false;
 		animPlayer.Play("Sword_Idle");
+	}
+
+	public void SetDazed(bool dazed)
+	{
+		isDazed = dazed;
+	}
+
+	public void GiveItem(Pickable pickable)
+	{
+		ProcessPickable(pickable);
 	}
 }

@@ -1,9 +1,11 @@
-[gd_scene format=3 uid="uid://cmd758glwlnly"]
+[gd_scene format=3 uid="uid://c0arr6buqskq0"]
 
 [ext_resource type="Script" uid="uid://f7buye2dboqr" path="res://src/GrindstoneStation.cs" id="1_bbsxq"]
 [ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/FinalAssets_Low/Items_Models/Sword.tscn" id="2_hj04q"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="3_fgmgg"]
 [ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/CraftingRecipes.cs" id="3_hj04q"]
+[ext_resource type="Texture2D" uid="uid://de5i2lmkk12v1" path="res://assets/textures/UI/ui_controller_x_button.tres" id="3_kecgh"]
+[ext_resource type="Texture2D" uid="uid://cmhg5fabsggpk" path="res://assets/textures/UI/ui_keyboard_e_button.tres" id="4_3ynec"]
 [ext_resource type="Texture2D" uid="uid://50xg82nov3j2" path="res://assets/materials/Texture_sets/WorkStations/Grinder_low_BaseCol.tga" id="4_chpgb"]
 [ext_resource type="PackedScene" uid="uid://di5odw2tmde5j" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Sword.tscn" id="4_uhy0b"]
 [ext_resource type="ArrayMesh" uid="uid://gxhgwjbmhtq6" path="res://assets/models/FinalAssets_Low/WorkStations/Grinder_low.obj" id="5_fgmgg"]
@@ -17,6 +19,7 @@ recipeName = "Sword"
 requiredItemNames = PackedStringArray("DullSword")
 ouputName = "Sword"
 ouputScene = ExtResource("2_hj04q")
+ouputGroup = "Weapon"
 metadata/_custom_type_script = "uid://1bo1o367ybgk"
 
 [sub_resource type="Resource" id="Resource_wc540"]
@@ -41,7 +44,7 @@ heightmap_texture = ExtResource("5_yoit8")
 [sub_resource type="ViewportTexture" id="ViewportTexture_w3u6e"]
 viewport_path = NodePath("Sprite3D/SubViewport")
 
-[node name="Grindstone" type="Node3D" unique_id=1158721071 node_paths=PackedStringArray("grindstoneSound", "inputNode", "outputNode", "timeProgressBar", "stationName") groups=["Station"]]
+[node name="Grindstone" type="Node3D" unique_id=1158721071 node_paths=PackedStringArray("grindstoneSound", "inputNode", "outputNode", "timeProgressBar", "stationName", "buttonTexture") groups=["Station"]]
 script = ExtResource("1_bbsxq")
 swordScene = ExtResource("2_hj04q")
 grindstoneSound = NodePath("AudioStreamPlayer3D")
@@ -49,6 +52,9 @@ inputNode = NodePath("InputPort")
 outputNode = NodePath("OutputPort")
 timeProgressBar = NodePath("Sprite3D/SubViewport/ProgressBar")
 stationName = NodePath("Sprite3D/SubViewport/Label")
+buttonTexture = NodePath("Sprite3D/SubViewport/TextureRect")
+controllerButtonTexture = ExtResource("3_kecgh")
+keyboardButtonTexture = ExtResource("4_3ynec")
 recipes = Array[Object]([SubResource("Resource_fgmgg"), SubResource("Resource_wc540")])
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=90114362]
@@ -73,26 +79,37 @@ transform = Transform3D(9.291697, 0, 0, 0, 1.837871, 0, 0, 0, 6.8115783, 0.00969
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0206666, 0.3782071, 0.9554943)
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=840510996]
-transform = Transform3D(-1.7484555e-07, 0, 4, 0, 4, 0, -4, 0, -1.7484555e-07, -0.022883892, 2.961748, 0)
+transform = Transform3D(-1.7484555e-07, 0, 4, 0, 4, 0, -4, 0, -1.7484555e-07, -0.022883892, 3.6945045, 0)
 texture = SubResource("ViewportTexture_w3u6e")
 
 [node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=2072696855]
 transparent_bg = true
-size = Vector2i(100, 50)
+size = Vector2i(100, 105)
 
 [node name="ProgressBar" type="ProgressBar" parent="Sprite3D/SubViewport" unique_id=104158359]
-offset_top = 10.0
-offset_right = 100.0
-offset_bottom = 60.0
+offset_left = -1.0
+offset_top = 43.0
+offset_right = 99.0
+offset_bottom = 93.0
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="Sprite3D/SubViewport" unique_id=1293063617]
-offset_left = 5.0
-offset_top = 20.0
-offset_right = 45.0
-offset_bottom = 69.0
+offset_left = 4.0
+offset_top = 53.0
+offset_right = 44.0
+offset_bottom = 102.0
 text = "
 "
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Sprite3D/SubViewport" unique_id=1468167481]
+offset_left = 27.0
+offset_right = 1051.0
+offset_bottom = 1024.0
+scale = Vector2(0.0400002, 0.04000014)
+texture = ExtResource("3_kecgh")
+metadata/_edit_use_anchors_ = true
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1808461735]
 stream = ExtResource("9_8jrxj")

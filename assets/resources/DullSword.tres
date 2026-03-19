@@ -1,9 +1,11 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://ddoliql37n67l"]
 
 [ext_resource type="Script" uid="uid://cy6spy2s7uv1l" path="res://src/ItemData.cs" id="1_7m7gq"]
+[ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/FinalAssets_Low/Items_Models/DullSword.tscn" id="1_c1jh7"]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_7m7gq")
 name = "DullSword"
+itemScene = ExtResource("1_c1jh7")
 metadata/_custom_type_script = "uid://cy6spy2s7uv1l"

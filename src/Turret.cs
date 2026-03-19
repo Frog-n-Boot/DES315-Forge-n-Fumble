@@ -9,7 +9,7 @@ public partial class Turret : Node3D
 	[Export] public float range = 20.0f;
 	[Export] public float coneAngle = 65.0f;
 	[Export] protected Node3D inputNode;
-	[Export] protected Label label;
+	[Export] protected Label3D label;
 
 	protected ItemCarrier itemCarrier;
 	protected PlayerController player;
@@ -22,7 +22,9 @@ public partial class Turret : Node3D
 
 	public override void _Ready()
 	{
+		label.Visible = true;
 		label.Text = $"{bulletCount}";
+		label.FontSize = 40;
 		SetupTimer();
 		SetupArea();
 	}
@@ -84,6 +86,7 @@ public partial class Turret : Node3D
 
 		bullet.SetDirection(forward);
 		bulletCount--;
+
 		label.Text = $"{bulletCount}";
 
 	}

@@ -34,8 +34,32 @@ public partial class ForgingStation : BaseStationScript
 
 	private void OnSequenceFailed()
 	{
+		GD.Print("Sequence Failed");
+		if(pendingConsume == null) return;
+		GD.Print($"Items to return {pendingConsume.Count}");
+
+		foreach(var item in pendingConsume)
+		{
+			GD.Print($"Returning item: {item.name}, scene: {item.itemScene}");
+			if(item.itemScene != null)
+			{
+				var pickable = item.itemScene.Instantiate<Pickable>();
+				GetTree().Root.AddChild(pickable);
+				pickable.GlobalPosition = player.GlobalPosition;
+				player.GiveItem(pickable);
+				GD.Print("Item returned to player");
+			}
+			else
+			{
+				GD.Print("Item Scene is null");
+			}
+			itemsToDeposit.Remove(itemsToDeposit.FirstOrDefault(i => i.name == item.name));
+
+		}
+
 		pendingConsume = null;
 		pendingRecipe = null;
+		
 	}
 
 	protected override void OnCraftingRequirementsMet()
@@ -67,8 +91,6 @@ public partial class ForgingStation : BaseStationScript
 	protected override string GetStationName() => "Anvil";
 
 	public override SequenceMinigame GetSequenceMinigame() => sequenceMinigame;
-
-
-
-
+    protected override void ConsumeItems() {}
+   
 }

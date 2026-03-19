@@ -3,13 +3,16 @@
 [ext_resource type="Script" uid="uid://bkgt1ax3obdva" path="res://src/ForgingStation.cs" id="1_c6611"]
 [ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/FinalAssets_Low/Items_Models/DullSword.tscn" id="2_fj0e1"]
 [ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/CraftingRecipes.cs" id="3_1latb"]
+[ext_resource type="Texture2D" uid="uid://de5i2lmkk12v1" path="res://assets/textures/UI/ui_controller_x_button.tres" id="3_gk661"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="3_yb3nn"]
 [ext_resource type="ArrayMesh" uid="uid://mmh030obulkw" path="res://assets/models/FinalAssets_Low/WorkStations/Anvil_low.obj" id="4_1latb"]
 [ext_resource type="PackedScene" uid="uid://d1y4lf17i3iid" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Dull_Sword.tscn" id="4_4m0u5"]
 [ext_resource type="Texture2D" uid="uid://d0b62wsx8gdhv" path="res://assets/materials/Texture_sets/WorkStations/anvil_low_BaseCol.tga" id="4_813ft"]
+[ext_resource type="Texture2D" uid="uid://cmhg5fabsggpk" path="res://assets/textures/UI/ui_keyboard_e_button.tres" id="4_rl3yd"]
 [ext_resource type="Script" uid="uid://cqdmkhuvmmyck" path="res://src/SequenceMinigame.cs" id="4_yb3nn"]
 [ext_resource type="Texture2D" uid="uid://klsyonb1xfst" path="res://assets/materials/Texture_sets/WorkStations/anvil_low_Normal.tga" id="5_o5b8a"]
 [ext_resource type="Texture2D" uid="uid://bet17bbe1leks" path="res://assets/materials/Texture_sets/WorkStations/anvil_low_ORM.tga" id="5_u3lgt"]
+[ext_resource type="Texture2D" uid="uid://c17qxymr0rbo2" path="res://assets/textures/UI/ui_button_image.webp" id="10_0gpkw"]
 [ext_resource type="AudioStream" uid="uid://brbu62attbvtp" path="res://assets/Sounds/WorldSounds/Anvil1.wav" id="10_qc3dd"]
 [ext_resource type="AudioStream" uid="uid://6566qnnkif3q" path="res://assets/Sounds/WorldSounds/Anvil2.wav" id="11_2emfc"]
 [ext_resource type="AudioStream" uid="uid://ctq3m1e8gjrsl" path="res://assets/Sounds/WorldSounds/Anvil3.wav" id="12_g2xu1"]
@@ -46,6 +49,10 @@ heightmap_texture = ExtResource("5_u3lgt")
 [sub_resource type="ViewportTexture" id="ViewportTexture_yb3nn"]
 viewport_path = NodePath("Sprite3D/SubViewport")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_uh5my"]
+atlas = ExtResource("10_0gpkw")
+region = Rect2(115.641174, 371.03876, 42.833862, 43.257965)
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_svcrb"]
 streams_count = 4
 stream_0/stream = ExtResource("10_qc3dd")
@@ -53,7 +60,7 @@ stream_1/stream = ExtResource("11_2emfc")
 stream_2/stream = ExtResource("12_g2xu1")
 stream_3/stream = ExtResource("13_721mw")
 
-[node name="Anvil" type="Node3D" unique_id=1158721071 node_paths=PackedStringArray("sequenceMinigame", "inputNode", "outputNode", "timeProgressBar", "stationName") groups=["Station"]]
+[node name="Anvil" type="Node3D" unique_id=1158721071 node_paths=PackedStringArray("sequenceMinigame", "inputNode", "outputNode", "timeProgressBar", "stationName", "buttonTexture") groups=["Station"]]
 script = ExtResource("1_c6611")
 dullSwordScene = ExtResource("2_fj0e1")
 sequenceMinigame = NodePath("SequenceMinigame")
@@ -61,6 +68,9 @@ inputNode = NodePath("InputPort")
 outputNode = NodePath("OutputPort")
 timeProgressBar = NodePath("Sprite3D/SubViewport/ProgressBar")
 stationName = NodePath("Sprite3D/SubViewport/Label")
+buttonTexture = NodePath("Sprite3D/SubViewport/TextureRect")
+controllerButtonTexture = ExtResource("3_gk661")
+keyboardButtonTexture = ExtResource("4_rl3yd")
 recipes = Array[Object]([SubResource("Resource_813ft"), SubResource("Resource_r4c47")])
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=90114362]
@@ -108,6 +118,13 @@ offset_right = 65.0
 offset_bottom = 49.0
 text = "
 "
+
+[node name="TextureRect" type="TextureRect" parent="Sprite3D/SubViewport" unique_id=21315474]
+offset_left = 21.000002
+offset_right = 1045.0
+offset_bottom = 1024.0
+scale = Vector2(0.08000046, 0.03999967)
+texture = SubResource("AtlasTexture_uh5my")
 
 [node name="SequenceMinigame" type="Node" parent="." unique_id=290722974 node_paths=PackedStringArray("sequenceText", "sprite3D", "audio")]
 script = ExtResource("4_yb3nn")

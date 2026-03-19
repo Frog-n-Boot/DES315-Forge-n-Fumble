@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public partial class SmeltingStation : BaseStationScript
 {
-	[Export] private PackedScene meltedIngotScene;
 	[Export] private AudioStreamPlayer3D audio;
 	[Export] private Area3D healthAura;
 	[Export] private float healAmount = 5f;
@@ -15,11 +14,6 @@ public partial class SmeltingStation : BaseStationScript
 
 	protected override void OnReady()
 	{
-
-	   	if(meltedIngotScene == null)
-		{
-			meltedIngotScene = GD.Load<PackedScene>("res://assets/models/MeltedIngot.tscn");;
-		}
 	}
 	
 	public override void _Process(double delta)
