@@ -44,6 +44,16 @@ heightmap_texture = ExtResource("5_yoit8")
 [sub_resource type="ViewportTexture" id="ViewportTexture_w3u6e"]
 viewport_path = NodePath("Sprite3D/SubViewport")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_3ynec"]
+viewport_path = NodePath("Sprite3D2/SubViewport")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_n8ot4"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kecgh"]
+atlas = SubResource("CompressedTexture2D_n8ot4")
+region = Rect2(114, 363, 40, 39)
+
 [node name="Grindstone" type="Node3D" unique_id=1158721071 node_paths=PackedStringArray("grindstoneSound", "inputNode", "outputNode", "timeProgressBar", "stationName", "buttonTexture") groups=["Station"]]
 script = ExtResource("1_bbsxq")
 swordScene = ExtResource("2_hj04q")
@@ -114,3 +124,16 @@ metadata/_edit_use_anchors_ = true
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1808461735]
 stream = ExtResource("9_8jrxj")
 volume_db = -50.0
+
+[node name="Sprite3D2" type="Sprite3D" parent="." unique_id=307032134]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.08742571, -1.4875834)
+texture = SubResource("ViewportTexture_3ynec")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D2" unique_id=1266319800]
+transparent_bg = true
+size = Vector2i(100, 100)
+
+[node name="TextureRect" type="TextureRect" parent="Sprite3D2/SubViewport" unique_id=655449413]
+offset_right = 98.0
+offset_bottom = 98.0
+texture = SubResource("AtlasTexture_kecgh")

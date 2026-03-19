@@ -91,6 +91,6 @@ public partial class ForgingStation : BaseStationScript
 	protected override string GetStationName() => "Anvil";
 
 	public override SequenceMinigame GetSequenceMinigame() => sequenceMinigame;
-    protected override void ConsumeItems() {}
+	protected override void ConsumeItems() {}
    
 }

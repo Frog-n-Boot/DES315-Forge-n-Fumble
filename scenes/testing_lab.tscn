@@ -29,7 +29,7 @@
 [ext_resource type="Script" uid="uid://bwa528ng6f33g" path="res://addons/proton_scatter/src/scatter.gd" id="17_8sdqg"]
 [ext_resource type="Script" uid="uid://8obq5b17ef84" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="18_o3gvf"]
 [ext_resource type="Script" uid="uid://dvru8fpbq7k1c" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="19_my7b3"]
-[ext_resource type="PackedScene" uid="uid://cmd758glwlnly" path="res://assets/models/FinalAssets_Low/WorkStations/Grindstone.tscn" id="20_5vgrt"]
+[ext_resource type="PackedScene" uid="uid://c0arr6buqskq0" path="res://assets/models/FinalAssets_Low/WorkStations/Grindstone.tscn" id="20_5vgrt"]
 [ext_resource type="PackedScene" uid="uid://706c56ie3ke" path="res://assets/models/Turret.tscn" id="20_20nwc"]
 [ext_resource type="Script" uid="uid://clhu3chb2f1wp" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="20_t8lul"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="21_20nwc"]
@@ -199,7 +199,13 @@ volumetric_fog_density = 0.0
 viewport_path = NodePath("Sprite3D/SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_oi252"]
+viewport_path = NodePath("Sprite3D2/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_u0ja0"]
 viewport_path = NodePath("Sprite3D/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_lmxpm"]
+viewport_path = NodePath("Sprite3D2/SubViewport")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cvaul"]
 bg_color = Color(0.74509805, 0, 0, 1)
@@ -1224,6 +1230,7 @@ transform = Transform3D(-0.20000002, 0, -1.7484556e-08, 0, 0.15, 0, 1.7484556e-0
 transform = Transform3D(-0.1657856, 0, 0.017114714, 0, 0.16666666, 0, -0.017114714, 0, -0.1657856, -1.4346442, 0.15969533, 0.3999939)
 
 [node name="ProtonScatter" type="Node3D" parent="CollisionShape3D" unique_id=1285734428]
+visible = false
 script = ExtResource("17_8sdqg")
 modifier_stack = SubResource("Resource_7y6wb")
 Performance/use_chunks = true
@@ -1253,6 +1260,7 @@ negative = true
 shape = SubResource("Resource_my7b3")
 
 [node name="ProtonScatter2" type="Node3D" parent="CollisionShape3D" unique_id=738791391]
+visible = false
 script = ExtResource("17_8sdqg")
 modifier_stack = SubResource("Resource_pt6y2")
 Performance/use_chunks = true
@@ -1281,6 +1289,7 @@ negative = true
 shape = SubResource("Resource_oafgb")
 
 [node name="ProtonScatter3" type="Node3D" parent="CollisionShape3D" unique_id=708559353]
+visible = false
 script = ExtResource("17_8sdqg")
 modifier_stack = SubResource("Resource_aneoj")
 Performance/use_chunks = true
@@ -1348,6 +1357,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37649155, -0.8498851, -1.91
 transform = Transform3D(-1.7484555e-07, 0, -4, 0, 4, 0, 4, 0, -1.7484555e-07, -0.022883892, 2.9617476, 0)
 texture = SubResource("ViewportTexture_dxjg1")
 
+[node name="Sprite3D2" parent="World/Grindstone2" index="5" unique_id=307032134]
+texture = SubResource("ViewportTexture_oi252")
+
 [node name="Anvil" parent="World" unique_id=476401340 instance=ExtResource("22_3w1al")]
 transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, -14.653336, 0.124243736, 5.9914675)
 
@@ -1356,7 +1368,10 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7.54
 
 [node name="Sprite3D" parent="World/Anvil2" index="3" unique_id=840510996]
 transform = Transform3D(-2.359344e-07, 0, -4, 0, 4, 0, 5.3975496, 0, -1.7484555e-07, -0.69661474, 3.8950515, 0.23757124)
-texture = SubResource("ViewportTexture_oi252")
+texture = SubResource("ViewportTexture_u0ja0")
+
+[node name="Sprite3D2" parent="World/Anvil2" index="4" unique_id=994797673]
+texture = SubResource("ViewportTexture_lmxpm")
 
 [node name="Forge" parent="World" unique_id=994045895 instance=ExtResource("2_ptwec")]
 transform = Transform3D(-0.34999743, 0, 0.0013377805, 0, 0.35, 0, -0.0013377805, 0, -0.34999743, -3.8077734, 0.038991988, 0.5220441)

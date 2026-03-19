@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://bkgt1ax3obdva" path="res://src/ForgingStation.cs" id="1_c6611"]
 [ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/FinalAssets_Low/Items_Models/DullSword.tscn" id="2_fj0e1"]
 [ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/CraftingRecipes.cs" id="3_1latb"]
-[ext_resource type="Texture2D" uid="uid://de5i2lmkk12v1" path="res://assets/textures/UI/ui_controller_x_button.tres" id="3_gk661"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="3_yb3nn"]
 [ext_resource type="ArrayMesh" uid="uid://mmh030obulkw" path="res://assets/models/FinalAssets_Low/WorkStations/Anvil_low.obj" id="4_1latb"]
 [ext_resource type="PackedScene" uid="uid://d1y4lf17i3iid" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Dull_Sword.tscn" id="4_4m0u5"]
@@ -17,6 +16,13 @@
 [ext_resource type="AudioStream" uid="uid://6566qnnkif3q" path="res://assets/Sounds/WorldSounds/Anvil2.wav" id="11_2emfc"]
 [ext_resource type="AudioStream" uid="uid://ctq3m1e8gjrsl" path="res://assets/Sounds/WorldSounds/Anvil3.wav" id="12_g2xu1"]
 [ext_resource type="AudioStream" uid="uid://cynyfxhfehvv1" path="res://assets/Sounds/WorldSounds/Anvil4.wav" id="13_721mw"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_uh5my"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gk661"]
+atlas = SubResource("CompressedTexture2D_uh5my")
+region = Rect2(114, 363, 40, 39)
 
 [sub_resource type="Resource" id="Resource_813ft"]
 script = ExtResource("3_1latb")
@@ -53,6 +59,16 @@ viewport_path = NodePath("Sprite3D/SubViewport")
 atlas = ExtResource("10_0gpkw")
 region = Rect2(115.641174, 371.03876, 42.833862, 43.257965)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_rl3yd"]
+viewport_path = NodePath("Sprite3D2/SubViewport")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gk661"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rl3yd"]
+atlas = SubResource("CompressedTexture2D_gk661")
+region = Rect2(114, 363, 40, 39)
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_svcrb"]
 streams_count = 4
 stream_0/stream = ExtResource("10_qc3dd")
@@ -68,8 +84,8 @@ inputNode = NodePath("InputPort")
 outputNode = NodePath("OutputPort")
 timeProgressBar = NodePath("Sprite3D/SubViewport/ProgressBar")
 stationName = NodePath("Sprite3D/SubViewport/Label")
-buttonTexture = NodePath("Sprite3D/SubViewport/TextureRect")
-controllerButtonTexture = ExtResource("3_gk661")
+buttonTexture = NodePath("Sprite3D2/SubViewport/TextureRect")
+controllerButtonTexture = SubResource("AtlasTexture_gk661")
 keyboardButtonTexture = ExtResource("4_rl3yd")
 recipes = Array[Object]([SubResource("Resource_813ft"), SubResource("Resource_r4c47")])
 
@@ -120,11 +136,25 @@ text = "
 "
 
 [node name="TextureRect" type="TextureRect" parent="Sprite3D/SubViewport" unique_id=21315474]
+visible = false
 offset_left = 21.000002
 offset_right = 1045.0
 offset_bottom = 1024.0
 scale = Vector2(0.08000046, 0.03999967)
 texture = SubResource("AtlasTexture_uh5my")
+
+[node name="Sprite3D2" type="Sprite3D" parent="." unique_id=994797673]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.08742571, -1.4875834)
+texture = SubResource("ViewportTexture_rl3yd")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D2" unique_id=477667082]
+transparent_bg = true
+size = Vector2i(100, 100)
+
+[node name="TextureRect" type="TextureRect" parent="Sprite3D2/SubViewport" unique_id=1764555556]
+offset_right = 98.0
+offset_bottom = 98.0
+texture = SubResource("AtlasTexture_rl3yd")
 
 [node name="SequenceMinigame" type="Node" parent="." unique_id=290722974 node_paths=PackedStringArray("sequenceText", "sprite3D", "audio")]
 script = ExtResource("4_yb3nn")

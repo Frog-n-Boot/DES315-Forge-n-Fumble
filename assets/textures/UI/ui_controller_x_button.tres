@@ -1,7 +1,8 @@
 [gd_resource type="AtlasTexture" format=3 uid="uid://de5i2lmkk12v1"]
 
-[ext_resource type="Texture2D" uid="uid://c17qxymr0rbo2" path="res://assets/textures/UI/ui_button_image.webp" id="1_kwobt"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_uh5my"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
 
 [resource]
-atlas = ExtResource("1_kwobt")
-region = Rect2(116.878494, 374.99332, 42.375717, 38.669647)
+atlas = SubResource("CompressedTexture2D_uh5my")
+region = Rect2(114, 363, 40, 39)

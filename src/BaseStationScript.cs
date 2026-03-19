@@ -56,24 +56,24 @@ public abstract partial class BaseStationScript : Node3D
 	}
 
 	private bool GetPlayerDevice()
-    {
-        bool isController = activeDevice >= 0;
+	{
+		bool isController = activeDevice >= 0;
 		return isController;
-    }
+	}
 
 	private void UpdateButtonTexture(bool isController)
-    {
-        
-        if (isController)
-        {
-            buttonTexture.Texture = controllerButtonTexture;
-        }
-        else
-        {
-            buttonTexture.Texture = keyboardButtonTexture;
-        }
+	{
+		
+		if (isController)
+		{
+			buttonTexture.Texture = controllerButtonTexture;
+		}
+		else
+		{
+			buttonTexture.Texture = keyboardButtonTexture;
+		}
 
-    }
+	}
 
 	protected abstract string GetStationName();
 
