@@ -251,66 +251,66 @@ material_override = SubResource("StandardMaterial3D_ptwec")
 mesh = SubResource("PlaneMesh_3lnvk")
 skeleton = NodePath("../..")
 
-[node name="Node3D" type="Node3D" parent="CollisionShape3D" unique_id=455017772]
+[node name="interior" type="Node3D" parent="CollisionShape3D" unique_id=455017772]
 
-[node name="IntBarrelLow" parent="CollisionShape3D/Node3D" unique_id=450340970 instance=ExtResource("6_gnry7")]
+[node name="IntBarrelLow" parent="CollisionShape3D/interior" unique_id=450340970 instance=ExtResource("6_gnry7")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -1.6917112, 0.013361792, 0.75296736)
 
-[node name="IntBoardsLow" parent="CollisionShape3D/Node3D" unique_id=330279951 instance=ExtResource("7_uv07s")]
+[node name="IntBoardsLow" parent="CollisionShape3D/interior" unique_id=330279951 instance=ExtResource("7_uv07s")]
 transform = Transform3D(-7.3664483e-09, 0, -0.16666666, 0, 0.14282477, 0, 0.16852468, 0, -7.2852315e-09, 1.8340372, 0.1959536, 0.5852132)
 
-[node name="IntBrushLow" parent="CollisionShape3D/Node3D" unique_id=1515723218 instance=ExtResource("8_yy0kv")]
+[node name="IntBrushLow" parent="CollisionShape3D/interior" unique_id=1515723218 instance=ExtResource("8_yy0kv")]
 transform = Transform3D(-0.15687543, 0, -0.056283873, 0, 0.16666666, 0, 0.056283873, 0, -0.15687543, -1.5513028, 0.15454245, 0.42913246)
 
-[node name="IntGrabberLow" parent="CollisionShape3D/Node3D" unique_id=1381013930 instance=ExtResource("9_ppghg")]
+[node name="IntGrabberLow" parent="CollisionShape3D/interior" unique_id=1381013930 instance=ExtResource("9_ppghg")]
 transform = Transform3D(0.14088032, -0.088664375, -0.008315032, 0.02132476, 0.04869701, -0.15796083, 0.08646252, 0.13245758, 0.052507207, -1.7078242, 0.15728235, 0.75532234)
 
-[node name="IntHammerLow" parent="CollisionShape3D/Node3D" unique_id=1407326090 instance=ExtResource("10_4twbm")]
+[node name="IntHammerLow" parent="CollisionShape3D/interior" unique_id=1407326090 instance=ExtResource("10_4twbm")]
 transform = Transform3D(0.153164, 0, -0.065715805, 0, 0.16666666, 0, 0.065715805, 0, 0.153164, -1.6890858, 0.15813377, 0.43376598)
 
-[node name="IntLanternHangLow" parent="CollisionShape3D/Node3D" unique_id=1872810731 instance=ExtResource("11_lqoiw")]
+[node name="IntLanternHangLow" parent="CollisionShape3D/interior" unique_id=1872810731 instance=ExtResource("11_lqoiw")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.977, 0.13, -1.582)
 
-[node name="IntLanternHangLow2" parent="CollisionShape3D/Node3D" unique_id=1232861590 instance=ExtResource("11_lqoiw")]
+[node name="IntLanternHangLow2" parent="CollisionShape3D/interior" unique_id=1232861590 instance=ExtResource("11_lqoiw")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -2.171, 0.20000002, -1.581644)
 
-[node name="IntLanternHangLow3" parent="CollisionShape3D/Node3D" unique_id=559004940 instance=ExtResource("11_lqoiw")]
+[node name="IntLanternHangLow3" parent="CollisionShape3D/interior" unique_id=559004940 instance=ExtResource("11_lqoiw")]
 transform = Transform3D(-0.16666666, 0, -1.4570463e-08, 0, 0.16666666, 0, 1.4570463e-08, 0, -0.16666666, -2.170628, 0.20000002, 1.7333906)
 
-[node name="IntLanternHangLow4" parent="CollisionShape3D/Node3D" unique_id=885909463 instance=ExtResource("11_lqoiw")]
+[node name="IntLanternHangLow4" parent="CollisionShape3D/interior" unique_id=885909463 instance=ExtResource("11_lqoiw")]
 transform = Transform3D(-0.16666666, 0, -1.4570463e-08, 0, 0.16666666, 0, 1.4570463e-08, 0, -0.16666666, 0.9767027, 0.20042102, 1.7729902)
 
-[node name="IntLanternStandLow" parent="CollisionShape3D/Node3D" unique_id=364970141 instance=ExtResource("12_68amh")]
+[node name="IntLanternStandLow" parent="CollisionShape3D/interior" unique_id=364970141 instance=ExtResource("12_68amh")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 0.6253215, 0.15588416, 0.073723935)
 
-[node name="IntLanternStandLow2" parent="CollisionShape3D/Node3D" unique_id=1042696541 instance=ExtResource("12_68amh")]
+[node name="IntLanternStandLow2" parent="CollisionShape3D/interior" unique_id=1042696541 instance=ExtResource("12_68amh")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -3.0304751, 0.25672957, -0.05259403)
 
-[node name="IntShelfLow" parent="CollisionShape3D/Node3D" unique_id=886707856 instance=ExtResource("13_wu60a")]
+[node name="IntShelfLow" parent="CollisionShape3D/interior" unique_id=886707856 instance=ExtResource("13_wu60a")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -2.6138825, 0.14017925, -1.5494752)
 
-[node name="IntShelfLow2" parent="CollisionShape3D/Node3D" unique_id=1822089546 instance=ExtResource("13_wu60a")]
+[node name="IntShelfLow2" parent="CollisionShape3D/interior" unique_id=1822089546 instance=ExtResource("13_wu60a")]
 transform = Transform3D(-7.2852315e-09, 0, -0.16666666, 0, 0.16666666, 0, 0.16666666, 0, -7.2852315e-09, 1.7606673, 0.07625584, 0.5768022)
 
-[node name="IntShelfLow3" parent="CollisionShape3D/Node3D" unique_id=999432324 instance=ExtResource("13_wu60a")]
+[node name="IntShelfLow3" parent="CollisionShape3D/interior" unique_id=999432324 instance=ExtResource("13_wu60a")]
 transform = Transform3D(0.10000001, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 1.3463647, 0.1401791, -1.5498842)
 
-[node name="IntShelfLow4" parent="CollisionShape3D/Node3D" unique_id=714714764 instance=ExtResource("13_wu60a")]
+[node name="IntShelfLow4" parent="CollisionShape3D/interior" unique_id=714714764 instance=ExtResource("13_wu60a")]
 transform = Transform3D(-4.371139e-09, 0, 0.16666666, 0, 0.16666666, 0, -0.099999994, 0, -7.2852315e-09, -2.994809, 0.1401791, -0.058148146)
 
-[node name="IntStoolLow" parent="CollisionShape3D/Node3D" unique_id=2102236486 instance=ExtResource("14_7q0j7")]
+[node name="IntStoolLow" parent="CollisionShape3D/interior" unique_id=2102236486 instance=ExtResource("14_7q0j7")]
 transform = Transform3D(-7.2852315e-09, 0, 0.16666666, 0, 0.16666666, 0, -0.16666666, 0, -7.2852315e-09, 0.75748026, 0.006216687, 0.06923823)
 
-[node name="IntStoolLow2" parent="CollisionShape3D/Node3D" unique_id=928870507 instance=ExtResource("14_7q0j7")]
+[node name="IntStoolLow2" parent="CollisionShape3D/interior" unique_id=928870507 instance=ExtResource("14_7q0j7")]
 transform = Transform3D(-7.2852315e-09, 0, 0.16666666, 0, 0.16666666, 0, -0.16666666, 0, -7.2852315e-09, 0.4898622, 0.006216687, 0.06923823)
 
-[node name="IntTableLow" parent="CollisionShape3D/Node3D" unique_id=1401044304 instance=ExtResource("15_vsamq")]
+[node name="IntTableLow" parent="CollisionShape3D/interior" unique_id=1401044304 instance=ExtResource("15_vsamq")]
 transform = Transform3D(-8.742278e-09, 0, 0.20000002, 0, 0.15, 0, -0.20000002, 0, -8.742278e-09, 0.6095277, 0.0014312066, 0.08506652)
 
-[node name="IntTableLow2" parent="CollisionShape3D/Node3D" unique_id=1759234264 instance=ExtResource("15_vsamq")]
+[node name="IntTableLow2" parent="CollisionShape3D/interior" unique_id=1759234264 instance=ExtResource("15_vsamq")]
 transform = Transform3D(-0.20000002, 0, -1.7484556e-08, 0, 0.15, 0, 1.7484556e-08, 0, -0.20000002, -1.5650706, 0.0014311669, 0.43118748)
 
-[node name="IntTrowelLow" parent="CollisionShape3D/Node3D" unique_id=34111228 instance=ExtResource("16_0d37v")]
+[node name="IntTrowelLow" parent="CollisionShape3D/interior" unique_id=34111228 instance=ExtResource("16_0d37v")]
 transform = Transform3D(-0.1657856, 0, 0.017114714, 0, 0.16666666, 0, -0.017114714, 0, -0.1657856, -1.4346442, 0.15969533, 0.3999939)
 
 [node name="ProtonScatter" type="Node3D" parent="CollisionShape3D" unique_id=1285734428]
