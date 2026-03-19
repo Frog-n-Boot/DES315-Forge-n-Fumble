@@ -309,6 +309,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		if (isDazed)
 		{
 			Velocity = Vector3.Zero;
+			isAttacking = true;
 			return;
 		}
 
