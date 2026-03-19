@@ -1,0 +1,6 @@
+[gd_resource type="Resource" format=3 uid="uid://3kff0gyf6m7i"]
+
+[ext_resource type="Script" uid="uid://beevsmjvykxq" path="res://src/Enemy/AI/FleeBehaviour.cs" id="1_juk7m"]
+
+[resource]
+script = ExtResource("1_juk7m")

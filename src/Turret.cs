@@ -4,145 +4,134 @@ using System.Collections.Generic;
 
 public partial class Turret : Node3D
 {
-	[Export] private Node3D bulletSpawnLocation;
-	[Export] private PackedScene bulletScene;
-	[Export] public float range = 20.0f;
-	[Export] public float coneAngle = 65.0f;
-	[Export] protected Node3D inputNode;
-	[Export] protected Label label;
-
-	protected ItemCarrier itemCarrier;
-	protected PlayerController player;
+    [Export] private Node3D bulletSpawnLocation;
+    [Export] private PackedScene bulletScene;
+    [Export] public float range = 20.0f;
+    [Export] public float coneAngle = 65.0f;
+    [Export] protected Node3D inputNode;
+    [Export] protected Label label;
+    protected ItemCarrier itemCarrier;
+    protected PlayerController player;
     private List<PlayerController> playersInZone = new List<PlayerController>();
-	private int bulletCount= 10;
+    private int bulletCount = 10;
+    private EnemyController currentTarget;
+    private float reloadTime = 1;
+    Timer shootTimer;
 
-	private Node3D currentTarget;
-	private float reloadTime = 1;
-	Timer shootTimer;
-
-	public override void _Ready()
-	{
-		label.Text = $"{bulletCount}";
-		SetupTimer();
-		SetupArea();
-	}
-
-	private void SetupTimer()
+    public override void _Ready()
     {
-        shootTimer = new Timer();
-		shootTimer.WaitTime = 1.0f;
-		shootTimer.OneShot= false;
-		AddChild(shootTimer);
-		shootTimer.Timeout += SpawnBullet;
-		shootTimer.Start();
+        label.Text = $"{bulletCount}";
+        SetupTimer();
+        SetupArea();
     }
 
-	private void SetupArea()
+    private void SetupTimer()
     {
-		if(inputNode == null)
-		{
-			GD.Print($"{Name}: inputNode is not assigned");
-			return;
-		}
+        shootTimer          = new Timer();
+        shootTimer.WaitTime = 1.0f;
+        shootTimer.OneShot  = false;
+        AddChild(shootTimer);
+        shootTimer.Timeout += SpawnBullet;
+        shootTimer.Start();
+    }
+
+    private void SetupArea()
+    {
+        if (inputNode == null)
+        {
+            GD.Print($"{Name}: inputNode is not assigned");
+            return;
+        }
 
         var inputArea = inputNode.GetNode<Area3D>("Area3D");
-		if(inputArea != null)
-		{
-			inputArea.BodyEntered += OnInputBodyEntered;
-		}
-		else
-			GD.Print("Input are not found");
+        if (inputArea != null)
+            inputArea.BodyEntered += OnInputBodyEntered;
+        else
+            GD.Print("Input area not found");
     }
 
-	public override void _Process(double delta)
-	{
-		currentTarget = FindClosestEnemy();
+    public override void _Process(double delta)
+    {
+        currentTarget = FindClosestEnemy();
+        if (currentTarget == null) return;
+        bulletSpawnLocation.LookAt(currentTarget.GlobalPosition, Vector3.Up);
+    }
 
-		if(currentTarget == null) return;
+    private void SpawnBullet()
+    {
+        if (bulletCount <= 0)
+        {
+            shootTimer.Stop();
+            return;
+        }
 
-		bulletSpawnLocation.LookAt(currentTarget.GlobalPosition, Vector3.Up);
-	}
+        EnemyController target = FindClosestEnemy();
+        if (target == null) return;
 
-	private void SpawnBullet()
-	{
-		if(bulletCount <= 0)
-		{
-			shootTimer.Stop();
-			return;
-		}
+        var bullet = bulletScene.Instantiate<Bullet>();
+        bullet.AddToGroup("Bullet");
+        GetTree().Root.AddChild(bullet);
+        bullet.GlobalPosition = bulletSpawnLocation.GlobalPosition;
 
-		Node3D target = FindClosestEnemy();
-		if(target == null) return;
+        Vector3 forward = -bulletSpawnLocation.GlobalTransform.Basis.Z;
+        bullet.SetDirection(forward);
 
-		var bullet = bulletScene.Instantiate<Bullet>();
-		bullet.AddToGroup("Bullet");
-		GetTree().Root.AddChild(bullet);
+        bulletCount--;
+        label.Text = $"{bulletCount}";
+    }
 
-		bullet.GlobalPosition = bulletSpawnLocation.GlobalPosition;
+    private EnemyController FindClosestEnemy()
+    {
+        var enemies = GetTree().GetNodesInGroup("Enemy");
+        EnemyController closest = null;
+        float closestDist = float.MaxValue;
 
-		Vector3 forward = -bulletSpawnLocation.GlobalTransform.Basis.Z;
+        foreach (Node node in enemies)
+        {
+            if (node is not EnemyController enemy) continue;
 
-		bullet.SetDirection(forward);
-		bulletCount--;
-		label.Text = $"{bulletCount}";
+            Vector3 toEnemy = enemy.GlobalPosition - GlobalPosition;
+            toEnemy.Y = 0;
+            float distance = toEnemy.Length();
 
-	}
+            if (distance > range) continue;
 
-	private Node3D FindClosestEnemy()
-	{
-		var enemies = GetTree().GetNodesInGroup("Enemy");
-		Node3D closest = null;
-		float closestDistance= float.MaxValue;
+            float angle = Mathf.RadToDeg(Transform.Basis.X.AngleTo(toEnemy.Normalized()));
+            if (angle <= coneAngle && distance < closestDist)
+            {
+                closestDist = distance;
+                closest     = enemy;
+            }
+        }
 
-		foreach(Node3D enemy in enemies)
-		{
-			Node3D enemy3D = enemy as Node3D;
-			if(enemy3D == null) continue;
+        return closest;
+    }
 
-			Vector3 toEnemy = enemy3D.GlobalPosition - GlobalPosition;
-			toEnemy.Y = 0;
-			float distance = toEnemy.Length();
-
-			if(distance > range) continue;
-
-			float angle = Mathf.RadToDeg(Transform.Basis.X.AngleTo(toEnemy.Normalized()));
-
-			if(angle <= coneAngle)
-			{
-				if(distance < closestDistance)
-				{
-					closestDistance = distance;
-					closest = enemy;
-				}
-			}
-	
-		}
-		return closest;
-	}
-	public void OnInputBodyEntered(Node3D body)
+    public void OnInputBodyEntered(Node3D body)
     {
         if (body.IsInGroup("Player"))
         {
-            var p= body as PlayerController;
+            var p     = body as PlayerController;
             itemCarrier = p as ItemCarrier;
-            player = p;
+            player      = p;
             playersInZone.Add(p);
-			CheckItem();
+            CheckItem();
         }
     }
-	private void CheckItem()
-	{
-		var items= itemCarrier.GetCarriedItems();
-		foreach(var item in items)
-		{
-			if(item.name == "Ingot")
-			{
-				GD.Print("Ingot was added");
-				bulletCount += 10;
-				label.Text = $"{bulletCount}";
-				shootTimer.Start();
-				itemCarrier.RemoveItem(item);
-			}
-		}
-	}
+
+    private void CheckItem()
+    {
+        var items = itemCarrier.GetCarriedItems();
+        foreach (var item in items)
+        {
+            if (item.name == "Ingot")
+            {
+                GD.Print("Ingot was added");
+                bulletCount += 10;
+                label.Text   = $"{bulletCount}";
+                shootTimer.Start();
+                itemCarrier.RemoveItem(item);
+            }
+        }
+    }
 }

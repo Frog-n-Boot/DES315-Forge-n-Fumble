@@ -11,15 +11,15 @@
 [ext_resource type="PackedScene" uid="uid://d1twjqnwuwntn" path="res://assets/models/FinalAssets_Low/Structure_models/Wooden_floor.tscn" id="6_7gden"]
 [ext_resource type="Script" uid="uid://bk2uam5leqcv8" path="res://src/PlayerSpawner.cs" id="6_42n6d"]
 [ext_resource type="PackedScene" uid="uid://c2tw2fxkk6sbk" path="res://assets/models/FinalAssets_Low/Lowpolies_interor/Int_barrel_low.tscn" id="6_gnry7"]
-[ext_resource type="Script" uid="uid://bj4pcgxjt3ru7" path="res://src/WaveManager.cs" id="7_53x3i"]
+[ext_resource type="Script" uid="uid://bj4pcgxjt3ru7" path="res://src/Mangers/WaveManager.cs" id="7_53x3i"]
 [ext_resource type="PackedScene" uid="uid://b50uy4p1e5d72" path="res://assets/models/FinalAssets_Low/Lowpolies_interor/Int_boards_low.tscn" id="7_uv07s"]
 [ext_resource type="PackedScene" uid="uid://dqosnddn0nnq4" path="res://assets/models/FinalAssets_Low/Lowpolies_interor/Int_brush_low.tscn" id="8_yy0kv"]
 [ext_resource type="Script" uid="uid://taddex4cilqa" path="res://src/LootTable.cs" id="9_7cc0k"]
-[ext_resource type="Resource" uid="uid://calih72lg8n07" path="res://assets/resources/NormalEnemyData.tres" id="9_mehdq"]
+[ext_resource type="Resource" uid="uid://calih72lg8n07" path="res://assets/resources/AI/NormalEnemyData.tres" id="9_mehdq"]
 [ext_resource type="PackedScene" uid="uid://crvaqkd3fbbfl" path="res://assets/models/FinalAssets_Low/Lowpolies_interor/Int_grabber_low.tscn" id="9_ppghg"]
 [ext_resource type="PackedScene" uid="uid://d37147dy8d8ud" path="res://assets/models/FinalAssets_Low/Lowpolies_interor/Int_hammer_low.tscn" id="10_4twbm"]
-[ext_resource type="Resource" uid="uid://cdki2c88hftlb" path="res://assets/resources/FastEnemyData.tres" id="10_7p7bj"]
-[ext_resource type="Resource" uid="uid://cvs5mxaqpoflx" path="res://assets/resources/StrongEnemyData.tres" id="11_gwggj"]
+[ext_resource type="Resource" uid="uid://cdki2c88hftlb" path="res://assets/resources/AI/FastEnemyData.tres" id="10_7p7bj"]
+[ext_resource type="Resource" uid="uid://cvs5mxaqpoflx" path="res://assets/resources/AI/StrongEnemyData.tres" id="11_gwggj"]
 [ext_resource type="PackedScene" uid="uid://cnppvln4501k0" path="res://assets/models/FinalAssets_Low/Lowpolies_interor/Int_lantern_hang_low.tscn" id="11_lqoiw"]
 [ext_resource type="PackedScene" uid="uid://cxe6cojaa4tnp" path="res://assets/models/FinalAssets_Low/Lowpolies_interor/Int_lantern_stand_low.tscn" id="12_68amh"]
 [ext_resource type="PackedScene" uid="uid://jnghu007q1m" path="res://assets/models/FinalAssets_Low/Items_Models/Healthpack.tscn" id="12_gwggj"]
@@ -667,212 +667,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.891476, 0, -2.7367232)
 [node name="SpawnPoint3" type="Marker3D" parent="PlayerSpawner" unique_id=2030002562]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2047462, 0, 0.9286995)
 
-[node name="EnemySpawner" type="Node" parent="." unique_id=1191566733 node_paths=PackedStringArray("spawnParent", "targetNode", "lootTable", "resultMenu", "enemyUI", "waveTimerLabel3D") groups=["WaveManager"]]
-script = ExtResource("7_53x3i")
-spawnParent = NodePath(".")
-targetNode = NodePath("../Forge")
-lootTable = NodePath("../LootTable")
-resultMenu = NodePath("../ResultsMenu")
-normalEnemyData = ExtResource("9_mehdq")
-fastEnemyData = ExtResource("10_7p7bj")
-strongEnemyData = ExtResource("11_gwggj")
-normalEnemyChance = 70
-strongEnemyChance = 10
-maxWaves = 7
-startingEnemiesPerWave = 10
-enemyIncreasedPerWave = 2
-enemyUI = NodePath("../EnemyUI")
-waveTimerLabel3D = NodePath("../EnemyUI/Label3D")
-
-[node name="EnemySpawn1" type="Marker3D" parent="EnemySpawner" unique_id=829387820]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.047226, 0, 23.813654)
-
-[node name="EnemySpawn2" type="Marker3D" parent="EnemySpawner" unique_id=1036047724]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.681313, 0, -39.874676)
-
-[node name="EnemySpawn3" type="Marker3D" parent="EnemySpawner" unique_id=269155436]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9449558, 0, 32.018856)
-
-[node name="EnemySpawn9" type="Marker3D" parent="EnemySpawner" unique_id=348894196]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.341758, 0, 28.875797)
-
-[node name="EnemySpawn4" type="Marker3D" parent="EnemySpawner" unique_id=732551147]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.521996, 0, 0.96859026)
-
-[node name="EnemySpawn5" type="Marker3D" parent="EnemySpawner" unique_id=1147873908]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.475105, 0, 23.120361)
-
-[node name="EnemySpawn6" type="Marker3D" parent="EnemySpawner" unique_id=890423285]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.42679, 0, -30.008736)
-
-[node name="EnemySpawn7" type="Marker3D" parent="EnemySpawner" unique_id=1941235768]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.031914, 0, -4.90823)
-
-[node name="EnemySpawn8" type="Marker3D" parent="EnemySpawner" unique_id=1838745660]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.031914, 0, 10.609423)
-
-[node name="Enemies" type="Node3D" parent="EnemySpawner" unique_id=663500412]
-
-[node name="LootTable" type="Node3D" parent="." unique_id=537718464 groups=["LootTable"]]
-script = ExtResource("9_7cc0k")
-damasDropChance = 0
-healthPackDropChance = 0
-copperOre = ExtResource("35_wu60a")
-ironOre = ExtResource("46_lqoiw")
-goldOre = ExtResource("47_68amh")
-damasOre = ExtResource("37_lqoiw")
-healthPackObject = ExtResource("12_gwggj")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1197770763 node_paths=PackedStringArray("spawner", "portraitContainer")]
-script = ExtResource("31_f5rak")
-portraitScene = ExtResource("32_xw70q")
-spawner = NodePath("../PlayerSpawner")
-portraitContainer = NodePath("HBoxContainer")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=1200533580]
-offset_left = 25.999998
-offset_top = 529.0
-offset_right = 66.00001
-offset_bottom = 569.0
-scale = Vector2(1.4340242, 1.4681656)
-theme_override_constants/separation = 100
-
-[node name="ForgeProgressBar" type="ProgressBar" parent="CanvasLayer" unique_id=847755065]
-offset_left = 3.0
-offset_top = 11.0
-offset_right = 1149.0
-offset_bottom = 39.0
-theme_override_styles/background = SubResource("StyleBoxFlat_cvaul")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ikfag")
-value = 50.0
-show_percentage = false
-script = ExtResource("34_0vwtv")
-targetPath = NodePath("../..")
-
-[node name="EnemyUI" type="Label" parent="." unique_id=754514857]
-process_priority = 1
-offset_top = 66.0
-offset_right = 66.0
-offset_bottom = 89.0
-text = "Enemies"
-metadata/_edit_use_anchors_ = true
-
-[node name="Label3D" type="Label3D" parent="EnemyUI" unique_id=1383849787]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.814533, 9.772978, 0)
-text = "dsfsdfsd"
-font_size = 200
-
-[node name="PauseMenu" type="CanvasLayer" parent="." unique_id=385949872 node_paths=PackedStringArray("resumeButton", "settingsButton", "mainMenuButton", "settingsMenu")]
-process_mode = 3
-visible = false
-script = ExtResource("23_amgg8")
-resumeButton = NodePath("ResumeButton")
-settingsButton = NodePath("SettingsButton")
-mainMenuButton = NodePath("QuitButton")
-settingsMenu = NodePath("../SettingsMenu")
-
-[node name="ResumeButton" type="Button" parent="PauseMenu" unique_id=1461095151]
-offset_left = 71.00002
-offset_top = 175.0
-offset_right = 519.0
-offset_bottom = 295.0
-scale = Vector2(0.8400012, 0.7599994)
-focus_neighbor_top = NodePath(".")
-focus_neighbor_bottom = NodePath("../SettingsButton")
-focus_next = NodePath("../SettingsButton")
-focus_previous = NodePath("../QuitButton")
-theme_override_font_sizes/font_size = 40
-text = "Resume"
-
-[node name="SettingsButton" type="Button" parent="PauseMenu" unique_id=284510241]
-offset_left = 71.00002
-offset_top = 335.0
-offset_right = 519.0
-offset_bottom = 455.0
-scale = Vector2(0.8400012, 0.7599994)
-focus_neighbor_top = NodePath("../ResumeButton")
-focus_neighbor_bottom = NodePath("../QuitButton")
-focus_next = NodePath("../QuitButton")
-focus_previous = NodePath("../ResumeButton")
-theme_override_font_sizes/font_size = 40
-text = "Settings"
-
-[node name="QuitButton" type="Button" parent="PauseMenu" unique_id=1753223593]
-offset_left = 71.00002
-offset_top = 495.0
-offset_right = 519.0
-offset_bottom = 615.0
-scale = Vector2(0.8400012, 0.7599994)
-focus_neighbor_top = NodePath("../SettingsButton")
-focus_previous = NodePath("../SettingsButton")
-theme_override_font_sizes/font_size = 40
-text = "Main Menu"
-
-[node name="Label" type="Label" parent="PauseMenu" unique_id=1356341263]
-offset_left = 62.0
-offset_top = 26.0
-offset_right = 459.0
-offset_bottom = 109.0
-theme_override_font_sizes/font_size = 60
-text = "Game Paused"
-
-[node name="FurnaceImahe" type="TextureRect" parent="PauseMenu" unique_id=1306127748]
-offset_left = 658.0
-offset_top = 64.0
-offset_right = 1158.0
-offset_bottom = 164.0
-scale = Vector2(0.6149459, 0.68860584)
-texture = ExtResource("30_f5rak")
-expand_mode = 1
-
-[node name="AnvilImage" type="TextureRect" parent="PauseMenu" unique_id=1655853165]
-offset_left = 658.0
-offset_top = 133.0
-offset_right = 1158.0
-offset_bottom = 233.0
-scale = Vector2(0.6149459, 0.68860584)
-texture = ExtResource("29_7dxqx")
-expand_mode = 1
-
-[node name="GrindstoneImage" type="TextureRect" parent="PauseMenu" unique_id=983736741]
-offset_left = 658.0
-offset_top = 201.0
-offset_right = 1158.0
-offset_bottom = 301.0
-scale = Vector2(0.6149459, 0.68860584)
-texture = ExtResource("31_xw70q")
-expand_mode = 1
-
-[node name="ControlsLabel" type="Label" parent="PauseMenu" unique_id=1322837801]
-offset_left = 592.0
-offset_top = 347.00003
-offset_right = 1254.0
-offset_bottom = 704.0
-scale = Vector2(0.68, 0.62560004)
-theme_override_font_sizes/font_size = 30
-text = "Actions                  Keyboard    │  Controller
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Pick-Up               │  Right Click │  Left Trigger
-Attack/Interact │  Left Click   │  Right Trigger
-Drop-Left-Item  │  Q                 │  Left Shoulder
-Drop-Right-Item│  E                 │  Right Shoulder
-Pause                  │  ESC             │  ☰
-Sequence           │  ←↑→↓          │  < > v ^"
-
-[node name="TextureRect" type="TextureRect" parent="PauseMenu" unique_id=261957256]
-z_index = -1
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(28.860407, 16.15729)
-texture = SubResource("CompressedTexture2D_7dxqx")
-
-[node name="ColorRect" type="ColorRect" parent="PauseMenu" unique_id=25129296]
-z_index = -1
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(28.750067, 16.369858)
-color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
-
 [node name="SettingsMenu" type="CanvasLayer" parent="." unique_id=1617405091 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton", "pauseMenu")]
 visible = false
 script = ExtResource("24_gax05")
@@ -1141,6 +935,212 @@ offset_bottom = 40.0
 scale = Vector2(28.750067, 16.369858)
 color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
 
+[node name="EnemySpawner" type="Node" parent="." unique_id=1191566733 node_paths=PackedStringArray("spawnParent", "targetNode", "lootTable", "resultMenu", "enemyUI", "waveTimerLabel3D") groups=["WaveManager"]]
+script = ExtResource("7_53x3i")
+spawnParent = NodePath(".")
+targetNode = NodePath("../Forge")
+lootTable = NodePath("../LootTable")
+resultMenu = NodePath("../ResultsMenu")
+normalEnemyData = ExtResource("9_mehdq")
+fastEnemyData = ExtResource("10_7p7bj")
+strongEnemyData = ExtResource("11_gwggj")
+normalEnemyChance = 70
+strongEnemyChance = 10
+maxWaves = 7
+startingEnemiesPerWave = 10
+enemyIncreasedPerWave = 2
+enemyUI = NodePath("../EnemyUI")
+waveTimerLabel3D = NodePath("../EnemyUI/Label3D")
+
+[node name="EnemySpawn1" type="Marker3D" parent="EnemySpawner" unique_id=829387820]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.047226, 0, 23.813654)
+
+[node name="EnemySpawn2" type="Marker3D" parent="EnemySpawner" unique_id=1036047724]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.681313, 0, -39.874676)
+
+[node name="EnemySpawn3" type="Marker3D" parent="EnemySpawner" unique_id=269155436]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9449558, 0, 32.018856)
+
+[node name="EnemySpawn9" type="Marker3D" parent="EnemySpawner" unique_id=348894196]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.341758, 0, 28.875797)
+
+[node name="EnemySpawn4" type="Marker3D" parent="EnemySpawner" unique_id=732551147]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.521996, 0, 0.96859026)
+
+[node name="EnemySpawn5" type="Marker3D" parent="EnemySpawner" unique_id=1147873908]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.475105, 0, 23.120361)
+
+[node name="EnemySpawn6" type="Marker3D" parent="EnemySpawner" unique_id=890423285]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.42679, 0, -30.008736)
+
+[node name="EnemySpawn7" type="Marker3D" parent="EnemySpawner" unique_id=1941235768]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.031914, 0, -4.90823)
+
+[node name="EnemySpawn8" type="Marker3D" parent="EnemySpawner" unique_id=1838745660]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.031914, 0, 10.609423)
+
+[node name="Enemies" type="Node3D" parent="EnemySpawner" unique_id=663500412]
+
+[node name="LootTable" type="Node3D" parent="." unique_id=537718464 groups=["LootTable"]]
+script = ExtResource("9_7cc0k")
+damasDropChance = 0
+healthPackDropChance = 0
+copperOre = ExtResource("35_wu60a")
+ironOre = ExtResource("46_lqoiw")
+goldOre = ExtResource("47_68amh")
+damasOre = ExtResource("37_lqoiw")
+healthPackObject = ExtResource("12_gwggj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1197770763 node_paths=PackedStringArray("spawner", "portraitContainer")]
+script = ExtResource("31_f5rak")
+portraitScene = ExtResource("32_xw70q")
+spawner = NodePath("../PlayerSpawner")
+portraitContainer = NodePath("HBoxContainer")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=1200533580]
+offset_left = 25.999998
+offset_top = 529.0
+offset_right = 66.00001
+offset_bottom = 569.0
+scale = Vector2(1.4340242, 1.4681656)
+theme_override_constants/separation = 100
+
+[node name="ForgeProgressBar" type="ProgressBar" parent="CanvasLayer" unique_id=847755065]
+offset_left = 3.0
+offset_top = 11.0
+offset_right = 1149.0
+offset_bottom = 39.0
+theme_override_styles/background = SubResource("StyleBoxFlat_cvaul")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ikfag")
+value = 50.0
+show_percentage = false
+script = ExtResource("34_0vwtv")
+targetPath = NodePath("../..")
+
+[node name="EnemyUI" type="Label" parent="." unique_id=754514857]
+process_priority = 1
+offset_top = 66.0
+offset_right = 66.0
+offset_bottom = 89.0
+text = "Enemies"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label3D" type="Label3D" parent="EnemyUI" unique_id=1383849787]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.814533, 9.772978, 0)
+text = "dsfsdfsd"
+font_size = 200
+
+[node name="PauseMenu" type="CanvasLayer" parent="." unique_id=385949872 node_paths=PackedStringArray("resumeButton", "settingsButton", "mainMenuButton", "settingsMenu")]
+process_mode = 3
+visible = false
+script = ExtResource("23_amgg8")
+resumeButton = NodePath("ResumeButton")
+settingsButton = NodePath("SettingsButton")
+mainMenuButton = NodePath("QuitButton")
+settingsMenu = NodePath("../SettingsMenu")
+
+[node name="ResumeButton" type="Button" parent="PauseMenu" unique_id=1461095151]
+offset_left = 71.00002
+offset_top = 175.0
+offset_right = 519.0
+offset_bottom = 295.0
+scale = Vector2(0.8400012, 0.7599994)
+focus_neighbor_top = NodePath(".")
+focus_neighbor_bottom = NodePath("../SettingsButton")
+focus_next = NodePath("../SettingsButton")
+focus_previous = NodePath("../QuitButton")
+theme_override_font_sizes/font_size = 40
+text = "Resume"
+
+[node name="SettingsButton" type="Button" parent="PauseMenu" unique_id=284510241]
+offset_left = 71.00002
+offset_top = 335.0
+offset_right = 519.0
+offset_bottom = 455.0
+scale = Vector2(0.8400012, 0.7599994)
+focus_neighbor_top = NodePath("../ResumeButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+focus_next = NodePath("../QuitButton")
+focus_previous = NodePath("../ResumeButton")
+theme_override_font_sizes/font_size = 40
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="PauseMenu" unique_id=1753223593]
+offset_left = 71.00002
+offset_top = 495.0
+offset_right = 519.0
+offset_bottom = 615.0
+scale = Vector2(0.8400012, 0.7599994)
+focus_neighbor_top = NodePath("../SettingsButton")
+focus_previous = NodePath("../SettingsButton")
+theme_override_font_sizes/font_size = 40
+text = "Main Menu"
+
+[node name="Label" type="Label" parent="PauseMenu" unique_id=1356341263]
+offset_left = 62.0
+offset_top = 26.0
+offset_right = 459.0
+offset_bottom = 109.0
+theme_override_font_sizes/font_size = 60
+text = "Game Paused"
+
+[node name="FurnaceImahe" type="TextureRect" parent="PauseMenu" unique_id=1306127748]
+offset_left = 658.0
+offset_top = 64.0
+offset_right = 1158.0
+offset_bottom = 164.0
+scale = Vector2(0.6149459, 0.68860584)
+texture = ExtResource("30_f5rak")
+expand_mode = 1
+
+[node name="AnvilImage" type="TextureRect" parent="PauseMenu" unique_id=1655853165]
+offset_left = 658.0
+offset_top = 133.0
+offset_right = 1158.0
+offset_bottom = 233.0
+scale = Vector2(0.6149459, 0.68860584)
+texture = ExtResource("29_7dxqx")
+expand_mode = 1
+
+[node name="GrindstoneImage" type="TextureRect" parent="PauseMenu" unique_id=983736741]
+offset_left = 658.0
+offset_top = 201.0
+offset_right = 1158.0
+offset_bottom = 301.0
+scale = Vector2(0.6149459, 0.68860584)
+texture = ExtResource("31_xw70q")
+expand_mode = 1
+
+[node name="ControlsLabel" type="Label" parent="PauseMenu" unique_id=1322837801]
+offset_left = 592.0
+offset_top = 347.00003
+offset_right = 1254.0
+offset_bottom = 704.0
+scale = Vector2(0.68, 0.62560004)
+theme_override_font_sizes/font_size = 30
+text = "Actions                  Keyboard    │  Controller
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Pick-Up               │  Right Click │  Left Trigger
+Attack/Interact │  Left Click   │  Right Trigger
+Drop-Left-Item  │  Q                 │  Left Shoulder
+Drop-Right-Item│  E                 │  Right Shoulder
+Pause                  │  ESC             │  ☰
+Sequence           │  ←↑→↓          │  < > v ^"
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu" unique_id=261957256]
+z_index = -1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.860407, 16.15729)
+texture = SubResource("CompressedTexture2D_7dxqx")
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu" unique_id=25129296]
+z_index = -1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.750067, 16.369858)
+color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
+
 [node name="DullSword" parent="." unique_id=778246616 instance=ExtResource("22_amgg8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.03192, 0.000985, -0.16474152)
 itemDataPath = ""
@@ -1210,8 +1210,8 @@ offset_bottom = 40.0
 scale = Vector2(28.750067, 16.369858)
 color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
 
+[connection signal="pressed" from="SettingsMenu/Control/BackButton" to="SettingsMenu" method="OnBackPressed"]
+[connection signal="pressed" from="SettingsMenu/Control/ApplyButton" to="SettingsMenu" method="OnApplyPressed"]
 [connection signal="pressed" from="PauseMenu/ResumeButton" to="PauseMenu" method="OnResumePressed"]
 [connection signal="pressed" from="PauseMenu/SettingsButton" to="PauseMenu" method="OnSettingsPressed"]
 [connection signal="pressed" from="PauseMenu/QuitButton" to="PauseMenu" method="OnMainMenuPressed"]
-[connection signal="pressed" from="SettingsMenu/Control/BackButton" to="SettingsMenu" method="OnBackPressed"]
-[connection signal="pressed" from="SettingsMenu/Control/ApplyButton" to="SettingsMenu" method="OnApplyPressed"]

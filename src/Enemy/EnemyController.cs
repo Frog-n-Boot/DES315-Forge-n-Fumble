@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class EnemyController : Node3D
+public partial class EnemyController : CharacterBody3D
 {
 	public enum EnemyType { Normal, Fast, Strong }
 
@@ -9,43 +9,39 @@ public partial class EnemyController : Node3D
 	[Signal] public delegate void DiedEventHandler(EnemyController enemy, Vector3 deathPosition);
 	[Signal] public delegate void EnemyHealthChangedEventHandler(int currentHealth, int maxHealth);
 	[Signal] public delegate void DamagedTargetEventHandler(Node3D target, int damage);
+	[Signal] public delegate void StateChangedEventHandler(string newStateName);
 	#endregion
 
 	#region Exports
-	[ExportGroup("Identity")]
+	// EnemyData is the single source of truth for all configuration
 	[Export] public EnemyData enemyData;
-	
 
-	[ExportGroup("Scene References")]
-	[Export] public Node3D moveTarget;
+	// Scene references — auto-found in _Ready if not set
 	[Export] public MeshInstance3D mesh;
 	[Export] public Area3D collisionArea;
-
-	[ExportGroup("Collision")]
-	[Export] public float collisionCooldown = 0.01f;
-	[Export] public float flashDuration = 0.2f;
-	
-
-	private Vector3 knockback =  Vector3.Zero;
 	#endregion
 
-	#region Runtime Stats (populated from EnemyData in _Ready)
-	public string EnemyName => enemyData.enemyName;
-	public int    MaxHealth => enemyData.maxHealth;
-	public int    Damage    => enemyData.damage;
+	#region Runtime Stats — read from EnemyData
+	public string EnemyName      => enemyData.enemyName;
+	public int    MaxHealth       => enemyData.maxHealth;
+	public int    Damage          => enemyData.damage;
+	public int    DamageToPlayer  => enemyData.damageToPlayer;
+	public float  Speed           => enemyData.speed;
+	public float  LootDropChance  => enemyData.lootDropChance;
+	public bool   IsStationary    => enemyData.isStationary;
+	#endregion
 
-	public int    DamageToPlayer => enemyData.damageToPlayer;
-	public float  Speed         => enemyData.speed;
-	public float  LootDropChance => enemyData.lootDropChance;
-	
+	#region Target References
+	public CharacterBody3D Player    { get; private set; }
+	public Node3D Forge     { get; private set; }
+	public Node3D moveTarget { get; set; }
 	#endregion
 
 	#region Health
-	public int currentHealth { get; set;}
+	public int currentHealth { get; set; }
 	public int CurrentHealth => currentHealth;
 
 	private StandardMaterial3D material;
-	[Export] public bool isStationary = false;
 
 	private void InitHealth()
 	{
@@ -79,24 +75,38 @@ public partial class EnemyController : Node3D
 	public float GetHealthPercent() => MaxHealth > 0 ? (float)currentHealth / MaxHealth : 0f;
 	#endregion
 
+	#region State Machine
+	public IEnemyState CurrentState { get; private set; }
+
+	public void TransitionTo(IEnemyState newState)
+	{
+		CurrentState?.Exit(this);
+		CurrentState = newState;
+		CurrentState.Enter(this);
+		EmitSignal(SignalName.StateChanged, newState.GetType().Name);
+	}
+	#endregion
+
 	#region Movement
 	private float rotationSpeed = 10.0f;
 	private Vector3 velocity    = Vector3.Zero;
+	private Vector3 knockback   = Vector3.Zero;
 
-	private void MoveTowards(Vector3 targetPosition, double delta)
+	public void MoveTowards(Vector3 targetPosition, double delta)
 	{
 		Vector3 direction = (targetPosition - GlobalPosition).Normalized();
 
-		if(knockback.LengthSquared() > 0.01f)
+		if (knockback.LengthSquared() > 0.01f)
 			velocity = knockback;
 		else
 			velocity = direction * Speed;
-		
-		GlobalPosition += velocity * (float)delta;
+
+		Velocity = velocity;
+		MoveAndSlide();
 
 		if (direction.LengthSquared() > 0.01f)
 			RotateTowards(direction, delta);
-			
+
 		knockback = knockback.Lerp(Vector3.Zero, 0.15f);
 	}
 
@@ -106,7 +116,12 @@ public partial class EnemyController : Node3D
 		Rotation = Rotation.Lerp(targetRotation, rotationSpeed * (float)delta);
 	}
 
-	public Vector3 GetVelocity() => velocity;
+	// GetVelocity() removed — use Velocity property directly (inherited from CharacterBody3D)
+
+	public void ApplyKnockback(Vector3 direction, float force)
+	{
+		knockback = direction * force;
+	}
 	#endregion
 
 	#region Collision
@@ -126,24 +141,25 @@ public partial class EnemyController : Node3D
 		if (!string.IsNullOrEmpty(group))
 			OnCollisionDetected(body, group);
 
-		GetTree().CreateTimer(collisionCooldown).Timeout += () => canCollide = true;
+		GetTree().CreateTimer(enemyData.collisionCooldown).Timeout += () => canCollide = true;
 	}
 
 	private string GetBodyGroup(Node3D body)
 	{
 		if (body.IsInGroup("Player")) return "Player";
 		if (body.IsInGroup("Forge"))  return "Forge";
-		if (body.IsInGroup("Weapon"))  return "Weapon";
+		if (body.IsInGroup("Weapon")) return "Weapon";
 		if (body.IsInGroup("Enemy"))  return "Enemy";
 		if (body.IsInGroup("Bullet")) return "Bullet";
-		if (body.IsInGroup("Arrow")) return "Arrow";
+		if (body.IsInGroup("Arrow"))  return "Arrow";
 		return "";
 	}
 	#endregion
 
 	#region Private State
 	private Forge forgeScript;
-	private bool isDying = false;
+	private bool isDying        = false;
+	private Vector3 _spawnPosition = Vector3.Zero;
 	#endregion
 
 	#region Lifecycle
@@ -159,13 +175,26 @@ public partial class EnemyController : Node3D
 		ApplyVisuals();
 		SetupCollision();
 		InitHealth();
+
+		Player = GetTree().GetFirstNodeInGroup("Player") as CharacterBody3D;
+		Forge  = GetTree().GetFirstNodeInGroup("Forge")  as Node3D;
+
+		if (_spawnPosition != Vector3.Zero)
+			GlobalPosition = _spawnPosition;
+
+		TransitionTo(new MoveToForgeState());
+	}
+
+	public override void _Process(double delta)
+	{
+		if (IsStationary) return;
+		CurrentState?.Update(this, delta);
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if(isStationary) return;
-		if (moveTarget != null)
-			MoveTowards(moveTarget.GlobalPosition, delta);
+		if (IsStationary) return;
+		CurrentState?.PhysicsUpdate(this, delta);
 	}
 	#endregion
 
@@ -179,12 +208,13 @@ public partial class EnemyController : Node3D
 			if (enemyData.enemyMesh != null) mesh.Mesh             = enemyData.enemyMesh;
 			if (enemyData.enemyMat  != null) mesh.MaterialOverride = enemyData.enemyMat;
 		}
-		if(enemyData.enemyMat != null)
+
+		if (enemyData.enemyMat != null)
 		{
-			material = enemyData.enemyMat.Duplicate() as StandardMaterial3D;
-			material.EmissionEnabled = true;
+			material                          = enemyData.enemyMat.Duplicate() as StandardMaterial3D;
+			material.EmissionEnabled          = true;
 			material.EmissionEnergyMultiplier = 0f;
-			mesh.MaterialOverride = material;
+			mesh.MaterialOverride             = material;
 		}
 
 		if (enemyData.scale != Vector3.Zero)
@@ -205,34 +235,30 @@ public partial class EnemyController : Node3D
 	private void AutoFindNodes()
 	{
 		if (mesh == null)
-			mesh = GetNodeOrNull<MeshInstance3D>("CharacterBody3D/MeshInstance3D");
+			mesh = GetNodeOrNull<MeshInstance3D>("MeshInstance3D");
 
 		if (mesh == null)
-			GD.PrintErr($"EnemyController ({Name}): Could not find MeshInstance3D at CharacterBody3D/MeshInstance3D.");
+			GD.PrintErr($"EnemyController ({Name}): Could not find MeshInstance3D.");
 	}
 	#endregion
 
 	#region Initialize (Spawner API)
-	/// <summary>
-	/// Call this BEFORE AddChild so enemyData and target are set before _Ready() fires.
-	/// </summary>
-	public void Initialize(EnemyData data, Node3D target)
+	private Vector3 _spawnPos = Vector3.Zero;
+
+	public void Initialize(EnemyData data, Node3D target, Vector3 spawnPosition)
 	{
-		enemyData  = data;
-		moveTarget = target;
+		enemyData      = data;
+		moveTarget     = target;
+		_spawnPosition = spawnPosition;
 	}
 
-	/// <summary>
-	/// Factory helper — initializes, adds to tree, returns the ready enemy.
-	/// Set GlobalPosition on the returned instance after calling this.
-	/// </summary>
-	public static EnemyController Create(EnemyData data, Node3D target, Node parent)
+	public static EnemyController Create(EnemyData data, Node3D target, Node parent, Vector3 spawnPosition)
 	{
 		var enemyScene = GD.Load<PackedScene>("res://assets/models/Enemy.tscn");
 		var enemy      = enemyScene.Instantiate<EnemyController>();
 
-		enemy.Initialize(data, target); // set data BEFORE _Ready()
-		parent.AddChild(enemy);         // triggers _Ready()
+		enemy.Initialize(data, target, spawnPosition);
+		parent.CallDeferred(Node.MethodName.AddChild, enemy);
 
 		return enemy;
 	}
@@ -262,25 +288,19 @@ public partial class EnemyController : Node3D
 				{
 					forge.TakeDamage(Damage);
 					GD.Print(forge.health);
-
-	
 				}
 				Die();
-				//TakeDamage(1);
 				break;
 
 			case "Player":
 				EmitSignal(SignalName.DamagedTarget, body, Damage);
 				if (body is PlayerController playerController)
-				{		
+				{
 					playerController.TakeDamage(DamageToPlayer);
-					
-					
 					Vector3 pushDirection = (playerController.GlobalPosition - GlobalPosition).Normalized();
 					pushDirection.Y = 0;
-					pushDirection = pushDirection.Normalized();
+					pushDirection   = pushDirection.Normalized();
 					playerController.ApplyKnockback(pushDirection, 20f);
-					
 				}
 				break;
 
@@ -288,20 +308,15 @@ public partial class EnemyController : Node3D
 				BaseWeapon weapon = FindWeaponInHierarchy(body);
 				if (weapon != null)
 				{
-					if(weapon is Sword sword)
-					{
-						int damageToApply = sword.GetComboDamage();
-						TakeDamage(damageToApply);
-					}
+					if (weapon is Sword sword)
+						TakeDamage(sword.GetComboDamage());
 					else
-					{
 						TakeDamage(weapon.damage);
-					}
-					
-					weapon.TakeDurabilityDamage(1);		
+
+					weapon.TakeDurabilityDamage(1);
 					Vector3 pushDirection = (GlobalPosition - weapon.GlobalPosition).Normalized();
 					pushDirection.Y = 0;
-					pushDirection = pushDirection.Normalized();
+					pushDirection   = pushDirection.Normalized();
 					ApplyKnockback(pushDirection, 20f);
 				}
 				break;
@@ -313,21 +328,14 @@ public partial class EnemyController : Node3D
 					TakeDamage(bullet.damage);
 					bullet.QueueFree();
 				}
-				else
-				{
-					GD.Print("Bullet is null");
-				}
 				break;
+
 			case "Arrow":
 				Arrow arrow = body.GetParent() as Arrow;
 				if (arrow != null)
 				{
 					TakeDamage((int)arrow.damage);
 					arrow.QueueFree();
-				}
-				else
-				{
-					GD.Print("Arrow is null");
 				}
 				break;
 		}
@@ -372,23 +380,81 @@ public partial class EnemyController : Node3D
 		return null;
 	}
 	#endregion
+
+	#region Flash
 	private void Flash()
 	{
-		if(material == null) return;
+		if (material == null) return;
 
-		Color white = new Color (1, 1, 1);
-		Color red = new Color (1, 0, 0);
+		Color white = new Color(1, 1, 1);
+		Color red   = new Color(1, 0, 0);
 
 		var tween = CreateTween();
+		tween.TweenProperty(material, "emission_energy_multiplier", 2.0f, enemyData.flashDuration / 4);
+		tween.Parallel().TweenProperty(material, "emission", white, enemyData.flashDuration / 4);
+		tween.TweenProperty(material, "emission", red, enemyData.flashDuration / 4);
+		tween.TweenProperty(material, "emission_energy_multiplier", 0.0f, enemyData.flashDuration / 2);
+	}
+	#endregion
 
-		tween.TweenProperty(material, "emission_energy_multiplier", 2.0f, flashDuration /4);
-		tween.Parallel().TweenProperty(material, "emission", white, flashDuration / 4);
-		
-		tween.TweenProperty(material, "emission", red, flashDuration / 4);
-		tween.TweenProperty(material, "emission_energy_multiplier", 0.0f, flashDuration /2);
+	// ── Base State ────────────────────────────────────────────────────────────
+
+	public class EnemyStateBase : IEnemyState
+	{
+		public virtual void Enter(EnemyController c) { }
+		public virtual void Update(EnemyController c, double delta) { }
+		public virtual void PhysicsUpdate(EnemyController c, double delta) { }
+		public virtual void Exit(EnemyController c) { }
 	}
 
-	public void ApplyKnockback(Vector3 direction, float force){
-		knockback = direction * force;
+	// ── States ────────────────────────────────────────────────────────────────
+
+	public class IdleState : EnemyStateBase { }
+
+	public class ChasePlayerState : EnemyStateBase
+	{
+		public override void Enter(EnemyController c)
+			=> c.moveTarget = c.Player;
+
+		public override void PhysicsUpdate(EnemyController c, double delta)
+			=> c.MoveTowards(c.Player.GlobalPosition, delta);
+	}
+
+	public class MoveToForgeState : EnemyStateBase
+	{
+		public override void Enter(EnemyController c)
+			=> c.moveTarget = c.Forge;
+
+		public override void PhysicsUpdate(EnemyController c, double delta)
+			=> c.MoveTowards(c.Forge.GlobalPosition, delta);
+	}
+
+	public class AttackPlayerState : EnemyStateBase
+	{
+		public override void Enter(EnemyController c)
+			=> c.moveTarget = c.Player;
+
+		public override void PhysicsUpdate(EnemyController c, double delta)
+			=> c.MoveTowards(c.Player.GlobalPosition, delta);
+	}
+
+	public class AttackForgeState : EnemyStateBase
+	{
+		public override void Enter(EnemyController c)
+			=> c.moveTarget = c.Forge;
+
+		public override void PhysicsUpdate(EnemyController c, double delta)
+			=> c.MoveTowards(c.Forge.GlobalPosition, delta);
+	}
+
+	public class FleeState : EnemyStateBase
+	{
+		public override void PhysicsUpdate(EnemyController c, double delta)
+		{
+			Vector3 awayFromPlayer = (c.GlobalPosition - c.Player.GlobalPosition).Normalized();
+			Vector3 awayFromForge  = (c.GlobalPosition - c.Forge.GlobalPosition).Normalized();
+			Vector3 fleeDirection  = (awayFromPlayer + awayFromForge).Normalized();
+			c.MoveTowards(c.GlobalPosition + fleeDirection * 20f, delta);
+		}
 	}
 }

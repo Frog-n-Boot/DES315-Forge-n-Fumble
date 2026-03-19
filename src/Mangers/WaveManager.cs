@@ -22,11 +22,11 @@ public partial class WaveManager : Node
 	[Export(PropertyHint.Range, "0,100,1")] public int strongEnemyChance = 20;
 
 	[ExportGroup("Wave Settings")]
-	[Export] public int   maxWaves               { get; set; } = 3;
-	[Export] public float timeBetweenEnemySpawns        { get; private set; } = 2.0f;
-	[Export] public int   startingEnemiesPerWave  { get; set; }
-	[Export] public int   enemyIncreasedPerWave   { get; set; }
-	[Export] public float timeBetweemWaves { get; set;}
+	[Export] public int   maxWaves                  { get; set; } = 3;
+	[Export] public float timeBetweenEnemySpawns    { get; private set; } = 2.0f;
+	[Export] public int   startingEnemiesPerWave    { get; set; }
+	[Export] public int   enemyIncreasedPerWave     { get; set; }
+	[Export] public float timeBetweemWaves          { get; set; }
 
 	[ExportGroup("Spawn Positions")]
 	[Export] public Node3D[] spawnPositions = new Node3D[0];
@@ -34,7 +34,6 @@ public partial class WaveManager : Node
 	[ExportGroup("UI")]
 	[Export] private Label enemyUI;
 	[Export] private Label3D waveTimerLabel3D;
-
 	#endregion
 
 	#region Signals
@@ -57,8 +56,7 @@ public partial class WaveManager : Node
 	private InputManager inputManager;
 
 	private float waveTimer = 0f;
-	private bool isWaiting = false;
-
+	private bool isWaiting  = false;
 	#endregion
 
 	#region Lifecycle
@@ -87,10 +85,10 @@ public partial class WaveManager : Node
 					GD.Print($"  Spawn {i}: NULL");
 			}
 		}
+
 		waveTimer = timeBetweemWaves;
 		isWaiting = true;
 		waveTimerLabel3D.Visible = true;
-	
 	}
 
 	public override void _Process(double delta)
@@ -100,7 +98,7 @@ public partial class WaveManager : Node
 			waveTimer -= (float)delta;
 			waveTimerLabel3D.Text = $"Time until next Wave: {Mathf.Ceil(waveTimer)}";
 
-			if(waveTimer <= 0)
+			if (waveTimer <= 0)
 			{
 				isWaiting = false;
 				waveTimerLabel3D.Visible = false;
@@ -127,7 +125,6 @@ public partial class WaveManager : Node
 			FindSpawnPositions();
 		}
 
-		// Fallback EnemyData if none assigned in Inspector
 		if (normalEnemyData == null)
 			normalEnemyData = CreateFallbackData("NormalEnemy", 10, 1, 5.0f, Vector3.One);
 
@@ -135,9 +132,7 @@ public partial class WaveManager : Node
 			fastEnemyData = CreateFallbackData("FastEnemy", 6, 1, 9.0f, Vector3.One);
 
 		if (strongEnemyData == null)
-		{
 			strongEnemyData = CreateFallbackData("StrongEnemy", 25, 3, 3.0f, new Vector3(2, 2, 2));
-		}
 	}
 
 	private EnemyData CreateFallbackData(string name, int health, int damage, float speed, Vector3 scale)
@@ -240,7 +235,6 @@ public partial class WaveManager : Node
 		waveTimerLabel3D.Visible = true;
 		waveTimer = timeBetweemWaves;
 		isWaiting = true;
-		
 		EmitSignal(SignalName.WaveCompleted, currentWave);
 	}
 
@@ -257,10 +251,9 @@ public partial class WaveManager : Node
 		if (enemiesSpawnedThisWave < enemiesToSpawnThisWave)
 		{
 			int remainingEnemies = enemiesToSpawnThisWave - enemiesSpawnedThisWave;
-			int clumpSize= Mathf.Min(GD.RandRange(1, 5), remainingEnemies);
+			int clumpSize        = Mathf.Min(GD.RandRange(1, 5), remainingEnemies);
 
 			SpawnEnemy(clumpSize);
-
 			enemiesSpawnedThisWave += clumpSize;
 		}
 
@@ -274,19 +267,17 @@ public partial class WaveManager : Node
 
 		Vector3 clumpCenter = GetRandomSpawnPosition();
 
-		for(int i = 0; i < clumpSize; i++)
+		for (int i = 0; i < clumpSize; i++)
 		{
 			EnemyData selectedData = GetRandomEnemyData();
 			if (selectedData == null) return;
 
-			EnemyController enemy = EnemyController.Create(selectedData, targetNode, spawnParent);
-			// float angle = (i / (float)(clumpSize)) * Mathf.Tau;
-			// float radius = GD.RandRange((int)1f, (int)3f);
-			// Vector3 offset = new Vector3(Mathf.Cos(angle) * radius, 0, Mathf.Sin(angle) * radius);
-			
-			Vector3 randomOffSet = new Vector3 ( GD.RandRange(-3, 3), 0, GD.RandRange(-3, 3));
-			// GlobalPosition must be set AFTER AddChild (enemy is in the tree at this point)
-			enemy.GlobalPosition = clumpCenter + randomOffSet;
+			// Spawn position passed into Create — no GlobalPosition set after the fact
+			Vector3 spawnPosition = clumpCenter + new Vector3(
+				GD.RandRange(-3, 3), 0, GD.RandRange(-3, 3));
+
+			EnemyController enemy = EnemyController.Create(
+				selectedData, targetNode, spawnParent, spawnPosition);
 
 			activeEnemies.Add(enemy);
 			enemiesAliveThisWave++;
@@ -294,13 +285,10 @@ public partial class WaveManager : Node
 			enemy.Died          += OnEnemyDied;
 			enemy.DamagedTarget += OnEnemyDamagedTarget;
 		}
-		
-		
 	}
 
 	private EnemyData GetRandomEnemyData()
 	{
-
 		int total = normalEnemyChance + fastEnemyChance + strongEnemyChance;
 		if (total == 0) total = 100;
 
@@ -340,12 +328,10 @@ public partial class WaveManager : Node
 		activeEnemies.Remove(enemy);
 		enemiesAliveThisWave--;
 		enemiesLeft--;
-		float roll = (float)GD.RandRange(0, 99);
-		if(roll <= enemy.LootDropChance)
-		{
-			lootTable?.GetLoot(enemy, deathPosition);
-		}
 
+		float roll = (float)GD.RandRange(0, 99);
+		if (roll <= enemy.LootDropChance)
+			lootTable?.GetLoot(enemy, deathPosition);
 
 		if (enemiesAliveThisWave <= 0 && enemiesSpawnedThisWave >= enemiesToSpawnThisWave)
 			OnWaveCompleted();

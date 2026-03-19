@@ -12,19 +12,19 @@
 [ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/FinalAssets_Low/Items_Models/DullSword.tscn" id="11_60v6u"]
 [ext_resource type="ArrayMesh" uid="uid://cnx63eofodk83" path="res://assets/models/FinalAssets_Low/Items_Models/Ing_copper_low.obj" id="12_fqppb"]
 [ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/FinalAssets_Low/Items_Models/Sword.tscn" id="12_o2eou"]
-[ext_resource type="Script" uid="uid://bqbrwko4kb7sp" path="res://src/EnemyController.cs" id="13_ua5aw"]
-[ext_resource type="Script" uid="uid://bf02wgjk36psn" path="res://assets/components/EnemyData.cs" id="14_60v6u"]
+[ext_resource type="Script" uid="uid://bf02wgjk36psn" path="res://src/Enemy/EnemyData.cs" id="14_60v6u"]
+[ext_resource type="Script" uid="uid://dfgcclikd3kvh" path="res://src/Enemy/AI/EnemyBehaviourData.cs" id="14_o2eou"]
 [ext_resource type="Script" uid="uid://dnqtfi3fpu8ue" path="res://src/CameraController.cs" id="14_xohv8"]
 [ext_resource type="Script" uid="uid://bk2uam5leqcv8" path="res://src/PlayerSpawner.cs" id="15_lkwvk"]
-[ext_resource type="Script" uid="uid://brp6gsap0s2ok" path="res://src/HealthBar.cs" id="15_o2eou"]
 [ext_resource type="PackedScene" uid="uid://8roa2xkb2ipl" path="res://assets/models/player.tscn" id="16_frmaf"]
 [ext_resource type="PackedScene" uid="uid://bm6vf4tjk48gj" path="res://assets/models/FinalAssets_Low/Structure_models/forge.tscn" id="16_oy7xm"]
 [ext_resource type="PackedScene" uid="uid://g1gfmktihg8t" path="res://assets/models/FinalAssets_Low/WorkStations/Anvil.tscn" id="17_yndxj"]
 [ext_resource type="Script" uid="uid://taddex4cilqa" path="res://src/LootTable.cs" id="21_jrwvx"]
 [ext_resource type="PackedScene" uid="uid://cgv7jdbgqsgql" path="res://assets/models/FinalAssets_Low/Ore/Ore.tscn" id="22_8107f"]
 [ext_resource type="PackedScene" uid="uid://jnghu007q1m" path="res://assets/models/FinalAssets_Low/Items_Models/Healthpack.tscn" id="23_hnaiu"]
+[ext_resource type="PackedScene" uid="uid://b8a87u3vesy3q" path="res://assets/models/Enemy.tscn" id="24_kvvm8"]
 [ext_resource type="PackedScene" uid="uid://cmd758glwlnly" path="res://assets/models/FinalAssets_Low/WorkStations/Grindstone.tscn" id="25_0arig"]
-[ext_resource type="Script" uid="uid://dli7kb5c5sowk" path="res://src/TutorialManager.cs" id="26_60v6u"]
+[ext_resource type="Script" uid="uid://dli7kb5c5sowk" path="res://src/Mangers/TutorialManager.cs" id="26_60v6u"]
 [ext_resource type="PackedScene" uid="uid://706c56ie3ke" path="res://assets/models/Turret.tscn" id="26_i52xd"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_wko22"]
@@ -33,47 +33,6 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s5o08"]
 albedo_texture = ExtResource("1_5yfar")
-
-[sub_resource type="Resource" id="Resource_5nr6y"]
-script = ExtResource("14_60v6u")
-enemyMat = ExtResource("2_60v6u")
-enemyMesh = ExtResource("3_o2eou")
-metadata/_custom_type_script = "uid://bf02wgjk36psn"
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pfjfy"]
-albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_elc20"]
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_pfjfy"]
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_82iww"]
-radius = 0.6381836
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_k01fx"]
-viewport_path = NodePath("HealthBar/SubViewport")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1u1y"]
-bg_color = Color(0.74509805, 0, 0, 1)
-border_width_bottom = 3
-border_color = Color(0.39748856, 0, 0, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-expand_margin_bottom = 3.0
-shadow_size = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xlhxd"]
-bg_color = Color(0, 0.6, 0, 1)
-border_width_bottom = 3
-border_color = Color(2.1057204e-07, 0.27337572, 4.813075e-08, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-expand_margin_bottom = 3.0
-shadow_size = 3
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3lnvk"]
 sky_top_color = Color(0.31378818, 0.45320868, 0.4966985, 1)
@@ -89,6 +48,10 @@ background_mode = 2
 sky = SubResource("Sky_7l3mh")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="Resource" id="Resource_60v6u"]
+script = ExtResource("14_60v6u")
+metadata/_custom_type_script = "uid://bf02wgjk36psn"
 
 [node name="TestingLab" type="StaticBody3D" unique_id=127569902]
 
@@ -177,55 +140,6 @@ transform = Transform3D(0.5, 0, 0, 0, 0.12940952, 0.48296294, 0, -0.48296294, 0.
 [node name="Sword" parent="CollisionShape3D" unique_id=689345526 instance=ExtResource("12_o2eou")]
 transform = Transform3D(-2.185569e-08, -2.1855698e-08, 0.5, -0.48296294, 0.12940952, -1.5454315e-08, -0.12940952, -0.48296294, -2.6767648e-08, 1.8624179, 0.009899302, -2.058454)
 
-[node name="Enemy" type="Node3D" parent="CollisionShape3D" unique_id=2041307673 node_paths=PackedStringArray("moveTarget", "mesh", "collisionArea") groups=["Enemy"]]
-transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 6.098188, 0.16666667, 0.48850235)
-script = ExtResource("13_ua5aw")
-enemyData = SubResource("Resource_5nr6y")
-moveTarget = NodePath("CharacterBody3D")
-mesh = NodePath("CharacterBody3D/MeshInstance3D")
-collisionArea = NodePath("CharacterBody3D/Area3D")
-isStationary = true
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="CollisionShape3D/Enemy" unique_id=590602209]
-collision_layer = 4
-collision_mask = 235
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D/Enemy/CharacterBody3D" unique_id=542464969]
-material_override = SubResource("StandardMaterial3D_pfjfy")
-mesh = SubResource("CylinderMesh_elc20")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CollisionShape3D/Enemy/CharacterBody3D" unique_id=1909118665]
-shape = SubResource("CylinderShape3D_pfjfy")
-
-[node name="Area3D" type="Area3D" parent="CollisionShape3D/Enemy/CharacterBody3D" unique_id=1859868463]
-collision_layer = 4
-collision_mask = 235
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CollisionShape3D/Enemy/CharacterBody3D/Area3D" unique_id=1172694664]
-shape = SubResource("CylinderShape3D_82iww")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="CollisionShape3D/Enemy/CharacterBody3D/Area3D" unique_id=270252028]
-shape = SubResource("CylinderShape3D_82iww")
-
-[node name="HealthBar" type="Sprite3D" parent="CollisionShape3D/Enemy" unique_id=833760103]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0)
-billboard = 1
-texture = SubResource("ViewportTexture_k01fx")
-
-[node name="SubViewport" type="SubViewport" parent="CollisionShape3D/Enemy/HealthBar" unique_id=1475723139]
-size = Vector2i(200, 30)
-
-[node name="ProgressBar" type="ProgressBar" parent="CollisionShape3D/Enemy/HealthBar/SubViewport" unique_id=1223537417]
-offset_right = 200.0
-offset_bottom = 26.0
-theme_override_styles/background = SubResource("StyleBoxFlat_h1u1y")
-theme_override_styles/fill = SubResource("StyleBoxFlat_xlhxd")
-value = 50.0
-show_percentage = false
-script = ExtResource("15_o2eou")
-isForge = false
-isEnemy = true
-
 [node name="World" type="Node" parent="." unique_id=1495741313]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="World" unique_id=447220386]
@@ -292,8 +206,9 @@ transform = Transform3D(-6.556708e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.556708e-08
 [node name="Turret" parent="." unique_id=1571022317 instance=ExtResource("26_i52xd")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 18.55472, 1, 18.002695)
 
-[node name="TutorialManager" type="Node" parent="." unique_id=1455204713 node_paths=PackedStringArray("enemy")]
+[node name="TutorialManager" type="Node" parent="." unique_id=1455204713]
 script = ExtResource("26_60v6u")
-enemy = NodePath("../CollisionShape3D/Enemy")
 
-[connection signal="body_entered" from="CollisionShape3D/Enemy/CharacterBody3D/Area3D" to="CollisionShape3D/Enemy" method="OnBodyEntered"]
+[node name="Enemy" parent="." unique_id=356561528 instance=ExtResource("24_kvvm8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.643475, 1.0547171, 3.4613914)
+enemyData = SubResource("Resource_60v6u")

@@ -16,12 +16,11 @@
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="9_l206y"]
 [ext_resource type="PackedScene" uid="uid://cmd758glwlnly" path="res://assets/models/FinalAssets_Low/WorkStations/Grindstone.tscn" id="10_ei5ly"]
 [ext_resource type="PackedScene" uid="uid://g1gfmktihg8t" path="res://assets/models/FinalAssets_Low/WorkStations/Anvil.tscn" id="11_m6ekv"]
-[ext_resource type="Script" uid="uid://bj4pcgxjt3ru7" path="res://src/WaveManager.cs" id="17_eba8f"]
-[ext_resource type="Resource" uid="uid://calih72lg8n07" path="res://assets/resources/NormalEnemyData.tres" id="18_tfuon"]
-[ext_resource type="Resource" uid="uid://cdki2c88hftlb" path="res://assets/resources/FastEnemyData.tres" id="19_pl2ve"]
-[ext_resource type="Resource" uid="uid://cvs5mxaqpoflx" path="res://assets/resources/StrongEnemyData.tres" id="20_3bp12"]
+[ext_resource type="Script" uid="uid://bj4pcgxjt3ru7" path="res://src/Mangers/WaveManager.cs" id="17_eba8f"]
+[ext_resource type="Resource" uid="uid://calih72lg8n07" path="res://assets/resources/AI/NormalEnemyData.tres" id="18_tfuon"]
+[ext_resource type="Resource" uid="uid://cdki2c88hftlb" path="res://assets/resources/AI/FastEnemyData.tres" id="19_pl2ve"]
+[ext_resource type="Resource" uid="uid://cvs5mxaqpoflx" path="res://assets/resources/AI/StrongEnemyData.tres" id="20_3bp12"]
 [ext_resource type="Script" uid="uid://taddex4cilqa" path="res://src/LootTable.cs" id="21_4tybr"]
-[ext_resource type="PackedScene" uid="uid://cgv7jdbgqsgql" path="res://assets/models/FinalAssets_Low/Ore/Ore.tscn" id="22_j4y01"]
 [ext_resource type="PackedScene" uid="uid://jnghu007q1m" path="res://assets/models/FinalAssets_Low/Items_Models/Healthpack.tscn" id="23_oyacv"]
 [ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/FinalAssets_Low/Items_Models/DullSword.tscn" id="24_f0oxr"]
 [ext_resource type="Script" uid="uid://dnliu2440i283" path="res://src/PauseMenu.cs" id="25_dn1de"]
@@ -420,7 +419,6 @@ transform = Transform3D(1.1700002, 0, 1.6220664, 0, 2, 0, -1.6220664, 0, 1.17000
 
 [node name="Forge2" parent="World" unique_id=994045895 instance=ExtResource("5_1qfbs")]
 transform = Transform3D(-0.37017906, 0, -2.4935302e-08, 0, 0.34999993, 0, 3.236208e-08, 0, -0.2852266, -4.449326, 0.017500043, 0.8259249)
-meltedIngotScene = ExtResource("6_hf6er")
 recipes = Array[Object]([SubResource("Resource_20nwc")])
 
 [node name="Turret" parent="World" unique_id=1571022317 node_paths=PackedStringArray("inputNode") instance=ExtResource("8_lyiqi")]
@@ -489,7 +487,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0428693, 0, -3.2011)
 [node name="SpawnPoint3" type="Marker3D" parent="PlayerSpawner" unique_id=1105494]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.479903, 0, 0.9416392)
 
-[node name="EnemySpawner" type="Node" parent="." unique_id=1308383638 node_paths=PackedStringArray("spawnParent", "targetNode", "lootTable", "spawnPositions", "enemyUI")]
+[node name="EnemySpawner" type="Node" parent="." unique_id=1308383638 node_paths=PackedStringArray("spawnParent", "targetNode", "lootTable", "spawnPositions")]
 script = ExtResource("17_eba8f")
 spawnParent = NodePath(".")
 targetNode = NodePath("../World/Forge2")
@@ -500,11 +498,9 @@ strongEnemyData = ExtResource("20_3bp12")
 normalEnemyChance = 70
 strongEnemyChance = 10
 maxWaves = 7
-timeBetweenWaves = 0.5
 startingEnemiesPerWave = 10
 enemyIncreasedPerWave = 2
 spawnPositions = [NodePath("EnemySpawn1"), NodePath("EnemySpawn2"), NodePath("EnemySpawn3"), NodePath("EnemySpawn4"), NodePath("EnemySpawn5"), NodePath("EnemySpawn6")]
-enemyUI = NodePath("")
 
 [node name="EnemySpawn1" type="Marker3D" parent="EnemySpawner" unique_id=1778615097]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.047226, 0, 23.813654)
@@ -537,8 +533,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.031914, 0, 10.609423)
 
 [node name="LootTable" type="Node3D" parent="." unique_id=1214070662]
 script = ExtResource("21_4tybr")
-oreDropChance = 100
-oreObject = ExtResource("22_j4y01")
 healthPackObject = ExtResource("23_oyacv")
 
 [node name="EnemyUI" type="Label" parent="." unique_id=442970889]
