@@ -235,7 +235,15 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		
 		if (IsActionPressed("interact") && currentStation != null)
 		{
-			if(leftHand.GetChildCount() > 0)
+			if(currentStation is GrindstoneStation grindstone && currentWeapon is Sword sword1)
+            {
+                if (grindstone.DepositSword(sword1))
+                {
+                    rightHand.RemoveChild(sword1);
+					currentWeapon = null;
+                }
+            }
+			else if(leftHand.GetChildCount() > 0)
             {
                 var item = leftHand.GetChild(0) as Pickable;
 				if(item != null && item.GetItemData() != null)
@@ -771,6 +779,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	{
 		//GD.Print("Sword broke! Auto crafting a new one if ingredients are available...");
 		currentWeapon = null;
+		spinAttack.SetWeapon(null);
 		isAttacking = false;
 	}
 

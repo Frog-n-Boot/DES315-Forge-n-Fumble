@@ -119,7 +119,7 @@ public partial class SpinAttack : Node3D
 	public void StopCharging()
 	{
 		if(!isCharging) return;
-		if(spinCharges > 0)
+		if(spinCharges > 0 && currentWeapon != null)
 			ExecuteSpinAttack();
 		else
 			CancelSpin();
@@ -150,28 +150,7 @@ public partial class SpinAttack : Node3D
 					animPlayer.Stop();
 					TriggerDaze();
 				};
-			}
-			//EnableCollision();
-			// //var originalArea = currentWeapon.GetNode<Area3D>("StaticBody3D/Area3D");
-			// var originalCollision = currentWeapon.GetNode<CollisionShape3D>("StaticBody3D/CollisionShape3D");
-			// var originalShape = originalCollision.Shape;
-			// var originalPosition= originalCollision.GlobalPosition;
-			// var originalScale = originalCollision.Scale;
-
-			// var sphereShape = new SphereShape3D();
-			
-			// originalCollision.Shape = sphereShape;
-			// originalCollision.GlobalPosition = new Vector3(parent.GlobalPosition.X, parent.GlobalPosition.Y + 1, parent.GlobalPosition.Z);
-			// originalCollision.Scale = new Vector3(5, 5, 5);
-			
-			// parent.GetTree().CreateTimer(spinDuration).Timeout += () =>
-            // {
-            //     DisableCollision();
-            // };
-
-			//EnableArea();
-			
-			
+			}		
 		}
 
 		Reset();
@@ -188,8 +167,6 @@ public partial class SpinAttack : Node3D
 		GD.Print("DAZED!");
 		isDazed = true;
 
-		
-
 		if(parent is PlayerController player)
 		{
 			player.SetDazed(true);
@@ -204,7 +181,7 @@ public partial class SpinAttack : Node3D
 			{
 				animPlayer.Play("Anim_Player_Idle");
 				var animLength = animPlayer.GetAnimation("Anim_Player_Idle").Length;
-				parent.GetTree().CreateTimer(animLength).Timeout += () => player.SetDazed(false);
+				parent.GetTree().CreateTimer(animLength + 2).Timeout += () => player.SetDazed(false);
 			}
 
 			animPlayer.SpeedScale = 1;
@@ -235,6 +212,10 @@ public partial class SpinAttack : Node3D
 
 			currentWeapon.TakeDurabilityDamage(1);
 		}
+		else if(currentWeapon == null)
+        {
+            TriggerDaze();
+        }
 	}
 
 	public MeleeWeapon GetCurrentWeapon() => currentWeapon;

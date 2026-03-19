@@ -5,6 +5,7 @@ public abstract partial class MeleeWeapon : BaseWeapon
 {
 	//[Export] public float attackRange = 2.0f;
 	[Export] public float attackCooldown = 0.5f;
+	SpinAttack spinAttack;
 
 	protected bool canAttack = true;
 	protected CollisionShape3D hitbox;
@@ -46,5 +47,6 @@ public abstract partial class MeleeWeapon : BaseWeapon
     {
 		EmitSignal(SignalName.Broke);
 		QueueFree();
+		spinAttack.SetWeapon(null);
     }
 }

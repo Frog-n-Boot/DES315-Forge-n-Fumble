@@ -3,7 +3,7 @@ using System;
 
 public partial class Sword : MeleeWeapon
 {
-
+	[Export] public PackedScene sharpenedVersion;
 	[Signal] public delegate void CheckDurabilityEventHandler();
 	[Signal] public delegate void ComboResetEventHandler();
 	private int comboCount = 0;
