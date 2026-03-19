@@ -1,8 +1,6 @@
 [gd_scene format=3 uid="uid://bm6vf4tjk48gj"]
 
 [ext_resource type="Script" uid="uid://bdwnaqw5jg3si" path="res://src/SmeltingStation.cs" id="1_ph4aw"]
-[ext_resource type="Texture2D" uid="uid://de5i2lmkk12v1" path="res://assets/textures/UI/ui_controller_x_button.tres" id="2_sx61v"]
-[ext_resource type="Texture2D" uid="uid://cmhg5fabsggpk" path="res://assets/textures/UI/ui_keyboard_e_button.tres" id="3_i1han"]
 [ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/CraftingRecipes.cs" id="3_oiry0"]
 [ext_resource type="PackedScene" uid="uid://c36fijnqqehnq" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Ingot.tscn" id="3_wq66q"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="4_0l8vc"]
@@ -16,6 +14,15 @@
 [ext_resource type="Texture2D" uid="uid://cw0s6r8rhgp8c" path="res://assets/materials/Texture_sets/WorkStations/Furance_low_Normal.tga" id="8_yd14g"]
 [ext_resource type="AudioStream" uid="uid://b55rsdiqrjrsq" path="res://assets/Sounds/WorldSounds/InitalForgeActivation.wav" id="10_yd14g"]
 [ext_resource type="AudioStream" uid="uid://svia4vnatnhi" path="res://assets/Sounds/WorldSounds/ForgeAfterActivation.wav" id="11_i2ejw"]
+[ext_resource type="Texture2D" uid="uid://doyypmwa4t20" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="15_sx61v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7ec5"]
+atlas = ExtResource("15_sx61v")
+region = Rect2(114, 363, 40, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16tjv"]
+atlas = ExtResource("15_sx61v")
+region = Rect2(215, 801, 40, 42)
 
 [sub_resource type="Resource" id="Resource_04qyv"]
 script = ExtResource("3_oiry0")
@@ -75,6 +82,13 @@ bg_color = Color(0.19014141, 0.71371996, 0.2947564, 1)
 atlas = ExtResource("8_wq66q")
 region = Rect2(117.9905, 372.12097, 39.020912, 40.217834)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_sx61v"]
+viewport_path = NodePath("Sprite3D2/SubViewport")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1han"]
+atlas = ExtResource("15_sx61v")
+region = Rect2(114, 363, 40, 39)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i2ejw"]
 albedo_texture = ExtResource("6_ohbk7")
 normal_enabled = true
@@ -101,9 +115,9 @@ inputNode = NodePath("InputPort")
 outputNode = NodePath("OutputPort")
 timeProgressBar = NodePath("Sprite3D/SubViewport/ProgressBar")
 stationName = NodePath("Sprite3D/SubViewport/Label")
-buttonTexture = NodePath("Sprite3D/SubViewport/TextureRect")
-controllerButtonTexture = ExtResource("2_sx61v")
-keyboardButtonTexture = ExtResource("3_i1han")
+buttonTexture = NodePath("Sprite3D2/SubViewport/TextureRect")
+controllerButtonTexture = SubResource("AtlasTexture_i7ec5")
+keyboardButtonTexture = SubResource("AtlasTexture_16tjv")
 craftDuration = 4.0
 recipes = Array[Object]([SubResource("Resource_04qyv"), SubResource("Resource_i1han"), SubResource("Resource_7xevn"), SubResource("Resource_i7ec5"), SubResource("Resource_16tjv")])
 
@@ -146,12 +160,26 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_wq66q")
 show_percentage = false
 
 [node name="TextureRect" type="TextureRect" parent="Sprite3D/SubViewport" unique_id=1873765406]
+visible = false
 offset_left = 30.0
 offset_top = 1.0
 offset_right = 70.0
 offset_bottom = 41.0
 scale = Vector2(0.9058403, 0.8089999)
 texture = SubResource("AtlasTexture_sx61v")
+
+[node name="Sprite3D2" type="Sprite3D" parent="." unique_id=385752451]
+transform = Transform3D(-4, 1.7484562e-07, 3.028414e-07, 3.0284144e-07, 3.464102, 1.9999996, -1.7484552e-07, 1.9999996, -3.464102, -0.85555214, 1.819467, -9.356144)
+texture = SubResource("ViewportTexture_sx61v")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D2" unique_id=1491327927]
+transparent_bg = true
+size = Vector2i(100, 100)
+
+[node name="TextureRect" type="TextureRect" parent="Sprite3D2/SubViewport" unique_id=773858044]
+offset_right = 97.0
+offset_bottom = 97.0
+texture = SubResource("AtlasTexture_i1han")
 
 [node name="FurnaceLow" type="MeshInstance3D" parent="." unique_id=1274855034]
 transform = Transform3D(-2.857143, 0, -2.4977936e-07, 0, 2.857143, 0, 2.4977936e-07, 0, -2.857143, 0, 0, 0.33177614)
@@ -165,7 +193,7 @@ volume_db = -40.0
 max_db = -24.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1161138031]
-transform = Transform3D(2.857143, 0, 0, 0, 2.857143, 0, 0, 0, 2.857143, -3.8203022, 3.5038965, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8203022, 3.5038965, 0)
 light_color = Color(2.4304428, 0.6644703, 0, 1)
 light_energy = 1.5
 omni_range = 2.9051983
