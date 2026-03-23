@@ -7,9 +7,10 @@ public partial class Turret : Node3D
 	[Export] private Node3D bulletSpawnLocation;
 	[Export] private PackedScene bulletScene;
 	[Export] public float range = 20.0f;
-	[Export] public float coneAngle = 65.0f;
+	[Export] public float coneAngle = 360.0f;
 	[Export] protected Node3D inputNode;
 	[Export] protected Label label;
+	[Export] AudioStreamPlayer3D audio;
 
 	protected ItemCarrier itemCarrier;
 	protected PlayerController player;
@@ -70,7 +71,7 @@ public partial class Turret : Node3D
 			shootTimer.Stop();
 			return;
 		}
-
+		
 		Node3D target = FindClosestEnemy();
 		if(target == null) return;
 
@@ -85,6 +86,7 @@ public partial class Turret : Node3D
 		bullet.SetDirection(forward);
 		bulletCount--;
 		label.Text = $"{bulletCount}";
+		audio.Play();
 
 	}
 

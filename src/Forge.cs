@@ -27,11 +27,11 @@ public partial class Forge : Node3D
 	}
 
 	private void OnSceneChanged()
-    {
+	{
 		health = maxHealth;
 
-        CallDeferred(nameof(OnHealthChanged));
-    }
+		CallDeferred(nameof(OnHealthChanged));
+	}
 	#endregion
 
 	#region Process
@@ -53,9 +53,9 @@ public partial class Forge : Node3D
 					resultMenu.ShowFail();
 			}
 			else if(health >= 0 && isDestroyed)
-            {
-                isDestroyed = false;
-            }
+			{
+				isDestroyed = false;
+			}
 		}
 
 	}
@@ -91,8 +91,8 @@ public partial class Forge : Node3D
 		EmitSignal(SignalName.ForgeTookDamage,health, maxHealth);
 	}
 	private void OnHealthChanged()
-    {
-        EmitSignal(SignalName.ForgeTookDamage, health, maxHealth);
-    }
+	{
+		EmitSignal(SignalName.ForgeTookDamage, health, maxHealth);
+	}
 
 }
