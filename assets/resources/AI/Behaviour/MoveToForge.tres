@@ -1,3 +1,7 @@
-[gd_resource type="Resource" format=3 uid="uid://b8b53k7npfa4a"]
+[gd_resource type="Resource" script_class="MoveToForge" format=3 uid="uid://b8b53k7npfa4a"]
+
+[ext_resource type="Script" uid="uid://dcjcfda4rr8x3" path="res://src/Enemy/AI/MoveToForge.cs" id="1_n8pgf"]
 
 [resource]
+script = ExtResource("1_n8pgf")
+metadata/_custom_type_script = "uid://dcjcfda4rr8x3"

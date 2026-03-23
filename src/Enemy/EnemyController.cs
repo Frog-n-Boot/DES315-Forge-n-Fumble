@@ -254,7 +254,7 @@ public partial class EnemyController : CharacterBody3D
 
 	public static EnemyController Create(EnemyData data, Node3D target, Node parent, Vector3 spawnPosition)
 	{
-		var enemyScene = GD.Load<PackedScene>("res://assets/models/Enemy.tscn");
+		var enemyScene = GD.Load<PackedScene>("res://assets/prefabs/Enemy.tscn");
 		var enemy      = enemyScene.Instantiate<EnemyController>();
 
 		enemy.Initialize(data, target, spawnPosition);

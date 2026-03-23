@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://brbu62attbvtp"
-path="res://.godot/imported/Anvil1.wav-88f0cd3c4233424683a5933fefadfd6b.sample"
+path="res://.godot/imported/Anvil1.wav-763f2d210bbd440c801fd02bfd0e2e4d.sample"
 
 [deps]
 
-source_file="res://assets/Sounds/WorldSounds/Anvil1.wav"
-dest_files=["res://.godot/imported/Anvil1.wav-88f0cd3c4233424683a5933fefadfd6b.sample"]
+source_file="res://assets/sounds/WorldSounds/Anvil1.wav"
+dest_files=["res://.godot/imported/Anvil1.wav-763f2d210bbd440c801fd02bfd0e2e4d.sample"]
 
 [params]
 

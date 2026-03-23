@@ -1,3 +1,7 @@
-[gd_resource type="Resource" format=3 uid="uid://bfacy6hhsbqfk"]
+[gd_resource type="Resource" script_class="ChasePlayer" format=3 uid="uid://bfacy6hhsbqfk"]
+
+[ext_resource type="Script" uid="uid://by87lhisv36nt" path="res://src/Enemy/AI/ChasePlayer.cs" id="1_3dv07"]
 
 [resource]
+script = ExtResource("1_3dv07")
+metadata/_custom_type_script = "uid://by87lhisv36nt"

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://d31rmb5i75h54"
-path="res://.godot/imported/InitalForgeActivation.wav-537683b991e0cf7e6362db3e70b4b7a6.sample"
+path="res://.godot/imported/InitalForgeActivation.wav-8aed657be11185b56cdc42cb1a884ed9.sample"
 
 [deps]
 
-source_file="res://assets/Sounds/InitalForgeActivation.wav"
-dest_files=["res://.godot/imported/InitalForgeActivation.wav-537683b991e0cf7e6362db3e70b4b7a6.sample"]
+source_file="res://assets/sounds/InitalForgeActivation.wav"
+dest_files=["res://.godot/imported/InitalForgeActivation.wav-8aed657be11185b56cdc42cb1a884ed9.sample"]
 
 [params]
 

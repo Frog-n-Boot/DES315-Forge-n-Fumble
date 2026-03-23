@@ -1,3 +1,7 @@
-[gd_resource type="Resource" format=3 uid="uid://b5eismaobj5po"]
+[gd_resource type="Resource" script_class="AttackPlayer" format=3 uid="uid://b5eismaobj5po"]
+
+[ext_resource type="Script" uid="uid://b5ljy5ajp4m3g" path="res://src/Enemy/AI/AttackPlayer.cs" id="1_qrfro"]
 
 [resource]
+script = ExtResource("1_qrfro")
+metadata/_custom_type_script = "uid://b5ljy5ajp4m3g"

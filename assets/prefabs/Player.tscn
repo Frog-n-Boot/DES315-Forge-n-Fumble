@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cdlum5v1gnmv7" path="res://assets/textures/GreenDwarf.png" id="5_yv8gf"]
 [ext_resource type="Texture2D" uid="uid://p55rbagysnlo" path="res://assets/textures/PurpleDwarf.png" id="6_glr06"]
 [ext_resource type="Texture2D" uid="uid://bojhtl0pjp5on" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/DwarfPurple_low_BaseCol.tga" id="6_so67x"]
-[ext_resource type="AudioStream" uid="uid://c4ymn22aaas8l" path="res://assets/Sounds/WorldSounds/SwordSwipe.mp3" id="8_jnlb4"]
+[ext_resource type="AudioStream" uid="uid://c4ymn22aaas8l" path="res://assets/sounds/WorldSounds/SwordSwipe.mp3" id="8_jnlb4"]
 [ext_resource type="Texture2D" uid="uid://bwvn5hsl7jk60" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/DwarfRed_low_BaseCol.tga" id="8_ob8sk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t0fpx"]

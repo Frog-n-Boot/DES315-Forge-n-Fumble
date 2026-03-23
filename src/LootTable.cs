@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class LootTable : Node3D
+public partial class LootTable : Node
 {
 
 

@@ -1,0 +1,730 @@
+[gd_scene format=3 uid="uid://88oq7ysmwuhi"]
+
+[ext_resource type="PackedScene" uid="uid://cxj0fwjqxc5ny" path="res://assets/prefabs/Rocks.tscn" id="1_dg70y"]
+[ext_resource type="PackedScene" uid="uid://706c56ie3ke" path="res://assets/prefabs/Turret.tscn" id="2_pnhog"]
+[ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="3_2c4at"]
+[ext_resource type="PackedScene" uid="uid://cmd758glwlnly" path="res://assets/models/FinalAssets_Low/WorkStations/Grindstone.tscn" id="4_g6wdg"]
+[ext_resource type="PackedScene" uid="uid://g1gfmktihg8t" path="res://assets/models/FinalAssets_Low/WorkStations/Anvil.tscn" id="5_hq6as"]
+[ext_resource type="PackedScene" uid="uid://coyu2lwljmydf" path="res://assets/prefabs/Enviroment/forge_floor.tscn" id="6_kxyth"]
+[ext_resource type="PackedScene" uid="uid://wy2o4jtatv8j" path="res://assets/prefabs/Enviroment/forge_walls.tscn" id="7_cobve"]
+[ext_resource type="PackedScene" uid="uid://bm6vf4tjk48gj" path="res://assets/models/FinalAssets_Low/Structure_models/forge.tscn" id="8_cmqll"]
+[ext_resource type="PackedScene" uid="uid://c7rpj1owr2krx" path="res://assets/prefabs/Enviroment/forge_interior.tscn" id="9_8cp6k"]
+[ext_resource type="Script" uid="uid://dnqtfi3fpu8ue" path="res://src/CameraController.cs" id="10_8b871"]
+[ext_resource type="Script" uid="uid://bk2uam5leqcv8" path="res://src/PlayerSpawner.cs" id="11_pdwbg"]
+[ext_resource type="PackedScene" uid="uid://8roa2xkb2ipl" path="res://assets/prefabs/Player.tscn" id="12_5grtr"]
+[ext_resource type="Script" uid="uid://bs44u3pohek1t" path="res://src/SettingsMenu.cs" id="13_vua0o"]
+[ext_resource type="Script" uid="uid://bj4pcgxjt3ru7" path="res://src/Mangers/WaveManager.cs" id="14_t70y2"]
+[ext_resource type="Resource" uid="uid://calih72lg8n07" path="res://assets/resources/AI/NormalEnemyData.tres" id="15_8gny2"]
+[ext_resource type="Resource" uid="uid://cdki2c88hftlb" path="res://assets/resources/AI/FastEnemyData.tres" id="16_s3wmy"]
+[ext_resource type="Resource" uid="uid://cvs5mxaqpoflx" path="res://assets/resources/AI/StrongEnemyData.tres" id="17_gdcyb"]
+[ext_resource type="Script" uid="uid://taddex4cilqa" path="res://src/LootTable.cs" id="18_oa6sj"]
+[ext_resource type="PackedScene" uid="uid://cgv7jdbgqsgql" path="res://assets/models/FinalAssets_Low/Ore/Ore.tscn" id="19_0f1tp"]
+[ext_resource type="PackedScene" uid="uid://ckbl1y013dodk" path="res://assets/models/FinalAssets_Low/Ore/Iron_Ore.tscn" id="20_0qimb"]
+[ext_resource type="PackedScene" uid="uid://dgguk5limafel" path="res://assets/models/FinalAssets_Low/Ore/Gold_Ore.tscn" id="21_in2eo"]
+[ext_resource type="PackedScene" uid="uid://lwhw0sdqw87a" path="res://assets/models/FinalAssets_Low/Ore/Damas_Ore1.tscn" id="22_dyyw8"]
+[ext_resource type="PackedScene" uid="uid://jnghu007q1m" path="res://assets/models/FinalAssets_Low/Items_Models/Healthpack.tscn" id="23_gjpm3"]
+[ext_resource type="Script" uid="uid://b2l2l45t253bx" path="res://src/HUD.cs" id="24_knagv"]
+[ext_resource type="PackedScene" uid="uid://cd12og6qvmqm7" path="res://assets/textures/PlayerPortrait.tscn" id="25_siyqs"]
+[ext_resource type="Script" uid="uid://brp6gsap0s2ok" path="res://src/HealthBar.cs" id="26_pb578"]
+[ext_resource type="Script" uid="uid://dnliu2440i283" path="res://src/PauseMenu.cs" id="27_vshs7"]
+[ext_resource type="Texture2D" uid="uid://dy1wiwwij327x" path="res://assets/materials/Texture_sets/2DTextures/furnaceImage.webp" id="28_2ki8c"]
+[ext_resource type="Texture2D" uid="uid://bvw5yhtbch6ht" path="res://assets/materials/Texture_sets/2DTextures/anvilImage.webp" id="29_0owt5"]
+[ext_resource type="Texture2D" uid="uid://dwexwmybryvpl" path="res://assets/materials/Texture_sets/2DTextures/grindstoneImage.webp" id="30_o1tg2"]
+[ext_resource type="PackedScene" uid="uid://176tgqxxk3p7" path="res://scenes/DebugMenu.tscn" id="31_hyu0y"]
+[ext_resource type="Script" uid="uid://cqrm013r0malu" path="res://src/TesultMenu.cs" id="32_lfilp"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_wko22"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ptwec"]
+albedo_color = Color(0, 0.16470589, 0, 1)
+uv1_scale = Vector3(10, 10, 10)
+uv1_triplanar = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3lnvk"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wt1ef"]
+sky_top_color = Color(0.5620234, 0.4562606, 0.1947913, 1)
+sky_horizon_color = Color(0.8877065, 0.40235606, 7.70092e-07, 1)
+sky_curve = 0.0891909
+
+[sub_resource type="Sky" id="Sky_7l3mh"]
+sky_material = SubResource("ProceduralSkyMaterial_wt1ef")
+
+[sub_resource type="Environment" id="Environment_81oh0"]
+background_mode = 2
+sky = SubResource("Sky_7l3mh")
+tonemap_mode = 2
+glow_enabled = true
+fog_mode = 1
+fog_density = 1.0
+fog_depth_end = 242.5
+volumetric_fog_density = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cvaul"]
+bg_color = Color(0.74509805, 0, 0, 1)
+border_width_bottom = 3
+border_color = Color(0.39748856, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_bottom = 3.0
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ikfag"]
+bg_color = Color(0, 0.6, 0, 1)
+border_width_bottom = 3
+border_color = Color(2.1057204e-07, 0.27337572, 4.813075e-08, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_bottom = 3.0
+shadow_size = 3
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7dxqx"]
+
+[node name="MainLevel" type="StaticBody3D" unique_id=127569902]
+
+[node name="Grass" type="CollisionShape3D" parent="." unique_id=1286559043]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_wko22")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Grass" unique_id=1902630742]
+transform = Transform3D(16.996313, 0, 0, 0, 16.996313, 0, 0, 0, 17.619446, 0.28535032, -0.0010001585, 0.040840626)
+material_override = SubResource("StandardMaterial3D_ptwec")
+mesh = SubResource("PlaneMesh_3lnvk")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Grass/MeshInstance3D" unique_id=1253782712]
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=686138009]
+transform = Transform3D(0.6920928, 0.008213635, 0.7217619, -0.72180855, 0.007875493, 0.69204795, -5.793235e-10, -0.99993527, 0.011379243, -0.65869904, 19.63105, -0.28507435)
+light_color = Color(0.47735137, 0.4088744, 0.36183918, 1)
+light_energy = 2.485
+shadow_enabled = true
+shadow_normal_bias = 0.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1038820763]
+environment = SubResource("Environment_81oh0")
+
+[node name="Enviroment" type="Node" parent="." unique_id=1495741313]
+
+[node name="Rocks" type="Node" parent="Enviroment" unique_id=266735782]
+
+[node name="Boxes" parent="Enviroment/Rocks" unique_id=1594444897 instance=ExtResource("1_dg70y")]
+transform = Transform3D(0.88203645, 0, -0.4711812, 0, 1, 0, 0.4711812, 0, 0.88203645, -24.306755, -0.08142471, 2.1330853)
+
+[node name="Boxes2" parent="Enviroment/Rocks" unique_id=1837507322 instance=ExtResource("1_dg70y")]
+transform = Transform3D(0.064462595, 0, -0.9979201, 0, 1, 0, 0.9979201, 0, 0.064462595, 25.664726, -0.08142662, -11.783998)
+
+[node name="Boxes3" parent="Enviroment/Rocks" unique_id=1756956899 instance=ExtResource("1_dg70y")]
+transform = Transform3D(-0.9853752, 0, 0.17039871, 0, 1, 0, -0.17039871, 0, -0.9853752, 12.880304, -0.08142471, -12.146921)
+
+[node name="Boxes4" parent="Enviroment/Rocks" unique_id=1307583488 instance=ExtResource("1_dg70y")]
+transform = Transform3D(-0.44551036, 0, -0.8952768, 0, 1, 0, 0.8952768, 0, -0.44551036, -22.462639, -0.08142471, -16.230326)
+
+[node name="Boxes5" parent="Enviroment/Rocks" unique_id=500950248 instance=ExtResource("1_dg70y")]
+transform = Transform3D(0.62693024, 0, -0.7790754, 0, 1, 0, 0.7790754, 0, 0.62693024, -0.7551384, -0.08142471, 14.886943)
+
+[node name="Boxes6" parent="Enviroment/Rocks" unique_id=684356168 instance=ExtResource("1_dg70y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.69911, -0.081422806, 20.819078)
+
+[node name="Boxes7" parent="Enviroment/Rocks" unique_id=381762733 instance=ExtResource("1_dg70y")]
+transform = Transform3D(0.21543421, 0, 0.97651833, 0, 1, 0, -0.97651833, 0, 0.21543421, 12.8392315, -0.081422806, 21.601873)
+
+[node name="Boxes8" parent="Enviroment/Rocks" unique_id=1636415216 instance=ExtResource("1_dg70y")]
+transform = Transform3D(0.46413106, 0, 0.88576657, 0, 1, 0, -0.88576657, 0, 0.46413106, -12.42491, -0.08142471, 19.973251)
+
+[node name="Boxes9" parent="Enviroment/Rocks" unique_id=1147151917 instance=ExtResource("1_dg70y")]
+transform = Transform3D(0.6630513, 0, -0.74857396, 0, 1, 0, 0.74857396, 0, 0.6630513, 17.78981, -0.081422806, 12.178682)
+
+[node name="Boxes10" parent="Enviroment/Rocks" unique_id=1531049353 instance=ExtResource("1_dg70y")]
+transform = Transform3D(0.5850001, 0, 0.81103325, 0, 1, 0, -0.81103325, 0, 0.5850001, 18.261032, -0.08142471, -16.599575)
+
+[node name="Turret2" parent="Enviroment" unique_id=353788340 node_paths=PackedStringArray("inputNode") instance=ExtResource("2_pnhog")]
+transform = Transform3D(0.807084, 0, -0.5904367, 0, 1, 0, 0.5904367, 0, 0.807084, 1.6651611, 3.0270271, 8.29387)
+inputNode = NodePath("StationPort3")
+
+[node name="StationPort3" parent="Enviroment/Turret2" unique_id=1915723754 instance=ExtResource("3_2c4at")]
+transform = Transform3D(-1.737944, 0, 2.3763328, 0, 1, 0, -2.398319, 0, -1.7220117, -0.3306508, -3.1234941, 0.20035172)
+
+[node name="Turret4" parent="Enviroment" unique_id=1789132715 node_paths=PackedStringArray("inputNode") instance=ExtResource("2_pnhog")]
+transform = Transform3D(-0.7744369, 0, 0.6326513, 0, 1, 0, -0.6326513, 0, -0.7744369, -8.181, 3.0270271, -7.4012585)
+inputNode = NodePath("StationPort2")
+
+[node name="StationPort2" parent="Enviroment/Turret4" unique_id=1365024135 instance=ExtResource("3_2c4at")]
+transform = Transform3D(1.8634118, 0, -2.2810848, 0, 1, 0, 2.30219, 0, 1.8463291, -0.8566718, -3.1234941, 0.023492694)
+
+[node name="Grindstone" parent="Enviroment" unique_id=1599248455 groups=["Grindstone"] instance=ExtResource("4_g6wdg")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6.7901764, -0.3082782, -3.6282606)
+
+[node name="Anvil" parent="Enviroment" unique_id=1158721071 instance=ExtResource("5_hq6as")]
+transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, -13.173545, 0.013580859, 4.4138145)
+
+[node name="Floor" parent="Enviroment" unique_id=1506795919 instance=ExtResource("6_kxyth")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, -0.10717964, 0.13712025)
+
+[node name="ForgeWalls" parent="Enviroment" unique_id=1476112399 instance=ExtResource("7_cobve")]
+transform = Transform3D(6.3, 0, 0, 0, 6.3, 0, 0, 0, 6.3, 0, -0.10717964, 0.23938084)
+
+[node name="Forge" parent="Enviroment" unique_id=994045895 instance=ExtResource("8_cmqll")]
+transform = Transform3D(-0.34999743, 0, 0.0013377805, 0, 0.35, 0, -0.0013377805, 0, -0.34999743, -3.6169677, -0.016264915, 0.6796417)
+
+[node name="Interior" parent="Enviroment" unique_id=1066486656 instance=ExtResource("9_8cp6k")]
+transform = Transform3D(6.2, 0, 0, 0, 6.2, 0, 0, 0, 6.2, 0, 0, 0.14984131)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=254897524 node_paths=PackedStringArray("playerSpawner") groups=["Camera"]]
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -3.1877332, 39, 39.193367)
+projection = 1
+size = 28.411
+script = ExtResource("10_8b871")
+playerSpawner = NodePath("../PlayerSpawner")
+outerBounds = Vector2(400, 200)
+innerBounds = Vector2(300, 150)
+minSize = 20.0
+maxSize = 35.0
+
+[node name="PlayerSpawner" type="Node" parent="." unique_id=1347135134 node_paths=PackedStringArray("spawnParent") groups=["PlayerSpawner"]]
+script = ExtResource("11_pdwbg")
+playerScene = ExtResource("12_5grtr")
+spawnParent = NodePath("..")
+
+[node name="SpawnPoint0" type="Marker3D" parent="PlayerSpawner" unique_id=1722202336]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0953445, 0, 2.524694)
+
+[node name="SpawnPoint1" type="Marker3D" parent="PlayerSpawner" unique_id=1852408077]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5969086, 0, 0.46437693)
+
+[node name="SpawnPoint2" type="Marker3D" parent="PlayerSpawner" unique_id=411742392]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.891476, 0, -2.7367232)
+
+[node name="SpawnPoint3" type="Marker3D" parent="PlayerSpawner" unique_id=2030002562]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2047462, 0, 0.9286995)
+
+[node name="SettingsMenu" type="CanvasLayer" parent="." unique_id=1617405091 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton", "pauseMenu")]
+visible = false
+script = ExtResource("13_vua0o")
+masterSlider = NodePath("Control/MasterVolumeLabel/MasterVolumeSlider")
+musicSlider = NodePath("Control/MusicVolumeLabel/MusicVolumeSlider")
+sfxSlider = NodePath("Control/SFXVolumeLabel/SFXVolumeSlider")
+fullScreenCheckBox = NodePath("Control/FullscreenLabel/FullScreenCheckBox")
+vsyncCheckBox = NodePath("Control/VSyncLabel/VSyncCheckBox")
+showFPSCheckBox = NodePath("Control/ShowFPSLabel/ShowFPSCheckBox")
+resolutionDropdown = NodePath("Control/ResolutionLabel/ResolutionOptionButton")
+maxFPSDropdown = NodePath("Control/FPSLabel/FPSOptionButton")
+applyButton = NodePath("Control/ApplyButton")
+pauseMenu = NodePath("../PauseMenu")
+
+[node name="Control" type="Control" parent="SettingsMenu" unique_id=1260098093]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="SettingsMenu/Control" unique_id=100261695]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 24.0
+offset_right = 264.0
+offset_bottom = 107.0
+theme_override_font_sizes/font_size = 60
+text = "Settings"
+metadata/_edit_use_anchors_ = true
+
+[node name="MasterVolumeLabel" type="Label" parent="SettingsMenu/Control" unique_id=1591004952]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 120.0
+offset_right = 252.0
+offset_bottom = 207.0
+theme_override_font_sizes/font_size = 30
+text = "Master Volume
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="MasterVolumeSlider" type="HSlider" parent="SettingsMenu/Control/MasterVolumeLabel" unique_id=485278808]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.0045454544
+offset_left = 233.0
+offset_right = 343.0
+offset_bottom = 50.0
+focus_neighbor_bottom = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
+metadata/_edit_use_anchors_ = true
+
+[node name="MusicVolumeLabel" type="Label" parent="SettingsMenu/Control" unique_id=1028329062]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 176.0
+offset_right = 235.0
+offset_bottom = 223.0
+theme_override_font_sizes/font_size = 30
+text = "Music Volume"
+metadata/_edit_use_anchors_ = true
+
+[node name="MusicVolumeSlider" type="HSlider" parent="SettingsMenu/Control/MusicVolumeLabel" unique_id=513898678]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.009852217
+anchor_top = -0.14893617
+anchor_right = -0.009852217
+anchor_bottom = -0.14893617
+offset_left = 234.0
+offset_top = 7.0
+offset_right = 344.0
+offset_bottom = 57.0
+focus_neighbor_top = NodePath("../../MasterVolumeLabel/MasterVolumeSlider")
+focus_neighbor_right = NodePath("../../SFXVolumeLabel/SFXVolumeSlider")
+metadata/_edit_use_anchors_ = true
+
+[node name="ResolutionLabel" type="Label" parent="SettingsMenu/Control" unique_id=1794153192]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 432.0
+offset_right = 186.0
+offset_bottom = 479.0
+theme_override_font_sizes/font_size = 30
+text = "Resolution"
+metadata/_edit_use_anchors_ = true
+
+[node name="ResolutionOptionButton" type="OptionButton" parent="SettingsMenu/Control/ResolutionLabel" unique_id=827977499]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4090909
+anchor_top = -0.06382979
+anchor_right = 0.4090909
+anchor_bottom = -0.06382979
+offset_left = 169.0
+offset_top = 11.0
+offset_right = 297.0
+offset_bottom = 43.0
+focus_neighbor_top = NodePath("../../ShowFPSLabel/ShowFPSCheckBox")
+focus_neighbor_bottom = NodePath("../../FPSLabel/FPSOptionButton")
+metadata/_edit_use_anchors_ = true
+
+[node name="FPSLabel" type="Label" parent="SettingsMenu/Control" unique_id=1616124073]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 488.0
+offset_right = 103.0
+offset_bottom = 535.0
+theme_override_font_sizes/font_size = 30
+text = "FPS"
+metadata/_edit_use_anchors_ = true
+
+[node name="FPSOptionButton" type="OptionButton" parent="SettingsMenu/Control/FPSLabel" unique_id=1628876376]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.5633802
+anchor_top = -0.06382979
+anchor_right = 1.5633802
+anchor_bottom = -0.06382979
+offset_left = 121.0
+offset_top = 11.0
+offset_right = 249.0
+offset_bottom = 43.0
+focus_neighbor_top = NodePath("../../ResolutionLabel/ResolutionOptionButton")
+focus_neighbor_bottom = NodePath("../../BackButton")
+metadata/_edit_use_anchors_ = true
+
+[node name="SFXVolumeLabel" type="Label" parent="SettingsMenu/Control" unique_id=1506815955]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 224.0
+offset_right = 201.0
+offset_bottom = 271.0
+theme_override_font_sizes/font_size = 30
+text = "SFX Volume"
+metadata/_edit_use_anchors_ = true
+
+[node name="SFXVolumeSlider" type="HSlider" parent="SettingsMenu/Control/SFXVolumeLabel" unique_id=1872170403]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.01183432
+anchor_top = -0.23404256
+anchor_right = -0.01183432
+anchor_bottom = -0.23404256
+offset_left = 234.0
+offset_top = 4.0
+offset_right = 344.0
+offset_bottom = 54.0
+focus_neighbor_top = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
+focus_neighbor_bottom = NodePath("../../FullscreenLabel/FullScreenCheckBox")
+metadata/_edit_use_anchors_ = true
+
+[node name="FullscreenLabel" type="Label" parent="SettingsMenu/Control" unique_id=1560838557]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 272.0
+offset_right = 201.0
+offset_bottom = 319.0
+theme_override_font_sizes/font_size = 30
+text = "FullScreen"
+metadata/_edit_use_anchors_ = true
+
+[node name="FullScreenCheckBox" type="CheckBox" parent="SettingsMenu/Control/FullscreenLabel" unique_id=1108551976]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.38700002
+anchor_right = 0.38700002
+offset_left = 166.59698
+offset_top = 10.0
+offset_right = 195.59698
+offset_bottom = 34.0
+focus_neighbor_top = NodePath("../../SFXVolumeLabel/SFXVolumeSlider")
+focus_neighbor_bottom = NodePath("../../VSyncLabel/VSyncCheckBox")
+theme_override_font_sizes/font_size = 40
+metadata/_edit_use_anchors_ = true
+
+[node name="VSyncLabel" type="Label" parent="SettingsMenu/Control" unique_id=909808435]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 320.0
+offset_right = 201.0
+offset_bottom = 367.0
+theme_override_font_sizes/font_size = 30
+text = "VSync"
+metadata/_edit_use_anchors_ = true
+
+[node name="VSyncCheckBox" type="CheckBox" parent="SettingsMenu/Control/VSyncLabel" unique_id=913072526]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2366864
+anchor_right = 0.2366864
+offset_left = 192.0
+offset_top = -7.9999986
+offset_right = 217.0
+offset_bottom = 55.0
+focus_neighbor_top = NodePath("../../FullscreenLabel/FullScreenCheckBox")
+focus_neighbor_bottom = NodePath("../../ShowFPSLabel/ShowFPSCheckBox")
+theme_override_font_sizes/font_size = 40
+text = "
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="ShowFPSLabel" type="Label" parent="SettingsMenu/Control" unique_id=277186055]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 376.0
+offset_right = 201.0
+offset_bottom = 423.0
+theme_override_font_sizes/font_size = 30
+text = "ShowFPS"
+metadata/_edit_use_anchors_ = true
+
+[node name="ShowFPSCheckBox" type="CheckBox" parent="SettingsMenu/Control/ShowFPSLabel" unique_id=1148104484]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.16568047
+anchor_top = 0.06382979
+anchor_right = 0.16568047
+anchor_bottom = 0.06382979
+offset_left = 204.0
+offset_top = -11.0
+offset_right = 228.0
+offset_bottom = 52.0
+focus_neighbor_top = NodePath("../../VSyncLabel/VSyncCheckBox")
+focus_neighbor_bottom = NodePath("../../ResolutionLabel/ResolutionOptionButton")
+theme_override_font_sizes/font_size = 40
+text = "
+
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="BackButton" type="Button" parent="SettingsMenu/Control" unique_id=1184552180]
+layout_mode = 0
+offset_left = 8.000006
+offset_top = 552.0
+offset_right = 456.0
+offset_bottom = 672.0
+scale = Vector2(0.8400012, 0.7599994)
+focus_neighbor_top = NodePath("../FPSLabel/FPSOptionButton")
+focus_neighbor_right = NodePath("../ApplyButton")
+theme_override_font_sizes/font_size = 40
+text = "Back
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="ApplyButton" type="Button" parent="SettingsMenu/Control" unique_id=1142629580]
+layout_mode = 0
+offset_left = 759.99994
+offset_top = 552.0
+offset_right = 1208.0
+offset_bottom = 672.0
+scale = Vector2(0.8400012, 0.7599994)
+focus_neighbor_left = NodePath("../BackButton")
+focus_neighbor_top = NodePath("../FPSLabel/FPSOptionButton")
+theme_override_font_sizes/font_size = 40
+text = "Apply
+
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="SettingsMenu" unique_id=1181463912]
+z_index = -1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.750067, 16.369858)
+color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
+
+[node name="EnemySpawner" type="Node" parent="." unique_id=1191566733 node_paths=PackedStringArray("spawnParent", "targetNode", "resultMenu", "enemyUI", "waveTimerLabel3D") groups=["WaveManager"]]
+script = ExtResource("14_t70y2")
+spawnParent = NodePath(".")
+targetNode = NodePath("../Enviroment/Forge")
+resultMenu = NodePath("../ResultsMenu")
+normalEnemyData = ExtResource("15_8gny2")
+fastEnemyData = ExtResource("16_s3wmy")
+strongEnemyData = ExtResource("17_gdcyb")
+normalEnemyChance = 70
+strongEnemyChance = 10
+maxWaves = 7
+startingEnemiesPerWave = 10
+enemyIncreasedPerWave = 2
+enemyUI = NodePath("../EnemyUI")
+waveTimerLabel3D = NodePath("../EnemyUI/Label3D")
+
+[node name="EnemySpawn1" type="Marker3D" parent="EnemySpawner" unique_id=829387820]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.047226, 0, 23.813654)
+
+[node name="EnemySpawn2" type="Marker3D" parent="EnemySpawner" unique_id=1036047724]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.681313, 0, -39.874676)
+
+[node name="EnemySpawn3" type="Marker3D" parent="EnemySpawner" unique_id=269155436]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9449558, 0, 32.018856)
+
+[node name="EnemySpawn9" type="Marker3D" parent="EnemySpawner" unique_id=348894196]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.341758, 0, 28.875797)
+
+[node name="EnemySpawn4" type="Marker3D" parent="EnemySpawner" unique_id=732551147]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.521996, 0, 0.96859026)
+
+[node name="EnemySpawn5" type="Marker3D" parent="EnemySpawner" unique_id=1147873908]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.475105, 0, 23.120361)
+
+[node name="EnemySpawn6" type="Marker3D" parent="EnemySpawner" unique_id=890423285]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.42679, 0, -30.008736)
+
+[node name="EnemySpawn7" type="Marker3D" parent="EnemySpawner" unique_id=1941235768]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.031914, 0, -4.90823)
+
+[node name="EnemySpawn8" type="Marker3D" parent="EnemySpawner" unique_id=1838745660]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.031914, 0, 10.609423)
+
+[node name="Enemies" type="Node3D" parent="EnemySpawner" unique_id=663500412]
+
+[node name="LootTable" type="Node" parent="." unique_id=317891680 groups=["LootTable"]]
+script = ExtResource("18_oa6sj")
+damasDropChance = 0
+healthPackDropChance = 0
+copperOre = ExtResource("19_0f1tp")
+ironOre = ExtResource("20_0qimb")
+goldOre = ExtResource("21_in2eo")
+damasOre = ExtResource("22_dyyw8")
+healthPackObject = ExtResource("23_gjpm3")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1197770763 node_paths=PackedStringArray("spawner", "portraitContainer")]
+script = ExtResource("24_knagv")
+portraitScene = ExtResource("25_siyqs")
+spawner = NodePath("../PlayerSpawner")
+portraitContainer = NodePath("HBoxContainer")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=1200533580]
+offset_left = 25.999998
+offset_top = 529.0
+offset_right = 66.00001
+offset_bottom = 569.0
+scale = Vector2(1.4340242, 1.4681656)
+theme_override_constants/separation = 100
+
+[node name="ForgeProgressBar" type="ProgressBar" parent="CanvasLayer" unique_id=847755065]
+offset_left = 3.0
+offset_top = 11.0
+offset_right = 1149.0
+offset_bottom = 39.0
+theme_override_styles/background = SubResource("StyleBoxFlat_cvaul")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ikfag")
+value = 50.0
+show_percentage = false
+script = ExtResource("26_pb578")
+targetPath = NodePath("../..")
+
+[node name="EnemyUI" type="Label" parent="." unique_id=754514857]
+process_priority = 1
+offset_top = 66.0
+offset_right = 66.0
+offset_bottom = 89.0
+text = "Enemies"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label3D" type="Label3D" parent="EnemyUI" unique_id=1383849787]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.814533, 9.772978, 0)
+text = "dsfsdfsd"
+font_size = 200
+
+[node name="PauseMenu" type="CanvasLayer" parent="." unique_id=385949872 node_paths=PackedStringArray("resumeButton", "settingsButton", "mainMenuButton", "settingsMenu")]
+process_mode = 3
+visible = false
+script = ExtResource("27_vshs7")
+resumeButton = NodePath("ResumeButton")
+settingsButton = NodePath("SettingsButton")
+mainMenuButton = NodePath("QuitButton")
+settingsMenu = NodePath("../SettingsMenu")
+
+[node name="ResumeButton" type="Button" parent="PauseMenu" unique_id=1461095151]
+offset_left = 71.00002
+offset_top = 175.0
+offset_right = 519.0
+offset_bottom = 295.0
+scale = Vector2(0.8400012, 0.7599994)
+focus_neighbor_top = NodePath(".")
+focus_neighbor_bottom = NodePath("../SettingsButton")
+focus_next = NodePath("../SettingsButton")
+focus_previous = NodePath("../QuitButton")
+theme_override_font_sizes/font_size = 40
+text = "Resume"
+
+[node name="SettingsButton" type="Button" parent="PauseMenu" unique_id=284510241]
+offset_left = 71.00002
+offset_top = 335.0
+offset_right = 519.0
+offset_bottom = 455.0
+scale = Vector2(0.8400012, 0.7599994)
+focus_neighbor_top = NodePath("../ResumeButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+focus_next = NodePath("../QuitButton")
+focus_previous = NodePath("../ResumeButton")
+theme_override_font_sizes/font_size = 40
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="PauseMenu" unique_id=1753223593]
+offset_left = 71.00002
+offset_top = 495.0
+offset_right = 519.0
+offset_bottom = 615.0
+scale = Vector2(0.8400012, 0.7599994)
+focus_neighbor_top = NodePath("../SettingsButton")
+focus_previous = NodePath("../SettingsButton")
+theme_override_font_sizes/font_size = 40
+text = "Main Menu"
+
+[node name="Label" type="Label" parent="PauseMenu" unique_id=1356341263]
+offset_left = 62.0
+offset_top = 26.0
+offset_right = 459.0
+offset_bottom = 109.0
+theme_override_font_sizes/font_size = 60
+text = "Game Paused"
+
+[node name="FurnaceImahe" type="TextureRect" parent="PauseMenu" unique_id=1306127748]
+offset_left = 658.0
+offset_top = 64.0
+offset_right = 1158.0
+offset_bottom = 164.0
+scale = Vector2(0.6149459, 0.68860584)
+texture = ExtResource("28_2ki8c")
+expand_mode = 1
+
+[node name="AnvilImage" type="TextureRect" parent="PauseMenu" unique_id=1655853165]
+offset_left = 658.0
+offset_top = 133.0
+offset_right = 1158.0
+offset_bottom = 233.0
+scale = Vector2(0.6149459, 0.68860584)
+texture = ExtResource("29_0owt5")
+expand_mode = 1
+
+[node name="GrindstoneImage" type="TextureRect" parent="PauseMenu" unique_id=983736741]
+offset_left = 658.0
+offset_top = 201.0
+offset_right = 1158.0
+offset_bottom = 301.0
+scale = Vector2(0.6149459, 0.68860584)
+texture = ExtResource("30_o1tg2")
+expand_mode = 1
+
+[node name="ControlsLabel" type="Label" parent="PauseMenu" unique_id=1322837801]
+offset_left = 592.0
+offset_top = 347.00003
+offset_right = 1254.0
+offset_bottom = 704.0
+scale = Vector2(0.68, 0.62560004)
+theme_override_font_sizes/font_size = 30
+text = "Actions                  Keyboard    │  Controller
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Pick-Up               │  Right Click │  Left Trigger
+Attack/Interact │  Left Click   │  Right Trigger
+Drop-Left-Item  │  Q                 │  Left Shoulder
+Drop-Right-Item│  E                 │  Right Shoulder
+Pause                  │  ESC             │  ☰
+Sequence           │  ←↑→↓          │  < > v ^"
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu" unique_id=261957256]
+z_index = -1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.860407, 16.15729)
+texture = SubResource("CompressedTexture2D_7dxqx")
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu" unique_id=25129296]
+z_index = -1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.750067, 16.369858)
+color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
+
+[node name="DebugMenu" parent="." unique_id=731638094 instance=ExtResource("31_hyu0y")]
+visible = false
+
+[node name="ResultsMenu" type="CanvasLayer" parent="." unique_id=470572280 node_paths=PackedStringArray("titleLabel", "retryButton", "mainMenuButton")]
+process_mode = 3
+script = ExtResource("32_lfilp")
+titleLabel = NodePath("Label")
+retryButton = NodePath("RetryButton")
+mainMenuButton = NodePath("QuitButton")
+
+[node name="RetryButton" type="Button" parent="ResultsMenu" unique_id=837916197]
+process_mode = 3
+offset_left = 362.0
+offset_top = 270.0
+offset_right = 810.0
+offset_bottom = 390.0
+scale = Vector2(0.8400012, 0.7599994)
+focus_neighbor_bottom = NodePath("../QuitButton")
+theme_override_font_sizes/font_size = 40
+text = "Retry"
+metadata/_edit_use_anchors_ = true
+
+[node name="QuitButton" type="Button" parent="ResultsMenu" unique_id=504194181]
+offset_left = 364.0
+offset_top = 436.00003
+offset_right = 812.0
+offset_bottom = 556.0
+scale = Vector2(0.8400012, 0.7599994)
+focus_neighbor_top = NodePath("../RetryButton")
+theme_override_font_sizes/font_size = 40
+text = "Main Menu"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="ResultsMenu" unique_id=688697069]
+offset_left = 231.0
+offset_top = 121.0
+offset_right = 722.0
+offset_bottom = 204.0
+theme_override_font_sizes/font_size = 60
+text = "End Game Result"
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="ResultsMenu" unique_id=2039402556]
+z_index = -1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.750067, 16.369858)
+color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
+
+[connection signal="pressed" from="SettingsMenu/Control/BackButton" to="SettingsMenu" method="OnBackPressed"]
+[connection signal="pressed" from="SettingsMenu/Control/ApplyButton" to="SettingsMenu" method="OnApplyPressed"]
+[connection signal="pressed" from="PauseMenu/ResumeButton" to="PauseMenu" method="OnResumePressed"]
+[connection signal="pressed" from="PauseMenu/SettingsButton" to="PauseMenu" method="OnSettingsPressed"]
+[connection signal="pressed" from="PauseMenu/QuitButton" to="PauseMenu" method="OnMainMenuPressed"]

@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://c4ymn22aaas8l"
-path="res://.godot/imported/SwordSwipe.mp3-a2e48c894fef236fa16abed7c28e80db.mp3str"
+path="res://.godot/imported/SwordSwipe.mp3-a8e197480af1bb2844ee86b6b13c6f57.mp3str"
 
 [deps]
 
-source_file="res://assets/Sounds/WorldSounds/SwordSwipe.mp3"
-dest_files=["res://.godot/imported/SwordSwipe.mp3-a2e48c894fef236fa16abed7c28e80db.mp3str"]
+source_file="res://assets/sounds/WorldSounds/SwordSwipe.mp3"
+dest_files=["res://.godot/imported/SwordSwipe.mp3-a8e197480af1bb2844ee86b6b13c6f57.mp3str"]
 
 [params]
 

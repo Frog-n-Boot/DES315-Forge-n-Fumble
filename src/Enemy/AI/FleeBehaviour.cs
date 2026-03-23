@@ -1,7 +1,7 @@
 using Godot;
 
 [GlobalClass]
-public partial class FleeAny : EnemyBehaviourData
+public partial class FleeBehaviour : EnemyBehaviourData
 {
     public override bool CanActivate(EnemyController c, float healthPercent)
         => healthPercent < FleeThreshold;

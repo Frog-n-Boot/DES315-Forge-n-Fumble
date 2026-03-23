@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://wy2o4jtatv8j"]
+
+[ext_resource type="PackedScene" uid="uid://bycamsjulrcwe" path="res://assets/models/FinalAssets_Low/Redone_Assets/Cobl_wall_low.tscn" id="1_mnjyu"]
+[ext_resource type="PackedScene" uid="uid://dvhojin78rtxa" path="res://assets/models/FinalAssets_Low/Redone_Assets/Cobl_pillar_low.tscn" id="2_4iuju"]
+[ext_resource type="PackedScene" uid="uid://bmre2ran8suad" path="res://assets/models/FinalAssets_Low/Redone_Assets/Cobl_archway_low.tscn" id="3_wr2yq"]
+[ext_resource type="PackedScene" uid="uid://can50oleeolkm" path="res://assets/models/FinalAssets_Low/Redone_Assets/Cobl_halfwall_low.tscn" id="4_cc8sf"]
+
+[node name="ForgeWalls" type="Node3D" unique_id=1476112399]
+
+[node name="CoblWallLow13" parent="." unique_id=1416519307 instance=ExtResource("1_mnjyu")]
+transform = Transform3D(0.20000002, 0, 0, 0, 0.20000002, 0, 0, 0, 0.20000002, 1.4455752, 0, 1.0164781)
+
+[node name="CoblWallLow23" parent="." unique_id=1805225942 instance=ExtResource("1_mnjyu")]
+transform = Transform3D(0.20000002, 0, 0, 0, 0.20000002, 0, 0, 0, 0.20000002, 1.4455752, 0, 0.5404464)
+
+[node name="CoblWallLow26" parent="." unique_id=1531021609 instance=ExtResource("1_mnjyu")]
+transform = Transform3D(0.20000002, 0, 0, 0, 0.20000002, 0, 0, 0, 0.20000002, 1.4455752, 0, -0.88225645)
+
+[node name="CoblWallLow27" parent="." unique_id=465239587 instance=ExtResource("1_mnjyu")]
+transform = Transform3D(-8.742278e-09, 0, -0.20000002, 0, 0.20000002, 0, 0.20000002, 0, -8.742278e-09, 1.0971732, 0, -1.230325)
+
+[node name="CoblWallLow28" parent="." unique_id=1289637773 instance=ExtResource("1_mnjyu")]
+transform = Transform3D(-8.742278e-09, 0, -0.20000002, 0, 0.20000002, 0, 0.20000002, 0, -8.742278e-09, 0.6218044, 0, -1.230325)
+
+[node name="CoblWallLow24" parent="." unique_id=1679972337 instance=ExtResource("1_mnjyu")]
+transform = Transform3D(0.20000002, 0, 0, 0, 0.20000002, 0, 0, 0, 0.20000002, 1.4455752, 0, 0.0682441)
+
+[node name="CoblWallLow25" parent="." unique_id=619674886 instance=ExtResource("1_mnjyu")]
+transform = Transform3D(0.20000002, 0, 0, 0, 0.20000002, 0, 0, 0, 0.20000002, 1.4455752, 0, -0.40778765)
+
+[node name="CoblPillarLow2" parent="." unique_id=1439026198 instance=ExtResource("2_4iuju")]
+transform = Transform3D(0.20000002, 0, 0, 0, 0.20000002, 0, 0, 0, 0.20000002, 1.4455161, 0, 1.3673486)
+
+[node name="CoblPillarLow5" parent="." unique_id=1389539033 instance=ExtResource("2_4iuju")]
+transform = Transform3D(0.20000002, 0, 0, 0, 0.20000002, 0, 0, 0, 0.20000002, 1.4455161, 0, -1.2303579)
+
+[node name="CoblArchwayLow5" parent="." unique_id=1216911531 instance=ExtResource("3_wr2yq")]
+transform = Transform3D(-8.742278e-09, 0, -0.20000002, 0, 0.20000002, 0, 0.20000002, 0, -8.742278e-09, 0.17538796, 0, -1.230325)
+
+[node name="CoblWallLow29" parent="." unique_id=833870778 instance=ExtResource("1_mnjyu")]
+transform = Transform3D(-8.742279e-09, 0, 0.20000002, 0, 0.20000002, 0, -0.20000002, 0, -8.742279e-09, -2.2080493, 0, -1.2303414)
+
+[node name="CoblWallLow30" parent="." unique_id=298489055 instance=ExtResource("1_mnjyu")]
+transform = Transform3D(-8.742279e-09, 0, 0.20000002, 0, 0.20000002, 0, -0.20000002, 0, -8.742279e-09, -1.7326803, 0, -1.2303414)
+
+[node name="CoblPillarLow6" parent="." unique_id=1599511447 instance=ExtResource("2_4iuju")]
+transform = Transform3D(-0.20000002, 0, -1.7484556e-08, 0, 0.20000002, 0, 1.7484556e-08, 0, -0.20000002, -2.5563922, 0, -1.2303083)
+
+[node name="CoblArchwayLow6" parent="." unique_id=1544870093 instance=ExtResource("3_wr2yq")]
+transform = Transform3D(-8.742278e-09, 0, 0.20000002, 0, 0.20000002, 0, -0.20000002, 0, -8.742278e-09, -1.2862638, 0, -1.2303414)
+
+[node name="CoblHalfwallLow9" parent="." unique_id=1553971924 instance=ExtResource("4_cc8sf")]
+transform = Transform3D(-8.742278e-09, 0, 0.20000002, 0, 0.20000002, 0, -0.20000002, 0, -8.742278e-09, -0.32287872, 0, -1.230325)
+
+[node name="CoblHalfwallLow10" parent="." unique_id=1563345564 instance=ExtResource("4_cc8sf")]
+transform = Transform3D(-8.742278e-09, 0, 0.20000002, 0, 0.20000002, 0, -0.20000002, 0, -8.742278e-09, -0.8023033, 0, -1.230325)
+
+[node name="CoblWallLow31" parent="." unique_id=50006834 instance=ExtResource("1_mnjyu")]
+transform = Transform3D(-0.20000002, 0, 1.7484556e-08, 0, 0.20000002, 0, -1.7484556e-08, 0, -0.20000002, -2.5515313, 0, -0.8677079)
+
+[node name="CoblWallLow32" parent="." unique_id=1118354954 instance=ExtResource("1_mnjyu")]
+transform = Transform3D(-0.20000002, 0, 1.7484556e-08, 0, 0.20000002, 0, -1.7484556e-08, 0, -0.20000002, -2.5515313, 0, -0.39167556)
+
+[node name="CoblWallLow33" parent="." unique_id=379984124 instance=ExtResource("1_mnjyu")]
+transform = Transform3D(-0.20000002, 0, 1.7484556e-08, 0, 0.20000002, 0, -1.7484556e-08, 0, -0.20000002, -2.5515318, 0, 1.0310273)
+
+[node name="CoblWallLow34" parent="." unique_id=1165621768 instance=ExtResource("1_mnjyu")]
+transform = Transform3D(2.6226834e-08, 0, 0.20000002, 0, 0.20000002, 0, -0.20000002, 0, 2.6226834e-08, -2.2031293, 0, 1.3790956)
+
+[node name="CoblWallLow35" parent="." unique_id=12090646 instance=ExtResource("1_mnjyu")]
+transform = Transform3D(2.6226834e-08, 0, 0.20000002, 0, 0.20000002, 0, -0.20000002, 0, 2.6226834e-08, -1.7277607, 0, 1.3790956)
+
+[node name="CoblWallLow36" parent="." unique_id=2031217227 instance=ExtResource("1_mnjyu")]
+transform = Transform3D(-0.20000002, 0, 1.7484556e-08, 0, 0.20000002, 0, -1.7484556e-08, 0, -0.20000002, -2.5515313, 0, 0.08052677)
+
+[node name="CoblWallLow37" parent="." unique_id=559087396 instance=ExtResource("1_mnjyu")]
+transform = Transform3D(-0.20000002, 0, 1.7484556e-08, 0, 0.20000002, 0, -1.7484556e-08, 0, -0.20000002, -2.5515318, 0, 0.5565584)
+
+[node name="CoblPillarLow7" parent="." unique_id=1085189046 instance=ExtResource("2_4iuju")]
+transform = Transform3D(-0.20000002, 0, 1.7484556e-08, 0, 0.20000002, 0, -1.7484556e-08, 0, -0.20000002, -2.5514727, 0, 1.3791283)
+
+[node name="CoblArchwayLow7" parent="." unique_id=1082504227 instance=ExtResource("3_wr2yq")]
+transform = Transform3D(2.6226834e-08, 0, 0.20000002, 0, 0.20000002, 0, -0.20000002, 0, 2.6226834e-08, -1.2813442, 0, 1.3790956)
+
+[node name="CoblWallLow38" parent="." unique_id=572023553 instance=ExtResource("1_mnjyu")]
+transform = Transform3D(-8.742278e-09, 0, -0.20000002, 0, 0.20000002, 0, 0.20000002, 0, -8.742278e-09, 1.1020935, 0, 1.3791121)
+
+[node name="CoblWallLow39" parent="." unique_id=1510522324 instance=ExtResource("1_mnjyu")]
+transform = Transform3D(-8.742278e-09, 0, -0.20000002, 0, 0.20000002, 0, 0.20000002, 0, -8.742278e-09, 0.62672424, 0, 1.3791121)
+
+[node name="CoblArchwayLow8" parent="." unique_id=1998626741 instance=ExtResource("3_wr2yq")]
+transform = Transform3D(-8.742279e-09, 0, -0.20000002, 0, 0.20000002, 0, 0.20000002, 0, -8.742279e-09, 0.18030787, 0, 1.3791121)
+
+[node name="CoblHalfwallLow11" parent="." unique_id=188197650 instance=ExtResource("4_cc8sf")]
+transform = Transform3D(-8.742279e-09, 0, -0.20000002, 0, 0.20000002, 0, 0.20000002, 0, -8.742279e-09, -0.7830774, 0, 1.3790956)
+
+[node name="CoblHalfwallLow12" parent="." unique_id=155690580 instance=ExtResource("4_cc8sf")]
+transform = Transform3D(-8.742279e-09, 0, -0.20000002, 0, 0.20000002, 0, 0.20000002, 0, -8.742279e-09, -0.30365276, 0, 1.3790956)

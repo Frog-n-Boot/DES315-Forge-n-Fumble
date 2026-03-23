@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://706c56ie3ke"]
 
 [ext_resource type="Script" uid="uid://bdt0s16a5rcia" path="res://src/Turret.cs" id="1_m1e06"]
-[ext_resource type="PackedScene" uid="uid://ceb1l3gxwlc4l" path="res://assets/models/Bullet.tscn" id="2_n82r5"]
+[ext_resource type="PackedScene" uid="uid://ceb1l3gxwlc4l" path="res://assets/prefabs/Bullet.tscn" id="2_n82r5"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="3_n82r5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e7812"]

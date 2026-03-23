@@ -79,7 +79,10 @@ shape = SubResource("CylinderShape3D_82iww")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D" unique_id=270252028]
 shape = SubResource("CylinderShape3D_82iww")
 
-[node name="AI" type="Node" parent="." unique_id=130780360]
+[node name="AI" type="Node" parent="." unique_id=130780360 node_paths=PackedStringArray("_controller")]
 script = ExtResource("4_u2d28")
+_controller = NodePath("..")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=758582845]
 
 [connection signal="body_entered" from="Area3D" to="." method="OnBodyEntered"]
