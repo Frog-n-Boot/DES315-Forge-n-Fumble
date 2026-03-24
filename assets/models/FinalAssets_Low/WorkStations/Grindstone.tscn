@@ -12,6 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://6k5i0lfvsf5" path="res://assets/materials/Texture_sets/WorkStations/Grinder_low_ORM.tga" id="5_yoit8"]
 [ext_resource type="Texture2D" uid="uid://ui3qrxklkrbs" path="res://assets/materials/Texture_sets/WorkStations/Grinder_low_Normal.tga" id="6_8jrxj"]
 [ext_resource type="AudioStream" uid="uid://c038j0l4a1akg" path="res://assets/Sounds/WorldSounds/SwordSharpening.wav" id="9_8jrxj"]
+[ext_resource type="Script" uid="uid://by2c55xka33c5" path="res://src/BarMinigame.cs" id="13_wwlso"]
+[ext_resource type="Texture2D" uid="uid://u60gttmgjlop" path="res://assets/textures/GreenSquare.png" id="14_wwlso"]
+[ext_resource type="Texture2D" uid="uid://cvosdiqb43467" path="res://assets/textures/RedSquare.png" id="15_g1v1a"]
+[ext_resource type="Texture2D" uid="uid://cfesbuy201qlg" path="res://assets/materials/Texture_sets/Item_Textures/SwordPNG.png" id="16_w0ftq"]
 
 [sub_resource type="Resource" id="Resource_fgmgg"]
 script = ExtResource("3_hj04q")
@@ -44,10 +48,23 @@ heightmap_texture = ExtResource("5_yoit8")
 [sub_resource type="ViewportTexture" id="ViewportTexture_w3u6e"]
 viewport_path = NodePath("Sprite3D/SubViewport")
 
-[node name="Grindstone" type="Node3D" unique_id=1158721071 node_paths=PackedStringArray("grindstoneSound", "inputNode", "outputNode", "timeProgressBar", "stationName", "buttonTexture") groups=["Station"]]
+[sub_resource type="ViewportTexture" id="ViewportTexture_iap6j"]
+viewport_path = NodePath("BarMinigameSprite3D/SubViewport")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eh3gw"]
+size = Vector2(346.6071, 346.01764)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n5xar"]
+size = Vector2(317.0455, 310.15027)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u8mns"]
+size = Vector2(128.72177, 39.030846)
+
+[node name="Grindstone" type="Node3D" unique_id=1158721071 node_paths=PackedStringArray("grindstoneSound", "barMinigame", "inputNode", "outputNode", "timeProgressBar", "stationName", "buttonTexture") groups=["Station"]]
 script = ExtResource("1_bbsxq")
 swordScene = ExtResource("2_hj04q")
 grindstoneSound = NodePath("AudioStreamPlayer3D")
+barMinigame = NodePath("BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame")
 inputNode = NodePath("InputPort")
 outputNode = NodePath("OutputPort")
 timeProgressBar = NodePath("Sprite3D/SubViewport/ProgressBar")
@@ -114,3 +131,84 @@ metadata/_edit_use_anchors_ = true
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1808461735]
 stream = ExtResource("9_8jrxj")
 volume_db = -50.0
+
+[node name="BarMinigameSprite3D" type="Sprite3D" parent="." unique_id=1798100092]
+transform = Transform3D(-9.2063395e-08, 0, 1, 0, 1.712203, 0, -2.106165, 0, -4.371139e-08, 0, 3.077544, -2.0156088)
+texture = SubResource("ViewportTexture_iap6j")
+
+[node name="SubViewport" type="SubViewport" parent="BarMinigameSprite3D" unique_id=556381544]
+transparent_bg = true
+size = Vector2i(45, 430)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="BarMinigameSprite3D/SubViewport" unique_id=1400798563]
+
+[node name="BarMinigame" type="Node2D" parent="BarMinigameSprite3D/SubViewport/CanvasLayer" unique_id=1311041137 node_paths=PackedStringArray("rigidBox", "textureProgressBar", "itemToCatch")]
+script = ExtResource("13_wwlso")
+rigidBox = NodePath("Outside/RigidBody2D")
+textureProgressBar = NodePath("TextureProgressBar")
+itemToCatch = NodePath("Sword")
+
+[node name="ProgressTimer" type="Timer" parent="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame" unique_id=1310746820]
+wait_time = 0.2
+autostart = true
+
+[node name="ItemTimer" type="Timer" parent="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame" unique_id=1188093243]
+wait_time = 0.2
+autostart = true
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame" unique_id=1266692508]
+offset_left = 20.0
+offset_top = 32.0
+offset_right = 395.0
+offset_bottom = 405.0
+scale = Vector2(0.07930373, 1.1666666)
+fill_mode = 3
+texture_under = ExtResource("15_g1v1a")
+texture_progress = ExtResource("14_wwlso")
+
+[node name="Outside" type="Sprite2D" parent="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame" unique_id=2145505421]
+position = Vector2(0, 224)
+scale = Vector2(0.120000005, 1.12)
+texture = ExtResource("14_wwlso")
+
+[node name="GrooveJoint2D" type="GrooveJoint2D" parent="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame/Outside" unique_id=1325067782]
+position = Vector2(0, -170.53572)
+node_a = NodePath("../StaticBody2D")
+node_b = NodePath("../RigidBody2D")
+length = 350.0
+initial_offset = 170.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame/Outside" unique_id=1036255881]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame/Outside/StaticBody2D" unique_id=15773238]
+position = Vector2(0, -1.5258789e-05)
+shape = SubResource("RectangleShape2D_eh3gw")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame/Outside" unique_id=1081946159]
+scale = Vector2(0.6666564, 0.17857051)
+lock_rotation = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame/Outside/RigidBody2D" unique_id=916390691]
+scale = Vector2(0.1, 0.2)
+shape = SubResource("RectangleShape2D_n5xar")
+
+[node name="Inside" type="Sprite2D" parent="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame/Outside/RigidBody2D" unique_id=1414347988]
+scale = Vector2(0.1, 0.2)
+texture = ExtResource("15_g1v1a")
+
+[node name="Sword" type="Sprite2D" parent="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame" unique_id=1267677379]
+position = Vector2(0, 285)
+scale = Vector2(0.20000002, 0.16000001)
+texture = ExtResource("16_w0ftq")
+
+[node name="Area2D" type="Area2D" parent="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame/Sword" unique_id=264612975]
+scale = Vector2(-0.9895568, 14.624481)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame/Sword/Area2D" unique_id=222348914]
+position = Vector2(0, -0.28433418)
+shape = SubResource("RectangleShape2D_u8mns")
+
+[connection signal="timeout" from="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame/ProgressTimer" to="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame" method="OnTimerTimeout"]
+[connection signal="timeout" from="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame/ItemTimer" to="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame" method="OnItemTimerTimeout"]
+[connection signal="body_entered" from="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame/Sword/Area2D" to="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame" method="OnBodyEntered"]
+[connection signal="body_exited" from="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame/Sword/Area2D" to="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame" method="OnBodyExited"]

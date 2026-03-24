@@ -38,6 +38,7 @@ collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=148260369 groups=["DullSword", "Sword", "Weapon"]]
 transform = Transform3D(0.20340535, 7.280779e-16, 0, -9.030358e-17, 1.6399672, 0, 0, 0, 0.09999808, 0.004674003, 1.1159198, -0.022993883)
+visible = false
 shape = SubResource("BoxShape3D_fxara")
 disabled = true
 
@@ -47,4 +48,5 @@ collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/Area3D" unique_id=420730757]
 transform = Transform3D(0.62693906, 0, 0, 0, 1.6399509, 0, 0, 0, 0.18563555, 0.004778548, 1.1241063, -0.01556235)
+visible = false
 shape = SubResource("BoxShape3D_pq0v0")

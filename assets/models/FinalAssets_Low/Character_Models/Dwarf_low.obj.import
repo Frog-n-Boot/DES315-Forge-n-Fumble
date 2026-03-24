@@ -4,14 +4,14 @@ importer="wavefront_obj"
 importer_version=1
 type="Mesh"
 uid="uid://dewjvcdn4tcwe"
-path="res://.godot/imported/Dwarf_low.obj-5a5f130f5d5534bb5e5451a2e1fbcf4a.mesh"
+path="res://.godot/imported/dwarf_low.obj-75fce126728b8c721c5c917674a88f00.mesh"
 
 [deps]
 
-files=["res://.godot/imported/Dwarf_low.obj-5a5f130f5d5534bb5e5451a2e1fbcf4a.mesh"]
+files=["res://.godot/imported/dwarf_low.obj-75fce126728b8c721c5c917674a88f00.mesh"]
 
-source_file="res://assets/models/FinalAssets_Low/Character_Models/Dwarf_low.obj"
-dest_files=["res://.godot/imported/Dwarf_low.obj-5a5f130f5d5534bb5e5451a2e1fbcf4a.mesh", "res://.godot/imported/Dwarf_low.obj-5a5f130f5d5534bb5e5451a2e1fbcf4a.mesh"]
+source_file="res://assets/models/FinalAssets_Low/Character_Models/dwarf_low.obj"
+dest_files=["res://.godot/imported/dwarf_low.obj-75fce126728b8c721c5c917674a88f00.mesh", "res://.godot/imported/dwarf_low.obj-75fce126728b8c721c5c917674a88f00.mesh"]
 
 [params]
 

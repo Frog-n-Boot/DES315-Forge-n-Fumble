@@ -35,6 +35,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	public int currentDevice = -2;
 
 	private SequenceMinigame sequenceMinigame;
+	private BarMinigame barMinigame;
 	private Camera3D camera;
 	private StaticBody3D world;
 	private InputManager inputManager;
@@ -213,6 +214,9 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		if(sequenceMinigame != null && sequenceMinigame.IsActiveFor(this))
 			return;
 
+		if(barMinigame != null && barMinigame.IsActiveFor(this))
+			return;
+
 		if (inputManager == null)
 			return;
 
@@ -319,6 +323,15 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			return;
 		}
 
+		if(barMinigame != null && barMinigame.IsActiveFor(this))
+		{
+			
+			GD.Print("PlayerLocked");
+			return;
+		}
+
+
+
 		Vector3 velocity = Velocity;
 
 		if (!IsOnFloor())
@@ -358,8 +371,9 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 	public override void _Input(InputEvent @event)
 	{
-		if (currentDevice == -2 || inputManager == null)
-		return;
+		if (currentDevice == -2 || inputManager == null) return;
+
+		if(barMinigame != null && barMinigame.IsActiveFor(this)) barMinigame.HandleInput(@event);
 
 		bool isFromOurDevice = false;
 
@@ -584,7 +598,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	{
 		if(nearbyWeapon.isBeingPickedUp) return;
 		nearbyWeapon.isBeingPickedUp = true;
-
+		UpdateAnimationTreacks(nearbyWeapon.Name);
 		nearbyWeapon.CallDeferred("reparent", rightHand);
 		GetTree().CreateTimer(0.1f).Timeout += () =>
 		{
@@ -849,6 +863,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	{
 		currentStation = station;
 		sequenceMinigame = station?.GetSequenceMinigame();
+		barMinigame = station?.GetBarMinigame();
 	}
 	private bool IsUsingController() => currentDevice >= 0;
 
@@ -884,5 +899,42 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	public void GiveItem(Pickable pickable)
 	{
 		ProcessPickable(pickable);
+	}
+	public void GiveWeapon(BaseWeapon weapon)
+	{
+		if(weapon.GetParent() != rightHand)
+			weapon.Reparent(rightHand);
+
+		UpdateAnimationTreacks(weapon.Name);
+
+		PickUpWeapon(weapon);
+	}
+
+	private void UpdateAnimationTreacks(string nodeName)
+	{
+		foreach(var animName in animPlayer.GetAnimationList())
+		{
+			var anim = animPlayer.GetAnimation(animName);
+			for(int i = 0; i < anim.GetTrackCount(); i++)
+			{
+				var path = anim.TrackGetPath(i).ToString();
+				if(path.Contains("Sword") || path.Contains("DullSword"))
+				{
+					var newPath = System.Text.RegularExpressions.Regex.Replace(path, @"(Sword|DullSword)", nodeName);
+					anim.TrackSetPath(i, newPath);
+				}
+			}
+		}
+	}
+	public void DisconnectWeapon(Sword sword)
+	{
+		if (sword.IsConnected(Sword.SignalName.CheckDurability, Callable.From(OnSwordDurabilityChecked)))
+        	sword.Disconnect(Sword.SignalName.CheckDurability, Callable.From(OnSwordDurabilityChecked));
+ 		if (sword.IsConnected(BaseWeapon.SignalName.Broke, Callable.From(OnSwordBroke)))
+        	sword.Disconnect(BaseWeapon.SignalName.Broke, Callable.From(OnSwordBroke));
+
+		currentWeapon = null;
+		isAttacking = false;
+		animPlayer.Play("Idle");
 	}
 }

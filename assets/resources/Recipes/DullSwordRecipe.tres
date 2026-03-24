@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="CraftingRecipes" format=3 uid="uid://cpreanwxwry2u"]
 
-[ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/FinalAssets_Low/Items_Models/Sword.tscn" id="1_akapq"]
+[ext_resource type="PackedScene" uid="uid://d1y4lf17i3iid" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Dull_Sword.tscn" id="1_akapq"]
 [ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/CraftingRecipes.cs" id="1_u872h"]
 
 [resource]
 script = ExtResource("1_u872h")
-recipeName = "DullSword"
-requiredItemNames = PackedStringArray("DullSword")
-ouputName = "DullSword"
+recipeName = "Iron_Dull_Sword"
+requiredItemNames = PackedStringArray("Iron_Ingot")
+ouputName = "Iron_Dull_Sword"
 ouputScene = ExtResource("1_akapq")
-ouputGroup = "Sword"
+ouputGroup = "Weapon"
 metadata/_custom_type_script = "uid://1bo1o367ybgk"

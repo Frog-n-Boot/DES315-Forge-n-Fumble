@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://jnghu007q1m" path="res://assets/models/FinalAssets_Low/Items_Models/Healthpack.tscn" id="23_hnaiu"]
 [ext_resource type="Script" uid="uid://bqbrwko4kb7sp" path="res://src/EnemyController.cs" id="23_ua5aw"]
 [ext_resource type="Script" uid="uid://bf02wgjk36psn" path="res://assets/components/EnemyData.cs" id="24_60v6u"]
-[ext_resource type="PackedScene" uid="uid://cmd758glwlnly" path="res://assets/models/FinalAssets_Low/WorkStations/Grindstone.tscn" id="25_0arig"]
+[ext_resource type="PackedScene" uid="uid://c0arr6buqskq0" path="res://assets/models/FinalAssets_Low/WorkStations/Grindstone.tscn" id="25_0arig"]
 [ext_resource type="Script" uid="uid://brp6gsap0s2ok" path="res://src/HealthBar.cs" id="25_o2eou"]
 [ext_resource type="Script" uid="uid://dli7kb5c5sowk" path="res://src/TutorialManager.cs" id="26_60v6u"]
 [ext_resource type="PackedScene" uid="uid://706c56ie3ke" path="res://assets/models/Turret.tscn" id="26_i52xd"]

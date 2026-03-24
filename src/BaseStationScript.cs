@@ -290,7 +290,9 @@ public abstract partial class BaseStationScript : Node3D
 		}
 		return false;
 	}
+
 	public virtual SequenceMinigame GetSequenceMinigame() => null;
+	public virtual BarMinigame GetBarMinigame() => null;
 
 	public void SetCraftDuration(float duration)
 	{

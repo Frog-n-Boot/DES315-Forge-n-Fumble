@@ -45,6 +45,7 @@ public abstract partial class MeleeWeapon : BaseWeapon
 
     protected override void OnBroke()
     {
+		
 		EmitSignal(SignalName.Broke);
 		QueueFree();
 		spinAttack.SetWeapon(null);
