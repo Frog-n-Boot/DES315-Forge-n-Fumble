@@ -84,9 +84,11 @@ script = ExtResource("4_u2d28")
 _controller = NodePath("..")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=758582845]
-path_desired_distance = 0.5
-target_desired_distance = 2.0
-path_height_offset = 0.25
+path_desired_distance = 3.2
+path_max_distance = 60.01
+avoidance_enabled = true
+time_horizon_obstacles = 0.5
+use_3d_avoidance = true
 debug_enabled = true
 debug_path_custom_color = Color(1, 0, 0, 1)
 

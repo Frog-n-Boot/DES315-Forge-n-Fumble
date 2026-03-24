@@ -60,8 +60,7 @@ ouputScene = ExtResource("6_sx61v")
 ouputGroup = "pickable"
 metadata/_custom_type_script = "uid://1bo1o367ybgk"
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_5b8nd"]
-size = Vector3(0.38000727, 0.51831055, 0.24706268)
+[sub_resource type="SphereShape3D" id="SphereShape3D_wq66q"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ohbk7"]
 viewport_path = NodePath("Sprite3D/SubViewport")
@@ -96,14 +95,12 @@ craftDuration = 4.0
 recipes = Array[Object]([SubResource("Resource_04qyv"), SubResource("Resource_i1han"), SubResource("Resource_7xevn"), SubResource("Resource_i7ec5"), SubResource("Resource_16tjv")])
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1067101710 groups=["Forge"]]
-visible = false
 collision_layer = 160
 collision_mask = 6
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=250762080]
-transform = Transform3D(30, 0, 0, 0, 20, 0, 0, 0, 35, 0, 0, 0)
-visible = false
-shape = SubResource("BoxShape3D_5b8nd")
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+shape = SubResource("SphereShape3D_wq66q")
 
 [node name="InputPort" parent="." unique_id=750325492 instance=ExtResource("4_0l8vc")]
 transform = Transform3D(31.928226, 0, 0, 0, 6.3082385, 0, 0, 0, 44.96865, -4.0128264, 3.270673, -0.43483275)
@@ -157,8 +154,3 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1789318158]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18530273, 0)
 shape = SubResource("CapsuleShape3D_wq66q")
-
-[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=484767778]
-height = 14.79
-vertices = PackedVector3Array(-0.6211448, 0, -4.4310946, 2.1420121, 0, -3.8731494, 4.134675, 0, -2.292304, 4.865318, 0, -0.06052306, 4.1213903, 0, 2.2376804, 2.1420121, 0, 3.7919567, -0.5945767, 0, 4.4030395, -3.3045964, 0, 3.4731307, -3.6765594, 0, 2.7026353, -4.327496, 0, 2.7026353, -5.323826, 0, 2.4768, -6.1474605, 0, 1.9719925, -6.7186894, 0, 1.0952212, -7.0109463, 0, 0.0058989995, -6.7186894, 0, -0.963863, -6.160744, 0, -1.8539186, -5.323826, 0, -2.4517171, -4.2876425, 0, -2.6111298, -3.7695508, 0, -2.584561, -3.3045964, 0, -3.4879014)
-affect_navigation_mesh = true

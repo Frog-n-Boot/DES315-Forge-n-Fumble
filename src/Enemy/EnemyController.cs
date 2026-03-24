@@ -1,6 +1,7 @@
 using Godot;
 
 using System;
+using System.Runtime.InteropServices;
 
 
 public partial class EnemyController : CharacterBody3D
@@ -144,16 +145,16 @@ public partial class EnemyController : CharacterBody3D
     private bool    _pendingNavTarget = false;
     private Vector3 _pendingTargetPos = Vector3.Zero;
     private const float NavUpdateInterval      = 0.15f;
-    private const float NavTargetMoveThreshold = 0.25f; // only repath if target moved this far
-    private float   _navUpdateTimer  = NavUpdateInterval; // start full so Enter()'s SetNavTarget isn't clobbered immediately
+    private const float NavTargetMoveThreshold = 0.25f;
+    private float   _navUpdateTimer  = NavUpdateInterval; 
     private Vector3 _lastNavTarget   = Vector3.Zero;
 
-    // Stuck detection — if the enemy hasn't moved StuckMoveThreshold units
-    // within StuckCheckInterval seconds, force a repath.
     private const float StuckCheckInterval = 0.75f;
     private const float StuckMoveThreshold = 0.15f;
     private float   _stuckTimer    = 0f;
     private Vector3 _stuckCheckPos = Vector3.Zero;
+
+    private int enemyCount = 0;
 
     private const int DiagInterval = 60; // ~1 second at 60 fps
     private int _diagFrame = 0;
@@ -167,48 +168,25 @@ public partial class EnemyController : CharacterBody3D
             GD.PrintErr($"[{Name}] DIAG: NavigationAgent3D not found — movement is impossible.");
             return;
         }
-        navigationAgent.PathDesiredDistance   = 0.5f;
-        navigationAgent.TargetDesiredDistance = 1.0f;
-        navigationAgent.MaxSpeed              = Speed;
-
-        // Enable RVO avoidance so enemies steer around each other instead of
-        // pushing into each other and jittering. The radius should roughly
-        // match the enemy's collision shape radius.
-        navigationAgent.AvoidanceEnabled = true;
-        navigationAgent.Radius           = 0.5f;
-        navigationAgent.MaxNeighbors     = 10;
-        navigationAgent.TimeHorizonAgents   = 1.0f;
-        navigationAgent.TimeHorizonObstacles = 0.5f;
-
-        // VelocityComputed fires every physics frame with the avoidance-adjusted
-        // velocity. We apply it to Velocity here so MoveAndSlide uses it.
+       
         navigationAgent.VelocityComputed += OnAvoidanceVelocityComputed;
 
         GD.Print($"[{Name}] DIAG InitNavAgent: agent found. Speed={Speed} PathDist={navigationAgent.PathDesiredDistance} TargetDist={navigationAgent.TargetDesiredDistance}");
     }
 
-    /// <summary>
-    /// Called by NavigationAgent3D after it has computed an avoidance-safe
-    /// velocity from the desired velocity we fed it. We apply it directly to
-    /// Velocity so MoveAndSlide executes the collision-safe movement.
-    /// </summary>
+
     private void OnAvoidanceVelocityComputed(Vector3 safeVelocity)
     {
         Velocity = safeVelocity;
     }
-
-
-    /// <summary>
-    /// Prints a full diagnostic snapshot. Called every DiagInterval physics
-    /// frames so the console stays readable while showing live state.
-    /// </summary>
+   
     private void PrintDiagnostics(Vector3 targetPosition, Vector3 nextPoint, Vector3 direction)
     {
         bool navFinished    = navigationAgent?.IsNavigationFinished() ?? true;
         int  pathPointCount = 0;
         try { pathPointCount = navigationAgent?.GetCurrentNavigationPath().Length ?? 0; } catch { }
         GD.Print("──────────────────────────────────────────────");
-        GD.Print($"[{Name}] DIAG @ physics frame {_diagFrame}");
+        GD.Print($"[{Name}, {enemyCount}] DIAG @ physics frame {_diagFrame}");
         GD.Print($"  State         : {CurrentState?.GetType().Name ?? "null"}");
         GD.Print($"  IsStationary  : {IsStationary}");
         GD.Print($"  _navReady     : {_navReady}");
@@ -234,6 +212,7 @@ public partial class EnemyController : CharacterBody3D
         GD.Print($"  NearestPlayer : {(NearestPlayer != null ? NearestPlayer.GlobalPosition.ToString() : "null")}");
         GD.Print($"  moveTarget    : {(moveTarget != null ? moveTarget.Name : "null")}");
         GD.Print("──────────────────────────────────────────────");
+        enemyCount++;
     }
 
 
@@ -265,10 +244,6 @@ public partial class EnemyController : CharacterBody3D
             return;
         }
 
-        // Only repath when the timer expires AND the target has actually moved
-        // far enough to warrant a new path. Unconditionally resetting every
-        // 0.15s was causing jitter (repeated path invalidation) and stopping
-        // (direction went zero during every recompute cycle).
         _navUpdateTimer -= (float)delta;
         if (_navUpdateTimer <= 0f)
         {
@@ -300,26 +275,14 @@ public partial class EnemyController : CharacterBody3D
         Vector3 direction = nextPoint - GlobalPosition;
         direction.Y = 0f;
 
-        // 3. Guard against a zero-length direction. This happens transiently
-        //    when SetNavTarget resets the agent and GetNextPathPosition()
-        //    returns GlobalPosition while the new path is being computed.
-        //    Do NOT zero Velocity — coast on last frame's velocity until ready.
         if (direction.LengthSquared() < 0.001f)
             return;
 
         direction = direction.Normalized();
         RotateTowards(direction, delta);
 
-        // Feed desired velocity into the avoidance system rather than setting
-        // Velocity directly. NavigationAgent3D computes a safe velocity via RVO
-        // and fires VelocityComputed, where we apply it. This keeps enemies from
-        // pushing into each other and into static obstacles.
         navigationAgent.Velocity = direction * Speed;
 
-        // ── Stuck detection ─────────────────────────────────────────────────
-        // If position barely changed over StuckCheckInterval despite the agent
-        // actively trying to move, the enemy is wedged against geometry or
-        // another enemy. Force a full repath to get a fresh path around it.
         _stuckTimer += (float)delta;
         if (_stuckTimer >= StuckCheckInterval)
         {

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="EnemyBehaviourData" format=3 uid="uid://b7ed7a1fwmw7f"]
+
+[ext_resource type="Script" uid="uid://dfgcclikd3kvh" path="res://src/Enemy/AI/EnemyBehaviourData.cs" id="1_jiul5"]
+
+[resource]
+script = ExtResource("1_jiul5")
+metadata/_custom_type_script = "uid://dfgcclikd3kvh"
