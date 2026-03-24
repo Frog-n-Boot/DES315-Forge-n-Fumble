@@ -1,5 +1,4 @@
 using Godot;
-
 [GlobalClass]
 public partial class MoveToForge : EnemyBehaviourData
 {

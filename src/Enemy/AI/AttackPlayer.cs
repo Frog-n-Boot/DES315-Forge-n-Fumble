@@ -1,11 +1,10 @@
 using Godot;
-
 [GlobalClass]
 public partial class AttackPlayer : EnemyBehaviourData
 {
     public override bool CanActivate(EnemyController c, float healthPercent)
-        => c.Player != null &&
-           c.GlobalPosition.DistanceTo(c.Player.GlobalPosition) <= AttackRange;
+        => c.NearestPlayer != null &&
+           c.GlobalPosition.DistanceTo(c.NearestPlayer.GlobalPosition) <= AttackRange;
 
     public override void Activate(EnemyController c)
     {

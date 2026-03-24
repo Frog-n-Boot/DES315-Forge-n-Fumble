@@ -669,6 +669,8 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		EmitSignal(SignalName.PlayerHealthChanged, health, maxHealth);
 	}
 
+	public bool IsAlive() => health > 0;
+
 	private void Die()
 	{
 		DropItem(rightHand);

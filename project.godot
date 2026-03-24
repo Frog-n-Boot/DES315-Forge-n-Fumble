@@ -58,6 +58,7 @@ LootTable=""
 PlayerSpawner=""
 Turret=""
 Weapon=""
+navigation_mesh_source_group="The Navigation layer for the AI"
 
 [input]
 

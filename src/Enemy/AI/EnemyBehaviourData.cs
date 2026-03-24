@@ -1,5 +1,4 @@
 using Godot;
-
 [GlobalClass]
 public partial class EnemyBehaviourData : Resource
 {
@@ -17,3 +16,14 @@ public partial class EnemyBehaviourData : Resource
         return true;
     }
 }
+
+
+
+
+
+
+
+
+
+
+

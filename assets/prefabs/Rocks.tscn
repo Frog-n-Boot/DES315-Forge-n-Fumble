@@ -73,5 +73,6 @@ mesh = ExtResource("3_16gwp")
 skeleton = NodePath("../..")
 
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=1211791156]
-height = 1.6
+height = 2.97
 vertices = PackedVector3Array(-1.0924778, 0, -1.2554916, -0.94948316, 0, -0.33460703, -0.5834174, 0, 0.47188187, 0.52621937, 0, 1.8846673, 1.4370036, 0, 1.5954585, 1.6701756, 0, -0.23165108, 1.1210766, 0, -1.2783707, 0.36606598, 0, -2.0391014, -0.989522, 0, -1.6501564)
+affect_navigation_mesh = true

@@ -1,6 +1,5 @@
 [gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://calih72lg8n07"]
 
-[ext_resource type="Script" uid="uid://dfgcclikd3kvh" path="res://src/Enemy/AI/EnemyBehaviourData.cs" id="1_5cv8g"]
 [ext_resource type="Material" uid="uid://c14d6xj6opusf" path="res://assets/materials/Texture_sets/Character_Textures/Goblin Textures/goblin_material.tres" id="1_7n161"]
 [ext_resource type="Script" uid="uid://bf02wgjk36psn" path="res://src/Enemy/EnemyData.cs" id="1_ptvci"]
 [ext_resource type="Script" uid="uid://cafetq1ji4h5b" path="res://src/Enemy/AI/AttackForge.cs" id="2_fl57o"]
@@ -39,7 +38,7 @@ color = Color(1, 1, 1, 1)
 lootDropChance = 30.0
 enemyMat = ExtResource("1_7n161")
 enemyMesh = ExtResource("2_mq6ke")
-attackBehaviours = Array[ExtResource("1_5cv8g")]([SubResource("Resource_kxpql"), SubResource("Resource_820ot")])
-defenceBehaviours = Array[ExtResource("1_5cv8g")]([SubResource("Resource_p00vw")])
-miscBehaviours = Array[ExtResource("1_5cv8g")]([SubResource("Resource_n576p"), SubResource("Resource_j7k2j")])
+attackBehaviours = [SubResource("Resource_kxpql"), SubResource("Resource_820ot")]
+defenceBehaviours = [SubResource("Resource_p00vw")]
+miscBehaviours = [SubResource("Resource_n576p"), SubResource("Resource_j7k2j")]
 metadata/_custom_type_script = "uid://bf02wgjk36psn"
