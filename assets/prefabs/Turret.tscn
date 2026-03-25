@@ -9,15 +9,12 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_m1e06"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_n82r5"]
-viewport_path = NodePath("Sprite3D/SubViewport")
-
 [node name="Turret" type="Node3D" unique_id=1571022317 node_paths=PackedStringArray("bulletSpawnLocation", "label") groups=["Turret"]]
 transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0, 0)
 script = ExtResource("1_m1e06")
 bulletSpawnLocation = NodePath("Nuzzle")
 bulletScene = ExtResource("2_n82r5")
-label = NodePath("Sprite3D/SubViewport/Label")
+label = NodePath("CanvasLayer/Node3D/Label3D")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=440704571]
 collision_layer = 32
@@ -39,18 +36,13 @@ transform = Transform3D(1, 0, 0, 0, 0.33043814, 0, 0, 0, 0.2738446, -0.18170571,
 mesh = SubResource("BoxMesh_m1e06")
 skeleton = NodePath("../../StaticBody3D")
 
-[node name="Sprite3D" type="Sprite3D" parent="." unique_id=353880609]
-transform = Transform3D(-0.46246228, 0, 1.2558353, 0, 6.101417, 0, -4.5426054, 0, -0.12785096, 0, 1.9256598, 0)
-texture = SubResource("ViewportTexture_n82r5")
-
-[node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=1820914532]
-transparent_bg = true
-size = Vector2i(50, 30)
-
-[node name="Label" type="Label" parent="Sprite3D/SubViewport" unique_id=415306408]
-offset_right = 46.0
-offset_bottom = 23.0
-text = "0"
-
 [node name="BallistaLow" parent="." unique_id=778935564 instance=ExtResource("4_cka0v")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2121636395]
+
+[node name="Node3D" type="Node3D" parent="CanvasLayer" unique_id=1037465994]
+transform = Transform3D(-0.10386822, 0, 0.49802622, 0, 3.4232113, 0, -4.7299213, 0, -0.010936562, 0, 3.545107, 0)
+
+[node name="Label3D" type="Label3D" parent="CanvasLayer/Node3D" unique_id=1012313719]
+text = "There"

@@ -1,8 +1,12 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://viwodjsqvjas"]
 
-[ext_resource type="Script" uid="uid://cy6spy2s7uv1l" path="res://src/Player/ItemData.cs" id="1_56wwd"]
+
+[ext_resource type="Script" uid="uid://cy6spy2s7uv1l" path="res://src/ItemData.cs" id="1_56wwd"]
+[ext_resource type="PackedScene" uid="uid://dgguk5limafel" path="res://assets/models/FinalAssets_Low/Ore/Gold_Ore.tscn" id="1_j2vw8"]
+
 
 [resource]
 script = ExtResource("1_56wwd")
 name = "Gold_Ore"
+itemScene = ExtResource("1_j2vw8")
 metadata/_custom_type_script = "uid://cy6spy2s7uv1l"

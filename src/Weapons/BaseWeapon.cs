@@ -25,7 +25,6 @@ public abstract partial class BaseWeapon : Node3D
 	{
 		durability -= amount;
 		//EmitSignal(SignalName.DurabilityChanged, durability, maxDurability);
-
 		
 		if(durability <= 0)
 		{
@@ -35,10 +34,12 @@ public abstract partial class BaseWeapon : Node3D
 		}
 	}
 
+	
 	protected virtual void OnBroke()
 	{
 		EmitSignal(SignalName.Broke);
 	}
+	
 
 	public abstract void Use();
 }

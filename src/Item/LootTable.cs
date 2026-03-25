@@ -4,8 +4,6 @@ using System;
 public partial class LootTable : Node
 {
 
-
-
 	#region Variables
 
 	/* ---- Percentage range for the items ----- */

@@ -11,8 +11,12 @@ public abstract partial class BaseStationScript : Node3D
 	[Export] protected Node3D outputNode;
 	[Export] protected ProgressBar timeProgressBar;
 	[Export] protected Label stationName;
+	[Export] protected TextureRect buttonTexture;
+	[Export] protected Texture2D controllerButtonTexture;
+	[Export] protected Texture2D keyboardButtonTexture;
 	[Export] protected float craftDuration = 3.0f;
 	[Export] protected CraftingRecipes[] recipes;
+	
 
 	protected PlayerController player;
 
@@ -26,11 +30,15 @@ public abstract partial class BaseStationScript : Node3D
 	protected List<ItemData> pendingConsume = new List<ItemData>();
 
 	protected List<ItemData> itemsToDeposit = new List<ItemData>();
-	 private List<PlayerController> playersInZone = new List<PlayerController>();
+	private List<PlayerController> playersInZone = new List<PlayerController>();
+
+	private int activeDevice;
+	
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		buttonTexture.Visible = false;
 		SetupArea();
 		SetupTimer();
 		stationName.Text = GetStationName();
@@ -47,6 +55,25 @@ public abstract partial class BaseStationScript : Node3D
 		}
 	}
 
+	private bool GetPlayerDevice()
+    {
+        bool isController = activeDevice >= 0;
+		return isController;
+    }
+
+	private void UpdateButtonTexture(bool isController)
+    {
+        
+        if (isController)
+        {
+            buttonTexture.Texture = controllerButtonTexture;
+        }
+        else
+        {
+            buttonTexture.Texture = keyboardButtonTexture;
+        }
+
+    }
 
 	protected abstract string GetStationName();
 
@@ -126,7 +153,7 @@ public abstract partial class BaseStationScript : Node3D
 		return false;
 	}
 
-	protected void ProduceOutput()
+	protected virtual void ProduceOutput()
 	{
 		if(pendingRecipe == null) return;
 
@@ -212,8 +239,12 @@ public abstract partial class BaseStationScript : Node3D
 			var p= body as PlayerController;
 			itemCarrier = p as ItemCarrier;
 			player = p;
+			activeDevice = player.currentDevice;
 			playersInZone.Add(p);
 			p.SetCurrentStation(this);
+			UpdateButtonTexture(GetPlayerDevice());
+			buttonTexture.Visible = true;
+
 		}
 		
 	}
@@ -224,6 +255,7 @@ public abstract partial class BaseStationScript : Node3D
 			var p = body as PlayerController;
 			playersInZone.Remove(p);
 			p?.SetCurrentStation(null);
+			buttonTexture.Visible =false;
 
 			if(player == p)
 			{
@@ -258,7 +290,9 @@ public abstract partial class BaseStationScript : Node3D
 		}
 		return false;
 	}
+
 	public virtual SequenceMinigame GetSequenceMinigame() => null;
+	public virtual BarMinigame GetBarMinigame() => null;
 
 	public void SetCraftDuration(float duration)
 	{
@@ -275,6 +309,8 @@ public abstract partial class BaseStationScript : Node3D
 			if(toRemove != null) itemsToDeposit.Remove(toRemove);
 		}
 		pendingConsume = null;
+		
 	}
+	
 
 }

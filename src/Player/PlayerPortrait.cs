@@ -22,10 +22,14 @@ public partial class PlayerPortrait : PanelContainer
 		if(player== null || !IsInstanceValid(player)) return;
 		ProgressBar progressBar = GetNode<ProgressBar>("HBoxContainer/TextureRect/VBoxContainer/WeaponDurabilityProgressBar");
 		progressBar.MinValue = 0;
-		progressBar.MaxValue = 30;
+		
 
 		if(player.currentWeapon != null)
+        {
+            progressBar.MaxValue = player.currentWeapon.maxDurability;
 			progressBar.Value = player.currentWeapon.durability;
+        }
+			
 		else
 			progressBar.Value = 0;
 

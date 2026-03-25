@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://2dvvlktwdavs" path="res://assets/models/FinalAssets_Low/Ore/Copper_Ore.tscn" id="18_j4y01"]
 [ext_resource type="PackedScene" uid="uid://d1y4lf17i3iid" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Dull_Sword.tscn" id="19_oyacv"]
 [ext_resource type="PackedScene" uid="uid://di5odw2tmde5j" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Sword.tscn" id="20_f0oxr"]
+[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Item/Pickable.cs" id="20_ujnhc"]
 [ext_resource type="Script" uid="uid://taddex4cilqa" path="res://src/Item/LootTable.cs" id="21_4tybr"]
 [ext_resource type="PackedScene" uid="uid://o7vvnubwicff" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Ingot.tscn" id="21_dn1de"]
 [ext_resource type="PackedScene" uid="uid://jnghu007q1m" path="res://assets/models/FinalAssets_Low/Items_Models/Healthpack.tscn" id="23_oyacv"]
@@ -142,7 +143,7 @@ transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -3
 shouldDespawn = false
 
 [node name="Grindstone" parent="CollisionShape3D" unique_id=371047941 instance=ExtResource("10_ei5ly")]
-transform = Transform3D(-1.0927847e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.0927847e-08, 0.5336896, 0, 0.34626946)
+transform = Transform3D(-1.0927847e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.0927847e-08, 0.5320795, 0, 0.35028395)
 
 [node name="Turret" parent="CollisionShape3D" unique_id=1571022317 node_paths=PackedStringArray("inputNode") instance=ExtResource("8_lyiqi")]
 transform = Transform3D(0.33333334, 0, 0, 0, 0.33333334, 0, 0, 0, 0.33333334, 2.9626079, 0, 4.460862)
@@ -182,6 +183,10 @@ transform = Transform3D(-7.2852315e-09, 0, -0.16666667, 0.16098765, 0.043136515,
 
 [node name="IronDullSword" parent="CollisionShape3D" unique_id=803566957 instance=ExtResource("19_oyacv")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.043136515, 0.16098765, 0, -0.16098765, 0.043136515, -3.8625333, 0.00016666668, 0.101675116)
+script = ExtResource("20_ujnhc")
+itemDataPath = "uid://mjifv5ikq2a1"
+shouldDespawn = false
+despawnTime = 30.0
 
 [node name="IronSword" parent="CollisionShape3D" unique_id=1461625584 instance=ExtResource("20_f0oxr")]
 transform = Transform3D(-7.2852315e-09, 0, 0.16666667, -0.16098765, 0.043136504, -7.036993e-09, -0.043136504, -0.16098765, -1.8855564e-09, -3.5927, 0.00016666668, 0.101675116)

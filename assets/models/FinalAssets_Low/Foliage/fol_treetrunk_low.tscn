@@ -17,3 +17,7 @@ surface_material_override/0 = ExtResource("2_v4182")
 [node name="FolTreeleavesLow" type="MeshInstance3D" parent="." unique_id=2023147373]
 mesh = ExtResource("3_gtd17")
 surface_material_override/0 = SubResource("StandardMaterial3D_ni7xv")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=309705165]
+height = 5.64
+vertices = PackedVector3Array(-0.25618654, 0, -0.4541747, 0.19810963, 0, -0.5230892, 0.5181703, 0, -0.22642268, 0.50905985, 0, 0.26552162, 0.06266588, 0, 0.41128317, -0.39283806, 0, 0.22908133)

@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://coyu2lwljmydf" path="res://assets/prefabs/Enviroment/forge_floor.tscn" id="6_kxyth"]
 [ext_resource type="PackedScene" uid="uid://wy2o4jtatv8j" path="res://assets/prefabs/Enviroment/forge_walls.tscn" id="7_cobve"]
 [ext_resource type="PackedScene" uid="uid://bm6vf4tjk48gj" path="res://assets/prefabs/forge.tscn" id="8_cmqll"]
+[ext_resource type="PackedScene" uid="uid://2dvvlktwdavs" path="res://assets/models/FinalAssets_Low/Ore/Copper_Ore.tscn" id="8_kxyth"]
 [ext_resource type="PackedScene" uid="uid://c7rpj1owr2krx" path="res://assets/prefabs/Enviroment/forge_interior.tscn" id="9_8cp6k"]
 [ext_resource type="Script" uid="uid://dnqtfi3fpu8ue" path="res://src/Camera/CameraController.cs" id="10_8b871"]
 [ext_resource type="Script" uid="uid://bk2uam5leqcv8" path="res://src/Player/PlayerSpawner.cs" id="11_pdwbg"]
@@ -21,7 +22,6 @@
 [ext_resource type="PackedScene" uid="uid://cgv7jdbgqsgql" path="res://assets/models/FinalAssets_Low/Ore/Ore.tscn" id="19_0f1tp"]
 [ext_resource type="PackedScene" uid="uid://ckbl1y013dodk" path="res://assets/models/FinalAssets_Low/Ore/Iron_Ore.tscn" id="20_0qimb"]
 [ext_resource type="PackedScene" uid="uid://dgguk5limafel" path="res://assets/models/FinalAssets_Low/Ore/Gold_Ore.tscn" id="21_in2eo"]
-[ext_resource type="PackedScene" uid="uid://lwhw0sdqw87a" path="res://assets/models/FinalAssets_Low/Ore/Damas_Ore1.tscn" id="22_dyyw8"]
 [ext_resource type="PackedScene" uid="uid://jnghu007q1m" path="res://assets/models/FinalAssets_Low/Items_Models/Healthpack.tscn" id="23_gjpm3"]
 [ext_resource type="Script" uid="uid://b2l2l45t253bx" path="res://src/UI/HUD.cs" id="24_knagv"]
 [ext_resource type="PackedScene" uid="uid://cd12og6qvmqm7" path="res://assets/textures/PlayerPortrait.tscn" id="25_siyqs"]
@@ -31,7 +31,14 @@
 [ext_resource type="Texture2D" uid="uid://bvw5yhtbch6ht" path="res://assets/materials/Texture_sets/2DTextures/anvilImage.webp" id="29_0owt5"]
 [ext_resource type="Texture2D" uid="uid://dwexwmybryvpl" path="res://assets/materials/Texture_sets/2DTextures/grindstoneImage.webp" id="30_o1tg2"]
 [ext_resource type="PackedScene" uid="uid://176tgqxxk3p7" path="res://scenes/DebugMenu.tscn" id="31_hyu0y"]
+[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Item/Pickable.cs" id="32_cobve"]
 [ext_resource type="Script" uid="uid://cqrm013r0malu" path="res://src/Menus/ResultMenu.cs" id="32_lfilp"]
+[ext_resource type="Texture2D" uid="uid://b163ru6y04fds" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_BaseCol.tga" id="33_cmqll"]
+[ext_resource type="Texture2D" uid="uid://dmckkpafqq3bq" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_Normal.tga" id="34_8cp6k"]
+[ext_resource type="Texture2D" uid="uid://b1xjsa5p8f7rb" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_ORM.tga" id="35_8b871"]
+[ext_resource type="ArrayMesh" uid="uid://g007ahf37syv" path="res://assets/models/FinalAssets_Low/Ore/Damas_ing_low.obj" id="36_pdwbg"]
+[ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/FinalAssets_Low/Items_Models/DullSword.tscn" id="38_cmqll"]
+[ext_resource type="PackedScene" uid="uid://d1y4lf17i3iid" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Dull_Sword.tscn" id="39_8cp6k"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_dg70y"]
 vertices = PackedVector3Array(-64.95401, 0.3540206, -18.281357, -26.95401, 0.3540206, -18.281357, -25.95401, 0.3540206, -21.031357, -24.70401, 0.3540206, -22.031357, -23.45401, 0.3540206, -68.78136, -64.95401, 0.3540206, -68.78136, -23.20401, 0.3540206, -22.031357, -22.20401, 0.3540206, -22.281357, -21.95401, 0.3540206, -68.78136, -18.70401, 0.3540206, -20.031357, -7.70401, 0.3540206, -20.781357, -7.70401, 0.3540206, -21.781357, -6.95401, 0.3540206, -22.781357, -20.20401, 0.3540206, -21.781357, -5.70401, 0.3540206, -23.781357, -2.95401, 0.3540206, -24.781357, -2.95401, 0.3540206, -68.78136, -0.20401001, 0.3540206, -23.281357, 0.54599, 0.3540206, -20.531357, 14.29599, 0.3540206, -20.281357, -1.20401, 0.3540206, -24.281357, 16.04599, 0.3540206, -23.531357, 18.04599, 0.3540206, -23.781357, 18.04599, 0.3540206, -68.78136, 21.79599, 0.3540206, -18.031357, 21.29599, 0.3540206, -17.281357, 25.54599, 0.3540206, -12.781357, 21.79599, 0.3540206, -20.781357, 29.54599, 0.3540206, -13.281357, 19.54599, 0.3540206, -23.781357, 20.79599, 0.3540206, -22.781357, 30.79599, 0.3540206, -12.281357, 72.04599, 0.3540206, -9.531357, 72.04599, 0.3540206, -68.78136, 32.04599, 0.3540206, -9.531357, -5.20401, 0.3540206, -10.781357, -4.70401, 0.3540206, -17.031357, -6.95401, 0.3540206, -18.281357, -19.95401, 0.3540206, -15.781357, -15.20401, 0.3540206, -9.781357, -14.20401, 0.3540206, -10.531357, -18.70401, 0.3540206, -17.531357, 14.29599, 0.3540206, -10.281357, 16.04599, 0.3540206, -16.781357, 14.29599, 0.3540206, -19.531357, 4.54599, 0.3540206, -10.531357, -0.70401, 0.3540206, -18.781357, -2.95401, 0.3540206, -16.781357, -3.95401, 0.3540206, -10.031357, -3.70401, 0.3540206, -8.281357, 3.54599, 0.3540206, -9.531357, 3.54599, 0.3540206, -8.281357, -28.95401, 0.3540206, -1.7813568, -27.45401, 0.3540206, -2.0313568, -26.70401, 0.3540206, -17.531357, -30.45401, 0.3540206, -0.2813568, -30.95401, 0.3540206, 2.2186432, -64.95401, 0.3540206, 2.2186432, -24.45401, 0.3540206, -0.7813568, -23.45401, 0.3540206, 2.9686432, -15.45401, 0.3540206, 2.7186432, -23.95401, 0.3540206, -14.781357, 20.54599, 0.3540206, -16.281357, 24.54599, 0.3540206, -12.031357, 19.29599, 0.3540206, -15.781357, 23.79599, 0.3540206, -10.531357, 17.04599, 0.3540206, -15.781357, 15.04599, 0.3540206, -9.781357, 15.29599, 0.3540206, -8.781357, 23.79599, 0.3540206, -8.781357, 30.29599, 0.3540206, -6.281357, 27.29599, 0.3540206, -6.031357, 27.04599, 0.3540206, -3.0313568, 29.29599, 0.3540206, -1.2813568, 31.79599, 0.3540206, -8.281357, 30.29599, 0.3540206, 0.9686432, 72.04599, 0.3540206, 0.9686432, 25.29599, 0.3540206, -6.781357, 23.79599, 0.3540206, -2.2813568, 15.04599, 0.3540206, 0.4686432, 22.54599, 0.3540206, 0.4686432, -8.45401, 0.3540206, 1.9686432, -7.70401, 0.3540206, 3.4686432, -6.70401, 0.3540206, 2.7186432, -9.45401, 0.3540206, 0.21864319, -10.70401, 0.3540206, 1.7186432, 9.04599, 0.3540206, -6.031357, 7.04599, 0.3540206, -6.031357, 6.29599, 0.3540206, -5.281357, 6.04599, 0.3540206, -3.0313568, 9.04599, 0.3540206, -2.7813568, -3.95401, 0.3540206, -6.281357, -5.45401, 0.3540206, -5.281357, -4.45401, 0.3540206, -3.5313568, -3.20401, 0.3540206, -2.2813568, -3.20401, 0.3540206, -0.5313568, 4.29599, 0.3540206, -0.5313568, 5.29599, 0.3540206, -5.281357, 5.04599, 0.3540206, -2.2813568, -6.45401, 0.3540206, -5.281357, -7.20401, 0.3540206, -6.031357, -8.70401, 0.3540206, -3.2813568, 3.79599, 0.3540206, -6.281357, -9.45401, 0.3540206, -2.2813568, -10.70401, 0.3540206, -6.031357, -5.70401, 0.3540206, 2.9686432, -7.70401, 0.3540206, 5.968643, -6.45401, 0.3540206, 5.218643, 5.04599, 0.3540206, 5.218643, 6.29599, 0.3540206, 5.218643, 5.54599, 0.3540206, 2.9686432, 4.79599, 0.3540206, 1.9686432, 3.54599, 0.3540206, 6.968643, -4.95401, 0.3540206, 5.468643, -4.20401, 0.3540206, 2.4686432, 10.54599, 0.3540206, -1.7813568, 9.54599, 0.3540206, -2.0313568, 10.29599, 0.3540206, 1.2186432, -3.45401, 0.3540206, 1.4686432, -3.70401, 0.3540206, 6.968643, -3.70401, 0.3540206, 8.468643, 7.04599, 0.3540206, 5.968643, 10.54599, 0.3540206, 5.968643, 8.54599, 0.3540206, 3.2186432, 3.54599, 0.3540206, 8.468643, -0.45401, 12.854021, 0.7186432, 0.54599, 12.854021, 0.7186432, 0.79599, 12.854021, 0.21864319, 0.29599, 12.854021, -0.7813568, -0.70401, 12.854021, -0.5313568, 23.04599, 0.3540206, 2.4686432, 15.04599, 0.3540206, 9.718643, 20.29599, 0.3540206, 14.718643, 22.79599, 0.3540206, 12.968643, 24.54599, 0.3540206, 13.468643, 25.04599, 0.3540206, 4.718643, 27.79599, 0.3540206, 4.968643, 28.79599, 0.3540206, 4.468643, 26.54599, 0.3540206, 14.968643, 29.79599, 0.3540206, 3.2186432, 26.79599, 0.3540206, 16.718643, 72.04599, 0.3540206, 16.718643, -25.45401, 0.3540206, 10.468643, -26.20401, 0.3540206, 5.968643, -27.95401, 0.3540206, 6.218643, -27.20401, 0.3540206, 11.968643, -29.70401, 0.3540206, 5.468643, -30.70401, 0.3540206, 4.218643, -64.95401, 0.3540206, 15.218643, -28.20401, 0.3540206, 15.218643, -23.45401, 0.3540206, 9.968643, -23.70401, 0.3540206, 3.9686432, -21.70401, 0.3540206, 10.968643, -15.20401, 0.3540206, 9.718643, -20.70401, 0.3540206, 12.218643, 3.54599, 0.3540206, 9.718643, -3.95401, 0.3540206, 10.218643, -4.95401, 0.3540206, 10.968643, -11.95401, 0.3540206, 10.718643, -10.45401, 0.3540206, 18.718643, -8.45401, 0.3540206, 20.718643, -11.95401, 0.3540206, 18.468643, 4.29599, 0.3540206, 10.718643, 7.29599, 0.3540206, 18.718643, 7.04599, 0.3540206, 10.718643, 4.29599, 0.3540206, 19.968643, -8.20401, 0.3540206, 21.968643, 3.04599, 0.3540206, 22.218643, 3.29599, 0.3540206, 20.968643, -21.20401, 0.3540206, 16.718643, -22.20401, 0.3540206, 17.468643, -15.95401, 0.3540206, 20.218643, -14.20401, 0.3540206, 10.718643, -20.70401, 0.3540206, 15.468643, -14.70401, 0.3540206, 18.968643, 14.04599, 0.3540206, 10.718643, 19.29599, 0.3540206, 17.218643, 9.79599, 0.3540206, 19.718643, 11.04599, 0.3540206, 21.468643, 20.29599, 0.3540206, 19.968643, 19.29599, 0.3540206, 18.968643, -16.45401, 0.3540206, 21.218643, -23.95401, 0.3540206, 18.218643, -25.45401, 0.3540206, 18.218643, -16.20401, 0.3540206, 23.968643, -12.45401, 0.3540206, 68.21864, -12.45401, 0.3540206, 25.718643, -14.45401, 0.3540206, 25.468643, -64.95401, 0.3540206, 68.21864, 26.04599, 0.3540206, 19.718643, 24.29599, 0.3540206, 20.968643, 22.54599, 0.3540206, 21.468643, 22.54599, 0.3540206, 68.21864, 72.04599, 0.3540206, 68.21864, 11.04599, 0.3540206, 23.718643, 21.54599, 0.3540206, 21.218643, 10.54599, 0.3540206, 24.718643, 7.79599, 0.3540206, 26.218643, 6.54599, 0.3540206, 26.218643, 6.54599, 0.3540206, 68.21864, 3.29599, 0.3540206, 24.718643, -9.70401, 0.3540206, 25.218643, 5.29599, 0.3540206, 26.218643)
@@ -89,6 +96,30 @@ expand_margin_bottom = 3.0
 shadow_size = 3
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7dxqx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4vp4a"]
+size = Vector3(1, 1.1378174, 0.91204834)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_nbtug"]
+albedo_texture = ExtResource("33_cmqll")
+orm_texture = ExtResource("35_8b871")
+heightmap_enabled = true
+heightmap_texture = ExtResource("34_8cp6k")
+
+[sub_resource type="PackedScene" id="PackedScene_5grtr"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(), PackedInt32Array(), PackedInt32Array()],
+"names": PackedStringArray("DamasOre", "Node3D", "script", "itemDataPath", "shouldDespawn", "Area3D", "Area3D", "pickable", "collision_layer", "collision_mask", "CollisionShape3D", "CollisionShape3D", "transform", "visible", "shape", "DamasIngLow", "MeshInstance3D", "material_override", "mesh", "skeleton"),
+"node_count": 4,
+"node_ids": PackedInt32Array(692066931, 929783519, 834248046, 217866121),
+"node_paths": [NodePath("."), NodePath("./Area3D"), NodePath("./Area3D")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 3, 2, 0, 3, 1, 4, 2, 0, 1073741824, 0, 6, 5, -1, 2, 8, 3, 9, 4, 1, 7, 1073741825, 0, 11, 10, -1, 3, 12, 5, 13, 6, 14, 7, 0, 1073741826, 0, 16, 15, -1, 3, 17, 8, 18, 9, 19, 10, 0),
+"variants": [ExtResource("32_cobve"), "uid://rj5laf73xbp8", true, 16, 3, Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06890869, 0.30264282), false, SubResource("BoxShape3D_4vp4a"), SubResource("ORMMaterial3D_nbtug"), ExtResource("36_pdwbg"), NodePath("../..")],
+"version": 3
+}
 
 [node name="Scene" type="Node3D" unique_id=989767663]
 
@@ -156,6 +187,9 @@ transform = Transform3D(0.6630513, 0, -0.74857396, 0, 1, 0, 0.74857396, 0, 0.663
 
 [node name="Boxes10" parent="NavigationRegion3D/Rocks" unique_id=1531049353 instance=ExtResource("1_dg70y")]
 transform = Transform3D(0.5850001, 0, 0.81103325, 0, 1, 0, -0.81103325, 0, 0.5850001, 27.881142, 0.0036263466, -9.415568)
+
+[node name="Copper_Ore" parent="NavigationRegion3D" unique_id=2110523039 instance=ExtResource("8_kxyth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6431887, 0.014983, 4.170432)
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=686138009]
 transform = Transform3D(0.6920928, 0.008213635, 0.7217619, -0.72180855, 0.007875493, 0.69204795, -5.793235e-10, -0.99993527, 0.011379243, -0.65869904, 19.63105, -0.28507435)
@@ -733,8 +767,20 @@ healthPackDropChance = 0
 copperOre = ExtResource("19_0f1tp")
 ironOre = ExtResource("20_0qimb")
 goldOre = ExtResource("21_in2eo")
-damasOre = ExtResource("22_dyyw8")
+damasOre = SubResource("PackedScene_5grtr")
 healthPackObject = ExtResource("23_gjpm3")
+
+[node name="GoldOre" parent="." unique_id=546203985 instance=ExtResource("21_in2eo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.061240077, 0.017244, 4.210699)
+
+[node name="IronOre" parent="." unique_id=904125942 instance=ExtResource("20_0qimb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9764352, 4.7683716e-07, 4.2512217)
+
+[node name="DullSword" parent="." unique_id=778246616 instance=ExtResource("38_cmqll")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8266451, 0.000985, 0.6228571)
+
+[node name="IronDullSword" parent="." unique_id=803566957 instance=ExtResource("39_8cp6k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0314033, 0.0009840463, 1.1268263)
 
 [connection signal="pressed" from="UI/PauseMenu/ResumeButton" to="UI/PauseMenu" method="OnResumePressed"]
 [connection signal="pressed" from="UI/PauseMenu/SettingsButton" to="UI/PauseMenu" method="OnSettingsPressed"]
