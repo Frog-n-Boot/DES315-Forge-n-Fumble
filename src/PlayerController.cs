@@ -20,6 +20,8 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	[Export] public PackedScene swordObject { get; private set; }
 	[Export] public AnimationPlayer animPlayer;
 	[Export] private AudioStreamPlayer3D audio;
+	[Export] private AudioStreamPlayer3D damaged;
+	[Export] private AudioStreamPlayer3D death;
 	[Export] private Node3D rightHand;
 	[Export] private Node3D leftHand;
 	[Export] private Area3D areaPickup;
@@ -201,18 +203,18 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		if (IsActionPressed("interact") && currentStation != null)
 		{
 			if(leftHand.GetChildCount() > 0)
-            {
-                var item = leftHand.GetChild(0) as Pickable;
+			{
+				var item = leftHand.GetChild(0) as Pickable;
 				if(item != null && item.GetItemData() != null)
-            	{
-                	if(currentStation.DepositItems(item.GetItemData()))
+				{
+					if(currentStation.DepositItems(item.GetItemData()))
 						item.QueueFree();
-            	}	   
-            }
-            else
-            {
-                currentStation.StartCrafting();
-            }
+				}	   
+			}
+			else
+			{
+				currentStation.StartCrafting();
+			}
 			
 		}
 		if (IsActionPressed("pick_up"))
@@ -235,14 +237,14 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			
 		}
 		else if(currentWeapon is Bow bow)
-        {
-            if(inputBuffer.IsInputBuffered("attack") && !isAttacking)
+		{
+			if(inputBuffer.IsInputBuffered("attack") && !isAttacking)
 			{
 				bow.StartDraw();
 				
 				isAttacking = true;
 			}
-        }
+		}
 		else if(inputBuffer.ConsumeInput("attack") && !isAttacking){
 			StartAttack();
 		}
@@ -659,6 +661,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	public void TakeDamage(int damage)
 	{
 		health -= damage;
+		damaged.Play();
 		Flash();
 		EmitSignal(SignalName.PlayerHealthChanged, health, maxHealth);
 	}
@@ -677,6 +680,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		areaPickup.SetDeferred("monitorable", true);
 
 		Visible = false;
+		death.Play();
 		SetPhysicsProcess(false);
 		SetProcess(false);
 

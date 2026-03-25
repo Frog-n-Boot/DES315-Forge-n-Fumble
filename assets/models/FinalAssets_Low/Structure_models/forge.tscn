@@ -12,8 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://kxj85aq1b0n0" path="res://assets/models/FinalAssets_Low/Items_Models/Damas_Ingot.tscn" id="6_sx61v"]
 [ext_resource type="Texture2D" uid="uid://bj6c60ek3rd8c" path="res://assets/materials/Texture_sets/WorkStations/Furance_low_ORM.tga" id="7_2jum7"]
 [ext_resource type="Texture2D" uid="uid://cw0s6r8rhgp8c" path="res://assets/materials/Texture_sets/WorkStations/Furance_low_Normal.tga" id="8_yd14g"]
-[ext_resource type="AudioStream" uid="uid://b55rsdiqrjrsq" path="res://assets/Sounds/WorldSounds/InitalForgeActivation.wav" id="10_yd14g"]
-[ext_resource type="AudioStream" uid="uid://svia4vnatnhi" path="res://assets/Sounds/WorldSounds/ForgeAfterActivation.wav" id="11_i2ejw"]
+[ext_resource type="AudioStream" uid="uid://d31rmb5i75h54" path="res://assets/Sounds/SFX/InitalForgeActivation.wav" id="10_yd14g"]
+[ext_resource type="AudioStream" uid="uid://nipmrmep3cnr" path="res://assets/Sounds/SFX/ForgeAfterActivation.wav" id="11_i2ejw"]
 
 [sub_resource type="Resource" id="Resource_04qyv"]
 script = ExtResource("3_oiry0")
@@ -148,6 +148,7 @@ visible = false
 stream = SubResource("AudioStreamPlaylist_yd14g")
 volume_db = -40.0
 max_db = -24.0
+bus = &"SFX"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1161138031]
 transform = Transform3D(2.857143, 0, 0, 0, 2.857143, 0, 0, 0, 2.857143, -3.8203022, 3.5038965, 0)

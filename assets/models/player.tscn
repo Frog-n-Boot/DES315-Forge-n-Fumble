@@ -12,8 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://cdlum5v1gnmv7" path="res://assets/textures/GreenDwarf.png" id="5_yv8gf"]
 [ext_resource type="Texture2D" uid="uid://p55rbagysnlo" path="res://assets/textures/PurpleDwarf.png" id="6_glr06"]
 [ext_resource type="Texture2D" uid="uid://bojhtl0pjp5on" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/DwarfPurple_low_BaseCol.tga" id="6_so67x"]
-[ext_resource type="AudioStream" uid="uid://c4ymn22aaas8l" path="res://assets/Sounds/WorldSounds/SwordSwipe.mp3" id="8_jnlb4"]
+[ext_resource type="AudioStream" uid="uid://c4ymn22aaas8l" path="res://assets/Sounds/SFX/SwordSwipe.mp3" id="8_jnlb4"]
 [ext_resource type="Texture2D" uid="uid://bwvn5hsl7jk60" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/DwarfRed_low_BaseCol.tga" id="8_ob8sk"]
+[ext_resource type="AudioStream" uid="uid://dhfcru8adja3" path="res://assets/Sounds/SFX/PlayerDamaged.wav" id="15_gp7mg"]
+[ext_resource type="AudioStream" uid="uid://detofwirhtkah" path="res://assets/Sounds/SFX/PlayerDeath.wav" id="16_yv8gf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t0fpx"]
 size = Vector3(1.6055908, 2.0847168, 0.8642578)
@@ -211,7 +213,11 @@ random_pitch = 1.7817973
 streams_count = 1
 stream_0/stream = ExtResource("8_jnlb4")
 
-[node name="Player" type="CharacterBody3D" unique_id=489937195 node_paths=PackedStringArray("animPlayer", "audio", "rightHand", "leftHand", "areaPickup", "pickupNode") groups=["Player"]]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ob8sk"]
+streams_count = 1
+stream_0/stream = ExtResource("15_gp7mg")
+
+[node name="Player" type="CharacterBody3D" unique_id=489937195 node_paths=PackedStringArray("animPlayer", "audio", "damaged", "death", "rightHand", "leftHand", "areaPickup", "pickupNode") groups=["Player"]]
 collision_layer = 2
 collision_mask = 53
 velocity = Vector3(0, -228.01021, 0)
@@ -219,7 +225,9 @@ script = ExtResource("1_ormyk")
 speed = 10.0
 swordObject = ExtResource("3_8d03m")
 animPlayer = NodePath("CollisionShape3D/AnimationPlayer")
-audio = NodePath("AudioStreamPlayer3D")
+audio = NodePath("SwordSwipes")
+damaged = NodePath("Damaged")
+death = NodePath("Death")
 rightHand = NodePath("CollisionShape3D/RightHand")
 leftHand = NodePath("CollisionShape3D/LeftHand")
 areaPickup = NodePath("Area3D")
@@ -262,10 +270,11 @@ collision_mask = 53
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.026974827, 0.8700485, -0.0689888)
 shape = SubResource("BoxShape3D_8d03m")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1910028207]
+[node name="SwordSwipes" type="AudioStreamPlayer3D" parent="." unique_id=1910028207]
 stream = SubResource("AudioStreamRandomizer_jnlb4")
 volume_db = -80.0
 max_db = -24.0
+bus = &"SFX"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1391184845]
 
@@ -273,3 +282,16 @@ max_db = -24.0
 transform = Transform3D(1.6779308, 0, 0, 0, 1.8431246, 0, 0, 0, 1, 0, 2.7833214, 0)
 
 [node name="Label3D" type="Label3D" parent="CanvasLayer/PickUpNode3D" unique_id=1684088306]
+
+[node name="Damaged" type="AudioStreamPlayer3D" parent="." unique_id=1776841700]
+stream = SubResource("AudioStreamRandomizer_ob8sk")
+volume_db = -80.0
+max_db = -24.0
+max_polyphony = 10
+bus = &"SFX"
+
+[node name="Death" type="AudioStreamPlayer3D" parent="." unique_id=1742382200]
+stream = ExtResource("16_yv8gf")
+volume_db = -60.0
+max_db = -24.0
+bus = &"SFX"

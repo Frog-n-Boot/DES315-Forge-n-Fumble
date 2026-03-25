@@ -48,6 +48,7 @@
 [ext_resource type="PackedScene" uid="uid://dgguk5limafel" path="res://assets/models/FinalAssets_Low/Ore/Gold_Ore.tscn" id="47_68amh"]
 [ext_resource type="Texture2D" uid="uid://b0h4rjwc5lgiv" path="res://scenes/Forge.webp" id="47_wu60a"]
 [ext_resource type="Script" uid="uid://cqrm013r0malu" path="res://src/TesultMenu.cs" id="49_lqoiw"]
+[ext_resource type="AudioStream" uid="uid://dw6sr2a1g6wm3" path="res://assets/Sounds/Music/Pillage LOOP.wav" id="50_68amh"]
 [ext_resource type="PackedScene" uid="uid://bvm88hjpchhgf" path="res://assets/models/FinalAssets_Low/Foliage/fol_treetrunk_low.tscn" id="53_ky1k5"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_wko22"]
@@ -77,10 +78,10 @@ fog_density = 1.0
 fog_depth_end = 242.5
 volumetric_fog_density = 0.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_lqoiw"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_wu60a"]
 viewport_path = NodePath("Sprite3D/SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_68amh"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_7q0j7"]
 viewport_path = NodePath("Sprite3D/SubViewport")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cvaul"]
@@ -1296,7 +1297,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37649155, -0.8498851, -1.91
 
 [node name="Sprite3D" parent="World/Grindstone2" index="3" unique_id=840510996]
 transform = Transform3D(-1.7484555e-07, 0, -4, 0, 4, 0, 4, 0, -1.7484555e-07, -0.022883892, 2.9617476, 0)
-texture = SubResource("ViewportTexture_lqoiw")
+texture = SubResource("ViewportTexture_wu60a")
 
 [node name="Anvil" parent="World" unique_id=476401340 instance=ExtResource("22_3w1al")]
 transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, -14.653336, 0.124243736, 5.9914675)
@@ -1306,7 +1307,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7.54
 
 [node name="Sprite3D" parent="World/Anvil2" index="3" unique_id=840510996]
 transform = Transform3D(-2.359344e-07, 0, -4, 0, 4, 0, 5.3975496, 0, -1.7484555e-07, -0.69661474, 3.8950515, 0.23757124)
-texture = SubResource("ViewportTexture_68amh")
+texture = SubResource("ViewportTexture_7q0j7")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=254897524 node_paths=PackedStringArray("playerSpawner") groups=["Camera"]]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -3.1877332, 39, 39.193367)
@@ -2064,6 +2065,12 @@ transform = Transform3D(-0.87299865, 0, 0.4877226, 0, 1, 0, -0.4877226, 0, -0.87
 
 [node name="FolBushBerryLow2" parent="." unique_id=1772004686 instance=ExtResource("19_0d37v")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 33.203613, 0.108451, 24.095049)
+
+[node name="BattleMusic" type="AudioStreamPlayer2D" parent="." unique_id=944927695]
+stream = ExtResource("50_68amh")
+volume_db = -80.0
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="PauseMenu/ResumeButton" to="PauseMenu" method="OnResumePressed"]
 [connection signal="pressed" from="PauseMenu/SettingsButton" to="PauseMenu" method="OnSettingsPressed"]

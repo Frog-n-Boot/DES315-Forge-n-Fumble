@@ -4,16 +4,16 @@
 [ext_resource type="PackedScene" uid="uid://ceb1l3gxwlc4l" path="res://assets/models/Bullet.tscn" id="2_n82r5"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="3_n82r5"]
 [ext_resource type="PackedScene" uid="uid://ckdbymnig1ugx" path="res://assets/models/FinalAssets_Low/WorkStations/Ballista/ballista_low.tscn" id="4_cka0v"]
-[ext_resource type="AudioStream" uid="uid://clu5cxqv4p82n" path="res://assets/Sounds/WorldSounds/ArrowShot1.wav" id="5_oitbg"]
-[ext_resource type="AudioStream" uid="uid://dcydee0xx4hyh" path="res://assets/Sounds/WorldSounds/ArrowShot2.wav" id="6_gxrrl"]
-[ext_resource type="AudioStream" uid="uid://bvros01eimu8e" path="res://assets/Sounds/WorldSounds/ArrowShot3.wav" id="7_2yli3"]
-[ext_resource type="AudioStream" uid="uid://cuye7148tmyo2" path="res://assets/Sounds/WorldSounds/ArrowShot4.wav" id="8_7htg4"]
-[ext_resource type="AudioStream" uid="uid://du0s0ob33nkfk" path="res://assets/Sounds/WorldSounds/ArrowShot5.wav" id="9_53mlu"]
-[ext_resource type="AudioStream" uid="uid://crnicpt4cm6vl" path="res://assets/Sounds/WorldSounds/ArrowShot6.wav" id="10_whrhr"]
-[ext_resource type="AudioStream" uid="uid://dqfesdlvly7dk" path="res://assets/Sounds/WorldSounds/ArrowShot7.wav" id="11_8h8ea"]
-[ext_resource type="AudioStream" uid="uid://5oond83reqi" path="res://assets/Sounds/WorldSounds/ArrowShot8.wav" id="12_56sbd"]
-[ext_resource type="AudioStream" uid="uid://bdwbh8dx80xdj" path="res://assets/Sounds/WorldSounds/ArrowShot9.wav" id="13_w6fnt"]
-[ext_resource type="AudioStream" uid="uid://duxa6q488bcjk" path="res://assets/Sounds/WorldSounds/ArrowShot10.wav" id="14_aolek"]
+[ext_resource type="AudioStream" uid="uid://clu5cxqv4p82n" path="res://assets/Sounds/SFX/ArrowShot1.wav" id="5_oitbg"]
+[ext_resource type="AudioStream" uid="uid://dcydee0xx4hyh" path="res://assets/Sounds/SFX/ArrowShot2.wav" id="6_gxrrl"]
+[ext_resource type="AudioStream" uid="uid://bvros01eimu8e" path="res://assets/Sounds/SFX/ArrowShot3.wav" id="7_2yli3"]
+[ext_resource type="AudioStream" uid="uid://cuye7148tmyo2" path="res://assets/Sounds/SFX/ArrowShot4.wav" id="8_7htg4"]
+[ext_resource type="AudioStream" uid="uid://du0s0ob33nkfk" path="res://assets/Sounds/SFX/ArrowShot5.wav" id="9_53mlu"]
+[ext_resource type="AudioStream" uid="uid://crnicpt4cm6vl" path="res://assets/Sounds/SFX/ArrowShot6.wav" id="10_whrhr"]
+[ext_resource type="AudioStream" uid="uid://dqfesdlvly7dk" path="res://assets/Sounds/SFX/ArrowShot7.wav" id="11_8h8ea"]
+[ext_resource type="AudioStream" uid="uid://5oond83reqi" path="res://assets/Sounds/SFX/ArrowShot8.wav" id="12_56sbd"]
+[ext_resource type="AudioStream" uid="uid://bdwbh8dx80xdj" path="res://assets/Sounds/SFX/ArrowShot9.wav" id="13_w6fnt"]
+[ext_resource type="AudioStream" uid="uid://duxa6q488bcjk" path="res://assets/Sounds/SFX/ArrowShot10.wav" id="14_aolek"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e7812"]
 
@@ -84,3 +84,4 @@ stream = SubResource("AudioStreamRandomizer_sl1qq")
 volume_db = -40.0
 max_db = -24.0
 max_polyphony = 20
+bus = &"SFX"

@@ -5,23 +5,25 @@ public abstract partial class MeleeWeapon : BaseWeapon
 {
 	//[Export] public float attackRange = 2.0f;
 	[Export] public float attackCooldown = 0.5f;
+	[Export] private AudioStreamPlayer3D audio;
+	
 
 	protected bool canAttack = true;
 	protected CollisionShape3D hitbox;
 
-    protected override void OnReady()
-    {
+	protected override void OnReady()
+	{
 		base.OnReady();
-        hitbox = GetNodeOrNull<CollisionShape3D>("StaticBody3D/CollisionShape3D");
+		hitbox = GetNodeOrNull<CollisionShape3D>("StaticBody3D/CollisionShape3D");
 		if(hitbox == null)
 			GD.PrintErr("MeleeWeapon: CollisionShape3D not found at StaticBody3D/CollisionShape");
 		SetHitboxEnabled(false);
 		
-    }
+	}
 
-    public override void Use()
-    {
-    }
+	public override void Use()
+	{
+	}
 
 	protected virtual void Attack()
 	{
@@ -42,9 +44,14 @@ public abstract partial class MeleeWeapon : BaseWeapon
 			hitbox.Disabled = !enable;
 	}
 
-    protected override void OnBroke()
-    {
+	protected override void OnBroke()
+	{
 		EmitSignal(SignalName.Broke);
-		QueueFree();
-    }
+		audio.Play();
+		GetTree().CreateTimer(0.5f).Timeout += () =>
+		{
+			QueueFree();
+		};
+		
+	}
 }

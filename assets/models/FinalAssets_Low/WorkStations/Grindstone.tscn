@@ -9,7 +9,7 @@
 [ext_resource type="ArrayMesh" uid="uid://gxhgwjbmhtq6" path="res://assets/models/FinalAssets_Low/WorkStations/Grinder_low.obj" id="5_fgmgg"]
 [ext_resource type="Texture2D" uid="uid://6k5i0lfvsf5" path="res://assets/materials/Texture_sets/WorkStations/Grinder_low_ORM.tga" id="5_yoit8"]
 [ext_resource type="Texture2D" uid="uid://ui3qrxklkrbs" path="res://assets/materials/Texture_sets/WorkStations/Grinder_low_Normal.tga" id="6_8jrxj"]
-[ext_resource type="AudioStream" uid="uid://c038j0l4a1akg" path="res://assets/Sounds/WorldSounds/SwordSharpening.wav" id="9_8jrxj"]
+[ext_resource type="AudioStream" uid="uid://b4c81r30mgpwx" path="res://assets/Sounds/SFX/SwordSharpening.wav" id="9_8jrxj"]
 
 [sub_resource type="Resource" id="Resource_fgmgg"]
 script = ExtResource("3_hj04q")
@@ -97,3 +97,4 @@ text = "
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1808461735]
 stream = ExtResource("9_8jrxj")
 volume_db = -50.0
+bus = &"SFX"

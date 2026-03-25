@@ -10,10 +10,10 @@
 [ext_resource type="Script" uid="uid://cqdmkhuvmmyck" path="res://src/SequenceMinigame.cs" id="4_yb3nn"]
 [ext_resource type="Texture2D" uid="uid://klsyonb1xfst" path="res://assets/materials/Texture_sets/WorkStations/anvil_low_Normal.tga" id="5_o5b8a"]
 [ext_resource type="Texture2D" uid="uid://bet17bbe1leks" path="res://assets/materials/Texture_sets/WorkStations/anvil_low_ORM.tga" id="5_u3lgt"]
-[ext_resource type="AudioStream" uid="uid://brbu62attbvtp" path="res://assets/Sounds/WorldSounds/Anvil1.wav" id="10_qc3dd"]
-[ext_resource type="AudioStream" uid="uid://6566qnnkif3q" path="res://assets/Sounds/WorldSounds/Anvil2.wav" id="11_2emfc"]
-[ext_resource type="AudioStream" uid="uid://ctq3m1e8gjrsl" path="res://assets/Sounds/WorldSounds/Anvil3.wav" id="12_g2xu1"]
-[ext_resource type="AudioStream" uid="uid://cynyfxhfehvv1" path="res://assets/Sounds/WorldSounds/Anvil4.wav" id="13_721mw"]
+[ext_resource type="AudioStream" uid="uid://brbu62attbvtp" path="res://assets/Sounds/SFX/Anvil1.wav" id="10_qc3dd"]
+[ext_resource type="AudioStream" uid="uid://6566qnnkif3q" path="res://assets/Sounds/SFX/Anvil2.wav" id="11_2emfc"]
+[ext_resource type="AudioStream" uid="uid://ctq3m1e8gjrsl" path="res://assets/Sounds/SFX/Anvil3.wav" id="12_g2xu1"]
+[ext_resource type="AudioStream" uid="uid://cynyfxhfehvv1" path="res://assets/Sounds/SFX/Anvil4.wav" id="13_721mw"]
 
 [sub_resource type="Resource" id="Resource_813ft"]
 script = ExtResource("3_1latb")
@@ -119,3 +119,4 @@ audio = NodePath("../AudioStreamPlayer3D")
 stream = SubResource("AudioStreamRandomizer_svcrb")
 volume_db = -50.0
 max_polyphony = 10
+bus = &"SFX"
