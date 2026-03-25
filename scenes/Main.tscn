@@ -196,9 +196,10 @@ inputNode = NodePath("StationPort2")
 [node name="StationPort2" parent="Enviroment/Turret4" unique_id=1365024135 instance=ExtResource("3_2c4at")]
 transform = Transform3D(1.8634118, 0, -2.2810848, 0, 1, 0, 2.30219, 0, 1.8463291, -0.8566718, -3.1234941, 0.023492694)
 
-[node name="PlayerSpawner" type="Node" parent="." unique_id=1347135134 groups=["PlayerSpawner"]]
+[node name="PlayerSpawner" type="Node" parent="." unique_id=1347135134 node_paths=PackedStringArray("spawnParent") groups=["PlayerSpawner"]]
 script = ExtResource("11_pdwbg")
 playerScene = ExtResource("12_5grtr")
+spawnParent = NodePath("..")
 
 [node name="SpawnPoint0" type="Marker3D" parent="PlayerSpawner" unique_id=1722202336]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8803358, 0, -6.191767)
@@ -212,10 +213,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.891476, 0, -5.2368193)
 [node name="SpawnPoint3" type="Marker3D" parent="PlayerSpawner" unique_id=2030002562]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1672173, 0, 3.6513267)
 
-[node name="EnemySpawner" type="Node" parent="." unique_id=1191566733 node_paths=PackedStringArray("spawnParent", "targetNode", "resultMenu", "enemyUI", "waveTimerLabel3D") groups=["WaveManager"]]
+[node name="EnemySpawner" type="Node" parent="." unique_id=1191566733 node_paths=PackedStringArray("spawnParent", "targetNode", "lootTable", "resultMenu", "enemyUI", "waveTimerLabel3D") groups=["WaveManager"]]
 script = ExtResource("14_t70y2")
 spawnParent = NodePath(".")
 targetNode = NodePath("../NavigationRegion3D/Forge")
+lootTable = NodePath("../LootTable")
 resultMenu = NodePath("../UI/ResultsMenu")
 normalEnemyData = ExtResource("15_8gny2")
 fastEnemyData = ExtResource("16_s3wmy")
