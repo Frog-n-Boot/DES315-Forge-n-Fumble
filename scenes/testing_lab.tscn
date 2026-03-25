@@ -53,9 +53,16 @@
 [ext_resource type="PackedScene" uid="uid://2dvvlktwdavs" path="res://assets/models/FinalAssets_Low/Ore/Copper_Ore.tscn" id="40_ky1k5"]
 [ext_resource type="PackedScene" uid="uid://ckbl1y013dodk" path="res://assets/models/FinalAssets_Low/Ore/Iron_Ore.tscn" id="46_lqoiw"]
 [ext_resource type="PackedScene" uid="uid://dgguk5limafel" path="res://assets/models/FinalAssets_Low/Ore/Gold_Ore.tscn" id="47_68amh"]
+<<<<<<< HEAD
 [ext_resource type="Texture2D" uid="uid://b0h4rjwc5lgiv" path="res://assets/PNG/Forge.webp" id="47_wu60a"]
 [ext_resource type="Script" uid="uid://cqrm013r0malu" path="res://src/Menus/ResultMenu.cs" id="49_lqoiw"]
 [ext_resource type="PackedScene" uid="uid://cayfp8m51s7np" path="res://assets/models/FinalAssets_Low/Items_Models/Bow.tscn" id="56_8sdqg"]
+=======
+[ext_resource type="Texture2D" uid="uid://b0h4rjwc5lgiv" path="res://scenes/Forge.webp" id="47_wu60a"]
+[ext_resource type="Script" uid="uid://cqrm013r0malu" path="res://src/TesultMenu.cs" id="49_lqoiw"]
+[ext_resource type="AudioStream" uid="uid://dw6sr2a1g6wm3" path="res://assets/Sounds/Music/Pillage LOOP.wav" id="50_68amh"]
+[ext_resource type="PackedScene" uid="uid://bvm88hjpchhgf" path="res://assets/models/FinalAssets_Low/Foliage/fol_treetrunk_low.tscn" id="53_ky1k5"]
+>>>>>>> ConnorsWIPBranch
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_wko22"]
 
@@ -196,6 +203,7 @@ fog_density = 1.0
 fog_depth_end = 242.5
 volumetric_fog_density = 0.0
 
+<<<<<<< HEAD
 [sub_resource type="ViewportTexture" id="ViewportTexture_8sdqg"]
 viewport_path = NodePath("Sprite3D/SubViewport")
 
@@ -203,6 +211,12 @@ viewport_path = NodePath("Sprite3D/SubViewport")
 viewport_path = NodePath("BarMinigameSprite3D/SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_my7b3"]
+=======
+[sub_resource type="ViewportTexture" id="ViewportTexture_wu60a"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_7q0j7"]
+>>>>>>> ConnorsWIPBranch
 viewport_path = NodePath("Sprite3D/SubViewport")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cvaul"]
@@ -1350,10 +1364,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37649155, -0.8498851, -1.91
 
 [node name="Sprite3D" parent="World/Grindstone2" index="3" unique_id=840510996]
 transform = Transform3D(-1.7484555e-07, 0, -4, 0, 4, 0, 4, 0, -1.7484555e-07, -0.022883892, 2.9617476, 0)
+<<<<<<< HEAD
 texture = SubResource("ViewportTexture_8sdqg")
 
 [node name="BarMinigameSprite3D" parent="World/Grindstone2" index="5" unique_id=1798100092]
 texture = SubResource("ViewportTexture_o3gvf")
+=======
+texture = SubResource("ViewportTexture_wu60a")
+>>>>>>> ConnorsWIPBranch
 
 [node name="Anvil" parent="World" unique_id=476401340 instance=ExtResource("22_3w1al")]
 transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, -14.653336, 0.124243736, 5.9914675)
@@ -1363,7 +1381,11 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7.54
 
 [node name="Sprite3D" parent="World/Anvil2" index="3" unique_id=840510996]
 transform = Transform3D(-2.359344e-07, 0, -4, 0, 4, 0, 5.3975496, 0, -1.7484555e-07, -0.69661474, 3.8950515, 0.23757124)
+<<<<<<< HEAD
 texture = SubResource("ViewportTexture_my7b3")
+=======
+texture = SubResource("ViewportTexture_7q0j7")
+>>>>>>> ConnorsWIPBranch
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=254897524 node_paths=PackedStringArray("playerSpawner") groups=["Camera"]]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -3.1877332, 39, 39.193367)
@@ -2024,6 +2046,12 @@ transform = Transform3D(-0.34983206, 0, 0.010841107, 0, 0.35, 0, -0.010841107, 0
 
 [node name="Bow" parent="." unique_id=1323232309 instance=ExtResource("56_8sdqg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5474229, 0.5, -2.2242503)
+
+[node name="BattleMusic" type="AudioStreamPlayer2D" parent="." unique_id=944927695]
+stream = ExtResource("50_68amh")
+volume_db = -80.0
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="PauseMenu/ResumeButton" to="PauseMenu" method="OnResumePressed"]
 [connection signal="pressed" from="PauseMenu/SettingsButton" to="PauseMenu" method="OnSettingsPressed"]

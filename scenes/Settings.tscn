@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bs44u3pohek1t" path="res://src/Menus/SettingsMenu.cs" id="1_rbmmp"]
 [ext_resource type="Texture2D" uid="uid://b0h4rjwc5lgiv" path="res://assets/PNG/Forge.webp" id="2_i47rn"]
+[ext_resource type="AudioStream" uid="uid://dy5lcoryjk0no" path="res://assets/Sounds/SFX/Click.wav" id="3_46duy"]
 
 [node name="Settings" type="Node2D" unique_id=2013459249]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1917096709 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton")]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1917096709 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton", "audio")]
 process_mode = 3
 script = ExtResource("1_rbmmp")
 masterSlider = NodePath("Panel/TabContainer/Sound/MasterVolumeLabel/MasterVolumeSlider")
@@ -17,6 +18,7 @@ showFPSCheckBox = NodePath("Panel/TabContainer/Display/ShowFPSLabel/ShowFPSCheck
 resolutionDropdown = NodePath("Panel/TabContainer/Display/ResolutionLabel/ResolutionOptionButton")
 maxFPSDropdown = NodePath("Panel/TabContainer/Display/FPSLabel/FPSOptionButton")
 applyButton = NodePath("Panel/ApplyButton")
+audio = NodePath("AudioStreamPlayer2D")
 metadata/_edit_use_anchors_ = true
 
 [node name="BackgroundImage" type="TextureRect" parent="CanvasLayer" unique_id=2111953778]
@@ -358,6 +360,10 @@ text = "Apply
 
 "
 metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CanvasLayer" unique_id=469625117]
+stream = ExtResource("3_46duy")
+volume_db = -40.0
 
 [connection signal="pressed" from="CanvasLayer/Panel/BackButton" to="CanvasLayer" method="OnBackPressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/ApplyButton" to="CanvasLayer" method="OnApplyPressed"]

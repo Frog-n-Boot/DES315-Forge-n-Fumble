@@ -12,6 +12,7 @@ public partial class SettingsMenu : CanvasLayer
 	[Export] private OptionButton resolutionDropdown;
 	[Export] private OptionButton maxFPSDropdown;
 	[Export] private Button applyButton;
+	[Export] private AudioStreamPlayer2D audio;
 
 	[Export] private PauseMenu pauseMenu;
 
@@ -99,12 +100,17 @@ public partial class SettingsMenu : CanvasLayer
 		}
 		else
 		{
+			audio.Play();
+			GetTree().CreateTimer(0.3f).Timeout += () =>
+		{
 			SceneManager.instance.GoBack();
+		};
 		}
 
 	}
 	public void OnApplyPressed()
 	{
+		audio.Play();
 		SettingsManager.instance.SaveSetttings();
 		SettingsManager.instance.ApplySettings();
 	}
