@@ -2,10 +2,12 @@
 
 [ext_resource type="Script" uid="uid://cq2hdafsss4y7" path="res://src/Menus/MainMenu.cs" id="1_yqorp"]
 [ext_resource type="Texture2D" uid="uid://40vghfsnko84" path="res://assets/PNG/forge ss.png" id="2_0ykhv"]
+[ext_resource type="AudioStream" uid="uid://brbu62attbvtp" path="res://assets/Sounds/SFX/Anvil1.wav" id="2_2wh52"]
+[ext_resource type="AudioStream" uid="uid://i4t1sy6mjdaa" path="res://assets/Sounds/Music/Townsfolk LOOP.wav" id="3_ow34m"]
 
 [node name="MainMenu" type="Node2D" unique_id=1633550726]
 
-[node name="Control" type="Control" parent="." unique_id=793476221 node_paths=PackedStringArray("startButton", "settingsButton", "quitMenu")]
+[node name="Control" type="Control" parent="." unique_id=793476221 node_paths=PackedStringArray("startButton", "settingsButton", "quitMenu", "audio")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 0
@@ -15,6 +17,7 @@ script = ExtResource("1_yqorp")
 startButton = NodePath("StartButton")
 settingsButton = NodePath("SettingsButton")
 quitMenu = NodePath("QuitButton")
+audio = NodePath("AudioStreamPlayer2D")
 
 [node name="StartButton" type="Button" parent="Control" unique_id=1277000304]
 z_index = 1
@@ -77,6 +80,16 @@ offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(28.750067, 16.369858)
 color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Control" unique_id=1298095690]
+stream = ExtResource("2_2wh52")
+volume_db = -40.0
+
+[node name="MenuMusic" type="AudioStreamPlayer2D" parent="Control" unique_id=885990981]
+stream = ExtResource("3_ow34m")
+volume_db = -80.0
+autoplay = true
+bus = &"Music"
 
 [node name="BackgroundImage" type="TextureRect" parent="." unique_id=2007621218]
 visible = false

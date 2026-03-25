@@ -7,9 +7,13 @@ public partial class Turret : Node3D
 	[Export] private Node3D bulletSpawnLocation;
 	[Export] private PackedScene bulletScene;
 	[Export] public float range = 20.0f;
-	[Export] public float coneAngle = 65.0f;
+	[Export] public float coneAngle = 360.0f;
 	[Export] protected Node3D inputNode;
+
 	[Export] protected Label3D label;
+
+	[Export] AudioStreamPlayer3D audio;
+
 
 	protected ItemCarrier itemCarrier;
 	protected PlayerController player;
@@ -84,6 +88,7 @@ public partial class Turret : Node3D
 
         bulletCount--;
         label.Text = $"{bulletCount}";
+		audio.Play();
     }
 
     private EnemyController FindClosestEnemy()
@@ -99,8 +104,8 @@ public partial class Turret : Node3D
             Vector3 toEnemy = enemy.GlobalPosition - GlobalPosition;
             toEnemy.Y = 0;
             float distance = toEnemy.Length();
-
-            if (distance > range) continue;
+			
+	       	if (distance > range) continue;
 
             float angle = Mathf.RadToDeg(Transform.Basis.X.AngleTo(toEnemy.Normalized()));
             if (angle <= coneAngle && distance < closestDist)

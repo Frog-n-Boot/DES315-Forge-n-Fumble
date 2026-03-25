@@ -13,10 +13,10 @@
 [ext_resource type="Resource" uid="uid://cgsgoisaxb6rf" path="res://assets/resources/Recipes/SwordRecipe.tres" id="5_uh5my"]
 [ext_resource type="Resource" uid="uid://cpreanwxwry2u" path="res://assets/resources/Recipes/DullSwordRecipe.tres" id="6_gk661"]
 [ext_resource type="Texture2D" uid="uid://c17qxymr0rbo2" path="res://assets/textures/UI/ui_button_image.webp" id="10_0gpkw"]
-[ext_resource type="AudioStream" uid="uid://brbu62attbvtp" path="res://assets/Sounds/WorldSounds/Anvil1.wav" id="10_qc3dd"]
-[ext_resource type="AudioStream" uid="uid://6566qnnkif3q" path="res://assets/Sounds/WorldSounds/Anvil2.wav" id="11_2emfc"]
-[ext_resource type="AudioStream" uid="uid://ctq3m1e8gjrsl" path="res://assets/Sounds/WorldSounds/Anvil3.wav" id="12_g2xu1"]
-[ext_resource type="AudioStream" uid="uid://cynyfxhfehvv1" path="res://assets/Sounds/WorldSounds/Anvil4.wav" id="13_721mw"]
+[ext_resource type="AudioStream" uid="uid://brbu62attbvtp" path="res://assets/Sounds/SFX/Anvil1.wav" id="10_qc3dd"]
+[ext_resource type="AudioStream" uid="uid://6566qnnkif3q" path="res://assets/Sounds/SFX/Anvil2.wav" id="11_2emfc"]
+[ext_resource type="AudioStream" uid="uid://ctq3m1e8gjrsl" path="res://assets/Sounds/SFX/Anvil3.wav" id="12_g2xu1"]
+[ext_resource type="AudioStream" uid="uid://cynyfxhfehvv1" path="res://assets/Sounds/SFX/Anvil4.wav" id="13_721mw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdc31"]
 size = Vector3(2.227539, 0.8360596, 0.89453125)

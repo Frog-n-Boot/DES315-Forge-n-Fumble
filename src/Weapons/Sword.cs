@@ -11,6 +11,7 @@ public partial class Sword : MeleeWeapon
 	private float comboResetTimer = 0f;
 	private const float comboWindow = 1.0f;
 	private int comboDamage;
+	
 
 	protected override void OnReady()
 	{
@@ -19,9 +20,9 @@ public partial class Sword : MeleeWeapon
 		comboDamage = damage;
 	}
 
-    public override void _Process(double delta)
-    {
-        if(comboResetTimer > 0)
+	public override void _Process(double delta)
+	{
+		if(comboResetTimer > 0)
 		{
 			comboResetTimer -= (float)delta;
 			if(comboResetTimer <=0 && comboCount > 0)
@@ -31,7 +32,7 @@ public partial class Sword : MeleeWeapon
 			}
 				
 		}
-    }
+	}
 
 	public bool PerformComboAttack(InputBuffer buffer)
 	{

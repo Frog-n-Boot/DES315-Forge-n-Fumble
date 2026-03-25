@@ -26,6 +26,7 @@
 [ext_resource type="Script" uid="uid://dfgcclikd3kvh" path="res://src/Enemy/AI/EnemyBehaviourData.cs" id="26_k01fx"]
 [ext_resource type="PackedScene" uid="uid://c36fijnqqehnq" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Ingot.tscn" id="28_dkmvo"]
 [ext_resource type="PackedScene" uid="uid://2dvvlktwdavs" path="res://assets/models/FinalAssets_Low/Ore/Copper_Ore.tscn" id="29_6weby"]
+[ext_resource type="AudioStream" uid="uid://y1tctqggt7p7" path="res://assets/Sounds/Music/A Bard's Tale LOOP.wav" id="30_l6s4v"]
 [ext_resource type="PackedScene" uid="uid://d1y4lf17i3iid" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Dull_Sword.tscn" id="30_mlv1n"]
 [ext_resource type="PackedScene" uid="uid://di5odw2tmde5j" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Sword.tscn" id="31_jpukx"]
 [ext_resource type="PackedScene" uid="uid://o7vvnubwicff" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Ingot.tscn" id="32_fqppb"]
@@ -459,5 +460,11 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -15.356725, 0, -27.78924)
 
 [node name="IronIngot2" parent="." unique_id=1691570450 instance=ExtResource("32_fqppb")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 4.2390943, -4.7683716e-07, 31.098162)
+
+[node name="TutorialMusic" type="AudioStreamPlayer2D" parent="." unique_id=402372163]
+stream = ExtResource("30_l6s4v")
+volume_db = -80.0
+autoplay = true
+bus = &"Music"
 
 [connection signal="body_entered" from="Enemy/CharacterBody3D/Area3D" to="Enemy" method="OnBodyEntered"]

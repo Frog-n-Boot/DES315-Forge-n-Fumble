@@ -8,6 +8,8 @@ public abstract partial class BaseWeapon : Node3D
 	public int durability;
 	public bool isBeingPickedUp = false;
 	private int lastHitDamage;
+	
+	
 
 	[Signal] public delegate void BrokeEventHandler();
 
@@ -39,7 +41,5 @@ public abstract partial class BaseWeapon : Node3D
 	{
 		EmitSignal(SignalName.Broke);
 	}
-	
-
 	public abstract void Use();
 }
