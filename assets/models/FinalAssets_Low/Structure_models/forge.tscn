@@ -145,6 +145,7 @@ transparent_bg = true
 size = Vector2i(100, 83)
 
 [node name="Label" type="Label" parent="Sprite3D/SubViewport" unique_id=1037346905]
+visible = false
 z_index = 1
 offset_left = 25.0
 offset_top = 45.0
