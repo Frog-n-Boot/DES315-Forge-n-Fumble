@@ -9,7 +9,7 @@ public partial class WaveManager : Node
 	[Export] public Node spawnParent     { get; private set; }
 	[Export] public Node3D targetNode    { get; private set; }
 	[Export] public LootTable lootTable;
-	[Export] private TesultMenu resultMenu;
+	[Export] private ResultMenu resultMenu;
 
 	[ExportGroup("Enemy Data")]
 	[Export] public EnemyData normalEnemyData;

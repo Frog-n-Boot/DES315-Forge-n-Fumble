@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bqbrwko4kb7sp" path="res://src/Enemy/EnemyController.cs" id="1_8itjo"]
 [ext_resource type="Script" uid="uid://ffkwq65inqng" path="res://src/Enemy/AI/AIBrain.cs" id="4_u2d28"]
-[ext_resource type="Script" uid="uid://brp6gsap0s2ok" path="res://src/HealthBar.cs" id="6_c2ay5"]
+[ext_resource type="Script" uid="uid://brp6gsap0s2ok" path="res://src/UI/HealthBar.cs" id="6_c2ay5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pfjfy"]
 albedo_color = Color(1, 0, 0, 1)

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c37xqn66ss1o8"]
 
-[ext_resource type="Script" uid="uid://c25evsd3j0b" path="res://src/Sword.cs" id="1_4uorx"]
+[ext_resource type="Script" uid="uid://c25evsd3j0b" path="res://src/Weapons/Sword.cs" id="1_4uorx"]
 [ext_resource type="ArrayMesh" uid="uid://vmdklfvgul40" path="res://assets/models/FinalAssets_Low/Items_Models/Sword_first_low.obj" id="2_hbd7i"]
 [ext_resource type="Texture2D" uid="uid://urty3b4mhqm3" path="res://assets/materials/Texture_sets/Item_Textures/sword_frts_rough_low_BaseCol.tga" id="2_m8ogb"]
 [ext_resource type="Texture2D" uid="uid://dc3r4qxj536qx" path="res://assets/materials/Texture_sets/Item_Textures/sword_frts_rough_low_ORM.tga" id="3_f13ar"]

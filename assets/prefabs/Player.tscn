@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://8roa2xkb2ipl"]
 
-[ext_resource type="Script" uid="uid://bwwhlpy6hxupd" path="res://src/PlayerController.cs" id="1_ormyk"]
+[ext_resource type="Script" uid="uid://bwwhlpy6hxupd" path="res://src/Player/PlayerController.cs" id="1_ormyk"]
 [ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/FinalAssets_Low/Items_Models/Sword.tscn" id="3_8d03m"]
 [ext_resource type="Texture2D" uid="uid://bdv8d8m0mmw4o" path="res://assets/textures/BlueDwarf.png" id="3_ob8sk"]
 [ext_resource type="Texture2D" uid="uid://fywbkplmkbgs" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/Dwarf_low_BaseCol.tga" id="3_v0ggv"]
@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cdlum5v1gnmv7" path="res://assets/textures/GreenDwarf.png" id="5_yv8gf"]
 [ext_resource type="Texture2D" uid="uid://p55rbagysnlo" path="res://assets/textures/PurpleDwarf.png" id="6_glr06"]
 [ext_resource type="Texture2D" uid="uid://bojhtl0pjp5on" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/DwarfPurple_low_BaseCol.tga" id="6_so67x"]
-[ext_resource type="AudioStream" uid="uid://c4ymn22aaas8l" path="res://assets/sounds/WorldSounds/SwordSwipe.mp3" id="8_jnlb4"]
+[ext_resource type="AudioStream" uid="uid://c4ymn22aaas8l" path="res://assets/Sounds/WorldSounds/SwordSwipe.mp3" id="8_jnlb4"]
 [ext_resource type="Texture2D" uid="uid://bwvn5hsl7jk60" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/DwarfRed_low_BaseCol.tga" id="8_ob8sk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t0fpx"]
@@ -224,7 +224,7 @@ rightHand = NodePath("CollisionShape3D/RightHand")
 leftHand = NodePath("CollisionShape3D/LeftHand")
 areaPickup = NodePath("Area3D")
 playerTextures = Array[Texture2D]([ExtResource("3_ob8sk"), ExtResource("4_gp7mg"), ExtResource("5_yv8gf"), ExtResource("6_glr06")])
-pickupNode = NodePath("PickUpNode3D")
+pickupNode = NodePath("CanvasLayer/PickUpNode3D")
 playerSpawnTimer = 3.0
 playerMaterialTextures = Array[Texture2D]([ExtResource("3_v0ggv"), ExtResource("8_ob8sk"), ExtResource("5_ag2w6"), ExtResource("6_so67x")])
 
@@ -267,8 +267,9 @@ stream = SubResource("AudioStreamRandomizer_jnlb4")
 volume_db = -80.0
 max_db = -24.0
 
-[node name="PickUpNode3D" type="Node3D" parent="." unique_id=400310919]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1391184845]
+
+[node name="PickUpNode3D" type="Node3D" parent="CanvasLayer" unique_id=400310919]
 transform = Transform3D(1.6779308, 0, 0, 0, 1.8431246, 0, 0, 0, 1, 0, 2.7833214, 0)
 
-[node name="Label3D" type="Label3D" parent="PickUpNode3D" unique_id=1684088306]
-visible = false
+[node name="Label3D" type="Label3D" parent="CanvasLayer/PickUpNode3D" unique_id=1684088306]

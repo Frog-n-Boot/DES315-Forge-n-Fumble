@@ -1,23 +1,27 @@
 [gd_scene format=3 uid="uid://ceb1l3gxwlc4l"]
 
-[ext_resource type="Script" uid="uid://bm3dtf3m4uolx" path="res://src/Bullet.cs" id="1_btefs"]
+[ext_resource type="Script" uid="uid://bm3dtf3m4uolx" path="res://src/Weapons/Bullet.cs" id="1_btefs"]
+[ext_resource type="ArrayMesh" uid="uid://cuv7ohbcv8lsn" path="res://assets/models/FinalAssets_Low/WorkStations/Ballista/bal_arrow_low.obj" id="2_cp6sh"]
+[ext_resource type="Material" uid="uid://24hwnxagoffj" path="res://assets/models/FinalAssets_Low/WorkStations/Ballista/ballista.tres" id="3_0qvp4"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_x57tu"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_irdhg"]
+radius = 0.3715046
 
 [node name="Bullet" type="Node3D" unique_id=518413737 groups=["Bullet"]]
+transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, 0, 0, 0)
 script = ExtResource("1_btefs")
 damage = 10
 speed = 50.0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1856314168 groups=["Bullet"]]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 collision_layer = 64
 collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=958011878]
+transform = Transform3D(1, 0, 0, 0, 0.9998477, -0.03490481, 0, 0.017452406, 1.9996954, 0, 0, 0)
 shape = SubResource("SphereShape3D_x57tu")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=8663015]
-mesh = SubResource("SphereMesh_irdhg")
-skeleton = NodePath("../..")
+[node name="BalArrowLow" type="MeshInstance3D" parent="." unique_id=1430480912]
+mesh = ExtResource("2_cp6sh")
+surface_material_override/0 = ExtResource("3_0qvp4")

@@ -403,7 +403,7 @@ public partial class EnemyController : CharacterBody3D
 
     public override void _Process(double delta)
     {
-        if (IsStationary) return;
+        //if (IsStationary) return;
         _playerRefreshTimer -= (float)delta;
         if (_playerRefreshTimer <= 0f)
         {
@@ -415,7 +415,7 @@ public partial class EnemyController : CharacterBody3D
 
     public override void _PhysicsProcess(double delta)
     {
-        if (IsStationary) return;
+       // if (IsStationary) return;
         if (!_navReady)
         {
             _navReady = true;

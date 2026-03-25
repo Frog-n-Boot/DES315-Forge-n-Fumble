@@ -1,0 +1,163 @@
+[gd_scene format=3 uid="uid://bm6vf4tjk48gj"]
+
+[ext_resource type="Script" uid="uid://bdwnaqw5jg3si" path="res://src/Stations/SmeltingStation.cs" id="1_ph4aw"]
+[ext_resource type="PackedScene" uid="uid://dq8nubqatqhum" path="res://assets/models/FinalAssets_Low/Items_Models/Ingot.tscn" id="2_n8y7r"]
+[ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/Resources/CraftingRecipes.cs" id="3_oiry0"]
+[ext_resource type="PackedScene" uid="uid://c36fijnqqehnq" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Ingot.tscn" id="3_wq66q"]
+[ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="4_0l8vc"]
+[ext_resource type="PackedScene" uid="uid://o7vvnubwicff" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Ingot.tscn" id="4_5kmee"]
+[ext_resource type="PackedScene" uid="uid://bay85dbpt3qio" path="res://assets/models/FinalAssets_Low/Items_Models/Gold_Ingot.tscn" id="5_wq66q"]
+[ext_resource type="ArrayMesh" uid="uid://o2fxtu8po2fr" path="res://assets/models/FinalAssets_Low/WorkStations/Furnace_low.obj" id="6_0ahcc"]
+[ext_resource type="Texture2D" uid="uid://bll315yt7blkd" path="res://assets/materials/Texture_sets/WorkStations/Furance_low_BaseCol.tga" id="6_ohbk7"]
+[ext_resource type="PackedScene" uid="uid://kxj85aq1b0n0" path="res://assets/models/FinalAssets_Low/Items_Models/Damas_Ingot.tscn" id="6_sx61v"]
+[ext_resource type="Texture2D" uid="uid://bj6c60ek3rd8c" path="res://assets/materials/Texture_sets/WorkStations/Furance_low_ORM.tga" id="7_2jum7"]
+[ext_resource type="Texture2D" uid="uid://cw0s6r8rhgp8c" path="res://assets/materials/Texture_sets/WorkStations/Furance_low_Normal.tga" id="8_yd14g"]
+[ext_resource type="AudioStream" uid="uid://b55rsdiqrjrsq" path="res://assets/Sounds/WorldSounds/InitalForgeActivation.wav" id="10_yd14g"]
+[ext_resource type="AudioStream" uid="uid://svia4vnatnhi" path="res://assets/Sounds/WorldSounds/ForgeAfterActivation.wav" id="11_i2ejw"]
+
+[sub_resource type="Resource" id="Resource_04qyv"]
+script = ExtResource("3_oiry0")
+recipeName = "Copper_Ingot"
+requiredItemNames = PackedStringArray("Copper_Ore")
+ouputName = "Copper_Ingot"
+ouputScene = ExtResource("3_wq66q")
+ouputGroup = "pickable"
+metadata/_custom_type_script = "uid://1bo1o367ybgk"
+
+[sub_resource type="Resource" id="Resource_i1han"]
+script = ExtResource("3_oiry0")
+recipeName = "Iron_Ingot"
+requiredItemNames = PackedStringArray("Iron_Ore")
+ouputName = "Iron_Ingot"
+ouputScene = ExtResource("4_5kmee")
+ouputGroup = "pickable"
+metadata/_custom_type_script = "uid://1bo1o367ybgk"
+
+[sub_resource type="Resource" id="Resource_7xevn"]
+script = ExtResource("3_oiry0")
+recipeName = "Gold_Ingot"
+requiredItemNames = PackedStringArray("Gold_Ore")
+ouputName = "Gold_Ingot"
+ouputScene = ExtResource("5_wq66q")
+ouputGroup = "pickable"
+metadata/_custom_type_script = "uid://1bo1o367ybgk"
+
+[sub_resource type="Resource" id="Resource_i7ec5"]
+script = ExtResource("3_oiry0")
+recipeName = "Damas_Ingot"
+requiredItemNames = PackedStringArray("Iron_Ingot")
+ouputName = "Damas_Ingot"
+ouputScene = ExtResource("6_sx61v")
+ouputGroup = "pickable"
+metadata/_custom_type_script = "uid://1bo1o367ybgk"
+
+[sub_resource type="Resource" id="Resource_16tjv"]
+script = ExtResource("3_oiry0")
+recipeName = "Damas_Ingot"
+requiredItemNames = PackedStringArray("Damas_Ore")
+ouputName = "Damas_Ingot"
+ouputScene = ExtResource("6_sx61v")
+ouputGroup = "pickable"
+metadata/_custom_type_script = "uid://1bo1o367ybgk"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wq66q"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ohbk7"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wq66q"]
+bg_color = Color(0.19014141, 0.71371996, 0.2947564, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i2ejw"]
+albedo_texture = ExtResource("6_ohbk7")
+normal_enabled = true
+normal_texture = ExtResource("8_yd14g")
+heightmap_enabled = true
+heightmap_texture = ExtResource("7_2jum7")
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_yd14g"]
+loop = false
+stream_count = 2
+stream_0 = ExtResource("10_yd14g")
+stream_1 = ExtResource("11_i2ejw")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wq66q"]
+radius = 5.400879
+height = 20.422852
+
+[node name="Forge" type="Node3D" unique_id=994045895 node_paths=PackedStringArray("audio", "healthAura", "inputNode", "outputNode", "timeProgressBar", "stationName") groups=["Forge", "Station"]]
+script = ExtResource("1_ph4aw")
+meltedIngotScene = ExtResource("2_n8y7r")
+audio = NodePath("AudioStreamPlayer3D")
+healthAura = NodePath("Area3D")
+inputNode = NodePath("InputPort")
+outputNode = NodePath("OutputPort")
+timeProgressBar = NodePath("Sprite3D/SubViewport/ProgressBar")
+stationName = NodePath("Sprite3D/SubViewport/Label")
+craftDuration = 4.0
+recipes = Array[Object]([SubResource("Resource_04qyv"), SubResource("Resource_i1han"), SubResource("Resource_7xevn"), SubResource("Resource_i7ec5"), SubResource("Resource_16tjv")])
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1067101710 groups=["Forge"]]
+collision_layer = 160
+collision_mask = 6
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=250762080]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+shape = SubResource("SphereShape3D_wq66q")
+
+[node name="InputPort" parent="." unique_id=750325492 instance=ExtResource("4_0l8vc")]
+transform = Transform3D(31.928226, 0, 0, 0, 6.3082385, 0, 0, 0, 44.96865, -4.0128264, 3.270673, -0.43483275)
+visible = false
+
+[node name="OutputPort" parent="." unique_id=1251145266 instance=ExtResource("4_0l8vc")]
+transform = Transform3D(5.2756314, 0, 0, 0, 2.857143, 0, 0, 0, 5.4322386, -9.265402, 1.5173415, -0.27193514)
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=741148502]
+transform = Transform3D(-27.69681, 0, -5.144179e-07, 0, 19.48352, 0, 2.4213318e-06, 0, -5.884255, -0.022883892, 21.894945, -1.8400894)
+texture = SubResource("ViewportTexture_ohbk7")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=1009488754]
+transparent_bg = true
+size = Vector2i(100, 100)
+
+[node name="Label" type="Label" parent="Sprite3D/SubViewport" unique_id=1037346905]
+z_index = 1
+offset_left = 27.0
+offset_top = 34.0
+offset_right = 71.0
+offset_bottom = 83.0
+text = "Forge"
+
+[node name="ProgressBar" type="ProgressBar" parent="Sprite3D/SubViewport" unique_id=1436996828]
+offset_left = 25.0
+offset_top = 23.0
+offset_right = 75.0
+offset_bottom = 73.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_wq66q")
+show_percentage = false
+
+[node name="FurnaceLow" type="MeshInstance3D" parent="." unique_id=1274855034]
+transform = Transform3D(-2.857143, 0, -2.4977936e-07, 0, 2.857143, 0, 2.4977936e-07, 0, -2.857143, 0, 0, 0.33177614)
+material_override = SubResource("StandardMaterial3D_i2ejw")
+mesh = ExtResource("6_0ahcc")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1841039846]
+visible = false
+stream = SubResource("AudioStreamPlaylist_yd14g")
+volume_db = -40.0
+max_db = -24.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1161138031]
+transform = Transform3D(2.857143, 0, 0, 0, 2.857143, 0, 0, 0, 2.857143, -3.8203022, 3.5038965, 0)
+light_color = Color(2.4304428, 0.6644703, 0, 1)
+light_energy = 1.5
+omni_range = 2.9051983
+
+[node name="Area3D" type="Area3D" parent="." unique_id=2011341028]
+collision_layer = 160
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1789318158]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.83222485, 0, 0.18530273, 0.77709883)
+visible = false
+shape = SubResource("CapsuleShape3D_wq66q")

@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://176tgqxxk3p7"]
 
-[ext_resource type="Script" uid="uid://eq2143vlw65v" path="res://src/DebugMenu.cs" id="1_15w0a"]
-[ext_resource type="Resource" uid="uid://calih72lg8n07" path="res://assets/resources/NormalEnemyData.tres" id="2_ll2f6"]
-[ext_resource type="Resource" uid="uid://cdki2c88hftlb" path="res://assets/resources/FastEnemyData.tres" id="3_4j2py"]
-[ext_resource type="Resource" uid="uid://cvs5mxaqpoflx" path="res://assets/resources/StrongEnemyData.tres" id="4_jp8kx"]
+[ext_resource type="Script" uid="uid://eq2143vlw65v" path="res://src/Debug/DebugMenu.cs" id="1_15w0a"]
+[ext_resource type="Resource" uid="uid://calih72lg8n07" path="res://assets/resources/AI/NormalEnemyData.tres" id="2_ll2f6"]
+[ext_resource type="Resource" uid="uid://cdki2c88hftlb" path="res://assets/resources/AI/FastEnemyData.tres" id="3_4j2py"]
+[ext_resource type="Resource" uid="uid://cvs5mxaqpoflx" path="res://assets/resources/AI/StrongEnemyData.tres" id="4_jp8kx"]
 [ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/FinalAssets_Low/Items_Models/Sword.tscn" id="5_4j2py"]
 [ext_resource type="PackedScene" uid="uid://cgv7jdbgqsgql" path="res://assets/models/FinalAssets_Low/Ore/Ore.tscn" id="6_jp8kx"]
 [ext_resource type="PackedScene" uid="uid://dq8nubqatqhum" path="res://assets/models/FinalAssets_Low/Items_Models/Ingot.tscn" id="7_fwk7n"]

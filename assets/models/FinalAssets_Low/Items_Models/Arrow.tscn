@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ds1kx4ru8gie6"]
 
-[ext_resource type="Script" uid="uid://c70d61wimb010" path="res://src/Arrow.cs" id="1_rxiq3"]
+[ext_resource type="Script" uid="uid://c70d61wimb010" path="res://src/Weapons/Arrow.cs" id="1_rxiq3"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_tpqcy"]
 

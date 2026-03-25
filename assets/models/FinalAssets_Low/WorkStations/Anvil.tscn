@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://g1gfmktihg8t"]
 
-[ext_resource type="Script" uid="uid://bkgt1ax3obdva" path="res://src/ForgingStation.cs" id="1_c6611"]
+[ext_resource type="Script" uid="uid://bkgt1ax3obdva" path="res://src/Stations/ForgingStation.cs" id="1_c6611"]
 [ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/FinalAssets_Low/Items_Models/DullSword.tscn" id="2_fj0e1"]
-[ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/CraftingRecipes.cs" id="3_1latb"]
+[ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/Resources/CraftingRecipes.cs" id="3_1latb"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="3_yb3nn"]
 [ext_resource type="ArrayMesh" uid="uid://mmh030obulkw" path="res://assets/models/FinalAssets_Low/WorkStations/Anvil_low.obj" id="4_1latb"]
 [ext_resource type="PackedScene" uid="uid://d1y4lf17i3iid" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Dull_Sword.tscn" id="4_4m0u5"]
 [ext_resource type="Texture2D" uid="uid://d0b62wsx8gdhv" path="res://assets/materials/Texture_sets/WorkStations/anvil_low_BaseCol.tga" id="4_813ft"]
-[ext_resource type="Script" uid="uid://cqdmkhuvmmyck" path="res://src/SequenceMinigame.cs" id="4_yb3nn"]
+[ext_resource type="Script" uid="uid://cqdmkhuvmmyck" path="res://src/Minigames/SequenceMinigame.cs" id="4_yb3nn"]
 [ext_resource type="Texture2D" uid="uid://klsyonb1xfst" path="res://assets/materials/Texture_sets/WorkStations/anvil_low_Normal.tga" id="5_o5b8a"]
 [ext_resource type="Texture2D" uid="uid://bet17bbe1leks" path="res://assets/materials/Texture_sets/WorkStations/anvil_low_ORM.tga" id="5_u3lgt"]
 [ext_resource type="AudioStream" uid="uid://brbu62attbvtp" path="res://assets/Sounds/WorldSounds/Anvil1.wav" id="10_qc3dd"]
@@ -34,7 +34,7 @@ ouputGroup = "Weapon"
 metadata/_custom_type_script = "uid://1bo1o367ybgk"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdc31"]
-size = Vector3(2.3283691, 0.8360596, 1)
+size = Vector3(2.227539, 0.8360596, 0.89453125)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5b8a"]
 albedo_texture = ExtResource("4_813ft")
@@ -56,19 +56,19 @@ stream_3/stream = ExtResource("13_721mw")
 [node name="Anvil" type="Node3D" unique_id=1158721071 node_paths=PackedStringArray("sequenceMinigame", "inputNode", "outputNode", "timeProgressBar", "stationName") groups=["Station"]]
 script = ExtResource("1_c6611")
 dullSwordScene = ExtResource("2_fj0e1")
-recipes = Array[Object]([SubResource("Resource_813ft"), SubResource("Resource_r4c47")])
 sequenceMinigame = NodePath("SequenceMinigame")
 inputNode = NodePath("InputPort")
 outputNode = NodePath("OutputPort")
 timeProgressBar = NodePath("Sprite3D/SubViewport/ProgressBar")
 stationName = NodePath("Sprite3D/SubViewport/Label")
+recipes = Array[Object]([SubResource("Resource_813ft"), SubResource("Resource_r4c47")])
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=90114362]
 collision_layer = 32
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=712020585]
-transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, -0.03161621, 0.31784487, 0)
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, -0.055664063, 0.31784487, 0.052734375)
 shape = SubResource("BoxShape3D_rdc31")
 
 [node name="AnvilLow" type="MeshInstance3D" parent="StaticBody3D" unique_id=1240263121]
@@ -97,6 +97,7 @@ offset_bottom = 79.0
 bbcode_enabled = true
 
 [node name="ProgressBar" type="ProgressBar" parent="Sprite3D/SubViewport" unique_id=624823659]
+visible = false
 offset_top = 10.0
 offset_right = 100.0
 offset_bottom = 60.0

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d1y4lf17i3iid"]
 
 [ext_resource type="Texture2D" uid="uid://bmsvh2x5p4847" path="res://assets/materials/Texture_sets/Item_Textures/sword_scnd_rough_low_BaseCol.tga" id="1_c726u"]
-[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Pickable.cs" id="1_j6w72"]
+[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Item/Pickable.cs" id="1_j6w72"]
 [ext_resource type="Texture2D" uid="uid://dh0ha8nt5av2t" path="res://assets/materials/Texture_sets/Item_Textures/sword_scnd_rough_low_Normal.tga" id="2_j6w72"]
 [ext_resource type="Texture2D" uid="uid://cfllkfsxak7hb" path="res://assets/materials/Texture_sets/Item_Textures/sword_frts_rough_low_Normal.tga" id="3_jlpgu"]
 [ext_resource type="Texture2D" uid="uid://dw7bk1nhlrupf" path="res://assets/materials/Texture_sets/Item_Textures/sword_scnd_rough_low_ORM.tga" id="4_w7j66"]
