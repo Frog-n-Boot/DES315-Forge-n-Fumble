@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://cwnqstnv8c4ua" path="res://assets/textures/Screenshot 2026-03-11 140338.png" id="1_5yfar"]
 [ext_resource type="Material" uid="uid://c14d6xj6opusf" path="res://assets/materials/Texture_sets/Character_Textures/Goblin Textures/goblin_material.tres" id="2_60v6u"]
-[ext_resource type="ArrayMesh" uid="uid://bmq26ged3l0nq" path="res://assets/models/FinalAssets_Low/Character_Models/goblin_low.obj" id="3_o2eou"]
+[ext_resource type="ArrayMesh" uid="uid://bmq26ged3l0nq" path="res://assets/models/FinalAssets_Low/Character_Models/Goblin_low.obj" id="3_o2eou"]
 [ext_resource type="Material" uid="uid://btwle4bal72vo" path="res://assets/materials/Texture_sets/Character_Textures/Skeleton Textures/skeleton_material.tres" id="4_5nr6y"]
-[ext_resource type="ArrayMesh" uid="uid://8wpolus5qbva" path="res://assets/models/FinalAssets_Low/Character_Models/skeleton_low.obj" id="5_k01fx"]
+[ext_resource type="ArrayMesh" uid="uid://8wpolus5qbva" path="res://assets/models/FinalAssets_Low/Character_Models/Skeleton_low.obj" id="5_k01fx"]
 [ext_resource type="Material" uid="uid://24hwnxagoffj" path="res://assets/models/FinalAssets_Low/WorkStations/Ballista/ballista.tres" id="11_5yfar"]
 [ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/FinalAssets_Low/Items_Models/DullSword.tscn" id="11_60v6u"]
 [ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/FinalAssets_Low/Items_Models/Sword.tscn" id="12_o2eou"]
@@ -127,6 +127,18 @@ mesh = ExtResource("5_k01fx")
 [node name="DullSword" parent="CollisionShape3D" unique_id=778246616 instance=ExtResource("11_60v6u")]
 transform = Transform3D(0.2966995, -0.3905308, -0.09723833, 0.17566925, 0.016980123, 0.46781623, -0.36209092, -0.31176504, 0.14728442, 2.3297563, 0.03764791, -2.8277614)
 
+[node name="DullSword3" parent="CollisionShape3D" unique_id=685529863 instance=ExtResource("11_60v6u")]
+transform = Transform3D(0.2966995, -0.3905308, -0.09723833, 0.17566925, 0.016980123, 0.46781623, -0.36209092, -0.31176504, 0.14728442, -3.5455043, 0.03764791, -1.8899473)
+
+[node name="DullSword4" parent="CollisionShape3D" unique_id=1740556184 instance=ExtResource("11_60v6u")]
+transform = Transform3D(0.2966995, -0.3905308, -0.09723833, 0.17566925, 0.016980123, 0.46781623, -0.36209092, -0.31176504, 0.14728442, -3.1264846, 0.03764791, -2.1089902)
+
+[node name="DullSword5" parent="CollisionShape3D" unique_id=461968051 instance=ExtResource("11_60v6u")]
+transform = Transform3D(0.2966995, -0.3905308, -0.09723833, 0.17566925, 0.016980123, 0.46781623, -0.36209092, -0.31176504, 0.14728442, -2.6486344, 0.03764791, -2.1799004)
+
+[node name="DullSword6" parent="CollisionShape3D" unique_id=419961563 instance=ExtResource("11_60v6u")]
+transform = Transform3D(0.2966995, -0.3905308, -0.09723833, 0.17566925, 0.016980123, 0.46781623, -0.36209092, -0.31176504, 0.14728442, -1.9819678, 0.03764791, -2.3465672)
+
 [node name="Sword" parent="CollisionShape3D" unique_id=689345526 instance=ExtResource("12_o2eou")]
 transform = Transform3D(0.006748192, 0.199509, 0.45842203, -0.4763155, 0.14187294, -0.05473266, -0.15191454, -0.43596816, 0.19197318, 0.9618552, 0.009899302, 1.1772256)
 
@@ -178,6 +190,9 @@ shouldDespawn = false
 
 [node name="Grindstone" parent="CollisionShape3D" unique_id=371047941 instance=ExtResource("25_0arig")]
 transform = Transform3D(-1.0927847e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.0927847e-08, 0.5336896, 0, 0.34626946)
+
+[node name="Grindstone2" parent="CollisionShape3D" unique_id=1126336634 instance=ExtResource("25_0arig")]
+transform = Transform3D(-1.0927847e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.0927847e-08, -5.1296844, 0, -2.329528)
 
 [node name="Turret" parent="CollisionShape3D" unique_id=1571022317 node_paths=PackedStringArray("inputNode") instance=ExtResource("26_i52xd")]
 transform = Transform3D(0.33333334, 0, 0, 0, 0.33333334, 0, 0, 0, 0.33333334, 2.9626079, 0, 4.460862)

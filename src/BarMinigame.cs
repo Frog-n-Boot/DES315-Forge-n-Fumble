@@ -72,14 +72,16 @@ public partial class BarMinigame : Node2D
         {
             if(@event is not InputEventKey) return;
 
-			if(@event.IsActionPressed("ui_up")) rigidBox.ApplyImpulse(new Godot.Vector2(0, -500));
+			if(@event.IsActionPressed("ui_left")) rigidBox.ApplyImpulse(new Godot.Vector2(0, -200));
+            else if(@event.IsActionPressed("ui_right")) rigidBox.ApplyImpulse(new Godot.Vector2(0, 200));
         }
         else
         {
             if(@event is not InputEventJoypadButton joyEvent) return;
 			if(joyEvent.Device != activeDevice) return;
 
-            if(@event.IsActionPressed("sequence_up")) rigidBox.ApplyImpulse(new Godot.Vector2(0, -500));
+            if(@event.IsActionPressed("sequence_left")) rigidBox.ApplyImpulse(new Godot.Vector2(0, -200));
+            else if(@event.IsActionPressed("sequence_right")) rigidBox.ApplyImpulse(new Godot.Vector2(0, 200));
         }
         
     }
@@ -121,7 +123,7 @@ public partial class BarMinigame : Node2D
 
     private void OnItemTimerTimeout()
     {
-        targetY = GD.Randf() * 360f - 160f;
+        targetY = GD.Randf() * 260f - -120f;
     }
 
     public bool IsActiveFor(PlayerController player)
