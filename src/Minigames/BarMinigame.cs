@@ -15,10 +15,13 @@ public partial class BarMinigame : Node2D
     [Export] private float moveTime = 1;
     [Export] private float itemSpeed = 100f;
 
+    [Export] private float timeLimit = 10f;
+
+    [Export] public CanvasLayer canvasLayer;
+
     [Signal] public delegate void MinigameCompletedEventHandler();
     [Signal] public delegate void MinigameFailedEventHandler();
     private float targetY = 0f;
-    [Export] private float timeLimit = 10f;
     private float timeElapsed = 0f;
     private bool isActive = false;
     private int activeDevice;
@@ -35,7 +38,7 @@ public partial class BarMinigame : Node2D
         timeElapsed = 0f;
         textureProgressBar.Value = 50;
         targetY = GD.Randf() * 360f - 130f;
-        Show();
+        canvasLayer.Show();
     }
 
     public override void _Ready()
@@ -43,6 +46,7 @@ public partial class BarMinigame : Node2D
         GD.Randomize();
         moveTime *= .5f;
         textureProgressBar.Value = 0;
+        
     }
 
     public override void _Process(double delta)
@@ -57,7 +61,7 @@ public partial class BarMinigame : Node2D
         if(timeElapsed >= timeLimit)
         {
             isActive = false;
-            Hide();
+            canvasLayer.Hide();
             EmitSignal(SignalName.MinigameFailed);
         }
         

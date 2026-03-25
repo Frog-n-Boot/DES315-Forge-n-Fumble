@@ -9,6 +9,7 @@ public partial class SequenceMinigame : Node
 
 	[Signal] public delegate void SequenceCompletedEventHandler();
 	[Signal] public delegate void SequenceFailedEventHandler();
+	private CameraController cameraController;
 
 	private string[] sequence;
 	public bool isActive = false;
@@ -18,13 +19,13 @@ public partial class SequenceMinigame : Node
 	private string[] possibleInputs = { "Left", "Right", "Up", "Down"};
 	private PlayerController activePlayer;
 	private int activeDevice;
-	private CameraController cameraController;
+	
 
 
 	
 	public void Start(int length, PlayerController player)
 	{
-		cameraController = GetTree().Root.GetNode<CameraController>("TestingLab/Camera3D");
+		cameraController = GetTree().Root.GetNode<CameraController>("../Camera3D");
 		activePlayer = player;
 		activeDevice = player.currentDevice;
 		GD.Print($"Minigame Started for player {player.PlayerIndex}, device: {activeDevice}");
@@ -44,15 +45,15 @@ public partial class SequenceMinigame : Node
 	{
 		if(!isActive) return;
 
-		bool isZommedOut = cameraController.GetCameraZoomOut();
-		if (isZommedOut)
-		{
-			sprite3D.Scale = new Vector3(10, 10, 10);
-		}
-		else if(isZommedOut == false)
-		{
-			 sprite3D.Scale = new Vector3(5.39f, 4.0f, 4.0f);
-		}
+		// bool isZommedOut = cameraController.GetCameraZoomOut();
+		// if (isZommedOut)
+		// {
+		// 	sprite3D.Scale = new Vector3(10, 10, 10);
+		// }
+		// else if(isZommedOut == false)
+		// {
+		// 	 sprite3D.Scale = new Vector3(5.39f, 4.0f, 4.0f);
+		// }
 
 		timeLeft -= (float)delta;
 
@@ -67,7 +68,7 @@ public partial class SequenceMinigame : Node
 
 	private void UpdateLabel()
 	{
-		bool isZommedOut = cameraController.GetCameraZoomOut();
+		//bool isZommedOut = cameraController.GetCameraZoomOut();
 
 		bool isController = activeDevice >= 0;
 		string display = "";

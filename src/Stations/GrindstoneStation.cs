@@ -19,7 +19,7 @@ public partial class GrindstoneStation : BaseStationScript
 		}
 		barMinigame.MinigameCompleted += OnMinigameCompleted;
 		barMinigame.MinigameFailed += OnMinigameFailed;
-		//barMinigame.Hide();
+		barMinigame.canvasLayer.Hide();
 
 	}
 
@@ -63,7 +63,7 @@ public partial class GrindstoneStation : BaseStationScript
 
 	private void OnMinigameCompleted()
 	{
-		barMinigame.Hide();
+		barMinigame.canvasLayer.Hide();
 		
 		ProduceOutput();
 	}
@@ -71,7 +71,7 @@ public partial class GrindstoneStation : BaseStationScript
 	private void OnMinigameFailed()
 	{
 		GD.Print("Minigame Failed");
-		barMinigame.Hide();
+		barMinigame.canvasLayer.Hide();
 
 		if(depositedSowrd == null) {GD.PrintErr("DepositedSword is null"); return; }
 		if(player == null) {GD.PrintErr("Player is null"); return; }
