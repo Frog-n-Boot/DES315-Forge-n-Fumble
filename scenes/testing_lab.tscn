@@ -64,7 +64,7 @@ uv1_triplanar = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3lnvk"]
 
-[sub_resource type="Resource" id="Resource_wu60a"]
+[sub_resource type="Resource" id="Resource_0d37v"]
 script = ExtResource("20_t8lul")
 amount = 40
 override_global_seed = true
@@ -72,28 +72,28 @@ custom_seed = 7
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_7q0j7"]
+[sub_resource type="Resource" id="Resource_ky1k5"]
 script = ExtResource("21_bmpo3")
 position = Vector3(0.15, 0, 0.15)
 rotation = Vector3(0, 360, 0)
 scale = Vector3(0.1, 0.1, 0.1)
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_vsamq"]
+[sub_resource type="Resource" id="Resource_o3gvf"]
 script = ExtResource("22_7y6wb")
 offset_step = 0.2
 consecutive_step_multiplier = 0.75
 restrict_height = true
 
-[sub_resource type="Resource" id="Resource_0d37v"]
+[sub_resource type="Resource" id="Resource_t8lul"]
 script = ExtResource("23_ul3k4")
 ray_length = 5.0
 ray_offset = 5.0
 remove_points_on_miss = false
 
-[sub_resource type="Resource" id="Resource_ky1k5"]
+[sub_resource type="Resource" id="Resource_bmpo3"]
 script = ExtResource("18_o3gvf")
-stack = Array[ExtResource("19_my7b3")]([SubResource("Resource_wu60a"), SubResource("Resource_7q0j7"), SubResource("Resource_vsamq"), SubResource("Resource_0d37v")])
+stack = Array[ExtResource("19_my7b3")]([SubResource("Resource_0d37v"), SubResource("Resource_ky1k5"), SubResource("Resource_o3gvf"), SubResource("Resource_t8lul")])
 
 [sub_resource type="Resource" id="Resource_8sdqg"]
 script = ExtResource("27_o3gvf")
@@ -105,7 +105,7 @@ script = ExtResource("27_o3gvf")
 size = Vector3(6, 1, 5)
 metadata/_custom_type_script = "uid://caolykt85qqe7"
 
-[sub_resource type="Resource" id="Resource_o3gvf"]
+[sub_resource type="Resource" id="Resource_7y6wb"]
 script = ExtResource("20_t8lul")
 amount = 20
 override_global_seed = true
@@ -113,28 +113,28 @@ custom_seed = 3
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_t8lul"]
+[sub_resource type="Resource" id="Resource_aul0p"]
 script = ExtResource("21_bmpo3")
 position = Vector3(0.15, 0, 0.15)
 rotation = Vector3(0, 360, 0)
 scale = Vector3(0.1, 0.1, 0.1)
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_bmpo3"]
+[sub_resource type="Resource" id="Resource_81fpj"]
 script = ExtResource("22_7y6wb")
 offset_step = 0.2
 consecutive_step_multiplier = 0.75
 restrict_height = true
 
-[sub_resource type="Resource" id="Resource_7y6wb"]
+[sub_resource type="Resource" id="Resource_lqiwb"]
 script = ExtResource("23_ul3k4")
 ray_length = 5.0
 ray_offset = 5.0
 remove_points_on_miss = false
 
-[sub_resource type="Resource" id="Resource_aul0p"]
+[sub_resource type="Resource" id="Resource_qy1ba"]
 script = ExtResource("18_o3gvf")
-stack = Array[ExtResource("19_my7b3")]([SubResource("Resource_o3gvf"), SubResource("Resource_t8lul"), SubResource("Resource_bmpo3"), SubResource("Resource_7y6wb")])
+stack = Array[ExtResource("19_my7b3")]([SubResource("Resource_7y6wb"), SubResource("Resource_aul0p"), SubResource("Resource_81fpj"), SubResource("Resource_lqiwb")])
 
 [sub_resource type="Resource" id="Resource_ul3k4"]
 script = ExtResource("27_o3gvf")
@@ -144,7 +144,7 @@ size = Vector3(11, 0.339, 10)
 script = ExtResource("27_o3gvf")
 size = Vector3(6, 1, 5)
 
-[sub_resource type="Resource" id="Resource_81fpj"]
+[sub_resource type="Resource" id="Resource_pt6y2"]
 script = ExtResource("20_t8lul")
 amount = 20
 override_global_seed = true
@@ -152,28 +152,28 @@ custom_seed = 4
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_lqiwb"]
+[sub_resource type="Resource" id="Resource_uyhl1"]
 script = ExtResource("21_bmpo3")
 position = Vector3(0.15, 0, 0.15)
 rotation = Vector3(0, 360, 0)
 scale = Vector3(0.1, 0.1, 0.1)
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_qy1ba"]
+[sub_resource type="Resource" id="Resource_ln51k"]
 script = ExtResource("22_7y6wb")
 offset_step = 0.2
 consecutive_step_multiplier = 0.75
 restrict_height = true
 
-[sub_resource type="Resource" id="Resource_pt6y2"]
+[sub_resource type="Resource" id="Resource_m7d3y"]
 script = ExtResource("23_ul3k4")
 ray_length = 5.0
 ray_offset = 5.0
 remove_points_on_miss = false
 
-[sub_resource type="Resource" id="Resource_uyhl1"]
+[sub_resource type="Resource" id="Resource_yr0jh"]
 script = ExtResource("18_o3gvf")
-stack = Array[ExtResource("19_my7b3")]([SubResource("Resource_81fpj"), SubResource("Resource_lqiwb"), SubResource("Resource_qy1ba"), SubResource("Resource_pt6y2")])
+stack = Array[ExtResource("19_my7b3")]([SubResource("Resource_pt6y2"), SubResource("Resource_uyhl1"), SubResource("Resource_ln51k"), SubResource("Resource_m7d3y")])
 
 [sub_resource type="Resource" id="Resource_dxjg1"]
 script = ExtResource("27_o3gvf")
@@ -201,10 +201,10 @@ fog_density = 1.0
 fog_depth_end = 242.5
 volumetric_fog_density = 0.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_0d37v"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_aneoj"]
 viewport_path = NodePath("Sprite3D/SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ky1k5"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_dxjg1"]
 viewport_path = NodePath("Sprite3D/SubViewport")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cvaul"]
@@ -319,7 +319,7 @@ transform = Transform3D(-0.1657856, 0, 0.017114714, 0, 0.16666666, 0, -0.0171147
 [node name="ProtonScatter" type="Node3D" parent="CollisionShape3D" unique_id=1285734428]
 visible = false
 script = ExtResource("17_8sdqg")
-modifier_stack = SubResource("Resource_ky1k5")
+modifier_stack = SubResource("Resource_bmpo3")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 metadata/_custom_type_script = "uid://bwa528ng6f33g"
@@ -349,7 +349,7 @@ shape = SubResource("Resource_my7b3")
 [node name="ProtonScatter2" type="Node3D" parent="CollisionShape3D" unique_id=738791391]
 visible = false
 script = ExtResource("17_8sdqg")
-modifier_stack = SubResource("Resource_aul0p")
+modifier_stack = SubResource("Resource_qy1ba")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 metadata/_custom_type_script = "uid://bwa528ng6f33g"
@@ -378,7 +378,7 @@ shape = SubResource("Resource_oafgb")
 [node name="ProtonScatter3" type="Node3D" parent="CollisionShape3D" unique_id=708559353]
 visible = false
 script = ExtResource("17_8sdqg")
-modifier_stack = SubResource("Resource_uyhl1")
+modifier_stack = SubResource("Resource_yr0jh")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 metadata/_custom_type_script = "uid://bwa528ng6f33g"
@@ -433,34 +433,26 @@ transform = Transform3D(1.8634114, 0, -2.2810848, 0, 0.9999995, 0, 2.3021898, 0,
 
 [node name="Grindstone" parent="World" unique_id=1599248455 groups=["Grindstone"] instance=ExtResource("20_5vgrt")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7.7069244, 0.08092487, -5.392082)
-controllerButtonTexture = null
-keyboardButtonTexture = null
 
 [node name="Grindstone2" parent="World" unique_id=1158721071 groups=["Grindstone"] instance=ExtResource("20_5vgrt")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -15.880151, 0.08092487, -5.560324)
-controllerButtonTexture = null
-keyboardButtonTexture = null
 
 [node name="Sprite3D" parent="World/Grindstone2" index="3" unique_id=840510996]
 transform = Transform3D(-1.7484555e-07, 0, -4, 0, 4, 0, 4, 0, -1.7484555e-07, -0.022883892, 2.9617476, 0)
-texture = SubResource("ViewportTexture_0d37v")
+texture = SubResource("ViewportTexture_aneoj")
 
 [node name="Anvil" parent="World" unique_id=476401340 instance=ExtResource("22_3w1al")]
 transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, -15.975536, 0.124243736, 6.4576373)
-controllerButtonTexture = null
-keyboardButtonTexture = null
 
 [node name="Anvil2" parent="World" unique_id=61888033 instance=ExtResource("22_3w1al")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7.540189, 0.124243736, 6.072122)
-controllerButtonTexture = null
-keyboardButtonTexture = null
 
 [node name="AnvilLow" parent="World/Anvil2/StaticBody3D" parent_id_path=PackedInt32Array(61888033, 90114362) index="1" unique_id=1240263121]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.54991627, 0, 0.33583975)
 
 [node name="Sprite3D" parent="World/Anvil2" index="3" unique_id=840510996]
 transform = Transform3D(-2.359344e-07, 0, -4, 0, 4, 0, 5.3975496, 0, -1.7484555e-07, -0.69661474, 3.8950515, 0.23757124)
-texture = SubResource("ViewportTexture_ky1k5")
+texture = SubResource("ViewportTexture_dxjg1")
 
 [node name="Forge" parent="World" unique_id=994045895 instance=ExtResource("2_ptwec")]
 transform = Transform3D(-0.34999743, 0, 0.0013377805, 0, 0.35, 0, -0.0013377805, 0, -0.34999743, -3.7808273, 0.038991988, 0.5228681)

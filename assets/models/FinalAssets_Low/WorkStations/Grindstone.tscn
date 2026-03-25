@@ -87,6 +87,7 @@ offset_bottom = 60.0
 show_percentage = false
 
 [node name="Label" type="Label" parent="Sprite3D/SubViewport" unique_id=1293063617]
+visible = false
 offset_left = 5.0
 offset_top = 20.0
 offset_right = 45.0

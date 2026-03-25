@@ -103,6 +103,7 @@ offset_right = 100.0
 offset_bottom = 60.0
 
 [node name="Label" type="Label" parent="Sprite3D/SubViewport" unique_id=1153088540]
+visible = false
 offset_left = 25.0
 offset_right = 65.0
 offset_bottom = 49.0
