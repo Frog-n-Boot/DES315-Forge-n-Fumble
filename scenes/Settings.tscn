@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://m0yx3e0w0rir"]
 
-[ext_resource type="Script" uid="uid://bs44u3pohek1t" path="res://src/SettingsMenu.cs" id="1_rbmmp"]
-[ext_resource type="Texture2D" uid="uid://b0h4rjwc5lgiv" path="res://scenes/Forge.webp" id="2_i47rn"]
+[ext_resource type="Script" uid="uid://bs44u3pohek1t" path="res://src/Menus/SettingsMenu.cs" id="1_rbmmp"]
+[ext_resource type="Texture2D" uid="uid://b0h4rjwc5lgiv" path="res://assets/PNG/Forge.webp" id="2_i47rn"]
 
 [node name="Settings" type="Node2D" unique_id=2013459249]
 

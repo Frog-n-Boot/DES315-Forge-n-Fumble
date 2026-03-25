@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://cvs5mxaqpoflx"]
+
+[ext_resource type="Material" uid="uid://c14d6xj6opusf" path="res://assets/materials/Texture_sets/Character_Textures/Goblin Textures/goblin_material.tres" id="1_cj5mm"]
+[ext_resource type="Script" uid="uid://dfgcclikd3kvh" path="res://src/Enemy/AI/EnemyBehaviourData.cs" id="1_cmxk4"]
+[ext_resource type="Script" uid="uid://bf02wgjk36psn" path="res://src/Enemy/EnemyData.cs" id="1_mvv2o"]
+[ext_resource type="ArrayMesh" uid="uid://bmq26ged3l0nq" path="res://assets/models/FinalAssets_Low/Character_Models/Goblin_low.obj" id="2_pfp6m"]
+[ext_resource type="Script" uid="uid://cafetq1ji4h5b" path="res://src/Enemy/AI/AttackForge.cs" id="2_srwom"]
+[ext_resource type="Script" uid="uid://dcjcfda4rr8x3" path="res://src/Enemy/AI/MoveToForge.cs" id="5_srwom"]
+
+[sub_resource type="Resource" id="Resource_pilw3"]
+script = ExtResource("2_srwom")
+metadata/_custom_type_script = "uid://cafetq1ji4h5b"
+
+[sub_resource type="Resource" id="Resource_t82my"]
+script = ExtResource("5_srwom")
+metadata/_custom_type_script = "uid://dcjcfda4rr8x3"
+
+[resource]
+script = ExtResource("1_mvv2o")
+enemyName = "Hobgoblins"
+maxHealth = 30
+damage = 5
+speed = 2.0
+color = Color(1, 0, 1, 1)
+scale = Vector3(2, 2, 2)
+lootDropChance = 100.0
+enemyMat = ExtResource("1_cj5mm")
+enemyMesh = ExtResource("2_pfp6m")
+attackBehaviours = Array[ExtResource("1_cmxk4")]([SubResource("Resource_pilw3")])
+miscBehaviours = Array[ExtResource("1_cmxk4")]([SubResource("Resource_t82my")])
+metadata/_custom_type_script = "uid://bf02wgjk36psn"

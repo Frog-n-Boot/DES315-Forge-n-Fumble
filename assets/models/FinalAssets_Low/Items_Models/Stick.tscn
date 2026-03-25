@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bp4fm727bn0cj"]
 
-[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Pickable.cs" id="1_ep6bg"]
+[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Item/Pickable.cs" id="1_ep6bg"]
 [ext_resource type="Texture2D" uid="uid://bdnp2pelon8t8" path="res://assets/materials/Texture_sets/Item_Textures/Boxstick_comb_low_BaseCol.tga" id="2_6v8es"]
 [ext_resource type="ArrayMesh" uid="uid://ba47xfda5acya" path="res://assets/models/FinalAssets_Low/Items_Models/Stick_low.obj" id="2_kldnw"]
 [ext_resource type="Texture2D" uid="uid://cd8ejhf3w3lcw" path="res://assets/materials/Texture_sets/Item_Textures/Boxstick_comb_low_ORM.tga" id="3_6v8es"]

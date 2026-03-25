@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cd12og6qvmqm7"]
 
 [ext_resource type="Texture2D" uid="uid://2lg75ncgvu3q" path="res://assets/textures/DwarfTexture.png" id="1_wvoo6"]
-[ext_resource type="Script" uid="uid://d01sdn5ioyxfa" path="res://src/PlayerPortrait.cs" id="1_xro7h"]
-[ext_resource type="Script" uid="uid://brp6gsap0s2ok" path="res://src/HealthBar.cs" id="3_rwibj"]
+[ext_resource type="Script" uid="uid://d01sdn5ioyxfa" path="res://src/Player/PlayerPortrait.cs" id="1_xro7h"]
+[ext_resource type="Script" uid="uid://brp6gsap0s2ok" path="res://src/UI/HealthBar.cs" id="3_rwibj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_brnra"]
 bg_color = Color(0.74509805, 0, 0, 1)

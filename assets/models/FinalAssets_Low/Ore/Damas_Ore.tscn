@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bfvifq667vxvj"]
 
 [ext_resource type="Texture2D" uid="uid://b163ru6y04fds" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_BaseCol.tga" id="1_34kg5"]
-[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Pickable.cs" id="1_qeo4k"]
+[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Item/Pickable.cs" id="1_qeo4k"]
 [ext_resource type="ArrayMesh" uid="uid://g007ahf37syv" path="res://assets/models/FinalAssets_Low/Ore/Damas_ing_low.obj" id="1_rfw3c"]
 [ext_resource type="Texture2D" uid="uid://dmckkpafqq3bq" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_Normal.tga" id="2_qeo4k"]
 [ext_resource type="Texture2D" uid="uid://b1xjsa5p8f7rb" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_ORM.tga" id="3_we87l"]

@@ -9,3 +9,8 @@
 transform = Transform3D(0.72, 0, 0, 0, 0.72, 0, 0, 0, 0.72, 0, 0, 0)
 mesh = ExtResource("1_sbfuh")
 surface_material_override/0 = ExtResource("2_2pabr")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=2123104527]
+height = 2.5
+vertices = PackedVector3Array(-0.6164272, 0, -0.57646894, 0.5797162, 0, -0.56963384, 0.58655167, 0, 0.6196746, -0.6198449, 0, 0.6196746)
+affect_navigation_mesh = true

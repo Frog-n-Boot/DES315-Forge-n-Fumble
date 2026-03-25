@@ -1,8 +1,12 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://rj5laf73xbp8"]
 
-[ext_resource type="Script" path="res://src/ItemData.cs" id="1_tyhou"]
+
+[ext_resource type="PackedScene" uid="uid://bfvifq667vxvj" path="res://assets/models/FinalAssets_Low/Ore/Damas_Ore.tscn" id="1_r4d2p"]
+[ext_resource type="Script" uid="uid://cy6spy2s7uv1l" path="res://src/ItemData.cs" id="1_tyhou"]
+
 
 [resource]
 script = ExtResource("1_tyhou")
 name = "Damas_Ore"
+itemScene = ExtResource("1_r4d2p")
 metadata/_custom_type_script = "uid://cy6spy2s7uv1l"

@@ -1,8 +1,10 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://mjifv5ikq2a1"]
 
-[ext_resource type="Script" path="res://src/ItemData.cs" id="1_dk8rn"]
+[ext_resource type="PackedScene" uid="uid://d1y4lf17i3iid" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Dull_Sword.tscn" id="1_5ugb6"]
+[ext_resource type="Script" uid="uid://cy6spy2s7uv1l" path="res://src/Player/ItemData.cs" id="1_dk8rn"]
 
 [resource]
 script = ExtResource("1_dk8rn")
 name = "Iron_Dull_Sword"
+itemScene = ExtResource("1_5ugb6")
 metadata/_custom_type_script = "uid://cy6spy2s7uv1l"

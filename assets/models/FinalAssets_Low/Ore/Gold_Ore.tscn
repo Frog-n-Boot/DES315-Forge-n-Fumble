@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b163ru6y04fds" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_BaseCol.tga" id="1_6cu2b"]
 [ext_resource type="ArrayMesh" uid="uid://dw1l67bnyfk7s" path="res://assets/models/FinalAssets_Low/Ore/Gold_ing_low.obj" id="1_naam3"]
-[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Pickable.cs" id="1_yaxjs"]
+[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Item/Pickable.cs" id="1_yaxjs"]
 [ext_resource type="Texture2D" uid="uid://dmckkpafqq3bq" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_Normal.tga" id="2_yaxjs"]
 [ext_resource type="Texture2D" uid="uid://b1xjsa5p8f7rb" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_ORM.tga" id="3_tq4g8"]
 

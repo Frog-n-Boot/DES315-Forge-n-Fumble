@@ -1,8 +1,12 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bualj2s73esd2"]
 
-[ext_resource type="Script" path="res://src/ItemData.cs" id="1_3bgji"]
+
+[ext_resource type="Script" uid="uid://cy6spy2s7uv1l" path="res://src/ItemData.cs" id="1_3bgji"]
+[ext_resource type="PackedScene" uid="uid://o7vvnubwicff" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Ingot.tscn" id="1_xjywy"]
+
 
 [resource]
 script = ExtResource("1_3bgji")
 name = "Iron_Ingot"
+itemScene = ExtResource("1_xjywy")
 metadata/_custom_type_script = "uid://cy6spy2s7uv1l"

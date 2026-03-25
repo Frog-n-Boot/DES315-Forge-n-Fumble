@@ -1,8 +1,12 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://c0323mj3xjr8w"]
 
-[ext_resource type="Script" path="res://src/ItemData.cs" id="1_vhkoe"]
+
+[ext_resource type="Script" uid="uid://cy6spy2s7uv1l" path="res://src/ItemData.cs" id="1_vhkoe"]
+[ext_resource type="PackedScene" uid="uid://c36fijnqqehnq" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Ingot.tscn" id="1_xjycm"]
+
 
 [resource]
 script = ExtResource("1_vhkoe")
 name = "Copper_Ingot"
+itemScene = ExtResource("1_xjycm")
 metadata/_custom_type_script = "uid://cy6spy2s7uv1l"

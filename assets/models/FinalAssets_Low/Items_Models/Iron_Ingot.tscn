@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://o7vvnubwicff"]
 
 [ext_resource type="Texture2D" uid="uid://l45fkj74rs44" path="res://assets/materials/Texture_sets/Item_Textures/Ingots_comb_low_BaseCol.tga" id="1_rw80w"]
-[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Pickable.cs" id="1_td1gg"]
+[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Item/Pickable.cs" id="1_td1gg"]
 [ext_resource type="Texture2D" uid="uid://dt7t6tu8lnf8y" path="res://assets/materials/Texture_sets/Item_Textures/Ingots_comb_low_Normal.tga" id="2_td1gg"]
 [ext_resource type="Texture2D" uid="uid://c4lqlcwn73h60" path="res://assets/materials/Texture_sets/Item_Textures/Ingots_comb_low_ORM.tga" id="3_2fls7"]
 [ext_resource type="ArrayMesh" uid="uid://qrqif26big5o" path="res://assets/models/FinalAssets_Low/Items_Models/Ing_iron_low.obj" id="4_6ylmd"]

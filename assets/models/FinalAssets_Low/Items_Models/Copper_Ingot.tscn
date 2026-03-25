@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c36fijnqqehnq"]
 
-[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Pickable.cs" id="1_yrs3q"]
+[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Item/Pickable.cs" id="1_yrs3q"]
 [ext_resource type="Texture2D" uid="uid://l45fkj74rs44" path="res://assets/materials/Texture_sets/Item_Textures/Ingots_comb_low_BaseCol.tga" id="2_grctj"]
 [ext_resource type="Texture2D" uid="uid://c4lqlcwn73h60" path="res://assets/materials/Texture_sets/Item_Textures/Ingots_comb_low_ORM.tga" id="3_vkl38"]
 [ext_resource type="Texture2D" uid="uid://dt7t6tu8lnf8y" path="res://assets/materials/Texture_sets/Item_Textures/Ingots_comb_low_Normal.tga" id="4_4d338"]
