@@ -4,8 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/FinalAssets_Low/Items_Models/Sword.tscn" id="2_hj04q"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="3_fgmgg"]
 [ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/Resources/CraftingRecipes.cs" id="3_hj04q"]
-[ext_resource type="Texture2D" uid="uid://de5i2lmkk12v1" path="res://assets/textures/UI/ui_controller_x_button.tres" id="3_kecgh"]
-[ext_resource type="Texture2D" uid="uid://cmhg5fabsggpk" path="res://assets/textures/UI/ui_keyboard_e_button.tres" id="4_3ynec"]
 [ext_resource type="Texture2D" uid="uid://50xg82nov3j2" path="res://assets/materials/Texture_sets/WorkStations/Grinder_low_BaseCol.tga" id="4_chpgb"]
 [ext_resource type="PackedScene" uid="uid://di5odw2tmde5j" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Sword.tscn" id="4_uhy0b"]
 [ext_resource type="ArrayMesh" uid="uid://gxhgwjbmhtq6" path="res://assets/models/FinalAssets_Low/WorkStations/Grinder_low.obj" id="5_fgmgg"]
@@ -16,6 +14,20 @@
 [ext_resource type="Texture2D" uid="uid://u60gttmgjlop" path="res://assets/textures/GreenSquare.png" id="14_wwlso"]
 [ext_resource type="Texture2D" uid="uid://cvosdiqb43467" path="res://assets/textures/RedSquare.png" id="15_g1v1a"]
 [ext_resource type="Texture2D" uid="uid://cfesbuy201qlg" path="res://assets/materials/Texture_sets/Item_Textures/SwordPNG.png" id="16_w0ftq"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bn2l6"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwlso"]
+atlas = SubResource("CompressedTexture2D_bn2l6")
+region = Rect2(114, 365, 40, 40)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g1v1a"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0ftq"]
+atlas = SubResource("CompressedTexture2D_g1v1a")
+region = Rect2(216, 805, 40, 43)
 
 [sub_resource type="Resource" id="Resource_fgmgg"]
 script = ExtResource("3_hj04q")
@@ -45,8 +57,18 @@ normal_texture = ExtResource("6_8jrxj")
 heightmap_enabled = true
 heightmap_texture = ExtResource("5_yoit8")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_w3u6e"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_bn2l6"]
 viewport_path = NodePath("Sprite3D/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_3ynec"]
+viewport_path = NodePath("Sprite3D2/SubViewport")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wwlso"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1v1a"]
+atlas = SubResource("CompressedTexture2D_wwlso")
+region = Rect2(114, 365, 40, 40)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_iap6j"]
 viewport_path = NodePath("BarMinigameSprite3D/SubViewport")
@@ -69,9 +91,9 @@ inputNode = NodePath("InputPort")
 outputNode = NodePath("OutputPort")
 timeProgressBar = NodePath("Sprite3D/SubViewport/ProgressBar")
 stationName = NodePath("Sprite3D/SubViewport/Label")
-buttonTexture = NodePath("Sprite3D/SubViewport/TextureRect")
-controllerButtonTexture = ExtResource("3_kecgh")
-keyboardButtonTexture = ExtResource("4_3ynec")
+buttonTexture = NodePath("Sprite3D2/SubViewport/TextureRect")
+controllerButtonTexture = SubResource("AtlasTexture_wwlso")
+keyboardButtonTexture = SubResource("AtlasTexture_w0ftq")
 recipes = Array[Object]([SubResource("Resource_fgmgg"), SubResource("Resource_wc540")])
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=90114362]
@@ -97,7 +119,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0206666, 0.3782071, 0.95549
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=840510996]
 transform = Transform3D(-1.7484555e-07, 0, 4, 0, 4, 0, -4, 0, -1.7484555e-07, -0.022883892, 3.6945045, 0)
-texture = SubResource("ViewportTexture_w3u6e")
+texture = SubResource("ViewportTexture_bn2l6")
 
 [node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=2072696855]
 transparent_bg = true
@@ -122,13 +144,18 @@ text = "
 "
 metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect" type="TextureRect" parent="Sprite3D/SubViewport" unique_id=1468167481]
-offset_left = 27.0
-offset_right = 1051.0
-offset_bottom = 1024.0
-scale = Vector2(0.0400002, 0.04000014)
-texture = ExtResource("3_kecgh")
-metadata/_edit_use_anchors_ = true
+[node name="Sprite3D2" type="Sprite3D" parent="." unique_id=883796709]
+transform = Transform3D(-6.2186e-08, -1, -1.7320508, -4.3711385e-08, 1.7320508, -1, 2, 6.7621713e-09, -7.5710346e-08, 1.6917517, 0.49791187, -0.12980407)
+texture = SubResource("ViewportTexture_3ynec")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D2" unique_id=600334296]
+transparent_bg = true
+size = Vector2i(41, 40)
+
+[node name="TextureRect" type="TextureRect" parent="Sprite3D2/SubViewport" unique_id=1420124498]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_g1v1a")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1808461735]
 stream = ExtResource("9_8jrxj")

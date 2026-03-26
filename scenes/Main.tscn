@@ -55,6 +55,20 @@ uv1_triplanar = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3lnvk"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bn2l6"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmqll"]
+atlas = SubResource("CompressedTexture2D_bn2l6")
+region = Rect2(114, 365, 40, 40)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g1v1a"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cp6k"]
+atlas = SubResource("CompressedTexture2D_g1v1a")
+region = Rect2(216, 805, 40, 43)
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wt1ef"]
 sky_top_color = Color(0.5620234, 0.4562606, 0.1947913, 1)
 sky_horizon_color = Color(0.8877065, 0.40235606, 7.70092e-07, 1)
@@ -136,10 +150,12 @@ transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -0.017, 0, -0.001)
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -0.017, 0, 0)
 
 [node name="Grindstone" parent="NavigationRegion3D" unique_id=1599248455 groups=["Grindstone", "navigation_mesh_source_group"] instance=ExtResource("4_g6wdg")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10.959, 0, -4.184)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10.535882, 0, -4.184)
+controllerButtonTexture = SubResource("AtlasTexture_cmqll")
+keyboardButtonTexture = SubResource("AtlasTexture_8cp6k")
 
 [node name="Anvil" parent="NavigationRegion3D" unique_id=1158721071 groups=["navigation_mesh_source_group"] instance=ExtResource("5_hq6as")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.855, 0, 4.598)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.855, 0, 2.3331976)
 
 [node name="Forge" parent="NavigationRegion3D" unique_id=994045895 groups=["navigation_mesh_source_group"] instance=ExtResource("8_cmqll")]
 transform = Transform3D(-0.3, 0, -2.6226834e-08, 0, 0.3, 0, 2.6226834e-08, 0, -0.3, 0, 0.15882301, 0)
@@ -205,14 +221,14 @@ maxSize = 40.0
 [node name="Enviroment" type="Node" parent="." unique_id=1495741313]
 
 [node name="Turret2" parent="Enviroment" unique_id=353788340 node_paths=PackedStringArray("inputNode") instance=ExtResource("2_pnhog")]
-transform = Transform3D(0.807084, 0, -0.5904367, 0, 1, 0, 0.5904367, 0, 0.807084, 8.197841, 2.9593534, 7.3325486)
+transform = Transform3D(0.807084, 0, -0.5904367, 0, 1, 0, 0.5904367, 0, 0.807084, 8.197841, 2.9593534, 8.394757)
 inputNode = NodePath("StationPort3")
 
 [node name="StationPort3" parent="Enviroment/Turret2" unique_id=1915723754 instance=ExtResource("3_2c4at")]
 transform = Transform3D(-1.737944, 0, 2.3763328, 0, 1, 0, -2.398319, 0, -1.7220117, -0.3306508, -3.1234941, 0.20035172)
 
 [node name="Turret4" parent="Enviroment" unique_id=1789132715 node_paths=PackedStringArray("inputNode") instance=ExtResource("2_pnhog")]
-transform = Transform3D(-0.7744369, 0, 0.6326513, 0, 1, 0, -0.6326513, 0, -0.7744369, -7.927705, 2.9262388, -7.20908)
+transform = Transform3D(-0.7744369, 0, 0.6326513, 0, 1, 0, -0.6326513, 0, -0.7744369, -7.927705, 2.9262388, -8.25852)
 inputNode = NodePath("StationPort2")
 
 [node name="StationPort2" parent="Enviroment/Turret4" unique_id=1365024135 instance=ExtResource("3_2c4at")]

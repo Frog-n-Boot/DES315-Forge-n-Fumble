@@ -62,66 +62,66 @@ public partial class Turret : Node3D
 			GD.Print("Input are not found");
 	}
 
-    public override void _Process(double delta)
-    {
-        currentTarget = FindClosestEnemy();
-        if (currentTarget == null) return;
-        bulletSpawnPosition.LookAt(currentTarget.GlobalPosition, Vector3.Up);
-    }
+	public override void _Process(double delta)
+	{
+		currentTarget = FindClosestEnemy();
+		if (currentTarget == null) return;
+		bulletSpawnPosition.LookAt(currentTarget.GlobalPosition, Vector3.Up);
+	}
 
-    private void SpawnBullet()
-    {
-        if (bulletCount <= 0)
-        {
-            shootTimer.Stop();
-            return;
-        }
+	private void SpawnBullet()
+	{
+		if (bulletCount <= 0)
+		{
+			shootTimer.Stop();
+			return;
+		}
 
-        EnemyController target = FindClosestEnemy();
-        if (target == null) return;
+		EnemyController target = FindClosestEnemy();
+		if (target == null) return;
 
 		AimAtTarget(target.GlobalPosition);
 		
-        var bullet = bulletScene.Instantiate<Bullet>();
-        bullet.AddToGroup("Bullet");
-        GetTree().Root.AddChild(bullet);
-        bullet.GlobalPosition = bulletSpawnPosition.GlobalPosition;
+		var bullet = bulletScene.Instantiate<Bullet>();
+		bullet.AddToGroup("Bullet");
+		GetTree().Root.AddChild(bullet);
+		bullet.GlobalPosition = bulletSpawnPosition.GlobalPosition;
 		bullet.GlobalRotation = bulletSpawnPosition.GlobalRotation;
 
-        Vector3 forward = -bulletSpawnPosition.GlobalTransform.Basis.Z;
-        bullet.SetDirection(forward);
+		Vector3 forward = -bulletSpawnPosition.GlobalTransform.Basis.Z;
+		bullet.SetDirection(forward);
 
-        bulletCount--;
-        label.Text = $"{bulletCount}";
+		bulletCount--;
+		label.Text = $"{bulletCount}";
 		audio.Play();
-    }
+	}
 
-    private EnemyController FindClosestEnemy()
-    {
-        var enemies = GetTree().GetNodesInGroup("Enemy");
-        EnemyController closest = null;
-        float closestDist = float.MaxValue;
+	private EnemyController FindClosestEnemy()
+	{
+		var enemies = GetTree().GetNodesInGroup("Enemy");
+		EnemyController closest = null;
+		float closestDist = float.MaxValue;
 
-        foreach (Node node in enemies)
-        {
-            if (node is not EnemyController enemy) continue;
+		foreach (Node node in enemies)
+		{
+			if (node is not EnemyController enemy) continue;
 
-            Vector3 toEnemy = enemy.GlobalPosition - GlobalPosition;
-            toEnemy.Y = 0;
-            float distance = toEnemy.Length();
+			Vector3 toEnemy = enemy.GlobalPosition - GlobalPosition;
+			toEnemy.Y = 0;
+			float distance = toEnemy.Length();
 			
-	       	if (distance > range) continue;
+		   	if (distance > range) continue;
 
-            float angle = Mathf.RadToDeg(Transform.Basis.X.AngleTo(toEnemy.Normalized()));
-            if (angle <= coneAngle && distance < closestDist)
-            {
-                closestDist = distance;
-                closest     = enemy;
-            }
-        }
+			float angle = Mathf.RadToDeg(Transform.Basis.X.AngleTo(toEnemy.Normalized()));
+			if (angle <= coneAngle && distance < closestDist)
+			{
+				closestDist = distance;
+				closest     = enemy;
+			}
+		}
 
-        return closest;
-    }
+		return closest;
+	}
 
 	private void AimAtTarget(Vector3 targetPos)
 	{
@@ -168,4 +168,3 @@ public partial class Turret : Node3D
 		}
 	}
 }
-

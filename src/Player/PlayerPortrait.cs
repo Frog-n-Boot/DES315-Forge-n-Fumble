@@ -8,12 +8,12 @@ public partial class PlayerPortrait : PanelContainer
 	private ProgressBar weaponDurabilityBar;
 	private HealthBar healthBar;
 
-    public override void _Ready()
-    {
+	public override void _Ready()
+	{
 		weaponDurabilityBar = GetNode<ProgressBar>("HBoxContainer/TextureRect/VBoxContainer/WeaponDurabilityProgressBar");
 		healthBar = GetNode<HealthBar>("HBoxContainer/TextureRect/TextureProgressBar");
 		weaponDurabilityBar.MinValue = 0;
-    }
+	}
 
 	public void Init(PlayerController player)
 	{
@@ -37,10 +37,10 @@ public partial class PlayerPortrait : PanelContainer
 		
 
 		if(player.currentWeapon != null)
-        {
-            weaponDurabilityBar.MaxValue = player.currentWeapon.maxDurability;
+		{
+			weaponDurabilityBar.MaxValue = player.currentWeapon.maxDurability;
 			weaponDurabilityBar.Value = player.currentWeapon.durability;
-        }
+		}
 			
 		else
 			weaponDurabilityBar.Value = 0;
