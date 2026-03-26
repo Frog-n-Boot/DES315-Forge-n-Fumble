@@ -49,9 +49,12 @@ public partial class TutorialManager : Node
 
 	public void OnIngotCrafted()
     {
-        if(currentRoom != 0) return;
-		ingotsCrafted++;
-		if(ingotsCrafted >= 3) CompleteRoom();
+		GetTree().CreateTimer(1).Timeout += () =>{
+            if(currentRoom != 0) return;
+			ingotsCrafted++;
+			if(ingotsCrafted >= 3) CompleteRoom();
+        };
+        
     }
 
 	public void OnSwordsCrafted()
@@ -74,9 +77,7 @@ public partial class TutorialManager : Node
     }
 	public void OnEnemyKilled()
     {
-		CompleteTutorial();
-		
-        
+		CompleteTutorial();  
     }
     
 	
@@ -114,7 +115,7 @@ public partial class TutorialManager : Node
 		foreach(Node p in GetTree().GetNodesInGroup("Player"))
         {
             if(p is PlayerController player)			
-				player.GlobalPosition = playerMarker[currentRoom -1 ].GlobalPosition;
+				player.GlobalPosition = playerMarker[currentRoom ].GlobalPosition;
         }
 		
     }
