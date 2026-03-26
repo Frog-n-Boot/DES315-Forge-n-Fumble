@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cfllkfsxak7hb" path="res://assets/materials/Texture_sets/Item_Textures/sword_frts_rough_low_Normal.tga" id="3_xvnj0"]
 [ext_resource type="Texture2D" uid="uid://dspkvve6wtnc3" path="res://assets/materials/Texture_sets/Item_Textures/sword_scnd_shin_low_ORM.tga" id="4_gsg4f"]
 [ext_resource type="ArrayMesh" uid="uid://vmdklfvgul40" path="res://assets/models/FinalAssets_Low/Items_Models/Sword_first_low.obj" id="5_acyf5"]
+[ext_resource type="AudioStream" uid="uid://c01r2egd4skm" path="res://assets/Sounds/SFX/SwordBreak.wav" id="7_xvnj0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p43h7"]
 size = Vector3(7.15668, 1.6914063, 14.032881)
@@ -21,8 +22,9 @@ normal_texture = ExtResource("3_xvnj0")
 heightmap_enabled = true
 heightmap_texture = ExtResource("2_d8pt4")
 
-[node name="IronSword" type="Node3D" unique_id=1461625584]
+[node name="IronSword" type="Node3D" unique_id=1461625584 node_paths=PackedStringArray("audio")]
 script = ExtResource("1_d8pt4")
+audio = NodePath("SwordBreak")
 damage = 3
 maxDurability = 20
 
@@ -48,3 +50,10 @@ shape = SubResource("BoxShape3D_hgo20")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 material_override = SubResource("ORMMaterial3D_7epq2")
 mesh = ExtResource("5_acyf5")
+
+[node name="SwordBreak" type="AudioStreamPlayer3D" parent="." unique_id=2122115406]
+stream = ExtResource("7_xvnj0")
+volume_db = -60.0
+max_db = -24.0
+max_polyphony = 10
+bus = &"SFX"

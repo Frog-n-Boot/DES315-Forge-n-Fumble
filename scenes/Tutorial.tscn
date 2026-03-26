@@ -4,11 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://b8a87u3vesy3q" path="res://assets/prefabs/Enemy.tscn" id="1_q5ijt"]
 [ext_resource type="Texture2D" uid="uid://cwnqstnv8c4ua" path="res://assets/textures/Screenshot 2026-03-11 140338.png" id="2_bi4s5"]
 [ext_resource type="PackedScene" uid="uid://8roa2xkb2ipl" path="res://assets/prefabs/Player.tscn" id="2_pgr2e"]
+[ext_resource type="Resource" uid="uid://calih72lg8n07" path="res://assets/resources/AI/NormalEnemyData.tres" id="2_xi6p3"]
 [ext_resource type="Script" uid="uid://dnqtfi3fpu8ue" path="res://src/Camera/CameraController.cs" id="3_pgr2e"]
 [ext_resource type="Material" uid="uid://c14d6xj6opusf" path="res://assets/materials/Texture_sets/Character_Textures/Goblin Textures/goblin_material.tres" id="3_ujnhc"]
-[ext_resource type="ArrayMesh" uid="uid://bmq26ged3l0nq" path="res://assets/models/FinalAssets_Low/Character_Models/Goblin_low.obj" id="4_xi6p3"]
+[ext_resource type="ArrayMesh" uid="uid://bmq26ged3l0nq" path="res://assets/models/FinalAssets_Low/Character_Models/goblin_low.obj" id="4_xi6p3"]
 [ext_resource type="Material" uid="uid://btwle4bal72vo" path="res://assets/materials/Texture_sets/Character_Textures/Skeleton Textures/skeleton_material.tres" id="5_e4hrd"]
-[ext_resource type="ArrayMesh" uid="uid://8wpolus5qbva" path="res://assets/models/FinalAssets_Low/Character_Models/Skeleton_low.obj" id="6_f47pi"]
+[ext_resource type="ArrayMesh" uid="uid://8wpolus5qbva" path="res://assets/models/FinalAssets_Low/Character_Models/skeleton_low.obj" id="6_f47pi"]
 [ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/FinalAssets_Low/Items_Models/Sword.tscn" id="8_18x7b"]
 [ext_resource type="PackedScene" uid="uid://706c56ie3ke" path="res://assets/prefabs/Turret.tscn" id="8_lyiqi"]
 [ext_resource type="Material" uid="uid://24hwnxagoffj" path="res://assets/models/FinalAssets_Low/WorkStations/Ballista/ballista.tres" id="9_gb32b"]
@@ -61,6 +62,7 @@ glow_enabled = true
 
 [node name="Enemy" parent="." unique_id=356561528 instance=ExtResource("1_q5ijt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.599705, 1.0145144, -26.589445)
+enemyData = ExtResource("2_xi6p3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1286559043]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
@@ -196,6 +198,142 @@ transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -3
 shouldDespawn = false
 
 [node name="IronIngot" parent="CollisionShape3D" unique_id=2071596505 instance=ExtResource("21_dn1de")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -3.5927, 0, -0.43765825)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1867228831]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_wko22")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D2" unique_id=2056682098]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, -0.3302719, -0.0047309324, -0.114155054)
+mesh = SubResource("PlaneMesh_3lnvk")
+surface_material_override/0 = SubResource("StandardMaterial3D_s5o08")
+
+[node name="GoblinLow" type="MeshInstance3D" parent="CollisionShape3D2" unique_id=125328624]
+transform = Transform3D(0.49999914, 0.0008447158, -0.00041745178, -0.00030141877, 0.353275, 0.35383153, 0.0008927247, -0.3538307, 0.3532749, 4.393035, -0.0350842, -3.8853211)
+material_override = ExtResource("3_ujnhc")
+mesh = ExtResource("4_xi6p3")
+
+[node name="GoblinLow2" type="MeshInstance3D" parent="CollisionShape3D2" unique_id=1968881554 groups=["Enemy"]]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5.872344, 3.1789145e-07, 4.059765)
+material_override = ExtResource("3_ujnhc")
+mesh = ExtResource("4_xi6p3")
+
+[node name="SkeletonLow" type="MeshInstance3D" parent="CollisionShape3D2" unique_id=710326429]
+transform = Transform3D(0.49999914, 0.0008447158, -0.00041745178, -0.00030141877, 0.353275, 0.35383153, 0.0008927247, -0.3538307, 0.3532749, 6.2891607, -0.03569307, -3.8939226)
+material_override = ExtResource("5_e4hrd")
+mesh = ExtResource("6_f47pi")
+
+[node name="DullSword" parent="CollisionShape3D2" unique_id=1898769692 instance=ExtResource("24_f0oxr")]
+transform = Transform3D(0.2966995, -0.3905308, -0.09723833, 0.17566925, 0.016980123, 0.46781623, -0.36209092, -0.31176504, 0.14728442, 2.3297563, 0.03764791, -2.8277614)
+
+[node name="Sword" parent="CollisionShape3D2" unique_id=1840220621 instance=ExtResource("8_18x7b")]
+transform = Transform3D(0.006748192, 0.199509, 0.45842203, -0.4763155, 0.14187294, -0.05473266, -0.15191454, -0.43596816, 0.19197318, 0.9618552, 0.009899302, 1.1772256)
+
+[node name="BalArrowLow" type="MeshInstance3D" parent="CollisionShape3D2" unique_id=1540361078]
+transform = Transform3D(0.49986285, -0.010579979, 0.0050266865, 0.011160918, 0.49532017, -0.067330986, -0.0035549435, 0.06742477, 0.49542043, 2.0098083, 0.07003198, 5.2082777)
+material_override = ExtResource("9_gb32b")
+mesh = ExtResource("10_eba8f")
+
+[node name="BalArrowLow2" type="MeshInstance3D" parent="CollisionShape3D2" unique_id=1307251223]
+transform = Transform3D(0.49986285, -0.010579979, 0.0050266865, 0.011160918, 0.49532017, -0.067330986, -0.0035549435, 0.06742477, 0.49542043, 1.8592008, 0.06666915, 5.209348)
+material_override = ExtResource("9_gb32b")
+mesh = ExtResource("10_eba8f")
+
+[node name="BalArrowLow3" type="MeshInstance3D" parent="CollisionShape3D2" unique_id=179014008]
+transform = Transform3D(0.49986285, -0.010579979, 0.0050266865, 0.011160918, 0.49532017, -0.067330986, -0.0035549435, 0.06742477, 0.49542043, 1.7129819, 0.06340443, 5.210388)
+material_override = ExtResource("9_gb32b")
+mesh = ExtResource("10_eba8f")
+
+[node name="BalArrowLow4" type="MeshInstance3D" parent="CollisionShape3D2" unique_id=1895067102]
+transform = Transform3D(0.49986285, -0.010579979, 0.0050266865, 0.011160918, 0.49532017, -0.067330986, -0.0035549435, 0.06742477, 0.49542043, 1.5628942, 0.060053453, 5.211456)
+material_override = ExtResource("9_gb32b")
+mesh = ExtResource("10_eba8f")
+
+[node name="Forge" parent="CollisionShape3D2" unique_id=942535822 instance=ExtResource("11_tfuon")]
+transform = Transform3D(-0.0833288, 0.00050327287, 0.0007080756, 0.0005039774, 0.08333178, 8.080096e-05, -0.0007075742, 8.507925e-05, -0.08333029, -3.7103126, 0, -3.9234855)
+
+[node name="Anvil" parent="CollisionShape3D2" unique_id=2078530051 instance=ExtResource("11_m6ekv")]
+transform = Transform3D(1.8874477e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, 1.8874477e-08, 1.3463134, 0, -2.9769075)
+
+[node name="Ore" parent="CollisionShape3D2" unique_id=1506267590 instance=ExtResource("13_pl2ve")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -4.4811945, 0.0024974847, -3.4785209)
+shouldDespawn = false
+
+[node name="Ore3" parent="CollisionShape3D2" unique_id=1840668495 instance=ExtResource("13_pl2ve")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -4.1597586, 0.0024974847, -3.4785209)
+shouldDespawn = false
+
+[node name="Ore4" parent="CollisionShape3D2" unique_id=1392571262 instance=ExtResource("13_pl2ve")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -4.8093796, 0.0024974847, -3.3207176)
+shouldDespawn = false
+
+[node name="Ore2" parent="CollisionShape3D2" unique_id=1559371621 instance=ExtResource("13_pl2ve")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.33333334, 0, 0, 0, 0.33333334, 6.735491, 0.0024971669, -2.880828)
+shouldDespawn = false
+
+[node name="IronOre" parent="CollisionShape3D2" unique_id=220213473 instance=ExtResource("14_3bp12")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -4.326485, 0, -3.1964788)
+shouldDespawn = false
+
+[node name="IronOre2" parent="CollisionShape3D2" unique_id=1732905895 instance=ExtResource("14_3bp12")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -3.9422147, 0, -3.2893648)
+shouldDespawn = false
+
+[node name="Grindstone" parent="CollisionShape3D2" unique_id=1380663119 instance=ExtResource("10_ei5ly")]
+transform = Transform3D(-1.0927847e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.0927847e-08, 0.5320795, 0, 0.35028395)
+
+[node name="Turret" parent="CollisionShape3D2" unique_id=1570264164 node_paths=PackedStringArray("inputNode") instance=ExtResource("8_lyiqi")]
+transform = Transform3D(0.33333334, 0, 0, 0, 0.33333334, 0, 0, 0, 0.33333334, 2.9626079, 0, 4.460862)
+inputNode = NodePath("StationPort")
+
+[node name="StationPort" type="Node3D" parent="CollisionShape3D2/Turret" unique_id=708340257]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.4919596, 0, 0.19842052)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D2/Turret/StationPort" unique_id=748097484]
+transform = Transform3D(0.18727133, 0, 0, 0, 1, 0, 0, 0, 0.1909036, 0, 0, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_vl1yp")
+transparency = 1.0
+skeleton = NodePath("")
+
+[node name="Area3D" type="Area3D" parent="CollisionShape3D2/Turret/StationPort" unique_id=252906179]
+transform = Transform3D(1.8234533, 0, 0, 0, 1, 0, 0, 0, 1.9250902, 0, 0, 0)
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollisionShape3D2/Turret/StationPort/Area3D" unique_id=697562841]
+transform = Transform3D(0.17999986, 0, 0, 0, 0.99995637, 0, 0, 0, 0.18999994, 1.653058, 1.2357932, -0.47160244)
+shape = SubResource("BoxShape3D_vl1yp")
+
+[node name="Copper_Ingot" parent="CollisionShape3D2" unique_id=1886817502 instance=ExtResource("17_4tybr")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -4.6443706, 0, -0.38156193)
+
+[node name="Copper_Ore" parent="CollisionShape3D2" unique_id=1567763887 instance=ExtResource("18_j4y01")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -4.890204, 0.0025, -0.38156193)
+shouldDespawn = false
+
+[node name="DullSword2" parent="CollisionShape3D2" unique_id=251251206 instance=ExtResource("24_f0oxr")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.043136515, 0.16098765, 0, -0.16098765, 0.043136515, -4.890204, 0.00016666668, 0.15777144)
+
+[node name="Sword2" parent="CollisionShape3D2" unique_id=1807615300 instance=ExtResource("8_18x7b")]
+transform = Transform3D(-7.2852315e-09, 0, -0.16666667, 0.16098765, 0.043136515, -7.036993e-09, 0.043136515, -0.16098765, -1.885557e-09, -4.6443706, 0.00016666668, 0.15777144)
+
+[node name="IronDullSword" parent="CollisionShape3D2" unique_id=1168130701 instance=ExtResource("19_oyacv")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.043136515, 0.16098765, 0, -0.16098765, 0.043136515, -3.8625333, 0.00016666668, 0.101675116)
+script = ExtResource("20_ujnhc")
+itemDataPath = "uid://mjifv5ikq2a1"
+shouldDespawn = false
+despawnTime = 30.0
+
+[node name="IronSword" parent="CollisionShape3D2" unique_id=474953957 instance=ExtResource("20_f0oxr")]
+transform = Transform3D(-7.2852315e-09, 0, 0.16666667, -0.16098765, 0.043136504, -7.036993e-09, -0.043136504, -0.16098765, -1.8855564e-09, -3.5927, 0.00016666668, 0.101675116)
+
+[node name="IronOre3" parent="CollisionShape3D2" unique_id=260689946 instance=ExtResource("14_3bp12")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -3.8625333, 0, -0.43765825)
+shouldDespawn = false
+
+[node name="IronIngot" parent="CollisionShape3D2" unique_id=843972907 instance=ExtResource("21_dn1de")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -3.5927, 0, -0.43765825)
 
 [node name="World" type="Node" parent="." unique_id=1495741313]

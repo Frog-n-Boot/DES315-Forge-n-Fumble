@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class HealthBar : ProgressBar
+public partial class HealthBar : TextureProgressBar
 {
 	[Export] private NodePath targetPath;
     [Export] private bool isForge = true;

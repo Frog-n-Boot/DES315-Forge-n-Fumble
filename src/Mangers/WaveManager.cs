@@ -307,7 +307,7 @@ public partial class WaveManager : Node
 		if (spawnPositions == null || spawnPositions.Length == 0)
 		{
 			GD.PrintErr("WaveManager: No spawn positions available, using fallback.");
-			return new Vector3(10, 1, 10);
+			return new Vector3(10, 0, 10);
 		}
 
 		int index = rnd.RandiRange(0, spawnPositions.Length - 1);
@@ -315,7 +315,7 @@ public partial class WaveManager : Node
 		if (spawnPositions[index] == null)
 		{
 			GD.PrintErr($"WaveManager: Spawn position [{index}] is null, using fallback.");
-			return new Vector3(10, 1, 10);
+			return new Vector3(10, 0, 10);
 		}
 
 		return spawnPositions[index].GlobalPosition;

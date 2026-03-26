@@ -4,7 +4,9 @@ using System.Collections.Generic;
 
 public partial class Turret : Node3D
 {
-	[Export] private Node3D bulletSpawnLocation;
+	[Export] private Node3D bulletSpawnPosition;
+	[Export] private Node3D turretHead;
+	[Export] private Node3D turretBarrel;
 	[Export] private PackedScene bulletScene;
 	[Export] public float range = 20.0f;
 	[Export] public float coneAngle = 360.0f;
@@ -64,7 +66,7 @@ public partial class Turret : Node3D
     {
         currentTarget = FindClosestEnemy();
         if (currentTarget == null) return;
-        bulletSpawnLocation.LookAt(currentTarget.GlobalPosition, Vector3.Up);
+        bulletSpawnPosition.LookAt(currentTarget.GlobalPosition, Vector3.Up);
     }
 
     private void SpawnBullet()
@@ -78,12 +80,15 @@ public partial class Turret : Node3D
         EnemyController target = FindClosestEnemy();
         if (target == null) return;
 
+		AimAtTarget(target.GlobalPosition);
+		
         var bullet = bulletScene.Instantiate<Bullet>();
         bullet.AddToGroup("Bullet");
         GetTree().Root.AddChild(bullet);
-        bullet.GlobalPosition = bulletSpawnLocation.GlobalPosition;
+        bullet.GlobalPosition = bulletSpawnPosition.GlobalPosition;
+		bullet.GlobalRotation = bulletSpawnPosition.GlobalRotation;
 
-        Vector3 forward = -bulletSpawnLocation.GlobalTransform.Basis.Z;
+        Vector3 forward = -bulletSpawnPosition.GlobalTransform.Basis.Z;
         bullet.SetDirection(forward);
 
         bulletCount--;
@@ -118,6 +123,24 @@ public partial class Turret : Node3D
         return closest;
     }
 
+	private void AimAtTarget(Vector3 targetPos)
+	{
+		Vector3 toTarget = targetPos - bulletSpawnPosition.GlobalPosition;
+
+		Vector3 horizontalDir = new Vector3(toTarget.X, 0, toTarget.Z);
+		if(horizontalDir.LengthSquared() > 0.001f)
+		{
+			float yaw = Mathf.Atan2(horizontalDir.X, horizontalDir.Z);
+			turretHead.Rotation = new Vector3(0, yaw, 0);
+		}
+
+		float horizontalDist = horizontalDir.Length();
+		if(horizontalDist > 0.001f){
+			
+		}float pitch = -Mathf.Atan2(toTarget.Y, horizontalDist);
+		turretBarrel.Rotation = new Vector3(pitch, 0, 0);
+	}	
+	
 	public void OnInputBodyEntered(Node3D body)
 	{
 		if (body.IsInGroup("Player"))

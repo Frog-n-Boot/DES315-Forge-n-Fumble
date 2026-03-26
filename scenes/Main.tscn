@@ -73,29 +73,17 @@ fog_density = 1.0
 fog_depth_end = 242.5
 volumetric_fog_density = 0.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cvaul"]
-bg_color = Color(0.74509805, 0, 0, 1)
-border_width_bottom = 3
-border_color = Color(0.39748856, 0, 0, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-expand_margin_bottom = 3.0
-shadow_size = 3
+[sub_resource type="Gradient" id="Gradient_cmqll"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ikfag"]
-bg_color = Color(0, 0.6, 0, 1)
-border_width_bottom = 3
-border_color = Color(2.1057204e-07, 0.27337572, 4.813075e-08, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-expand_margin_bottom = 3.0
-shadow_size = 3
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8cp6k"]
+gradient = SubResource("Gradient_cmqll")
+width = 1145
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7dxqx"]
+[sub_resource type="Gradient" id="Gradient_8cp6k"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8b871"]
+gradient = SubResource("Gradient_8cp6k")
+width = 1145
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4vp4a"]
 size = Vector3(1, 1.1378174, 0.91204834)
@@ -307,15 +295,17 @@ offset_bottom = 569.0
 scale = Vector2(1.4340242, 1.4681656)
 theme_override_constants/separation = 100
 
-[node name="ForgeProgressBar" type="ProgressBar" parent="UI/CanvasLayer" unique_id=847755065]
+[node name="ForgeProgressBar" type="TextureProgressBar" parent="UI/CanvasLayer" unique_id=173815992]
 offset_left = 3.0
-offset_top = 11.0
+offset_top = 4.0
 offset_right = 1149.0
-offset_bottom = 39.0
-theme_override_styles/background = SubResource("StyleBoxFlat_cvaul")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ikfag")
-value = 50.0
-show_percentage = false
+offset_bottom = 68.0
+scale = Vector2(1, 0.7199999)
+value = 20.0
+texture_under = SubResource("GradientTexture2D_8cp6k")
+texture_progress = SubResource("GradientTexture2D_8b871")
+tint_under = Color(1, 0, 0, 1)
+tint_progress = Color(0, 1, 0, 1)
 script = ExtResource("26_pb578")
 targetPath = NodePath("../../..")
 
@@ -434,7 +424,6 @@ z_index = -1
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(28.860407, 16.15729)
-texture = SubResource("CompressedTexture2D_7dxqx")
 
 [node name="ColorRect" type="ColorRect" parent="UI/PauseMenu" unique_id=25129296]
 z_index = -1

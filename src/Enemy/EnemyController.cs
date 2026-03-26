@@ -571,7 +571,12 @@ public partial class EnemyController : CharacterBody3D
     #endregion
 
     #region Public API
-    public void TakeDamage(int amount) { Flash(); TakeHealthDamage(amount); }
+    public void TakeDamage(int amount)
+	{
+		Flash();
+		TakeHealthDamage(amount);
+		DamageNumbers.Spawn(amount, GlobalPosition, GetParent());
+	}
     public void Die() { EmitSignal(SignalName.Died, this, GlobalPosition); QueueFree(); }
     public void SetTarget(Node3D newTarget) => moveTarget = newTarget;
     #endregion

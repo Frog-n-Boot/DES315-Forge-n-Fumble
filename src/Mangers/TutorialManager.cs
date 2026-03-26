@@ -26,7 +26,7 @@ public partial class TutorialManager : Node
 
 		EmitSignal(SignalName.TutorialCompleted);
 
-		GetTree().ChangeSceneToFile("res://scenes/Main.tscn");
+		GetTree().ChangeSceneToFile("res://scenes/LoadingScreen.tscn");
 
 	}
 	private void OnTutorialEnemyDied(EnemyController enemy, Vector3 deathPosition) => CompleteTutorial();

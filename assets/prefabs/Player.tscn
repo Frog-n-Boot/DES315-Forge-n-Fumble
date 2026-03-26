@@ -2,21 +2,34 @@
 
 [ext_resource type="Script" uid="uid://bwwhlpy6hxupd" path="res://src/Player/PlayerController.cs" id="1_ormyk"]
 [ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/FinalAssets_Low/Items_Models/Sword.tscn" id="3_8d03m"]
-[ext_resource type="Texture2D" uid="uid://bdv8d8m0mmw4o" path="res://assets/textures/BlueDwarf.png" id="3_ob8sk"]
+[ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="3_k0jhy"]
 [ext_resource type="Texture2D" uid="uid://fywbkplmkbgs" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/Dwarf_low_BaseCol.tga" id="3_v0ggv"]
-[ext_resource type="Texture2D" uid="uid://bmhg5m3p24cqb" path="res://assets/textures/RedDwarf.png" id="4_gp7mg"]
 [ext_resource type="Texture2D" uid="uid://bx0rnncaa27mi" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/Dwarf_low_ORM.tga" id="4_jnlb4"]
 [ext_resource type="ArrayMesh" uid="uid://dewjvcdn4tcwe" path="res://assets/models/FinalAssets_Low/Character_Models/dwarf_low.obj" id="4_t0fpx"]
 [ext_resource type="Texture2D" uid="uid://c7ffbeee7twxq" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/DwarfGreen_low_BaseCol.tga" id="5_ag2w6"]
 [ext_resource type="Texture2D" uid="uid://bgk03fcoiqv1l" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/Dwarf_low_Normal.tga" id="5_bw8qq"]
-[ext_resource type="Texture2D" uid="uid://cdlum5v1gnmv7" path="res://assets/textures/GreenDwarf.png" id="5_yv8gf"]
-[ext_resource type="Texture2D" uid="uid://p55rbagysnlo" path="res://assets/textures/PurpleDwarf.png" id="6_glr06"]
 [ext_resource type="Texture2D" uid="uid://bojhtl0pjp5on" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/DwarfPurple_low_BaseCol.tga" id="6_so67x"]
 [ext_resource type="AudioStream" uid="uid://c4ymn22aaas8l" path="res://assets/Sounds/SFX/SwordSwipe.mp3" id="8_jnlb4"]
 [ext_resource type="Texture2D" uid="uid://bwvn5hsl7jk60" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/DwarfRed_low_BaseCol.tga" id="8_ob8sk"]
 [ext_resource type="AudioStream" uid="uid://dhfcru8adja3" path="res://assets/Sounds/SFX/PlayerDamaged.wav" id="15_gp7mg"]
 [ext_resource type="Script" uid="uid://ddw54ydvlwsxr" path="res://src/Weapons/SpinAttack.cs" id="15_sq3q5"]
 [ext_resource type="AudioStream" uid="uid://detofwirhtkah" path="res://assets/Sounds/SFX/PlayerDeath.wav" id="16_yv8gf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sq3q5"]
+atlas = ExtResource("3_k0jhy")
+region = Rect2(504, 601, 148, 165)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohuux"]
+atlas = ExtResource("3_k0jhy")
+region = Rect2(187, 601, 148, 165)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_on3ce"]
+atlas = ExtResource("3_k0jhy")
+region = Rect2(346, 601, 148, 165)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40m61"]
+atlas = ExtResource("3_k0jhy")
+region = Rect2(24, 601, 148, 165)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t0fpx"]
 size = Vector3(1.6055908, 2.0847168, 0.8642578)
@@ -306,7 +319,7 @@ death = NodePath("Death")
 rightHand = NodePath("CollisionShape3D/RightHand")
 leftHand = NodePath("CollisionShape3D/LeftHand")
 areaPickup = NodePath("Area3D")
-playerTextures = Array[Texture2D]([ExtResource("3_ob8sk"), ExtResource("4_gp7mg"), ExtResource("5_yv8gf"), ExtResource("6_glr06")])
+playerTextures = Array[Texture2D]([SubResource("AtlasTexture_sq3q5"), SubResource("AtlasTexture_ohuux"), SubResource("AtlasTexture_on3ce"), SubResource("AtlasTexture_40m61")])
 pickupNode = NodePath("CanvasLayer/PickUpNode3D")
 playerSpawnTimer = 3.0
 playerMaterialTextures = Array[Texture2D]([ExtResource("3_v0ggv"), ExtResource("8_ob8sk"), ExtResource("5_ag2w6"), ExtResource("6_so67x")])

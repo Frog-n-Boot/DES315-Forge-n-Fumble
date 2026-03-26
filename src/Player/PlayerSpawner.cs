@@ -8,7 +8,7 @@ public partial class PlayerSpawner : Node
 	[Export] private Node3D spawnParent;
 
 	[Signal] public delegate void PlayerSpawnedEventHandler(PlayerController player, int playerIndex);
-	private Node3D[] spawnPoints;
+	public Node3D[] spawnPoints;
 	
 	private InputManager inputManager;
 	private Dictionary<int, Node> activePlayers = new Dictionary<int, Node>();

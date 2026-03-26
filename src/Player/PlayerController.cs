@@ -32,6 +32,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	[Export] public float flashDuration = 0.2f;
 	[Export] public float spinStartThreshold = 3.0f;
 	[Export] public float spinStopThreshold = 1.0f;
+	private PlayerSpawner playerSpawner;
 
 	public Texture2D GetPortraitTexture() => playerTextures[PlayerIndex];
 	public int currentDevice = -2;
@@ -110,19 +111,21 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 		health = maxHealth;
 		inputBuffer = new InputBuffer();
-		AddChild(inputBuffer);
+		AddChild(inputBuffer);	
 
+		
 		inputManager = GetNode<InputManager>("/root/InputManager");
 		if (inputManager == null)
 			GD.PrintErr("PlayerController: InputManager not found!");
 
-		world = GetTree().Root.GetNodeOrNull<StaticBody3D>("testing_lab");
+		world = GetTree().Root.GetNodeOrNull<StaticBody3D>("Main");
 		if (world != null)
 			camera = world.GetNodeOrNull<Camera3D>("Camera3D");
 
 		if (camera == null)
 			camera = GetViewport().GetCamera3D();
 
+		playerSpawner = GetTree().Root.GetNodeOrNull<PlayerSpawner>("Scene/PlayerSpawner");
 		forge = GetNodeOrNull<Forge>("/root/Forge");
 		healthPack = GetNodeOrNull<HealthPack>("/root/HealthPack");
 		areaPickup = GetNodeOrNull<Area3D>("Area3D");
@@ -744,6 +747,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	{
 		health -= damage;
 		damaged.Play();
+		DamageNumbers.Spawn(damage, GlobalPosition, GetParent());
 		Flash();
 		EmitSignal(SignalName.PlayerHealthChanged, health, maxHealth);
 	}
@@ -774,7 +778,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		areaPickup.SetDeferred("monitorable", false);
 
 		GetTree().CreateTimer(playerSpawnTimer).Timeout += () =>{
-			GlobalPosition = new Vector3(0, 1, 0);
+			GlobalPosition = playerSpawner.spawnPoints[PlayerIndex].GlobalPosition;
 			health = maxHealth;
 			Visible = true;
 			SetPhysicsProcess(true);
@@ -802,6 +806,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		currentWeapon = null;
 		spinAttack.SetWeapon(null);
 		isAttacking = false;
+		
 	}
 
 	private void DropItem(Node3D hand)

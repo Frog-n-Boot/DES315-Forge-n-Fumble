@@ -15,10 +15,6 @@
 [ext_resource type="AudioStream" uid="uid://bdwbh8dx80xdj" path="res://assets/Sounds/SFX/ArrowShot9.wav" id="13_w6fnt"]
 [ext_resource type="AudioStream" uid="uid://duxa6q488bcjk" path="res://assets/Sounds/SFX/ArrowShot10.wav" id="14_aolek"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e7812"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_m1e06"]
-
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_sl1qq"]
 streams_count = 10
 stream_0/stream = ExtResource("5_oitbg")
@@ -32,36 +28,20 @@ stream_7/stream = ExtResource("12_56sbd")
 stream_8/stream = ExtResource("13_w6fnt")
 stream_9/stream = ExtResource("14_aolek")
 
-[node name="Turret" type="Node3D" unique_id=1571022317 node_paths=PackedStringArray("bulletSpawnLocation", "label", "audio") groups=["Turret"]]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e7812"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_m1e06"]
+
+[node name="Turret" type="Node3D" unique_id=1571022317 node_paths=PackedStringArray("bulletSpawnPosition", "turretHead", "turretBarrel", "inputNode", "label", "audio") groups=["Turret"]]
 transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0, 0)
 script = ExtResource("1_m1e06")
-bulletSpawnLocation = NodePath("Nuzzle")
+bulletSpawnPosition = NodePath("TurretHead/TurretBarrel/BulletSpawnLocation")
+turretHead = NodePath("TurretHead")
+turretBarrel = NodePath("TurretHead/TurretBarrel")
 bulletScene = ExtResource("2_n82r5")
+inputNode = NodePath("TurretHead/StaticBody3D/StationPort")
 label = NodePath("CanvasLayer/Node3D/Label3D")
 audio = NodePath("AudioStreamPlayer3D")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=440704571]
-collision_layer = 32
-collision_mask = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1945830702]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9050009, 0)
-shape = SubResource("CapsuleShape3D_e7812")
-
-[node name="StationPort" parent="StaticBody3D" unique_id=750325492 instance=ExtResource("3_n82r5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-
-[node name="Nuzzle" type="Node3D" parent="." unique_id=1309432331]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.8982694, 0.79, 1.2700133, -0.048)
-visible = false
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Nuzzle" unique_id=1444911399]
-transform = Transform3D(1, 0, 0, 0, 0.33043814, 0, 0, 0, 0.2738446, -0.18170571, -0.027641058, 0.07790413)
-mesh = SubResource("BoxMesh_m1e06")
-skeleton = NodePath("../../StaticBody3D")
-
-[node name="BallistaLow" parent="." unique_id=778935564 instance=ExtResource("4_cka0v")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2121636395]
 
@@ -77,3 +57,30 @@ volume_db = -40.0
 max_db = -24.0
 max_polyphony = 20
 bus = &"SFX"
+
+[node name="TurretHead" type="Node3D" parent="." unique_id=1639933072]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TurretHead" unique_id=440704571]
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TurretHead/StaticBody3D" unique_id=1945830702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9050009, 0)
+shape = SubResource("CapsuleShape3D_e7812")
+
+[node name="StationPort" parent="TurretHead/StaticBody3D" unique_id=750325492 instance=ExtResource("3_n82r5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="TurretBarrel" type="Node3D" parent="TurretHead" unique_id=309150814]
+
+[node name="BulletSpawnLocation" type="Node3D" parent="TurretHead/TurretBarrel" unique_id=1309432331]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.8982694, 0.7900001, 1.2700133, -0.048)
+visible = false
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="TurretHead/TurretBarrel/BulletSpawnLocation" unique_id=1444911399]
+transform = Transform3D(1, 0, 0, 0, 0.33043814, 0, 0, 0, 0.2738446, -0.18170571, -0.027641058, 0.07790413)
+mesh = SubResource("BoxMesh_m1e06")
+skeleton = NodePath("../../../StaticBody3D")
+
+[node name="BallistaLow" parent="TurretHead/TurretBarrel" unique_id=778935564 instance=ExtResource("4_cka0v")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
