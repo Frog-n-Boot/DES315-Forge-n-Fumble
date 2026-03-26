@@ -1,8 +1,9 @@
-[gd_resource type="Resource" format=3 uid="uid://cvs5mxaqpoflx"]
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://cvs5mxaqpoflx"]
 
 [ext_resource type="Material" uid="uid://c14d6xj6opusf" path="res://assets/materials/Texture_sets/Character_Textures/Goblin Textures/goblin_material.tres" id="1_cj5mm"]
 [ext_resource type="Script" uid="uid://bf02wgjk36psn" path="res://src/Enemy/EnemyData.cs" id="1_mvv2o"]
-[ext_resource type="ArrayMesh" uid="uid://bmq26ged3l0nq" path="res://assets/models/FinalAssets_Low/Character_Models/goblin_low.obj" id="2_pfp6m"]
+[ext_resource type="Script" uid="uid://dfgcclikd3kvh" path="res://src/Enemy/AI/EnemyBehaviourData.cs" id="1_srwom"]
+[ext_resource type="ArrayMesh" uid="uid://bmq26ged3l0nq" path="res://assets/models/FinalAssets_Low/Character_Models/Goblin_low.obj" id="2_pfp6m"]
 [ext_resource type="Script" uid="uid://cafetq1ji4h5b" path="res://src/Enemy/AI/AttackForge.cs" id="2_srwom"]
 [ext_resource type="Script" uid="uid://dcjcfda4rr8x3" path="res://src/Enemy/AI/MoveToForge.cs" id="5_srwom"]
 
@@ -25,6 +26,6 @@ scale = Vector3(2, 2, 2)
 lootDropChance = 100.0
 enemyMat = ExtResource("1_cj5mm")
 enemyMesh = ExtResource("2_pfp6m")
-attackBehaviours = [SubResource("Resource_pilw3")]
-miscBehaviours = [SubResource("Resource_t82my")]
+attackBehaviours = Array[ExtResource("1_srwom")]([SubResource("Resource_pilw3")])
+miscBehaviours = Array[ExtResource("1_srwom")]([SubResource("Resource_t82my")])
 metadata/_custom_type_script = "uid://bf02wgjk36psn"

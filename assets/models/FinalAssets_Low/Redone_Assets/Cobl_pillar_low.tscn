@@ -1,16 +1,17 @@
 [gd_scene format=3 uid="uid://dvhojin78rtxa"]
 
 [ext_resource type="ArrayMesh" uid="uid://w3kyqtevasnv" path="res://assets/models/FinalAssets_Low/Redone_Assets/cobl_pillar_low.obj" id="1_sbfuh"]
-[ext_resource type="Material" uid="uid://dp140br76vlls" path="res://assets/materials/Texture_sets/Environment_Textures/cobble_forge.tres" id="2_2pabr"]
+[ext_resource type="Material" uid="uid://cytvlw7564aar" path="res://assets/materials/XrayedMat.tres" id="2_sbfuh"]
 
 [node name="CoblPillarLow" type="Node3D" unique_id=1439026198]
 
-[node name="CoblPillarLow" type="MeshInstance3D" parent="." unique_id=1143804065]
+[node name="CoblPillarLow" type="MeshInstance3D" parent="." unique_id=1143804065 groups=["Xrayed"]]
 transform = Transform3D(0.72, 0, 0, 0, 0.72, 0, 0, 0, 0.72, 0, 0, 0)
 mesh = ExtResource("1_sbfuh")
-surface_material_override/0 = ExtResource("2_2pabr")
+surface_material_override/0 = ExtResource("2_sbfuh")
 
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=2123104527]
+visible = false
 height = 2.5
 vertices = PackedVector3Array(-0.6164272, 0, -0.57646894, 0.5797162, 0, -0.56963384, 0.58655167, 0, 0.6196746, -0.6198449, 0, 0.6196746)
 affect_navigation_mesh = true

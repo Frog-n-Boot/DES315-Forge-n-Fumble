@@ -217,14 +217,14 @@ maxSize = 40.0
 [node name="Enviroment" type="Node" parent="." unique_id=1495741313]
 
 [node name="Turret2" parent="Enviroment" unique_id=353788340 node_paths=PackedStringArray("inputNode") instance=ExtResource("2_pnhog")]
-transform = Transform3D(0.807084, 0, -0.5904367, 0, 1, 0, 0.5904367, 0, 0.807084, 8.197841, 2.9593534, 7.3325486)
+transform = Transform3D(0.807084, 0, -0.5904367, 0, 1, 0, 0.5904367, 0, 0.807084, 8.197841, 2.9593534, 8.365126)
 inputNode = NodePath("StationPort3")
 
 [node name="StationPort3" parent="Enviroment/Turret2" unique_id=1915723754 instance=ExtResource("3_2c4at")]
 transform = Transform3D(-1.737944, 0, 2.3763328, 0, 1, 0, -2.398319, 0, -1.7220117, -0.3306508, -3.1234941, 0.20035172)
 
 [node name="Turret4" parent="Enviroment" unique_id=1789132715 node_paths=PackedStringArray("inputNode") instance=ExtResource("2_pnhog")]
-transform = Transform3D(-0.7744369, 0, 0.6326513, 0, 1, 0, -0.6326513, 0, -0.7744369, -7.927705, 2.9262388, -7.20908)
+transform = Transform3D(-0.7744369, 0, 0.6326513, 0, 1, 0, -0.6326513, 0, -0.7744369, -7.927705, 2.9262388, -8.25183)
 inputNode = NodePath("StationPort2")
 
 [node name="StationPort2" parent="Enviroment/Turret4" unique_id=1365024135 instance=ExtResource("3_2c4at")]
