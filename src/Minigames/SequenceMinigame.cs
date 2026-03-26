@@ -9,7 +9,7 @@ public partial class SequenceMinigame : Node
 
 	[Signal] public delegate void SequenceCompletedEventHandler();
 	[Signal] public delegate void SequenceFailedEventHandler();
-	private CameraController cameraController;
+	//[Export] private CameraController cameraController;
 
 	private string[] sequence;
 	public bool isActive = false;
@@ -25,7 +25,7 @@ public partial class SequenceMinigame : Node
 	
 	public void Start(int length, PlayerController player)
 	{
-		cameraController = GetTree().Root.GetNode<CameraController>("../Camera3D");
+		//cameraController = GetTree().Root.GetNode<CameraController>("../Camera3D");
 		activePlayer = player;
 		activeDevice = player.currentDevice;
 		GD.Print($"Minigame Started for player {player.PlayerIndex}, device: {activeDevice}");

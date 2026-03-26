@@ -4,9 +4,8 @@
 [ext_resource type="Script" uid="uid://dfgcclikd3kvh" path="res://src/Enemy/AI/EnemyBehaviourData.cs" id="1_fl57o"]
 [ext_resource type="Script" uid="uid://bf02wgjk36psn" path="res://src/Enemy/EnemyData.cs" id="1_ptvci"]
 [ext_resource type="Script" uid="uid://cafetq1ji4h5b" path="res://src/Enemy/AI/AttackForge.cs" id="2_fl57o"]
-[ext_resource type="ArrayMesh" uid="uid://bmq26ged3l0nq" path="res://assets/models/FinalAssets_Low/Character_Models/goblin_low.obj" id="2_mq6ke"]
+[ext_resource type="ArrayMesh" uid="uid://bmq26ged3l0nq" path="res://assets/models/FinalAssets_Low/Character_Models/Goblin_low.obj" id="2_mq6ke"]
 [ext_resource type="Script" uid="uid://b5ljy5ajp4m3g" path="res://src/Enemy/AI/AttackPlayer.cs" id="3_433q0"]
-[ext_resource type="Script" uid="uid://beevsmjvykxq" path="res://src/Enemy/AI/FleeBehaviour.cs" id="4_6praf"]
 [ext_resource type="Script" uid="uid://dcjcfda4rr8x3" path="res://src/Enemy/AI/MoveToForge.cs" id="7_ns6l3"]
 [ext_resource type="Script" uid="uid://by87lhisv36nt" path="res://src/Enemy/AI/ChasePlayer.cs" id="8_6cxkw"]
 
@@ -17,10 +16,6 @@ metadata/_custom_type_script = "uid://cafetq1ji4h5b"
 [sub_resource type="Resource" id="Resource_820ot"]
 script = ExtResource("3_433q0")
 metadata/_custom_type_script = "uid://b5ljy5ajp4m3g"
-
-[sub_resource type="Resource" id="Resource_p00vw"]
-script = ExtResource("4_6praf")
-metadata/_custom_type_script = "uid://beevsmjvykxq"
 
 [sub_resource type="Resource" id="Resource_n576p"]
 script = ExtResource("7_ns6l3")
@@ -40,6 +35,5 @@ lootDropChance = 30.0
 enemyMat = ExtResource("1_7n161")
 enemyMesh = ExtResource("2_mq6ke")
 attackBehaviours = Array[ExtResource("1_fl57o")]([SubResource("Resource_kxpql"), SubResource("Resource_820ot")])
-defenceBehaviours = Array[ExtResource("1_fl57o")]([SubResource("Resource_p00vw")])
 miscBehaviours = Array[ExtResource("1_fl57o")]([SubResource("Resource_n576p"), SubResource("Resource_j7k2j")])
 metadata/_custom_type_script = "uid://bf02wgjk36psn"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmglbfn5jaubp"]
+[gd_scene format=3 uid="uid://bmglbfn5jaubp"]
 
 [ext_resource type="PackedScene" uid="uid://d3f4d3m7n8tpr" path="res://addons/proton_scatter/demos/assets/models/gobot.glb" id="1_gfyx7"]
 

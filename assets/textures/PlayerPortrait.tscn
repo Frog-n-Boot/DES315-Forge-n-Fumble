@@ -15,28 +15,6 @@ region = Rect2(29, 14, 246, 230)
 atlas = ExtResource("3_ex5ym")
 region = Rect2(29, 14, 246, 230)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_brnra"]
-bg_color = Color(0.74509805, 0, 0, 1)
-border_width_bottom = 3
-border_color = Color(0.39748856, 0, 0, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-expand_margin_bottom = 3.0
-shadow_size = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n81mn"]
-bg_color = Color(0, 0.6, 0, 1)
-border_width_bottom = 3
-border_color = Color(2.1057204e-07, 0.27337572, 4.813075e-08, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-expand_margin_bottom = 3.0
-shadow_size = 3
-
 [node name="PlayerPortrait" type="PanelContainer" unique_id=1792981498]
 scale = Vector2(1.3600001, 1.12)
 script = ExtResource("1_xro7h")
@@ -77,13 +55,6 @@ offset_top = -2.6785707
 offset_right = 133.88234
 offset_bottom = 89.32143
 scale = Vector2(1, 0.85714287)
-
-[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/TextureRect/VBoxContainer" unique_id=2134478837]
-layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_brnra")
-theme_override_styles/fill = SubResource("StyleBoxFlat_n81mn")
-value = 50.0
-show_percentage = false
 
 [node name="Label" type="Label" parent="HBoxContainer/TextureRect/VBoxContainer" unique_id=597362793]
 layout_mode = 2

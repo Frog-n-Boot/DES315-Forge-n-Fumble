@@ -9,6 +9,7 @@ public partial class GrindstoneStation : BaseStationScript
 	[Export] private BarMinigame barMinigame;
 	private List<PlayerController> playersInZone = new List<PlayerController>();
 	private Sword depositedSowrd;
+	[Signal] public delegate void SwordCraftedEventHandler();
 	
 
 	protected override void OnReady()
@@ -59,12 +60,14 @@ public partial class GrindstoneStation : BaseStationScript
 		barMinigame.Start(player);
 		//craftingTimer.Start();
 		grindstoneSound.Play();
+		
 	}
 
 	private void OnMinigameCompleted()
 	{
 		barMinigame.canvasLayer.Hide();
-		
+		EmitSignal(SignalName.SwordCrafted);
+		GD.Print("Grindstone Signal Emiited");
 		ProduceOutput();
 	}
 

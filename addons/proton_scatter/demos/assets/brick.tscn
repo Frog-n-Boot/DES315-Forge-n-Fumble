@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4ted6l27vuyd"]
+[gd_scene format=3 uid="uid://b4ted6l27vuyd"]
 
 [ext_resource type="PackedScene" uid="uid://d1d1fag0m04yc" path="res://addons/proton_scatter/demos/assets/models/brick.glb" id="1_bkmk2"]
 [ext_resource type="Texture2D" uid="uid://dqa2jfs1jy0hq" path="res://addons/proton_scatter/demos/assets/textures/t_rock.jpg" id="2_235bd"]

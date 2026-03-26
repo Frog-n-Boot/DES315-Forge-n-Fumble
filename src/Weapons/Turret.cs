@@ -11,6 +11,7 @@ public partial class Turret : Node3D
 	[Export] public float range = 20.0f;
 	[Export] public float coneAngle = 360.0f;
 	[Export] protected Node3D inputNode;
+	[Export] int bulletCount= 10;
 
 	[Export] protected Label3D label;
 
@@ -20,7 +21,7 @@ public partial class Turret : Node3D
 	protected ItemCarrier itemCarrier;
 	protected PlayerController player;
 	private List<PlayerController> playersInZone = new List<PlayerController>();
-	private int bulletCount= 10;
+	
 
 	private Node3D currentTarget;
 	private float reloadTime = 1;

@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://djo80ucamk643"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://djo80ucamk643"]
 
 [ext_resource type="Shader" path="res://addons/proton_scatter/demos/assets/materials/grass.gdshader" id="1_8py1k"]
 [ext_resource type="Texture2D" uid="uid://cgenco43aneod" path="res://addons/proton_scatter/demos/assets/textures/t_leaves_1.png" id="2_l2uea"]

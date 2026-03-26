@@ -69,7 +69,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9050009, 0)
 shape = SubResource("CapsuleShape3D_e7812")
 
 [node name="StationPort" parent="TurretHead/StaticBody3D" unique_id=750325492 instance=ExtResource("3_n82r5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1.9209249, 0, 0, 0, 1, 0, 0, 0, 3.0908144, -0.7449594, 0.5, 0)
 
 [node name="TurretBarrel" type="Node3D" parent="TurretHead" unique_id=309150814]
 

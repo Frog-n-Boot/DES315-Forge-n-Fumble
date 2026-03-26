@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="3_k0jhy"]
 [ext_resource type="Texture2D" uid="uid://fywbkplmkbgs" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/Dwarf_low_BaseCol.tga" id="3_v0ggv"]
 [ext_resource type="Texture2D" uid="uid://bx0rnncaa27mi" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/Dwarf_low_ORM.tga" id="4_jnlb4"]
-[ext_resource type="ArrayMesh" uid="uid://dewjvcdn4tcwe" path="res://assets/models/FinalAssets_Low/Character_Models/dwarf_low.obj" id="4_t0fpx"]
+[ext_resource type="ArrayMesh" uid="uid://dewjvcdn4tcwe" path="res://assets/models/FinalAssets_Low/Character_Models/Dwarf_low.obj" id="4_t0fpx"]
 [ext_resource type="Texture2D" uid="uid://c7ffbeee7twxq" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/DwarfGreen_low_BaseCol.tga" id="5_ag2w6"]
 [ext_resource type="Texture2D" uid="uid://bgk03fcoiqv1l" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/Dwarf_low_Normal.tga" id="5_bw8qq"]
 [ext_resource type="Texture2D" uid="uid://bojhtl0pjp5on" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/DwarfPurple_low_BaseCol.tga" id="6_so67x"]
@@ -333,6 +333,8 @@ transform = Transform3D(1.0000001, 0, 0, 0, 0.9999998, 0, 0, 0, 1.0000004, -0.75
 
 [node name="Sword" parent="CollisionShape3D/RightHand" unique_id=689345526 instance=ExtResource("3_8d03m")]
 transform = Transform3D(0.9999998, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999998, 0, 0, 0)
+sharpenedVersion = ExtResource("3_8d03m")
+maxDurability = 10
 
 [node name="LeftHand" type="Node3D" parent="CollisionShape3D" unique_id=2112562012]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.04, -0.40936708, 0.067871094)

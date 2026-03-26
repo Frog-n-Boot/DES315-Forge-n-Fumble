@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://dga4klregd82"]
+[gd_scene format=3 uid="uid://dga4klregd82"]
 
 [ext_resource type="Texture2D" uid="uid://bgc5rl13dopuj" path="res://addons/proton_scatter/demos/assets/textures/sky_2.png" id="1_bp1wy"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="1_odnwj"]

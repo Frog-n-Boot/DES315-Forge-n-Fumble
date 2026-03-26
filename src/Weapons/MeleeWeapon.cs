@@ -18,7 +18,14 @@ public abstract partial class MeleeWeapon : BaseWeapon
 		hitbox = GetNodeOrNull<CollisionShape3D>("StaticBody3D/CollisionShape3D");
 		if(hitbox == null)
 			GD.PrintErr("MeleeWeapon: CollisionShape3D not found at StaticBody3D/CollisionShape");
+
 		SetHitboxEnabled(false);
+
+		spinAttack = GetParent()?.GetParent()?.GetParent()?.GetNodeOrNull<SpinAttack>("SpinAttack");
+		if(spinAttack == null)
+			GD.PrintErr("MeleeWeapon: SpinAttack not found");
+
+		
 		
 	}
 
@@ -51,8 +58,8 @@ public abstract partial class MeleeWeapon : BaseWeapon
 		audio.Play();
 		GetTree().CreateTimer(0.5f).Timeout += () =>
 		{
-			QueueFree();
-			spinAttack.SetWeapon(null);
+			//spinAttack.SetWeapon(null);
+			QueueFree();		
 		};
 		
 	}

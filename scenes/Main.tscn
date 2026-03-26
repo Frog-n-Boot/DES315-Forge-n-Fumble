@@ -196,9 +196,8 @@ current = true
 size = 22.0
 script = ExtResource("10_8b871")
 playerSpawner = NodePath("../PlayerSpawner")
-smoothSpeed = 3.0
 outerBounds = Vector2(400, 300)
-innerBounds = Vector2(300, 100)
+innerBounds = Vector2(250, 100)
 minSize = 20.0
 maxSize = 40.0
 

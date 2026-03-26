@@ -15,6 +15,8 @@ public partial class EnemyController : CharacterBody3D
     [Signal] public delegate void EnemyHealthChangedEventHandler(int currentHealth, int maxHealth);
     [Signal] public delegate void DamagedTargetEventHandler(Node3D target, int damage);
     [Signal] public delegate void StateChangedEventHandler(string newStateName);
+    [Signal] public delegate void TutorialEnemyBallistaKilledEventHandler();
+    [Signal] public delegate void TutorialEnemyKilledEventHandler();
 
     #endregion
     #region Exports
@@ -23,6 +25,7 @@ public partial class EnemyController : CharacterBody3D
     [Export] public MeshInstance3D mesh;
     [Export] public Area3D collisionArea;
     [Export] public NavigationAgent3D navigationAgent;
+    [Export] private bool isStationary = false;
 
     #endregion
 
@@ -403,6 +406,7 @@ public partial class EnemyController : CharacterBody3D
 
     public override void _Process(double delta)
     {
+        if(isStationary) return;
         //if (IsStationary) return;
         _playerRefreshTimer -= (float)delta;
         if (_playerRefreshTimer <= 0f)
@@ -415,6 +419,7 @@ public partial class EnemyController : CharacterBody3D
 
     public override void _PhysicsProcess(double delta)
     {
+        if(isStationary) return;
        // if (IsStationary) return;
         if (!_navReady)
         {
@@ -542,21 +547,23 @@ public partial class EnemyController : CharacterBody3D
                 }
                 break;
             case "Weapon":
-                BaseWeapon weapon = FindWeaponInHierarchy(body);
+                BaseWeapon weapon = FindWeaponInHierarchy(body);             
                 if (weapon != null)
                 {
+                   
                     TakeDamage(weapon is Sword sword ? sword.GetComboDamage() : weapon.damage);
                     weapon.TakeDurabilityDamage(1);
                     Vector3 pushDir = (GlobalPosition - weapon.GlobalPosition).Normalized();
                     pushDir.Y = 0f;
                     ApplyKnockback(pushDir.Normalized(), 20f);
+                    
                 }
                 break;
             case "Bullet":
-                if (body.GetParent() is Bullet bullet) { TakeDamage(bullet.damage); bullet.QueueFree(); }
+                if (body.GetParent() is Bullet bullet) { TakeDamage(bullet.damage); bullet.QueueFree(); EmitSignal(SignalName.TutorialEnemyBallistaKilled);}
                 break;
             case "Arrow":
-                if (body.GetParent() is Arrow arrow) { TakeDamage((int)arrow.damage); arrow.QueueFree(); }
+                if (body.GetParent() is Arrow arrow) { TakeDamage((int)arrow.damage); arrow.QueueFree();}
                 break;
         }
     }
@@ -565,7 +572,8 @@ public partial class EnemyController : CharacterBody3D
     #region Health Events
     private void OnHealthDepleted()
     {
-        EmitSignal(SignalName.Died, this, GlobalPosition);
+        EmitSignal(SignalName.TutorialEnemyKilled);
+        EmitSignal(SignalName.Died, this, GlobalPosition);     
         QueueFree();
     }
     #endregion
@@ -656,6 +664,8 @@ public partial class EnemyController : CharacterBody3D
 
         public override void PhysicsUpdate(EnemyController c, double delta)
         {
+            
+            
             if (c.Forge == null) return;
 
             float dist = c.GlobalPosition.DistanceTo(c.Forge.GlobalPosition);

@@ -512,8 +512,8 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		if (animName.ToString().Contains("Sword_Attack"))
 		{
 			isAttacking = false;
-
-			animPlayer.Play("Sword_Idle");
+			if(animPlayer.GetAnimation("Sword_Idle")!= null)
+				animPlayer.Play("Sword_Idle");
 			
 		}
 	}
@@ -564,7 +564,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	
 		if(area.IsInGroup("pickable"))
 			nearbyPickable = null;
-		if(area.IsInGroup("Sword"))
+		if(area.IsInGroup("Weapon"))
 			nearbyWeapon = null;
 		if(nearbyWeapon == null && nearbyPickable == null)
 			pickupPrompt.Visible = false;
@@ -899,7 +899,8 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	private void OnComboReset()
 	{
 		isAttacking = false;
-		animPlayer.Play("Sword_Idle");
+		if(animPlayer.GetAnimation("Sword_Idle") != null)
+			animPlayer.Play("Sword_Idle");
 	}
 
 	public void SetDazed(bool dazed)
@@ -937,6 +938,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			}
 		}
 	}
+
 	public void DisconnectWeapon(Sword sword)
 	{
 		if (sword.IsConnected(Sword.SignalName.CheckDurability, Callable.From(OnSwordDurabilityChecked)))
@@ -946,6 +948,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 		currentWeapon = null;
 		isAttacking = false;
-		animPlayer.Play("Idle");
+		if(animPlayer.GetAnimation("Sword_Idle") != null)
+			animPlayer.Play("Sword_Idle");
 	}
 }

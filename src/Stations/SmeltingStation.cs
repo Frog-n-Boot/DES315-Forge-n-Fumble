@@ -9,6 +9,8 @@ public partial class SmeltingStation : BaseStationScript
 	[Export] private float healAmount = 5f;
 	[Export] private float healInterval = 1f;
 
+	[Signal] public delegate void IngotCraftedEventHandler();
+
 	private float healTimer = 0f;
 	private bool isHealing = false;
 
@@ -54,4 +56,11 @@ public partial class SmeltingStation : BaseStationScript
 				
 		}
 	}
+
+    protected override void ProduceOutput()
+    {
+        base.ProduceOutput();
+		EmitSignal(SignalName.IngotCrafted);
+    }
+
 }
