@@ -7,7 +7,9 @@
 [ext_resource type="Script" uid="uid://dnqtfi3fpu8ue" path="res://src/Camera/CameraController.cs" id="3_pgr2e"]
 [ext_resource type="Texture2D" uid="uid://r7wddf5hbwsn" path="res://assets/textures/tu 3.webp" id="3_xi6p3"]
 [ext_resource type="Texture2D" uid="uid://b3fr0jckkg0mm" path="res://assets/textures/Tu 1.webp" id="4_e4hrd"]
+[ext_resource type="Texture2D" uid="uid://de5i2lmkk12v1" path="res://assets/textures/UI/ui_controller_x_button.tres" id="6_xi6p3"]
 [ext_resource type="Resource" uid="uid://cgsgoisaxb6rf" path="res://assets/resources/Recipes/SwordRecipe.tres" id="7_0hjnf"]
+[ext_resource type="Texture2D" uid="uid://cmhg5fabsggpk" path="res://assets/textures/UI/ui_keyboard_e_button.tres" id="7_e4hrd"]
 [ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/Resources/CraftingRecipes.cs" id="8_q5ijt"]
 [ext_resource type="PackedScene" uid="uid://cmd758glwlnly" path="res://assets/models/FinalAssets_Low/WorkStations/Grindstone.tscn" id="10_ei5ly"]
 [ext_resource type="PackedScene" uid="uid://g1gfmktihg8t" path="res://assets/models/FinalAssets_Low/WorkStations/Anvil.tscn" id="11_m6ekv"]
@@ -124,9 +126,13 @@ shape = SubResource("WorldBoundaryShape3D_0a2r4")
 
 [node name="Forge" parent="CollisionShape3D" unique_id=994045895 instance=ExtResource("11_tfuon")]
 transform = Transform3D(-0.083333336, 0, 1.25829835e-08, 0, 0.083333336, 0, -1.25829835e-08, 0, -0.083333336, -11.358131, 0, -3.0079582)
+controllerButtonTexture = ExtResource("6_xi6p3")
+keyboardButtonTexture = ExtResource("7_e4hrd")
 
 [node name="Anvil" parent="CollisionShape3D" unique_id=1158721071 instance=ExtResource("11_m6ekv")]
 transform = Transform3D(1.8874477e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, 1.8874477e-08, 12.874092, 0, -3.0479155)
+controllerButtonTexture = ExtResource("6_xi6p3")
+keyboardButtonTexture = ExtResource("7_e4hrd")
 recipes = Array[Object]([ExtResource("7_0hjnf"), SubResource("Resource_bi4s5")])
 
 [node name="IronDullSword" parent="CollisionShape3D/Anvil" unique_id=803566957 instance=ExtResource("23_jw24r")]
@@ -137,12 +143,18 @@ transform = Transform3D(-0.0044156606, 0, 0.9999902, 0, 1, 0, -0.9999902, 0, -0.
 
 [node name="Grindstone" parent="CollisionShape3D" unique_id=1536885273 instance=ExtResource("10_ei5ly")]
 transform = Transform3D(-1.0927847e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.0927847e-08, 10.07971, 0, -0.4805858)
+controllerButtonTexture = ExtResource("6_xi6p3")
+keyboardButtonTexture = ExtResource("7_e4hrd")
 
 [node name="Anvil2" parent="CollisionShape3D" unique_id=688992065 instance=ExtResource("11_m6ekv")]
 transform = Transform3D(1.8874477e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, 1.8874477e-08, 55.259365, -6.357829e-07, -2.9493666)
+controllerButtonTexture = ExtResource("6_xi6p3")
+keyboardButtonTexture = ExtResource("7_e4hrd")
 
 [node name="Grindstone2" parent="CollisionShape3D" unique_id=838819154 instance=ExtResource("10_ei5ly")]
 transform = Transform3D(-1.0927847e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.0927847e-08, 54.128456, -6.357829e-07, -0.38926157)
+controllerButtonTexture = ExtResource("6_xi6p3")
+keyboardButtonTexture = ExtResource("7_e4hrd")
 
 [node name="Copper_Ore" parent="CollisionShape3D" unique_id=2110523039 instance=ExtResource("18_j4y01")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -8.826789, 0.0025, 0.27915272)
@@ -166,6 +178,8 @@ shouldDespawn = false
 
 [node name="Forge2" parent="CollisionShape3D" unique_id=414176730 instance=ExtResource("11_tfuon")]
 transform = Transform3D(-0.083333336, 0, 1.25829835e-08, 0, 0.083333336, 0, -1.25829835e-08, 0, -0.083333336, 53.257187, 0, -4.7166758)
+controllerButtonTexture = ExtResource("6_xi6p3")
+keyboardButtonTexture = ExtResource("7_e4hrd")
 
 [node name="Copper_Ore6" parent="CollisionShape3D" unique_id=754020436 instance=ExtResource("18_j4y01")]
 transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 51.362103, 0.0025, -3.3444667)

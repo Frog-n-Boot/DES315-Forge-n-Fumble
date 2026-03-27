@@ -4,6 +4,7 @@ using System;
 public partial class MainMenu : Control
 {
 	[Export] Button startButton;
+	[Export] Button tutorialButton;
 	[Export] Button settingsButton;
 	[Export] Button quitMenu;
 	[Export] private AudioStreamPlayer2D audio;
@@ -19,6 +20,13 @@ public partial class MainMenu : Control
 		GetTree().CreateTimer(0.3f).Timeout += () =>
 		{
 			SceneManager.instance.LoadGame(); 
+		};
+	}
+	public void OnTutorialButtonPressed(){
+		audio.Play();
+		GetTree().CreateTimer(0.3f).Timeout += () =>
+		{
+			SceneManager.instance.LoadTutorial(); 
 		};
 	}
 

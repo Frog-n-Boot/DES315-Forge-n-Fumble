@@ -35,7 +35,7 @@ region = Rect2(581, 500, 285, 91)
 
 [node name="MainMenu" type="Node2D" unique_id=1633550726]
 
-[node name="Control" type="Control" parent="." unique_id=793476221 node_paths=PackedStringArray("startButton", "settingsButton", "quitMenu", "audio")]
+[node name="Control" type="Control" parent="." unique_id=793476221 node_paths=PackedStringArray("startButton", "tutorialButton", "settingsButton", "quitMenu", "audio")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 0
@@ -43,6 +43,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_yqorp")
 startButton = NodePath("StartButton")
+tutorialButton = NodePath("TutorialButton")
 settingsButton = NodePath("SettingsButton")
 quitMenu = NodePath("QuitButton")
 audio = NodePath("AudioStreamPlayer2D")
@@ -56,7 +57,7 @@ offset_right = 427.28052
 offset_bottom = 461.0
 scale = Vector2(0.6400009, 0.57904714)
 focus_neighbor_top = NodePath(".")
-focus_neighbor_bottom = NodePath("../SettingsButton")
+focus_neighbor_bottom = NodePath("../TutorialButton")
 focus_next = NodePath("../SettingsButton")
 focus_previous = NodePath("../QuitButton")
 theme_override_font_sizes/font_size = 40
@@ -65,7 +66,7 @@ icon = SubResource("AtlasTexture_826wr")
 flat = true
 icon_alignment = 1
 
-[node name="StartButton2" type="Button" parent="Control" unique_id=1244603073]
+[node name="TutorialButton" type="Button" parent="Control" unique_id=1244603073]
 z_index = 1
 layout_mode = 0
 offset_left = 107.0
@@ -73,7 +74,7 @@ offset_top = 428.99997
 offset_right = 427.28052
 offset_bottom = 528.0
 scale = Vector2(0.6400009, 0.57904714)
-focus_neighbor_top = NodePath(".")
+focus_neighbor_top = NodePath("../StartButton")
 focus_neighbor_bottom = NodePath("../SettingsButton")
 focus_next = NodePath("../SettingsButton")
 focus_previous = NodePath("../QuitButton")
@@ -91,7 +92,7 @@ offset_top = 495.0
 offset_right = 427.28052
 offset_bottom = 594.0
 scale = Vector2(0.6400009, 0.57904714)
-focus_neighbor_top = NodePath("../StartButton")
+focus_neighbor_top = NodePath("../TutorialButton")
 focus_neighbor_bottom = NodePath("../QuitButton")
 focus_next = NodePath("../QuitButton")
 focus_previous = NodePath("../StartButton")
@@ -156,6 +157,6 @@ texture = ExtResource("2_0ykhv")
 stretch_mode = 1
 
 [connection signal="pressed" from="Control/StartButton" to="Control" method="OnStartButtonPressed"]
-[connection signal="pressed" from="Control/StartButton2" to="Control" method="OnStartButtonPressed"]
+[connection signal="pressed" from="Control/TutorialButton" to="Control" method="OnTutorialButtonPressed"]
 [connection signal="pressed" from="Control/SettingsButton" to="Control" method="OnSettingsButtonPressed"]
 [connection signal="pressed" from="Control/QuitButton" to="Control" method="OnQuitButtonPressed"]

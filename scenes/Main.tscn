@@ -264,6 +264,7 @@ strongEnemyChance = 10
 maxWaves = 7
 startingEnemiesPerWave = 1
 enemyIncreasedPerWave = 2
+timeBetweemWaves = 10.0
 enemyUI = NodePath("../UI/EnemyUI")
 waveTimerLabel3D = NodePath("../UI/EnemyUI/Label3D")
 
