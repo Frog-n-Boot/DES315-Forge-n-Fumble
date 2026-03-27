@@ -5,96 +5,99 @@ using System.Collections.Generic;
 public partial class TutorialManager : Node
 {
 	//[Export] EnemyController enemy;
-	[Export] private Marker3D[] playerMarker;
+	[Export] private Marker3D[] roomSpawnPoints;
 	[Export] private SmeltingStation smeltingStation;
 	[Export] private GrindstoneStation grindstoneStation;
-	[Export]private EnemyController fisrtEnemy;
-	[Export] private EnemyController secondEnemy;
+	[Export] private ForgingStation forgingStation;
+	[Export]private EnemyController room3Enemy;
+	[Export] private EnemyController room4Enemy;
 	[Signal] public delegate void TutorialCompletedEventHandler();
 	
 	private int currentRoom = 0;
 	private int ingotsCrafted = 0;
 	private int swordsCrafted = 0;
-	private int enemyBallistaKilled = 0;
-	private int enemyKilled = 0;
+	private bool room3Completed = false;
+	private bool room4Completed = false;
 
 	private InputManager inputManager;
 	
-
-	[Signal] public delegate void RoomCompletedEventHandler(int room);
-
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		smeltingStation.IngotCrafted += OnIngotCrafted;
 		grindstoneStation.SwordCrafted += OnSwordsCrafted;
-		fisrtEnemy.TutorialEnemyBallistaKilled +=OnBallistaEnemyKilled;
-		secondEnemy.TutorialEnemyKilled += OnEnemyKilled;
+		room3Enemy.Died +=OnRoom3EnemyKilled;
+		room4Enemy.Died += OnRoom4EnemyKilled;
 
 		//enemy.Died += OnTutorialEnemyDied;
 	}
 
 	 public override void _Input(InputEvent @event)
     {
-        if (@event.IsActionPressed("ui_cancel"))
-        {
-			//CompleteTutorial();
-           GetSpawnPoints();
-        }
-		if (@event.IsActionPressed("ui_up"))
-        {
-           currentRoom++;
-        }	
+        if(@event.IsActionPressed("skip_room"))
+			CompleteRoom();
     }  
 
 	public void OnIngotCrafted()
     {
-		GetTree().CreateTimer(1).Timeout += () =>{
-            if(currentRoom != 0) return;
-			ingotsCrafted++;
-			if(ingotsCrafted >= 3) CompleteRoom();
-        };
+		if(currentRoom!= 0) return;
+		ingotsCrafted++;
+		GD.Print($"Ingots: {ingotsCrafted}/3");
+		if(ingotsCrafted >= 3) CompleteRoom();
         
     }
 
 	public void OnSwordsCrafted()
     {
-        GetTree().CreateTimer(1).Timeout += () =>{
-            if(currentRoom != 1) return;
-			GD.Print("Signal R5ecieved");
-			swordsCrafted++;
-			GD.Print($"Sword craft counter: {swordsCrafted}");
-			if(swordsCrafted >= 1) CompleteRoom();
-        };
+		if(currentRoom!=1) return;
+		swordsCrafted++;
+		GD.Print($"Swords sharpened: {swordsCrafted}/1");
+		if(swordsCrafted>=1) CompleteRoom();
         
     }
 
-	public void OnBallistaEnemyKilled()
+	public void OnRoom3EnemyKilled(EnemyController enemy, Vector3 pos)
     {
         if(currentRoom != 2) return;
-		enemyBallistaKilled++;
-		if(enemyBallistaKilled >= 1) CompleteRoom();
+		CompleteRoom();
     }
-	public void OnEnemyKilled()
+
+	public void OnRoom4EnemyKilled(EnemyController enemy, Vector3 pos)
     {
+		if(currentRoom != 3) return;
 		CompleteTutorial();  
     }
     
 	
 	private void CompleteRoom()
     {
-        EmitSignal(SignalName.RoomCompleted, currentRoom);
-		
-		
-		if(currentRoom >= playerMarker.Length)
-        {
-            CompleteTutorial();
-			return;
-        }
-		GetSpawnPoints();
-		
+		GD.Print($"Room {currentRoom} complete");
 		currentRoom++;
-    }
+		if(currentRoom == 4)
+		{
+			TeleportPlayers();
+			return;
+		}
+		if(currentRoom > 4)
+		{
+			CompleteTutorial();
+		}
+		TeleportPlayers();
+		
+		
+    }	
+
+	private void TeleportPlayers()
+	{
+		int markerIndex = currentRoom - 1;
+		if(markerIndex <0 || markerIndex >= roomSpawnPoints.Length) return;
+
+		foreach(Node n in GetTree().GetNodesInGroup("Player"))
+		{
+			if(n is PlayerController player)
+				player.GlobalPosition = roomSpawnPoints[markerIndex].GlobalPosition;
+		}
+	}
 
 	private bool completed = false;
 
@@ -103,22 +106,9 @@ public partial class TutorialManager : Node
 		if(completed) return;
 		completed = true;
 
-		EmitSignal(SignalName.TutorialCompleted);
-
 		GetTree().ChangeSceneToFile("res://scenes/LoadingScreen.tscn");
 
 	}
 
-	private void GetSpawnPoints()
-    {
-		
-		foreach(Node p in GetTree().GetNodesInGroup("Player"))
-        {
-            if(p is PlayerController player)			
-				player.GlobalPosition = playerMarker[currentRoom ].GlobalPosition;
-        }
-		
-    }
-	private void OnTutorialEnemyDied(EnemyController enemy, Vector3 deathPosition) => CompleteTutorial();
-		
+	private void SkipTutorial() => CompleteTutorial();
 }

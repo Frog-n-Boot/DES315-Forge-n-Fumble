@@ -18,12 +18,12 @@
 [ext_resource type="Script" uid="uid://taddex4cilqa" path="res://src/Item/LootTable.cs" id="21_4tybr"]
 [ext_resource type="Material" uid="uid://c14d6xj6opusf" path="res://assets/materials/Texture_sets/Character_Textures/Goblin Textures/goblin_material.tres" id="21_bi4s5"]
 [ext_resource type="PackedScene" uid="uid://o7vvnubwicff" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Ingot.tscn" id="21_dn1de"]
-[ext_resource type="ArrayMesh" uid="uid://bmq26ged3l0nq" path="res://assets/models/FinalAssets_Low/Character_Models/Goblin_low.obj" id="21_q5ijt"]
+[ext_resource type="ArrayMesh" uid="uid://bmq26ged3l0nq" path="res://assets/models/FinalAssets_Low/Character_Models/goblin_low.obj" id="21_q5ijt"]
 [ext_resource type="PackedScene" uid="uid://d1y4lf17i3iid" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Dull_Sword.tscn" id="23_jw24r"]
 [ext_resource type="PackedScene" uid="uid://jnghu007q1m" path="res://assets/models/FinalAssets_Low/Items_Models/Healthpack.tscn" id="23_oyacv"]
 [ext_resource type="Resource" uid="uid://cdki2c88hftlb" path="res://assets/resources/AI/FastEnemyData.tres" id="24_e4hrd"]
 [ext_resource type="PackedScene" uid="uid://706c56ie3ke" path="res://assets/prefabs/Turret.tscn" id="24_l4yix"]
-[ext_resource type="ArrayMesh" uid="uid://8wpolus5qbva" path="res://assets/models/FinalAssets_Low/Character_Models/Skeleton_low.obj" id="24_ujnhc"]
+[ext_resource type="ArrayMesh" uid="uid://8wpolus5qbva" path="res://assets/models/FinalAssets_Low/Character_Models/skeleton_low.obj" id="24_ujnhc"]
 [ext_resource type="Material" uid="uid://btwle4bal72vo" path="res://assets/materials/Texture_sets/Character_Textures/Skeleton Textures/skeleton_material.tres" id="24_xi6p3"]
 [ext_resource type="ArrayMesh" uid="uid://ch821ffso52fw" path="res://assets/models/FinalAssets_Low/Items_Models/handheld_ballista.obj" id="25_4tybr"]
 [ext_resource type="Script" uid="uid://dli7kb5c5sowk" path="res://src/Mangers/TutorialManager.cs" id="27_bi4s5"]
@@ -295,13 +295,14 @@ shape = SubResource("CylinderShape3D_v1uvm")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Enemy2/CharacterBody3D/Area3D" unique_id=1904624980]
 shape = SubResource("CylinderShape3D_v1uvm")
 
-[node name="TutorialManager" type="Node" parent="." unique_id=639408089 node_paths=PackedStringArray("playerMarker", "smeltingStation", "grindstoneStation", "fisrtEnemy", "secondEnemy")]
+[node name="TutorialManager" type="Node" parent="." unique_id=639408089 node_paths=PackedStringArray("roomSpawnPoints", "smeltingStation", "grindstoneStation", "forgingStation", "room3Enemy", "room4Enemy")]
 script = ExtResource("27_bi4s5")
-playerMarker = [NodePath("../PlayerSpawner/TP/TP1"), NodePath("../PlayerSpawner/TP/TP2"), NodePath("../PlayerSpawner/TP/TP3")]
+roomSpawnPoints = [NodePath("../PlayerSpawner/TP/TP1"), NodePath("../PlayerSpawner/TP/TP2"), NodePath("../PlayerSpawner/TP/TP3")]
 smeltingStation = NodePath("../CollisionShape3D/Forge")
 grindstoneStation = NodePath("../CollisionShape3D/Grindstone")
-fisrtEnemy = NodePath("../Enemy/CharacterBody3D")
-secondEnemy = NodePath("../Enemy2/CharacterBody3D")
+forgingStation = NodePath("../CollisionShape3D/Anvil")
+room3Enemy = NodePath("../Enemy/CharacterBody3D")
+room4Enemy = NodePath("../Enemy2/CharacterBody3D")
 
 [node name="HandheldBallista" type="MeshInstance3D" parent="." unique_id=836374485]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 117.01609, 0, -10.378091)

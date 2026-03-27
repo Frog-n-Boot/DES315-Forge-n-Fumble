@@ -15,8 +15,6 @@ public partial class EnemyController : CharacterBody3D
     [Signal] public delegate void EnemyHealthChangedEventHandler(int currentHealth, int maxHealth);
     [Signal] public delegate void DamagedTargetEventHandler(Node3D target, int damage);
     [Signal] public delegate void StateChangedEventHandler(string newStateName);
-    [Signal] public delegate void TutorialEnemyBallistaKilledEventHandler();
-    [Signal] public delegate void TutorialEnemyKilledEventHandler();
 
     #endregion
     #region Exports
@@ -560,7 +558,7 @@ public partial class EnemyController : CharacterBody3D
                 }
                 break;
             case "Bullet":
-                if (body.GetParent() is Bullet bullet) { TakeDamage(bullet.damage); bullet.QueueFree(); EmitSignal(SignalName.TutorialEnemyBallistaKilled);}
+                if (body.GetParent() is Bullet bullet) { TakeDamage(bullet.damage); bullet.QueueFree();}
                 break;
             case "Arrow":
                 if (body.GetParent() is Arrow arrow) { TakeDamage((int)arrow.damage); arrow.QueueFree();}
@@ -572,7 +570,6 @@ public partial class EnemyController : CharacterBody3D
     #region Health Events
     private void OnHealthDepleted()
     {
-        EmitSignal(SignalName.TutorialEnemyKilled);
         EmitSignal(SignalName.Died, this, GlobalPosition);     
         QueueFree();
     }
