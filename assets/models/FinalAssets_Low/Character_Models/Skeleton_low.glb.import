@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bcr4umlwjerbq"
-path="res://.godot/imported/skeleton_low.glb-774f13e78850cc877e44f0879e6653b3.scn"
+path="res://.godot/imported/Skeleton_low.glb-20c5b7563c2e7b82a88e93f5e3385422.scn"
 
 [deps]
 
-source_file="res://assets/models/FinalAssets_Low/Character_Models/skeleton_low.glb"
-dest_files=["res://.godot/imported/skeleton_low.glb-774f13e78850cc877e44f0879e6653b3.scn"]
+source_file="res://assets/models/FinalAssets_Low/Character_Models/Skeleton_low.glb"
+dest_files=["res://.godot/imported/Skeleton_low.glb-20c5b7563c2e7b82a88e93f5e3385422.scn"]
 
 [params]
 

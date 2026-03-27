@@ -1,8 +1,6 @@
 [gd_scene format=3 uid="uid://bm6vf4tjk48gj"]
 
 [ext_resource type="Script" uid="uid://bdwnaqw5jg3si" path="res://src/Stations/SmeltingStation.cs" id="1_ph4aw"]
-[ext_resource type="Texture2D" uid="uid://de5i2lmkk12v1" path="res://assets/textures/UI/ui_controller_x_button.tres" id="2_sx61v"]
-[ext_resource type="Texture2D" uid="uid://cmhg5fabsggpk" path="res://assets/textures/UI/ui_keyboard_e_button.tres" id="3_i1han"]
 [ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/Resources/CraftingRecipes.cs" id="3_oiry0"]
 [ext_resource type="PackedScene" uid="uid://c36fijnqqehnq" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Ingot.tscn" id="3_wq66q"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="4_0l8vc"]
@@ -12,10 +10,23 @@
 [ext_resource type="Texture2D" uid="uid://bll315yt7blkd" path="res://assets/materials/Texture_sets/WorkStations/Furance_low_BaseCol.tga" id="6_ohbk7"]
 [ext_resource type="PackedScene" uid="uid://kxj85aq1b0n0" path="res://assets/models/FinalAssets_Low/Items_Models/Damas_Ingot.tscn" id="6_sx61v"]
 [ext_resource type="Texture2D" uid="uid://bj6c60ek3rd8c" path="res://assets/materials/Texture_sets/WorkStations/Furance_low_ORM.tga" id="7_2jum7"]
-[ext_resource type="Texture2D" uid="uid://c17qxymr0rbo2" path="res://assets/textures/UI/ui_button_image.webp" id="8_wq66q"]
 [ext_resource type="Texture2D" uid="uid://cw0s6r8rhgp8c" path="res://assets/materials/Texture_sets/WorkStations/Furance_low_Normal.tga" id="8_yd14g"]
 [ext_resource type="AudioStream" uid="uid://d31rmb5i75h54" path="res://assets/Sounds/SFX/InitalForgeActivation.wav" id="10_yd14g"]
 [ext_resource type="AudioStream" uid="uid://nipmrmep3cnr" path="res://assets/Sounds/SFX/ForgeAfterActivation.wav" id="11_i2ejw"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vocjd"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8inme"]
+atlas = SubResource("CompressedTexture2D_vocjd")
+region = Rect2(114, 365, 40, 40)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sbkhc"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0l2dt"]
+atlas = SubResource("CompressedTexture2D_sbkhc")
+region = Rect2(216, 805, 40, 43)
 
 [sub_resource type="Resource" id="Resource_04qyv"]
 script = ExtResource("3_oiry0")
@@ -64,15 +75,28 @@ metadata/_custom_type_script = "uid://1bo1o367ybgk"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wq66q"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vl1yp"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vrvjj"]
+height = 0.8371582
+radius = 0.08105469
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_ohbk7"]
 viewport_path = NodePath("Sprite3D/SubViewport")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wq66q"]
 bg_color = Color(0.19014141, 0.71371996, 0.2947564, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sx61v"]
-atlas = ExtResource("8_wq66q")
-region = Rect2(117.9905, 372.12097, 39.020912, 40.217834)
+[sub_resource type="ViewportTexture" id="ViewportTexture_jycwk"]
+viewport_path = NodePath("Sprite3D2/SubViewport")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jycwk"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbkhc"]
+atlas = SubResource("CompressedTexture2D_jycwk")
+region = Rect2(114, 365, 40, 40)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i2ejw"]
 albedo_texture = ExtResource("6_ohbk7")
@@ -98,9 +122,9 @@ inputNode = NodePath("InputPort")
 outputNode = NodePath("OutputPort")
 timeProgressBar = NodePath("Sprite3D/SubViewport/ProgressBar")
 stationName = NodePath("Sprite3D/SubViewport/Label")
-buttonTexture = NodePath("Sprite3D/SubViewport/TextureRect")
-controllerButtonTexture = ExtResource("2_sx61v")
-keyboardButtonTexture = ExtResource("3_i1han")
+buttonTexture = NodePath("Sprite3D2/SubViewport/TextureRect")
+controllerButtonTexture = SubResource("AtlasTexture_8inme")
+keyboardButtonTexture = SubResource("AtlasTexture_0l2dt")
 craftDuration = 4.0
 recipes = Array[Object]([SubResource("Resource_04qyv"), SubResource("Resource_i1han"), SubResource("Resource_7xevn"), SubResource("Resource_i7ec5"), SubResource("Resource_16tjv")])
 
@@ -112,9 +136,23 @@ collision_mask = 6
 transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0)
 shape = SubResource("SphereShape3D_wq66q")
 
-[node name="InputPort" parent="." unique_id=750325492 instance=ExtResource("4_0l8vc")]
+[node name="InputPort" type="Node3D" parent="." unique_id=750325492]
 transform = Transform3D(31.928226, 0, 0, 0, 6.3082385, 0, 0, 0, 44.96865, -4.0128264, 3.270673, -0.43483275)
-visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="InputPort" unique_id=812032035]
+transform = Transform3D(0.18727133, 0, 0, 0, 1, 0, 0, 0, 0.1909036, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_vl1yp")
+transparency = 1.0
+skeleton = NodePath("")
+
+[node name="Area3D" type="Area3D" parent="InputPort" unique_id=1490204633]
+transform = Transform3D(1.8234533, 0, 0, 0, 1, 0, 0, 0, 1.9250902, 0, 0, 0)
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InputPort/Area3D" unique_id=280831638]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018233694, -0.08996582, -0.0063336114)
+shape = SubResource("CylinderShape3D_vrvjj")
 
 [node name="OutputPort" parent="." unique_id=1251145266 instance=ExtResource("4_0l8vc")]
 transform = Transform3D(5.2756314, 0, 0, 0, 2.857143, 0, 0, 0, 5.4322386, -9.265402, 1.5173415, -0.27193514)
@@ -142,13 +180,18 @@ offset_bottom = 84.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_wq66q")
 show_percentage = false
 
-[node name="TextureRect" type="TextureRect" parent="Sprite3D/SubViewport" unique_id=1873765406]
-offset_left = 30.0
-offset_top = 1.0
-offset_right = 70.0
-offset_bottom = 41.0
-scale = Vector2(0.9058403, 0.8089999)
-texture = SubResource("AtlasTexture_sx61v")
+[node name="Sprite3D2" type="Sprite3D" parent="." unique_id=1410507609]
+transform = Transform3D(-6.9999995, 3.059797e-07, 5.2997234e-07, 5.2997257e-07, 6.062178, 3.5000002, -3.0597965e-07, 3.5000002, -6.062178, -0.32537392, 0.7638029, -7.0186863)
+texture = SubResource("ViewportTexture_jycwk")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D2" unique_id=243265782]
+transparent_bg = true
+size = Vector2i(41, 40)
+
+[node name="TextureRect" type="TextureRect" parent="Sprite3D2/SubViewport" unique_id=210235904]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_sbkhc")
 
 [node name="FurnaceLow" type="MeshInstance3D" parent="." unique_id=1274855034]
 transform = Transform3D(-2.857143, 0, -2.4977936e-07, 0, 2.857143, 0, 2.4977936e-07, 0, -2.857143, 0, 0, 0.33177614)

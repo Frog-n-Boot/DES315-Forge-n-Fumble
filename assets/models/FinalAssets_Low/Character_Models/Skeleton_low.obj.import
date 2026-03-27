@@ -4,14 +4,14 @@ importer="wavefront_obj"
 importer_version=1
 type="Mesh"
 uid="uid://8wpolus5qbva"
-path="res://.godot/imported/skeleton_low.obj-1706020c96b90ffb42ebc225a76b9089.mesh"
+path="res://.godot/imported/Skeleton_low.obj-dcdcbc713fc72bbfdba9507a9eb92e3d.mesh"
 
 [deps]
 
-files=["res://.godot/imported/skeleton_low.obj-1706020c96b90ffb42ebc225a76b9089.mesh"]
+files=["res://.godot/imported/Skeleton_low.obj-dcdcbc713fc72bbfdba9507a9eb92e3d.mesh"]
 
-source_file="res://assets/models/FinalAssets_Low/Character_Models/skeleton_low.obj"
-dest_files=["res://.godot/imported/skeleton_low.obj-1706020c96b90ffb42ebc225a76b9089.mesh", "res://.godot/imported/skeleton_low.obj-1706020c96b90ffb42ebc225a76b9089.mesh"]
+source_file="res://assets/models/FinalAssets_Low/Character_Models/Skeleton_low.obj"
+dest_files=["res://.godot/imported/Skeleton_low.obj-dcdcbc713fc72bbfdba9507a9eb92e3d.mesh", "res://.godot/imported/Skeleton_low.obj-dcdcbc713fc72bbfdba9507a9eb92e3d.mesh"]
 
 [params]
 
