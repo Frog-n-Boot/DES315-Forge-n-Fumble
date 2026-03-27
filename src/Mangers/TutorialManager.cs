@@ -52,7 +52,7 @@ public partial class TutorialManager : Node
 		if(currentRoom!=1) return;
 		swordsCrafted++;
 		GD.Print($"Swords sharpened: {swordsCrafted}/1");
-		if(swordsCrafted>=1) CompleteRoom();
+		if(swordsCrafted>=2) CompleteRoom();
         
     }
 
