@@ -775,9 +775,6 @@ goldOre = ExtResource("21_in2eo")
 damasOre = SubResource("PackedScene_5grtr")
 healthPackObject = ExtResource("23_gjpm3")
 
-[node name="GoldOre" parent="." unique_id=546203985 instance=ExtResource("21_in2eo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.061240077, 0.017244, 4.210699)
-
 [node name="IronOre" parent="." unique_id=904125942 instance=ExtResource("20_0qimb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9764352, 4.7683716e-07, 4.2512217)
 

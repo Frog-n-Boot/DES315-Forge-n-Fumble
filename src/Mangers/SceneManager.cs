@@ -24,7 +24,7 @@ public partial class SceneManager : Node
 	}
 
 	public void LoadMainMenu() => LoadScene("res://scenes/MainMenu.tscn");
-	public void LoadGame() => LoadScene("res://scenes/Main.tscn");
+	public void LoadGame() => LoadScene("res://scenes/LoadingScreen.tscn");
 	public void LoadTutorial() => LoadScene("res://scenes/Tutorial.tscn");
 	public void LoadSettings()
 	{

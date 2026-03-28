@@ -135,12 +135,6 @@ controllerButtonTexture = ExtResource("6_xi6p3")
 keyboardButtonTexture = ExtResource("7_e4hrd")
 recipes = Array[Object]([ExtResource("7_0hjnf"), SubResource("Resource_bi4s5")])
 
-[node name="IronDullSword" parent="CollisionShape3D/Anvil" unique_id=803566957 instance=ExtResource("23_jw24r")]
-transform = Transform3D(-0.0044156606, 0, 0.9999902, 0, 1, 0, -0.9999902, 0, -0.0044156606, 5.322609, 0.0009840464, 10.485832)
-
-[node name="IronDullSword2" parent="CollisionShape3D/Anvil" unique_id=506476480 instance=ExtResource("23_jw24r")]
-transform = Transform3D(-0.0044156606, 0, 0.9999902, 0, 1, 0, -0.9999902, 0, -0.0044156606, 6.3247523, 0.0009840464, 8.574482)
-
 [node name="Grindstone" parent="CollisionShape3D" unique_id=1536885273 instance=ExtResource("10_ei5ly")]
 transform = Transform3D(-1.0927847e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.0927847e-08, 10.07971, 0, -0.4805858)
 controllerButtonTexture = ExtResource("6_xi6p3")

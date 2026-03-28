@@ -86,7 +86,7 @@ mesh = ExtResource("4_1latb")
 skeleton = NodePath("../..")
 
 [node name="InputPort" parent="." unique_id=750325492 instance=ExtResource("3_yb3nn")]
-transform = Transform3D(12.001051, 0, 0, 0, 1.3650613, 0, 0, 0, 5.496108, -0.02589643, 0.5367638, 0.06567299)
+transform = Transform3D(12.001051, 0, 0, 0, 1.3650613, 0, 0, 0, 6.8070707, -0.02589643, 0.5367638, 0.06567299)
 
 [node name="OutputPort" parent="." unique_id=1109718632 instance=ExtResource("3_yb3nn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07868272, 0.33549273, -1.1562169)
