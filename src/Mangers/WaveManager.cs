@@ -32,8 +32,9 @@ public partial class WaveManager : Node
 	[Export] public Node3D[] spawnPositions = new Node3D[0];
 
 	[ExportGroup("UI")]
-	[Export] private Label enemyUI;
-	[Export] private Label3D waveTimerLabel3D;
+	[Export] private Label enemiesRemaining;
+	[Export] private Label wavesRemaining;
+	[Export] private TextureProgressBar waveTimerProgressBar;
 	#endregion
 
 	#region Signals
@@ -62,8 +63,8 @@ public partial class WaveManager : Node
 	#region Lifecycle
 	public override void _Ready()
 	{
-		waveTimerLabel3D.Visible = false;
-
+		waveTimerProgressBar.Visible = false;
+		waveTimerProgressBar.MaxValue = timeBetweemWaves;
 		SetupDefaults();
 		SetupTimer();
 
@@ -88,7 +89,7 @@ public partial class WaveManager : Node
 
 		waveTimer = timeBetweemWaves;
 		isWaiting = true;
-		waveTimerLabel3D.Visible = true;
+		waveTimerProgressBar.Visible = true;
 	}
 
 	public override void _Process(double delta)
@@ -96,18 +97,20 @@ public partial class WaveManager : Node
 		if (isWaiting)
 		{
 			waveTimer -= (float)delta;
-			waveTimerLabel3D.Text = $"Time until next Wave: {Mathf.Ceil(waveTimer)}";
-
+			waveTimerProgressBar.Value = waveTimer;
+			
 			if (waveTimer <= 0)
 			{
 				isWaiting = false;
-				waveTimerLabel3D.Visible = false;
+				waveTimerProgressBar.Visible =false;
 				StartNewWave();
 			}
 		}
 
-		if (enemyUI != null)
-			enemyUI.Text = $" Enemies alive: {enemiesLeft} \n Max Waves: {maxWaves}  Current wave: {currentWave} ";
+		if (enemiesRemaining != null)
+			enemiesRemaining.Text = $" X{enemiesLeft}";
+		if(wavesRemaining!= null)
+			wavesRemaining.Text = $" Max Waves: {maxWaves}  Current wave: {currentWave}";
 	}
 	#endregion
 
@@ -232,7 +235,8 @@ public partial class WaveManager : Node
 
 	private void OnWaveCompleted()
 	{
-		waveTimerLabel3D.Visible = true;
+		waveTimerProgressBar.Visible = true;
+		waveTimerProgressBar.Value = timeBetweemWaves;
 		waveTimer = timeBetweemWaves;
 		isWaiting = true;
 		EmitSignal(SignalName.WaveCompleted, currentWave);
@@ -279,6 +283,7 @@ public partial class WaveManager : Node
 			EnemyController enemy = EnemyController.Create(
 				selectedData, targetNode, spawnParent, spawnPosition);
 
+			
 			activeEnemies.Add(enemy);
 			enemiesAliveThisWave++;
 

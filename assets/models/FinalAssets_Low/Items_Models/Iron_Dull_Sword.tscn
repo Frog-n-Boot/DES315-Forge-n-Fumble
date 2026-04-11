@@ -5,9 +5,16 @@
 [ext_resource type="Texture2D" uid="uid://dh0ha8nt5av2t" path="res://assets/materials/Texture_sets/Item_Textures/sword_scnd_rough_low_Normal.tga" id="2_j6w72"]
 [ext_resource type="PackedScene" uid="uid://di5odw2tmde5j" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Sword.tscn" id="2_jlpgu"]
 [ext_resource type="Texture2D" uid="uid://cfllkfsxak7hb" path="res://assets/materials/Texture_sets/Item_Textures/sword_frts_rough_low_Normal.tga" id="3_jlpgu"]
+[ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="3_v6vne"]
+[ext_resource type="Texture2D" uid="uid://tbrctcwppirl" path="res://assets/textures/UI/ui_x_button.tres" id="4_pgajg"]
 [ext_resource type="Texture2D" uid="uid://dw7bk1nhlrupf" path="res://assets/materials/Texture_sets/Item_Textures/sword_scnd_rough_low_ORM.tga" id="4_w7j66"]
+[ext_resource type="Texture2D" uid="uid://dnrpwukmp1jyj" path="res://assets/textures/UI/ui_e_button.tres" id="5_533ye"]
 [ext_resource type="ArrayMesh" uid="uid://vmdklfvgul40" path="res://assets/models/FinalAssets_Low/Items_Models/Sword_first_low.obj" id="5_v6vne"]
 [ext_resource type="AudioStream" uid="uid://c01r2egd4skm" path="res://assets/Sounds/SFX/SwordBreak.wav" id="8_w7j66"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xpjli"]
+atlas = ExtResource("3_v6vne")
+region = Rect2(632, 31, 63, 190)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jlpgu"]
 size = Vector3(5.340587, 1.6914063, 8.853933)
@@ -24,12 +31,19 @@ normal_texture = ExtResource("3_jlpgu")
 heightmap_enabled = true
 heightmap_texture = ExtResource("2_j6w72")
 
-[node name="IronDullSword" type="Node3D" unique_id=803566957 node_paths=PackedStringArray("audio") groups=["DullSword", "Sword", "Weapon"]]
+[sub_resource type="ViewportTexture" id="ViewportTexture_v6vne"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[node name="IronDullSword" type="Node3D" unique_id=803566957 node_paths=PackedStringArray("audio", "weaponTextureRect", "pickUpArea") groups=["DullSword", "Sword", "Weapon"]]
 script = ExtResource("1_j6w72")
 sharpenedVersion = ExtResource("2_jlpgu")
 audio = NodePath("SwordBreak")
 damage = 1
 maxDurability = 10
+weaponTexture = SubResource("AtlasTexture_xpjli")
+weaponPromptTexture = Array[Texture2D]([ExtResource("4_pgajg"), ExtResource("5_533ye")])
+weaponTextureRect = NodePath("Sprite3D/SubViewport/TextureRect")
+pickUpArea = NodePath("StaticBody3D/Area3D")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1134160719 groups=["DullSword", "Sword", "Weapon"]]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
@@ -60,3 +74,15 @@ volume_db = -60.0
 max_db = -24.0
 max_polyphony = 10
 bus = &"SFX"
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=889598787]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4590406, 0)
+texture = SubResource("ViewportTexture_v6vne")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=289028794]
+transparent_bg = true
+size = Vector2i(50, 50)
+
+[node name="TextureRect" type="TextureRect" parent="Sprite3D/SubViewport" unique_id=98445824]
+offset_right = 40.0
+offset_bottom = 40.0

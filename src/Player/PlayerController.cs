@@ -25,8 +25,6 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	[Export] private Node3D rightHand;
 	[Export] private Node3D leftHand;
 	[Export] private Area3D areaPickup;
-	[Export] public Texture2D[] playerTextures;
-	[Export] private Node3D pickupNode;
 	[Export] public float playerSpawnTimer;
 	[Export] private Texture2D[] playerMaterialTextures;
 	[Export] public float flashDuration = 0.2f;
@@ -34,7 +32,6 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	[Export] public float spinStopThreshold = 1.0f;
 	private PlayerSpawner playerSpawner;
 
-	public Texture2D GetPortraitTexture() => playerTextures[PlayerIndex];
 	public int currentDevice = -2;
 
 	private SequenceMinigame sequenceMinigame;
@@ -146,7 +143,6 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			GD.PrintErr("Hand node not found!");
 		}
 
-		pickupPrompt = pickupNode.GetNode<Label3D>("Label3D");
 
 		spinAttack = GetNode<SpinAttack>("SpinAttack");
 
@@ -298,11 +294,12 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			}
 			
 		}
-		else if(currentWeapon is Bow bow)
+		else if(currentWeapon is Crossbow bow)
 		{
+			bow.shootingDirectionMesh.Visible = true;
 			if(inputBuffer.IsInputBuffered("attack") && !isAttacking)
 			{
-				bow.StartDraw();
+				bow.Shoot();
 				
 				isAttacking = true;
 			}
@@ -477,9 +474,9 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			
 			
 		}
-		else if(currentWeapon is Bow bow)
+		else if(currentWeapon is Crossbow bow)
 		{
-			bow.StartDraw();
+			bow.Shoot();
 			isAttacking = false;
 		}
 			
@@ -499,10 +496,9 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 		}
 			
-		else if(currentWeapon is Bow bow)
+		else if(currentWeapon is Crossbow bow)
 		{
 			isAttacking = false;
-			bow.Release();
 		}
 			
 	}
@@ -543,31 +539,33 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		{
 			nearbyPickable = area.GetParent() as Pickable;
 			GD.Print($"NearbyPickable: {nearbyPickable?.Name ?? "null"}");
-			pickupNode.GlobalPosition = new Vector3(nearbyPickable.GlobalPosition.X, nearbyPickable.GlobalPosition.Y + 2, nearbyPickable.GlobalPosition.Z);
+			if(nearbyPickable != null) nearbyPickable.SetItemPromptTexture(IsUsingController());
 		}
 
 		if (area.IsInGroup("Weapon")){
 			StaticBody3D areaParent = area.GetParent() as StaticBody3D;
 			nearbyWeapon = areaParent?.GetParent() as BaseWeapon;
-			pickupNode.GlobalPosition = new Vector3(nearbyWeapon.GlobalPosition.X, nearbyWeapon.GlobalPosition.Y + 3, nearbyWeapon.GlobalPosition.Z);
+			if(nearbyWeapon != null) nearbyWeapon.SetWeaponPromptTexture(IsUsingController());
 		}
-		
-		pickupPrompt.Visible = true;
-		pickupPrompt.Text = IsUsingController() ? "LT" : "Right Click";
-		pickupPrompt.FontSize = 40;
-		//pickupPrompt.GlobalPosition = new Vector3(nearbyPickable.GlobalPosition.X, nearbyPickable.GlobalPosition.Y + 3, nearbyPickable.GlobalPosition.Z);
-
 	}
 
 	private void OnPickUpAreaExited(Area3D area)
 	{
-	
-		if(area.IsInGroup("pickable"))
+
+		if (area.IsInGroup("pickable"))
+		{
+			if(nearbyPickable != null) nearbyPickable.HideItemPrompt();
 			nearbyPickable = null;
-		if(area.IsInGroup("Weapon"))
+		}
+
+		if (area.IsInGroup("Weapon"))
+		{
+			if(nearbyWeapon != null) nearbyWeapon.HideWeaponPrompt();
 			nearbyWeapon = null;
-		if(nearbyWeapon == null && nearbyPickable == null)
-			pickupPrompt.Visible = false;
+		}
+		
+		
+			
 	}
 
 	private void ProcessPickable(Pickable pickable)
@@ -603,6 +601,10 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	{
 		if(nearbyWeapon.isBeingPickedUp) return;
 		nearbyWeapon.isBeingPickedUp = true;
+
+		if(nearbyWeapon.pickUpArea != null) nearbyWeapon.pickUpArea.Monitoring = false;
+		nearbyWeapon.HideWeaponPrompt();
+		
 		UpdateAnimationTreacks(nearbyWeapon.Name);
 		nearbyWeapon.CallDeferred("reparent", rightHand);
 		GetTree().CreateTimer(0.1f).Timeout += () =>
@@ -625,14 +627,25 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 				sword.Connect(Sword.SignalName.CheckDurability, Callable.From(OnSwordDurabilityChecked));
 				sword.SetHitboxEnabled(true);
 			}
+			
 
 			if(currentWeapon.IsConnected(BaseWeapon.SignalName.Broke, Callable.From(OnSwordBroke)))
 				currentWeapon.Disconnect(BaseWeapon.SignalName.Broke, Callable.From(OnSwordBroke));
 			currentWeapon.Connect(BaseWeapon.SignalName.Broke, Callable.From(OnSwordBroke));
 
 			currentWeapon.isBeingPickedUp = false;
+			
 			nearbyWeapon = null;
 			
+			if(spinAttack == null)
+			{
+				spinAttack = GetNodeOrNull<SpinAttack>("SpinAttack");
+				if(spinAttack == null)
+				{
+					GD.Print("Spin attack still not found");
+					return;
+				}
+			}
 			if(currentWeapon is MeleeWeapon melee)
 				spinAttack.SetWeapon(melee);
 		};
@@ -804,7 +817,11 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	{
 		//GD.Print("Sword broke! Auto crafting a new one if ingredients are available...");
 		currentWeapon = null;
-		spinAttack.SetWeapon(null);
+		if(spinAttack != null)
+		{
+			spinAttack.SetWeapon(null);
+		}
+		
 		isAttacking = false;
 		
 	}
@@ -830,13 +847,18 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 				spinAttack.SetWeapon(null);
 				sword.CheckDurability -= OnSwordDurabilityChecked;
 			}
-				
+			else if(weapon is Crossbow bow) bow.shootingDirectionMesh.Visible = false;
 
 			currentWeapon.Broke -= OnSwordBroke;
 			currentWeapon = null;
 
 			GetTree().CreateTimer(0.1f).Timeout += () =>
+			{
 				areaPickup.SetDeferred("monitoring", true);
+
+				if(IsInstanceValid(weapon)) weapon.ShowWeaponPrompt();
+			};
+				
 			
 			return;
 		}
@@ -876,11 +898,13 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		sequenceMinigame = station?.GetSequenceMinigame();
 		barMinigame = station?.GetBarMinigame();
 	}
+
 	private bool IsUsingController() => currentDevice >= 0;
 
 	public void ApplyKnockback(Vector3 direction, float force){
 		knockback = direction * force;
 	}
+
 	private void Flash()
 	{
 		if(material == null) return;

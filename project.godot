@@ -68,6 +68,7 @@ Turret=""
 Weapon=""
 navigation_mesh_source_group="The Navigation layer for the AI"
 <<<<<<<HEADnavigation_mesh_source_group="The Navigation layer for the AI"
+Ballista=""
 
 [input]
 

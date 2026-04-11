@@ -299,8 +299,8 @@ public partial class EnemyController : CharacterBody3D
         }
 
         _diagFrame++;
-        if (_diagFrame % DiagInterval == 0)
-            PrintDiagnostics(targetPosition, nextPoint, direction);
+        //if (_diagFrame % DiagInterval == 0)
+            //PrintDiagnostics(targetPosition, nextPoint, direction);
     }
 
     public void MoveTowards(Vector3 targetPosition, double delta)
@@ -528,11 +528,13 @@ public partial class EnemyController : CharacterBody3D
         switch (groupName)
         {
             case "Forge":
-                isDying = true;
                 EmitSignal(SignalName.DamagedTarget, body, Damage);
                 Forge forge = GetForge();
                 if (forge != null) { forge.TakeDamage(Damage); GD.Print(forge.health); }
-                Die();
+                
+                Vector3 forgePushDir = (GlobalPosition - body.GlobalPosition).Normalized();
+                forgePushDir.Y = 0;
+                ApplyKnockback(forgePushDir, 15f);
                 break;
             case "Player":
                 EmitSignal(SignalName.DamagedTarget, body, Damage);

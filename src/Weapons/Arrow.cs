@@ -4,10 +4,12 @@ using System;
 public partial class Arrow : Node3D
 {
 	[Export] public float speed {get; set;} =100f;
-	[Export] public float damage {get; set;} =10f;
+	[Export] public float damage {get; set;} =1f;
 	[Export] public float lifeTime {get; set;} = 5f;
 	[Export] public float gravityStrength {get; set;} = 9.8f;
 
+	public static int defaultDamage = 10;
+	public static float defaultSpeed = 20f;
 	private Vector3 velocity;
 	private bool hasHit = false;
 	

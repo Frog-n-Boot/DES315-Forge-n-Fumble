@@ -2,16 +2,16 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class Turret : Node3D
+public partial class Ballista : Node3D
 {
-	[Export] private Node3D bulletSpawnPosition;
-	[Export] private Node3D turretHead;
-	[Export] private Node3D turretBarrel;
-	[Export] private PackedScene bulletScene;
+	[Export] private Node3D arrowSpawnPosition;
+	[Export] private Node3D ballistaHead;
+	[Export] private Node3D ballistaBarrel;
+	[Export] private PackedScene arrowScene;
 	[Export] public float range = 20.0f;
 	[Export] public float coneAngle = 360.0f;
 	[Export] protected Node3D inputNode;
-	[Export] int bulletCount= 10;
+	[Export] int arrowCount= 10;
 
 	[Export] protected Label3D label;
 
@@ -23,14 +23,14 @@ public partial class Turret : Node3D
 	private List<PlayerController> playersInZone = new List<PlayerController>();
 	
 
-	private Node3D currentTarget;
+	private EnemyController currentTarget;
 	private float reloadTime = 1;
 	Timer shootTimer;
 
 	public override void _Ready()
 	{
 		label.Visible = true;
-		label.Text = $"{bulletCount}";
+		label.Text = $"{arrowCount}";
 		label.FontSize = 40;
 		SetupTimer();
 		SetupArea();
@@ -42,7 +42,7 @@ public partial class Turret : Node3D
 		shootTimer.WaitTime = 1.0f;
 		shootTimer.OneShot= false;
 		AddChild(shootTimer);
-		shootTimer.Timeout += SpawnBullet;
+		shootTimer.Timeout += SpawnArrow;
 		shootTimer.Start();
 	}
 
@@ -66,13 +66,36 @@ public partial class Turret : Node3D
 	public override void _Process(double delta)
 	{
 		currentTarget = FindClosestEnemy();
-		if (currentTarget == null) return;
-		bulletSpawnPosition.LookAt(currentTarget.GlobalPosition, Vector3.Up);
+		if(currentTarget != null)
+		{
+			Vector3 targetPos = GetEnemyCenter(currentTarget);
+			ballistaHead.LookAt(targetPos, Vector3.Up);
+			// Vector3 targetPos = currentTarget.GlobalPosition;
+
+			// Vector3 toTarget = targetPos - turretHead.GlobalPosition;
+			// Vector3 horizontalDir = new Vector3(toTarget.X, 0, toTarget.Z);
+
+			// if(horizontalDir.LengthSquared() > 0.001f)
+			// {
+			// 	float yaw = Mathf.Atan2(horizontalDir.X, horizontalDir.Z);
+			// 	turretHead.Rotation = new Vector3(0, yaw, 0);
+			// }
+
+			// // Vector3 toTargetFromBarrel = targetPos - turretBarrel.GlobalPosition;
+			// // float horizontalDist = new Vector3(toTargetFromBarrel.X, 0, toTargetFromBarrel.Z).Length();
+
+			// // if(horizontalDist > 0.001f)
+			// // {
+			// // 	float pitch = -Mathf.Atan2(toTargetFromBarrel.Y, horizontalDist);
+			// // 	turretBarrel.Rotation = new Vector3(pitch, 0, 0);
+			// // }
+
+		}
 	}
 
-	private void SpawnBullet()
+	private void SpawnArrow()
 	{
-		if (bulletCount <= 0)
+		if (arrowCount <= 0)
 		{
 			shootTimer.Stop();
 			return;
@@ -81,19 +104,19 @@ public partial class Turret : Node3D
 		EnemyController target = FindClosestEnemy();
 		if (target == null) return;
 
-		AimAtTarget(target.GlobalPosition);
 		
-		var bullet = bulletScene.Instantiate<Bullet>();
-		bullet.AddToGroup("Bullet");
-		GetTree().Root.AddChild(bullet);
-		bullet.GlobalPosition = bulletSpawnPosition.GlobalPosition;
-		bullet.GlobalRotation = bulletSpawnPosition.GlobalRotation;
+		var arrow = arrowScene.Instantiate<Arrow>();
+		arrow.AddToGroup("Arrow");
+		GetTree().Root.AddChild(arrow);
+		arrow.GlobalPosition = arrowSpawnPosition.GlobalPosition;
 
-		Vector3 forward = -bulletSpawnPosition.GlobalTransform.Basis.Z;
-		bullet.SetDirection(forward);
+		Vector3 targetPosition = GetEnemyCenter(target);
 
-		bulletCount--;
-		label.Text = $"{bulletCount}";
+		Vector3 direction = (targetPosition - arrowSpawnPosition.GlobalPosition).Normalized();
+		arrow.Initialize(direction, 2);
+
+		arrowCount--;
+		label.Text = $"{arrowCount}";
 		audio.Play();
 	}
 
@@ -113,7 +136,7 @@ public partial class Turret : Node3D
 			
 		   	if (distance > range) continue;
 
-			float angle = Mathf.RadToDeg(Transform.Basis.X.AngleTo(toEnemy.Normalized()));
+			float angle = Mathf.RadToDeg(-Transform.Basis.Z.AngleTo(toEnemy.Normalized()));
 			if (angle <= coneAngle && distance < closestDist)
 			{
 				closestDist = distance;
@@ -124,28 +147,38 @@ public partial class Turret : Node3D
 		return closest;
 	}
 
+	private Vector3 GetEnemyCenter(EnemyController enemy)
+	{
+		var collisionShape = enemy.FindChild("CollisionShape3D") as CollisionShape3D;
+		if(collisionShape != null) return collisionShape.GlobalPosition;
+
+		return enemy.GlobalPosition + Vector3.Up * 1.0f;
+	}
 	private void AimAtTarget(Vector3 targetPos)
 	{
-		Vector3 toTarget = targetPos - bulletSpawnPosition.GlobalPosition;
+		Vector3 toTarget = targetPos - arrowSpawnPosition.GlobalPosition;
 
 		Vector3 horizontalDir = new Vector3(toTarget.X, 0, toTarget.Z);
 		if(horizontalDir.LengthSquared() > 0.001f)
 		{
 			float yaw = Mathf.Atan2(horizontalDir.X, horizontalDir.Z);
-			turretHead.Rotation = new Vector3(0, yaw, 0);
+			ballistaHead.Rotation = new Vector3(0, yaw, 0);
+			arrowSpawnPosition.Rotation = ballistaHead.Rotation;
 		}
 
 		float horizontalDist = horizontalDir.Length();
 		if(horizontalDist > 0.001f){
-			
-		}float pitch = -Mathf.Atan2(toTarget.Y, horizontalDist);
-		turretBarrel.Rotation = new Vector3(pitch, 0, 0);
+			float pitch = -Mathf.Atan2(toTarget.Y, horizontalDist);
+			ballistaHead.Rotation = new Vector3(pitch, 0, 0);
+			arrowSpawnPosition.Rotation = ballistaHead.Rotation;
+		}
 	}	
 	
 	public void OnInputBodyEntered(Node3D body)
 	{
 		if (body.IsInGroup("Player"))
 		{
+			GD.Print("Player entered input area");
 			var p= body as PlayerController;
 			itemCarrier = p as ItemCarrier;
 			player = p;
@@ -158,11 +191,12 @@ public partial class Turret : Node3D
 		var items= itemCarrier.GetCarriedItems();
 		foreach(var item in items)
 		{
+			GD.Print($"Checking item: {item.name}");
 			if(item.name == "Iron_Ingot")
 			{
 				GD.Print("Ingot was added");
-				bulletCount += 10;
-				label.Text = $"{bulletCount}";
+				arrowCount += 10;
+				label.Text = $"{arrowCount}";
 				shootTimer.Start();
 				itemCarrier.RemoveItem(item);
 			}

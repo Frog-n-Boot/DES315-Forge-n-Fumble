@@ -24,11 +24,25 @@
 [ext_resource type="PackedScene" uid="uid://d1y4lf17i3iid" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Dull_Sword.tscn" id="23_jw24r"]
 [ext_resource type="PackedScene" uid="uid://jnghu007q1m" path="res://assets/models/FinalAssets_Low/Items_Models/Healthpack.tscn" id="23_oyacv"]
 [ext_resource type="Resource" uid="uid://cdki2c88hftlb" path="res://assets/resources/AI/FastEnemyData.tres" id="24_e4hrd"]
-[ext_resource type="PackedScene" uid="uid://706c56ie3ke" path="res://assets/prefabs/Turret.tscn" id="24_l4yix"]
 [ext_resource type="ArrayMesh" uid="uid://8wpolus5qbva" path="res://assets/models/FinalAssets_Low/Character_Models/skeleton_low.obj" id="24_ujnhc"]
 [ext_resource type="Material" uid="uid://btwle4bal72vo" path="res://assets/materials/Texture_sets/Character_Textures/Skeleton Textures/skeleton_material.tres" id="24_xi6p3"]
 [ext_resource type="ArrayMesh" uid="uid://ch821ffso52fw" path="res://assets/models/FinalAssets_Low/Items_Models/handheld_ballista.obj" id="25_4tybr"]
 [ext_resource type="Script" uid="uid://dli7kb5c5sowk" path="res://src/Mangers/TutorialManager.cs" id="27_bi4s5"]
+[ext_resource type="Script" uid="uid://bdt0s16a5rcia" path="res://src/Weapons/Ballista.cs" id="29_0a2r4"]
+[ext_resource type="PackedScene" uid="uid://ds1kx4ru8gie6" path="res://assets/models/FinalAssets_Low/Items_Models/Arrow.tscn" id="30_mcs8j"]
+[ext_resource type="AudioStream" uid="uid://clu5cxqv4p82n" path="res://assets/Sounds/SFX/ArrowShot1.wav" id="31_wkaxc"]
+[ext_resource type="AudioStream" uid="uid://dcydee0xx4hyh" path="res://assets/Sounds/SFX/ArrowShot2.wav" id="32_y74ua"]
+[ext_resource type="AudioStream" uid="uid://bvros01eimu8e" path="res://assets/Sounds/SFX/ArrowShot3.wav" id="33_rx2rv"]
+[ext_resource type="AudioStream" uid="uid://cuye7148tmyo2" path="res://assets/Sounds/SFX/ArrowShot4.wav" id="34_cgb57"]
+[ext_resource type="AudioStream" uid="uid://du0s0ob33nkfk" path="res://assets/Sounds/SFX/ArrowShot5.wav" id="35_7vc5l"]
+[ext_resource type="AudioStream" uid="uid://crnicpt4cm6vl" path="res://assets/Sounds/SFX/ArrowShot6.wav" id="36_v1uvm"]
+[ext_resource type="AudioStream" uid="uid://dqfesdlvly7dk" path="res://assets/Sounds/SFX/ArrowShot7.wav" id="37_wwsfe"]
+[ext_resource type="AudioStream" uid="uid://5oond83reqi" path="res://assets/Sounds/SFX/ArrowShot8.wav" id="38_s4wry"]
+[ext_resource type="AudioStream" uid="uid://bdwbh8dx80xdj" path="res://assets/Sounds/SFX/ArrowShot9.wav" id="39_t73ya"]
+[ext_resource type="AudioStream" uid="uid://duxa6q488bcjk" path="res://assets/Sounds/SFX/ArrowShot10.wav" id="40_1y4d5"]
+[ext_resource type="Material" uid="uid://24hwnxagoffj" path="res://assets/models/FinalAssets_Low/WorkStations/Ballista/ballista.tres" id="41_47rdh"]
+[ext_resource type="ArrayMesh" uid="uid://d2w54yxgv34j" path="res://assets/models/FinalAssets_Low/WorkStations/Ballista/Ballista_Bottom_element_low.obj" id="42_4c805"]
+[ext_resource type="ArrayMesh" uid="uid://dfauyerha08a2" path="res://assets/models/FinalAssets_Low/WorkStations/Ballista/Ballista_Top_element_low.obj" id="43_podgh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j4y01"]
 albedo_texture = ExtResource("1_q5ijt")
@@ -71,6 +85,8 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_7vc5l"]
+height = 2.4223633
+radius = 1.0214844
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_v1uvm"]
 height = 1.8012695
@@ -93,6 +109,29 @@ fog_mode = 1
 fog_density = 1.0
 fog_depth_end = 242.5
 volumetric_fog_density = 0.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_sl1qq"]
+streams_count = 10
+stream_0/stream = ExtResource("31_wkaxc")
+stream_1/stream = ExtResource("32_y74ua")
+stream_2/stream = ExtResource("33_rx2rv")
+stream_3/stream = ExtResource("34_cgb57")
+stream_4/stream = ExtResource("35_7vc5l")
+stream_5/stream = ExtResource("36_v1uvm")
+stream_6/stream = ExtResource("37_wwsfe")
+stream_7/stream = ExtResource("38_s4wry")
+stream_8/stream = ExtResource("39_t73ya")
+stream_9/stream = ExtResource("40_1y4d5")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e7812"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vl1yp"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vl1yp"]
+size = Vector3(0.6976929, 1, 0.6383629)
+
+[sub_resource type="BoxMesh" id="BoxMesh_m1e06"]
 
 [node name="TestingLab" type="StaticBody3D" unique_id=127569902]
 
@@ -241,14 +280,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 329.32535, 0, -39.330086)
 script = ExtResource("21_4tybr")
 healthPackObject = ExtResource("23_oyacv")
 
-[node name="EnemyUI" type="Label" parent="." unique_id=833543321]
-offset_right = 66.0
-offset_bottom = 23.0
-text = "Enemies"
-metadata/_edit_use_anchors_ = true
-
 [node name="Enemy" type="Node3D" parent="." unique_id=537096316 groups=["Enemy"]]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 203.90479, 0.1279633, -18.522476)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 203.90479, 0.8567555, -16.62267)
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="Enemy" unique_id=1415702169 node_paths=PackedStringArray("mesh", "collisionArea") groups=["Enemy"]]
 collision_layer = 4
@@ -264,9 +297,11 @@ material_override = ExtResource("21_bi4s5")
 mesh = ExtResource("21_q5ijt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy/CharacterBody3D" unique_id=124164956]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21118164, 0)
 shape = SubResource("CylinderShape3D_7vc5l")
 
 [node name="Area3D" type="Area3D" parent="Enemy/CharacterBody3D" unique_id=14099540]
+transform = Transform3D(1.4373442, 0, 0, 0, 1, 0, 0, 0, 1.492034, 0, 0, 0)
 collision_layer = 4
 collision_mask = 235
 
@@ -428,9 +463,84 @@ shadow_normal_bias = 0.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1529891518]
 environment = SubResource("Environment_47rdh")
 
-[node name="Turret" parent="." unique_id=1571022317 instance=ExtResource("24_l4yix")]
+[node name="Turret" type="Node3D" parent="." unique_id=1571022317 node_paths=PackedStringArray("arrowSpawnPosition", "ballistaHead", "ballistaBarrel", "inputNode", "label", "audio") groups=["Ballista"]]
 transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 185.16833, 0.0056490004, -16.676088)
-bulletCount = 0
+script = ExtResource("29_0a2r4")
+arrowSpawnPosition = NodePath("BallistaTopElementLow/BallistaBarrel/ArrowSpawnLocation")
+ballistaHead = NodePath("BallistaTopElementLow")
+ballistaBarrel = NodePath("BallistaTopElementLow/BallistaBarrel")
+arrowScene = ExtResource("30_mcs8j")
+inputNode = NodePath("BallistaTopElementLow/StaticBody3D/StationPort")
+arrowCount = 0
+label = NodePath("CanvasLayer/Node3D/Label3D")
+audio = NodePath("AudioStreamPlayer3D")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Turret" unique_id=2121636395]
+
+[node name="Node3D" type="Node3D" parent="Turret/CanvasLayer" unique_id=1037465994]
+transform = Transform3D(-0.10386822, 0, 0.49802622, 0, 3.4232113, 0, -4.7299213, 0, -0.010936562, 0, 3.545107, 0)
+
+[node name="Label3D" type="Label3D" parent="Turret/CanvasLayer/Node3D" unique_id=1012313719]
+visible = false
+text = "There"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Turret" unique_id=134283511]
+stream = SubResource("AudioStreamRandomizer_sl1qq")
+volume_db = -40.0
+max_db = -24.0
+max_polyphony = 20
+bus = &"SFX"
+
+[node name="BallistaBottomElementLow" type="MeshInstance3D" parent="Turret" unique_id=1196528612]
+transform = Transform3D(0.71428573, 0, 0, 0, 0.71428573, 0, 0, 0, 0.71428573, 0, 0, 0)
+material_override = ExtResource("41_47rdh")
+mesh = ExtResource("42_4c805")
+
+[node name="BallistaTopElementLow" type="MeshInstance3D" parent="Turret" unique_id=369042352]
+transform = Transform3D(0.71428573, 0, 0, 0, 0.71428573, 0, 0, 0, 0.71428573, 0, 0, 0)
+material_override = ExtResource("41_47rdh")
+mesh = ExtResource("43_podgh")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Turret/BallistaTopElementLow" unique_id=440704571]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0, 0)
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Turret/BallistaTopElementLow/StaticBody3D" unique_id=1945830702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9050009, 0)
+shape = SubResource("CapsuleShape3D_e7812")
+
+[node name="StationPort" type="Node3D" parent="Turret/BallistaTopElementLow/StaticBody3D" unique_id=750325492]
+transform = Transform3D(62.81827, 0, 0, 0, 85.7798, 0, 0, 0, 34.782322, -0.19229126, 0.54238105, 0.27918434)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Turret/BallistaTopElementLow/StaticBody3D/StationPort" unique_id=812032035]
+transform = Transform3D(0.18727133, 0, 0, 0, 1, 0, 0, 0, 0.1909036, 0, 0, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_vl1yp")
+transparency = 1.0
+skeleton = NodePath("")
+
+[node name="Area3D" type="Area3D" parent="Turret/BallistaTopElementLow/StaticBody3D/StationPort" unique_id=1490204633]
+transform = Transform3D(0.14721856, 0, 0, 0, -0.07687317, 0, 0, 0, 0.30185395, 0.0036346912, 0, -0.008695453)
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Turret/BallistaTopElementLow/StaticBody3D/StationPort/Area3D" unique_id=280831638]
+transform = Transform3D(0.17999986, 0, 0, 0, 0.9999873, 0, 0, 0, 0.18999994, 0.0013348593, 0, -0.006333612)
+shape = SubResource("BoxShape3D_vl1yp")
+
+[node name="BallistaBarrel" type="Node3D" parent="Turret/BallistaTopElementLow" unique_id=309150814]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0, 0)
+
+[node name="ArrowSpawnLocation" type="Node3D" parent="Turret/BallistaTopElementLow/BallistaBarrel" unique_id=1309432331]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.8982694, 0.7900001, 1.2700133, -0.048)
+visible = false
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Turret/BallistaTopElementLow/BallistaBarrel/ArrowSpawnLocation" unique_id=1444911399]
+transform = Transform3D(1, 0, 0, 0, 0.33043814, 0, 0, 0, 0.2738446, -0.18170571, -0.027641058, 0.07790413)
+mesh = SubResource("BoxMesh_m1e06")
+skeleton = NodePath("../../../StaticBody3D")
 
 [connection signal="body_entered" from="Enemy/CharacterBody3D/Area3D" to="Enemy" method="OnBodyEntered"]
 [connection signal="body_entered" from="Enemy2/CharacterBody3D/Area3D" to="Enemy2" method="OnBodyEntered"]
+[connection signal="body_exited" from="Turret/BallistaTopElementLow/StaticBody3D/StationPort/Area3D" to="Turret" method="OnInputBodyEntered"]

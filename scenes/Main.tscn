@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://88oq7ysmwuhi"]
 
 [ext_resource type="PackedScene" uid="uid://cxj0fwjqxc5ny" path="res://assets/prefabs/Rocks.tscn" id="1_dg70y"]
-[ext_resource type="PackedScene" uid="uid://706c56ie3ke" path="res://assets/prefabs/Turret.tscn" id="2_pnhog"]
+[ext_resource type="PackedScene" uid="uid://706c56ie3ke" path="res://assets/prefabs/Ballista.tscn" id="2_pnhog"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="3_2c4at"]
 [ext_resource type="PackedScene" uid="uid://cmd758glwlnly" path="res://assets/models/FinalAssets_Low/WorkStations/Grindstone.tscn" id="4_g6wdg"]
 [ext_resource type="PackedScene" uid="uid://g1gfmktihg8t" path="res://assets/models/FinalAssets_Low/WorkStations/Anvil.tscn" id="5_hq6as"]
@@ -28,6 +28,7 @@
 [ext_resource type="Script" uid="uid://brp6gsap0s2ok" path="res://src/UI/HealthBar.cs" id="26_pb578"]
 [ext_resource type="Script" uid="uid://dnliu2440i283" path="res://src/Menus/PauseMenu.cs" id="27_vshs7"]
 [ext_resource type="Texture2D" uid="uid://dy1wiwwij327x" path="res://assets/materials/Texture_sets/2DTextures/furnaceImage.webp" id="28_2ki8c"]
+[ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="28_oa6sj"]
 [ext_resource type="Texture2D" uid="uid://bvw5yhtbch6ht" path="res://assets/materials/Texture_sets/2DTextures/anvilImage.webp" id="29_0owt5"]
 [ext_resource type="Texture2D" uid="uid://dwexwmybryvpl" path="res://assets/materials/Texture_sets/2DTextures/grindstoneImage.webp" id="30_o1tg2"]
 [ext_resource type="PackedScene" uid="uid://176tgqxxk3p7" path="res://scenes/DebugMenu.tscn" id="31_hyu0y"]
@@ -37,8 +38,16 @@
 [ext_resource type="Texture2D" uid="uid://dmckkpafqq3bq" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_Normal.tga" id="34_8cp6k"]
 [ext_resource type="Texture2D" uid="uid://b1xjsa5p8f7rb" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_ORM.tga" id="35_8b871"]
 [ext_resource type="ArrayMesh" uid="uid://g007ahf37syv" path="res://assets/models/FinalAssets_Low/Ore/Damas_ing_low.obj" id="36_pdwbg"]
-[ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/FinalAssets_Low/Items_Models/DullSword.tscn" id="38_cmqll"]
+[ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Dull_Sword.tscn" id="38_cmqll"]
 [ext_resource type="PackedScene" uid="uid://d1y4lf17i3iid" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Dull_Sword.tscn" id="39_8cp6k"]
+[ext_resource type="Script" uid="uid://d0qxci8nvqnkh" path="res://src/Mangers/LevelManager.cs" id="40_8cp6k"]
+[ext_resource type="PackedScene" uid="uid://bfvifq667vxvj" path="res://assets/models/FinalAssets_Low/Ore/Damas_Ore.tscn" id="41_8b871"]
+[ext_resource type="PackedScene" uid="uid://c36fijnqqehnq" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Ingot.tscn" id="42_s3wmy"]
+[ext_resource type="PackedScene" uid="uid://o7vvnubwicff" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Ingot.tscn" id="43_gdcyb"]
+[ext_resource type="PackedScene" uid="uid://bay85dbpt3qio" path="res://assets/models/FinalAssets_Low/Items_Models/Gold_Ingot.tscn" id="44_oa6sj"]
+[ext_resource type="PackedScene" uid="uid://kxj85aq1b0n0" path="res://assets/models/FinalAssets_Low/Items_Models/Damas_Ingot.tscn" id="45_0f1tp"]
+[ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Sword.tscn" id="46_0qimb"]
+[ext_resource type="PackedScene" uid="uid://di5odw2tmde5j" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Sword.tscn" id="47_in2eo"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_dg70y"]
 vertices = PackedVector3Array(-64.95401, 0.3540206, -18.281357, -26.95401, 0.3540206, -18.281357, -25.95401, 0.3540206, -21.031357, -24.70401, 0.3540206, -22.031357, -23.45401, 0.3540206, -68.78136, -64.95401, 0.3540206, -68.78136, -23.20401, 0.3540206, -22.031357, -22.20401, 0.3540206, -22.281357, -21.95401, 0.3540206, -68.78136, -18.70401, 0.3540206, -20.031357, -7.70401, 0.3540206, -20.781357, -7.70401, 0.3540206, -21.781357, -6.95401, 0.3540206, -22.781357, -20.20401, 0.3540206, -21.781357, -5.70401, 0.3540206, -23.781357, -2.95401, 0.3540206, -24.781357, -2.95401, 0.3540206, -68.78136, -0.20401001, 0.3540206, -23.281357, 0.54599, 0.3540206, -20.531357, 14.29599, 0.3540206, -20.281357, -1.20401, 0.3540206, -24.281357, 16.04599, 0.3540206, -23.531357, 18.04599, 0.3540206, -23.781357, 18.04599, 0.3540206, -68.78136, 21.79599, 0.3540206, -18.031357, 21.29599, 0.3540206, -17.281357, 25.54599, 0.3540206, -12.781357, 21.79599, 0.3540206, -20.781357, 29.54599, 0.3540206, -13.281357, 19.54599, 0.3540206, -23.781357, 20.79599, 0.3540206, -22.781357, 30.79599, 0.3540206, -12.281357, 72.04599, 0.3540206, -9.531357, 72.04599, 0.3540206, -68.78136, 32.04599, 0.3540206, -9.531357, -5.20401, 0.3540206, -10.781357, -4.70401, 0.3540206, -17.031357, -6.95401, 0.3540206, -18.281357, -19.95401, 0.3540206, -15.781357, -15.20401, 0.3540206, -9.781357, -14.20401, 0.3540206, -10.531357, -18.70401, 0.3540206, -17.531357, 14.29599, 0.3540206, -10.281357, 16.04599, 0.3540206, -16.781357, 14.29599, 0.3540206, -19.531357, 4.54599, 0.3540206, -10.531357, -0.70401, 0.3540206, -18.781357, -2.95401, 0.3540206, -16.781357, -3.95401, 0.3540206, -10.031357, -3.70401, 0.3540206, -8.281357, 3.54599, 0.3540206, -9.531357, 3.54599, 0.3540206, -8.281357, -28.95401, 0.3540206, -1.7813568, -27.45401, 0.3540206, -2.0313568, -26.70401, 0.3540206, -17.531357, -30.45401, 0.3540206, -0.2813568, -30.95401, 0.3540206, 2.2186432, -64.95401, 0.3540206, 2.2186432, -24.45401, 0.3540206, -0.7813568, -23.45401, 0.3540206, 2.9686432, -15.45401, 0.3540206, 2.7186432, -23.95401, 0.3540206, -14.781357, 20.54599, 0.3540206, -16.281357, 24.54599, 0.3540206, -12.031357, 19.29599, 0.3540206, -15.781357, 23.79599, 0.3540206, -10.531357, 17.04599, 0.3540206, -15.781357, 15.04599, 0.3540206, -9.781357, 15.29599, 0.3540206, -8.781357, 23.79599, 0.3540206, -8.781357, 30.29599, 0.3540206, -6.281357, 27.29599, 0.3540206, -6.031357, 27.04599, 0.3540206, -3.0313568, 29.29599, 0.3540206, -1.2813568, 31.79599, 0.3540206, -8.281357, 30.29599, 0.3540206, 0.9686432, 72.04599, 0.3540206, 0.9686432, 25.29599, 0.3540206, -6.781357, 23.79599, 0.3540206, -2.2813568, 15.04599, 0.3540206, 0.4686432, 22.54599, 0.3540206, 0.4686432, -8.45401, 0.3540206, 1.9686432, -7.70401, 0.3540206, 3.4686432, -6.70401, 0.3540206, 2.7186432, -9.45401, 0.3540206, 0.21864319, -10.70401, 0.3540206, 1.7186432, 9.04599, 0.3540206, -6.031357, 7.04599, 0.3540206, -6.031357, 6.29599, 0.3540206, -5.281357, 6.04599, 0.3540206, -3.0313568, 9.04599, 0.3540206, -2.7813568, -3.95401, 0.3540206, -6.281357, -5.45401, 0.3540206, -5.281357, -4.45401, 0.3540206, -3.5313568, -3.20401, 0.3540206, -2.2813568, -3.20401, 0.3540206, -0.5313568, 4.29599, 0.3540206, -0.5313568, 5.29599, 0.3540206, -5.281357, 5.04599, 0.3540206, -2.2813568, -6.45401, 0.3540206, -5.281357, -7.20401, 0.3540206, -6.031357, -8.70401, 0.3540206, -3.2813568, 3.79599, 0.3540206, -6.281357, -9.45401, 0.3540206, -2.2813568, -10.70401, 0.3540206, -6.031357, -5.70401, 0.3540206, 2.9686432, -7.70401, 0.3540206, 5.968643, -6.45401, 0.3540206, 5.218643, 5.04599, 0.3540206, 5.218643, 6.29599, 0.3540206, 5.218643, 5.54599, 0.3540206, 2.9686432, 4.79599, 0.3540206, 1.9686432, 3.54599, 0.3540206, 6.968643, -4.95401, 0.3540206, 5.468643, -4.20401, 0.3540206, 2.4686432, 10.54599, 0.3540206, -1.7813568, 9.54599, 0.3540206, -2.0313568, 10.29599, 0.3540206, 1.2186432, -3.45401, 0.3540206, 1.4686432, -3.70401, 0.3540206, 6.968643, -3.70401, 0.3540206, 8.468643, 7.04599, 0.3540206, 5.968643, 10.54599, 0.3540206, 5.968643, 8.54599, 0.3540206, 3.2186432, 3.54599, 0.3540206, 8.468643, -0.45401, 12.854021, 0.7186432, 0.54599, 12.854021, 0.7186432, 0.79599, 12.854021, 0.21864319, 0.29599, 12.854021, -0.7813568, -0.70401, 12.854021, -0.5313568, 23.04599, 0.3540206, 2.4686432, 15.04599, 0.3540206, 9.718643, 20.29599, 0.3540206, 14.718643, 22.79599, 0.3540206, 12.968643, 24.54599, 0.3540206, 13.468643, 25.04599, 0.3540206, 4.718643, 27.79599, 0.3540206, 4.968643, 28.79599, 0.3540206, 4.468643, 26.54599, 0.3540206, 14.968643, 29.79599, 0.3540206, 3.2186432, 26.79599, 0.3540206, 16.718643, 72.04599, 0.3540206, 16.718643, -25.45401, 0.3540206, 10.468643, -26.20401, 0.3540206, 5.968643, -27.95401, 0.3540206, 6.218643, -27.20401, 0.3540206, 11.968643, -29.70401, 0.3540206, 5.468643, -30.70401, 0.3540206, 4.218643, -64.95401, 0.3540206, 15.218643, -28.20401, 0.3540206, 15.218643, -23.45401, 0.3540206, 9.968643, -23.70401, 0.3540206, 3.9686432, -21.70401, 0.3540206, 10.968643, -15.20401, 0.3540206, 9.718643, -20.70401, 0.3540206, 12.218643, 3.54599, 0.3540206, 9.718643, -3.95401, 0.3540206, 10.218643, -4.95401, 0.3540206, 10.968643, -11.95401, 0.3540206, 10.718643, -10.45401, 0.3540206, 18.718643, -8.45401, 0.3540206, 20.718643, -11.95401, 0.3540206, 18.468643, 4.29599, 0.3540206, 10.718643, 7.29599, 0.3540206, 18.718643, 7.04599, 0.3540206, 10.718643, 4.29599, 0.3540206, 19.968643, -8.20401, 0.3540206, 21.968643, 3.04599, 0.3540206, 22.218643, 3.29599, 0.3540206, 20.968643, -21.20401, 0.3540206, 16.718643, -22.20401, 0.3540206, 17.468643, -15.95401, 0.3540206, 20.218643, -14.20401, 0.3540206, 10.718643, -20.70401, 0.3540206, 15.468643, -14.70401, 0.3540206, 18.968643, 14.04599, 0.3540206, 10.718643, 19.29599, 0.3540206, 17.218643, 9.79599, 0.3540206, 19.718643, 11.04599, 0.3540206, 21.468643, 20.29599, 0.3540206, 19.968643, 19.29599, 0.3540206, 18.968643, -16.45401, 0.3540206, 21.218643, -23.95401, 0.3540206, 18.218643, -25.45401, 0.3540206, 18.218643, -16.20401, 0.3540206, 23.968643, -12.45401, 0.3540206, 68.21864, -12.45401, 0.3540206, 25.718643, -14.45401, 0.3540206, 25.468643, -64.95401, 0.3540206, 68.21864, 26.04599, 0.3540206, 19.718643, 24.29599, 0.3540206, 20.968643, 22.54599, 0.3540206, 21.468643, 22.54599, 0.3540206, 68.21864, 72.04599, 0.3540206, 68.21864, 11.04599, 0.3540206, 23.718643, 21.54599, 0.3540206, 21.218643, 10.54599, 0.3540206, 24.718643, 7.79599, 0.3540206, 26.218643, 6.54599, 0.3540206, 26.218643, 6.54599, 0.3540206, 68.21864, 3.29599, 0.3540206, 24.718643, -9.70401, 0.3540206, 25.218643, 5.29599, 0.3540206, 26.218643)
@@ -98,6 +107,18 @@ width = 1145
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_8b871"]
 gradient = SubResource("Gradient_8cp6k")
 width = 1145
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0f1tp"]
+atlas = ExtResource("28_oa6sj")
+region = Rect2(653, 239, 93, 89)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qimb"]
+atlas = ExtResource("28_oa6sj")
+region = Rect2(758, 234, 98, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oa6sj"]
+atlas = ExtResource("28_oa6sj")
+region = Rect2(758, 234, 98, 102)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4vp4a"]
 size = Vector3(1, 1.1378174, 0.91204834)
@@ -219,18 +240,18 @@ maxSize = 40.0
 
 [node name="Enviroment" type="Node" parent="." unique_id=1495741313]
 
-[node name="Turret2" parent="Enviroment" unique_id=353788340 node_paths=PackedStringArray("inputNode") instance=ExtResource("2_pnhog")]
+[node name="Ballista" parent="Enviroment" unique_id=353788340 node_paths=PackedStringArray("inputNode") instance=ExtResource("2_pnhog")]
 transform = Transform3D(0.807084, 0, -0.5904367, 0, 1, 0, 0.5904367, 0, 0.807084, 8.197841, 2.9593534, 8.394757)
 inputNode = NodePath("StationPort3")
 
-[node name="StationPort3" parent="Enviroment/Turret2" unique_id=1915723754 instance=ExtResource("3_2c4at")]
+[node name="StationPort3" parent="Enviroment/Ballista" unique_id=1915723754 instance=ExtResource("3_2c4at")]
 transform = Transform3D(-1.737944, 0, 2.3763328, 0, 1, 0, -2.398319, 0, -1.7220117, -0.3306508, -3.1234941, 0.20035172)
 
-[node name="Turret4" parent="Enviroment" unique_id=1789132715 node_paths=PackedStringArray("inputNode") instance=ExtResource("2_pnhog")]
+[node name="Ballista2" parent="Enviroment" unique_id=1789132715 node_paths=PackedStringArray("inputNode") instance=ExtResource("2_pnhog")]
 transform = Transform3D(-0.7744369, 0, 0.6326513, 0, 1, 0, -0.6326513, 0, -0.7744369, -7.927705, 2.9262388, -8.25852)
 inputNode = NodePath("StationPort2")
 
-[node name="StationPort2" parent="Enviroment/Turret4" unique_id=1365024135 instance=ExtResource("3_2c4at")]
+[node name="StationPort2" parent="Enviroment/Ballista2" unique_id=1365024135 instance=ExtResource("3_2c4at")]
 transform = Transform3D(1.8634118, 0, -2.2810848, 0, 1, 0, 2.30219, 0, 1.8463291, -0.8566718, -3.1234941, 0.023492694)
 
 [node name="PlayerSpawner" type="Node" parent="." unique_id=1347135134 node_paths=PackedStringArray("spawnParent") groups=["PlayerSpawner"]]
@@ -250,7 +271,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.891476, 0, -5.2368193)
 [node name="SpawnPoint3" type="Marker3D" parent="PlayerSpawner" unique_id=2030002562]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1672173, 0, 3.6513267)
 
-[node name="EnemySpawner" type="Node" parent="." unique_id=1191566733 node_paths=PackedStringArray("spawnParent", "targetNode", "lootTable", "resultMenu", "enemyUI", "waveTimerLabel3D") groups=["WaveManager"]]
+[node name="EnemySpawner" type="Node" parent="." unique_id=1191566733 node_paths=PackedStringArray("spawnParent", "targetNode", "lootTable", "resultMenu", "enemiesRemaining", "wavesRemaining", "waveTimerProgressBar") groups=["WaveManager"]]
 script = ExtResource("14_t70y2")
 spawnParent = NodePath(".")
 targetNode = NodePath("../NavigationRegion3D/Forge")
@@ -261,12 +282,13 @@ fastEnemyData = ExtResource("16_s3wmy")
 strongEnemyData = ExtResource("17_gdcyb")
 normalEnemyChance = 70
 strongEnemyChance = 10
-maxWaves = 7
-startingEnemiesPerWave = 1
-enemyIncreasedPerWave = 2
+maxWaves = 6
+startingEnemiesPerWave = 5
+enemyIncreasedPerWave = 1
 timeBetweemWaves = 10.0
-enemyUI = NodePath("../UI/EnemyUI")
-waveTimerLabel3D = NodePath("../UI/EnemyUI/Label3D")
+enemiesRemaining = NodePath("../UI/EnemiesLeft")
+wavesRemaining = NodePath("../UI/WaveRemaining")
+waveTimerProgressBar = NodePath("../UI/TextureProgressBar")
 
 [node name="EnemySpawn1" type="Marker3D" parent="EnemySpawner" unique_id=829387820]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.135, 0, 22.009)
@@ -304,10 +326,10 @@ spawner = NodePath("../../PlayerSpawner")
 portraitContainer = NodePath("HBoxContainer")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/CanvasLayer" unique_id=1200533580]
-offset_left = 25.999998
-offset_top = 529.0
+offset_left = 26.0
+offset_top = 505.0
 offset_right = 66.00001
-offset_bottom = 569.0
+offset_bottom = 545.0
 scale = Vector2(1.4340242, 1.4681656)
 theme_override_constants/separation = 100
 
@@ -325,18 +347,14 @@ tint_progress = Color(0, 1, 0, 1)
 script = ExtResource("26_pb578")
 targetPath = NodePath("../../..")
 
-[node name="EnemyUI" type="Label" parent="UI" unique_id=754514857]
+[node name="EnemiesLeft" type="Label" parent="UI" unique_id=754514857]
 process_priority = 1
-offset_top = 66.0
-offset_right = 66.0
-offset_bottom = 89.0
-text = "Enemies"
+offset_left = 47.0
+offset_top = 69.0
+offset_right = 113.0
+offset_bottom = 92.0
+text = "Enemies Left: "
 metadata/_edit_use_anchors_ = true
-
-[node name="Label3D" type="Label3D" parent="UI/EnemyUI" unique_id=1383849787]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.814533, 9.772978, 0)
-text = "dsfsdfsd"
-font_size = 200
 
 [node name="PauseMenu" type="CanvasLayer" parent="UI" unique_id=385949872 node_paths=PackedStringArray("resumeButton", "settingsButton", "mainMenuButton", "settingsMenu")]
 process_mode = 3
@@ -765,6 +783,32 @@ offset_bottom = 40.0
 scale = Vector2(28.750067, 16.369858)
 color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
 
+[node name="TextureRect" type="TextureRect" parent="UI" unique_id=1003475988]
+offset_top = 59.0
+offset_right = 93.0
+offset_bottom = 148.0
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_0f1tp")
+
+[node name="WaveRemaining" type="Label" parent="UI" unique_id=139448255]
+process_priority = 1
+offset_left = 3.0
+offset_top = 108.0
+offset_right = 111.0
+offset_bottom = 131.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UI" unique_id=1024019081]
+offset_left = 508.0
+offset_top = 56.0
+offset_right = 606.0
+offset_bottom = 158.0
+value = 100.0
+fill_mode = 5
+texture_under = SubResource("AtlasTexture_0qimb")
+texture_progress = SubResource("AtlasTexture_oa6sj")
+tint_under = Color(0.30692267, 0.3069227, 0.3069227, 1)
+
 [node name="LootTable" type="Node" parent="." unique_id=317891680 groups=["LootTable"]]
 script = ExtResource("18_oa6sj")
 damasDropChance = 0
@@ -782,7 +826,42 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9764352, 4.7683716e-07, 4.2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8266451, 0.000985, 0.6228571)
 
 [node name="IronDullSword" parent="." unique_id=803566957 instance=ExtResource("39_8cp6k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0314033, 0.0009840463, 1.1268263)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4278347, 0.0009840463, 1.1268263)
+
+[node name="LevelManager" type="Node" parent="." unique_id=100606422]
+script = ExtResource("40_8cp6k")
+normalEnemyData = ExtResource("15_8gny2")
+fastEnemyData = ExtResource("16_s3wmy")
+strongEnemyData = ExtResource("17_gdcyb")
+normalEnemyNumber = 10
+fastEnemyNumber = 10
+storngEnemyNumber = 10
+copperOreScene = ExtResource("8_kxyth")
+copperOreCount = 10
+ironOreScene = ExtResource("20_0qimb")
+ironOreCount = 10
+goldOreScene = ExtResource("21_in2eo")
+goldOreCount = 10
+damasOreScene = ExtResource("41_8b871")
+damasOreCount = 10
+copperIngotScene = ExtResource("42_s3wmy")
+copperIngotCount = 10
+ironIngotScene = ExtResource("43_gdcyb")
+ironIngotCount = 10
+goldIngotScene = ExtResource("44_oa6sj")
+goldIngotCount = 10
+damasIngotScene = ExtResource("45_0f1tp")
+damasIngotCount = 10
+copperDullSwordScene = ExtResource("38_cmqll")
+copperDullSwordCount = 10
+copperSwordScene = ExtResource("46_0qimb")
+copperSwordCount = 10
+ironDullSwordScene = ExtResource("39_8cp6k")
+ironDullSwordCount = 10
+ironSwordScene = ExtResource("47_in2eo")
+ironSwordCount = 10
+healthPackObject = ExtResource("23_gjpm3")
+healthpackCount = 10
 
 [connection signal="pressed" from="UI/PauseMenu/ResumeButton" to="UI/PauseMenu" method="OnResumePressed"]
 [connection signal="pressed" from="UI/PauseMenu/SettingsButton" to="UI/PauseMenu" method="OnSettingsPressed"]

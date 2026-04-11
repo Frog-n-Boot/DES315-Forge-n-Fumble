@@ -1,12 +1,16 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bo6lofqurpj4n"]
 
-
-[ext_resource type="Script" uid="uid://cy6spy2s7uv1l" path="res://src/ItemData.cs" id="1_8ssqv"]
+[ext_resource type="Script" uid="uid://cy6spy2s7uv1l" path="res://src/Player/ItemData.cs" id="1_8ssqv"]
 [ext_resource type="PackedScene" uid="uid://bay85dbpt3qio" path="res://assets/models/FinalAssets_Low/Items_Models/Gold_Ingot.tscn" id="1_fy7ca"]
+[ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="2_oteoq"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_e02gl"]
+atlas = ExtResource("2_oteoq")
+region = Rect2(514, 302, 49, 50)
 
 [resource]
 script = ExtResource("1_8ssqv")
 name = "Gold_Ingot"
 itemScene = ExtResource("1_fy7ca")
+itemTexture = SubResource("AtlasTexture_e02gl")
 metadata/_custom_type_script = "uid://cy6spy2s7uv1l"

@@ -20,9 +20,19 @@ public partial class HealthBar : TextureProgressBar
             
 		
 		else if(isEnemy){
-			enemy = GetNode<EnemyController>($"../../../");
-			enemy.EnemyHealthChanged += SetHealth;
-			SetHealth(enemy.currentHealth, enemy.MaxHealth);
+			Node current = GetParent();
+			while(current != null && current is not EnemyController) current = current.GetParent();
+
+			if(current is EnemyController enemyController)
+			{
+				enemy = enemyController;
+				enemy.EnemyHealthChanged += SetHealth;
+				SetHealth(enemy.currentHealth, enemy.MaxHealth);
+			}
+			else
+			{
+				GD.PrintErr("HealthBar: Could not find EnemyController parent");
+			}
 		}	
 	
 		MaxValue = 100;
@@ -44,7 +54,11 @@ public partial class HealthBar : TextureProgressBar
 
     public override void _ExitTree(){
         if(forge != null)
-            forge.ForgeTookDamage -= SetHealth;
+		{
+			forge.ForgeTookDamage -= SetHealth;
+			forge.ForgeHealed -= SetHealth;
+		}
+            
         
         if(playerController != null)
             playerController.PlayerHealthChanged -= SetHealth;
@@ -57,6 +71,7 @@ public partial class HealthBar : TextureProgressBar
 		if(forge == null) {GD.PrintErr("Forge not found"); return;}
 
         forge.ForgeTookDamage += SetHealth;
+		forge.ForgeHealed += SetHealth;
         SetHealth(forge.health, forge.maxHealth);
 		GD.Print("Forge connected, health: " + forge.health);
     }

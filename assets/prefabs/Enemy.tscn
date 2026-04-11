@@ -10,8 +10,10 @@ albedo_color = Color(1, 0, 0, 1)
 [sub_resource type="CylinderMesh" id="CylinderMesh_elc20"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_pfjfy"]
+height = 3.8271484
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_savg0"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_d71qb"]
+viewport_path = NodePath("HealthBar/SubViewport")
 
 [sub_resource type="Gradient" id="Gradient_d71qb"]
 
@@ -40,27 +42,28 @@ mesh = SubResource("CylinderMesh_elc20")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1909118665]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9135742, 0)
 shape = SubResource("CylinderShape3D_pfjfy")
 
 [node name="HealthBar" type="Sprite3D" parent="." unique_id=833760103]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0)
+visible = false
 billboard = 1
-texture = SubResource("ViewportTexture_savg0")
+texture = SubResource("ViewportTexture_d71qb")
 
 [node name="SubViewport" type="SubViewport" parent="HealthBar" unique_id=1475723139]
 size = Vector2i(200, 30)
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="HealthBar" unique_id=1396994971]
-visible = false
-offset_right = 200.0
-offset_bottom = 26.0
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HealthBar/SubViewport" unique_id=1396994971]
+offset_right = 256.0
+offset_bottom = 64.0
 value = 50.0
 texture_under = SubResource("GradientTexture2D_7f00o")
 texture_progress = SubResource("GradientTexture2D_84fkr")
 tint_under = Color(1, 0, 0, 1)
 tint_progress = Color(0, 1, 0, 1)
 script = ExtResource("6_c2ay5")
-targetPath = NodePath("../..")
+targetPath = NodePath("../../..")
 isForge = false
 isEnemy = true
 

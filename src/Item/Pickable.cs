@@ -11,6 +11,8 @@ public partial class Pickable : Node3D
 	[Export(PropertyHint.File, "*.tres")] public string itemDataPath = "";
 	[Export] public bool shouldDespawn = false;
 	[Export] public float despawnTime = 30f;
+	[Export] public Texture2D[] itemPromptTexture;
+	[Export] public TextureRect itemTextureRect;
 
 	public ItemData itemData;
 	[ExtenderProvidedProperty] public float highLightDistance = 5.0f;
@@ -62,7 +64,15 @@ public partial class Pickable : Node3D
 	}
 	#endregion
 
-	
+	public void SetItemPromptTexture(bool isController)
+	{
+		itemTextureRect.Show();
+		itemTextureRect.Texture = isController? itemPromptTexture[0] : itemPromptTexture[1];
+	}
+	public void HideItemPrompt()
+	{
+		itemTextureRect.Hide();
+	}
 	public void Highlight(bool enabled)
 	{
 		

@@ -45,7 +45,7 @@ public partial class SpinAttack : Node3D
 		}
 		if(animPlayer == null)
         {
-            animPlayer = parent.GetNode<AnimationPlayer>("CollisionShape3D");
+            animPlayer = parent.GetNode<AnimationPlayer>("CollisionShape3D/AnimationPlayer");
         }
 	}
 
@@ -136,7 +136,7 @@ public partial class SpinAttack : Node3D
 
 			animPlayer.Play("Spin_Attack");
 			
-			animPlayer.SpeedScale = 4.0f;
+			animPlayer.SpeedScale = 2.0f;
 
 			if(spinArea != null)
 			{

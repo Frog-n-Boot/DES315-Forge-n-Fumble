@@ -5,6 +5,12 @@ public abstract partial class BaseWeapon : Node3D
 {
 	[Export] public int damage;
 	[Export] public int maxDurability;
+	[Export] public Texture2D weaponTexture;
+	[Export] public Color weaponTint = new Color(1, 1, 1, 1);
+	[Export] public Texture2D[] weaponPromptTexture;
+	[Export] public TextureRect weaponTextureRect;
+	[Export] public Area3D pickUpArea;
+	
 	public int durability;
 	public bool isBeingPickedUp = false;
 	private int lastHitDamage;
@@ -42,4 +48,25 @@ public abstract partial class BaseWeapon : Node3D
 		EmitSignal(SignalName.Broke);
 	}
 	public abstract void Use();
+
+	public void SetWeaponPromptTexture(bool isController)
+	{
+		
+		weaponTextureRect.Texture = isController? weaponPromptTexture[0] : weaponPromptTexture[1];
+	}
+	public void HideWeaponPrompt()
+	{
+		if(weaponTextureRect != null)
+			weaponTextureRect.Hide();
+
+		if(pickUpArea != null)
+			pickUpArea.Monitoring = false;
+
+	}
+
+	public void ShowWeaponPrompt()
+	{
+		weaponTextureRect.Show();
+		if(pickUpArea != null) pickUpArea.Monitoring = true;
+	}
 }

@@ -37,10 +37,10 @@ public partial class DebugMenu : CanvasLayer
 	[ExportGroup("Weapon Attributes")]
 	[Export] private SpinBox weaponDurability;
 	[Export] private SpinBox weaponDamage;
-	[Export] private SpinBox turretRange;
-	[Export] private SpinBox turretConeAngle;
-	[Export] private SpinBox bulletDamage;
-	[Export] private SpinBox bulletSpeed;
+	[Export] private SpinBox ballistaRange;
+	[Export] private SpinBox ballistaConeAngle;
+	[Export] private SpinBox arrowDamage;
+	[Export] private SpinBox arrowSpeed;
 
 	[ExportGroup("Station Attributes")]
 	[Export] private SpinBox forgeHealth;
@@ -90,8 +90,8 @@ public partial class DebugMenu : CanvasLayer
 	private CameraController cameraController;
 	private PlayerController playerController;
 	private PlayerSpawner playerSpawner;
-	private Turret turret;
-	private Bullet bullet;
+	private Ballista ballista;
+	private Arrow arrow;
 	private bool playerSettingsInitialized = false;
 	#endregion
 
@@ -146,8 +146,8 @@ public partial class DebugMenu : CanvasLayer
 		grindstoneScript = GetTree().GetFirstNodeInGroup("Grindstone") as GrindstoneStation;
 		lootTable = GetTree().GetFirstNodeInGroup("LootTable") as LootTable;
 		playerSpawner = GetTree().GetFirstNodeInGroup("PlayerSpawner") as PlayerSpawner;
-		turret = GetTree().GetFirstNodeInGroup("Turret") as Turret;
-		bullet = GetTree().GetFirstNodeInGroup("Bullet") as Bullet;
+		ballista = GetTree().GetFirstNodeInGroup("Ballista") as Ballista;
+		arrow = GetTree().GetFirstNodeInGroup("Arrow") as Arrow;
 		
 		if(playerSpawner != null)
 			playerSpawner.PlayerSpawned += OnPlayerSpawned;			
@@ -236,13 +236,16 @@ public partial class DebugMenu : CanvasLayer
 		oreDropChance.Value = lootTable.copperDropChance;
 		healthPackDropChance.Value = lootTable.healthPackDropChance;
 
-		turretRange.Value = turret.range;
-		turretConeAngle.Value = turret.coneAngle;
-
-		if(bullet != null)
+		if(ballista != null)
 		{
-			bulletDamage.Value = bullet.damage;
-			bulletSpeed.Value = bullet.speed;
+			//ballistaRange.Value = ballista.range;
+			//ballistaConeAngle.Value = ballista.coneAngle;
+		}
+		
+		if(arrow != null)
+		{
+			arrowDamage.Value = arrow.damage;
+			arrowSpeed.Value = arrow.speed;
 		}		
 	}
 	#endregion
@@ -356,25 +359,25 @@ public partial class DebugMenu : CanvasLayer
 			}
 		};
 
-		turretRange.ValueChanged += v =>
-		{
-			foreach(Node t in GetTree().GetNodesInGroup("Turret"))
-			{
-				var turret = t as Turret;
-				if(turret != null) turret.range = (int)v;
-			}
-		};
+		// ballistaRange.ValueChanged += v =>
+		// {
+		// 	foreach(Node t in GetTree().GetNodesInGroup("Ballista"))
+		// 	{
+		// 		var ballista = t as Ballista;
+		// 		if(ballista != null) ballista.range = (int)v;
+		// 	}
+		// };
 
-		turretConeAngle.ValueChanged += v =>
-		{
-			foreach(Node t in GetTree().GetNodesInGroup("Turret"))
-			{
-				var turret = t as Turret;
-				if(turret != null) turret.coneAngle = (int)v;
-			}
-		};
-		bulletDamage.ValueChanged += v =>Bullet.defaultDamage = (int)v;
-		bulletSpeed.ValueChanged += v =>Bullet.defaultSpeed = (float)v;
+		// ballistaConeAngle.ValueChanged += v =>
+		// {
+		// 	foreach(Node t in GetTree().GetNodesInGroup("Ballista"))
+		// 	{
+		// 		var ballista = t as Ballista;
+		// 		if(ballista != null) ballista.coneAngle = (int)v;
+		// 	}
+		// };
+		//arrowDamage.ValueChanged += v =>Arrow.defaultDamage = (int)v;
+		//arrowSpeed.ValueChanged += v =>Arrow.defaultSpeed = (float)v;
 		
 	}
 	#endregion

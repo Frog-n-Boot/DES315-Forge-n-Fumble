@@ -7,13 +7,25 @@ public partial class Forge : Node3D
 	public int maxHealth = 100;
 	public int health;
 
+	private int[] shockwaeThresholds = {75, 50, 25};
+	private float shockwaveRadius = 10f;
+	private float shockwaveForce = 20f;
+	private int shockwaveIndex = 0;
+	private float healCooldown = 1f;
+	private float healAmount;
+	private bool canHeal;
+	
+	private Node3D forgeNode;
+
+	private float pushCheckTimer = 0f;
+
 	[Signal] public delegate void ForgeTookDamageEventHandler(int current, int max);
 	[Signal] public delegate void ForgeHealedEventHandler(int current, int max);
 	[Signal] public delegate void ForgeDestroyedEventHandler();
 
 	private int tick = 0;
 
-	[Export] ResultMenu resultMenu;
+	ResultMenu resultMenu;
 	private bool isDestroyed = false;
 
 	#endregion
@@ -21,7 +33,9 @@ public partial class Forge : Node3D
 	#region Ready
 	public override void _Ready()
 	{
+		
 		health = maxHealth;
+		shockwaveIndex = 0;
 		GetTree().SceneChanged += OnSceneChanged;
 		
 	}
@@ -29,32 +43,31 @@ public partial class Forge : Node3D
 	private void OnSceneChanged()
 	{
 		health = maxHealth;
-
 		CallDeferred(nameof(OnHealthChanged));
 	}
+
 	#endregion
 
 	#region Process
 	public override void _Process(double delta)
 	{
-		tick += 1;
-		if(tick % 10 == 0)
-		{
-			if(health <= 0 && !isDestroyed)
-			{
-				isDestroyed = true;
-				Destroyed();
-				EmitSignal(SignalName.ForgeDestroyed);
+		if(health <= 0 || isDestroyed || health >= maxHealth) return;
 
-				var resultMenu = GetTree().Root.FindChild("ResultsMenu", true, false) as ResultMenu;
-				if(resultMenu == null)
-					GD.PrintErr("Reult Menu not found");
-				else
-					resultMenu.ShowFail();
-			}
-			else if(health >= 0 && isDestroyed)
+		if (!canHeal)
+		{
+			healCooldown -= (float)delta;
+			if(healCooldown <= 0)
+				canHeal = true;
+		}
+		else
+		{
+			healAmount += 1f / 5f * (float)delta;
+
+			if(healAmount >= 1f)
 			{
-				isDestroyed = false;
+				int toHeal = (int)healAmount;
+				healAmount -= toHeal;
+				HealForge(toHeal);
 			}
 		}
 
@@ -65,6 +78,7 @@ public partial class Forge : Node3D
 	public void HealForge(int health)
 	{
 		this.health += health;
+		this.health = Math.Min(this.health, maxHealth);
 		EmitSignal(SignalName.ForgeHealed, this.health, maxHealth);
 	}
 	#endregion
@@ -72,8 +86,84 @@ public partial class Forge : Node3D
 	#region TakeDamage
 	public void TakeDamage(int damage)
 	{
-		this.health -= damage;
+		if(isDestroyed) return;
+		health -= damage;
+		canHeal = false;
+		healCooldown = 5;
+		healAmount = 0f;
 		EmitSignal(SignalName.ForgeTookDamage, health, maxHealth);
+		CheckShockwave();
+
+		if(health <= 0)
+		{
+			isDestroyed = true;
+			Destroyed();
+			EmitSignal(SignalName.ForgeDestroyed);
+
+			resultMenu = GetTree().Root.FindChild("ResultsMenu", true, false) as ResultMenu;
+			if(resultMenu == null)
+				GD.PrintErr("Reult Menu not found");
+			else
+				resultMenu.ShowFail();
+		}
+	}
+
+	private void CheckShockwave()
+	{
+		if(shockwaveIndex >= shockwaeThresholds.Length) return;
+
+		int healthPercent = (int)((float)health/maxHealth *100);
+		if(healthPercent <= shockwaeThresholds[shockwaveIndex]){
+			shockwaveIndex++;
+			FireShockwave();
+		}
+	}
+
+	private void PushNearbyEnemies(double delta)
+	{
+		pushCheckTimer -= (float)delta;
+		if(pushCheckTimer > 0) return;
+
+		pushCheckTimer = 0.1f;
+		if(forgeNode == null)
+		{
+			forgeNode = GetTree().Root.GetNode<SmeltingStation>("Scene/NavigationRegion3D/Forge");
+			if(forgeNode == null) return;
+		}
+
+		foreach(Node n in GetTree().GetNodesInGroup("Enemy")){
+			if(n is EnemyController enemy)
+			{
+				float distance = enemy.GlobalPosition.DistanceTo(forgeNode.GlobalPosition);
+
+				if(distance <= 2.5f)
+				{
+					Vector3 pushDir = (enemy.GlobalPosition - forgeNode.GlobalPosition).Normalized();
+					pushDir.Y = 0;
+					enemy.ApplyKnockback(pushDir, 15f);
+				}
+			}
+		}
+	}
+	private void FireShockwave()
+	{
+		forgeNode = GetTree().Root.GetNode<SmeltingStation>("Scene/NavigationRegion3D/Forge");
+		if(forgeNode == null) return;
+
+		foreach(Node n in GetTree().GetNodesInGroup("Enemy"))
+		{
+			if(n is EnemyController enemy)
+			{
+				GD.Print("Fire Shockwave");
+				float distance = enemy.GlobalPosition.DistanceTo(forgeNode.GlobalPosition);
+				if(distance <= shockwaveRadius)
+				{
+					Vector3 pushDir = (enemy.GlobalPosition - forgeNode.GlobalPosition);
+					pushDir.Y = 0;
+					enemy.ApplyKnockback(pushDir, shockwaveForce);
+				}
+			}
+		}
 	}
 	#endregion
 
