@@ -30,7 +30,6 @@ InputManager="*uid://cpmas3er6cuol"
 SettingsManager="*uid://bmvu35qw3l2o1"
 SceneManager="*uid://whjx5ow2exj4"
 Forge="*uid://csp7j7pbfs6rf"
-XrayManger="*uid://bbtox1c10tsd0"
 
 [debug]
 

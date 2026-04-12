@@ -4,11 +4,11 @@ using System;
 public partial class HealthBar : ProgressBar
 {
 	[Export] private NodePath targetPath;
-    [Export] private bool isForge = true;
+	[Export] private bool isForge = true;
 	[Export] private bool isEnemy = false;
 
-    private Forge forge;
-    private PlayerController playerController;
+	private Forge forge;
+	private PlayerController playerController;
 	private EnemyController enemy;
 
 	// Called when the node enters the scene tree for the first time.
@@ -17,7 +17,7 @@ public partial class HealthBar : ProgressBar
 		base._Ready();
 		if(isForge)
 			CallDeferred(nameof(ConnectForge));
-            
+			
 		
 		else if(isEnemy){
 			enemy = GetNode<EnemyController>($"../../../");
@@ -38,26 +38,26 @@ public partial class HealthBar : ProgressBar
 	}
 
 	  private void SetHealth( int current, int max)
-    {
-        Value = (float)current / (float)max * 100;
-    }
+	{
+		Value = (float)current / (float)max * 100;
+	}
 
-    public override void _ExitTree(){
-        if(forge != null)
-            forge.ForgeTookDamage -= SetHealth;
-        
-        if(playerController != null)
-            playerController.PlayerHealthChanged -= SetHealth;
-        
-    }
+	public override void _ExitTree(){
+		if(forge != null)
+			forge.ForgeTookDamage -= SetHealth;
+		
+		if(playerController != null)
+			playerController.PlayerHealthChanged -= SetHealth;
+		
+	}
 	private void ConnectForge()
-    {
-        forge = GetNode<Forge>("/root/Forge");
+	{
+		forge = GetNode<Forge>("/root/Forge");
 
 		if(forge == null) {GD.PrintErr("Forge not found"); return;}
 
-        forge.ForgeTookDamage += SetHealth;
-        SetHealth(forge.health, forge.maxHealth);
+		forge.ForgeTookDamage += SetHealth;
+		SetHealth(forge.health, forge.maxHealth);
 		GD.Print("Forge connected, health: " + forge.health);
-    }
+	}
 }

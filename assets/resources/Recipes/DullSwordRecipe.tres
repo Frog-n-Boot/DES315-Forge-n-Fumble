@@ -1,9 +1,7 @@
 [gd_resource type="Resource" script_class="CraftingRecipes" format=3 uid="uid://cpreanwxwry2u"]
 
-
 [ext_resource type="PackedScene" uid="uid://d1y4lf17i3iid" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Dull_Sword.tscn" id="1_akapq"]
-[ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/CraftingRecipes.cs" id="1_u872h"]
-
+[ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/Resources/CraftingRecipes.cs" id="1_u872h"]
 
 [resource]
 script = ExtResource("1_u872h")
