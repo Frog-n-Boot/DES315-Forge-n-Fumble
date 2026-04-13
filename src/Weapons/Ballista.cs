@@ -6,6 +6,7 @@ public partial class Ballista : Node3D
 {
 	[Export] private Node3D arrowSpawnPosition;
 	[Export] private Node3D ballistaHead;
+	[Export] private PackedScene crossbowScene;
 	[Export] private Node3D ballistaBarrel;
 	[Export] private PackedScene arrowScene;
 	[Export] public float range = 20.0f;
@@ -17,14 +18,15 @@ public partial class Ballista : Node3D
 
 	[Export] AudioStreamPlayer3D audio;
 
-
 	protected ItemCarrier itemCarrier;
-	protected PlayerController player;
 	private List<PlayerController> playersInZone = new List<PlayerController>();
 	
 
 	private EnemyController currentTarget;
-	private float reloadTime = 1;
+
+	public bool isDetached = false;
+	private PlayerController interactingPlayer = null;
+
 	Timer shootTimer;
 
 	public override void _Ready()
@@ -58,6 +60,7 @@ public partial class Ballista : Node3D
 		if(inputArea != null)
 		{
 			inputArea.BodyEntered += OnInputBodyEntered;
+			inputArea.BodyExited += OnInputBodyExited;
 		}
 		else
 			GD.Print("Input are not found");
@@ -70,27 +73,9 @@ public partial class Ballista : Node3D
 		{
 			Vector3 targetPos = GetEnemyCenter(currentTarget);
 			ballistaHead.LookAt(targetPos, Vector3.Up);
-			// Vector3 targetPos = currentTarget.GlobalPosition;
-
-			// Vector3 toTarget = targetPos - turretHead.GlobalPosition;
-			// Vector3 horizontalDir = new Vector3(toTarget.X, 0, toTarget.Z);
-
-			// if(horizontalDir.LengthSquared() > 0.001f)
-			// {
-			// 	float yaw = Mathf.Atan2(horizontalDir.X, horizontalDir.Z);
-			// 	turretHead.Rotation = new Vector3(0, yaw, 0);
-			// }
-
-			// // Vector3 toTargetFromBarrel = targetPos - turretBarrel.GlobalPosition;
-			// // float horizontalDist = new Vector3(toTargetFromBarrel.X, 0, toTargetFromBarrel.Z).Length();
-
-			// // if(horizontalDist > 0.001f)
-			// // {
-			// // 	float pitch = -Mathf.Atan2(toTargetFromBarrel.Y, horizontalDist);
-			// // 	turretBarrel.Rotation = new Vector3(pitch, 0, 0);
-			// // }
 
 		}
+
 	}
 
 	private void SpawnArrow()
@@ -181,9 +166,19 @@ public partial class Ballista : Node3D
 			GD.Print("Player entered input area");
 			var p= body as PlayerController;
 			itemCarrier = p as ItemCarrier;
-			player = p;
+			interactingPlayer = p;
 			playersInZone.Add(p);
+			p.SetNearbyBallista(this);
 			CheckItem();
+		}
+	}
+
+	public void OnInputBodyExited(Node3D body)
+	{
+		if(body is PlayerController p && p == interactingPlayer)
+		{
+			interactingPlayer = null;
+			p.SetNearbyBallista(null);
 		}
 	}
 	private void CheckItem()
@@ -201,5 +196,40 @@ public partial class Ballista : Node3D
 				itemCarrier.RemoveItem(item);
 			}
 		}
+	}
+
+	public void DetachHead(PlayerController player)
+	{
+		if(isDetached) return;
+
+		isDetached = true;
+		shootTimer.Stop();
+		ballistaHead.Visible = false;
+		
+		var crossbow = crossbowScene.Instantiate<Crossbow>();
+		player.GetTree().Root.AddChild(crossbow);
+		crossbow.currentAmmo = arrowCount;
+		crossbow.sourceBallista = this;
+		arrowCount = 0;
+		label.Text = "0";
+
+		player.PickUpWeapon(crossbow);
+
+		crossbow.SetMeta("source_ballista", this);
+	}
+
+	public void ReattachHead(Crossbow crossbow)
+	{
+		if(!isDetached) return;
+
+		isDetached = false;
+		arrowCount = crossbow.currentAmmo;
+		label.Text = $"{arrowCount}";
+
+		ballistaHead.Visible = true;
+
+		if(arrowCount >0) shootTimer.Start();
+
+		crossbow.QueueFree();
 	}
 }

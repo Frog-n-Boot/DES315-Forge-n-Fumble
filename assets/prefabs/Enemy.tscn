@@ -31,6 +31,8 @@ width = 256
 radius = 0.6381836
 
 [node name="Enemy" type="CharacterBody3D" unique_id=356561528 node_paths=PackedStringArray("mesh", "collisionArea", "navigationAgent") groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 235
 script = ExtResource("1_8itjo")
 mesh = NodePath("MeshInstance3D")
 collisionArea = NodePath("Area3D")
@@ -67,7 +69,7 @@ targetPath = NodePath("../../..")
 isForge = false
 isEnemy = true
 
-[node name="Area3D" type="Area3D" parent="." unique_id=1859868463]
+[node name="Area3D" type="Area3D" parent="." unique_id=1859868463 groups=["Enemy"]]
 collision_layer = 4
 collision_mask = 235
 

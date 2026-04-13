@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://706c56ie3ke"]
 
 [ext_resource type="Script" uid="uid://bdt0s16a5rcia" path="res://src/Weapons/Ballista.cs" id="1_m1e06"]
+[ext_resource type="PackedScene" uid="uid://cayfp8m51s7np" path="res://assets/models/FinalAssets_Low/Items_Models/Crossbow.tscn" id="2_j6oho"]
 [ext_resource type="PackedScene" uid="uid://ds1kx4ru8gie6" path="res://assets/models/FinalAssets_Low/Items_Models/Arrow.tscn" id="2_wgmww"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="3_n82r5"]
 [ext_resource type="AudioStream" uid="uid://clu5cxqv4p82n" path="res://assets/Sounds/SFX/ArrowShot1.wav" id="5_oitbg"]
@@ -39,6 +40,7 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 script = ExtResource("1_m1e06")
 arrowSpawnPosition = NodePath("BallistaTopElementLow/BallistaBarrel/ArrowSpawnLocation")
 ballistaHead = NodePath("BallistaTopElementLow")
+crossbowScene = ExtResource("2_j6oho")
 ballistaBarrel = NodePath("BallistaTopElementLow/BallistaBarrel")
 arrowScene = ExtResource("2_wgmww")
 inputNode = NodePath("BallistaTopElementLow/StaticBody3D/StationPort")

@@ -4,14 +4,24 @@ using System;
 public partial class Crossbow : RangedWeapon
 {
 	[Export] public MeshInstance3D shootingDirectionMesh;
+	[Export] public int maxArrow;
+	public Ballista sourceBallista = null;
+
+	public TripleShot tripleShot;
+	public int currentAmmo = 0;
 	protected override void OnReady()
 	{
 		base.OnReady();
+		currentAmmo = maxArrow;
+		tripleShot = GetNodeOrNull<TripleShot>("TripleShot");
+		if(tripleShot == null) GD.PrintErr("Crossbow: Tripleshot node not found");
 	}
 
-	public void Shoot()
-	{
-		if(firePoint == null || projectileScene == null || canFire == false) return;
+    protected override void Fire()
+    {
+		
+        if(firePoint == null || projectileScene == null || canFire == false) return;
+		if(currentAmmo <=0) return;
 
 		var arrow = projectileScene.Instantiate<Arrow>();
 		GetTree().Root.AddChild(arrow);
@@ -20,14 +30,22 @@ public partial class Crossbow : RangedWeapon
 		Vector3 direction = firePoint.GlobalBasis.Z;
 
 		arrow.Initialize(direction, 2);
-
 		canFire = false;
-		TakeDurabilityDamage(1);
+		currentAmmo--;
+		//TakeDurabilityDamage(1);
 
-		GetTree().CreateTimer(fireRate).Timeout += () => canFire = true;
-	
+		GetTree().CreateTimer(fireRate).Timeout += () =>
+		{
+			canFire = true;
+			EmitSignal(SignalName.AttackFinished);
+		};
+    }
+
+	public void Reload(int amount)
+	{
+		currentAmmo = Mathf.Min(currentAmmo + amount, maxArrow);
+		GD.Print($"Reloaded ammo: {currentAmmo}/{maxArrow}");
 	}
-
 	// public void StartDraw()
 	// {
 

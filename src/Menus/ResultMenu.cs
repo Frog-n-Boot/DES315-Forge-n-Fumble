@@ -39,7 +39,8 @@ public partial class ResultMenu : CanvasLayer
 			GetTree().CallGroup("Weapon", "queue_free");
 			GetTree().CallGroup("DullSword", "queue_free");
 			GetTree().CallGroup("Enemy", "queue_free");
-
+			GetTree().CallGroup("pickable", "queue_free");
+			
 			GetTree().CreateTimer(0.5f).Timeout += () => GetTree().ReloadCurrentScene();
 		};
 
@@ -49,7 +50,8 @@ public partial class ResultMenu : CanvasLayer
 			GetTree().CallGroup("Weapon", "queue_free");
 			GetTree().CallGroup("DullSword", "queue_free");
 			GetTree().CallGroup("Enemy", "queue_free");
-			
+			GetTree().CallGroup("pickable", "queue_free");
+
 			GetTree().ChangeSceneToFile("res://scenes/MainMenu.tscn");
 		};
 

@@ -67,6 +67,16 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	private float lastRotation = 0f;
 	private float dropHoldTimer = 0f;
 	private bool dropTriggered = false;
+	private float  reloadTime = 0;
+	private bool reloadTriggered = false;
+
+	private float attackHoldTimer = 0f;
+	private bool attackHeld = false;
+
+	private Ballista nearbyBallista = null;
+	private float ballistaHoldTimer = 0f;
+	private bool ballistaActionTriggered = false;
+
 
 	public bool isDazed {get; private set;} = false;
 
@@ -263,6 +273,34 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			}
 			
 		}
+		else if(IsActionPressed("interact") && nearbyBallista != null)
+		{
+			if(currentWeapon == null && !nearbyBallista.isDetached)
+			{
+				ballistaHoldTimer += (float)delta;
+				if(ballistaHoldTimer >= 0.5f && !ballistaActionTriggered){
+					ballistaActionTriggered = true;
+					nearbyBallista.DetachHead(this);
+					ballistaHoldTimer = 0f;
+				}
+			}
+			else if(currentWeapon is Crossbow bow && bow.sourceBallista == nearbyBallista)
+			{
+				ballistaHoldTimer += (float)delta;
+				if(ballistaHoldTimer >= 0.5f && !ballistaActionTriggered)
+				{
+					ballistaActionTriggered = true;
+					nearbyBallista.ReattachHead(bow);
+					currentWeapon = null;
+					ballistaHoldTimer = 0f;
+				}
+			}
+		}
+		else
+		{
+			ballistaHoldTimer = 0f;
+			ballistaActionTriggered = false;
+		}
 
 		if (IsActionPressed("pick_up"))
 		{
@@ -297,11 +335,56 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		else if(currentWeapon is Crossbow bow)
 		{
 			bow.shootingDirectionMesh.Visible = true;
-			if(inputBuffer.IsInputBuffered("attack") && !isAttacking)
+
+			if (Input.IsActionPressed("attack"))
 			{
-				bow.Shoot();
-				
+				attackHoldTimer += (float)delta;
+				attackHeld = true;
+			}
+
+			if(Input.IsActionJustReleased("attack") && attackHeld && !isAttacking)
+			{
+				if(attackHoldTimer >= 1f) bow.tripleShot?.TryActivate(bow);
+				else bow.Use();
+
 				isAttacking = true;
+				attackHoldTimer = 0f;
+				attackHeld = false;
+			}
+
+			if (!Input.IsActionPressed("attack")){
+				attackHoldTimer = 0f;
+				attackHeld = false;
+			}
+			
+			
+			if(Input.IsActionPressed("interact") && nearbyBallista == null && currentStation == null)
+			{
+				var heldItem = leftHand.GetChildCount() > 0 ? leftHand.GetChild(0) as Pickable : null;
+				var hasIngot = heldItem != null && heldItem.itemData != null && heldItem.itemData.name.Contains("Iron_Ingot");
+
+				if (hasIngot)
+				{
+					reloadTime += (float)delta;
+
+					if(reloadTime >= 1 && !reloadTriggered)
+					{
+						reloadTriggered = true;
+						bow.Reload(3);
+						heldItem.QueueFree();
+						reloadTime = 0f;
+					}
+				}
+				else
+				{
+					reloadTime = 0f;
+					reloadTriggered = false;
+				}
+			}
+			else if(!Input.IsActionPressed("interact"))
+			{
+				reloadTime = 0f;
+				reloadTriggered = false;
 			}
 		}
 		else if(inputBuffer.ConsumeInput("attack") && !isAttacking){
@@ -473,14 +556,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			}
 			
 			
-		}
-		else if(currentWeapon is Crossbow bow)
-		{
-			bow.Shoot();
-			isAttacking = false;
-		}
-			
-	
+		}	
 		//GD.Print($"Player {PlayerIndex} attacking!");
 	}
 
@@ -597,7 +673,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		
 	}
 
-	private void PickUpWeapon(BaseWeapon nearbyWeapon)
+	public void PickUpWeapon(BaseWeapon nearbyWeapon)
 	{
 		if(nearbyWeapon.isBeingPickedUp) return;
 		nearbyWeapon.isBeingPickedUp = true;
@@ -851,8 +927,16 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 				spinAttack.SetWeapon(null);
 				sword.CheckDurability -= OnSwordDurabilityChecked;
 			}
-			else if(weapon is Crossbow bow) bow.shootingDirectionMesh.Visible = false;
+			else if(weapon is Crossbow bow) {
+				bow.shootingDirectionMesh.Visible = false;
 
+				if(bow.sourceBallista != null)
+				{
+					bow.sourceBallista.isDetached = false;
+					bow.sourceBallista.ReattachHead(bow);
+					bow.sourceBallista = null;
+				}
+			}
 			currentWeapon.Broke -= OnSwordBroke;
 			currentWeapon = null;
 
@@ -902,6 +986,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		sequenceMinigame = station?.GetSequenceMinigame();
 		barMinigame = station?.GetBarMinigame();
 	}
+	public void SetNearbyBallista(Ballista ballista) => nearbyBallista = ballista;
 
 	private bool IsUsingController() => currentDevice >= 0;
 

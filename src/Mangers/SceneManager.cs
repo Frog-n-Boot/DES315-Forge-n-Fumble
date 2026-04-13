@@ -30,6 +30,7 @@ public partial class SceneManager : Node
 		GetTree().CallGroup("Weapon", "queue_free");
 		GetTree().CallGroup("DullSword", "queue_free");
 		GetTree().CallGroup("Enemy", "queue_free");
+		GetTree().CallGroup("pickable", "queue_free");
 
 		var forge = GetNode<Forge>("/root/Forge");
 		if( forge != null) forge.ResetHealth();

@@ -4,14 +4,17 @@ using System;
 public abstract partial class RangedWeapon : BaseWeapon
 {
 	[Export] public float fireRate = 1.0f;
-	[Export] protected PackedScene projectileScene;
+	[Export] public PackedScene projectileScene;
+	[Export] public Node3D firePoint;
+	[Signal] public delegate void AttackFinishedEventHandler();
 
-	protected Node3D firePoint;
+	
 	protected bool canFire = true;
 
     protected override void OnReady()
     {
-        firePoint = GetNodeOrNull<Node3D>("FirePoint");
+		canFire = true;
+        //firePoint = GetNodeOrNull<Node3D>("FirePoint");
 		if(firePoint == null)
 			GD.PrintErr("RangedWeapon: FirePoint not found");
     }

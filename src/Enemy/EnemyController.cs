@@ -330,9 +330,32 @@ public partial class EnemyController : CharacterBody3D
         Rotation = Rotation.Lerp(targetRotation, rotationSpeed * (float)delta);
     }
 
+    private void ApplyKnockbackFromBody(Node3D body, string group)
+    {
+        Vector3 pushDir = Vector3.Zero;
+
+        switch (group)
+        {
+            case "Forge":
+                pushDir = (GlobalPosition - body.GlobalPosition).Normalized();
+                pushDir.Y = 0;
+                ApplyKnockback(pushDir, 25f);
+                break;
+
+            case "Player":
+            if(body is PlayerController player)
+                {
+                    pushDir = (GlobalPosition - player.GlobalPosition).Normalized();
+                    pushDir.Y = 0;
+                    ApplyKnockback(pushDir, 25f);
+                }          
+                break;
+        }
+    }
     public void ApplyKnockback(Vector3 direction, float force)
     {
         knockback = direction * force;
+        
     }
 
     #endregion
@@ -349,11 +372,15 @@ public partial class EnemyController : CharacterBody3D
     private void OnBodyEntered(Node3D body)
     {
         if (!canCollide) return;
-        canCollide = false;
+
         string group = GetBodyGroup(body);
+
         if (!string.IsNullOrEmpty(group))
+        {
+            canCollide = false;
             OnCollisionDetected(body, group);
-        GetTree().CreateTimer(enemyData.collisionCooldown).Timeout += () => canCollide = true;
+            GetTree().CreateTimer(enemyData.collisionCooldown).Timeout += () => canCollide = true;
+        }
     }
 
     private string GetBodyGroup(Node3D body)
@@ -361,6 +388,7 @@ public partial class EnemyController : CharacterBody3D
         if (body.IsInGroup("Player")) return "Player";
         if (body.IsInGroup("Forge"))  return "Forge";
         if (body.IsInGroup("Weapon")) return "Weapon";
+        if (body.IsInGroup("SpinAttack")) return "SpinAttack";
         if (body.IsInGroup("Enemy"))  return "Enemy";
         if (body.IsInGroup("Bullet")) return "Bullet";
         if (body.IsInGroup("Arrow"))  return "Arrow";
@@ -448,10 +476,12 @@ public partial class EnemyController : CharacterBody3D
         }
         CurrentState?.PhysicsUpdate(this, delta);
         MoveAndSlide();
+
+        CheckContinuousCollisions();
     }
     #endregion
 
-
+    
     #region Setup
     private void ApplyVisuals()
     {
@@ -522,6 +552,34 @@ public partial class EnemyController : CharacterBody3D
     #endregion
 
     #region Collision Handling
+
+    private void CheckContinuousCollisions()
+    {
+        if(isDying) return;
+
+        var collisionArea = GetNode<Area3D>("Area3D");
+        if(collisionArea == null) {
+            return;
+        }
+
+        var overlappingBodies = collisionArea.GetOverlappingBodies();
+        foreach(var body in overlappingBodies)
+        {
+            string group = GetBodyGroup(body);
+            if (!string.IsNullOrEmpty(group))
+            {
+                ApplyKnockbackFromBody(body, group);
+                if (canCollide)
+                {
+                    canCollide = false;
+                    OnCollisionDetected(body, group);
+                    GetTree().CreateTimer(enemyData.collisionCooldown).Timeout += () => canCollide = true;
+                }
+                
+                break;
+            }
+        }
+    }
     private void OnCollisionDetected(Node3D body, string groupName)
     {
         if (isDying) return;
@@ -558,6 +616,11 @@ public partial class EnemyController : CharacterBody3D
                     ApplyKnockback(pushDir.Normalized(), 20f);
                     
                 }
+                break;
+             case "SpinAttack":
+                Vector3 spinPushDir = (GlobalPosition - body.GlobalPosition).Normalized();
+                spinPushDir.Y = 0;
+                ApplyKnockback(spinPushDir, 30f);
                 break;
             case "Bullet":
                 if (body.GetParent() is Bullet bullet) { TakeDamage(bullet.damage); bullet.QueueFree();}

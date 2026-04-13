@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://tbrctcwppirl" path="res://assets/textures/UI/ui_x_button.tres" id="3_qm6ly"]
 [ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="3_vqm1a"]
 [ext_resource type="Texture2D" uid="uid://dnrpwukmp1jyj" path="res://assets/textures/UI/ui_e_button.tres" id="4_vqm1a"]
+[ext_resource type="Script" uid="uid://dmtsjgrgwryuy" path="res://src/Weapons/TripleShot.cs" id="8_y13of"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y13of"]
 atlas = ExtResource("3_vqm1a")
@@ -26,16 +27,19 @@ albedo_color = Color(0.17369911, 1.872587e-07, 4.2114408e-08, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_vqm1a"]
 
-[node name="Crossbow" type="Node3D" unique_id=1323232309 node_paths=PackedStringArray("shootingDirectionMesh", "weaponTextureRect") groups=["Weapon"]]
+[node name="Crossbow" type="Node3D" unique_id=1323232309 node_paths=PackedStringArray("shootingDirectionMesh", "firePoint", "weaponTextureRect", "pickUpArea", "weaponBody") groups=["Weapon"]]
 script = ExtResource("1_c8bbo")
 shootingDirectionMesh = NodePath("MeshInstance3D")
+maxArrow = 10
 fireRate = 0.5
 projectileScene = ExtResource("2_2itnu")
-damage = 2
+firePoint = NodePath("BallistaTopElementLow/FirePoint")
 maxDurability = 38
 weaponTexture = SubResource("AtlasTexture_y13of")
 weaponPromptTexture = Array[Texture2D]([ExtResource("3_qm6ly"), ExtResource("4_vqm1a")])
 weaponTextureRect = NodePath("Sprite3D/SubViewport/TextureRect")
+pickUpArea = NodePath("StaticBody3D/Area3D")
+weaponBody = NodePath("StaticBody3D")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=745227245 groups=["Weapon"]]
 collision_layer = 8
@@ -59,7 +63,7 @@ material_override = ExtResource("3_8kgqf")
 mesh = ExtResource("3_a2wqo")
 
 [node name="FirePoint" type="Node3D" parent="BallistaTopElementLow" unique_id=1747842407]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1.1633817e-07, 1.1278696, -1.3307536)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1.2897624e-07, 1.1278696, -1.4753163)
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=1632774507]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7813628, 0)
@@ -77,3 +81,6 @@ offset_bottom = 40.0
 transform = Transform3D(0.08911103, 0, 0, 0, 0.040631343, 0, 0, 0, 4, 0, 0, 1.2118266)
 material_override = SubResource("StandardMaterial3D_vqm1a")
 mesh = SubResource("BoxMesh_vqm1a")
+
+[node name="TripleShot" type="Node" parent="." unique_id=1289583969]
+script = ExtResource("8_y13of")

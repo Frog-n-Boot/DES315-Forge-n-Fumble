@@ -31,6 +31,7 @@ public partial class SpinAttack : Node3D
 	private MeleeWeapon currentWeapon;
 	private bool isDazed;
 	private HashSet<EnemyController> hitEnemies = new HashSet<EnemyController>();
+	private bool isSpinning = false;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready(){
@@ -42,8 +43,11 @@ public partial class SpinAttack : Node3D
 		if(spinArea != null)
 		{
 			spinArea.Monitoring = false;
-			spinArea.BodyEntered += OnSpinHit;
-
+			if(!spinArea.IsConnected(Area3D.SignalName.BodyEntered, Callable.From<Node3D>(OnSpinHit)))
+			{
+				spinArea.BodyEntered += OnSpinHit;
+			}
+			
 			spinArea.AddToGroup("SpinAttack");
 		}
 		if(animPlayer == null)
@@ -88,7 +92,7 @@ public partial class SpinAttack : Node3D
 		if(totalDegrees >= spinThreshold)
 		{
 			spinCharges++;
-			GD.Print($">>> Charge Gained! Total: {spinCharges}/{maxSpinCharges} <<<");
+			//GD.Print($">>> Charge Gained! Total: {spinCharges}/{maxSpinCharges} <<<");
 
 			accumulatedRotation = 0;
 			spinChargeTimer = spinChargeTimeout;
@@ -101,6 +105,13 @@ public partial class SpinAttack : Node3D
 		else
 		{
 			startRotationY = currentRotation;
+		}
+
+		if(isSpinning && spinArea != null)
+		{
+			var overlappingBodies = spinArea.GetOverlappingBodies();
+			foreach(var body in overlappingBodies)
+				ProcessSpinHit(body);
 		}
 	}
 
@@ -130,8 +141,9 @@ public partial class SpinAttack : Node3D
 	
 	private void ExecuteSpinAttack()
 	{
-		GD.Print($"SPIN ATTACK! Power: {spinCharges}");
+		//GD.Print($"SPIN ATTACK! Power: {spinCharges}");
 		hitEnemies.Clear();
+
 		if(currentWeapon != null && animPlayer !=null)
 		{
 			var animation = animPlayer.GetAnimation("Spin_Attack");
@@ -144,17 +156,21 @@ public partial class SpinAttack : Node3D
 			if(spinArea != null)
 			{
 				spinArea.Monitoring = true;
+				isSpinning = true;
 
 				var overlappingBodies = spinArea.GetOverlappingBodies();
-				foreach(var body in overlappingBodies) ProcessSpinHit(body);
+				foreach(var body in overlappingBodies) 
+					ProcessSpinHit(body);
 
 				parent.GetTree().CreateTimer(spinDuration).Timeout += () =>
 				{
+					isSpinning = false;
+
 					if(IsInstanceValid(spinArea))
 						spinArea.Monitoring = false;
 					
 					animPlayer.Stop();
-					TriggerDaze();
+					//TriggerDaze();
 				};
 			}		
 		}
@@ -164,13 +180,13 @@ public partial class SpinAttack : Node3D
 
 	private void CancelSpin()
 	{
-		GD.Print("Spin Cancelled");
+		//GD.Print("Spin Cancelled");
 		Reset();
 	}
 
 	private void TriggerDaze()
 	{
-		GD.Print("DAZED!");
+		//GD.Print("DAZED!");
 		isDazed = true;
 
 		if(parent is PlayerController player)
@@ -210,8 +226,8 @@ public partial class SpinAttack : Node3D
 
 	private void ProcessSpinHit(Node3D body)
 	{
-		var enemyNode = body.GetParent();
-		if(enemyNode is EnemyController enemy && currentWeapon != null)
+		
+		if(body is EnemyController enemy && currentWeapon != null)
 		{
 			if(hitEnemies.Contains(enemy)) return;
 
