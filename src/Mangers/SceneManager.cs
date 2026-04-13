@@ -24,7 +24,18 @@ public partial class SceneManager : Node
 	}
 
 	public void LoadMainMenu() => LoadScene("res://scenes/MainMenu.tscn");
-	public void LoadGame() => LoadScene("res://scenes/LoadingScreen.tscn");
+	public void LoadGame(){
+		GetTree().Paused = false;
+
+		GetTree().CallGroup("Weapon", "queue_free");
+		GetTree().CallGroup("DullSword", "queue_free");
+		GetTree().CallGroup("Enemy", "queue_free");
+
+		var forge = GetNode<Forge>("/root/Forge");
+		if( forge != null) forge.ResetHealth();
+
+		LoadScene("res://scenes/LoadingScreen.tscn");
+	}
 	public void LoadTutorial() => LoadScene("res://scenes/Tutorial.tscn");
 	public void LoadSettings()
 	{

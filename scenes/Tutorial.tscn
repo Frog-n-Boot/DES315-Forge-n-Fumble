@@ -17,14 +17,12 @@
 [ext_resource type="Script" uid="uid://bqbrwko4kb7sp" path="res://src/Enemy/EnemyController.cs" id="16_18x7b"]
 [ext_resource type="PackedScene" uid="uid://2dvvlktwdavs" path="res://assets/models/FinalAssets_Low/Ore/Copper_Ore.tscn" id="18_j4y01"]
 [ext_resource type="Resource" uid="uid://calih72lg8n07" path="res://assets/resources/AI/NormalEnemyData.tres" id="20_0hjnf"]
-[ext_resource type="Script" uid="uid://taddex4cilqa" path="res://src/Item/LootTable.cs" id="21_4tybr"]
 [ext_resource type="Material" uid="uid://c14d6xj6opusf" path="res://assets/materials/Texture_sets/Character_Textures/Goblin Textures/goblin_material.tres" id="21_bi4s5"]
 [ext_resource type="PackedScene" uid="uid://o7vvnubwicff" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Ingot.tscn" id="21_dn1de"]
-[ext_resource type="ArrayMesh" uid="uid://bmq26ged3l0nq" path="res://assets/models/FinalAssets_Low/Character_Models/goblin_low.obj" id="21_q5ijt"]
+[ext_resource type="ArrayMesh" uid="uid://bmq26ged3l0nq" path="res://assets/models/FinalAssets_Low/Character_Models/Goblin_low.obj" id="21_q5ijt"]
 [ext_resource type="PackedScene" uid="uid://d1y4lf17i3iid" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Dull_Sword.tscn" id="23_jw24r"]
-[ext_resource type="PackedScene" uid="uid://jnghu007q1m" path="res://assets/models/FinalAssets_Low/Items_Models/Healthpack.tscn" id="23_oyacv"]
 [ext_resource type="Resource" uid="uid://cdki2c88hftlb" path="res://assets/resources/AI/FastEnemyData.tres" id="24_e4hrd"]
-[ext_resource type="ArrayMesh" uid="uid://8wpolus5qbva" path="res://assets/models/FinalAssets_Low/Character_Models/skeleton_low.obj" id="24_ujnhc"]
+[ext_resource type="ArrayMesh" uid="uid://8wpolus5qbva" path="res://assets/models/FinalAssets_Low/Character_Models/Skeleton_low.obj" id="24_ujnhc"]
 [ext_resource type="Material" uid="uid://btwle4bal72vo" path="res://assets/materials/Texture_sets/Character_Textures/Skeleton Textures/skeleton_material.tres" id="24_xi6p3"]
 [ext_resource type="ArrayMesh" uid="uid://ch821ffso52fw" path="res://assets/models/FinalAssets_Low/Items_Models/handheld_ballista.obj" id="25_4tybr"]
 [ext_resource type="Script" uid="uid://dli7kb5c5sowk" path="res://src/Mangers/TutorialManager.cs" id="27_bi4s5"]
@@ -42,7 +40,12 @@
 [ext_resource type="AudioStream" uid="uid://duxa6q488bcjk" path="res://assets/Sounds/SFX/ArrowShot10.wav" id="40_1y4d5"]
 [ext_resource type="Material" uid="uid://24hwnxagoffj" path="res://assets/models/FinalAssets_Low/WorkStations/Ballista/ballista.tres" id="41_47rdh"]
 [ext_resource type="ArrayMesh" uid="uid://d2w54yxgv34j" path="res://assets/models/FinalAssets_Low/WorkStations/Ballista/Ballista_Bottom_element_low.obj" id="42_4c805"]
+[ext_resource type="Script" uid="uid://dnliu2440i283" path="res://src/Menus/PauseMenu.cs" id="42_wkaxc"]
 [ext_resource type="ArrayMesh" uid="uid://dfauyerha08a2" path="res://assets/models/FinalAssets_Low/WorkStations/Ballista/Ballista_Top_element_low.obj" id="43_podgh"]
+[ext_resource type="Texture2D" uid="uid://dy1wiwwij327x" path="res://assets/materials/Texture_sets/2DTextures/furnaceImage.webp" id="43_y74ua"]
+[ext_resource type="Texture2D" uid="uid://bvw5yhtbch6ht" path="res://assets/materials/Texture_sets/2DTextures/anvilImage.webp" id="44_rx2rv"]
+[ext_resource type="Texture2D" uid="uid://dwexwmybryvpl" path="res://assets/materials/Texture_sets/2DTextures/grindstoneImage.webp" id="45_cgb57"]
+[ext_resource type="Script" uid="uid://bs44u3pohek1t" path="res://src/Menus/SettingsMenu.cs" id="46_7vc5l"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j4y01"]
 albedo_texture = ExtResource("1_q5ijt")
@@ -132,6 +135,18 @@ albedo_color = Color(0, 0, 1, 1)
 size = Vector3(0.6976929, 1, 0.6383629)
 
 [sub_resource type="BoxMesh" id="BoxMesh_m1e06"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dn1de"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wkaxc"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_y74ua"]
+
+[sub_resource type="MeshTexture" id="MeshTexture_f0oxr"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dn1de"]
+texture = SubResource("MeshTexture_f0oxr")
 
 [node name="TestingLab" type="StaticBody3D" unique_id=127569902]
 
@@ -276,10 +291,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 198.29456, 0, -39.210045)
 [node name="TP3" type="Marker3D" parent="PlayerSpawner/TP" unique_id=2007690728]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 329.32535, 0, -39.330086)
 
-[node name="LootTable" type="Node3D" parent="." unique_id=2137958599]
-script = ExtResource("21_4tybr")
-healthPackObject = ExtResource("23_oyacv")
-
 [node name="Enemy" type="Node3D" parent="." unique_id=537096316 groups=["Enemy"]]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 203.90479, 0.8567555, -16.62267)
 
@@ -310,7 +321,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77124023, 0)
 shape = SubResource("CylinderShape3D_v1uvm")
 
 [node name="Enemy2" type="Node3D" parent="." unique_id=473864975 groups=["Enemy"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 311.4813, 0.1203866, -1.1011009)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 311.4813, 0.79634786, -1.1011009)
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="Enemy2" unique_id=1020805358 node_paths=PackedStringArray("mesh", "collisionArea") groups=["Enemy"]]
 collision_layer = 4
@@ -338,12 +349,16 @@ shape = SubResource("CylinderShape3D_v1uvm")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Enemy2/CharacterBody3D/Area3D" unique_id=1904624980]
 shape = SubResource("CylinderShape3D_v1uvm")
 
-[node name="TutorialManager" type="Node" parent="." unique_id=639408089 node_paths=PackedStringArray("roomSpawnPoints", "smeltingStation", "grindstoneStation", "forgingStation", "room3Enemy", "room4Enemy")]
+[node name="TutorialManager" type="Node" parent="." unique_id=639408089 node_paths=PackedStringArray("roomSpawnPoints", "pauseMenu", "skipTutorialProgressBar", "smeltingStation", "itemDropOffBox", "grindstoneStation", "forgingStation", "weaponDropOffBox", "room3Enemy", "room4Enemy")]
 script = ExtResource("27_bi4s5")
 roomSpawnPoints = [NodePath("../PlayerSpawner/TP/TP1"), NodePath("../PlayerSpawner/TP/TP2"), NodePath("../PlayerSpawner/TP/TP3")]
+pauseMenu = NodePath("../PauseMenu")
+skipTutorialProgressBar = NodePath("../ProgressBar")
 smeltingStation = NodePath("../CollisionShape3D/Forge")
+itemDropOffBox = NodePath("../ItemDropOffNode")
 grindstoneStation = NodePath("../CollisionShape3D/Grindstone")
 forgingStation = NodePath("../CollisionShape3D/Anvil")
+weaponDropOffBox = NodePath("../WeaponDropOffNode")
 room3Enemy = NodePath("../Enemy/CharacterBody3D")
 room4Enemy = NodePath("../Enemy2/CharacterBody3D")
 
@@ -357,14 +372,21 @@ mesh = ExtResource("25_4tybr")
 [node name="Label3D" type="Label3D" parent="Text" unique_id=1005533518]
 transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -49.388096, 1.5332108, -3.5558171)
 modulate = Color(1, 0.90000004, 0, 1)
-text = "Pick up ORE with X"
+text = "Pick up ORE with X/E"
+font_size = 20
+
+[node name="Label3D15" type="Label3D" parent="Text" unique_id=1274583701]
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -62.06752, 1.5332108, -7.5415535)
+modulate = Color(1, 0.90000004, 0, 1)
+text = "Drop item with B/Q
+Hold B/Q to drop Weapon"
 font_size = 20
 
 [node name="Label3D2" type="Label3D" parent="Text" unique_id=2087353095]
 transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -52.346, 1.5332088, -20.538702)
 modulate = Color(1, 0.90000004, 0, 1)
 text = "Interact with 
-Workstations with X"
+Workstations with X/E"
 font_size = 20
 
 [node name="Label3D3" type="Label3D" parent="Text" unique_id=2123131909]
@@ -417,11 +439,12 @@ Hold B to drop your weapon"
 font_size = 20
 
 [node name="Label3D7" type="Label3D" parent="Text" unique_id=275099191]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -51.924385, 1.5332108, 7.9636345)
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -52.82715, 2.1534605, 6.468112)
+outline_render_priority = -2
 text = "Place 3 Copper Ingot to continue"
 
 [node name="Label3D8" type="Label3D" parent="Text" unique_id=249894599]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 55.486557, 1.5332108, 7.413676)
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 54.452797, 2.1703491, 6.464456)
 text = "Craft 2 Iron Swords to continue"
 
 [node name="Label3D9" type="Label3D" parent="Text" unique_id=1452463606]
@@ -541,6 +564,437 @@ transform = Transform3D(1, 0, 0, 0, 0.33043814, 0, 0, 0, 0.2738446, -0.18170571,
 mesh = SubResource("BoxMesh_m1e06")
 skeleton = NodePath("../../../StaticBody3D")
 
+[node name="ItemDropOffNode" type="Node3D" parent="." unique_id=1176537791]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.3175284, -52.788494, 2.162654, 8.736044)
+
+[node name="Area3D" type="Area3D" parent="ItemDropOffNode" unique_id=2007190283]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 5.4, 0, 0, 0.31873178)
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ItemDropOffNode/Area3D" unique_id=1957568453]
+shape = SubResource("BoxShape3D_dn1de")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ItemDropOffNode" unique_id=1883276326]
+transform = Transform3D(20, 0, 0, 0, 0.09232774, 0, 0, 0, 5.4025326, 0, -2.1711469, 0.28949738)
+material_override = SubResource("StandardMaterial3D_wkaxc")
+transparency = 0.15
+mesh = SubResource("BoxMesh_y74ua")
+
+[node name="WeaponDropOffNode" type="Node3D" parent="." unique_id=476378771]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.3175284, 55.00113, 2.162654, 8.790767)
+
+[node name="Area3D" type="Area3D" parent="WeaponDropOffNode" unique_id=721241301]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 5.4, 0, 0, 0.1792202)
+collision_mask = 24
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WeaponDropOffNode/Area3D" unique_id=975492336]
+shape = SubResource("BoxShape3D_dn1de")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WeaponDropOffNode" unique_id=578781272]
+transform = Transform3D(20, 0, 0, 0, 0.09232774, 0, 0, 0, 5.4025326, 0, -2.1711469, 0.28949738)
+material_override = SubResource("StandardMaterial3D_wkaxc")
+transparency = 0.15
+mesh = SubResource("BoxMesh_y74ua")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1132391527]
+offset_top = 26.0
+offset_right = 226.0
+offset_bottom = 40.0
+theme_override_styles/fill = SubResource("StyleBoxTexture_dn1de")
+value = 50.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="." unique_id=1872367308]
+offset_right = 83.0
+offset_bottom = 23.0
+text = "Skip? ESC/ ⧉/≡"
+
+[node name="PauseMenu" type="CanvasLayer" parent="." unique_id=270092890 node_paths=PackedStringArray("resumeButton", "settingsButton", "mainMenuButton", "settingsMenu", "tutorialManager")]
+process_mode = 3
+visible = false
+script = ExtResource("42_wkaxc")
+resumeButton = NodePath("ResumeButton")
+settingsButton = NodePath("SettingsButton")
+mainMenuButton = NodePath("QuitButton")
+settingsMenu = NodePath("../SettingsMenu")
+tutorialManager = NodePath("../TutorialManager")
+
+[node name="ResumeButton" type="Button" parent="PauseMenu" unique_id=263225920]
+offset_left = 71.00002
+offset_top = 175.0
+offset_right = 519.0
+offset_bottom = 295.0
+scale = Vector2(0.8400012, 0.7599994)
+focus_neighbor_top = NodePath(".")
+focus_neighbor_bottom = NodePath("../SettingsButton")
+focus_next = NodePath("../SettingsButton")
+focus_previous = NodePath("../QuitButton")
+theme_override_font_sizes/font_size = 40
+text = "Resume"
+
+[node name="SettingsButton" type="Button" parent="PauseMenu" unique_id=612249311]
+offset_left = 71.00002
+offset_top = 335.0
+offset_right = 519.0
+offset_bottom = 455.0
+scale = Vector2(0.8400012, 0.7599994)
+focus_neighbor_top = NodePath("../ResumeButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+focus_next = NodePath("../QuitButton")
+focus_previous = NodePath("../ResumeButton")
+theme_override_font_sizes/font_size = 40
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="PauseMenu" unique_id=937778779]
+offset_left = 71.00002
+offset_top = 495.0
+offset_right = 519.0
+offset_bottom = 615.0
+scale = Vector2(0.8400012, 0.7599994)
+focus_neighbor_top = NodePath("../SettingsButton")
+focus_previous = NodePath("../SettingsButton")
+theme_override_font_sizes/font_size = 40
+text = "Main Menu"
+
+[node name="Label" type="Label" parent="PauseMenu" unique_id=1897877340]
+offset_left = 62.0
+offset_top = 26.0
+offset_right = 459.0
+offset_bottom = 109.0
+theme_override_font_sizes/font_size = 60
+text = "Game Paused"
+
+[node name="FurnaceImahe" type="TextureRect" parent="PauseMenu" unique_id=1419083924]
+offset_left = 658.0
+offset_top = 64.0
+offset_right = 1158.0
+offset_bottom = 164.0
+scale = Vector2(0.6149459, 0.68860584)
+texture = ExtResource("43_y74ua")
+expand_mode = 1
+
+[node name="AnvilImage" type="TextureRect" parent="PauseMenu" unique_id=1140674292]
+offset_left = 658.0
+offset_top = 133.0
+offset_right = 1158.0
+offset_bottom = 233.0
+scale = Vector2(0.6149459, 0.68860584)
+texture = ExtResource("44_rx2rv")
+expand_mode = 1
+
+[node name="GrindstoneImage" type="TextureRect" parent="PauseMenu" unique_id=1215423119]
+offset_left = 658.0
+offset_top = 201.0
+offset_right = 1158.0
+offset_bottom = 301.0
+scale = Vector2(0.6149459, 0.68860584)
+texture = ExtResource("45_cgb57")
+expand_mode = 1
+
+[node name="ControlsLabel" type="Label" parent="PauseMenu" unique_id=1138207857]
+offset_left = 592.0
+offset_top = 347.00003
+offset_right = 1254.0
+offset_bottom = 704.0
+scale = Vector2(0.68, 0.62560004)
+theme_override_font_sizes/font_size = 30
+text = "Actions                  Keyboard    │  Controller
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Pick-Up               │  Right Click │  Left Trigger
+Attack/Interact │  Left Click   │  Right Trigger
+Drop-Left-Item  │  Q                 │  Left Shoulder
+Drop-Right-Item│  E                 │  Right Shoulder
+Pause                  │  ESC             │  ☰
+Sequence           │  ←↑→↓          │  < > v ^"
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu" unique_id=686546604]
+z_index = -1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.860407, 16.15729)
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu" unique_id=606113047]
+z_index = -1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.750067, 16.369858)
+color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
+
+[node name="SettingsMenu" type="CanvasLayer" parent="." unique_id=80484946 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton", "pauseMenu")]
+visible = false
+script = ExtResource("46_7vc5l")
+masterSlider = NodePath("Control/MasterVolumeLabel/MasterVolumeSlider")
+musicSlider = NodePath("Control/MusicVolumeLabel/MusicVolumeSlider")
+sfxSlider = NodePath("Control/SFXVolumeLabel/SFXVolumeSlider")
+fullScreenCheckBox = NodePath("Control/FullscreenLabel/FullScreenCheckBox")
+vsyncCheckBox = NodePath("Control/VSyncLabel/VSyncCheckBox")
+showFPSCheckBox = NodePath("Control/ShowFPSLabel/ShowFPSCheckBox")
+resolutionDropdown = NodePath("Control/ResolutionLabel/ResolutionOptionButton")
+maxFPSDropdown = NodePath("Control/FPSLabel/FPSOptionButton")
+applyButton = NodePath("Control/ApplyButton")
+pauseMenu = NodePath("../PauseMenu")
+
+[node name="Control" type="Control" parent="SettingsMenu" unique_id=488765988]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="SettingsMenu/Control" unique_id=1975925768]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 24.0
+offset_right = 264.0
+offset_bottom = 107.0
+theme_override_font_sizes/font_size = 60
+text = "Settings"
+metadata/_edit_use_anchors_ = true
+
+[node name="MasterVolumeLabel" type="Label" parent="SettingsMenu/Control" unique_id=872846124]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 120.0
+offset_right = 252.0
+offset_bottom = 207.0
+theme_override_font_sizes/font_size = 30
+text = "Master Volume
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="MasterVolumeSlider" type="HSlider" parent="SettingsMenu/Control/MasterVolumeLabel" unique_id=1869099308]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.0045454544
+offset_left = 233.0
+offset_right = 343.0
+offset_bottom = 50.0
+focus_neighbor_bottom = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
+metadata/_edit_use_anchors_ = true
+
+[node name="MusicVolumeLabel" type="Label" parent="SettingsMenu/Control" unique_id=2141037783]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 176.0
+offset_right = 235.0
+offset_bottom = 223.0
+theme_override_font_sizes/font_size = 30
+text = "Music Volume"
+metadata/_edit_use_anchors_ = true
+
+[node name="MusicVolumeSlider" type="HSlider" parent="SettingsMenu/Control/MusicVolumeLabel" unique_id=1544822629]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.009852217
+anchor_top = -0.14893617
+anchor_right = -0.009852217
+anchor_bottom = -0.14893617
+offset_left = 234.0
+offset_top = 7.0
+offset_right = 344.0
+offset_bottom = 57.0
+focus_neighbor_top = NodePath("../../MasterVolumeLabel/MasterVolumeSlider")
+focus_neighbor_right = NodePath("../../SFXVolumeLabel/SFXVolumeSlider")
+metadata/_edit_use_anchors_ = true
+
+[node name="ResolutionLabel" type="Label" parent="SettingsMenu/Control" unique_id=751930026]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 432.0
+offset_right = 186.0
+offset_bottom = 479.0
+theme_override_font_sizes/font_size = 30
+text = "Resolution"
+metadata/_edit_use_anchors_ = true
+
+[node name="ResolutionOptionButton" type="OptionButton" parent="SettingsMenu/Control/ResolutionLabel" unique_id=1806905000]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4090909
+anchor_top = -0.06382979
+anchor_right = 0.4090909
+anchor_bottom = -0.06382979
+offset_left = 169.0
+offset_top = 11.0
+offset_right = 297.0
+offset_bottom = 43.0
+focus_neighbor_top = NodePath("../../ShowFPSLabel/ShowFPSCheckBox")
+focus_neighbor_bottom = NodePath("../../FPSLabel/FPSOptionButton")
+metadata/_edit_use_anchors_ = true
+
+[node name="FPSLabel" type="Label" parent="SettingsMenu/Control" unique_id=2092669501]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 488.0
+offset_right = 103.0
+offset_bottom = 535.0
+theme_override_font_sizes/font_size = 30
+text = "FPS"
+metadata/_edit_use_anchors_ = true
+
+[node name="FPSOptionButton" type="OptionButton" parent="SettingsMenu/Control/FPSLabel" unique_id=579356737]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.5633802
+anchor_top = -0.06382979
+anchor_right = 1.5633802
+anchor_bottom = -0.06382979
+offset_left = 121.0
+offset_top = 11.0
+offset_right = 249.0
+offset_bottom = 43.0
+focus_neighbor_top = NodePath("../../ResolutionLabel/ResolutionOptionButton")
+focus_neighbor_bottom = NodePath("../../BackButton")
+metadata/_edit_use_anchors_ = true
+
+[node name="SFXVolumeLabel" type="Label" parent="SettingsMenu/Control" unique_id=2084979062]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 224.0
+offset_right = 201.0
+offset_bottom = 271.0
+theme_override_font_sizes/font_size = 30
+text = "SFX Volume"
+metadata/_edit_use_anchors_ = true
+
+[node name="SFXVolumeSlider" type="HSlider" parent="SettingsMenu/Control/SFXVolumeLabel" unique_id=932817048]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.01183432
+anchor_top = -0.23404256
+anchor_right = -0.01183432
+anchor_bottom = -0.23404256
+offset_left = 234.0
+offset_top = 4.0
+offset_right = 344.0
+offset_bottom = 54.0
+focus_neighbor_top = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
+focus_neighbor_bottom = NodePath("../../FullscreenLabel/FullScreenCheckBox")
+metadata/_edit_use_anchors_ = true
+
+[node name="FullscreenLabel" type="Label" parent="SettingsMenu/Control" unique_id=1104181590]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 272.0
+offset_right = 201.0
+offset_bottom = 319.0
+theme_override_font_sizes/font_size = 30
+text = "FullScreen"
+metadata/_edit_use_anchors_ = true
+
+[node name="FullScreenCheckBox" type="CheckBox" parent="SettingsMenu/Control/FullscreenLabel" unique_id=2040999844]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.38700002
+anchor_right = 0.38700002
+offset_left = 166.59698
+offset_top = 10.0
+offset_right = 195.59698
+offset_bottom = 34.0
+focus_neighbor_top = NodePath("../../SFXVolumeLabel/SFXVolumeSlider")
+focus_neighbor_bottom = NodePath("../../VSyncLabel/VSyncCheckBox")
+theme_override_font_sizes/font_size = 40
+metadata/_edit_use_anchors_ = true
+
+[node name="VSyncLabel" type="Label" parent="SettingsMenu/Control" unique_id=1434128149]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 320.0
+offset_right = 201.0
+offset_bottom = 367.0
+theme_override_font_sizes/font_size = 30
+text = "VSync"
+metadata/_edit_use_anchors_ = true
+
+[node name="VSyncCheckBox" type="CheckBox" parent="SettingsMenu/Control/VSyncLabel" unique_id=1093135889]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2366864
+anchor_right = 0.2366864
+offset_left = 192.0
+offset_top = -7.9999986
+offset_right = 217.0
+offset_bottom = 55.0
+focus_neighbor_top = NodePath("../../FullscreenLabel/FullScreenCheckBox")
+focus_neighbor_bottom = NodePath("../../ShowFPSLabel/ShowFPSCheckBox")
+theme_override_font_sizes/font_size = 40
+text = "
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="ShowFPSLabel" type="Label" parent="SettingsMenu/Control" unique_id=461988413]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 376.0
+offset_right = 201.0
+offset_bottom = 423.0
+theme_override_font_sizes/font_size = 30
+text = "ShowFPS"
+metadata/_edit_use_anchors_ = true
+
+[node name="ShowFPSCheckBox" type="CheckBox" parent="SettingsMenu/Control/ShowFPSLabel" unique_id=870540957]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.16568047
+anchor_top = 0.06382979
+anchor_right = 0.16568047
+anchor_bottom = 0.06382979
+offset_left = 204.0
+offset_top = -11.0
+offset_right = 228.0
+offset_bottom = 52.0
+focus_neighbor_top = NodePath("../../VSyncLabel/VSyncCheckBox")
+focus_neighbor_bottom = NodePath("../../ResolutionLabel/ResolutionOptionButton")
+theme_override_font_sizes/font_size = 40
+text = "
+
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="BackButton" type="Button" parent="SettingsMenu/Control" unique_id=1089192318]
+layout_mode = 0
+offset_left = 8.000006
+offset_top = 552.0
+offset_right = 456.0
+offset_bottom = 672.0
+scale = Vector2(0.8400012, 0.7599994)
+focus_neighbor_top = NodePath("../FPSLabel/FPSOptionButton")
+focus_neighbor_right = NodePath("../ApplyButton")
+theme_override_font_sizes/font_size = 40
+text = "Back
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="ApplyButton" type="Button" parent="SettingsMenu/Control" unique_id=1827563534]
+layout_mode = 0
+offset_left = 759.99994
+offset_top = 552.0
+offset_right = 1208.0
+offset_bottom = 672.0
+scale = Vector2(0.8400012, 0.7599994)
+focus_neighbor_left = NodePath("../BackButton")
+focus_neighbor_top = NodePath("../FPSLabel/FPSOptionButton")
+theme_override_font_sizes/font_size = 40
+text = "Apply
+
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="SettingsMenu" unique_id=1211899311]
+z_index = -1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.750067, 16.369858)
+color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
+
 [connection signal="body_entered" from="Enemy/CharacterBody3D/Area3D" to="Enemy" method="OnBodyEntered"]
 [connection signal="body_entered" from="Enemy2/CharacterBody3D/Area3D" to="Enemy2" method="OnBodyEntered"]
 [connection signal="body_exited" from="Turret/BallistaTopElementLow/StaticBody3D/StationPort/Area3D" to="Turret" method="OnInputBodyEntered"]
+[connection signal="area_entered" from="ItemDropOffNode/Area3D" to="TutorialManager" method="OnDropOffAreaEntered"]
+[connection signal="body_entered" from="WeaponDropOffNode/Area3D" to="TutorialManager" method="OnWeaponDropOffBodyEntered"]
+[connection signal="pressed" from="PauseMenu/ResumeButton" to="PauseMenu" method="OnResumePressed"]
+[connection signal="pressed" from="PauseMenu/SettingsButton" to="PauseMenu" method="OnSettingsPressed"]
+[connection signal="pressed" from="PauseMenu/QuitButton" to="PauseMenu" method="OnMainMenuPressed"]
+[connection signal="pressed" from="SettingsMenu/Control/BackButton" to="SettingsMenu" method="OnBackPressed"]
+[connection signal="pressed" from="SettingsMenu/Control/ApplyButton" to="SettingsMenu" method="OnApplyPressed"]

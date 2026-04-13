@@ -373,6 +373,7 @@ transform = Transform3D(1.6779308, 0, 0, 0, 1.8431246, 0, 0, 0, 1, 0, 2.7833214,
 
 [node name="SpinAttack" type="Node3D" parent="." unique_id=589698554 node_paths=PackedStringArray("collisionShape", "animPlayer", "spinArea") groups=["SpinAttack"]]
 script = ExtResource("15_sq3q5")
+spinDuration = 5.0
 collisionShape = NodePath("../Area3D/CollisionShape3D")
 animPlayer = NodePath("../CollisionShape3D/AnimationPlayer")
 spinArea = NodePath("Area3D")

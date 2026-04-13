@@ -32,7 +32,7 @@ size = Vector3(1.742096, 1.691742, 4.7293167)
 [sub_resource type="ViewportTexture" id="ViewportTexture_eu12u"]
 viewport_path = NodePath("Sprite3D/SubViewport")
 
-[node name="CopperDullSword" type="Node3D" unique_id=778246616 node_paths=PackedStringArray("audio", "weaponTextureRect", "pickUpArea") groups=["DullSword", "Sword", "Weapon"]]
+[node name="CopperDullSword" type="Node3D" unique_id=778246616 node_paths=PackedStringArray("audio", "weaponTextureRect", "pickUpArea", "weaponBody") groups=["DullSword", "Sword", "Weapon"]]
 script = ExtResource("1_858pc")
 sharpenedVersion = ExtResource("2_eu12u")
 audio = NodePath("SwordBreak")
@@ -43,6 +43,7 @@ weaponTint = Color(0.78039217, 0.47843137, 0.23921569, 1)
 weaponPromptTexture = Array[Texture2D]([ExtResource("4_42hb7"), ExtResource("5_2kw2i")])
 weaponTextureRect = NodePath("Sprite3D/SubViewport/TextureRect")
 pickUpArea = NodePath("StaticBody3D/Area3D")
+weaponBody = NodePath("StaticBody3D")
 
 [node name="SwordFirstLow" type="MeshInstance3D" parent="." unique_id=1500591981]
 material_override = SubResource("ORMMaterial3D_pswvq")

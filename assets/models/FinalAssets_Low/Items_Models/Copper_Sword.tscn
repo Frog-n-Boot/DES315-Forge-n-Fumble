@@ -30,7 +30,7 @@ heightmap_texture = ExtResource("3_c2h1v")
 [sub_resource type="ViewportTexture" id="ViewportTexture_w7hbi"]
 viewport_path = NodePath("Sprite3D/SubViewport")
 
-[node name="CopperSword" type="Node3D" unique_id=689345526 node_paths=PackedStringArray("audio", "weaponTextureRect", "pickUpArea") groups=["Sword", "Weapon"]]
+[node name="CopperSword" type="Node3D" unique_id=689345526 node_paths=PackedStringArray("audio", "weaponTextureRect", "pickUpArea", "weaponBody") groups=["Sword", "Weapon"]]
 script = ExtResource("1_1yonr")
 audio = NodePath("SwordBreak")
 damage = 5
@@ -40,6 +40,7 @@ weaponTint = Color(0.77962184, 0.4780169, 0.23731527, 1)
 weaponPromptTexture = Array[Texture2D]([ExtResource("3_hox1f"), ExtResource("4_oreb3")])
 weaponTextureRect = NodePath("Sprite3D/SubViewport/TextureRect")
 pickUpArea = NodePath("StaticBody3D/Area3D")
+weaponBody = NodePath("StaticBody3D")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1636120554 groups=["Sword", "Weapon"]]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)

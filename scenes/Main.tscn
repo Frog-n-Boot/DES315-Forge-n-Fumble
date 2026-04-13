@@ -96,16 +96,16 @@ fog_density = 1.0
 fog_depth_end = 242.5
 volumetric_fog_density = 0.0
 
-[sub_resource type="Gradient" id="Gradient_cmqll"]
+[sub_resource type="Gradient" id="Gradient_gdcyb"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_8cp6k"]
-gradient = SubResource("Gradient_cmqll")
+gradient = SubResource("Gradient_gdcyb")
 width = 1145
 
-[sub_resource type="Gradient" id="Gradient_8cp6k"]
+[sub_resource type="Gradient" id="Gradient_oa6sj"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_8b871"]
-gradient = SubResource("Gradient_8cp6k")
+gradient = SubResource("Gradient_oa6sj")
 width = 1145
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0f1tp"]
@@ -243,6 +243,7 @@ maxSize = 40.0
 [node name="Ballista" parent="Enviroment" unique_id=353788340 node_paths=PackedStringArray("inputNode") instance=ExtResource("2_pnhog")]
 transform = Transform3D(0.807084, 0, -0.5904367, 0, 1, 0, 0.5904367, 0, 0.807084, 8.197841, 2.9593534, 8.394757)
 inputNode = NodePath("StationPort3")
+arrowCount = 0
 
 [node name="StationPort3" parent="Enviroment/Ballista" unique_id=1915723754 instance=ExtResource("3_2c4at")]
 transform = Transform3D(-1.737944, 0, 2.3763328, 0, 1, 0, -2.398319, 0, -1.7220117, -0.3306508, -3.1234941, 0.20035172)
@@ -250,6 +251,7 @@ transform = Transform3D(-1.737944, 0, 2.3763328, 0, 1, 0, -2.398319, 0, -1.72201
 [node name="Ballista2" parent="Enviroment" unique_id=1789132715 node_paths=PackedStringArray("inputNode") instance=ExtResource("2_pnhog")]
 transform = Transform3D(-0.7744369, 0, 0.6326513, 0, 1, 0, -0.6326513, 0, -0.7744369, -7.927705, 2.9262388, -8.25852)
 inputNode = NodePath("StationPort2")
+arrowCount = 0
 
 [node name="StationPort2" parent="Enviroment/Ballista2" unique_id=1365024135 instance=ExtResource("3_2c4at")]
 transform = Transform3D(1.8634118, 0, -2.2810848, 0, 1, 0, 2.30219, 0, 1.8463291, -0.8566718, -3.1234941, 0.023492694)
@@ -811,6 +813,7 @@ tint_under = Color(0.30692267, 0.3069227, 0.3069227, 1)
 
 [node name="LootTable" type="Node" parent="." unique_id=317891680 groups=["LootTable"]]
 script = ExtResource("18_oa6sj")
+goldDropChance = 0
 damasDropChance = 0
 healthPackDropChance = 0
 copperOre = ExtResource("19_0f1tp")

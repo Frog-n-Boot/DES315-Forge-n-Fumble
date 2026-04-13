@@ -225,8 +225,8 @@ public partial class DebugMenu : CanvasLayer
 			var playerSword = player.currentWeapon;
 			var sword = playerSword as Sword;
 
-			weaponDurability.Value = sword.durability;
-			weaponDamage.Value = sword.damage;
+			//weaponDurability.Value = sword.durability;
+			//weaponDamage.Value = sword.damage;
 		}
 
 		forgeHealth.Value = forge.maxHealth;

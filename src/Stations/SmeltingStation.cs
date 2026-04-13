@@ -60,7 +60,7 @@ public partial class SmeltingStation : BaseStationScript
     protected override void ProduceOutput()
     {
         base.ProduceOutput();
-		EmitSignal(SignalName.IngotCrafted);
+		//EmitSignal(SignalName.IngotCrafted);
     }
 
 }

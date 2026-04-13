@@ -8,6 +8,7 @@ public partial class PauseMenu : CanvasLayer
 	[Export] Button mainMenuButton;
 	//[Export] private CanvasLayer settingsMenu;
 	[Export] private SettingsMenu settingsMenu;
+	[Export] private TutorialManager tutorialManager;
 
 	private Forge forge;
 	public override void _Ready()
@@ -18,18 +19,18 @@ public partial class PauseMenu : CanvasLayer
 		resumeButton.Pressed += OnResumePressed;
 		settingsButton.Pressed +=OnSettingsPressed;
 		mainMenuButton.Pressed +=OnMainMenuPressed;
-		forge = GetTree().Root.GetNodeOrNull<Forge>("World/Forge");
-		
+		forge = GetTree().Root.GetNodeOrNull<Forge>("World/Forge");	
 
 	}
 
 	public override void _Input(InputEvent @event)
 	{
+		if(tutorialManager != null && tutorialManager.IsTutorialActive()) return;
 		if(@event.IsActionPressed("pause"))
 			TogglePause();
 	}
 
-	private void TogglePause()
+	public void TogglePause()
 	{
 		if(GetTree().Paused)
 			Resume();

@@ -55,15 +55,6 @@ ouputScene = ExtResource("5_wq66q")
 ouputGroup = "pickable"
 metadata/_custom_type_script = "uid://1bo1o367ybgk"
 
-[sub_resource type="Resource" id="Resource_i7ec5"]
-script = ExtResource("3_oiry0")
-recipeName = "Damas_Ingot"
-requiredItemNames = PackedStringArray("Iron_Ingot")
-ouputName = "Damas_Ingot"
-ouputScene = ExtResource("6_sx61v")
-ouputGroup = "pickable"
-metadata/_custom_type_script = "uid://1bo1o367ybgk"
-
 [sub_resource type="Resource" id="Resource_16tjv"]
 script = ExtResource("3_oiry0")
 recipeName = "Damas_Ingot"
@@ -126,7 +117,7 @@ buttonTexture = NodePath("Sprite3D2/SubViewport/TextureRect")
 controllerButtonTexture = SubResource("AtlasTexture_8inme")
 keyboardButtonTexture = SubResource("AtlasTexture_0l2dt")
 craftDuration = 4.0
-recipes = Array[Object]([SubResource("Resource_04qyv"), SubResource("Resource_i1han"), SubResource("Resource_7xevn"), SubResource("Resource_i7ec5"), SubResource("Resource_16tjv")])
+recipes = Array[Object]([SubResource("Resource_04qyv"), SubResource("Resource_i1han"), SubResource("Resource_7xevn"), SubResource("Resource_16tjv")])
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1067101710 groups=["Forge"]]
 collision_layer = 160

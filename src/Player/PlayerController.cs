@@ -628,6 +628,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 				sword.SetHitboxEnabled(true);
 			}
 			
+			nearbyWeapon.SetEnemyCollisionEnabled(true);
 
 			if(currentWeapon.IsConnected(BaseWeapon.SignalName.Broke, Callable.From(OnSwordBroke)))
 				currentWeapon.Disconnect(BaseWeapon.SignalName.Broke, Callable.From(OnSwordBroke));
@@ -839,11 +840,14 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 		if(child is BaseWeapon weapon)
 		{
+			weapon.SetEnemyCollisionEnabled(false);
+
 			weapon.CallDeferred("reparent", GetTree().Root);
 			weapon.SetDeferred("global_position", dropPosition);
 			weapon.SetDeferred("rotation", Vector3.Zero);
 
 			if(weapon is Sword sword){
+				//sword.SetHitboxEnabled(false);
 				spinAttack.SetWeapon(null);
 				sword.CheckDurability -= OnSwordDurabilityChecked;
 			}

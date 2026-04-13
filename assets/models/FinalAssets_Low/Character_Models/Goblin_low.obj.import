@@ -4,14 +4,14 @@ importer="wavefront_obj"
 importer_version=1
 type="Mesh"
 uid="uid://bmq26ged3l0nq"
-path="res://.godot/imported/goblin_low.obj-01666afcba79f8872cd93b64d21c15c5.mesh"
+path="res://.godot/imported/Goblin_low.obj-cb920c6bf24379fb4e1f79b645ffab06.mesh"
 
 [deps]
 
-files=["res://.godot/imported/goblin_low.obj-01666afcba79f8872cd93b64d21c15c5.mesh"]
+files=["res://.godot/imported/Goblin_low.obj-cb920c6bf24379fb4e1f79b645ffab06.mesh"]
 
-source_file="res://assets/models/FinalAssets_Low/Character_Models/goblin_low.obj"
-dest_files=["res://.godot/imported/goblin_low.obj-01666afcba79f8872cd93b64d21c15c5.mesh", "res://.godot/imported/goblin_low.obj-01666afcba79f8872cd93b64d21c15c5.mesh"]
+source_file="res://assets/models/FinalAssets_Low/Character_Models/Goblin_low.obj"
+dest_files=["res://.godot/imported/Goblin_low.obj-cb920c6bf24379fb4e1f79b645ffab06.mesh", "res://.godot/imported/Goblin_low.obj-cb920c6bf24379fb4e1f79b645ffab06.mesh"]
 
 [params]
 

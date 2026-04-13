@@ -65,6 +65,8 @@ public partial class WaveManager : Node
 	{
 		waveTimerProgressBar.Visible = false;
 		waveTimerProgressBar.MaxValue = timeBetweemWaves;
+		waveTimerProgressBar.Step = 0.01f;
+		
 		SetupDefaults();
 		SetupTimer();
 

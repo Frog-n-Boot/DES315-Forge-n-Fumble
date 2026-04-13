@@ -27,8 +27,31 @@ public partial class ResultMenu : CanvasLayer
 	public override void _Ready()
 	{
 		Hide();
-		retryButton.Pressed += () => GetTree().ReloadCurrentScene();
-		mainMenuButton.Pressed += () => GetTree().ChangeSceneToFile("res://scenes/MainMenu.tscn");
+		retryButton.Pressed += () =>{
+			GetTree().Paused = false;
+			
+			var forge = GetNode<Forge>("/root/Forge");
+			if(forge != null)
+			{
+				forge.ResetHealth();
+			}
+
+			GetTree().CallGroup("Weapon", "queue_free");
+			GetTree().CallGroup("DullSword", "queue_free");
+			GetTree().CallGroup("Enemy", "queue_free");
+
+			GetTree().CreateTimer(0.5f).Timeout += () => GetTree().ReloadCurrentScene();
+		};
+
+		mainMenuButton.Pressed += () => {
+			GetTree().Paused = false;
+
+			GetTree().CallGroup("Weapon", "queue_free");
+			GetTree().CallGroup("DullSword", "queue_free");
+			GetTree().CallGroup("Enemy", "queue_free");
+			
+			GetTree().ChangeSceneToFile("res://scenes/MainMenu.tscn");
+		};
 
 	}
 }

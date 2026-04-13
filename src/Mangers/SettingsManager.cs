@@ -17,12 +17,31 @@ public partial class SettingsManager : Node
 	public bool VSync = false;
 	public bool showFPS = false;
 	public int maxFPS = 60;
+	private Label fpsLabel;
 
 	public override void _Ready()
 	{
 		instance = this;
 		LoadSettings();
 		ApplySettings();
+		CreateFPSLabel();
+	}
+
+    public override void _Process(double delta)
+    {
+        if(showFPS && fpsLabel != null)
+		{
+			fpsLabel.Text = $"FPS: {Engine.GetFramesPerSecond()}";
+		}
+    }
+
+	private void CreateFPSLabel()
+	{
+		fpsLabel = new Label();
+		fpsLabel.Position = new Vector2(1087.0f, 53.0f);
+		fpsLabel.AddThemeColorOverride("font_color", Colors.Yellow);
+		fpsLabel.Visible = showFPS;
+		AddChild(fpsLabel);
 	}
 	private void SetWindowPosition()
 	{
@@ -103,6 +122,10 @@ public partial class SettingsManager : Node
 	public void SetShowFPS(bool value)
 	{
 		showFPS = value;
+
+		if(fpsLabel != null) fpsLabel.Visible = value;
+
+		
 	}
 
 	public void SetMaxFPS(long value)

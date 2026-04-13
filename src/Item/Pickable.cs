@@ -9,6 +9,7 @@ public partial class Pickable : Node3D
 
 	#region Variables
 	[Export(PropertyHint.File, "*.tres")] public string itemDataPath = "";
+	
 	[Export] public bool shouldDespawn = false;
 	[Export] public float despawnTime = 30f;
 	[Export] public Texture2D[] itemPromptTexture;

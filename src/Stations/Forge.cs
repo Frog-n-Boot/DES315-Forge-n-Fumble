@@ -42,8 +42,18 @@ public partial class Forge : Node3D
 
 	private void OnSceneChanged()
 	{
-		health = maxHealth;
-		CallDeferred(nameof(OnHealthChanged));
+		if(GetTree().CurrentScene.Name == "Scene")
+		{
+			health = maxHealth;
+			shockwaveIndex = 0;
+			canHeal = false;
+			healCooldown = 1f;
+			healAmount = 0f;
+			isDestroyed = false;
+
+			CallDeferred(nameof(OnHealthChanged));
+		}
+		
 	}
 
 	#endregion
@@ -183,6 +193,17 @@ public partial class Forge : Node3D
 	private void OnHealthChanged()
 	{
 		EmitSignal(SignalName.ForgeTookDamage, health, maxHealth);
+	}
+	public void ResetHealth()
+	{
+		health = maxHealth;
+		shockwaveIndex = 0;
+		canHeal = false;
+		healCooldown = 1f;
+		healAmount = 0f;
+		isDestroyed = false;
+
+		EmitSignal(SignalName.ForgeHealed, health, maxHealth);
 	}
 
 }

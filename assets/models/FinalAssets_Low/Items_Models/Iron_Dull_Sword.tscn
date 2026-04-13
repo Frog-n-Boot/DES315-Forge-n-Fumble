@@ -34,7 +34,7 @@ heightmap_texture = ExtResource("2_j6w72")
 [sub_resource type="ViewportTexture" id="ViewportTexture_v6vne"]
 viewport_path = NodePath("Sprite3D/SubViewport")
 
-[node name="IronDullSword" type="Node3D" unique_id=803566957 node_paths=PackedStringArray("audio", "weaponTextureRect", "pickUpArea") groups=["DullSword", "Sword", "Weapon"]]
+[node name="IronDullSword" type="Node3D" unique_id=803566957 node_paths=PackedStringArray("audio", "weaponTextureRect", "pickUpArea", "weaponBody") groups=["DullSword", "Sword", "Weapon"]]
 script = ExtResource("1_j6w72")
 sharpenedVersion = ExtResource("2_jlpgu")
 audio = NodePath("SwordBreak")
@@ -44,6 +44,7 @@ weaponTexture = SubResource("AtlasTexture_xpjli")
 weaponPromptTexture = Array[Texture2D]([ExtResource("4_pgajg"), ExtResource("5_533ye")])
 weaponTextureRect = NodePath("Sprite3D/SubViewport/TextureRect")
 pickUpArea = NodePath("StaticBody3D/Area3D")
+weaponBody = NodePath("StaticBody3D")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1134160719 groups=["DullSword", "Sword", "Weapon"]]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)

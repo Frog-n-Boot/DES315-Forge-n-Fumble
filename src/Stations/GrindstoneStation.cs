@@ -66,7 +66,7 @@ public partial class GrindstoneStation : BaseStationScript
 	private void OnMinigameCompleted()
 	{
 		barMinigame.canvasLayer.Hide();
-		EmitSignal(SignalName.SwordCrafted);
+		//EmitSignal(SignalName.SwordCrafted);
 		GD.Print("Grindstone Signal Emiited");
 		ProduceOutput();
 	}

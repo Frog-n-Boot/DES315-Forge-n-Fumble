@@ -1,6 +1,8 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 
 public partial class SpinAttack : Node3D
 {
@@ -28,6 +30,7 @@ public partial class SpinAttack : Node3D
 	private Node3D parent;
 	private MeleeWeapon currentWeapon;
 	private bool isDazed;
+	private HashSet<EnemyController> hitEnemies = new HashSet<EnemyController>();
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready(){
@@ -128,7 +131,7 @@ public partial class SpinAttack : Node3D
 	private void ExecuteSpinAttack()
 	{
 		GD.Print($"SPIN ATTACK! Power: {spinCharges}");
-
+		hitEnemies.Clear();
 		if(currentWeapon != null && animPlayer !=null)
 		{
 			var animation = animPlayer.GetAnimation("Spin_Attack");
@@ -141,6 +144,9 @@ public partial class SpinAttack : Node3D
 			if(spinArea != null)
 			{
 				spinArea.Monitoring = true;
+
+				var overlappingBodies = spinArea.GetOverlappingBodies();
+				foreach(var body in overlappingBodies) ProcessSpinHit(body);
 
 				parent.GetTree().CreateTimer(spinDuration).Timeout += () =>
 				{
@@ -193,16 +199,24 @@ public partial class SpinAttack : Node3D
 	{
 		isCharging = false;
 		spinCharges = 0;	
+		hitEnemies.Clear();
 		
 	}
 
 	private void OnSpinHit(Node3D body)
 	{
-		GD.Print($"Spin area detected: {body.Name}");
+		ProcessSpinHit(body);
+	}
 
+	private void ProcessSpinHit(Node3D body)
+	{
 		var enemyNode = body.GetParent();
 		if(enemyNode is EnemyController enemy && currentWeapon != null)
 		{
+			if(hitEnemies.Contains(enemy)) return;
+
+			hitEnemies.Add(enemy);
+
 			int damage = currentWeapon.damage;
 			enemy.TakeDamage(damage);
 
@@ -212,12 +226,10 @@ public partial class SpinAttack : Node3D
 
 			currentWeapon.TakeDurabilityDamage(1);
 		}
-		else if(currentWeapon == null)
-        {
-            TriggerDaze();
-        }
-	}
+		else if(currentWeapon == null && !hitEnemies.Any()) TriggerDaze();
 
+		
+	}
 	public MeleeWeapon GetCurrentWeapon() => currentWeapon;
 
 	public void SetWeapon(MeleeWeapon weapon) => currentWeapon = weapon;

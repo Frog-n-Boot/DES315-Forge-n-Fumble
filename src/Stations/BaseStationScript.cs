@@ -79,8 +79,7 @@ public abstract partial class BaseStationScript : Node3D
 
 	public bool DepositItems(ItemData item)
 	{
-		if (!IsItemNeeded(item))
-			return false;
+		if (!IsItemNeeded(item) ||isOutputOccupied() || !craftingTimer.IsStopped()) return false;
 
 		//ProduceOutput();
 
