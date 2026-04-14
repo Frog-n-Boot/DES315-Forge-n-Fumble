@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://o7vvnubwicff"]
 
 [ext_resource type="Texture2D" uid="uid://l45fkj74rs44" path="res://assets/materials/Texture_sets/Item_Textures/Ingots_comb_low_BaseCol.tga" id="1_rw80w"]
-[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Pickable.cs" id="1_td1gg"]
+[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Item/Pickable.cs" id="1_td1gg"]
+[ext_resource type="Texture2D" uid="uid://tbrctcwppirl" path="res://assets/textures/UI/ui_x_button.tres" id="2_6ylmd"]
 [ext_resource type="Texture2D" uid="uid://dt7t6tu8lnf8y" path="res://assets/materials/Texture_sets/Item_Textures/Ingots_comb_low_Normal.tga" id="2_td1gg"]
 [ext_resource type="Texture2D" uid="uid://c4lqlcwn73h60" path="res://assets/materials/Texture_sets/Item_Textures/Ingots_comb_low_ORM.tga" id="3_2fls7"]
+[ext_resource type="Texture2D" uid="uid://dnrpwukmp1jyj" path="res://assets/textures/UI/ui_e_button.tres" id="3_uaukt"]
 [ext_resource type="ArrayMesh" uid="uid://qrqif26big5o" path="res://assets/models/FinalAssets_Low/Items_Models/Ing_iron_low.obj" id="4_6ylmd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uaukt"]
@@ -15,9 +17,14 @@ orm_texture = ExtResource("3_2fls7")
 heightmap_enabled = true
 heightmap_texture = ExtResource("2_td1gg")
 
-[node name="IronIngot" type="Node3D" unique_id=2071596505]
+[sub_resource type="ViewportTexture" id="ViewportTexture_6ylmd"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[node name="IronIngot" type="Node3D" unique_id=2071596505 node_paths=PackedStringArray("itemTextureRect")]
 script = ExtResource("1_td1gg")
 itemDataPath = "uid://bualj2s73esd2"
+itemPromptTexture = Array[Texture2D]([ExtResource("2_6ylmd"), ExtResource("3_uaukt")])
+itemTextureRect = NodePath("Sprite3D/SubViewport/TextureRect")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1068587397 groups=["pickable"]]
 transform = Transform3D(1, 0, 0, 0, 0.1894375, 0, 0, 0, 0.7128166, 0, 0, 0)
@@ -33,3 +40,15 @@ transform = Transform3D(1, 0, 0, 0, 5.278786, 0, 0, 0, 1.4028854, 0, 0, 0)
 material_override = SubResource("ORMMaterial3D_vs45c")
 mesh = ExtResource("4_6ylmd")
 skeleton = NodePath("../..")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1991453404]
+transform = Transform3D(1.82, 0, 0, 0, 1.82, 0, 0, 0, 1.82, 0, 1.3, 0)
+texture = SubResource("ViewportTexture_6ylmd")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=260996404]
+transparent_bg = true
+size = Vector2i(50, 50)
+
+[node name="TextureRect" type="TextureRect" parent="Sprite3D/SubViewport" unique_id=2127191801]
+offset_right = 40.0
+offset_bottom = 40.0

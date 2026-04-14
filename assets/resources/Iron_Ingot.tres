@@ -1,10 +1,16 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bualj2s73esd2"]
 
-[ext_resource type="Script" uid="uid://cy6spy2s7uv1l" path="res://src/ItemData.cs" id="1_3bgji"]
+[ext_resource type="Script" uid="uid://cy6spy2s7uv1l" path="res://src/Player/ItemData.cs" id="1_3bgji"]
 [ext_resource type="PackedScene" uid="uid://o7vvnubwicff" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Ingot.tscn" id="1_xjywy"]
+[ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="2_kqu16"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eomfg"]
+atlas = ExtResource("2_kqu16")
+region = Rect2(461, 302, 50, 50)
 
 [resource]
 script = ExtResource("1_3bgji")
 name = "Iron_Ingot"
 itemScene = ExtResource("1_xjywy")
+itemTexture = SubResource("AtlasTexture_eomfg")
 metadata/_custom_type_script = "uid://cy6spy2s7uv1l"

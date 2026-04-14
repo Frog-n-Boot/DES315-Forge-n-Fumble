@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://cgv7jdbgqsgql"]
+
+[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Item/Pickable.cs" id="1_mnpp1"]
+[ext_resource type="ArrayMesh" uid="uid://djed745msst20" path="res://assets/models/FinalAssets_Low/Ore/Copper_ing_low.obj" id="2_22731"]
+[ext_resource type="Texture2D" uid="uid://b163ru6y04fds" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_BaseCol.tga" id="2_l6tsy"]
+[ext_resource type="Texture2D" uid="uid://b1xjsa5p8f7rb" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_ORM.tga" id="3_1phh0"]
+[ext_resource type="Texture2D" uid="uid://dmckkpafqq3bq" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_Normal.tga" id="3_lnrql"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_igrlc"]
+size = Vector3(1, 1.1378174, 0.91204834)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_22731"]
+albedo_texture = ExtResource("2_l6tsy")
+orm_texture = ExtResource("3_1phh0")
+normal_enabled = true
+normal_texture = ExtResource("3_lnrql")
+
+[node name="Ore" type="Node3D" unique_id=2110523039]
+script = ExtResource("1_mnpp1")
+itemDataPath = "uid://c6k5q27uaxle2"
+shouldDespawn = true
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1899132528 groups=["pickable"]]
+collision_layer = 16
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1137969090]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06890869, 0.30264282)
+visible = false
+shape = SubResource("BoxShape3D_igrlc")
+
+[node name="CopperIngLow" type="MeshInstance3D" parent="Area3D" unique_id=2011253052]
+material_override = SubResource("ORMMaterial3D_22731")
+mesh = ExtResource("2_22731")
+skeleton = NodePath("../..")

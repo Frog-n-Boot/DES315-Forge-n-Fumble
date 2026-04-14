@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://cayfp8m51s7np"]
+
+[ext_resource type="Script" uid="uid://yppetusnqyms" path="res://src/Weapons/Crossbow.cs" id="1_c8bbo"]
+[ext_resource type="PackedScene" uid="uid://ds1kx4ru8gie6" path="res://assets/models/FinalAssets_Low/Items_Models/Arrow.tscn" id="2_2itnu"]
+[ext_resource type="Material" uid="uid://24hwnxagoffj" path="res://assets/models/FinalAssets_Low/WorkStations/Ballista/ballista.tres" id="3_8kgqf"]
+[ext_resource type="ArrayMesh" uid="uid://d0fkdoavdcc5o" path="res://assets/models/FinalAssets_Low/Items_Models/Ballista_Top_element_low.obj" id="3_a2wqo"]
+[ext_resource type="Texture2D" uid="uid://tbrctcwppirl" path="res://assets/textures/UI/ui_x_button.tres" id="3_qm6ly"]
+[ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="3_vqm1a"]
+[ext_resource type="Texture2D" uid="uid://dnrpwukmp1jyj" path="res://assets/textures/UI/ui_e_button.tres" id="4_vqm1a"]
+[ext_resource type="Script" uid="uid://dmtsjgrgwryuy" path="res://src/Weapons/TripleShot.cs" id="8_y13of"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y13of"]
+atlas = ExtResource("3_vqm1a")
+region = Rect2(705, 41, 75, 186)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vvdjd"]
+size = Vector3(10.427734, 0.28588867, 16.45697)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c8bbo"]
+size = Vector3(1.3369141, 0.3399048, 2.0297241)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8kgqf"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vqm1a"]
+albedo_color = Color(0.17369911, 1.872587e-07, 4.2114408e-08, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vqm1a"]
+
+[node name="Crossbow" type="Node3D" unique_id=1323232309 node_paths=PackedStringArray("shootingDirectionMesh", "firePoint", "weaponTextureRect", "pickUpArea", "weaponBody") groups=["Weapon"]]
+script = ExtResource("1_c8bbo")
+shootingDirectionMesh = NodePath("MeshInstance3D")
+maxArrow = 10
+fireRate = 0.5
+projectileScene = ExtResource("2_2itnu")
+firePoint = NodePath("BallistaTopElementLow/FirePoint")
+maxDurability = 38
+weaponTexture = SubResource("AtlasTexture_y13of")
+weaponPromptTexture = Array[Texture2D]([ExtResource("3_qm6ly"), ExtResource("4_vqm1a")])
+weaponTextureRect = NodePath("Sprite3D/SubViewport/TextureRect")
+pickUpArea = NodePath("StaticBody3D/Area3D")
+weaponBody = NodePath("StaticBody3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=745227245 groups=["Weapon"]]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1819511398 groups=["Weapon"]]
+transform = Transform3D(0.13, 0, 0, 0, 1, 0, 0, 0, 0.12, -0.0397363, 1.1227821, -0.02485475)
+shape = SubResource("BoxShape3D_vvdjd")
+
+[node name="Area3D" type="Area3D" parent="StaticBody3D" unique_id=389783254 groups=["Weapon"]]
+collision_layer = 24
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/Area3D" unique_id=945717470]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.044433594, 1.0837269, -0.02279663)
+shape = SubResource("BoxShape3D_c8bbo")
+
+[node name="BallistaTopElementLow" type="MeshInstance3D" parent="." unique_id=1812349953]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+material_override = ExtResource("3_8kgqf")
+mesh = ExtResource("3_a2wqo")
+
+[node name="FirePoint" type="Node3D" parent="BallistaTopElementLow" unique_id=1747842407]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1.2897624e-07, 1.1278696, -1.4753163)
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1632774507]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7813628, 0)
+texture = SubResource("ViewportTexture_8kgqf")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=1634669484]
+transparent_bg = true
+size = Vector2i(50, 50)
+
+[node name="TextureRect" type="TextureRect" parent="Sprite3D/SubViewport" unique_id=761548947]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=403107224]
+transform = Transform3D(0.08911103, 0, 0, 0, 0.040631343, 0, 0, 0, 4, 0, 0, 1.2118266)
+material_override = SubResource("StandardMaterial3D_vqm1a")
+mesh = SubResource("BoxMesh_vqm1a")
+
+[node name="TripleShot" type="Node" parent="." unique_id=1289583969]
+script = ExtResource("8_y13of")

@@ -1,11 +1,19 @@
 [gd_scene format=3 uid="uid://di5odw2tmde5j"]
 
-[ext_resource type="Script" uid="uid://c25evsd3j0b" path="res://src/Sword.cs" id="1_d8pt4"]
+[ext_resource type="Script" uid="uid://c25evsd3j0b" path="res://src/Weapons/Sword.cs" id="1_d8pt4"]
 [ext_resource type="Texture2D" uid="uid://c0bfpxgvk16um" path="res://assets/materials/Texture_sets/Item_Textures/sword_scnd_shin_low_BaseCol.tga" id="1_uek6e"]
 [ext_resource type="Texture2D" uid="uid://rddx0mwdr571" path="res://assets/materials/Texture_sets/Item_Textures/sword_scnd_shin_low_Normal.tga" id="2_d8pt4"]
+[ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="2_gsg4f"]
+[ext_resource type="Texture2D" uid="uid://tbrctcwppirl" path="res://assets/textures/UI/ui_x_button.tres" id="3_p43h7"]
 [ext_resource type="Texture2D" uid="uid://cfllkfsxak7hb" path="res://assets/materials/Texture_sets/Item_Textures/sword_frts_rough_low_Normal.tga" id="3_xvnj0"]
 [ext_resource type="Texture2D" uid="uid://dspkvve6wtnc3" path="res://assets/materials/Texture_sets/Item_Textures/sword_scnd_shin_low_ORM.tga" id="4_gsg4f"]
+[ext_resource type="Texture2D" uid="uid://dnrpwukmp1jyj" path="res://assets/textures/UI/ui_e_button.tres" id="4_hgo20"]
 [ext_resource type="ArrayMesh" uid="uid://vmdklfvgul40" path="res://assets/models/FinalAssets_Low/Items_Models/Sword_first_low.obj" id="5_acyf5"]
+[ext_resource type="AudioStream" uid="uid://c01r2egd4skm" path="res://assets/Sounds/SFX/SwordBreak.wav" id="7_xvnj0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acyf5"]
+atlas = ExtResource("2_gsg4f")
+region = Rect2(557, 29, 62, 192)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p43h7"]
 size = Vector3(7.15668, 1.6914063, 14.032881)
@@ -21,10 +29,19 @@ normal_texture = ExtResource("3_xvnj0")
 heightmap_enabled = true
 heightmap_texture = ExtResource("2_d8pt4")
 
-[node name="IronSword" type="Node3D" unique_id=1461625584]
+[sub_resource type="ViewportTexture" id="ViewportTexture_gsg4f"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[node name="IronSword" type="Node3D" unique_id=1461625584 node_paths=PackedStringArray("audio", "weaponTextureRect", "pickUpArea", "weaponBody")]
 script = ExtResource("1_d8pt4")
-damage = 3
+audio = NodePath("SwordBreak")
+damage = 7
 maxDurability = 20
+weaponTexture = SubResource("AtlasTexture_acyf5")
+weaponPromptTexture = Array[Texture2D]([ExtResource("3_p43h7"), ExtResource("4_hgo20")])
+weaponTextureRect = NodePath("Sprite3D/SubViewport/TextureRect")
+pickUpArea = NodePath("StaticBody3D/Area3D")
+weaponBody = NodePath("StaticBody3D")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1544211731 groups=["Sword", "Weapon"]]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
@@ -48,3 +65,23 @@ shape = SubResource("BoxShape3D_hgo20")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 material_override = SubResource("ORMMaterial3D_7epq2")
 mesh = ExtResource("5_acyf5")
+
+[node name="SwordBreak" type="AudioStreamPlayer3D" parent="." unique_id=2122115406]
+stream = ExtResource("7_xvnj0")
+volume_db = -60.0
+max_db = -24.0
+max_polyphony = 10
+bus = &"SFX"
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1574565877]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1576447, 0)
+texture = SubResource("ViewportTexture_gsg4f")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=870073278]
+transparent_bg = true
+size = Vector2i(50, 50)
+
+[node name="TextureRect" type="TextureRect" parent="Sprite3D/SubViewport" unique_id=1616422024]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0

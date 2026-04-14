@@ -1,10 +1,16 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://c0323mj3xjr8w"]
 
-[ext_resource type="Script" uid="uid://cy6spy2s7uv1l" path="res://src/ItemData.cs" id="1_vhkoe"]
+[ext_resource type="Script" uid="uid://cy6spy2s7uv1l" path="res://src/Player/ItemData.cs" id="1_vhkoe"]
 [ext_resource type="PackedScene" uid="uid://c36fijnqqehnq" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Ingot.tscn" id="1_xjycm"]
+[ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="2_he2yo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ap04f"]
+atlas = ExtResource("2_he2yo")
+region = Rect2(407, 302, 49, 50)
 
 [resource]
 script = ExtResource("1_vhkoe")
 name = "Copper_Ingot"
 itemScene = ExtResource("1_xjycm")
+itemTexture = SubResource("AtlasTexture_ap04f")
 metadata/_custom_type_script = "uid://cy6spy2s7uv1l"

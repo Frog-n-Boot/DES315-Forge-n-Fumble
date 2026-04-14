@@ -8,3 +8,9 @@
 [node name="IntShelfLow" type="MeshInstance3D" parent="." unique_id=1907194477]
 mesh = ExtResource("1_xamf1")
 surface_material_override/0 = ExtResource("2_ulorv")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=1712736546]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14142853, 0)
+height = 0.6
+vertices = PackedVector3Array(-1.4129039, 0, -0.51567954, 1.4093691, 0, -0.51103, 1.4186684, 0, 0.31658897, -1.4129039, 0, 0.3212385)
+affect_navigation_mesh = true

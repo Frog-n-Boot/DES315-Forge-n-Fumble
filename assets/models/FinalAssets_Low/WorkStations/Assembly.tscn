@@ -1,14 +1,18 @@
 [gd_scene format=3 uid="uid://2nwhxfu7pfbg"]
 
-[ext_resource type="Script" uid="uid://cid6v0iox3id7" path="res://src/AssemblyStation.cs" id="1_7f1fa"]
+[ext_resource type="Script" uid="uid://cid6v0iox3id7" path="res://src/Stations/AssemblyStation.cs" id="1_7f1fa"]
 [ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/FinalAssets_Low/Items_Models/Sword.tscn" id="2_r34y0"]
-[ext_resource type="Texture2D" uid="uid://brrecxeluurnd" path="res://assets/models/FinalAssets_Low/Interior_Models/furntiture_comb_BaseCol.tga" id="2_rogsa"]
+[ext_resource type="Texture2D" path="res://assets/models/FinalAssets_Low/Interior_Models/furntiture_comb_BaseCol.tga" id="2_rogsa"]
+<<<<<<< HEAD
+[ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/Resources/CraftingRecipes.cs" id="3_0cuso"]
+=======
 [ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/CraftingRecipes.cs" id="3_0cuso"]
-[ext_resource type="Texture2D" uid="uid://qa35ij4bpkm8" path="res://assets/models/FinalAssets_Low/Interior_Models/furntiture_comb_Normal.tga" id="3_7f1fa"]
-[ext_resource type="ArrayMesh" uid="uid://cst1ohi52qcbm" path="res://assets/models/FinalAssets_Low/Interior_Models/Int_table_low.obj" id="3_k4vbf"]
-[ext_resource type="Texture2D" uid="uid://bkkbtfeauvd3u" path="res://assets/models/FinalAssets_Low/Interior_Models/furntiture_comb_ORM.tga" id="4_r34y0"]
+>>>>>>> ConnorsWIPBranch
+[ext_resource type="Texture2D" path="res://assets/models/FinalAssets_Low/Interior_Models/furntiture_comb_Normal.tga" id="3_7f1fa"]
+[ext_resource type="ArrayMesh" path="res://assets/models/FinalAssets_Low/Interior_Models/Int_table_low.obj" id="3_k4vbf"]
+[ext_resource type="Texture2D" path="res://assets/models/FinalAssets_Low/Interior_Models/furntiture_comb_ORM.tga" id="4_r34y0"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="5_myl5f"]
-[ext_resource type="AudioStream" uid="uid://c038j0l4a1akg" path="res://assets/Sounds/WorldSounds/SwordSharpening.wav" id="6_onsyl"]
+[ext_resource type="AudioStream" uid="uid://c038j0l4a1akg" path="res://assets/Sounds/SFX/SwordSharpening.wav" id="6_onsyl"]
 
 [sub_resource type="Resource" id="Resource_myl5f"]
 script = ExtResource("3_0cuso")

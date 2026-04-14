@@ -1,98 +1,127 @@
 [gd_scene format=3 uid="uid://d3hr25hyu0vng"]
 
-[ext_resource type="Script" uid="uid://dnliu2440i283" path="res://src/PauseMenu.cs" id="1_5w6ei"]
+[ext_resource type="Script" uid="uid://dnliu2440i283" path="res://src/Menus/PauseMenu.cs" id="1_5w6ei"]
 [ext_resource type="Texture2D" uid="uid://dy1wiwwij327x" path="res://assets/materials/Texture_sets/2DTextures/furnaceImage.webp" id="2_jiu6o"]
 [ext_resource type="Texture2D" uid="uid://bvw5yhtbch6ht" path="res://assets/materials/Texture_sets/2DTextures/anvilImage.webp" id="3_40atx"]
 [ext_resource type="Texture2D" uid="uid://dwexwmybryvpl" path="res://assets/materials/Texture_sets/2DTextures/grindstoneImage.webp" id="4_yx35g"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5w6ei"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jiu6o"]
+atlas = SubResource("CompressedTexture2D_5w6ei")
+region = Rect2(581, 500, 285, 91)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jiu6o"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yx35g"]
+atlas = SubResource("CompressedTexture2D_jiu6o")
+region = Rect2(581, 500, 285, 91)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mipys"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40atx"]
+atlas = SubResource("CompressedTexture2D_mipys")
+region = Rect2(581, 500, 285, 91)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7dxqx"]
 
 [node name="PauseMenu" type="CanvasLayer" unique_id=1911328891 node_paths=PackedStringArray("resumeButton", "settingsButton", "mainMenuButton")]
 process_mode = 3
-visible = false
 script = ExtResource("1_5w6ei")
 resumeButton = NodePath("ResumeButton")
 settingsButton = NodePath("SettingsButton")
 mainMenuButton = NodePath("QuitButton")
 
 [node name="ResumeButton" type="Button" parent="." unique_id=93950451]
-offset_left = 30.000029
+offset_left = 10.0
 offset_top = 163.0
-offset_right = 478.00003
+offset_right = 458.0
 offset_bottom = 283.0
-scale = Vector2(0.8400012, 0.7599994)
+scale = Vector2(1.0168444, 0.92)
 focus_neighbor_top = NodePath(".")
 focus_neighbor_bottom = NodePath("../SettingsButton")
 focus_next = NodePath("../SettingsButton")
 focus_previous = NodePath("../QuitButton")
 theme_override_font_sizes/font_size = 40
 text = "Resume"
+icon = SubResource("AtlasTexture_jiu6o")
+flat = true
+icon_alignment = 1
 
 [node name="SettingsButton" type="Button" parent="." unique_id=625519157]
-offset_left = 30.000029
+offset_left = 10.0
 offset_top = 323.0
-offset_right = 478.00003
+offset_right = 458.0
 offset_bottom = 443.0
-scale = Vector2(0.8400012, 0.7599994)
+scale = Vector2(1.0168444, 0.92)
 focus_neighbor_top = NodePath("../ResumeButton")
 focus_neighbor_bottom = NodePath("../QuitButton")
 focus_next = NodePath("../QuitButton")
 focus_previous = NodePath("../ResumeButton")
 theme_override_font_sizes/font_size = 40
 text = "Settings"
+icon = SubResource("AtlasTexture_yx35g")
+flat = true
+icon_alignment = 1
 
 [node name="QuitButton" type="Button" parent="." unique_id=1908637163]
-offset_left = 30.000029
+offset_left = 10.0
 offset_top = 483.0
-offset_right = 478.00003
+offset_right = 458.0
 offset_bottom = 603.0
-scale = Vector2(0.8400012, 0.7599994)
+scale = Vector2(1.0168444, 0.92)
 focus_neighbor_top = NodePath("../SettingsButton")
 focus_previous = NodePath("../SettingsButton")
 theme_override_font_sizes/font_size = 40
 text = "Main Menu"
+icon = SubResource("AtlasTexture_40atx")
+flat = true
+icon_alignment = 1
 
 [node name="Label" type="Label" parent="." unique_id=1798976532]
-offset_left = 21.0
-offset_top = 14.0
-offset_right = 418.0
-offset_bottom = 97.0
+offset_left = 32.0
+offset_top = 43.0
+offset_right = 429.0
+offset_bottom = 126.0
 theme_override_font_sizes/font_size = 60
 text = "Game Paused"
 
 [node name="FurnaceImahe" type="TextureRect" parent="." unique_id=1323554982]
-offset_left = 582.0
-offset_top = 7.0
-offset_right = 1082.0
-offset_bottom = 107.0
-scale = Vector2(0.8930303, 1)
+offset_left = 660.0
+offset_top = 82.0
+offset_right = 1160.0
+offset_bottom = 182.0
+scale = Vector2(0.5715394, 0.64)
 texture = ExtResource("2_jiu6o")
 expand_mode = 1
 
 [node name="AnvilImage" type="TextureRect" parent="." unique_id=1373205646]
-offset_left = 581.0
-offset_top = 107.0
-offset_right = 1081.0
-offset_bottom = 207.0
-scale = Vector2(0.8930303, 1)
+offset_left = 660.0
+offset_top = 145.0
+offset_right = 1160.0
+offset_bottom = 245.0
+scale = Vector2(0.5715394, 0.64)
 texture = ExtResource("3_40atx")
 expand_mode = 1
 
 [node name="GrindstoneImage" type="TextureRect" parent="." unique_id=138602201]
-offset_left = 582.0
-offset_top = 207.0
-offset_right = 1082.0
-offset_bottom = 307.0
-scale = Vector2(0.8930303, 1)
+offset_left = 660.0
+offset_top = 209.0
+offset_right = 1160.0
+offset_bottom = 309.0
+scale = Vector2(0.5715394, 0.64)
 texture = ExtResource("4_yx35g")
 expand_mode = 1
 
 [node name="ControlsLabel" type="Label" parent="." unique_id=726368211]
-offset_left = 487.0
-offset_top = 315.0
-offset_right = 1149.0
-offset_bottom = 672.0
-scale = Vector2(1, 0.92)
+offset_left = 615.0
+offset_top = 415.0
+offset_right = 1277.0
+offset_bottom = 772.0
+scale = Vector2(0.6086956, 0.56)
 theme_override_font_sizes/font_size = 30
 text = "Actions                  Keyboard    │  Controller
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

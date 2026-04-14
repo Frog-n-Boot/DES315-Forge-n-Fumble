@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://ds1kx4ru8gie6"]
 
-[ext_resource type="Script" uid="uid://c70d61wimb010" path="res://src/Arrow.cs" id="1_rxiq3"]
+[ext_resource type="Script" uid="uid://c70d61wimb010" path="res://src/Weapons/Arrow.cs" id="1_rxiq3"]
+[ext_resource type="Material" uid="uid://24hwnxagoffj" path="res://assets/models/FinalAssets_Low/WorkStations/Ballista/ballista.tres" id="2_mg303"]
+[ext_resource type="ArrayMesh" uid="uid://cuv7ohbcv8lsn" path="res://assets/models/FinalAssets_Low/WorkStations/Ballista/bal_arrow_low.obj" id="2_ujdp2"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_tpqcy"]
 
@@ -9,7 +11,8 @@
 [node name="Arrow" type="Node3D" unique_id=1908723980 groups=["Arrow"]]
 script = ExtResource("1_rxiq3")
 speed = 40.0
-lifeTime = 0.2
+damage = 10.0
+lifeTime = 2.0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1849353844 groups=["Arrow"]]
 collision_layer = 64
@@ -17,8 +20,13 @@ collision_mask = 5
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1149524377 groups=["Arrow"]]
 transform = Transform3D(0.17032108, 0, 0, 0, 0.18307269, 0, 0, 0, 1, 0, 0, 0)
+visible = false
 mesh = SubResource("BoxMesh_tpqcy")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1523028975 groups=["Arrow"]]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1523028975]
 transform = Transform3D(0.17, 0, 0, 0, 0.18, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_rxiq3")
+
+[node name="BalArrowLow" type="MeshInstance3D" parent="." unique_id=93666563]
+material_override = ExtResource("2_mg303")
+mesh = ExtResource("2_ujdp2")
