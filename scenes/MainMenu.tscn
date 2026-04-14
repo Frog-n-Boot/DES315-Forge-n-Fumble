@@ -3,34 +3,23 @@
 [ext_resource type="Script" uid="uid://cq2hdafsss4y7" path="res://src/Menus/MainMenu.cs" id="1_yqorp"]
 [ext_resource type="Texture2D" uid="uid://40vghfsnko84" path="res://assets/PNG/forge ss.png" id="2_0ykhv"]
 [ext_resource type="AudioStream" uid="uid://brbu62attbvtp" path="res://assets/Sounds/SFX/Anvil1.wav" id="2_2wh52"]
+[ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="2_l72w3"]
 [ext_resource type="AudioStream" uid="uid://i4t1sy6mjdaa" path="res://assets/Sounds/Music/Townsfolk LOOP.wav" id="3_ow34m"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_l72w3"]
-load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_826wr"]
-atlas = SubResource("CompressedTexture2D_l72w3")
+atlas = ExtResource("2_l72w3")
 region = Rect2(581, 500, 285, 91)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ow34m"]
-load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l72w3"]
-atlas = SubResource("CompressedTexture2D_ow34m")
+atlas = ExtResource("2_l72w3")
 region = Rect2(581, 500, 285, 91)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_826wr"]
-load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ucygd"]
-atlas = SubResource("CompressedTexture2D_826wr")
+atlas = ExtResource("2_l72w3")
 region = Rect2(581, 500, 285, 91)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mipys"]
-load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_8a8k8"]
-atlas = SubResource("CompressedTexture2D_mipys")
+atlas = ExtResource("2_l72w3")
 region = Rect2(581, 500, 285, 91)
 
 [node name="MainMenu" type="Node2D" unique_id=1633550726]

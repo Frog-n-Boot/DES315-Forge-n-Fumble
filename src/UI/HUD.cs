@@ -16,6 +16,7 @@ public partial class HUD : CanvasLayer
 	private void OnPlayerSpawned(PlayerController player, int playerIndex)
 	{
 		var portrait = portraitScene.Instantiate<PlayerPortrait>();
+		portrait.OffsetLeft = portraitContainer.OffsetLeft + 100;
 		portraitContainer.AddChild(portrait);
 		portrait.SizeFlagsVertical = Control.SizeFlags.ShrinkCenter;
 		portrait.Init(player);

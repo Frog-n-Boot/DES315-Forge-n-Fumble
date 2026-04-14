@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bm6vf4tjk48gj"]
 
 [ext_resource type="Script" uid="uid://bdwnaqw5jg3si" path="res://src/Stations/SmeltingStation.cs" id="1_ph4aw"]
+[ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="2_vocjd"]
 [ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/Resources/CraftingRecipes.cs" id="3_oiry0"]
 [ext_resource type="PackedScene" uid="uid://c36fijnqqehnq" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Ingot.tscn" id="3_wq66q"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="4_0l8vc"]
@@ -14,18 +15,12 @@
 [ext_resource type="AudioStream" uid="uid://d31rmb5i75h54" path="res://assets/Sounds/SFX/InitalForgeActivation.wav" id="10_yd14g"]
 [ext_resource type="AudioStream" uid="uid://nipmrmep3cnr" path="res://assets/Sounds/SFX/ForgeAfterActivation.wav" id="11_i2ejw"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vocjd"]
-load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_8inme"]
-atlas = SubResource("CompressedTexture2D_vocjd")
+atlas = ExtResource("2_vocjd")
 region = Rect2(114, 365, 40, 40)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sbkhc"]
-load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_0l2dt"]
-atlas = SubResource("CompressedTexture2D_sbkhc")
+atlas = ExtResource("2_vocjd")
 region = Rect2(216, 805, 40, 43)
 
 [sub_resource type="Resource" id="Resource_04qyv"]
@@ -83,7 +78,6 @@ bg_color = Color(0.19014141, 0.71371996, 0.2947564, 1)
 viewport_path = NodePath("Sprite3D2/SubViewport")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jycwk"]
-load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sbkhc"]
 atlas = SubResource("CompressedTexture2D_jycwk")

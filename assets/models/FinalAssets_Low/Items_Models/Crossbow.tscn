@@ -63,7 +63,7 @@ material_override = ExtResource("3_8kgqf")
 mesh = ExtResource("3_a2wqo")
 
 [node name="FirePoint" type="Node3D" parent="BallistaTopElementLow" unique_id=1747842407]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1.2897624e-07, 1.1278696, -1.4753163)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1.2897624e-07, 0.87094283, -1.4753163)
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=1632774507]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7813628, 0)
