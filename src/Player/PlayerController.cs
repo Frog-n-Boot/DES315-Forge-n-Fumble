@@ -71,41 +71,6 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	private bool dropTriggered = false;
 	public bool isDazed {get; private set;} = false;
 
-	private XRayManager xrayManager;
-
-	public IEnumerable<ItemData> GetCarriedItems()
-	{
-		if(leftHand.GetChildCount() > 0)
-		{
-			var pickable = leftHand.GetChild(0) as Pickable;
-			if(pickable != null)
-				yield return pickable.GetItemData();
-		}
-
-		if(rightHand.GetChildCount() > 0)
-		{
-			var pickable = rightHand.GetChild(0) as Pickable;
-			if(pickable != null)
-			{
-				yield return pickable.GetItemData();
-			}
-		}
-	}
-
-	public void RemoveItem(ItemData item)
-	{
-		foreach(var hand in new[] { leftHand, rightHand })
-		{
-			if(hand.GetChildCount() == 0) continue;
-
-			var pickable = hand.GetChild(0) as Pickable;
-			if(pickable != null && pickable.GetItemData() == item)
-			{
-				pickable.QueueFree();
-				return;
-			}
-		}
-	}
 	public override void _Ready()
 	{
 
@@ -153,17 +118,53 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 		lastRotation = Rotation.Y;
 
-		xrayManager = GetNode<XRayManager>("/root/XRayManager");
-		xrayManager.RegisterPlayer(this);
+		if (XRayManager.Instance == null)
+        GD.PrintErr("[Player] ❌ XRayManager.Instance is null — autoload not ready yet");
+    	else
+        GD.Print($"[Player] ✅ XRayManager found, registering {Name}");
+        
+    	XRayManager.Instance?.RegisterPlayer(this);
 	}
 
     public override void _ExitTree()
     {
         base._ExitTree();
-		xrayManager = xrayManager = GetNode<XRayManager>("/root/XRayManager");
-		xrayManager?.UnregisterPlayer(this);
+		XRayManager.Instance?.UnregisterPlayer(this);
     }
 
+	public IEnumerable<ItemData> GetCarriedItems()
+	{
+		if(leftHand.GetChildCount() > 0)
+		{
+			var pickable = leftHand.GetChild(0) as Pickable;
+			if(pickable != null)
+				yield return pickable.GetItemData();
+		}
+
+		if(rightHand.GetChildCount() > 0)
+		{
+			var pickable = rightHand.GetChild(0) as Pickable;
+			if(pickable != null)
+			{
+				yield return pickable.GetItemData();
+			}
+		}
+	}
+
+	public void RemoveItem(ItemData item)
+	{
+		foreach(var hand in new[] { leftHand, rightHand })
+		{
+			if(hand.GetChildCount() == 0) continue;
+
+			var pickable = hand.GetChild(0) as Pickable;
+			if(pickable != null && pickable.GetItemData() == item)
+			{
+				pickable.QueueFree();
+				return;
+			}
+		}
+	}
 	
 	private void FindExistingSword()
 	{

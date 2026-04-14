@@ -8,13 +8,12 @@ size = Vector3(1.467041, 3.7841187, 3.3556824)
 
 [node name="CoblWallLow" type="Node3D" unique_id=1416519307 groups=["xray"]]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1036270095]
-
-[node name="CoblWallLow" type="MeshInstance3D" parent="StaticBody3D" unique_id=1221364560]
+[node name="CoblWallLow" type="MeshInstance3D" parent="." unique_id=1221364560]
 transform = Transform3D(0.72, 0, 0, 0, 0.72, 0, 0, 0, 0.72, 0, 0, 0)
 mesh = ExtResource("1_3djbd")
-skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("2_3djbd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1036270095]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=86748326]
 transform = Transform3D(0.72, 0, 0, 0, 0.72, 0, 0, 0, 0.72, -0.010810547, 1.0078638, 0.01725953)

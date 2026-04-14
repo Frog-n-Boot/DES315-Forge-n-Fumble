@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://bojhtl0pjp5on" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/DwarfPurple_low_BaseCol.tga" id="6_so67x"]
 [ext_resource type="AudioStream" uid="uid://c4ymn22aaas8l" path="res://assets/Sounds/SFX/SwordSwipe.mp3" id="8_jnlb4"]
 [ext_resource type="Texture2D" uid="uid://bwvn5hsl7jk60" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/DwarfRed_low_BaseCol.tga" id="8_ob8sk"]
-[ext_resource type="Shader" uid="uid://b6d7565vo5618" path="res://src/Shaders/XrayOverlay.gdshader" id="14_ohuux"]
 [ext_resource type="AudioStream" uid="uid://dhfcru8adja3" path="res://assets/Sounds/SFX/PlayerDamaged.wav" id="15_gp7mg"]
 [ext_resource type="Script" uid="uid://ddw54ydvlwsxr" path="res://src/Weapons/SpinAttack.cs" id="15_sq3q5"]
 [ext_resource type="AudioStream" uid="uid://detofwirhtkah" path="res://assets/Sounds/SFX/PlayerDeath.wav" id="16_yv8gf"]
@@ -278,18 +277,6 @@ normal_texture = ExtResource("5_bw8qq")
 heightmap_enabled = true
 heightmap_texture = ExtResource("4_jnlb4")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_25pwf"]
-render_priority = 1
-shader = ExtResource("14_ohuux")
-shader_parameter/player_positions = PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-shader_parameter/player_count = 1
-shader_parameter/xray_radius = 0.14
-shader_parameter/dither_band = 0.045
-shader_parameter/xray_tint = Color(0.25, 0.85, 1, 1)
-shader_parameter/pulse_speed = 2.0
-shader_parameter/pulse_amount = 0.15
-shader_parameter/viewport_size = Vector2(1280, 720)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_8d03m"]
 size = Vector3(1.5324149, 2.3322906, 1.533226)
 
@@ -346,13 +333,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.039611816, -0.9244385, 0.06
 material_override = SubResource("StandardMaterial3D_vpvqr")
 mesh = ExtResource("4_t0fpx")
 skeleton = NodePath("../..")
-
-[node name="XrayOverlay" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1710145099]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.039611816, -0.9244385, 0.067871094)
-material_override = SubResource("StandardMaterial3D_vpvqr")
-mesh = ExtResource("4_t0fpx")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("ShaderMaterial_25pwf")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="." unique_id=814154132]
 

@@ -78,8 +78,8 @@ public partial class EnemyController : CharacterBody3D
 	{
 		if (Forge != null) return;
 		Forge = GetTree().GetFirstNodeInGroup("Forge") as Node3D;
-		if (Forge == null)
-			GD.PrintErr($"EnemyController ({Name}): No node found in group 'Forge'.");
+		//if (Forge == null)
+			//GD.PrintErr($"EnemyController ({Name}): No node found in group 'Forge'.");
 	}
 
 	#endregion
@@ -165,13 +165,13 @@ public partial class EnemyController : CharacterBody3D
 			navigationAgent = GetNodeOrNull<NavigationAgent3D>("NavigationAgent3D");
 		if (navigationAgent == null)
 		{
-			GD.PrintErr($"[{Name}] DIAG: NavigationAgent3D not found — movement is impossible.");
+			//GD.PrintErr($"[{Name}] DIAG: NavigationAgent3D not found — movement is impossible.");
 			return;
 		}
 	   
 		navigationAgent.VelocityComputed += OnAvoidanceVelocityComputed;
 
-		GD.Print($"[{Name}] DIAG InitNavAgent: agent found. Speed={Speed} PathDist={navigationAgent.PathDesiredDistance} TargetDist={navigationAgent.TargetDesiredDistance}");
+		//GD.Print($"[{Name}] DIAG InitNavAgent: agent found. Speed={Speed} PathDist={navigationAgent.PathDesiredDistance} TargetDist={navigationAgent.TargetDesiredDistance}");
 	}
 
 
@@ -220,17 +220,17 @@ public partial class EnemyController : CharacterBody3D
 	{
 		if (navigationAgent == null)
 		{
-			GD.PrintErr($"[{Name}] SetNavTarget({target}): navigationAgent is NULL.");
+			//GD.PrintErr($"[{Name}] SetNavTarget({target}): navigationAgent is NULL.");
 			return;
 		}
 		if (!_navReady)
 		{
-			GD.Print($"[{Name}] SetNavTarget({target}): nav not ready — queued.");
+			//GD.Print($"[{Name}] SetNavTarget({target}): nav not ready — queued.");
 			_pendingNavTarget = true;
 			_pendingTargetPos = target;
 			return;
 		}
-		GD.Print($"[{Name}] SetNavTarget({target}): applied.");
+		//GD.Print($"[{Name}] SetNavTarget({target}): applied.");
 		navigationAgent.TargetPosition = target;
 		_lastNavTarget    = target;
 		_pendingNavTarget = false;
@@ -240,7 +240,7 @@ public partial class EnemyController : CharacterBody3D
 	{
 		if (navigationAgent == null)
 		{
-			GD.PrintErr($"[{Name}] NavigateTo: navigationAgent is NULL — cannot move.");
+			//GD.PrintErr($"[{Name}] NavigateTo: navigationAgent is NULL — cannot move.");
 			return;
 		}
 
@@ -289,7 +289,7 @@ public partial class EnemyController : CharacterBody3D
 			if (GlobalPosition.DistanceSquaredTo(_stuckCheckPos) <
 				StuckMoveThreshold * StuckMoveThreshold)
 			{
-				GD.Print($"[{Name}] Stuck detected — forcing repath.");
+				//GD.Print($"[{Name}] Stuck detected — forcing repath.");
 				_lastNavTarget = Vector3.Zero; // invalidate so threshold passes
 				SetNavTarget(targetPosition);
 			}
@@ -298,8 +298,8 @@ public partial class EnemyController : CharacterBody3D
 		}
 
 		_diagFrame++;
-		if (_diagFrame % DiagInterval == 0)
-			PrintDiagnostics(targetPosition, nextPoint, direction);
+		//if (_diagFrame % DiagInterval == 0)
+			//PrintDiagnostics(targetPosition, nextPoint, direction);
 	}
 
 	public void MoveTowards(Vector3 targetPosition, double delta)
@@ -379,10 +379,10 @@ public partial class EnemyController : CharacterBody3D
 	{
 		if (enemyData == null)
 		{
-			GD.PrintErr($"[{Name}] DIAG _Ready: enemyData is NULL — aborting.");
+			//GD.PrintErr($"[{Name}] DIAG _Ready: enemyData is NULL — aborting.");
 			return;
 		}
-		GD.Print($"[{Name}] DIAG _Ready: start. SpawnPos={_spawnPosition}");
+		//GD.Print($"[{Name}] DIAG _Ready: start. SpawnPos={_spawnPosition}");
 
 		AutoFindNodes();
 		ApplyVisuals();
@@ -392,12 +392,12 @@ public partial class EnemyController : CharacterBody3D
 		RefreshNearestPlayer();
 		FindForge();
 
-		GD.Print($"[{Name}] DIAG _Ready: Forge={Forge?.GlobalPosition.ToString() ?? "null"}  NearestPlayer={NearestPlayer?.GlobalPosition.ToString() ?? "null"}");
+		//GD.Print($"[{Name}] DIAG _Ready: Forge={Forge?.GlobalPosition.ToString() ?? "null"}  NearestPlayer={NearestPlayer?.GlobalPosition.ToString() ?? "null"}");
 		if (_spawnPosition != Vector3.Zero)
 			GlobalPosition = _spawnPosition;
-		GD.Print($"[{Name}] DIAG _Ready: GlobalPosition after spawn={GlobalPosition}");
+		//GD.Print($"[{Name}] DIAG _Ready: GlobalPosition after spawn={GlobalPosition}");
 		TransitionTo(new MoveToForgeState());
-		GD.Print($"[{Name}] DIAG _Ready: done. State={CurrentState?.GetType().Name}  IsStationary={IsStationary}");
+		//GD.Print($"[{Name}] DIAG _Ready: done. State={CurrentState?.GetType().Name}  IsStationary={IsStationary}");
 	}
 
 
@@ -419,27 +419,27 @@ public partial class EnemyController : CharacterBody3D
 		if (!_navReady)
 		{
 			_navReady = true;
-			GD.Print($"[{Name}] DIAG _PhysicsProcess: first frame — nav now ready.");
-			GD.Print($"  MapRid valid  : {navigationAgent?.GetNavigationMap().IsValid}");
-			GD.Print($"  PendingTarget : {_pendingNavTarget}  pos={_pendingTargetPos}");
-			GD.Print($"  moveTarget    : {moveTarget?.Name ?? "null"}  pos={moveTarget?.GlobalPosition.ToString() ?? "null"}");
+			//GD.Print($"[{Name}] DIAG _PhysicsProcess: first frame — nav now ready.");
+			//GD.Print($"  MapRid valid  : {navigationAgent?.GetNavigationMap().IsValid}");
+			//GD.Print($"  PendingTarget : {_pendingNavTarget}  pos={_pendingTargetPos}");
+			//GD.Print($"  moveTarget    : {moveTarget?.Name ?? "null"}  pos={moveTarget?.GlobalPosition.ToString() ?? "null"}");
 
 			if (_pendingNavTarget && navigationAgent != null)
 			{
-				GD.Print($"[{Name}] DIAG: flushing pending nav target {_pendingTargetPos}");
+				//GD.Print($"[{Name}] DIAG: flushing pending nav target {_pendingTargetPos}");
 				navigationAgent.TargetPosition = _pendingTargetPos;
 				_lastNavTarget    = _pendingTargetPos;
 				_pendingNavTarget = false;
 			}
 			else if (moveTarget != null && navigationAgent != null)
 			{
-				GD.Print($"[{Name}] DIAG: setting nav target from moveTarget {moveTarget.GlobalPosition}");
+				//GD.Print($"[{Name}] DIAG: setting nav target from moveTarget {moveTarget.GlobalPosition}");
 				navigationAgent.TargetPosition = moveTarget.GlobalPosition;
 				_lastNavTarget = moveTarget.GlobalPosition;
 			}
 			else
 			{
-				GD.PrintErr($"[{Name}] DIAG: nav ready but NO target available — enemy will not move!");
+				//GD.PrintErr($"[{Name}] DIAG: nav ready but NO target available — enemy will not move!");
 			}
 			return;
 		}
@@ -475,16 +475,16 @@ public partial class EnemyController : CharacterBody3D
 			collisionArea = GetNodeOrNull<Area3D>("Area3D");
 		if (collisionArea != null)
 			InitializeCollisionArea(collisionArea);
-		else
-			GD.PrintErr($"[{Name}] DIAG SetupCollision: Area3D not found.");
+		//else
+			//GD.PrintErr($"[{Name}] DIAG SetupCollision: Area3D not found.");
 	}
 
 	private void AutoFindNodes()
 	{
 		if (mesh == null)
 			mesh = GetNodeOrNull<MeshInstance3D>("MeshInstance3D");
-		if (mesh == null)
-			GD.PrintErr($"[{Name}] DIAG AutoFindNodes: MeshInstance3D not found.");
+		//if (mesh == null)
+			//GD.PrintErr($"[{Name}] DIAG AutoFindNodes: MeshInstance3D not found.");
 	}
 	#endregion
 
@@ -495,7 +495,7 @@ public partial class EnemyController : CharacterBody3D
 		enemyData      = data;
 		moveTarget     = target;
 		_spawnPosition = spawnPosition;
-		GD.Print($"[{Name}] DIAG Initialize: data={data?.enemyName}  target={target?.Name}  spawnPos={spawnPosition}");
+		//GD.Print($"[{Name}] DIAG Initialize: data={data?.enemyName}  target={target?.Name}  spawnPos={spawnPosition}");
 	}
 
 	public static EnemyController Create(EnemyData data, Node3D target, Node parent, Vector3 spawnPosition)
@@ -528,7 +528,7 @@ public partial class EnemyController : CharacterBody3D
 				isDying = true;
 				EmitSignal(SignalName.DamagedTarget, body, Damage);
 				Forge forge = GetForge();
-				if (forge != null) { forge.TakeDamage(Damage); GD.Print(forge.health); }
+				if (forge != null) { forge.TakeDamage(Damage); /*GD.Print(forge.health);*/ }
 				Die();
 				break;
 			case "Player":
@@ -621,7 +621,7 @@ public partial class EnemyController : CharacterBody3D
 	{
 		public override void Enter(EnemyController c)
 		{
-			GD.Print($"[{c.Name}] Enter ChasePlayerState. NearestPlayer={c.NearestPlayer?.GlobalPosition.ToString() ?? "null"}");
+			//GD.Print($"[{c.Name}] Enter ChasePlayerState. NearestPlayer={c.NearestPlayer?.GlobalPosition.ToString() ?? "null"}");
 			c.moveTarget = c.NearestPlayer;
 			if (c.NearestPlayer != null)
 				c.SetNavTarget(c.NearestPlayer.GlobalPosition);
@@ -643,7 +643,7 @@ public partial class EnemyController : CharacterBody3D
 
 		public override void Enter(EnemyController c)
 		{
-			GD.Print($"[{c.Name}] Enter MoveToForgeState. Forge={c.Forge?.GlobalPosition.ToString() ?? "null"}");
+			//GD.Print($"[{c.Name}] Enter MoveToForgeState. Forge={c.Forge?.GlobalPosition.ToString() ?? "null"}");
 			c.moveTarget = c.Forge;
 			if (c.Forge != null)
 				c.SetNavTarget(c.Forge.GlobalPosition);
@@ -671,7 +671,7 @@ public partial class EnemyController : CharacterBody3D
 	{
 		public override void Enter(EnemyController c)
 		{
-			GD.Print($"[{c.Name}] Enter AttackPlayerState. NearestPlayer={c.NearestPlayer?.GlobalPosition.ToString() ?? "null"}");
+			//GD.Print($"[{c.Name}] Enter AttackPlayerState. NearestPlayer={c.NearestPlayer?.GlobalPosition.ToString() ?? "null"}");
 			c.moveTarget = c.NearestPlayer;
 			if (c.NearestPlayer != null)
 				c.SetNavTarget(c.NearestPlayer.GlobalPosition);
@@ -691,7 +691,7 @@ public partial class EnemyController : CharacterBody3D
 
 		public override void Enter(EnemyController c)
 		{
-			GD.Print($"[{c.Name}] Enter AttackForgeState. Forge={c.Forge?.GlobalPosition.ToString() ?? "null"}");
+			//GD.Print($"[{c.Name}] Enter AttackForgeState. Forge={c.Forge?.GlobalPosition.ToString() ?? "null"}");
 			c.moveTarget = c.Forge;
 			if (c.Forge != null)
 				c.SetNavTarget(c.Forge.GlobalPosition);
