@@ -69,8 +69,9 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	private float lastRotation = 0f;
 	private float dropHoldTimer = 0f;
 	private bool dropTriggered = false;
-
 	public bool isDazed {get; private set;} = false;
+
+	private XRayManager xrayManager;
 
 	public IEnumerable<ItemData> GetCarriedItems()
 	{
@@ -151,7 +152,18 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			spinAttack.SetWeapon(melee);
 
 		lastRotation = Rotation.Y;
+
+		xrayManager = GetNode<XRayManager>("/root/XRayManager");
+		xrayManager.RegisterPlayer(this);
 	}
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+		xrayManager = xrayManager = GetNode<XRayManager>("/root/XRayManager");
+		xrayManager?.UnregisterPlayer(this);
+    }
+
 	
 	private void FindExistingSword()
 	{

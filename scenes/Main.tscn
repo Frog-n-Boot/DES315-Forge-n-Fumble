@@ -39,7 +39,6 @@
 [ext_resource type="ArrayMesh" uid="uid://g007ahf37syv" path="res://assets/models/FinalAssets_Low/Ore/Damas_ing_low.obj" id="36_pdwbg"]
 [ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/FinalAssets_Low/Items_Models/DullSword.tscn" id="38_cmqll"]
 [ext_resource type="PackedScene" uid="uid://d1y4lf17i3iid" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Dull_Sword.tscn" id="39_8cp6k"]
-[ext_resource type="Script" uid="uid://bbtox1c10tsd0" path="res://src/Managers/XRayManager.cs" id="40_8cp6k"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_dg70y"]
 vertices = PackedVector3Array(-64.95401, 0.3540206, -18.281357, -26.95401, 0.3540206, -18.281357, -25.95401, 0.3540206, -21.031357, -24.70401, 0.3540206, -22.031357, -23.45401, 0.3540206, -68.78136, -64.95401, 0.3540206, -68.78136, -23.20401, 0.3540206, -22.031357, -22.20401, 0.3540206, -22.281357, -21.95401, 0.3540206, -68.78136, -18.70401, 0.3540206, -20.031357, -7.70401, 0.3540206, -20.781357, -7.70401, 0.3540206, -21.781357, -6.95401, 0.3540206, -22.781357, -20.20401, 0.3540206, -21.781357, -5.70401, 0.3540206, -23.781357, -2.95401, 0.3540206, -24.781357, -2.95401, 0.3540206, -68.78136, -0.20401001, 0.3540206, -23.281357, 0.54599, 0.3540206, -20.531357, 14.29599, 0.3540206, -20.281357, -1.20401, 0.3540206, -24.281357, 16.04599, 0.3540206, -23.531357, 18.04599, 0.3540206, -23.781357, 18.04599, 0.3540206, -68.78136, 21.79599, 0.3540206, -18.031357, 21.29599, 0.3540206, -17.281357, 25.54599, 0.3540206, -12.781357, 21.79599, 0.3540206, -20.781357, 29.54599, 0.3540206, -13.281357, 19.54599, 0.3540206, -23.781357, 20.79599, 0.3540206, -22.781357, 30.79599, 0.3540206, -12.281357, 72.04599, 0.3540206, -9.531357, 72.04599, 0.3540206, -68.78136, 32.04599, 0.3540206, -9.531357, -5.20401, 0.3540206, -10.781357, -4.70401, 0.3540206, -17.031357, -6.95401, 0.3540206, -18.281357, -19.95401, 0.3540206, -15.781357, -15.20401, 0.3540206, -9.781357, -14.20401, 0.3540206, -10.531357, -18.70401, 0.3540206, -17.531357, 14.29599, 0.3540206, -10.281357, 16.04599, 0.3540206, -16.781357, 14.29599, 0.3540206, -19.531357, 4.54599, 0.3540206, -10.531357, -0.70401, 0.3540206, -18.781357, -2.95401, 0.3540206, -16.781357, -3.95401, 0.3540206, -10.031357, -3.70401, 0.3540206, -8.281357, 3.54599, 0.3540206, -9.531357, 3.54599, 0.3540206, -8.281357, -28.95401, 0.3540206, -1.7813568, -27.45401, 0.3540206, -2.0313568, -26.70401, 0.3540206, -17.531357, -30.45401, 0.3540206, -0.2813568, -30.95401, 0.3540206, 2.2186432, -64.95401, 0.3540206, 2.2186432, -24.45401, 0.3540206, -0.7813568, -23.45401, 0.3540206, 2.9686432, -15.45401, 0.3540206, 2.7186432, -23.95401, 0.3540206, -14.781357, 20.54599, 0.3540206, -16.281357, 24.54599, 0.3540206, -12.031357, 19.29599, 0.3540206, -15.781357, 23.79599, 0.3540206, -10.531357, 17.04599, 0.3540206, -15.781357, 15.04599, 0.3540206, -9.781357, 15.29599, 0.3540206, -8.781357, 23.79599, 0.3540206, -8.781357, 30.29599, 0.3540206, -6.281357, 27.29599, 0.3540206, -6.031357, 27.04599, 0.3540206, -3.0313568, 29.29599, 0.3540206, -1.2813568, 31.79599, 0.3540206, -8.281357, 30.29599, 0.3540206, 0.9686432, 72.04599, 0.3540206, 0.9686432, 25.29599, 0.3540206, -6.781357, 23.79599, 0.3540206, -2.2813568, 15.04599, 0.3540206, 0.4686432, 22.54599, 0.3540206, 0.4686432, -8.45401, 0.3540206, 1.9686432, -7.70401, 0.3540206, 3.4686432, -6.70401, 0.3540206, 2.7186432, -9.45401, 0.3540206, 0.21864319, -10.70401, 0.3540206, 1.7186432, 9.04599, 0.3540206, -6.031357, 7.04599, 0.3540206, -6.031357, 6.29599, 0.3540206, -5.281357, 6.04599, 0.3540206, -3.0313568, 9.04599, 0.3540206, -2.7813568, -3.95401, 0.3540206, -6.281357, -5.45401, 0.3540206, -5.281357, -4.45401, 0.3540206, -3.5313568, -3.20401, 0.3540206, -2.2813568, -3.20401, 0.3540206, -0.5313568, 4.29599, 0.3540206, -0.5313568, 5.29599, 0.3540206, -5.281357, 5.04599, 0.3540206, -2.2813568, -6.45401, 0.3540206, -5.281357, -7.20401, 0.3540206, -6.031357, -8.70401, 0.3540206, -3.2813568, 3.79599, 0.3540206, -6.281357, -9.45401, 0.3540206, -2.2813568, -10.70401, 0.3540206, -6.031357, -5.70401, 0.3540206, 2.9686432, -7.70401, 0.3540206, 5.968643, -6.45401, 0.3540206, 5.218643, 5.04599, 0.3540206, 5.218643, 6.29599, 0.3540206, 5.218643, 5.54599, 0.3540206, 2.9686432, 4.79599, 0.3540206, 1.9686432, 3.54599, 0.3540206, 6.968643, -4.95401, 0.3540206, 5.468643, -4.20401, 0.3540206, 2.4686432, 10.54599, 0.3540206, -1.7813568, 9.54599, 0.3540206, -2.0313568, 10.29599, 0.3540206, 1.2186432, -3.45401, 0.3540206, 1.4686432, -3.70401, 0.3540206, 6.968643, -3.70401, 0.3540206, 8.468643, 7.04599, 0.3540206, 5.968643, 10.54599, 0.3540206, 5.968643, 8.54599, 0.3540206, 3.2186432, 3.54599, 0.3540206, 8.468643, -0.45401, 12.854021, 0.7186432, 0.54599, 12.854021, 0.7186432, 0.79599, 12.854021, 0.21864319, 0.29599, 12.854021, -0.7813568, -0.70401, 12.854021, -0.5313568, 23.04599, 0.3540206, 2.4686432, 15.04599, 0.3540206, 9.718643, 20.29599, 0.3540206, 14.718643, 22.79599, 0.3540206, 12.968643, 24.54599, 0.3540206, 13.468643, 25.04599, 0.3540206, 4.718643, 27.79599, 0.3540206, 4.968643, 28.79599, 0.3540206, 4.468643, 26.54599, 0.3540206, 14.968643, 29.79599, 0.3540206, 3.2186432, 26.79599, 0.3540206, 16.718643, 72.04599, 0.3540206, 16.718643, -25.45401, 0.3540206, 10.468643, -26.20401, 0.3540206, 5.968643, -27.95401, 0.3540206, 6.218643, -27.20401, 0.3540206, 11.968643, -29.70401, 0.3540206, 5.468643, -30.70401, 0.3540206, 4.218643, -64.95401, 0.3540206, 15.218643, -28.20401, 0.3540206, 15.218643, -23.45401, 0.3540206, 9.968643, -23.70401, 0.3540206, 3.9686432, -21.70401, 0.3540206, 10.968643, -15.20401, 0.3540206, 9.718643, -20.70401, 0.3540206, 12.218643, 3.54599, 0.3540206, 9.718643, -3.95401, 0.3540206, 10.218643, -4.95401, 0.3540206, 10.968643, -11.95401, 0.3540206, 10.718643, -10.45401, 0.3540206, 18.718643, -8.45401, 0.3540206, 20.718643, -11.95401, 0.3540206, 18.468643, 4.29599, 0.3540206, 10.718643, 7.29599, 0.3540206, 18.718643, 7.04599, 0.3540206, 10.718643, 4.29599, 0.3540206, 19.968643, -8.20401, 0.3540206, 21.968643, 3.04599, 0.3540206, 22.218643, 3.29599, 0.3540206, 20.968643, -21.20401, 0.3540206, 16.718643, -22.20401, 0.3540206, 17.468643, -15.95401, 0.3540206, 20.218643, -14.20401, 0.3540206, 10.718643, -20.70401, 0.3540206, 15.468643, -14.70401, 0.3540206, 18.968643, 14.04599, 0.3540206, 10.718643, 19.29599, 0.3540206, 17.218643, 9.79599, 0.3540206, 19.718643, 11.04599, 0.3540206, 21.468643, 20.29599, 0.3540206, 19.968643, 19.29599, 0.3540206, 18.968643, -16.45401, 0.3540206, 21.218643, -23.95401, 0.3540206, 18.218643, -25.45401, 0.3540206, 18.218643, -16.20401, 0.3540206, 23.968643, -12.45401, 0.3540206, 68.21864, -12.45401, 0.3540206, 25.718643, -14.45401, 0.3540206, 25.468643, -64.95401, 0.3540206, 68.21864, 26.04599, 0.3540206, 19.718643, 24.29599, 0.3540206, 20.968643, 22.54599, 0.3540206, 21.468643, 22.54599, 0.3540206, 68.21864, 72.04599, 0.3540206, 68.21864, 11.04599, 0.3540206, 23.718643, 21.54599, 0.3540206, 21.218643, 10.54599, 0.3540206, 24.718643, 7.79599, 0.3540206, 26.218643, 6.54599, 0.3540206, 26.218643, 6.54599, 0.3540206, 68.21864, 3.29599, 0.3540206, 24.718643, -9.70401, 0.3540206, 25.218643, 5.29599, 0.3540206, 26.218643)
@@ -73,6 +72,159 @@ fog_mode = 1
 fog_density = 1.0
 fog_depth_end = 242.5
 volumetric_fog_density = 0.0
+
+[sub_resource type="CSharpScript" id="CSharpScript_cmqll"]
+script/source = "using Godot;
+using Godot.Collections;
+using System.Collections.Generic;
+
+[GlobalClass]
+public partial class XRayManager : Node
+{
+    [ExportGroup(\"Visuals\")]
+    [Export(PropertyHint.Range, \"0.01,0.5\")]  public float XRayRadius  { get; set; } = 0.14f;
+    [Export(PropertyHint.Range, \"0.005,0.2\")] public float DitherBand  { get; set; } = 0.045f;
+    [Export] public Color XRayTint   { get; set; } = new Color(0.25f, 0.85f, 1.0f, 1.0f);
+    [Export(PropertyHint.Range, \"0,10\")] public float PulseSpeed  { get; set; } = 2.0f;
+    [Export(PropertyHint.Range, \"0,1\")]  public float PulseAmount { get; set; } = 0.15f;
+
+    private const string GroupXrayed  = \"Xrayed\";
+    private const string GroupOverlay = \"XRayOverlay\";
+
+    private readonly List<ShaderMaterial> _wallMaterials    = new();
+    private readonly List<ShaderMaterial> _overlayMaterials = new();
+    private readonly List<Node3D>         _players          = new();
+    private readonly Vector3[]            _posBuffer        = new Vector3[4];
+
+    public override void _Ready()
+    {
+        CollectXrayedMaterials();
+        SeedPlayers();
+    }
+
+    public override void _Process(double delta)
+    {
+        PushUniforms();
+    }
+
+    private void CollectXrayedMaterials()
+    {
+        _wallMaterials.Clear();
+
+        foreach (Node node in GetTree().GetNodesInGroup(GroupXrayed))
+            WalkForWalls(node);
+
+        GD.Print($\"[XRayManager] Found {_wallMaterials.Count} wall material(s).\");
+    }
+
+    private void SeedPlayers()
+    {
+        foreach (Node node in GetTree().GetNodesInGroup(\"Player\"))
+        {
+            if (node is Node3D p)
+                RegisterPlayer(p);
+        }
+
+        GD.Print($\"[XRayManager] Found {_players.Count} player(s).\");
+    }
+
+    public void RegisterPlayer(Node3D playerRoot)
+    {
+        if (_players.Contains(playerRoot))
+            return;
+
+        _players.Add(playerRoot);
+        CollectOverlaysUnder(playerRoot);
+
+        GD.Print($\"[XRayManager] Registered '{playerRoot.Name}' (total: {_players.Count})\");
+    }
+
+    public void UnregisterPlayer(Node3D playerRoot)
+    {
+        _players.Remove(playerRoot);
+        RemoveOverlaysUnder(playerRoot);
+
+        GD.Print($\"[XRayManager] Unregistered '{playerRoot.Name}' (total: {_players.Count})\");
+    }
+
+    private void WalkForWalls(Node node)
+    {
+        if (node is MeshInstance3D mesh)
+            CollectFromMesh(mesh, _wallMaterials);
+
+        foreach (Node child in node.GetChildren())
+            WalkForWalls(child);
+    }
+
+    private void CollectOverlaysUnder(Node root)
+    {
+        if (root is MeshInstance3D mesh && root.IsInGroup(GroupOverlay))
+        {
+            CollectFromMesh(mesh, _overlayMaterials);
+            return;
+        }
+
+        foreach (Node child in root.GetChildren())
+            CollectOverlaysUnder(child);
+    }
+
+    private void RemoveOverlaysUnder(Node root)
+    {
+        if (root is MeshInstance3D mesh && root.IsInGroup(GroupOverlay))
+        {
+            for (int i = 0; i < mesh.GetSurfaceOverrideMaterialCount(); i++)
+            {
+                if (mesh.GetActiveMaterial(i) is ShaderMaterial mat)
+                    _overlayMaterials.Remove(mat);
+            }
+            return;
+        }
+
+        foreach (Node child in root.GetChildren())
+            RemoveOverlaysUnder(child);
+    }
+
+    private void CollectFromMesh(MeshInstance3D mesh, List<ShaderMaterial> target)
+    {
+        for (int i = 0; i < mesh.GetSurfaceOverrideMaterialCount(); i++)
+        {
+            if (mesh.GetActiveMaterial(i) is ShaderMaterial mat && !target.Contains(mat))
+                target.Add(mat);
+        }
+    }
+
+    private void PushUniforms()
+    {
+        int count = Mathf.Clamp(_players.Count, 0, 4);
+
+        for (int i = 0; i < 4; i++)
+            _posBuffer[i] = i < count ? _players[i].GlobalPosition : Vector3.Zero;
+
+        var posArray     = new Array<Vector3>(_posBuffer);
+        var viewportSize = GetViewport().GetVisibleRect().Size;
+
+        foreach (ShaderMaterial mat in _wallMaterials)
+        {
+            mat.SetShaderParameter(\"player_positions\", posArray);
+            mat.SetShaderParameter(\"player_count\",     count);
+            mat.SetShaderParameter(\"xray_radius\",      XRayRadius);
+            mat.SetShaderParameter(\"dither_band\",      DitherBand);
+            mat.SetShaderParameter(\"viewport_size\",    viewportSize);
+        }
+
+        foreach (ShaderMaterial mat in _overlayMaterials)
+        {
+            mat.SetShaderParameter(\"player_positions\", posArray);
+            mat.SetShaderParameter(\"player_count\",     count);
+            mat.SetShaderParameter(\"xray_radius\",      XRayRadius);
+            mat.SetShaderParameter(\"dither_band\",      DitherBand);
+            mat.SetShaderParameter(\"viewport_size\",    viewportSize);
+            mat.SetShaderParameter(\"xray_tint\",        XRayTint);
+            mat.SetShaderParameter(\"pulse_speed\",      PulseSpeed);
+            mat.SetShaderParameter(\"pulse_amount\",     PulseAmount);
+        }
+    }
+}"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cvaul"]
 bg_color = Color(0.74509805, 0, 0, 1)
@@ -247,6 +399,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.891476, 0, -5.2368193)
 
 [node name="SpawnPoint3" type="Marker3D" parent="PlayerSpawner" unique_id=2030002562]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1672173, 0, 3.6513267)
+
+[node name="XRayManager" type="Node" parent="PlayerSpawner" unique_id=238076531]
+script = SubResource("CSharpScript_cmqll")
+XRayRadius = null
+DitherBand = null
+XRayTint = null
+PulseSpeed = null
+PulseAmount = null
 
 [node name="EnemySpawner" type="Node" parent="." unique_id=1191566733 node_paths=PackedStringArray("spawnParent", "targetNode", "lootTable", "resultMenu", "enemyUI", "waveTimerLabel3D") groups=["WaveManager"]]
 script = ExtResource("14_t70y2")
@@ -782,9 +942,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8266451, 0.000985, 0.622857
 
 [node name="IronDullSword" parent="." unique_id=803566957 instance=ExtResource("39_8cp6k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0314033, 0.0009840463, 1.1268263)
-
-[node name="XRayManager" type="Node" parent="." unique_id=238076531]
-script = ExtResource("40_8cp6k")
 
 [connection signal="pressed" from="UI/PauseMenu/ResumeButton" to="UI/PauseMenu" method="OnResumePressed"]
 [connection signal="pressed" from="UI/PauseMenu/SettingsButton" to="UI/PauseMenu" method="OnSettingsPressed"]

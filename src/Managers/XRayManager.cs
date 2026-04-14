@@ -1,151 +1,123 @@
 using Godot;
-using Godot.Collections;
 using System.Collections.Generic;
+using System;
 
-[GlobalClass]
 public partial class XRayManager : Node
 {
-    [ExportGroup("Visuals")]
-    [Export(PropertyHint.Range, "0.01,0.5")]  public float XRayRadius  { get; set; } = 0.14f;
-    [Export(PropertyHint.Range, "0.005,0.2")] public float DitherBand  { get; set; } = 0.045f;
-    [Export] public Color XRayTint   { get; set; } = new Color(0.25f, 0.85f, 1.0f, 1.0f);
-    [Export(PropertyHint.Range, "0,10")] public float PulseSpeed  { get; set; } = 2.0f;
-    [Export(PropertyHint.Range, "0,1")]  public float PulseAmount { get; set; } = 0.15f;
+	// Shader Consts
+	private const float defaultRadius = 1.5f;
+	private const float defaultEdgeSoftness = 0.4f;
+	private const int maxPlayers = 4;
+	private readonly List<Node3D>_players = new();
+	private readonly List<MeshInstance3D> _walls = new();
 
-    private const string GroupXrayed  = "Xrayed";
-    private const string GroupOverlay = "XRayOverlay";
 
-    private readonly List<ShaderMaterial> _wallMaterials    = new();
-    private readonly List<ShaderMaterial> _overlayMaterials = new();
-    private readonly List<Node3D>         _players          = new();
-    private readonly Vector3[]            _posBuffer        = new Vector3[4];
+	private static readonly string ShaderPath ="res://src//Shaders/xray.gdshader";
+	private Shader _xrayShader;
 
-    public override void _Ready()
+	public override void _Ready(){
+		_xrayShader = GD.Load<Shader>(ShaderPath);
+		// Wait for all nodes to be ready
+		ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame).OnCompleted(CollectWalls);
+	}
+
+	public override void _Process(double delta){
+		if (_walls.Count == 0 || _players.Count == 0) return;
+			
+		UpdateWalls();
+	}
+
+	public void RegisterPlayer(Node3D player)
+	{
+		if(!_players.Contains(player))
+			_players.Add(player);
+	}
+
+	public void UnregisterPlayer(Node3D player)
+	{
+		_players.Remove(player);
+	}
+
+	private void CollectWalls()
+	{
+		foreach(Node3D node in GetTree().GetNodesInGroup("xray_wall"))
+		{
+			MeshInstance3D mesh = GetMeshInstance(node);
+			if (mesh != null)
+			{
+				EnsureShaderMaterial(mesh);
+				_walls.Add(mesh);
+			}
+		}
+	}
+
+	private void UpdateWalls()
+	{
+		// Build position array
+		Vector3[] positions  = new Vector3[maxPlayers];
+		int playerCount = Mathf.Min(_players.Count, maxPlayers);
+
+		for (int i = 0; i <playerCount; i++){
+			positions[i] = _players[i].GlobalPosition;
+		}
+
+		// Pad Unused Slots to they don't affect the shader
+		for (int i = playerCount; i < maxPlayers; i++){
+            positions[i] = new Vector3(99999f, 99999f, 99999f);
+		}
+
+		foreach(MeshInstance3D mesh in _walls)
+		{
+			if(mesh.GetSurfaceOverrideMaterial(0) is not ShaderMaterial mat) continue;
+			
+			mat.SetShaderParameter("player_position", positions);
+			mat.SetShaderParameter("player_count", playerCount);
+			mat.SetShaderParameter("radius", defaultRadius);
+			mat.SetShaderParameter("edge_softness", defaultEdgeSoftness);
+		}
+	}
+
+	private static MeshInstance3D GetMeshInstance(Node node)
     {
-        CollectXrayedMaterials();
-        SeedPlayers();
-    }
-
-    public override void _Process(double delta)
-    {
-        PushUniforms();
-    }
-
-    private void CollectXrayedMaterials()
-    {
-        _wallMaterials.Clear();
-
-        foreach (Node node in GetTree().GetNodesInGroup(GroupXrayed))
-            WalkForWalls(node);
-
-        GD.Print($"[XRayManager] Found {_wallMaterials.Count} wall material(s).");
-    }
-
-    private void SeedPlayers()
-    {
-        foreach (Node node in GetTree().GetNodesInGroup("Player"))
-        {
-            if (node is Node3D p)
-                RegisterPlayer(p);
-        }
-
-        GD.Print($"[XRayManager] Found {_players.Count} player(s).");
-    }
-
-    public void RegisterPlayer(Node3D playerRoot)
-    {
-        if (_players.Contains(playerRoot))
-            return;
-
-        _players.Add(playerRoot);
-        CollectOverlaysUnder(playerRoot);
-
-        GD.Print($"[XRayManager] Registered '{playerRoot.Name}' (total: {_players.Count})");
-    }
-
-    public void UnregisterPlayer(Node3D playerRoot)
-    {
-        _players.Remove(playerRoot);
-        RemoveOverlaysUnder(playerRoot);
-
-        GD.Print($"[XRayManager] Unregistered '{playerRoot.Name}' (total: {_players.Count})");
-    }
-
-    private void WalkForWalls(Node node)
-    {
-        if (node is MeshInstance3D mesh)
-            CollectFromMesh(mesh, _wallMaterials);
+        if (node is MeshInstance3D meshInstance)
+            return meshInstance;
 
         foreach (Node child in node.GetChildren())
-            WalkForWalls(child);
+        {
+            if (child is MeshInstance3D childMesh)
+                return childMesh;
+        }
+
+        if (node.GetParent() is MeshInstance3D parentMesh)
+            return parentMesh;
+
+        return null;
     }
 
-    private void CollectOverlaysUnder(Node root)
+    private void EnsureShaderMaterial(MeshInstance3D mesh)
     {
-        if (root is MeshInstance3D mesh && root.IsInGroup(GroupOverlay))
-        {
-            CollectFromMesh(mesh, _overlayMaterials);
+        // Already has our shader material, nothing to do
+        if (mesh.GetSurfaceOverrideMaterial(0) is ShaderMaterial)
             return;
-        }
 
-        foreach (Node child in root.GetChildren())
-            CollectOverlaysUnder(child);
-    }
+        var mat = new ShaderMaterial();
+        mat.Shader = _xrayShader;
 
-    private void RemoveOverlaysUnder(Node root)
-    {
-        if (root is MeshInstance3D mesh && root.IsInGroup(GroupOverlay))
+        // Copy over albedo from existing StandardMaterial3D if present
+        if (mesh.GetSurfaceOverrideMaterial(0) is StandardMaterial3D existing)
         {
-            for (int i = 0; i < mesh.GetSurfaceOverrideMaterialCount(); i++)
-            {
-                if (mesh.GetActiveMaterial(i) is ShaderMaterial mat)
-                    _overlayMaterials.Remove(mat);
-            }
-            return;
+            mat.SetShaderParameter("albedo", existing.AlbedoColor);
+            mat.SetShaderParameter("texture_albedo", existing.AlbedoTexture);
         }
-
-        foreach (Node child in root.GetChildren())
-            RemoveOverlaysUnder(child);
-    }
-
-    private void CollectFromMesh(MeshInstance3D mesh, List<ShaderMaterial> target)
-    {
-        for (int i = 0; i < mesh.GetSurfaceOverrideMaterialCount(); i++)
+        else if (mesh.Mesh?.SurfaceGetMaterial(0) is StandardMaterial3D meshMat)
         {
-            if (mesh.GetActiveMaterial(i) is ShaderMaterial mat && !target.Contains(mat))
-                target.Add(mat);
-        }
-    }
-
-    private void PushUniforms()
-    {
-        int count = Mathf.Clamp(_players.Count, 0, 4);
-
-        for (int i = 0; i < 4; i++)
-            _posBuffer[i] = i < count ? _players[i].GlobalPosition : Vector3.Zero;
-
-        var posArray     = new Array<Vector3>(_posBuffer);
-        var viewportSize = GetViewport().GetVisibleRect().Size;
-
-        foreach (ShaderMaterial mat in _wallMaterials)
-        {
-            mat.SetShaderParameter("player_positions", posArray);
-            mat.SetShaderParameter("player_count",     count);
-            mat.SetShaderParameter("xray_radius",      XRayRadius);
-            mat.SetShaderParameter("dither_band",      DitherBand);
-            mat.SetShaderParameter("viewport_size",    viewportSize);
+            mat.SetShaderParameter("albedo", meshMat.AlbedoColor);
+            mat.SetShaderParameter("texture_albedo", meshMat.AlbedoTexture);
         }
 
-        foreach (ShaderMaterial mat in _overlayMaterials)
-        {
-            mat.SetShaderParameter("player_positions", posArray);
-            mat.SetShaderParameter("player_count",     count);
-            mat.SetShaderParameter("xray_radius",      XRayRadius);
-            mat.SetShaderParameter("dither_band",      DitherBand);
-            mat.SetShaderParameter("viewport_size",    viewportSize);
-            mat.SetShaderParameter("xray_tint",        XRayTint);
-            mat.SetShaderParameter("pulse_speed",      PulseSpeed);
-            mat.SetShaderParameter("pulse_amount",     PulseAmount);
-        }
+        mat.SetShaderParameter("radius", defaultRadius);
+        mat.SetShaderParameter("edge_softness", defaultEdgeSoftness);
+
+        mesh.SetSurfaceOverrideMaterial(0, mat);
     }
 }

@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://bmre2ran8suad"]
 
 [ext_resource type="ArrayMesh" uid="uid://yr1kykfynq2" path="res://assets/models/FinalAssets_Low/Redone_Assets/cobl_archway_low.obj" id="1_lrjko"]
-[ext_resource type="Material" uid="uid://cytvlw7564aar" path="res://assets/materials/XrayedMat.tres" id="2_lrjko"]
+[ext_resource type="Material" uid="uid://dp140br76vlls" path="res://assets/materials/Texture_sets/Environment_Textures/cobble_forge.tres" id="2_lrjko"]
 
-[node name="CoblArchwayLow" type="Node3D" unique_id=1216911531]
+[node name="CoblArchwayLow" type="Node3D" unique_id=1216911531 groups=["xray"]]
 
-[node name="CoblArchwayLow" type="MeshInstance3D" parent="." unique_id=1950556591 groups=["Xrayed"]]
+[node name="CoblArchwayLow" type="MeshInstance3D" parent="." unique_id=1950556591]
 transform = Transform3D(0.72, 0, 0, 0, 0.72, 0, 0, 0, 0.72, 0, 0, 0)
 mesh = ExtResource("1_lrjko")
 surface_material_override/0 = ExtResource("2_lrjko")

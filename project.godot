@@ -68,7 +68,7 @@ Turret=""
 Weapon=""
 navigation_mesh_source_group="The Navigation layer for the AI"
 <<<<<<<HEADnavigation_mesh_source_group="The Navigation layer for the AI"
-Xrayed="Objects that can be x-rayed."
+xray="The group which all objects attached to it will be transparent"
 
 [input]
 
