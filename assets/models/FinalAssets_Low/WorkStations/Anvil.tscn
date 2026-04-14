@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bkgt1ax3obdva" path="res://src/Stations/ForgingStation.cs" id="1_c6611"]
 [ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Dull_Sword.tscn" id="2_fj0e1"]
+[ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="3_0gpkw"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="3_yb3nn"]
 [ext_resource type="ArrayMesh" uid="uid://mmh030obulkw" path="res://assets/models/FinalAssets_Low/WorkStations/Anvil_low.obj" id="4_1latb"]
 [ext_resource type="Texture2D" uid="uid://d0b62wsx8gdhv" path="res://assets/materials/Texture_sets/WorkStations/anvil_low_BaseCol.tga" id="4_813ft"]
@@ -15,18 +16,12 @@
 [ext_resource type="AudioStream" uid="uid://ctq3m1e8gjrsl" path="res://assets/Sounds/SFX/Anvil3.wav" id="12_g2xu1"]
 [ext_resource type="AudioStream" uid="uid://cynyfxhfehvv1" path="res://assets/Sounds/SFX/Anvil4.wav" id="13_721mw"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0gpkw"]
-load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_gk661"]
-atlas = SubResource("CompressedTexture2D_0gpkw")
+atlas = ExtResource("3_0gpkw")
 region = Rect2(114, 365, 40, 40)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rl3yd"]
-load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_fbisp"]
-atlas = SubResource("CompressedTexture2D_rl3yd")
+atlas = ExtResource("3_0gpkw")
 region = Rect2(216, 805, 40, 43)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdc31"]
@@ -46,7 +41,6 @@ viewport_path = NodePath("Sprite3D/SubViewport")
 viewport_path = NodePath("Sprite3D2/SubViewport")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gk661"]
-load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rl3yd"]
 atlas = SubResource("CompressedTexture2D_gk661")
