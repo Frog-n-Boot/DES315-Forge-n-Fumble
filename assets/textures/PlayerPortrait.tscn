@@ -37,7 +37,6 @@ atlas = ExtResource("3_ex5ym")
 region = Rect2(115, 308, 71, 35)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rwibj"]
-load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_brnra"]
 atlas = SubResource("CompressedTexture2D_rwibj")

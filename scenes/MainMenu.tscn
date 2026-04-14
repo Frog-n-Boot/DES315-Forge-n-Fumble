@@ -6,28 +6,24 @@
 [ext_resource type="AudioStream" uid="uid://i4t1sy6mjdaa" path="res://assets/Sounds/Music/Townsfolk LOOP.wav" id="3_ow34m"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_l72w3"]
-load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_826wr"]
 atlas = SubResource("CompressedTexture2D_l72w3")
 region = Rect2(581, 500, 285, 91)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ow34m"]
-load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l72w3"]
 atlas = SubResource("CompressedTexture2D_ow34m")
 region = Rect2(581, 500, 285, 91)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_826wr"]
-load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ucygd"]
 atlas = SubResource("CompressedTexture2D_826wr")
 region = Rect2(581, 500, 285, 91)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mipys"]
-load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8a8k8"]
 atlas = SubResource("CompressedTexture2D_mipys")

@@ -29,6 +29,7 @@ public partial class PlayerPortrait : PanelContainer
 		if(healthBar != null)
 		{
 			healthBar.InitForPlayer(player);
+			
 		}
 	}
 

@@ -17,10 +17,10 @@ public partial class Crossbow : RangedWeapon
 		if(tripleShot == null) GD.PrintErr("Crossbow: Tripleshot node not found");
 	}
 
-    protected override void Fire()
-    {
+	protected override void Fire()
+	{
 		
-        if(firePoint == null || projectileScene == null || canFire == false) return;
+		if(firePoint == null || projectileScene == null || canFire == false) return;
 		if(currentAmmo <=0) return;
 
 		var arrow = projectileScene.Instantiate<Arrow>();
@@ -39,7 +39,7 @@ public partial class Crossbow : RangedWeapon
 			canFire = true;
 			EmitSignal(SignalName.AttackFinished);
 		};
-    }
+	}
 
 	public void Reload(int amount)
 	{
@@ -63,11 +63,11 @@ public partial class Crossbow : RangedWeapon
 	// 	PowerShot(power);
 	// }
 
-    // public override void _Process(double delta)
-    // {
+	// public override void _Process(double delta)
+	// {
 		
-        
-    // }
+		
+	// }
 
 	// private void PowerShot(float power)
 	// {

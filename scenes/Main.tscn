@@ -66,14 +66,12 @@ uv1_triplanar = true
 [sub_resource type="PlaneMesh" id="PlaneMesh_3lnvk"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bn2l6"]
-load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cmqll"]
 atlas = SubResource("CompressedTexture2D_bn2l6")
 region = Rect2(114, 365, 40, 40)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g1v1a"]
-load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8cp6k"]
 atlas = SubResource("CompressedTexture2D_g1v1a")
@@ -244,11 +242,8 @@ maxSize = 40.0
 
 [node name="Ballista" parent="Enviroment" unique_id=353788340 node_paths=PackedStringArray("inputNode") instance=ExtResource("2_pnhog")]
 transform = Transform3D(0.807084, 0, -0.5904367, 0, 1, 0, 0.5904367, 0, 0.807084, 8.197841, 2.9593534, 8.394757)
-inputNode = NodePath("StationPort3")
+inputNode = NodePath("../../UI/StationPort3")
 arrowCount = 10
-
-[node name="StationPort3" parent="Enviroment/Ballista" unique_id=1915723754 instance=ExtResource("3_2c4at")]
-transform = Transform3D(-2.1331294, 0, 5.4712753, 0, 1.375121, 0, -2.9436626, 0, -3.9647663, -1.0970211, -2.0247116, -0.8472152)
 
 [node name="Ballista2" parent="Enviroment" unique_id=1789132715 node_paths=PackedStringArray("inputNode") instance=ExtResource("2_pnhog")]
 transform = Transform3D(-0.7744369, 0, 0.6326513, 0, 1, 0, -0.6326513, 0, -0.7744369, -7.927705, 2.9262388, -8.25852)
@@ -334,7 +329,8 @@ offset_top = 505.0
 offset_right = 66.00001
 offset_bottom = 545.0
 scale = Vector2(1.4340242, 1.4681656)
-theme_override_constants/separation = 100
+pivot_offset = Vector2(20, 0)
+theme_override_constants/separation = 225
 
 [node name="ForgeProgressBar" type="TextureProgressBar" parent="UI/CanvasLayer" unique_id=173815992]
 offset_left = 3.0
@@ -811,6 +807,9 @@ fill_mode = 5
 texture_under = SubResource("AtlasTexture_0qimb")
 texture_progress = SubResource("AtlasTexture_oa6sj")
 tint_under = Color(0.30692267, 0.3069227, 0.3069227, 1)
+
+[node name="StationPort3" parent="UI" unique_id=1915723754 instance=ExtResource("3_2c4at")]
+transform = Transform3D(0.016431808, 0, 6.7567225, 0, 1.375121, 0, -3.635261, 0, 0.030542374, 7.8126793, 0.93464184, 7.063262)
 
 [node name="LootTable" type="Node" parent="." unique_id=317891680 groups=["LootTable"]]
 script = ExtResource("18_oa6sj")

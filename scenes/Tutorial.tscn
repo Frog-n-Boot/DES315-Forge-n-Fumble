@@ -26,6 +26,7 @@
 [ext_resource type="Material" uid="uid://btwle4bal72vo" path="res://assets/materials/Texture_sets/Character_Textures/Skeleton Textures/skeleton_material.tres" id="24_xi6p3"]
 [ext_resource type="ArrayMesh" uid="uid://ch821ffso52fw" path="res://assets/models/FinalAssets_Low/Items_Models/handheld_ballista.obj" id="25_4tybr"]
 [ext_resource type="Script" uid="uid://dli7kb5c5sowk" path="res://src/Mangers/TutorialManager.cs" id="27_bi4s5"]
+[ext_resource type="PackedScene" uid="uid://cayfp8m51s7np" path="res://assets/models/FinalAssets_Low/Items_Models/Crossbow.tscn" id="28_y74ua"]
 [ext_resource type="Script" uid="uid://bdt0s16a5rcia" path="res://src/Weapons/Ballista.cs" id="29_0a2r4"]
 [ext_resource type="PackedScene" uid="uid://ds1kx4ru8gie6" path="res://assets/models/FinalAssets_Low/Items_Models/Arrow.tscn" id="30_mcs8j"]
 [ext_resource type="AudioStream" uid="uid://clu5cxqv4p82n" path="res://assets/Sounds/SFX/ArrowShot1.wav" id="31_wkaxc"]
@@ -486,11 +487,12 @@ shadow_normal_bias = 0.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1529891518]
 environment = SubResource("Environment_47rdh")
 
-[node name="Turret" type="Node3D" parent="." unique_id=1571022317 node_paths=PackedStringArray("arrowSpawnPosition", "ballistaHead", "ballistaBarrel", "inputNode", "label", "audio") groups=["Ballista"]]
+[node name="Ballista" type="Node3D" parent="." unique_id=1571022317 node_paths=PackedStringArray("arrowSpawnPosition", "ballistaHead", "ballistaBarrel", "inputNode", "label", "audio") groups=["Ballista"]]
 transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 185.16833, 0.0056490004, -16.676088)
 script = ExtResource("29_0a2r4")
 arrowSpawnPosition = NodePath("BallistaTopElementLow/BallistaBarrel/ArrowSpawnLocation")
 ballistaHead = NodePath("BallistaTopElementLow")
+crossbowScene = ExtResource("28_y74ua")
 ballistaBarrel = NodePath("BallistaTopElementLow/BallistaBarrel")
 arrowScene = ExtResource("30_mcs8j")
 inputNode = NodePath("BallistaTopElementLow/StaticBody3D/StationPort")
@@ -498,68 +500,68 @@ arrowCount = 0
 label = NodePath("CanvasLayer/Node3D/Label3D")
 audio = NodePath("AudioStreamPlayer3D")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Turret" unique_id=2121636395]
+[node name="CanvasLayer" type="CanvasLayer" parent="Ballista" unique_id=2121636395]
 
-[node name="Node3D" type="Node3D" parent="Turret/CanvasLayer" unique_id=1037465994]
+[node name="Node3D" type="Node3D" parent="Ballista/CanvasLayer" unique_id=1037465994]
 transform = Transform3D(-0.10386822, 0, 0.49802622, 0, 3.4232113, 0, -4.7299213, 0, -0.010936562, 0, 3.545107, 0)
 
-[node name="Label3D" type="Label3D" parent="Turret/CanvasLayer/Node3D" unique_id=1012313719]
+[node name="Label3D" type="Label3D" parent="Ballista/CanvasLayer/Node3D" unique_id=1012313719]
 visible = false
 text = "There"
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Turret" unique_id=134283511]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Ballista" unique_id=134283511]
 stream = SubResource("AudioStreamRandomizer_sl1qq")
 volume_db = -40.0
 max_db = -24.0
 max_polyphony = 20
 bus = &"SFX"
 
-[node name="BallistaBottomElementLow" type="MeshInstance3D" parent="Turret" unique_id=1196528612]
+[node name="BallistaBottomElementLow" type="MeshInstance3D" parent="Ballista" unique_id=1196528612]
 transform = Transform3D(0.71428573, 0, 0, 0, 0.71428573, 0, 0, 0, 0.71428573, 0, 0, 0)
 material_override = ExtResource("41_47rdh")
 mesh = ExtResource("42_4c805")
 
-[node name="BallistaTopElementLow" type="MeshInstance3D" parent="Turret" unique_id=369042352]
+[node name="BallistaTopElementLow" type="MeshInstance3D" parent="Ballista" unique_id=369042352]
 transform = Transform3D(0.71428573, 0, 0, 0, 0.71428573, 0, 0, 0, 0.71428573, 0, 0, 0)
 material_override = ExtResource("41_47rdh")
 mesh = ExtResource("43_podgh")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Turret/BallistaTopElementLow" unique_id=440704571]
+[node name="StaticBody3D" type="StaticBody3D" parent="Ballista/BallistaTopElementLow" unique_id=440704571]
 transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0, 0)
 collision_layer = 32
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Turret/BallistaTopElementLow/StaticBody3D" unique_id=1945830702]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ballista/BallistaTopElementLow/StaticBody3D" unique_id=1945830702]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9050009, 0)
 shape = SubResource("CapsuleShape3D_e7812")
 
-[node name="StationPort" type="Node3D" parent="Turret/BallistaTopElementLow/StaticBody3D" unique_id=750325492]
+[node name="StationPort" type="Node3D" parent="Ballista/BallistaTopElementLow/StaticBody3D" unique_id=750325492]
 transform = Transform3D(62.81827, 0, 0, 0, 85.7798, 0, 0, 0, 34.782322, -0.19229126, 0.54238105, 0.27918434)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Turret/BallistaTopElementLow/StaticBody3D/StationPort" unique_id=812032035]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ballista/BallistaTopElementLow/StaticBody3D/StationPort" unique_id=812032035]
 transform = Transform3D(0.18727133, 0, 0, 0, 1, 0, 0, 0, 0.1909036, 0, 0, 0)
 visible = false
 material_override = SubResource("StandardMaterial3D_vl1yp")
 transparency = 1.0
 skeleton = NodePath("")
 
-[node name="Area3D" type="Area3D" parent="Turret/BallistaTopElementLow/StaticBody3D/StationPort" unique_id=1490204633]
+[node name="Area3D" type="Area3D" parent="Ballista/BallistaTopElementLow/StaticBody3D/StationPort" unique_id=1490204633]
 transform = Transform3D(0.14721856, 0, 0, 0, -0.07687317, 0, 0, 0, 0.30185395, 0.0036346912, 0, -0.008695453)
 collision_layer = 32
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Turret/BallistaTopElementLow/StaticBody3D/StationPort/Area3D" unique_id=280831638]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ballista/BallistaTopElementLow/StaticBody3D/StationPort/Area3D" unique_id=280831638]
 transform = Transform3D(0.17999986, 0, 0, 0, 0.9999873, 0, 0, 0, 0.18999994, 0.0013348593, 0, -0.006333612)
 shape = SubResource("BoxShape3D_vl1yp")
 
-[node name="BallistaBarrel" type="Node3D" parent="Turret/BallistaTopElementLow" unique_id=309150814]
+[node name="BallistaBarrel" type="Node3D" parent="Ballista/BallistaTopElementLow" unique_id=309150814]
 transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0, 0)
 
-[node name="ArrowSpawnLocation" type="Node3D" parent="Turret/BallistaTopElementLow/BallistaBarrel" unique_id=1309432331]
+[node name="ArrowSpawnLocation" type="Node3D" parent="Ballista/BallistaTopElementLow/BallistaBarrel" unique_id=1309432331]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.8982694, 0.7900001, 1.2700133, -0.048)
 visible = false
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Turret/BallistaTopElementLow/BallistaBarrel/ArrowSpawnLocation" unique_id=1444911399]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Ballista/BallistaTopElementLow/BallistaBarrel/ArrowSpawnLocation" unique_id=1444911399]
 transform = Transform3D(1, 0, 0, 0, 0.33043814, 0, 0, 0, 0.2738446, -0.18170571, -0.027641058, 0.07790413)
 mesh = SubResource("BoxMesh_m1e06")
 skeleton = NodePath("../../../StaticBody3D")
@@ -990,7 +992,7 @@ color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
 
 [connection signal="body_entered" from="Enemy/CharacterBody3D/Area3D" to="Enemy" method="OnBodyEntered"]
 [connection signal="body_entered" from="Enemy2/CharacterBody3D/Area3D" to="Enemy2" method="OnBodyEntered"]
-[connection signal="body_exited" from="Turret/BallistaTopElementLow/StaticBody3D/StationPort/Area3D" to="Turret" method="OnInputBodyEntered"]
+[connection signal="body_exited" from="Ballista/BallistaTopElementLow/StaticBody3D/StationPort/Area3D" to="Ballista" method="OnInputBodyEntered"]
 [connection signal="area_entered" from="ItemDropOffNode/Area3D" to="TutorialManager" method="OnDropOffAreaEntered"]
 [connection signal="body_entered" from="WeaponDropOffNode/Area3D" to="TutorialManager" method="OnWeaponDropOffBodyEntered"]
 [connection signal="pressed" from="PauseMenu/ResumeButton" to="PauseMenu" method="OnResumePressed"]
