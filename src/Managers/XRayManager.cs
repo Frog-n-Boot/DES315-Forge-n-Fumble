@@ -4,7 +4,7 @@ using System;
 public partial class XRayManager : Node
 {
     // Shader Consts
-    private const float defaultRadius = 1.5f;
+    private const float defaultRadius = .35f;
     private const float defaultEdgeSoftness = 0.4f;
     private const int maxPlayers = 4;
     private readonly List<Node3D>_players = new();
@@ -20,10 +20,10 @@ public partial class XRayManager : Node
         Instance = this;
         
         _xrayShader = GD.Load<Shader>(ShaderPath);
-        if (_xrayShader == null)
-            GD.PrintErr($"[XRayManager] Shader not found at: {ShaderPath}");
-        else
-            GD.Print($"[XRayManager] Shader loaded from: {ShaderPath}");
+        //if (_xrayShader == null)
+            //GD.PrintErr($"[XRayManager] Shader not found at: {ShaderPath}");
+        //else
+            //GD.Print($"[XRayManager] Shader loaded from: {ShaderPath}");
         
         // Wait for all nodes to be ready
         //ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame).OnCompleted(CollectWalls);
@@ -50,18 +50,18 @@ public partial class XRayManager : Node
         if(!_players.Contains(player))
         {
             _players.Add(player);
-            GD.Print($"[XRayManager] Player registered: {player.Name} | Total players: {_players.Count}");
+            //GD.Print($"[XRayManager] Player registered: {player.Name} | Total players: {_players.Count}");
         }
-        else
-        {
-            GD.PrintErr($"[XRayManager] Player already registered: {player.Name}");
-        }
+        //else
+        //{
+            //GD.PrintErr($"[XRayManager] Player already registered: {player.Name}");
+       //}
     }
 
     public void UnregisterPlayer(Node3D player)
     {
         _players.Remove(player);
-        GD.Print($"[XRayManager] Player unregistered: {player.Name} | Total players: {_players.Count}");
+        //GD.Print($"[XRayManager] Player unregistered: {player.Name} | Total players: {_players.Count}");
     }
 
     private void CollectWalls()
@@ -70,29 +70,30 @@ public partial class XRayManager : Node
     	wallsCollected = true;
 
     	var wallNodes = GetTree().GetNodesInGroup("xray");
-    	GD.Print($"[XRayManager] Collecting walls — found {wallNodes.Count} nodes in group 'xray'");
+    	//GD.Print($"[XRayManager] Collecting walls — found {wallNodes.Count} nodes in group 'xray'");
 
     	if (wallNodes.Count == 0)
     	{
-        	GD.PrintErr("[XRayManager] No nodes in group 'xray' — walls not loaded yet or not tagged");
+        	//GD.PrintErr("[XRayManager] No nodes in group 'xray' — walls not loaded yet or not tagged");
         	return;
     	}
 
     	foreach (Node node in wallNodes)
     	{
-        	GD.Print($"[XRayManager] Processing wall node: {node.Name} (path: {node.GetPath()})");
+        	//GD.Print($"[XRayManager] Processing wall node: {node.Name} (path: {node.GetPath()})");
         	MeshInstance3D mesh = GetMeshInstance(node);
         	if (mesh != null)
         	{
-            	GD.Print($"[XRayManager] Found mesh: '{mesh.Name}' for wall: '{node.Name}'");
+            	//GD.Print($"[XRayManager] Found mesh: '{mesh.Name}' for wall: '{node.Name}'");
             	EnsureShaderMaterial(mesh);
             	walls.Add(mesh);
         	}
-        	else
-        	{
-            	GD.PrintErr($"[XRayManager] No MeshInstance3D found for: '{node.Name}'");
-        	}
+        	//else
+        	//{
+            	//GD.PrintErr($"[XRayManager] No MeshInstance3D found for: '{node.Name}'");
+        	//}
 		}
+       // GD.Print($"[XRayManager]  Total walls tracked: {walls.Count}");
     }
 
     private void UpdateWalls()
@@ -112,7 +113,7 @@ public partial class XRayManager : Node
         {
             if(mesh.GetSurfaceOverrideMaterial(0) is not ShaderMaterial mat)
             {
-                GD.PrintErr($"[XRayManager] Wall '{mesh.Name}' missing ShaderMaterial — EnsureShaderMaterial may have failed");
+                //GD.PrintErr($"[XRayManager] Wall '{mesh.Name}' missing ShaderMaterial — EnsureShaderMaterial may have failed");
                 continue;
             }
             
@@ -137,44 +138,55 @@ public partial class XRayManager : Node
     }
 
     private void EnsureShaderMaterial(MeshInstance3D mesh)
+{
+    if (mesh.GetSurfaceOverrideMaterial(0) is ShaderMaterial)
     {
-        // Already has our shader material, nothing to do
-        if (mesh.GetSurfaceOverrideMaterial(0) is ShaderMaterial)
-        {
-            GD.Print($"[XRayManager] '{mesh.Name}' already has ShaderMaterial, skipping");
-            return;
-        }
-
-        if (_xrayShader == null)
-        {
-            GD.PrintErr($"[XRayManager] Cannot apply shader to '{mesh.Name}' — shader is null");
-            return;
-        }
-
-        var mat = new ShaderMaterial();
-        mat.Shader = _xrayShader;
-
-        // Copy over albedo from existing StandardMaterial3D if present
-        if (mesh.GetSurfaceOverrideMaterial(0) is StandardMaterial3D existing)
-        {
-            GD.Print($"[XRayManager] '{mesh.Name}' copying albedo from surface override StandardMaterial3D");
-            mat.SetShaderParameter("albedo", existing.AlbedoColor);
-            mat.SetShaderParameter("texture_albedo", existing.AlbedoTexture);
-        }
-        else if (mesh.Mesh?.SurfaceGetMaterial(0) is StandardMaterial3D meshMat)
-        {
-            GD.Print($"[XRayManager] '{mesh.Name}' copying albedo from mesh StandardMaterial3D");
-            mat.SetShaderParameter("albedo", meshMat.AlbedoColor);
-            mat.SetShaderParameter("texture_albedo", meshMat.AlbedoTexture);
-        }
-        else
-        {
-            GD.PrintErr($"[XRayManager] '{mesh.Name}' has no StandardMaterial3D to copy from — shader will use defaults");
-        }
-
-        mat.SetShaderParameter("radius", defaultRadius);
-        mat.SetShaderParameter("edge_softness", defaultEdgeSoftness);
-        mesh.SetSurfaceOverrideMaterial(0, mat);
-        GD.Print($"[XRayManager] ShaderMaterial applied to '{mesh.Name}'");
+        //GD.Print($"[XRayManager] '{mesh.Name}' already has ShaderMaterial, skipping");
+        return;
     }
+
+    if (_xrayShader == null)
+    {
+        //GD.PrintErr($"[XRayManager] Cannot apply shader to '{mesh.Name}' — shader is null");
+        return;
+    }
+
+    // Get the existing material from either the override or the mesh itself
+    Material existingMat = mesh.GetSurfaceOverrideMaterial(0) 
+                        ?? mesh.Mesh?.SurfaceGetMaterial(0);
+
+    var mat = new ShaderMaterial();
+    mat.Shader = _xrayShader;
+
+    if (existingMat is StandardMaterial3D std)
+    {
+        //GD.Print($"[XRayManager] '{mesh.Name}' copying from StandardMaterial3D");
+        // Copy ALL texture slots, not just albedo
+       mat.SetShaderParameter("albedo", std.AlbedoColor);
+        mat.SetShaderParameter("texture_albedo", std.AlbedoTexture);
+    }
+    else if (existingMat is BaseMaterial3D baseMat)
+    {
+        //GD.Print($"[XRayManager] '{mesh.Name}' copying from BaseMaterial3D");
+        mat.SetShaderParameter("albedo", baseMat.AlbedoColor);
+        mat.SetShaderParameter("texture_albedo", baseMat.AlbedoTexture);
+    }
+    else if (existingMat is ShaderMaterial existingShader)
+    {
+        // Wall already has a custom shader — grab its texture parameter if it has one
+        //GD.Print($"[XRayManager] '{mesh.Name}' already uses ShaderMaterial, copying texture_albedo");
+        var existingTex = existingShader.GetShaderParameter("texture_albedo");
+        if (existingTex.Obj != null)
+            mat.SetShaderParameter("texture_albedo", existingTex);
+    }
+    else
+    {
+        //GD.PrintErr($"[XRayManager] '{mesh.Name}' has unhandled material type: {existingMat?.GetType().Name ?? "null"}");
+    }
+
+    mat.SetShaderParameter("radius", defaultRadius);
+    mat.SetShaderParameter("edge_softness", defaultEdgeSoftness);
+    mesh.SetSurfaceOverrideMaterial(0, mat);
+    //GD.Print($"[XRayManager] ShaderMaterial applied to '{mesh.Name}'");
+}
 }

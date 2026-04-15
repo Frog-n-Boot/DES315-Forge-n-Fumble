@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://dp140br76vlls" path="res://assets/materials/Texture_sets/Environment_Textures/cobble_forge.tres" id="2_sbfuh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sbfuh"]
-size = Vector3(1.2768555, 2.2884827, 1.2252197)
+size = Vector3(1.180481, 2.2884827, 1.1705017)
 
 [node name="CoblPillarLow" type="Node3D" unique_id=1439026198 groups=["xray"]]
 
@@ -16,7 +16,7 @@ surface_material_override/0 = ExtResource("2_sbfuh")
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1137601960]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2098533087]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.007080078, 1.233845, 0.010070801)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.015350342, 1.233845, 0.018447876)
 shape = SubResource("BoxShape3D_sbfuh")
 
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=2123104527]

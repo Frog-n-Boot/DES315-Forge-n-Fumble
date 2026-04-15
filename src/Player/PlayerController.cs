@@ -94,10 +94,9 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		areaPickup = GetNodeOrNull<Area3D>("Area3D");
 		areaPickup.AreaEntered += OnPickupAreaEntered;
 		areaPickup.AreaExited += OnPickUpAreaExited;
-
 		animPlayer.AnimationFinished += OnAnimationFinished;
 	
-		// ADD THIS: Find existing sword in hand
+
 		rightHand = GetNodeOrNull<Node3D>("CollisionShape3D/RightHand");
 		leftHand = GetNodeOrNull<Node3D>("CollisionShape3D/LeftHand");
 		if (rightHand != null)
@@ -118,12 +117,14 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 		lastRotation = Rotation.Y;
 
-		if (XRayManager.Instance == null)
-        GD.PrintErr("[Player] ❌ XRayManager.Instance is null — autoload not ready yet");
-    	else
-        GD.Print($"[Player] ✅ XRayManager found, registering {Name}");
+		if (XRayManager.Instance == null) {	
+			GD.PrintErr("[Player]  XRayManager.Instance is null — autoload not ready yet");
+		}
+		else{
+        	GD.Print($"[Player]  XRayManager found, registering {Name}");
+		}
         
-    	XRayManager.Instance?.RegisterPlayer(this);
+    	CallDeferred(MethodName.RegisterWithManager);
 	}
 
     public override void _ExitTree()
@@ -132,6 +133,16 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		XRayManager.Instance?.UnregisterPlayer(this);
     }
 
+	private void RegisterWithManager()
+	{
+    	if (XRayManager.Instance == null)
+    	{
+        	GD.PrintErr("[Player] XRayManager.Instance is null!");
+        	return;
+    	}
+    	GD.Print($"[Player] Registering {Name} with XRayManager");
+    	XRayManager.Instance.RegisterPlayer(this);
+	}
 	public IEnumerable<ItemData> GetCarriedItems()
 	{
 		if(leftHand.GetChildCount() > 0)
