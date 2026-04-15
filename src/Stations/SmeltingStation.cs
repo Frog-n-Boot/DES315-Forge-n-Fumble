@@ -10,6 +10,7 @@ public partial class SmeltingStation : BaseStationScript
 	[Export] private float healInterval = 1f;
 
 	[Signal] public delegate void IngotCraftedEventHandler();
+	
 
 	private float healTimer = 0f;
 	private bool isHealing = false;

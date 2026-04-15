@@ -176,6 +176,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 					sword.CheckDurability += OnSwordDurabilityChecked;
 								
 				currentWeapon.Broke += OnSwordBroke;
+				currentWeapon.SetEnemyCollisionEnabled(true);
 				GD.Print($"Player {PlayerIndex} found existing sword in hand!");
 				return;
 			}

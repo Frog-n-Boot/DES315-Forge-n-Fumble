@@ -39,6 +39,7 @@ public abstract partial class BaseStationScript : Node3D
 	public override void _Ready()
 	{
 		buttonTexture.Visible = false;
+		timeProgressBar.Visible = false;
 		SetupArea();
 		SetupTimer();
 		stationName.Text = GetStationName();
@@ -160,7 +161,8 @@ public abstract partial class BaseStationScript : Node3D
 
 		if(!string.IsNullOrEmpty(pendingRecipe.ouputGroup))
 			instance.AddToGroup(pendingRecipe.ouputGroup);
-
+			
+		timeProgressBar.Visible = false;
 		outputNode.AddChild(instance);
 		instance.GlobalPosition = outputNode.GlobalPosition;
 		timeProgressBar.Value = 0;
@@ -183,7 +185,7 @@ public abstract partial class BaseStationScript : Node3D
 		}
 		if(GetRequiredItems(out var itemsToConsume, out var recipes))
 		{	
-
+			timeProgressBar.Visible = true;
 			pendingRecipe = recipes;
 			pendingConsume = itemsToConsume;
 			ConsumeItems();

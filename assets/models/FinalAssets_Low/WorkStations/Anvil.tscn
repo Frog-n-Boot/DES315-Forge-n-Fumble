@@ -3,9 +3,11 @@
 [ext_resource type="Script" uid="uid://bkgt1ax3obdva" path="res://src/Stations/ForgingStation.cs" id="1_c6611"]
 [ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Dull_Sword.tscn" id="2_fj0e1"]
 [ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="3_0gpkw"]
+[ext_resource type="Texture2D" uid="uid://tbrctcwppirl" path="res://assets/textures/UI/ui_x_button.tres" id="3_gk661"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="3_yb3nn"]
 [ext_resource type="ArrayMesh" uid="uid://mmh030obulkw" path="res://assets/models/FinalAssets_Low/WorkStations/Anvil_low.obj" id="4_1latb"]
 [ext_resource type="Texture2D" uid="uid://d0b62wsx8gdhv" path="res://assets/materials/Texture_sets/WorkStations/anvil_low_BaseCol.tga" id="4_813ft"]
+[ext_resource type="Texture2D" uid="uid://cmhg5fabsggpk" path="res://assets/textures/UI/ui_keyboard_e_button.tres" id="4_uh5my"]
 [ext_resource type="Script" uid="uid://cqdmkhuvmmyck" path="res://src/Minigames/SequenceMinigame.cs" id="4_yb3nn"]
 [ext_resource type="Texture2D" uid="uid://klsyonb1xfst" path="res://assets/materials/Texture_sets/WorkStations/anvil_low_Normal.tga" id="5_o5b8a"]
 [ext_resource type="Texture2D" uid="uid://bet17bbe1leks" path="res://assets/materials/Texture_sets/WorkStations/anvil_low_ORM.tga" id="5_u3lgt"]
@@ -15,14 +17,6 @@
 [ext_resource type="AudioStream" uid="uid://6566qnnkif3q" path="res://assets/Sounds/SFX/Anvil2.wav" id="11_2emfc"]
 [ext_resource type="AudioStream" uid="uid://ctq3m1e8gjrsl" path="res://assets/Sounds/SFX/Anvil3.wav" id="12_g2xu1"]
 [ext_resource type="AudioStream" uid="uid://cynyfxhfehvv1" path="res://assets/Sounds/SFX/Anvil4.wav" id="13_721mw"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gk661"]
-atlas = ExtResource("3_0gpkw")
-region = Rect2(114, 365, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fbisp"]
-atlas = ExtResource("3_0gpkw")
-region = Rect2(216, 805, 40, 43)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdc31"]
 size = Vector3(2.227539, 0.8360596, 0.89453125)
@@ -37,13 +31,11 @@ heightmap_texture = ExtResource("5_u3lgt")
 [sub_resource type="ViewportTexture" id="ViewportTexture_gk661"]
 viewport_path = NodePath("Sprite3D/SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_k01nc"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_uh5my"]
 viewport_path = NodePath("Sprite3D2/SubViewport")
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gk661"]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_rl3yd"]
-atlas = SubResource("CompressedTexture2D_gk661")
+atlas = ExtResource("3_0gpkw")
 region = Rect2(114, 365, 40, 40)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_svcrb"]
@@ -62,8 +54,8 @@ outputNode = NodePath("OutputPort")
 timeProgressBar = NodePath("Sprite3D/SubViewport/ProgressBar")
 stationName = NodePath("Sprite3D/SubViewport/Label")
 buttonTexture = NodePath("Sprite3D2/SubViewport/TextureRect")
-controllerButtonTexture = SubResource("AtlasTexture_gk661")
-keyboardButtonTexture = SubResource("AtlasTexture_fbisp")
+controllerButtonTexture = ExtResource("3_gk661")
+keyboardButtonTexture = ExtResource("4_uh5my")
 recipes = Array[Object]([ExtResource("5_uh5my"), ExtResource("6_gk661")])
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=90114362]
@@ -80,7 +72,7 @@ mesh = ExtResource("4_1latb")
 skeleton = NodePath("../..")
 
 [node name="InputPort" parent="." unique_id=750325492 instance=ExtResource("3_yb3nn")]
-transform = Transform3D(12.001051, 0, 0, 0, 1.3650613, 0, 0, 0, 6.8070707, -0.02589643, 0.5367638, 0.06567299)
+transform = Transform3D(12.001051, 0, 0, 0, 1.3650613, 0, 0, 0, 9.535473, -0.02589643, 0.5367638, 0.06567299)
 
 [node name="OutputPort" parent="." unique_id=1109718632 instance=ExtResource("3_yb3nn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07868272, 0.33549273, -1.1562169)
@@ -112,7 +104,7 @@ offset_bottom = 49.0
 
 [node name="Sprite3D2" type="Sprite3D" parent="." unique_id=1836299419]
 transform = Transform3D(-6.2186e-08, -1, -1.7320508, -4.371139e-08, 1.7320508, -1, 2, 6.762175e-09, -7.5710346e-08, 1.6728728, 0.44851065, 0.06475383)
-texture = SubResource("ViewportTexture_k01nc")
+texture = SubResource("ViewportTexture_uh5my")
 
 [node name="SubViewport" type="SubViewport" parent="Sprite3D2" unique_id=1928502625]
 transparent_bg = true

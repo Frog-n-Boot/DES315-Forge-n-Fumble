@@ -23,7 +23,6 @@ viewport_path = NodePath("Sprite3D/SubViewport")
 [node name="IronOre" type="Node3D" unique_id=904125942 node_paths=PackedStringArray("itemTextureRect")]
 script = ExtResource("1_h3w5l")
 itemDataPath = "uid://cju2wsngeff7w"
-shouldDespawn = true
 itemPromptTexture = Array[Texture2D]([ExtResource("2_me13d"), ExtResource("3_kcdys")])
 itemTextureRect = NodePath("Sprite3D/SubViewport/TextureRect")
 

@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/Resources/CraftingRecipes.cs" id="3_hj04q"]
 [ext_resource type="Texture2D" uid="uid://50xg82nov3j2" path="res://assets/materials/Texture_sets/WorkStations/Grinder_low_BaseCol.tga" id="4_chpgb"]
 [ext_resource type="PackedScene" uid="uid://di5odw2tmde5j" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Sword.tscn" id="4_uhy0b"]
+[ext_resource type="Texture2D" uid="uid://cmhg5fabsggpk" path="res://assets/textures/UI/ui_keyboard_e_button.tres" id="4_wwlso"]
 [ext_resource type="ArrayMesh" uid="uid://gxhgwjbmhtq6" path="res://assets/models/FinalAssets_Low/WorkStations/Grinder_low.obj" id="5_fgmgg"]
 [ext_resource type="Texture2D" uid="uid://6k5i0lfvsf5" path="res://assets/materials/Texture_sets/WorkStations/Grinder_low_ORM.tga" id="5_yoit8"]
 [ext_resource type="Texture2D" uid="uid://ui3qrxklkrbs" path="res://assets/materials/Texture_sets/WorkStations/Grinder_low_Normal.tga" id="6_8jrxj"]
@@ -19,10 +20,6 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_wwlso"]
 atlas = ExtResource("3_bn2l6")
 region = Rect2(114, 365, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w0ftq"]
-atlas = ExtResource("3_bn2l6")
-region = Rect2(216, 805, 40, 43)
 
 [sub_resource type="Resource" id="Resource_fgmgg"]
 script = ExtResource("3_hj04q")
@@ -87,7 +84,7 @@ timeProgressBar = NodePath("Sprite3D/SubViewport/ProgressBar")
 stationName = NodePath("Sprite3D/SubViewport/Label")
 buttonTexture = NodePath("Sprite3D2/SubViewport/TextureRect")
 controllerButtonTexture = SubResource("AtlasTexture_wwlso")
-keyboardButtonTexture = SubResource("AtlasTexture_w0ftq")
+keyboardButtonTexture = ExtResource("4_wwlso")
 recipes = Array[Object]([SubResource("Resource_fgmgg"), SubResource("Resource_wc540")])
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=90114362]

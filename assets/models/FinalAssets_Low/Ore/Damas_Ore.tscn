@@ -23,7 +23,6 @@ viewport_path = NodePath("Sprite3D/SubViewport")
 [node name="DamasOre" type="Node3D" unique_id=692066931 node_paths=PackedStringArray("itemTextureRect")]
 script = ExtResource("1_qeo4k")
 itemDataPath = "uid://rj5laf73xbp8"
-shouldDespawn = true
 itemPromptTexture = Array[Texture2D]([ExtResource("6_we87l"), ExtResource("3_nbtug")])
 itemTextureRect = NodePath("Sprite3D/SubViewport/TextureRect")
 

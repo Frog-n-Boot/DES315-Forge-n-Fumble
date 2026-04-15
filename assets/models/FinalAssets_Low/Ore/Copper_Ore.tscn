@@ -23,7 +23,6 @@ viewport_path = NodePath("Sprite3D/SubViewport")
 [node name="Copper_Ore" type="Node3D" unique_id=2110523039 node_paths=PackedStringArray("itemTextureRect")]
 script = ExtResource("1_wlcvm")
 itemDataPath = "uid://c6k5q27uaxle2"
-shouldDespawn = true
 itemPromptTexture = Array[Texture2D]([ExtResource("2_knlju"), ExtResource("3_bec3c")])
 itemTextureRect = NodePath("Sprite3D/SubViewport/TextureRect")
 

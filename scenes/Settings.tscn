@@ -35,12 +35,13 @@ stretch_mode = 1
 z_index = -1
 offset_right = 40.0
 offset_bottom = 40.0
-scale = Vector2(28.750067, 16.369858)
+scale = Vector2(32.207207, 18.071495)
 color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
 
 [node name="Panel" type="Panel" parent="CanvasLayer" unique_id=1689913511]
 offset_right = 1152.0
 offset_bottom = 650.0
+scale = Vector2(1.1202481, 1.1039494)
 
 [node name="Label" type="Label" parent="CanvasLayer/Panel" unique_id=1679748900]
 layout_mode = 1
@@ -63,6 +64,7 @@ offset_left = -2.0
 offset_top = 102.0
 offset_right = 1150.0
 offset_bottom = 169.0
+mouse_filter = 0
 current_tab = 0
 
 [node name="Sound" type="Control" parent="CanvasLayer/Panel/TabContainer" unique_id=1674981246]
@@ -341,6 +343,7 @@ scale = Vector2(0.8400012, 0.7599994)
 focus_neighbor_top = NodePath("../TabContainer/Sound/SFXVolumeLabel/SFXVolumeSlider")
 focus_neighbor_right = NodePath("../ApplyButton")
 focus_next = NodePath("../TabContainer/Sound/MasterVolumeLabel/MasterVolumeSlider")
+mouse_filter = 1
 theme_override_font_sizes/font_size = 40
 text = "Back
 "
@@ -355,6 +358,7 @@ offset_bottom = 672.0
 scale = Vector2(0.8400012, 0.7599994)
 focus_neighbor_left = NodePath("../BackButton")
 focus_neighbor_top = NodePath("../TabContainer/Sound/SFXVolumeLabel/SFXVolumeSlider")
+mouse_filter = 1
 theme_override_font_sizes/font_size = 40
 text = "Apply
 
