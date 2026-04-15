@@ -68,11 +68,15 @@ albedo_color = Color(0, 0, 1, 1)
 height = 0.8371582
 radius = 0.08105469
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ohbk7"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_vocjd"]
 viewport_path = NodePath("Sprite3D/SubViewport")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wq66q"]
-bg_color = Color(0.19014141, 0.71371996, 0.2947564, 1)
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vocjd"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jycwk"]
+atlas = SubResource("CompressedTexture2D_vocjd")
+region = Rect2(21, 519, 261, 39)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_jycwk"]
 viewport_path = NodePath("Sprite3D2/SubViewport")
@@ -105,7 +109,7 @@ audio = NodePath("AudioStreamPlayer3D")
 healthAura = NodePath("Area3D")
 inputNode = NodePath("InputPort")
 outputNode = NodePath("OutputPort")
-timeProgressBar = NodePath("Sprite3D/SubViewport/ProgressBar")
+timeProgressBar = NodePath("Sprite3D/SubViewport/TextureProgressBar")
 stationName = NodePath("Sprite3D/SubViewport/Label")
 buttonTexture = NodePath("Sprite3D2/SubViewport/TextureRect")
 controllerButtonTexture = SubResource("AtlasTexture_8inme")
@@ -143,14 +147,15 @@ shape = SubResource("CylinderShape3D_vrvjj")
 transform = Transform3D(5.2756314, 0, 0, 0, 2.857143, 0, 0, 0, 5.4322386, -9.265402, 1.5173415, -0.27193514)
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=741148502]
-transform = Transform3D(-19.73044, 0, -5.144179e-07, 0, 26.292894, 0, 1.7248897e-06, 0, -5.884255, -0.022883892, 23.910292, -1.8400894)
-texture = SubResource("ViewportTexture_ohbk7")
+transform = Transform3D(-19.73044, 0, -5.144179e-07, -8.624448e-07, 22.770311, 2.9421272, 1.4937981e-06, 13.146447, -5.095914, -0.8250262, 15.043897, 0.36419868)
+texture = SubResource("ViewportTexture_vocjd")
 
 [node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=1009488754]
 transparent_bg = true
-size = Vector2i(100, 83)
+size = Vector2i(100, 15)
 
 [node name="Label" type="Label" parent="Sprite3D/SubViewport" unique_id=1037346905]
+visible = false
 z_index = 1
 offset_left = 25.0
 offset_top = 45.0
@@ -158,12 +163,12 @@ offset_right = 69.0
 offset_bottom = 94.0
 text = "Forge"
 
-[node name="ProgressBar" type="ProgressBar" parent="Sprite3D/SubViewport" unique_id=1436996828]
-offset_top = 34.0
-offset_right = 100.0
-offset_bottom = 84.0
-theme_override_styles/fill = SubResource("StyleBoxFlat_wq66q")
-show_percentage = false
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Sprite3D/SubViewport" unique_id=1924511821]
+offset_right = 261.0
+offset_bottom = 40.0
+scale = Vector2(0.3809055, 0.3809055)
+value = 45.0
+texture_progress = SubResource("AtlasTexture_jycwk")
 
 [node name="Sprite3D2" type="Sprite3D" parent="." unique_id=1410507609]
 transform = Transform3D(-6.9999995, 3.059797e-07, 5.2997234e-07, 5.2997257e-07, 6.062178, 3.5000002, -3.0597965e-07, 3.5000002, -6.062178, -0.32537392, 0.7638029, -7.0186863)
