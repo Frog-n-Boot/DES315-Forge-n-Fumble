@@ -145,13 +145,11 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10.5
 controllerButtonTexture = SubResource("AtlasTexture_cmqll")
 keyboardButtonTexture = SubResource("AtlasTexture_8cp6k")
 
-[node name="Anvil" parent="NavigationRegion3D" unique_id=1158721071 node_paths=PackedStringArray("levelManager") groups=["navigation_mesh_source_group"] instance=ExtResource("5_hq6as")]
+[node name="Anvil" parent="NavigationRegion3D" unique_id=1158721071 groups=["navigation_mesh_source_group"] instance=ExtResource("5_hq6as")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.855, 0, 2.3331976)
-levelManager = NodePath("../../LevelManager")
 
-[node name="Forge" parent="NavigationRegion3D" unique_id=994045895 node_paths=PackedStringArray("levelManager") instance=ExtResource("8_cmqll")]
+[node name="Forge" parent="NavigationRegion3D" unique_id=994045895 instance=ExtResource("8_cmqll")]
 transform = Transform3D(-0.3, 0, -2.6226834e-08, 0, 0.3, 0, 2.6226834e-08, 0, -0.3, 0.22441173, 0.15882301, 0.42761207)
-levelManager = NodePath("../../LevelManager")
 
 [node name="Rocks" type="Node" parent="NavigationRegion3D" unique_id=266735782 groups=["navigation_mesh_source_group"]]
 
