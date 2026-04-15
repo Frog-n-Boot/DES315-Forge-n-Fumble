@@ -4,27 +4,30 @@
 [ext_resource type="Texture2D" uid="uid://dy1wiwwij327x" path="res://assets/materials/Texture_sets/2DTextures/furnaceImage.webp" id="2_jiu6o"]
 [ext_resource type="Texture2D" uid="uid://bvw5yhtbch6ht" path="res://assets/materials/Texture_sets/2DTextures/anvilImage.webp" id="3_40atx"]
 [ext_resource type="Texture2D" uid="uid://dwexwmybryvpl" path="res://assets/materials/Texture_sets/2DTextures/grindstoneImage.webp" id="4_yx35g"]
+[ext_resource type="FontFile" uid="uid://jc0e5wwfs5d7" path="res://assets/textures/UI/Blackney-Light.otf" id="5_jiu6o"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5w6ei"]
-load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jiu6o"]
 atlas = SubResource("CompressedTexture2D_5w6ei")
 region = Rect2(581, 500, 285, 91)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jiu6o"]
-load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yx35g"]
 atlas = SubResource("CompressedTexture2D_jiu6o")
 region = Rect2(581, 500, 285, 91)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mipys"]
-load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_40atx"]
 atlas = SubResource("CompressedTexture2D_mipys")
 region = Rect2(581, 500, 285, 91)
+
+[sub_resource type="LabelSettings" id="LabelSettings_40atx"]
+font = ExtResource("5_jiu6o")
+font_size = 25
+outline_size = 3
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7dxqx"]
 
@@ -131,6 +134,7 @@ Drop-Left-Item  │  Q                 │  Left Shoulder
 Drop-Right-Item│  E                 │  Right Shoulder
 Pause                  │  ESC             │  ☰
 Sequence           │  ←↑→↓          │  < > v ^"
+label_settings = SubResource("LabelSettings_40atx")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1783236890]
 z_index = -1
