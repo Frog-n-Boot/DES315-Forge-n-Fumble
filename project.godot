@@ -27,9 +27,10 @@ buses/default_bus_layout="uid://bw3inhejuaaq6"
 [autoload]
 
 InputManager="*uid://cpmas3er6cuol"
-Forge="*uid://csp7j7pbfs6rf"
 SettingsManager="*uid://bmvu35qw3l2o1"
 SceneManager="*uid://whjx5ow2exj4"
+Forge="*uid://csp7j7pbfs6rf"
+XRayManager="*uid://tdc3uinptads"
 
 [debug]
 
@@ -68,8 +69,8 @@ PlayerSpawner=""
 Turret=""
 Weapon=""
 navigation_mesh_source_group="The Navigation layer for the AI"
-<<<<<<<HEADnavigation_mesh_source_group="The Navigation layer for the AI"
 Ballista=""
+xray="The group which all objects attached to it will be transparent"
 
 [input]
 

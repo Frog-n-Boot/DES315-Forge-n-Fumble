@@ -6,14 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="3_eu12u"]
 [ext_resource type="Texture2D" uid="uid://tbrctcwppirl" path="res://assets/textures/UI/ui_x_button.tres" id="4_42hb7"]
 [ext_resource type="Texture2D" uid="uid://dc3r4qxj536qx" path="res://assets/materials/Texture_sets/Item_Textures/sword_frts_rough_low_ORM.tga" id="4_23646"]
-[ext_resource type="Texture2D" uid="uid://dnrpwukmp1jyj" path="res://assets/textures/UI/ui_e_button.tres" id="5_2kw2i"]
 [ext_resource type="Texture2D" uid="uid://cfllkfsxak7hb" path="res://assets/materials/Texture_sets/Item_Textures/sword_frts_rough_low_Normal.tga" id="5_42hb7"]
+[ext_resource type="Texture2D" uid="uid://cmhg5fabsggpk" path="res://assets/textures/UI/ui_keyboard_e_button.tres" id="5_23646"]
 [ext_resource type="ArrayMesh" uid="uid://vmdklfvgul40" path="res://assets/models/FinalAssets_Low/Items_Models/Sword_first_low.obj" id="6_2kw2i"]
 [ext_resource type="AudioStream" uid="uid://c01r2egd4skm" path="res://assets/Sounds/SFX/SwordBreak.wav" id="7_fqr2a"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ds6gf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_23646"]
 atlas = ExtResource("3_eu12u")
-region = Rect2(632, 31, 63, 190)
+region = Rect2(632, 30, 63, 191)
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_pswvq"]
 albedo_texture = ExtResource("3_ds6gf")
@@ -38,9 +38,9 @@ sharpenedVersion = ExtResource("2_eu12u")
 audio = NodePath("SwordBreak")
 damage = 1
 maxDurability = 10
-weaponTexture = SubResource("AtlasTexture_ds6gf")
+weaponTexture = SubResource("AtlasTexture_23646")
 weaponTint = Color(0.78039217, 0.47843137, 0.23921569, 1)
-weaponPromptTexture = Array[Texture2D]([ExtResource("4_42hb7"), ExtResource("5_2kw2i")])
+weaponPromptTexture = Array[Texture2D]([ExtResource("4_42hb7"), ExtResource("5_23646")])
 weaponTextureRect = NodePath("Sprite3D/SubViewport/TextureRect")
 pickUpArea = NodePath("StaticBody3D/Area3D")
 weaponBody = NodePath("StaticBody3D")

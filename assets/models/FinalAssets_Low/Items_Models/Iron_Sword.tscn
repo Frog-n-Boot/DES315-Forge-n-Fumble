@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://tbrctcwppirl" path="res://assets/textures/UI/ui_x_button.tres" id="3_p43h7"]
 [ext_resource type="Texture2D" uid="uid://cfllkfsxak7hb" path="res://assets/materials/Texture_sets/Item_Textures/sword_frts_rough_low_Normal.tga" id="3_xvnj0"]
 [ext_resource type="Texture2D" uid="uid://dspkvve6wtnc3" path="res://assets/materials/Texture_sets/Item_Textures/sword_scnd_shin_low_ORM.tga" id="4_gsg4f"]
-[ext_resource type="Texture2D" uid="uid://dnrpwukmp1jyj" path="res://assets/textures/UI/ui_e_button.tres" id="4_hgo20"]
+[ext_resource type="Texture2D" uid="uid://cmhg5fabsggpk" path="res://assets/textures/UI/ui_keyboard_e_button.tres" id="4_p43h7"]
 [ext_resource type="ArrayMesh" uid="uid://vmdklfvgul40" path="res://assets/models/FinalAssets_Low/Items_Models/Sword_first_low.obj" id="5_acyf5"]
 [ext_resource type="AudioStream" uid="uid://c01r2egd4skm" path="res://assets/Sounds/SFX/SwordBreak.wav" id="7_xvnj0"]
 
@@ -38,7 +38,7 @@ audio = NodePath("SwordBreak")
 damage = 7
 maxDurability = 20
 weaponTexture = SubResource("AtlasTexture_acyf5")
-weaponPromptTexture = Array[Texture2D]([ExtResource("3_p43h7"), ExtResource("4_hgo20")])
+weaponPromptTexture = Array[Texture2D]([ExtResource("3_p43h7"), ExtResource("4_p43h7")])
 weaponTextureRect = NodePath("Sprite3D/SubViewport/TextureRect")
 pickUpArea = NodePath("StaticBody3D/Area3D")
 weaponBody = NodePath("StaticBody3D")

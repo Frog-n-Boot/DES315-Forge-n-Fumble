@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://bk2uam5leqcv8" path="res://src/Player/PlayerSpawner.cs" id="11_pdwbg"]
 [ext_resource type="PackedScene" uid="uid://8roa2xkb2ipl" path="res://assets/prefabs/Player.tscn" id="12_5grtr"]
 [ext_resource type="Script" uid="uid://bs44u3pohek1t" path="res://src/Menus/SettingsMenu.cs" id="13_vua0o"]
-[ext_resource type="Script" uid="uid://bj4pcgxjt3ru7" path="res://src/Mangers/WaveManager.cs" id="14_t70y2"]
+[ext_resource type="Script" uid="uid://bj4pcgxjt3ru7" path="res://src/Managers/WaveManager.cs" id="14_t70y2"]
 [ext_resource type="Resource" uid="uid://calih72lg8n07" path="res://assets/resources/AI/NormalEnemyData.tres" id="15_8gny2"]
 [ext_resource type="Resource" uid="uid://cdki2c88hftlb" path="res://assets/resources/AI/FastEnemyData.tres" id="16_s3wmy"]
 [ext_resource type="Resource" uid="uid://cvs5mxaqpoflx" path="res://assets/resources/AI/StrongEnemyData.tres" id="17_gdcyb"]
@@ -45,7 +45,7 @@
 [ext_resource type="ArrayMesh" uid="uid://g007ahf37syv" path="res://assets/models/FinalAssets_Low/Ore/Damas_ing_low.obj" id="36_pdwbg"]
 [ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Dull_Sword.tscn" id="38_cmqll"]
 [ext_resource type="PackedScene" uid="uid://d1y4lf17i3iid" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Dull_Sword.tscn" id="39_8cp6k"]
-[ext_resource type="Script" uid="uid://d0qxci8nvqnkh" path="res://src/Mangers/LevelManager.cs" id="40_8cp6k"]
+[ext_resource type="Script" uid="uid://d0qxci8nvqnkh" path="res://src/Managers/LevelManager.cs" id="40_8cp6k"]
 [ext_resource type="PackedScene" uid="uid://bfvifq667vxvj" path="res://assets/models/FinalAssets_Low/Ore/Damas_Ore.tscn" id="41_8b871"]
 [ext_resource type="PackedScene" uid="uid://c36fijnqqehnq" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Ingot.tscn" id="42_s3wmy"]
 [ext_resource type="PackedScene" uid="uid://o7vvnubwicff" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Ingot.tscn" id="43_gdcyb"]
@@ -53,7 +53,6 @@
 [ext_resource type="PackedScene" uid="uid://kxj85aq1b0n0" path="res://assets/models/FinalAssets_Low/Items_Models/Damas_Ingot.tscn" id="45_0f1tp"]
 [ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Sword.tscn" id="46_0qimb"]
 [ext_resource type="PackedScene" uid="uid://di5odw2tmde5j" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Sword.tscn" id="47_in2eo"]
-[ext_resource type="PackedScene" uid="uid://cayfp8m51s7np" path="res://assets/models/FinalAssets_Low/Items_Models/Crossbow.tscn" id="49_oa6sj"]
 [ext_resource type="MeshLibrary" uid="uid://cui246c4brede" path="res://scenes/Gridmap/Tiles.tres" id="50_0f1tp"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_dg70y"]
@@ -357,11 +356,11 @@ spawner = NodePath("../../PlayerSpawner")
 portraitContainer = NodePath("HBoxContainer")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/CanvasLayer" unique_id=1200533580]
-offset_left = 48.0
-offset_top = 505.0
-offset_right = 88.00001
-offset_bottom = 545.0
-scale = Vector2(1.6396221, 1.4489933)
+offset_left = 46.0
+offset_top = 612.0
+offset_right = 86.0
+offset_bottom = 652.0
+scale = Vector2(1.2790005, 1)
 pivot_offset = Vector2(20, 0)
 theme_override_constants/separation = 225
 
@@ -1044,9 +1043,6 @@ ironSwordScene = ExtResource("47_in2eo")
 ironSwordCount = 10
 healthPackObject = ExtResource("23_gjpm3")
 healthpackCount = 10
-
-[node name="Crossbow" parent="." unique_id=1323232309 instance=ExtResource("49_oa6sj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.044379234, -0.26839352, 4.972278)
 
 [node name="Gripmap" type="Node3D" parent="." unique_id=929500366 groups=["navigation_mesh_source_group"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.098751, -0.12141548, -85.37008)

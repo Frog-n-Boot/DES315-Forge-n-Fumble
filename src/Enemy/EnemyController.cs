@@ -8,16 +8,16 @@ public partial class EnemyController : CharacterBody3D
 
 {
 
-    public enum EnemyType { Normal, Fast, Strong }
-    #region Signals
+	public enum EnemyType { Normal, Fast, Strong }
+	#region Signals
 
-    [Signal] public delegate void DiedEventHandler(EnemyController enemy, Vector3 deathPosition);
-    [Signal] public delegate void EnemyHealthChangedEventHandler(int currentHealth, int maxHealth);
-    [Signal] public delegate void DamagedTargetEventHandler(Node3D target, int damage);
-    [Signal] public delegate void StateChangedEventHandler(string newStateName);
+	[Signal] public delegate void DiedEventHandler(EnemyController enemy, Vector3 deathPosition);
+	[Signal] public delegate void EnemyHealthChangedEventHandler(int currentHealth, int maxHealth);
+	[Signal] public delegate void DamagedTargetEventHandler(Node3D target, int damage);
+	[Signal] public delegate void StateChangedEventHandler(string newStateName);
 
-    #endregion
-    #region Exports
+	#endregion
+	#region Exports
 
     [Export] public EnemyData enemyData;
     [Export] public MeshInstance3D mesh;
@@ -25,161 +25,161 @@ public partial class EnemyController : CharacterBody3D
     [Export] public NavigationAgent3D navigationAgent;
     [Export] private bool isStationary = false;
 
-    #endregion
+	#endregion
 
 
-    #region Runtime Stats
-    public string EnemyName     => enemyData.enemyName;
-    public int    MaxHealth      => enemyData.maxHealth;
-    public int    Damage         => enemyData.damage;
-    public int    DamageToPlayer => enemyData.damageToPlayer;
-    public float  Speed          => enemyData.speed;
-    public float  LootDropChance => enemyData.lootDropChance;
-    public bool   IsStationary   => enemyData.isStationary;
-    #endregion
+	#region Runtime Stats
+	public string EnemyName     => enemyData.enemyName;
+	public int    MaxHealth      => enemyData.maxHealth;
+	public int    Damage         => enemyData.damage;
+	public int    DamageToPlayer => enemyData.damageToPlayer;
+	public float  Speed          => enemyData.speed;
+	public float  LootDropChance => enemyData.lootDropChance;
+	public bool   IsStationary   => enemyData.isStationary;
+	#endregion
 
 
-    #region Target References
-    public CharacterBody3D Player        { get; private set; }
-    public CharacterBody3D NearestPlayer { get; private set; }
-    public Node3D          Forge         { get; private set; }
-    public Node3D          moveTarget    { get; set; }
-    private const float PlayerRefreshInterval = 0.25f;
-    private float _playerRefreshTimer = 0f;
-    public CharacterBody3D FindNearestPlayer()
-    {
-        var group = GetTree().GetNodesInGroup("Player");
-        CharacterBody3D nearest = null;
-        float bestDist = float.MaxValue;
+	#region Target References
+	public CharacterBody3D Player        { get; private set; }
+	public CharacterBody3D NearestPlayer { get; private set; }
+	public Node3D          Forge         { get; private set; }
+	public Node3D          moveTarget    { get; set; }
+	private const float PlayerRefreshInterval = 0.25f;
+	private float _playerRefreshTimer = 0f;
+	public CharacterBody3D FindNearestPlayer()
+	{
+		var group = GetTree().GetNodesInGroup("Player");
+		CharacterBody3D nearest = null;
+		float bestDist = float.MaxValue;
 
-        foreach (var node in group)
-        {
-            if (node is not PlayerController candidate) continue;
-            if (candidate.health <= 0) continue;
+		foreach (var node in group)
+		{
+			if (node is not PlayerController candidate) continue;
+			if (candidate.health <= 0) continue;
 
-            float dist = GlobalPosition.DistanceSquaredTo(candidate.GlobalPosition);
-            if (dist < bestDist)
-            {
-                bestDist = dist;
-                nearest  = candidate;
-            }
-        }
-        return nearest;
-    }
-
-
-    private void RefreshNearestPlayer()
-    {
-        NearestPlayer = FindNearestPlayer();
-        Player        = NearestPlayer;
-    }
+			float dist = GlobalPosition.DistanceSquaredTo(candidate.GlobalPosition);
+			if (dist < bestDist)
+			{
+				bestDist = dist;
+				nearest  = candidate;
+			}
+		}
+		return nearest;
+	}
 
 
-    private void FindForge()
-    {
-        if (Forge != null) return;
-        Forge = GetTree().GetFirstNodeInGroup("Forge") as Node3D;
-        if (Forge == null)
-            GD.PrintErr($"EnemyController ({Name}): No node found in group 'Forge'.");
-    }
-
-    #endregion
+	private void RefreshNearestPlayer()
+	{
+		NearestPlayer = FindNearestPlayer();
+		Player        = NearestPlayer;
+	}
 
 
-    #region Health
-    public int currentHealth { get; set; }
-    public int CurrentHealth => currentHealth;
-    private StandardMaterial3D material;
+	private void FindForge()
+	{
+		if (Forge != null) return;
+		Forge = GetTree().GetFirstNodeInGroup("Forge") as Node3D;
+		//if (Forge == null)
+			//GD.PrintErr($"EnemyController ({Name}): No node found in group 'Forge'.");
+	}
 
-    private void InitHealth()
-    {
-        currentHealth = MaxHealth;
-        EmitSignal(SignalName.EnemyHealthChanged, currentHealth, MaxHealth);
-    }
-
-
-    private void TakeHealthDamage(int amount)
-    {
-        if (amount <= 0) return;
-        int oldHealth = currentHealth;
-        currentHealth = Mathf.Clamp(currentHealth - amount, 0, MaxHealth);
-        if (oldHealth != currentHealth)
-        {
-            EmitSignal(SignalName.EnemyHealthChanged, currentHealth, MaxHealth);
-            if (currentHealth <= 0) OnHealthDepleted();
-        }
-    }
+	#endregion
 
 
-    private void HealHealth(int amount)
-    {
-        if (amount <= 0) return;
-        int oldHealth = currentHealth;
-        currentHealth = Mathf.Clamp(currentHealth + amount, 0, MaxHealth);
-        if (oldHealth != currentHealth)
-            EmitSignal(SignalName.EnemyHealthChanged, currentHealth, MaxHealth);
-    }
-    public bool IsAlive() => currentHealth > 0;
-    public float GetHealthPercent() => MaxHealth > 0 ? (float)currentHealth / MaxHealth : 0f;
-    #endregion
+	#region Health
+	public int currentHealth { get; set; }
+	public int CurrentHealth => currentHealth;
+	private StandardMaterial3D material;
+
+	private void InitHealth()
+	{
+		currentHealth = MaxHealth;
+		EmitSignal(SignalName.EnemyHealthChanged, currentHealth, MaxHealth);
+	}
 
 
-    #region State Machine
-    public IEnemyState CurrentState { get; private set; }
-
-    public void TransitionTo(IEnemyState newState)
-    {
-        CurrentState?.Exit(this);
-        CurrentState = newState;
-        CurrentState.Enter(this);
-        EmitSignal(SignalName.StateChanged, newState.GetType().Name);
-    }
-
-    #endregion
-
-
-    #region Navigation
-
-    private float   rotationSpeed = 10.0f;
-    private Vector3 knockback     = Vector3.Zero;
-    private bool    _navReady         = false;
-    private bool    _pendingNavTarget = false;
-    private Vector3 _pendingTargetPos = Vector3.Zero;
-    private const float NavUpdateInterval      = 0.15f;
-    private const float NavTargetMoveThreshold = 0.25f;
-    private float   _navUpdateTimer  = NavUpdateInterval; 
-    private Vector3 _lastNavTarget   = Vector3.Zero;
-
-    private const float StuckCheckInterval = 0.75f;
-    private const float StuckMoveThreshold = 0.15f;
-    private float   _stuckTimer    = 0f;
-    private Vector3 _stuckCheckPos = Vector3.Zero;
-
-    private int enemyCount = 0;
-
-    private const int DiagInterval = 60; // ~1 second at 60 fps
-    private int _diagFrame = 0;
-
-    private void InitNavAgent()
-    {
-        if (navigationAgent == null)
-            navigationAgent = GetNodeOrNull<NavigationAgent3D>("NavigationAgent3D");
-        if (navigationAgent == null)
-        {
-            GD.PrintErr($"[{Name}] DIAG: NavigationAgent3D not found — movement is impossible.");
-            return;
-        }
-       
-        navigationAgent.VelocityComputed += OnAvoidanceVelocityComputed;
-
-        GD.Print($"[{Name}] DIAG InitNavAgent: agent found. Speed={Speed} PathDist={navigationAgent.PathDesiredDistance} TargetDist={navigationAgent.TargetDesiredDistance}");
-    }
+	private void TakeHealthDamage(int amount)
+	{
+		if (amount <= 0) return;
+		int oldHealth = currentHealth;
+		currentHealth = Mathf.Clamp(currentHealth - amount, 0, MaxHealth);
+		if (oldHealth != currentHealth)
+		{
+			EmitSignal(SignalName.EnemyHealthChanged, currentHealth, MaxHealth);
+			if (currentHealth <= 0) OnHealthDepleted();
+		}
+	}
 
 
-    private void OnAvoidanceVelocityComputed(Vector3 safeVelocity)
-    {
-        Velocity = safeVelocity;
-    }
+	private void HealHealth(int amount)
+	{
+		if (amount <= 0) return;
+		int oldHealth = currentHealth;
+		currentHealth = Mathf.Clamp(currentHealth + amount, 0, MaxHealth);
+		if (oldHealth != currentHealth)
+			EmitSignal(SignalName.EnemyHealthChanged, currentHealth, MaxHealth);
+	}
+	public bool IsAlive() => currentHealth > 0;
+	public float GetHealthPercent() => MaxHealth > 0 ? (float)currentHealth / MaxHealth : 0f;
+	#endregion
+
+
+	#region State Machine
+	public IEnemyState CurrentState { get; private set; }
+
+	public void TransitionTo(IEnemyState newState)
+	{
+		CurrentState?.Exit(this);
+		CurrentState = newState;
+		CurrentState.Enter(this);
+		EmitSignal(SignalName.StateChanged, newState.GetType().Name);
+	}
+
+	#endregion
+
+
+	#region Navigation
+
+	private float   rotationSpeed = 10.0f;
+	private Vector3 knockback     = Vector3.Zero;
+	private bool    _navReady         = false;
+	private bool    _pendingNavTarget = false;
+	private Vector3 _pendingTargetPos = Vector3.Zero;
+	private const float NavUpdateInterval      = 0.15f;
+	private const float NavTargetMoveThreshold = 0.25f;
+	private float   _navUpdateTimer  = NavUpdateInterval; 
+	private Vector3 _lastNavTarget   = Vector3.Zero;
+
+	private const float StuckCheckInterval = 0.75f;
+	private const float StuckMoveThreshold = 0.15f;
+	private float   _stuckTimer    = 0f;
+	private Vector3 _stuckCheckPos = Vector3.Zero;
+
+	private int enemyCount = 0;
+
+	private const int DiagInterval = 60; // ~1 second at 60 fps
+	private int _diagFrame = 0;
+
+	private void InitNavAgent()
+	{
+		if (navigationAgent == null)
+			navigationAgent = GetNodeOrNull<NavigationAgent3D>("NavigationAgent3D");
+		if (navigationAgent == null)
+		{
+			//GD.PrintErr($"[{Name}] DIAG: NavigationAgent3D not found — movement is impossible.");
+			return;
+		}
+	   
+		navigationAgent.VelocityComputed += OnAvoidanceVelocityComputed;
+
+		//GD.Print($"[{Name}] DIAG InitNavAgent: agent found. Speed={Speed} PathDist={navigationAgent.PathDesiredDistance} TargetDist={navigationAgent.TargetDesiredDistance}");
+	}
+
+
+	private void OnAvoidanceVelocityComputed(Vector3 safeVelocity)
+	{
+		Velocity = safeVelocity;
+	}
    
     private void PrintDiagnostics(Vector3 targetPosition, Vector3 nextPoint, Vector3 direction)
     {
