@@ -1,12 +1,16 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://rj5laf73xbp8"]
 
-
 [ext_resource type="PackedScene" uid="uid://bfvifq667vxvj" path="res://assets/models/FinalAssets_Low/Ore/Damas_Ore.tscn" id="1_r4d2p"]
-[ext_resource type="Script" uid="uid://cy6spy2s7uv1l" path="res://src/ItemData.cs" id="1_tyhou"]
+[ext_resource type="Script" uid="uid://cy6spy2s7uv1l" path="res://src/Player/ItemData.cs" id="1_tyhou"]
+[ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="2_c3spo"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmmb0"]
+atlas = ExtResource("2_c3spo")
+region = Rect2(580, 247, 52, 39)
 
 [resource]
 script = ExtResource("1_tyhou")
 name = "Damas_Ore"
 itemScene = ExtResource("1_r4d2p")
+itemTexture = SubResource("AtlasTexture_vmmb0")
 metadata/_custom_type_script = "uid://cy6spy2s7uv1l"

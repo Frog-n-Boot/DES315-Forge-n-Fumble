@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Item/Pickable.cs" id="1_wlcvm"]
 [ext_resource type="Texture2D" uid="uid://b163ru6y04fds" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_BaseCol.tga" id="2_7m5v3"]
+[ext_resource type="Texture2D" uid="uid://tbrctcwppirl" path="res://assets/textures/UI/ui_x_button.tres" id="2_knlju"]
+[ext_resource type="Texture2D" uid="uid://dnrpwukmp1jyj" path="res://assets/textures/UI/ui_e_button.tres" id="3_bec3c"]
 [ext_resource type="Texture2D" uid="uid://dmckkpafqq3bq" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_Normal.tga" id="3_knlju"]
 [ext_resource type="Texture2D" uid="uid://b1xjsa5p8f7rb" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_ORM.tga" id="4_bec3c"]
 [ext_resource type="ArrayMesh" uid="uid://djed745msst20" path="res://assets/models/FinalAssets_Low/Ore/Copper_ing_low.obj" id="5_hoi3l"]
@@ -15,10 +17,14 @@ orm_texture = ExtResource("4_bec3c")
 normal_enabled = true
 normal_texture = ExtResource("3_knlju")
 
-[node name="Copper_Ore" type="Node3D" unique_id=2110523039]
+[sub_resource type="ViewportTexture" id="ViewportTexture_knlju"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[node name="Copper_Ore" type="Node3D" unique_id=2110523039 node_paths=PackedStringArray("itemTextureRect")]
 script = ExtResource("1_wlcvm")
 itemDataPath = "uid://c6k5q27uaxle2"
-shouldDespawn = true
+itemPromptTexture = Array[Texture2D]([ExtResource("2_knlju"), ExtResource("3_bec3c")])
+itemTextureRect = NodePath("Sprite3D/SubViewport/TextureRect")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1899132528 groups=["pickable"]]
 collision_layer = 16
@@ -33,3 +39,15 @@ shape = SubResource("BoxShape3D_igrlc")
 material_override = SubResource("ORMMaterial3D_22731")
 mesh = ExtResource("5_hoi3l")
 skeleton = NodePath("../..")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=701732667]
+transform = Transform3D(1.82, 0, 0, 0, 1.833, 0, 0, 0, 1.004, 0, 1.3049382, 0)
+texture = SubResource("ViewportTexture_knlju")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=1184084405]
+transparent_bg = true
+size = Vector2i(50, 50)
+
+[node name="TextureRect" type="TextureRect" parent="Sprite3D/SubViewport" unique_id=626047333]
+offset_right = 40.0
+offset_bottom = 40.0

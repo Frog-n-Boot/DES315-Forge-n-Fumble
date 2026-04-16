@@ -16,6 +16,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+scale = Vector2(1.1325623, 1.0945792)
 
 [node name="ProgressBar" type="ProgressBar" parent="Node3D/Control" unique_id=626182632]
 layout_mode = 0

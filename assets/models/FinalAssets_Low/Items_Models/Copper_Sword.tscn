@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://c37xqn66ss1o8"]
+
+[ext_resource type="Script" uid="uid://c25evsd3j0b" path="res://src/Weapons/Sword.cs" id="1_1yonr"]
+[ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="2_c2h1v"]
+[ext_resource type="Texture2D" uid="uid://urty3b4mhqm3" path="res://assets/materials/Texture_sets/Item_Textures/sword_frts_rough_low_BaseCol.tga" id="2_w7hbi"]
+[ext_resource type="Texture2D" uid="uid://dc3r4qxj536qx" path="res://assets/materials/Texture_sets/Item_Textures/sword_frts_rough_low_ORM.tga" id="3_c2h1v"]
+[ext_resource type="Texture2D" uid="uid://tbrctcwppirl" path="res://assets/textures/UI/ui_x_button.tres" id="3_hox1f"]
+[ext_resource type="Texture2D" uid="uid://cfllkfsxak7hb" path="res://assets/materials/Texture_sets/Item_Textures/sword_frts_rough_low_Normal.tga" id="4_hox1f"]
+[ext_resource type="Texture2D" uid="uid://cmhg5fabsggpk" path="res://assets/textures/UI/ui_keyboard_e_button.tres" id="4_oreb3"]
+[ext_resource type="ArrayMesh" uid="uid://vmdklfvgul40" path="res://assets/models/FinalAssets_Low/Items_Models/Sword_first_low.obj" id="5_oreb3"]
+[ext_resource type="AudioStream" uid="uid://c01r2egd4skm" path="res://assets/Sounds/SFX/SwordBreak.wav" id="6_fgixd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hox1f"]
+atlas = ExtResource("2_c2h1v")
+region = Rect2(557, 29, 62, 192)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xv1ii"]
+size = Vector3(5.340587, 1.6914063, 8.853933)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kpo4t"]
+size = Vector3(1.742096, 1.691742, 4.7293167)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_hbd7i"]
+albedo_texture = ExtResource("2_w7hbi")
+normal_enabled = true
+normal_texture = ExtResource("4_hox1f")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_c2h1v")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_w7hbi"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[node name="CopperSword" type="Node3D" unique_id=689345526 node_paths=PackedStringArray("audio", "weaponTextureRect", "pickUpArea", "weaponBody") groups=["Sword", "Weapon"]]
+script = ExtResource("1_1yonr")
+audio = NodePath("SwordBreak")
+damage = 5
+maxDurability = 10
+weaponTexture = SubResource("AtlasTexture_hox1f")
+weaponTint = Color(0.77962184, 0.4780169, 0.23731527, 1)
+weaponPromptTexture = Array[Texture2D]([ExtResource("3_hox1f"), ExtResource("4_oreb3")])
+weaponTextureRect = NodePath("Sprite3D/SubViewport/TextureRect")
+pickUpArea = NodePath("StaticBody3D/Area3D")
+weaponBody = NodePath("StaticBody3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1636120554 groups=["Sword", "Weapon"]]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=481175609 groups=["Sword", "Weapon"]]
+transform = Transform3D(0.20340535, 7.280779e-16, 0, -9.030358e-17, 1.6399672, 0, 0, 0, 0.09999808, 0.004674003, 1.1159198, -0.022993883)
+shape = SubResource("BoxShape3D_xv1ii")
+disabled = true
+
+[node name="Area3D" type="Area3D" parent="StaticBody3D" unique_id=1796072919 groups=["Sword", "Weapon"]]
+collision_layer = 24
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/Area3D" unique_id=1446767842]
+transform = Transform3D(0.62693906, 0, 0, 0, 1.6399509, 0, 0, 0, 0.18563555, 0.004778548, 1.1241063, -0.01556235)
+shape = SubResource("BoxShape3D_kpo4t")
+
+[node name="SwordFirstLow" type="MeshInstance3D" parent="." unique_id=31124853]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+material_override = SubResource("ORMMaterial3D_hbd7i")
+mesh = ExtResource("5_oreb3")
+
+[node name="SwordBreak" type="AudioStreamPlayer3D" parent="." unique_id=1810759114]
+stream = ExtResource("6_fgixd")
+volume_db = -60.0
+max_db = -24.0
+max_polyphony = 10
+bus = &"SFX"
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=389676655]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0038314, 0)
+texture = SubResource("ViewportTexture_w7hbi")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=1679428274]
+transparent_bg = true
+size = Vector2i(50, 50)
+
+[node name="TextureRect" type="TextureRect" parent="Sprite3D/SubViewport" unique_id=86180235]
+offset_right = 40.0
+offset_bottom = 40.0

@@ -25,8 +25,6 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	[Export] private Node3D rightHand;
 	[Export] private Node3D leftHand;
 	[Export] private Area3D areaPickup;
-	[Export] public Texture2D[] playerTextures;
-	[Export] private Node3D pickupNode;
 	[Export] public float playerSpawnTimer;
 	[Export] private Texture2D[] playerMaterialTextures;
 	[Export] public float flashDuration = 0.2f;
@@ -34,7 +32,6 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	[Export] public float spinStopThreshold = 1.0f;
 	private PlayerSpawner playerSpawner;
 
-	public Texture2D GetPortraitTexture() => playerTextures[PlayerIndex];
 	public int currentDevice = -2;
 
 	private SequenceMinigame sequenceMinigame;
@@ -47,6 +44,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	private HashSet<Node> processPickable = new HashSet<Node>();
 	private BaseStationScript currentStation;
 	private Label3D pickupPrompt;
+	private Node3D pickupNode;
 
 	[Signal] public delegate void PlayerHealthChangedEventHandler(int current, int max);
 	[Signal] public delegate void DiedEventHandler();
@@ -70,9 +68,91 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	private float lastRotation = 0f;
 	private float dropHoldTimer = 0f;
 	private bool dropTriggered = false;
+	private float  reloadTime = 0;
+	private bool reloadTriggered = false;
+
+	private float attackHoldTimer = 0f;
+	private bool attackHeld = false;
+
+	private Ballista nearbyBallista = null;
+	private float ballistaHoldTimer = 0f;
+	private bool ballistaActionTriggered = false;
+
 
 	public bool isDazed {get; private set;} = false;
 
+	public override void _Ready()
+	{
+		playerSpawner = GetTree().Root.GetNodeOrNull<PlayerSpawner>("Scene/PlayerSpawner");
+		health = maxHealth;
+		inputBuffer = new InputBuffer();
+		AddChild(inputBuffer);
+
+		inputManager = GetNode<InputManager>("/root/InputManager");
+		if (inputManager == null)
+			GD.PrintErr("PlayerController: InputManager not found!");
+
+		world = GetTree().Root.GetNodeOrNull<StaticBody3D>("testing_lab");
+		if (world != null)
+			camera = world.GetNodeOrNull<Camera3D>("Camera3D");
+
+		if (camera == null)
+			camera = GetViewport().GetCamera3D();
+
+		forge = GetNodeOrNull<Forge>("/root/Forge");
+		healthPack = GetNodeOrNull<HealthPack>("/root/HealthPack");
+		areaPickup = GetNodeOrNull<Area3D>("Area3D");
+		areaPickup.AreaEntered += OnPickupAreaEntered;
+		areaPickup.AreaExited += OnPickUpAreaExited;
+		animPlayer.AnimationFinished += OnAnimationFinished;
+	
+
+		rightHand = GetNodeOrNull<Node3D>("CollisionShape3D/RightHand");
+		leftHand = GetNodeOrNull<Node3D>("CollisionShape3D/LeftHand");
+		if (rightHand != null)
+		{
+			FindExistingSword();
+		}
+		else
+		{
+			GD.PrintErr("Hand node not found!");
+		}
+
+		//pickupPrompt = pickupNode.GetNode<Label3D>("Label3D");
+
+		spinAttack = GetNode<SpinAttack>("SpinAttack");
+
+		if(currentWeapon is MeleeWeapon melee)
+			spinAttack.SetWeapon(melee);
+
+		lastRotation = Rotation.Y;
+
+		if (XRayManager.Instance == null) {	
+			GD.PrintErr("[Player]  XRayManager.Instance is null — autoload not ready yet");
+		}
+		else{
+        	GD.Print($"[Player]  XRayManager found, registering {Name}");
+		}
+        
+    	CallDeferred(MethodName.RegisterWithManager);
+	}
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+		XRayManager.Instance?.UnregisterPlayer(this);
+    }
+
+	private void RegisterWithManager()
+	{
+    	if (XRayManager.Instance == null)
+    	{
+        	GD.PrintErr("[Player] XRayManager.Instance is null!");
+        	return;
+    	}
+    	GD.Print($"[Player] Registering {Name} with XRayManager");
+    	XRayManager.Instance.RegisterPlayer(this);
+	}
 	public IEnumerable<ItemData> GetCarriedItems()
 	{
 		if(leftHand.GetChildCount() > 0)
@@ -106,55 +186,6 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			}
 		}
 	}
-	public override void _Ready()
-	{
-
-		health = maxHealth;
-		inputBuffer = new InputBuffer();
-		AddChild(inputBuffer);	
-
-		
-		inputManager = GetNode<InputManager>("/root/InputManager");
-		if (inputManager == null)
-			GD.PrintErr("PlayerController: InputManager not found!");
-
-		world = GetTree().Root.GetNodeOrNull<StaticBody3D>("Main");
-		if (world != null)
-			camera = world.GetNodeOrNull<Camera3D>("Camera3D");
-
-		if (camera == null)
-			camera = GetViewport().GetCamera3D();
-
-		playerSpawner = GetTree().Root.GetNodeOrNull<PlayerSpawner>("Scene/PlayerSpawner");
-		forge = GetNodeOrNull<Forge>("/root/Forge");
-		healthPack = GetNodeOrNull<HealthPack>("/root/HealthPack");
-		areaPickup = GetNodeOrNull<Area3D>("Area3D");
-		areaPickup.AreaEntered += OnPickupAreaEntered;
-		areaPickup.AreaExited += OnPickUpAreaExited;
-
-		animPlayer.AnimationFinished += OnAnimationFinished;
-	
-		// ADD THIS: Find existing sword in hand
-		rightHand = GetNodeOrNull<Node3D>("CollisionShape3D/RightHand");
-		leftHand = GetNodeOrNull<Node3D>("CollisionShape3D/LeftHand");
-		if (rightHand != null)
-		{
-			FindExistingSword();
-		}
-		else
-		{
-			GD.PrintErr("Hand node not found!");
-		}
-
-		pickupPrompt = pickupNode.GetNode<Label3D>("Label3D");
-
-		spinAttack = GetNode<SpinAttack>("SpinAttack");
-
-		if(currentWeapon is MeleeWeapon melee)
-			spinAttack.SetWeapon(melee);
-
-		lastRotation = Rotation.Y;
-	}
 	
 	private void FindExistingSword()
 	{
@@ -170,6 +201,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 					sword.CheckDurability += OnSwordDurabilityChecked;
 								
 				currentWeapon.Broke += OnSwordBroke;
+				currentWeapon.SetEnemyCollisionEnabled(true);
 				GD.Print($"Player {PlayerIndex} found existing sword in hand!");
 				return;
 			}
@@ -267,6 +299,34 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			}
 			
 		}
+		else if(IsActionPressed("interact") && nearbyBallista != null)
+		{
+			if(currentWeapon == null && !nearbyBallista.isDetached)
+			{
+				ballistaHoldTimer += (float)delta;
+				if(ballistaHoldTimer >= 0.5f && !ballistaActionTriggered){
+					ballistaActionTriggered = true;
+					nearbyBallista.DetachHead(this);
+					ballistaHoldTimer = 0f;
+				}
+			}
+			else if(currentWeapon is Crossbow bow && bow.sourceBallista == nearbyBallista)
+			{
+				ballistaHoldTimer += (float)delta;
+				if(ballistaHoldTimer >= 0.5f && !ballistaActionTriggered)
+				{
+					ballistaActionTriggered = true;
+					nearbyBallista.ReattachHead(bow);
+					currentWeapon = null;
+					ballistaHoldTimer = 0f;
+				}
+			}
+		}
+		else
+		{
+			ballistaHoldTimer = 0f;
+			ballistaActionTriggered = false;
+		}
 
 		if (IsActionPressed("pick_up"))
 		{
@@ -298,13 +358,59 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			}
 			
 		}
-		else if(currentWeapon is Bow bow)
+		else if(currentWeapon is Crossbow bow)
 		{
-			if(inputBuffer.IsInputBuffered("attack") && !isAttacking)
+			bow.shootingDirectionMesh.Visible = true;
+
+			if (Input.IsActionPressed("attack"))
 			{
-				bow.StartDraw();
-				
+				attackHoldTimer += (float)delta;
+				attackHeld = true;
+			}
+
+			if(Input.IsActionJustReleased("attack") && attackHeld && !isAttacking)
+			{
+				if(attackHoldTimer >= 1f) bow.tripleShot?.TryActivate(bow);
+				else bow.Use();
+
 				isAttacking = true;
+				attackHoldTimer = 0f;
+				attackHeld = false;
+			}
+
+			if (!Input.IsActionPressed("attack")){
+				attackHoldTimer = 0f;
+				attackHeld = false;
+			}
+			
+			
+			if(Input.IsActionPressed("interact") && nearbyBallista == null && currentStation == null)
+			{
+				var heldItem = leftHand.GetChildCount() > 0 ? leftHand.GetChild(0) as Pickable : null;
+				var hasIngot = heldItem != null && heldItem.itemData != null && heldItem.itemData.name.Contains("Iron_Ingot");
+
+				if (hasIngot)
+				{
+					reloadTime += (float)delta;
+
+					if(reloadTime >= 1 && !reloadTriggered)
+					{
+						reloadTriggered = true;
+						bow.Reload(3);
+						heldItem.QueueFree();
+						reloadTime = 0f;
+					}
+				}
+				else
+				{
+					reloadTime = 0f;
+					reloadTriggered = false;
+				}
+			}
+			else if(!Input.IsActionPressed("interact"))
+			{
+				reloadTime = 0f;
+				reloadTriggered = false;
 			}
 		}
 		else if(inputBuffer.ConsumeInput("attack") && !isAttacking){
@@ -476,14 +582,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			}
 			
 			
-		}
-		else if(currentWeapon is Bow bow)
-		{
-			bow.StartDraw();
-			isAttacking = false;
-		}
-			
-	
+		}	
 		//GD.Print($"Player {PlayerIndex} attacking!");
 	}
 
@@ -499,10 +598,9 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 		}
 			
-		else if(currentWeapon is Bow bow)
+		else if(currentWeapon is Crossbow bow)
 		{
 			isAttacking = false;
-			bow.Release();
 		}
 			
 	}
@@ -543,31 +641,33 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		{
 			nearbyPickable = area.GetParent() as Pickable;
 			GD.Print($"NearbyPickable: {nearbyPickable?.Name ?? "null"}");
-			pickupNode.GlobalPosition = new Vector3(nearbyPickable.GlobalPosition.X, nearbyPickable.GlobalPosition.Y + 2, nearbyPickable.GlobalPosition.Z);
+			if(nearbyPickable != null) nearbyPickable.SetItemPromptTexture(IsUsingController());
 		}
 
 		if (area.IsInGroup("Weapon")){
 			StaticBody3D areaParent = area.GetParent() as StaticBody3D;
 			nearbyWeapon = areaParent?.GetParent() as BaseWeapon;
-			pickupNode.GlobalPosition = new Vector3(nearbyWeapon.GlobalPosition.X, nearbyWeapon.GlobalPosition.Y + 3, nearbyWeapon.GlobalPosition.Z);
+			if(nearbyWeapon != null) nearbyWeapon.SetWeaponPromptTexture(IsUsingController());
 		}
-		
-		pickupPrompt.Visible = true;
-		pickupPrompt.Text = IsUsingController() ? "LT" : "Right Click";
-		pickupPrompt.FontSize = 40;
-		//pickupPrompt.GlobalPosition = new Vector3(nearbyPickable.GlobalPosition.X, nearbyPickable.GlobalPosition.Y + 3, nearbyPickable.GlobalPosition.Z);
-
 	}
 
 	private void OnPickUpAreaExited(Area3D area)
 	{
-	
-		if(area.IsInGroup("pickable"))
+
+		if (area.IsInGroup("pickable"))
+		{
+			if(nearbyPickable != null) nearbyPickable.HideItemPrompt();
 			nearbyPickable = null;
-		if(area.IsInGroup("Weapon"))
+		}
+
+		if (area.IsInGroup("Weapon"))
+		{
+			if(nearbyWeapon != null) nearbyWeapon.HideWeaponPrompt();
 			nearbyWeapon = null;
-		if(nearbyWeapon == null && nearbyPickable == null)
-			pickupPrompt.Visible = false;
+		}
+		
+		
+			
 	}
 
 	private void ProcessPickable(Pickable pickable)
@@ -599,10 +699,14 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		
 	}
 
-	private void PickUpWeapon(BaseWeapon nearbyWeapon)
+	public void PickUpWeapon(BaseWeapon nearbyWeapon)
 	{
 		if(nearbyWeapon.isBeingPickedUp) return;
 		nearbyWeapon.isBeingPickedUp = true;
+
+		if(nearbyWeapon.pickUpArea != null) nearbyWeapon.pickUpArea.Monitoring = false;
+		nearbyWeapon.HideWeaponPrompt();
+		
 		UpdateAnimationTreacks(nearbyWeapon.Name);
 		nearbyWeapon.CallDeferred("reparent", rightHand);
 		GetTree().CreateTimer(0.1f).Timeout += () =>
@@ -625,14 +729,26 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 				sword.Connect(Sword.SignalName.CheckDurability, Callable.From(OnSwordDurabilityChecked));
 				sword.SetHitboxEnabled(true);
 			}
+			
+			nearbyWeapon.SetEnemyCollisionEnabled(true);
 
 			if(currentWeapon.IsConnected(BaseWeapon.SignalName.Broke, Callable.From(OnSwordBroke)))
 				currentWeapon.Disconnect(BaseWeapon.SignalName.Broke, Callable.From(OnSwordBroke));
 			currentWeapon.Connect(BaseWeapon.SignalName.Broke, Callable.From(OnSwordBroke));
 
 			currentWeapon.isBeingPickedUp = false;
+			
 			nearbyWeapon = null;
 			
+			if(spinAttack == null)
+			{
+				spinAttack = GetNodeOrNull<SpinAttack>("SpinAttack");
+				if(spinAttack == null)
+				{
+					GD.Print("Spin attack still not found");
+					return;
+				}
+			}
 			if(currentWeapon is MeleeWeapon melee)
 				spinAttack.SetWeapon(melee);
 		};
@@ -778,6 +894,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		areaPickup.SetDeferred("monitorable", false);
 
 		GetTree().CreateTimer(playerSpawnTimer).Timeout += () =>{
+			GD.Print("Player spawning");
 			GlobalPosition = playerSpawner.spawnPoints[PlayerIndex].GlobalPosition;
 			health = maxHealth;
 			Visible = true;
@@ -804,7 +921,11 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	{
 		//GD.Print("Sword broke! Auto crafting a new one if ingredients are available...");
 		currentWeapon = null;
-		spinAttack.SetWeapon(null);
+		if(spinAttack != null)
+		{
+			spinAttack.SetWeapon(null);
+		}
+		
 		isAttacking = false;
 		
 	}
@@ -822,21 +943,37 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 		if(child is BaseWeapon weapon)
 		{
+			weapon.SetEnemyCollisionEnabled(false);
+
 			weapon.CallDeferred("reparent", GetTree().Root);
 			weapon.SetDeferred("global_position", dropPosition);
 			weapon.SetDeferred("rotation", Vector3.Zero);
 
 			if(weapon is Sword sword){
+				//sword.SetHitboxEnabled(false);
 				spinAttack.SetWeapon(null);
 				sword.CheckDurability -= OnSwordDurabilityChecked;
 			}
-				
+			else if(weapon is Crossbow bow) {
+				bow.shootingDirectionMesh.Visible = false;
 
+				if(bow.sourceBallista != null)
+				{
+					bow.sourceBallista.isDetached = false;
+					bow.sourceBallista.ReattachHead(bow);
+					bow.sourceBallista = null;
+				}
+			}
 			currentWeapon.Broke -= OnSwordBroke;
 			currentWeapon = null;
 
 			GetTree().CreateTimer(0.1f).Timeout += () =>
+			{
 				areaPickup.SetDeferred("monitoring", true);
+
+				if(IsInstanceValid(weapon)) weapon.ShowWeaponPrompt();
+			};
+				
 			
 			return;
 		}
@@ -876,11 +1013,14 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		sequenceMinigame = station?.GetSequenceMinigame();
 		barMinigame = station?.GetBarMinigame();
 	}
+	public void SetNearbyBallista(Ballista ballista) => nearbyBallista = ballista;
+
 	private bool IsUsingController() => currentDevice >= 0;
 
 	public void ApplyKnockback(Vector3 direction, float force){
 		knockback = direction * force;
 	}
+
 	private void Flash()
 	{
 		if(material == null) return;

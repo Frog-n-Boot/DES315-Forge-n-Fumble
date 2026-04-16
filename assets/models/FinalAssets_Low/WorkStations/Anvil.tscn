@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://g1gfmktihg8t"]
 
 [ext_resource type="Script" uid="uid://bkgt1ax3obdva" path="res://src/Stations/ForgingStation.cs" id="1_c6611"]
-[ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/FinalAssets_Low/Items_Models/DullSword.tscn" id="2_fj0e1"]
+[ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Dull_Sword.tscn" id="2_fj0e1"]
+[ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="3_0gpkw"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="3_yb3nn"]
 [ext_resource type="ArrayMesh" uid="uid://mmh030obulkw" path="res://assets/models/FinalAssets_Low/WorkStations/Anvil_low.obj" id="4_1latb"]
 [ext_resource type="Texture2D" uid="uid://d0b62wsx8gdhv" path="res://assets/materials/Texture_sets/WorkStations/anvil_low_BaseCol.tga" id="4_813ft"]
@@ -16,17 +17,14 @@
 [ext_resource type="AudioStream" uid="uid://cynyfxhfehvv1" path="res://assets/Sounds/SFX/Anvil4.wav" id="13_721mw"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0gpkw"]
-load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gk661"]
 atlas = SubResource("CompressedTexture2D_0gpkw")
 region = Rect2(114, 365, 40, 40)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rl3yd"]
-load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_fbisp"]
-atlas = SubResource("CompressedTexture2D_rl3yd")
+atlas = ExtResource("3_0gpkw")
 region = Rect2(216, 805, 40, 43)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdc31"]
@@ -39,17 +37,21 @@ normal_texture = ExtResource("5_o5b8a")
 heightmap_enabled = true
 heightmap_texture = ExtResource("5_u3lgt")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_gk661"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_uh5my"]
 viewport_path = NodePath("Sprite3D/SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_k01nc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gpkw"]
+atlas = ExtResource("3_0gpkw")
+region = Rect2(21, 519, 261, 39)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0gpkw"]
 viewport_path = NodePath("Sprite3D2/SubViewport")
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gk661"]
-load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_uh5my"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rl3yd"]
-atlas = SubResource("CompressedTexture2D_gk661")
+atlas = SubResource("CompressedTexture2D_uh5my")
 region = Rect2(114, 365, 40, 40)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_svcrb"]
@@ -65,7 +67,7 @@ dullSwordScene = ExtResource("2_fj0e1")
 sequenceMinigame = NodePath("SequenceMinigame")
 inputNode = NodePath("InputPort")
 outputNode = NodePath("OutputPort")
-timeProgressBar = NodePath("Sprite3D/SubViewport/ProgressBar")
+timeProgressBar = NodePath("Sprite3D/SubViewport/TextureProgressBar")
 stationName = NodePath("Sprite3D/SubViewport/Label")
 buttonTexture = NodePath("Sprite3D2/SubViewport/TextureRect")
 controllerButtonTexture = SubResource("AtlasTexture_gk661")
@@ -93,7 +95,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07868272, 0.33549273, -1.15
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=840510996]
 transform = Transform3D(-2.359344e-07, 0, 4, 0, 4, 0, -5.3975496, 0, -1.7484555e-07, -0.6966152, 3.8950515, -1.6123558)
-texture = SubResource("ViewportTexture_gk661")
+texture = SubResource("ViewportTexture_uh5my")
 
 [node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=2072696855]
 transparent_bg = true
@@ -105,28 +107,29 @@ offset_right = 130.0
 offset_bottom = 79.0
 bbcode_enabled = true
 
-[node name="ProgressBar" type="ProgressBar" parent="Sprite3D/SubViewport" unique_id=624823659]
-visible = false
-offset_top = 10.0
-offset_right = 100.0
-offset_bottom = 60.0
-
 [node name="Label" type="Label" parent="Sprite3D/SubViewport" unique_id=1153088540]
+visible = false
 offset_left = 25.0
 offset_right = 65.0
 offset_bottom = 49.0
 
-[node name="Sprite3D2" type="Sprite3D" parent="." unique_id=1836299419]
-transform = Transform3D(-6.2186e-08, -1, -1.7320508, -4.371139e-08, 1.7320508, -1, 2, 6.762175e-09, -7.5710346e-08, 1.6728728, 0.44851065, 0.06475383)
-texture = SubResource("ViewportTexture_k01nc")
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Sprite3D/SubViewport" unique_id=539670618]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_progress = SubResource("AtlasTexture_0gpkw")
 
-[node name="SubViewport" type="SubViewport" parent="Sprite3D2" unique_id=1928502625]
+[node name="Sprite3D2" type="Sprite3D" parent="." unique_id=1337985502]
+transform = Transform3D(-6.2186e-08, -1, -1.7320508, -4.371139e-08, 1.7320508, -1, 2, 6.762175e-09, -7.5710346e-08, 1.4791862, 0.36335433, 0.029955745)
+texture = SubResource("ViewportTexture_0gpkw")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D2" unique_id=1508301261]
 transparent_bg = true
 size = Vector2i(41, 40)
 
-[node name="TextureRect" type="TextureRect" parent="Sprite3D2/SubViewport" unique_id=162992327]
+[node name="TextureRect" type="TextureRect" parent="Sprite3D2/SubViewport" unique_id=1103403462]
 offset_right = 40.0
 offset_bottom = 40.0
+localize_numeral_system = false
 texture = SubResource("AtlasTexture_rl3yd")
 
 [node name="SequenceMinigame" type="Node" parent="." unique_id=290722974 node_paths=PackedStringArray("sequenceText", "sprite3D", "audio")]

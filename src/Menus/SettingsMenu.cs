@@ -22,9 +22,17 @@ public partial class SettingsMenu : CanvasLayer
 	{
 		new Vector2I(640, 480),
 		new Vector2I(800, 600),
+		new Vector2I(1024, 768),
+		new Vector2I(1280, 800),
+		new Vector2I(1360, 768),
 		new Vector2I(1366, 768),
+		new Vector2I(1440, 900),
+		new Vector2I(1536, 864),
 		new Vector2I(1600, 900),
+		new Vector2I(1680, 1050),
+		new Vector2I(1600, 1200),
 		new Vector2I(1920, 1080),
+		new Vector2I(1920, 1200),
 		new Vector2I(2560, 1440),
 		new Vector2I(3840, 2160)
 	};
@@ -48,6 +56,25 @@ public partial class SettingsMenu : CanvasLayer
 				break;
 			}
 		}
+
+		Vector2I screenRes = DisplayServer.ScreenGetSize();
+		Vector2 targetRes = s.resolution == Vector2I.Zero? screenRes : s.resolution;
+
+		int closestIndex = 0;
+		int closestDistance = int.MaxValue;
+
+		for(int i = 0; i < resolution.Length; i++)
+		{
+			int distance = Math.Abs(resolution[i].X - (int)targetRes.X) + Math.Abs(resolution[i].Y - (int)targetRes.Y);
+
+			if(distance < closestDistance)
+			{
+				closestDistance = distance;
+				closestIndex = i;
+			}
+		}
+		resolutionDropdown.Selected = closestIndex;
+		SettingsManager.instance.SetResolution(resolution[closestIndex]);
 
 		for(int i = 0; i < fpsOptions.Length; i++)
 		{
@@ -91,7 +118,7 @@ public partial class SettingsMenu : CanvasLayer
 
 	public void OnBackPressed()
 	{
-		SettingsManager.instance.SaveSetttings();
+		SettingsManager.instance.SaveSettings();
 		if(isInGame &&pauseMenu != null)
 		{
 			Hide();
@@ -111,7 +138,7 @@ public partial class SettingsMenu : CanvasLayer
 	public void OnApplyPressed()
 	{
 		audio.Play();
-		SettingsManager.instance.SaveSetttings();
+		SettingsManager.instance.SaveSettings();
 		SettingsManager.instance.ApplySettings();
 	}
 }

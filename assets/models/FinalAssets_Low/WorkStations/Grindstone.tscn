@@ -1,39 +1,28 @@
 [gd_scene format=3 uid="uid://cmd758glwlnly"]
 
 [ext_resource type="Script" uid="uid://f7buye2dboqr" path="res://src/Stations/GrindstoneStation.cs" id="1_bbsxq"]
-[ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/FinalAssets_Low/Items_Models/Sword.tscn" id="2_hj04q"]
+[ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Sword.tscn" id="2_hj04q"]
+[ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="3_bn2l6"]
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="3_fgmgg"]
 [ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/Resources/CraftingRecipes.cs" id="3_hj04q"]
 [ext_resource type="Texture2D" uid="uid://50xg82nov3j2" path="res://assets/materials/Texture_sets/WorkStations/Grinder_low_BaseCol.tga" id="4_chpgb"]
 [ext_resource type="PackedScene" uid="uid://di5odw2tmde5j" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Sword.tscn" id="4_uhy0b"]
+[ext_resource type="Texture2D" uid="uid://cmhg5fabsggpk" path="res://assets/textures/UI/ui_keyboard_e_button.tres" id="4_wwlso"]
 [ext_resource type="ArrayMesh" uid="uid://gxhgwjbmhtq6" path="res://assets/models/FinalAssets_Low/WorkStations/Grinder_low.obj" id="5_fgmgg"]
 [ext_resource type="Texture2D" uid="uid://6k5i0lfvsf5" path="res://assets/materials/Texture_sets/WorkStations/Grinder_low_ORM.tga" id="5_yoit8"]
 [ext_resource type="Texture2D" uid="uid://ui3qrxklkrbs" path="res://assets/materials/Texture_sets/WorkStations/Grinder_low_Normal.tga" id="6_8jrxj"]
 [ext_resource type="AudioStream" uid="uid://b4c81r30mgpwx" path="res://assets/Sounds/SFX/SwordSharpening.wav" id="9_8jrxj"]
 [ext_resource type="Script" uid="uid://by2c55xka33c5" path="res://src/Minigames/BarMinigame.cs" id="13_wwlso"]
-[ext_resource type="Texture2D" uid="uid://u60gttmgjlop" path="res://assets/textures/GreenSquare.png" id="14_wwlso"]
-[ext_resource type="Texture2D" uid="uid://cvosdiqb43467" path="res://assets/textures/RedSquare.png" id="15_g1v1a"]
-[ext_resource type="Texture2D" uid="uid://cfesbuy201qlg" path="res://assets/materials/Texture_sets/Item_Textures/SwordPNG.png" id="16_w0ftq"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bn2l6"]
-load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wwlso"]
-atlas = SubResource("CompressedTexture2D_bn2l6")
+atlas = ExtResource("3_bn2l6")
 region = Rect2(114, 365, 40, 40)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g1v1a"]
-load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w0ftq"]
-atlas = SubResource("CompressedTexture2D_g1v1a")
-region = Rect2(216, 805, 40, 43)
 
 [sub_resource type="Resource" id="Resource_fgmgg"]
 script = ExtResource("3_hj04q")
-recipeName = "Sword"
-requiredItemNames = PackedStringArray("DullSword")
-ouputName = "Sword"
+recipeName = "Copper_Sword"
+requiredItemNames = PackedStringArray("Copper_Dull_Sword")
+ouputName = "Copper_Sword"
 ouputScene = ExtResource("2_hj04q")
 ouputGroup = "Weapon"
 metadata/_custom_type_script = "uid://1bo1o367ybgk"
@@ -60,27 +49,53 @@ heightmap_texture = ExtResource("5_yoit8")
 [sub_resource type="ViewportTexture" id="ViewportTexture_bn2l6"]
 viewport_path = NodePath("Sprite3D/SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_3ynec"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_n8ot4"]
 viewport_path = NodePath("Sprite3D2/SubViewport")
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wwlso"]
-load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g1v1a"]
-atlas = SubResource("CompressedTexture2D_wwlso")
+[sub_resource type="AtlasTexture" id="AtlasTexture_bn2l6"]
+atlas = ExtResource("3_bn2l6")
 region = Rect2(114, 365, 40, 40)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_iap6j"]
 viewport_path = NodePath("BarMinigameSprite3D/SubViewport")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_eh3gw"]
-size = Vector2(346.6071, 346.01764)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n5xar"]
-size = Vector2(317.0455, 310.15027)
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8ot4"]
+atlas = ExtResource("3_bn2l6")
+region = Rect2(632, 30, 63, 191)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u8mns"]
-size = Vector2(128.72177, 39.030846)
+size = Vector2(191.87732, 1.9809985)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bn2l6"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iap6j"]
+atlas = SubResource("CompressedTexture2D_bn2l6")
+region = Rect2(21, 519, 261, 39)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_eh3gw"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5xar"]
+atlas = SubResource("CompressedTexture2D_eh3gw")
+region = Rect2(21, 519, 261, 39)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kecgh"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ynec"]
+atlas = SubResource("CompressedTexture2D_kecgh")
+region = Rect2(19, 425, 673, 70)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eh3gw"]
+size = Vector2(584.1255, 28.57135)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n5xar"]
+size = Vector2(166.66745, 161.3157)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kecgh"]
+atlas = ExtResource("3_bn2l6")
+region = Rect2(311, 508, 48, 72)
 
 [node name="Grindstone" type="Node3D" unique_id=1158721071 node_paths=PackedStringArray("grindstoneSound", "barMinigame", "inputNode", "outputNode", "timeProgressBar", "stationName", "buttonTexture") groups=["Station"]]
 script = ExtResource("1_bbsxq")
@@ -89,11 +104,11 @@ grindstoneSound = NodePath("AudioStreamPlayer3D")
 barMinigame = NodePath("BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame")
 inputNode = NodePath("InputPort")
 outputNode = NodePath("OutputPort")
-timeProgressBar = NodePath("Sprite3D/SubViewport/ProgressBar")
+timeProgressBar = NodePath("Sprite3D/SubViewport/TextureProgressBar")
 stationName = NodePath("Sprite3D/SubViewport/Label")
 buttonTexture = NodePath("Sprite3D2/SubViewport/TextureRect")
 controllerButtonTexture = SubResource("AtlasTexture_wwlso")
-keyboardButtonTexture = SubResource("AtlasTexture_w0ftq")
+keyboardButtonTexture = ExtResource("4_wwlso")
 recipes = Array[Object]([SubResource("Resource_fgmgg"), SubResource("Resource_wc540")])
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=90114362]
@@ -135,6 +150,7 @@ show_percentage = false
 metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="Sprite3D/SubViewport" unique_id=1293063617]
+visible = false
 offset_left = 4.0
 offset_top = 53.0
 offset_right = 44.0
@@ -143,18 +159,23 @@ text = "
 "
 metadata/_edit_use_anchors_ = true
 
-[node name="Sprite3D2" type="Sprite3D" parent="." unique_id=883796709]
-transform = Transform3D(-6.2186e-08, -1, -1.7320508, -4.3711385e-08, 1.7320508, -1, 2, 6.7621713e-09, -7.5710346e-08, 1.6917517, 0.49791187, -0.12980407)
-texture = SubResource("ViewportTexture_3ynec")
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Sprite3D/SubViewport" unique_id=2022278455]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="SubViewport" type="SubViewport" parent="Sprite3D2" unique_id=600334296]
+[node name="Sprite3D2" type="Sprite3D" parent="." unique_id=1666375140]
+transform = Transform3D(6.357298e-08, -1.0000001, 1.7320508, 1.5142075e-07, 1.7320508, 1.0000001, -2, 9.9347716e-08, 1.307662e-07, 1.5525401, 0.38798475, -0.09157038)
+texture = SubResource("ViewportTexture_n8ot4")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D2" unique_id=568560399]
 transparent_bg = true
 size = Vector2i(41, 40)
 
-[node name="TextureRect" type="TextureRect" parent="Sprite3D2/SubViewport" unique_id=1420124498]
+[node name="TextureRect" type="TextureRect" parent="Sprite3D2/SubViewport" unique_id=1754938239]
 offset_right = 40.0
 offset_bottom = 40.0
-texture = SubResource("AtlasTexture_g1v1a")
+texture = SubResource("AtlasTexture_bn2l6")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1808461735]
 stream = ExtResource("9_8jrxj")
@@ -167,9 +188,26 @@ texture = SubResource("ViewportTexture_iap6j")
 
 [node name="SubViewport" type="SubViewport" parent="BarMinigameSprite3D" unique_id=556381544]
 transparent_bg = true
-size = Vector2i(70, 430)
+size = Vector2i(86, 437)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="BarMinigameSprite3D/SubViewport" unique_id=1400798563]
+
+[node name="Sword" type="Sprite2D" parent="BarMinigameSprite3D/SubViewport/CanvasLayer" unique_id=1267677379]
+z_index = 1
+position = Vector2(22.400002, 286)
+rotation = 0.2617994
+scale = Vector2(0.79, 0.553)
+texture = SubResource("AtlasTexture_n8ot4")
+
+[node name="Area2D" type="Area2D" parent="BarMinigameSprite3D/SubViewport/CanvasLayer/Sword" unique_id=264612975]
+rotation = -1.7558012
+scale = Vector2(0.98955685, -14.624481)
+skew = -0.15533435
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BarMinigameSprite3D/SubViewport/CanvasLayer/Sword/Area2D" unique_id=222348914]
+position = Vector2(-0.9136963, 0.077899694)
+scale = Vector2(0.9999999, 1.0049306)
+shape = SubResource("RectangleShape2D_u8mns")
 
 [node name="BarMinigame" type="Node2D" parent="BarMinigameSprite3D/SubViewport/CanvasLayer" unique_id=1311041137 node_paths=PackedStringArray("rigidBox", "textureProgressBar", "itemToCatch", "canvasLayer")]
 position = Vector2(22.400002, 0)
@@ -189,23 +227,34 @@ wait_time = 0.2
 autostart = true
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame" unique_id=1266692508]
-offset_left = 20.0
-offset_top = 32.0
-offset_right = 395.0
-offset_bottom = 405.0
-scale = Vector2(0.07930373, 1.1666666)
-fill_mode = 3
-texture_under = ExtResource("15_g1v1a")
-texture_progress = ExtResource("14_wwlso")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 61.6
+offset_top = 15.0
+offset_right = 322.6
+offset_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5707964
+scale = Vector2(1.5999997, 1)
+value = 30.0
+texture_under = SubResource("AtlasTexture_iap6j")
+texture_progress = SubResource("AtlasTexture_n5xar")
+tint_under = Color(1, 0, 0, 1)
+tint_progress = Color(0, 1, 0.083333254, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Outside" type="Sprite2D" parent="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame" unique_id=2145505421]
 position = Vector2(0, 224)
-scale = Vector2(0.120000005, 1.12)
-texture = ExtResource("14_wwlso")
+rotation = 1.5707964
+scale = Vector2(0.63000166, 0.63000166)
+texture = SubResource("AtlasTexture_3ynec")
 
 [node name="GrooveJoint2D" type="GrooveJoint2D" parent="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame/Outside" unique_id=1325067782]
-position = Vector2(0, -170.53572)
+position = Vector2(268.25327, 0.6349106)
+rotation = 1.5707964
+scale = Vector2(0.979, 1.6)
 node_a = NodePath("../StaticBody2D")
 node_b = NodePath("../RigidBody2D")
 length = 350.0
@@ -214,36 +263,25 @@ initial_offset = 170.0
 [node name="StaticBody2D" type="StaticBody2D" parent="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame/Outside" unique_id=1036255881]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame/Outside/StaticBody2D" unique_id=15773238]
-position = Vector2(0, -1.5258789e-05)
+position = Vector2(0, 2.2222137)
 shape = SubResource("RectangleShape2D_eh3gw")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame/Outside" unique_id=1081946159]
+z_index = 2
 scale = Vector2(0.6666564, 0.17857051)
 gravity_scale = 0.0
 lock_rotation = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame/Outside/RigidBody2D" unique_id=916390691]
-scale = Vector2(0.1, 0.2)
+position = Vector2(-1.1904297, 12.444443)
+scale = Vector2(0.38571793, 0.771436)
 shape = SubResource("RectangleShape2D_n5xar")
 
 [node name="Inside" type="Sprite2D" parent="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame/Outside/RigidBody2D" unique_id=1414347988]
-scale = Vector2(0.1, 0.2)
-texture = ExtResource("15_g1v1a")
+scale = Vector2(0.8015868, 0.9618993)
+texture = SubResource("AtlasTexture_kecgh")
 
-[node name="Sword" type="Sprite2D" parent="BarMinigameSprite3D/SubViewport/CanvasLayer" unique_id=1267677379]
-position = Vector2(22.400002, 286)
-scale = Vector2(0.20000002, 0.14035092)
-texture = ExtResource("16_w0ftq")
-
-[node name="Area2D" type="Area2D" parent="BarMinigameSprite3D/SubViewport/CanvasLayer/Sword" unique_id=264612975]
-scale = Vector2(-0.9895568, 14.624481)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BarMinigameSprite3D/SubViewport/CanvasLayer/Sword/Area2D" unique_id=222348914]
-position = Vector2(0, -0.28433228)
-scale = Vector2(0.99999994, 1)
-shape = SubResource("RectangleShape2D_u8mns")
-
-[connection signal="timeout" from="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame/ProgressTimer" to="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame" method="OnTimerTimeout"]
-[connection signal="timeout" from="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame/ItemTimer" to="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame" method="OnItemTimerTimeout"]
 [connection signal="body_entered" from="BarMinigameSprite3D/SubViewport/CanvasLayer/Sword/Area2D" to="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame" method="OnBodyEntered"]
 [connection signal="body_exited" from="BarMinigameSprite3D/SubViewport/CanvasLayer/Sword/Area2D" to="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame" method="OnBodyExited"]
+[connection signal="timeout" from="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame/ProgressTimer" to="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame" method="OnTimerTimeout"]
+[connection signal="timeout" from="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame/ItemTimer" to="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame" method="OnItemTimerTimeout"]

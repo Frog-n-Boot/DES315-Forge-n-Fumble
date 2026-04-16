@@ -19,7 +19,7 @@ transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5612526, -0.004412611, 0.4049043)
 
 [node name="IntBoardsLow" parent="." unique_id=330279951 instance=ExtResource("2_fvkf0")]
-transform = Transform3D(-4.3711392e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711392e-08, 9.722197, 1.4633613, 0.6825348)
+transform = Transform3D(-4.3711392e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711392e-08, 9.722198, 1.2699424, 0.6825348)
 
 [node name="IntBrushLow" parent="." unique_id=1515723218 instance=ExtResource("3_nbld2")]
 transform = Transform3D(-0.94125265, 0, -0.3377032, 0, 1, 0, 0.3377032, 0, -0.94125265, -4.6224194, 1.0277725, -0.68114233)
@@ -31,13 +31,13 @@ transform = Transform3D(0.8452819, -0.53198636, -0.049890272, 0.12794863, 0.2921
 transform = Transform3D(0.918984, 0, -0.39429483, 0, 1, 0, 0.39429483, 0, 0.918984, -5.798126, 1.0487446, -0.81788754)
 
 [node name="IntLanternHangLow2" parent="." unique_id=1006239222 instance=ExtResource("6_yhgrm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8798327, 0.98222697, -5.962557)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.10653, 0.797283, -5.9465375)
 
 [node name="IntLanternHangLow5" parent="." unique_id=1872810731 instance=ExtResource("6_yhgrm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4886804, 0.98222697, -5.962557)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.725782, 0.98222697, -5.977735)
 
 [node name="IntLanternHangLow3" parent="." unique_id=851327741 instance=ExtResource("6_yhgrm")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 4.708608, 0.986941, 5.996936)
+transform = Transform3D(-1, 0, -8.7422784e-08, 0, 1, 0, 8.7422784e-08, 0, -1, 4.9976816, 0.986941, 6.1045995)
 
 [node name="IntLanternHangLow6" parent="." unique_id=2015402390 instance=ExtResource("6_yhgrm")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4.6237, 0.986941, 5.996937)
@@ -46,19 +46,19 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4.6
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.8977036, 0.96734476, 0.077705085)
 
 [node name="IntLanternStandLow2" parent="." unique_id=569226641 instance=ExtResource("7_7kcs5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.571032, 1.9753461, -0.05259403)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.571032, 1.4037174, -0.052594032)
 
 [node name="IntShelfLow" parent="." unique_id=886707856 instance=ExtResource("8_8o3j2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.451375, 1.3861295, -5.77062)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.451, 0.716, -5.771)
 
 [node name="IntShelfLow3" parent="." unique_id=1136451859 instance=ExtResource("8_8o3j2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.48515, 1.3861295, -5.77062)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.485, 0.716, -5.771)
 
 [node name="IntShelfLow2" parent="." unique_id=1346094578 instance=ExtResource("8_8o3j2")]
-transform = Transform3D(-4.3711392e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711392e-08, 9.224009, 1.3886855, 0.5768022)
+transform = Transform3D(-4.3711392e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711392e-08, 9.224, 0.716, 0.577)
 
 [node name="IntShelfLow4" parent="." unique_id=1915596820 instance=ExtResource("8_8o3j2")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.642456, 1.2873051, -0.058148146)
+transform = Transform3D(-4.3711392e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711392e-08, -9.642456, 0.7156765, -0.058148146)
 
 [node name="IntStoolLow" parent="." unique_id=2102236486 instance=ExtResource("9_5wyme")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.085956, 0.006216647, -0.41312268)

@@ -1,6 +1,8 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 
 public partial class SpinAttack : Node3D
 {
@@ -28,6 +30,8 @@ public partial class SpinAttack : Node3D
 	private Node3D parent;
 	private MeleeWeapon currentWeapon;
 	private bool isDazed;
+	private HashSet<EnemyController> hitEnemies = new HashSet<EnemyController>();
+	private bool isSpinning = false;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready(){
@@ -39,13 +43,16 @@ public partial class SpinAttack : Node3D
 		if(spinArea != null)
 		{
 			spinArea.Monitoring = false;
-			spinArea.BodyEntered += OnSpinHit;
-
+			if(!spinArea.IsConnected(Area3D.SignalName.BodyEntered, Callable.From<Node3D>(OnSpinHit)))
+			{
+				spinArea.BodyEntered += OnSpinHit;
+			}
+			
 			spinArea.AddToGroup("SpinAttack");
 		}
 		if(animPlayer == null)
         {
-            animPlayer = parent.GetNode<AnimationPlayer>("CollisionShape3D");
+            animPlayer = parent.GetNode<AnimationPlayer>("CollisionShape3D/AnimationPlayer");
         }
 	}
 
@@ -85,7 +92,7 @@ public partial class SpinAttack : Node3D
 		if(totalDegrees >= spinThreshold)
 		{
 			spinCharges++;
-			GD.Print($">>> Charge Gained! Total: {spinCharges}/{maxSpinCharges} <<<");
+			//GD.Print($">>> Charge Gained! Total: {spinCharges}/{maxSpinCharges} <<<");
 
 			accumulatedRotation = 0;
 			spinChargeTimer = spinChargeTimeout;
@@ -98,6 +105,13 @@ public partial class SpinAttack : Node3D
 		else
 		{
 			startRotationY = currentRotation;
+		}
+
+		if(isSpinning && spinArea != null)
+		{
+			var overlappingBodies = spinArea.GetOverlappingBodies();
+			foreach(var body in overlappingBodies)
+				ProcessSpinHit(body);
 		}
 	}
 
@@ -127,7 +141,8 @@ public partial class SpinAttack : Node3D
 	
 	private void ExecuteSpinAttack()
 	{
-		GD.Print($"SPIN ATTACK! Power: {spinCharges}");
+		//GD.Print($"SPIN ATTACK! Power: {spinCharges}");
+		hitEnemies.Clear();
 
 		if(currentWeapon != null && animPlayer !=null)
 		{
@@ -136,19 +151,26 @@ public partial class SpinAttack : Node3D
 
 			animPlayer.Play("Spin_Attack");
 			
-			animPlayer.SpeedScale = 4.0f;
+			animPlayer.SpeedScale = 2.0f;
 
 			if(spinArea != null)
 			{
 				spinArea.Monitoring = true;
+				isSpinning = true;
+
+				var overlappingBodies = spinArea.GetOverlappingBodies();
+				foreach(var body in overlappingBodies) 
+					ProcessSpinHit(body);
 
 				parent.GetTree().CreateTimer(spinDuration).Timeout += () =>
 				{
+					isSpinning = false;
+
 					if(IsInstanceValid(spinArea))
 						spinArea.Monitoring = false;
 					
 					animPlayer.Stop();
-					TriggerDaze();
+					//TriggerDaze();
 				};
 			}		
 		}
@@ -158,13 +180,13 @@ public partial class SpinAttack : Node3D
 
 	private void CancelSpin()
 	{
-		GD.Print("Spin Cancelled");
+		//GD.Print("Spin Cancelled");
 		Reset();
 	}
 
 	private void TriggerDaze()
 	{
-		GD.Print("DAZED!");
+		//GD.Print("DAZED!");
 		isDazed = true;
 
 		if(parent is PlayerController player)
@@ -193,16 +215,24 @@ public partial class SpinAttack : Node3D
 	{
 		isCharging = false;
 		spinCharges = 0;	
+		hitEnemies.Clear();
 		
 	}
 
 	private void OnSpinHit(Node3D body)
 	{
-		GD.Print($"Spin area detected: {body.Name}");
+		ProcessSpinHit(body);
+	}
 
-		var enemyNode = body.GetParent();
-		if(enemyNode is EnemyController enemy && currentWeapon != null)
+	private void ProcessSpinHit(Node3D body)
+	{
+		
+		if(body is EnemyController enemy && currentWeapon != null)
 		{
+			if(hitEnemies.Contains(enemy)) return;
+
+			hitEnemies.Add(enemy);
+
 			int damage = currentWeapon.damage;
 			enemy.TakeDamage(damage);
 
@@ -212,12 +242,10 @@ public partial class SpinAttack : Node3D
 
 			currentWeapon.TakeDurabilityDamage(1);
 		}
-		else if(currentWeapon == null)
-        {
-            TriggerDaze();
-        }
-	}
+		else if(currentWeapon == null && !hitEnemies.Any()) TriggerDaze();
 
+		
+	}
 	public MeleeWeapon GetCurrentWeapon() => currentWeapon;
 
 	public void SetWeapon(MeleeWeapon weapon) => currentWeapon = weapon;

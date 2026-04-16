@@ -9,7 +9,7 @@ public abstract partial class BaseStationScript : Node3D
 {
 	[Export] protected Node3D inputNode;
 	[Export] protected Node3D outputNode;
-	[Export] protected ProgressBar timeProgressBar;
+	[Export] protected TextureProgressBar timeProgressBar;
 	[Export] protected Label stationName;
 	[Export] protected TextureRect buttonTexture;
 	[Export] protected Texture2D controllerButtonTexture;
@@ -38,6 +38,7 @@ public abstract partial class BaseStationScript : Node3D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		timeProgressBar.Visible = false;
 		buttonTexture.Visible = false;
 		SetupArea();
 		SetupTimer();
@@ -56,31 +57,30 @@ public abstract partial class BaseStationScript : Node3D
 	}
 
 	private bool GetPlayerDevice()
-    {
-        bool isController = activeDevice >= 0;
+	{
+		bool isController = activeDevice >= 0;
 		return isController;
-    }
+	}
 
 	private void UpdateButtonTexture(bool isController)
-    {
-        
-        if (isController)
-        {
-            buttonTexture.Texture = controllerButtonTexture;
-        }
-        else
-        {
-            buttonTexture.Texture = keyboardButtonTexture;
-        }
+	{
+		
+		if (isController)
+		{
+			buttonTexture.Texture = controllerButtonTexture;
+		}
+		else
+		{
+			buttonTexture.Texture = keyboardButtonTexture;
+		}
 
-    }
+	}
 
 	protected abstract string GetStationName();
 
 	public bool DepositItems(ItemData item)
 	{
-		if (!IsItemNeeded(item))
-			return false;
+		if (!IsItemNeeded(item) ||isOutputOccupied() || !craftingTimer.IsStopped()) return false;
 
 		//ProduceOutput();
 
@@ -184,7 +184,7 @@ public abstract partial class BaseStationScript : Node3D
 		}
 		if(GetRequiredItems(out var itemsToConsume, out var recipes))
 		{	
-
+			timeProgressBar.Visible = true; 
 			pendingRecipe = recipes;
 			pendingConsume = itemsToConsume;
 			ConsumeItems();
@@ -228,6 +228,7 @@ public abstract partial class BaseStationScript : Node3D
 	{
 		if (!isOutputOccupied())
 		{
+			timeProgressBar.Visible = false; 
 			ProduceOutput();
 		}
 	}

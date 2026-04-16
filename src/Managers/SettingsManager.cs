@@ -17,12 +17,35 @@ public partial class SettingsManager : Node
 	public bool VSync = false;
 	public bool showFPS = false;
 	public int maxFPS = 60;
+	private Label fpsLabel;
 
 	public override void _Ready()
 	{
 		instance = this;
 		LoadSettings();
 		ApplySettings();
+		CreateFPSLabel();
+	}
+
+    public override void _Process(double delta)
+    {
+        if(showFPS && fpsLabel != null)
+		{
+			fpsLabel.Text = $"FPS: {Engine.GetFramesPerSecond()}";
+		}
+    }
+
+	private void CreateFPSLabel()
+	{
+		fpsLabel = new Label();
+		fpsLabel.AnchorLeft = 1.0f;
+		fpsLabel.AnchorRight = 1.0f;
+		fpsLabel.AnchorTop = 0.0f;
+		fpsLabel.GrowHorizontal = Control.GrowDirection.Begin;
+		fpsLabel.Position = new Vector2(-30.0f, 100.0f);
+		fpsLabel.AddThemeColorOverride("font_color", Colors.Yellow);
+		fpsLabel.Visible = showFPS;
+		AddChild(fpsLabel);
 	}
 	private void SetWindowPosition()
 	{
@@ -39,10 +62,14 @@ public partial class SettingsManager : Node
 		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("SFX"), Mathf.LinearToDb(SFXVolume));
 
 		//Display
-		DisplayServer.WindowSetMode(isFullscreen ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
-
-		DisplayServer.WindowSetSize(resolution);
-		SetWindowPosition();
+		if (isFullscreen)
+			DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
+		else
+		{
+			DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
+			DisplayServer.WindowSetSize(resolution);
+			SetWindowPosition();
+		}
 
 		DisplayServer.VSyncMode vsyncMode = VSync ? DisplayServer.VSyncMode.Enabled : DisplayServer.VSyncMode.Disabled;
 		DisplayServer.WindowSetVsyncMode(vsyncMode);
@@ -103,6 +130,10 @@ public partial class SettingsManager : Node
 	public void SetShowFPS(bool value)
 	{
 		showFPS = value;
+
+		if(fpsLabel != null) fpsLabel.Visible = value;
+
+		
 	}
 
 	public void SetMaxFPS(long value)
@@ -111,7 +142,7 @@ public partial class SettingsManager : Node
 		Engine.MaxFps = (int)value;
 	}
 
-	public void SaveSetttings()
+	public void SaveSettings()
 	{
 		var config = new ConfigFile();
 		config.SetValue("Audio", "MasterVolume", masterVolume);
@@ -139,6 +170,6 @@ public partial class SettingsManager : Node
 		showFPS = (bool)config.GetValue("Display", "ShowFPS", false);
 		maxFPS = (int)config.GetValue("Display", "MaxFPS", 60);
 
-		ApplySettings();
+		//ApplySettings();
 	}
 }
