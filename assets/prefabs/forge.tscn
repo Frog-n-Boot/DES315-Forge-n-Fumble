@@ -162,7 +162,6 @@ text = "Forge"
 offset_right = 261.0
 offset_bottom = 40.0
 scale = Vector2(0.3809055, 0.3809055)
-value = 45.0
 texture_progress = SubResource("AtlasTexture_jycwk")
 
 [node name="Sprite3D2" type="Sprite3D" parent="." unique_id=1410507609]

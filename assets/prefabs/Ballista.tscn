@@ -52,6 +52,7 @@ audio = NodePath("AudioStreamPlayer3D")
 
 [node name="Node3D" type="Node3D" parent="CanvasLayer" unique_id=1037465994]
 transform = Transform3D(-0.10386822, 0, 0.49802622, 0, 3.4232113, 0, -4.7299213, 0, -0.010936562, 0, 3.545107, 0)
+visible = false
 
 [node name="Label3D" type="Label3D" parent="CanvasLayer/Node3D" unique_id=1012313719]
 visible = false

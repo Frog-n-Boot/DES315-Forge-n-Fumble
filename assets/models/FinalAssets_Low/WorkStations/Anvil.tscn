@@ -119,7 +119,7 @@ offset_bottom = 40.0
 texture_progress = SubResource("AtlasTexture_0gpkw")
 
 [node name="Sprite3D2" type="Sprite3D" parent="." unique_id=1337985502]
-transform = Transform3D(-1.24372e-07, -2, -3.4641016, -8.742278e-08, 3.4641016, -2, 4, 1.352435e-08, -1.5142069e-07, 1.8696947, 0.62830627, 0)
+transform = Transform3D(-6.2186e-08, -1, -1.7320508, -4.371139e-08, 1.7320508, -1, 2, 6.762175e-09, -7.5710346e-08, 1.4791862, 0.36335433, 0.029955745)
 texture = SubResource("ViewportTexture_0gpkw")
 
 [node name="SubViewport" type="SubViewport" parent="Sprite3D2" unique_id=1508301261]

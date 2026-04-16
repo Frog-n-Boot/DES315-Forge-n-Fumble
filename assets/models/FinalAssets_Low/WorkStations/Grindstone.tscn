@@ -165,7 +165,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Sprite3D2" type="Sprite3D" parent="." unique_id=1666375140]
-transform = Transform3D(6.119593e-07, -3.5000005, 6.062178, 5.2997257e-07, 6.062178, 3.5000005, -6.9999995, 1.5298984e-07, 7.9495857e-07, 2.232731, 0.76380336, -0.25583744)
+transform = Transform3D(6.357298e-08, -1.0000001, 1.7320508, 1.5142075e-07, 1.7320508, 1.0000001, -2, 9.9347716e-08, 1.307662e-07, 1.5525401, 0.38798475, -0.09157038)
 texture = SubResource("ViewportTexture_n8ot4")
 
 [node name="SubViewport" type="SubViewport" parent="Sprite3D2" unique_id=568560399]
@@ -188,7 +188,7 @@ texture = SubResource("ViewportTexture_iap6j")
 
 [node name="SubViewport" type="SubViewport" parent="BarMinigameSprite3D" unique_id=556381544]
 transparent_bg = true
-size = Vector2i(70, 430)
+size = Vector2i(86, 437)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="BarMinigameSprite3D/SubViewport" unique_id=1400798563]
 
@@ -267,6 +267,7 @@ position = Vector2(0, 2.2222137)
 shape = SubResource("RectangleShape2D_eh3gw")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame/Outside" unique_id=1081946159]
+z_index = 2
 scale = Vector2(0.6666564, 0.17857051)
 gravity_scale = 0.0
 lock_rotation = true
