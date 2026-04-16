@@ -1,0 +1,10 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://boxmect25s13k"]
+
+[ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="1_hr380"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_in2eo"]
+atlas = ExtResource("1_hr380")
+region = Rect2(581, 500, 285, 91)
+
+[resource]
+atlas = SubResource("AtlasTexture_in2eo")

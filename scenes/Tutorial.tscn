@@ -88,6 +88,34 @@ volumetric_fog_density = 0.0
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dn1de"]
 texture = SubResource("MeshTexture_f0oxr")
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y74ua"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rx2rv"]
+atlas = SubResource("CompressedTexture2D_y74ua")
+region = Rect2(581, 500, 285, 91)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dyyw8"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgb57"]
+atlas = SubResource("CompressedTexture2D_dyyw8")
+region = Rect2(581, 500, 285, 91)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_knagv"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vc5l"]
+atlas = SubResource("CompressedTexture2D_knagv")
+region = Rect2(581, 500, 285, 91)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rx2rv"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1uvm"]
+atlas = SubResource("CompressedTexture2D_rx2rv")
+region = Rect2(581, 500, 285, 91)
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_7vc5l"]
 height = 2.4223633
 radius = 1.0214844
@@ -225,368 +253,6 @@ environment = SubResource("Environment_47rdh")
 
 [node name="UI" type="Node" parent="." unique_id=195859758]
 
-[node name="SettingsMenu" type="CanvasLayer" parent="UI" unique_id=2062423111 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton", "audio", "pauseMenu")]
-process_mode = 3
-visible = false
-script = ExtResource("46_7vc5l")
-masterSlider = NodePath("Panel/TabContainer/Sound/MasterVolumeLabel/MasterVolumeSlider")
-musicSlider = NodePath("Panel/TabContainer/Sound/MusicVolumeLabel/MusicVolumeSlider")
-sfxSlider = NodePath("Panel/TabContainer/Sound/SFXVolumeLabel/SFXVolumeSlider")
-fullScreenCheckBox = NodePath("Panel/TabContainer/Display/FullscreenLabel/FullScreenCheckBox")
-vsyncCheckBox = NodePath("Panel/TabContainer/Display/VSyncLabel/VSyncCheckBox")
-showFPSCheckBox = NodePath("Panel/TabContainer/Display/ShowFPSLabel/ShowFPSCheckBox")
-resolutionDropdown = NodePath("Panel/TabContainer/Display/ResolutionLabel/ResolutionOptionButton")
-maxFPSDropdown = NodePath("Panel/TabContainer/Display/FPSLabel/FPSOptionButton")
-applyButton = NodePath("Panel/ApplyButton")
-audio = NodePath("AudioStreamPlayer2D")
-pauseMenu = NodePath("../PauseMenu")
-metadata/_edit_use_anchors_ = true
-
-[node name="BackgroundImage" type="TextureRect" parent="UI/SettingsMenu" unique_id=791567370]
-visible = false
-visibility_layer = 2
-z_index = -1
-offset_left = -22.0
-offset_right = 1351.0
-offset_bottom = 772.0
-texture = ExtResource("50_v1uvm")
-stretch_mode = 1
-
-[node name="ColorRect" type="ColorRect" parent="UI/SettingsMenu" unique_id=2093714426]
-z_index = -1
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(31.983738, 18.137573)
-color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
-
-[node name="Panel" type="Panel" parent="UI/SettingsMenu" unique_id=164261535]
-offset_right = 1152.0
-offset_bottom = 650.0
-scale = Vector2(1.1124753, 1.107986)
-
-[node name="Label" type="Label" parent="UI/SettingsMenu/Panel" unique_id=307940941]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.3515625
-anchor_top = -0.035384614
-anchor_right = 0.3515625
-anchor_bottom = -0.035384614
-offset_left = 32.0
-offset_top = 24.0
-offset_right = 264.0
-offset_bottom = 107.0
-theme_override_font_sizes/font_size = 60
-text = "Settings"
-metadata/_edit_use_anchors_ = true
-
-[node name="TabContainer" type="TabContainer" parent="UI/SettingsMenu/Panel" unique_id=1927355404]
-layout_mode = 0
-offset_left = -2.0
-offset_top = 102.0
-offset_right = 1150.0
-offset_bottom = 169.0
-current_tab = 0
-
-[node name="Sound" type="Control" parent="UI/SettingsMenu/Panel/TabContainer" unique_id=1845286049]
-layout_mode = 2
-focus_neighbor_right = NodePath("../Display")
-metadata/_tab_index = 0
-
-[node name="MasterVolumeLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Sound" unique_id=100836795]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.30989584
-anchor_top = 2.5
-anchor_right = 0.30989584
-anchor_bottom = 2.5
-offset_left = 34.0
-offset_top = -13.0
-offset_right = 254.0
-offset_bottom = 74.0
-focus_next = NodePath("../MusicVolumeLabel/MusicVolumeSlider")
-theme_override_font_sizes/font_size = 30
-text = "Master Volume
-"
-metadata/_edit_use_anchors_ = true
-
-[node name="MasterVolumeSlider" type="HSlider" parent="UI/SettingsMenu/Panel/TabContainer/Sound/MasterVolumeLabel" unique_id=1742944749]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.0045454544
-offset_left = 233.0
-offset_right = 343.0
-offset_bottom = 50.0
-focus_neighbor_top = NodePath("../..")
-focus_neighbor_bottom = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
-focus_next = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
-metadata/_edit_use_anchors_ = true
-
-[node name="MusicVolumeLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Sound" unique_id=282320354]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.30989584
-anchor_top = 3.1944444
-anchor_right = 0.30989584
-anchor_bottom = 3.1944444
-offset_left = 34.0
-offset_top = 43.0
-offset_right = 237.0
-offset_bottom = 90.0
-theme_override_font_sizes/font_size = 30
-text = "Music Volume"
-metadata/_edit_use_anchors_ = true
-
-[node name="MusicVolumeSlider" type="HSlider" parent="UI/SettingsMenu/Panel/TabContainer/Sound/MusicVolumeLabel" unique_id=1913086995]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.009852217
-anchor_top = -0.14893617
-anchor_right = -0.009852217
-anchor_bottom = -0.14893617
-offset_left = 234.0
-offset_top = 7.0
-offset_right = 344.0
-offset_bottom = 57.0
-focus_neighbor_top = NodePath("../../MasterVolumeLabel/MasterVolumeSlider")
-focus_neighbor_bottom = NodePath("../../SFXVolumeLabel/SFXVolumeSlider")
-metadata/_edit_use_anchors_ = true
-
-[node name="SFXVolumeLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Sound" unique_id=915153454]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.30989584
-anchor_top = 4.111111
-anchor_right = 0.30989584
-anchor_bottom = 4.111111
-offset_left = 34.0
-offset_top = 91.0
-offset_right = 203.0
-offset_bottom = 138.0
-theme_override_font_sizes/font_size = 30
-text = "SFX Volume"
-metadata/_edit_use_anchors_ = true
-
-[node name="SFXVolumeSlider" type="HSlider" parent="UI/SettingsMenu/Panel/TabContainer/Sound/SFXVolumeLabel" unique_id=1812281174]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.01183432
-anchor_top = -0.23404256
-anchor_right = -0.01183432
-anchor_bottom = -0.23404256
-offset_left = 234.0
-offset_top = 4.0
-offset_right = 344.0
-offset_bottom = 54.0
-focus_neighbor_top = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
-focus_neighbor_bottom = NodePath("../../../Display/FullscreenLabel/FullScreenCheckBox")
-metadata/_edit_use_anchors_ = true
-
-[node name="Display" type="Control" parent="UI/SettingsMenu/Panel/TabContainer" unique_id=1109430961]
-visible = false
-layout_mode = 2
-focus_neighbor_left = NodePath("../Sound")
-focus_neighbor_right = NodePath("../Controls")
-metadata/_tab_index = 1
-
-[node name="ResolutionLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=1227859209]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.3246528
-anchor_top = -2.0277777
-anchor_right = 0.3246528
-anchor_bottom = -2.0277777
-offset_left = 34.0
-offset_top = 299.0
-offset_right = 188.0
-offset_bottom = 346.0
-theme_override_font_sizes/font_size = 30
-text = "Resolution"
-metadata/_edit_use_anchors_ = true
-
-[node name="ResolutionOptionButton" type="OptionButton" parent="UI/SettingsMenu/Panel/TabContainer/Display/ResolutionLabel" unique_id=206724384]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.4090909
-anchor_top = -0.06382979
-anchor_right = 0.4090909
-anchor_bottom = -0.06382979
-offset_left = 169.0
-offset_top = 11.0
-offset_right = 297.0
-offset_bottom = 43.0
-focus_neighbor_top = NodePath("../../ShowFPSLabel/ShowFPSCheckBox")
-focus_neighbor_bottom = NodePath("../../FPSLabel/FPSOptionButton")
-metadata/_edit_use_anchors_ = true
-
-[node name="FPSLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=1185816027]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.3246528
-anchor_top = -2.0277777
-anchor_right = 0.3246528
-anchor_bottom = -2.0277777
-offset_left = 34.0
-offset_top = 355.0
-offset_right = 105.0
-offset_bottom = 402.0
-theme_override_font_sizes/font_size = 30
-text = "FPS"
-metadata/_edit_use_anchors_ = true
-
-[node name="FPSOptionButton" type="OptionButton" parent="UI/SettingsMenu/Panel/TabContainer/Display/FPSLabel" unique_id=199298681]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.5633802
-anchor_top = -0.06382979
-anchor_right = 1.5633802
-anchor_bottom = -0.06382979
-offset_left = 121.0
-offset_top = 11.0
-offset_right = 249.0
-offset_bottom = 43.0
-focus_neighbor_top = NodePath("../../ResolutionLabel/ResolutionOptionButton")
-focus_neighbor_bottom = NodePath("../../../../BackButton")
-metadata/_edit_use_anchors_ = true
-
-[node name="FullscreenLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=691238029]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.3246528
-anchor_top = -2.0277777
-anchor_right = 0.3246528
-anchor_bottom = -2.0277777
-offset_left = 34.0
-offset_top = 139.0
-offset_right = 203.0
-offset_bottom = 186.0
-theme_override_font_sizes/font_size = 30
-text = "FullScreen"
-metadata/_edit_use_anchors_ = true
-
-[node name="FullScreenCheckBox" type="CheckBox" parent="UI/SettingsMenu/Panel/TabContainer/Display/FullscreenLabel" unique_id=518857141]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.37899998
-anchor_top = -0.00021277083
-anchor_right = 0.37899998
-anchor_bottom = -0.00021273024
-offset_left = 167.949
-offset_top = 8.01
-offset_right = 191.949
-offset_bottom = 32.01
-focus_neighbor_top = NodePath("../..")
-focus_neighbor_bottom = NodePath("../../VSyncLabel/VSyncCheckBox")
-focus_next = NodePath(".")
-theme_override_font_sizes/font_size = 40
-metadata/_edit_use_anchors_ = true
-
-[node name="VSyncLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=835521993]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.3246528
-anchor_top = -2.0277777
-anchor_right = 0.3246528
-anchor_bottom = -2.0277777
-offset_left = 34.0
-offset_top = 187.0
-offset_right = 203.0
-offset_bottom = 234.0
-theme_override_font_sizes/font_size = 30
-text = "VSync"
-metadata/_edit_use_anchors_ = true
-
-[node name="VSyncCheckBox" type="CheckBox" parent="UI/SettingsMenu/Panel/TabContainer/Display/VSyncLabel" unique_id=1126031585]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.2366864
-anchor_right = 0.2366864
-offset_left = 192.0
-offset_top = -7.9999986
-offset_right = 224.0
-offset_bottom = 55.0
-focus_neighbor_top = NodePath("../../FullscreenLabel/FullScreenCheckBox")
-focus_neighbor_bottom = NodePath("../../ShowFPSLabel/ShowFPSCheckBox")
-focus_next = NodePath(".")
-theme_override_font_sizes/font_size = 40
-text = "
-"
-metadata/_edit_use_anchors_ = true
-
-[node name="ShowFPSLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=718180484]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.3246528
-anchor_top = -2.0277777
-anchor_right = 0.3246528
-anchor_bottom = -2.0277777
-offset_left = 34.0
-offset_top = 243.0
-offset_right = 203.0
-offset_bottom = 290.0
-theme_override_font_sizes/font_size = 30
-text = "ShowFPS"
-metadata/_edit_use_anchors_ = true
-
-[node name="ShowFPSCheckBox" type="CheckBox" parent="UI/SettingsMenu/Panel/TabContainer/Display/ShowFPSLabel" unique_id=1332068711]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.16568047
-anchor_top = 0.06382979
-anchor_right = 0.16568047
-anchor_bottom = 0.06382979
-offset_left = 204.0
-offset_top = -11.0
-offset_right = 236.0
-offset_bottom = 52.0
-focus_neighbor_top = NodePath("../../VSyncLabel/VSyncCheckBox")
-focus_neighbor_bottom = NodePath("../../ResolutionLabel/ResolutionOptionButton")
-focus_next = NodePath(".")
-theme_override_font_sizes/font_size = 40
-text = "
-
-"
-metadata/_edit_use_anchors_ = true
-
-[node name="Controls" type="Control" parent="UI/SettingsMenu/Panel/TabContainer" unique_id=2010107660]
-visible = false
-layout_mode = 2
-focus_neighbor_left = NodePath("../Display")
-metadata/_tab_index = 2
-
-[node name="BackButton" type="Button" parent="UI/SettingsMenu/Panel" unique_id=956282757]
-layout_mode = 0
-offset_left = 8.000006
-offset_top = 552.0
-offset_right = 456.0
-offset_bottom = 672.0
-scale = Vector2(0.8400012, 0.7599994)
-focus_neighbor_top = NodePath("../TabContainer/Sound/SFXVolumeLabel/SFXVolumeSlider")
-focus_neighbor_right = NodePath("../ApplyButton")
-focus_next = NodePath("../TabContainer/Sound/MasterVolumeLabel/MasterVolumeSlider")
-theme_override_font_sizes/font_size = 40
-text = "Back
-"
-metadata/_edit_use_anchors_ = true
-
-[node name="ApplyButton" type="Button" parent="UI/SettingsMenu/Panel" unique_id=233542619]
-layout_mode = 0
-offset_left = 759.99994
-offset_top = 552.0
-offset_right = 1208.0
-offset_bottom = 672.0
-scale = Vector2(0.8400012, 0.7599994)
-focus_neighbor_left = NodePath("../BackButton")
-focus_neighbor_top = NodePath("../TabContainer/Sound/SFXVolumeLabel/SFXVolumeSlider")
-theme_override_font_sizes/font_size = 40
-text = "Apply
-
-"
-metadata/_edit_use_anchors_ = true
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="UI/SettingsMenu" unique_id=6820934]
-stream = ExtResource("51_wwsfe")
-volume_db = -40.0
-
 [node name="ProgressBar" type="ProgressBar" parent="UI" unique_id=1132391527]
 offset_top = 26.0
 offset_right = 226.0
@@ -601,120 +267,6 @@ offset_top = -26.0
 offset_right = 116.0
 offset_bottom = -3.0
 text = "Skip? ESC/ ⧉/≡"
-
-[node name="PauseMenu" type="CanvasLayer" parent="UI" unique_id=270092890 node_paths=PackedStringArray("resumeButton", "settingsButton", "mainMenuButton", "settingsMenu", "tutorialManager")]
-process_mode = 3
-visible = false
-script = ExtResource("42_wkaxc")
-resumeButton = NodePath("ResumeButton")
-settingsButton = NodePath("SettingsButton")
-mainMenuButton = NodePath("QuitButton")
-settingsMenu = NodePath("../SettingsMenu")
-tutorialManager = NodePath("../../TutorialManager")
-
-[node name="ResumeButton" type="Button" parent="UI/PauseMenu" unique_id=263225920]
-offset_left = 71.00002
-offset_top = 175.0
-offset_right = 519.0
-offset_bottom = 295.0
-scale = Vector2(0.9338884, 0.83369994)
-focus_neighbor_top = NodePath(".")
-focus_neighbor_bottom = NodePath("../SettingsButton")
-focus_next = NodePath("../SettingsButton")
-focus_previous = NodePath("../QuitButton")
-theme_override_font_sizes/font_size = 40
-text = "Resume"
-
-[node name="SettingsButton" type="Button" parent="UI/PauseMenu" unique_id=612249311]
-offset_left = 71.00002
-offset_top = 335.0
-offset_right = 519.0
-offset_bottom = 455.0
-scale = Vector2(0.9338884, 0.83369994)
-focus_neighbor_top = NodePath("../ResumeButton")
-focus_neighbor_bottom = NodePath("../QuitButton")
-focus_next = NodePath("../QuitButton")
-focus_previous = NodePath("../ResumeButton")
-theme_override_font_sizes/font_size = 40
-text = "Settings"
-
-[node name="QuitButton" type="Button" parent="UI/PauseMenu" unique_id=937778779]
-offset_left = 71.00002
-offset_top = 495.0
-offset_right = 519.0
-offset_bottom = 615.0
-scale = Vector2(0.9338884, 0.83369994)
-focus_neighbor_top = NodePath("../SettingsButton")
-focus_previous = NodePath("../SettingsButton")
-theme_override_font_sizes/font_size = 40
-text = "Main Menu"
-
-[node name="Label" type="Label" parent="UI/PauseMenu" unique_id=1897877340]
-offset_left = 62.0
-offset_top = 26.0
-offset_right = 459.0
-offset_bottom = 109.0
-scale = Vector2(1.1117703, 1.0969745)
-theme_override_font_sizes/font_size = 60
-text = "Game Paused"
-
-[node name="FurnaceImahe" type="TextureRect" parent="UI/PauseMenu" unique_id=1419083924]
-offset_left = 658.0
-offset_top = 64.0
-offset_right = 1158.0
-offset_bottom = 164.0
-scale = Vector2(0.68367857, 0.7553831)
-texture = ExtResource("43_y74ua")
-expand_mode = 1
-
-[node name="AnvilImage" type="TextureRect" parent="UI/PauseMenu" unique_id=1140674292]
-offset_left = 658.0
-offset_top = 133.0
-offset_right = 1158.0
-offset_bottom = 233.0
-scale = Vector2(0.68367857, 0.7553831)
-texture = ExtResource("44_rx2rv")
-expand_mode = 1
-
-[node name="GrindstoneImage" type="TextureRect" parent="UI/PauseMenu" unique_id=1215423119]
-offset_left = 658.0
-offset_top = 201.0
-offset_right = 1158.0
-offset_bottom = 301.0
-scale = Vector2(0.68367857, 0.7553831)
-texture = ExtResource("45_cgb57")
-expand_mode = 1
-
-[node name="ControlsLabel" type="Label" parent="UI/PauseMenu" unique_id=1138207857]
-offset_left = 592.0
-offset_top = 347.00003
-offset_right = 1254.0
-offset_bottom = 704.0
-scale = Vector2(0.7560038, 0.68626726)
-theme_override_font_sizes/font_size = 30
-text = "Actions                  Keyboard    │  Controller
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Pick-Up               │  Right Click │  Left Trigger
-Attack/Interact │  Left Click   │  Right Trigger
-Drop-Left-Item  │  Q                 │  Left Shoulder
-Drop-Right-Item│  E                 │  Right Shoulder
-Pause                  │  ESC             │  ☰
-Sequence           │  ←↑→↓          │  < > v ^"
-
-[node name="TextureRect" type="TextureRect" parent="UI/PauseMenu" unique_id=686546604]
-z_index = -1
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(32.086143, 17.724134)
-mouse_filter = 2
-
-[node name="ColorRect" type="ColorRect" parent="UI/PauseMenu" unique_id=606113047]
-z_index = -1
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(31.96347, 17.957317)
-mouse_filter = 2
-color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
 
 [node name="Text" type="Node3D" parent="UI" unique_id=551861238]
 
@@ -813,6 +365,492 @@ visible = false
 text = "Hold Interact while holding 
 a Ingot to reload the Crossbow"
 
+[node name="PauseMenu" type="CanvasLayer" parent="UI" unique_id=468631936 node_paths=PackedStringArray("resumeButton", "settingsButton", "mainMenuButton", "settingsMenu", "tutorialManager")]
+process_mode = 3
+visible = false
+script = ExtResource("42_wkaxc")
+resumeButton = NodePath("ResumeButton")
+settingsButton = NodePath("SettingsButton")
+mainMenuButton = NodePath("QuitButton")
+settingsMenu = NodePath("../SettingsMenu")
+tutorialManager = NodePath("../../TutorialManager")
+
+[node name="ResumeButton" type="Button" parent="UI/PauseMenu" unique_id=471299529]
+offset_left = 71.00002
+offset_top = 175.0
+offset_right = 519.0
+offset_bottom = 295.0
+scale = Vector2(0.93444926, 0.8426638)
+focus_neighbor_top = NodePath(".")
+focus_neighbor_bottom = NodePath("../SettingsButton")
+focus_next = NodePath("../SettingsButton")
+focus_previous = NodePath("../QuitButton")
+theme_override_font_sizes/font_size = 40
+text = "Resume"
+icon = SubResource("AtlasTexture_rx2rv")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="SettingsButton" type="Button" parent="UI/PauseMenu" unique_id=1844818521]
+offset_left = 71.00002
+offset_top = 335.0
+offset_right = 519.0
+offset_bottom = 455.0
+scale = Vector2(0.93444926, 0.8426638)
+focus_neighbor_top = NodePath("../ResumeButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+focus_next = NodePath("../QuitButton")
+focus_previous = NodePath("../ResumeButton")
+theme_override_font_sizes/font_size = 40
+text = "Settings"
+icon = SubResource("AtlasTexture_cgb57")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="QuitButton" type="Button" parent="UI/PauseMenu" unique_id=1606239591]
+offset_left = 71.00002
+offset_top = 495.0
+offset_right = 519.0
+offset_bottom = 615.0
+scale = Vector2(0.93444926, 0.8426638)
+focus_neighbor_top = NodePath("../SettingsButton")
+focus_previous = NodePath("../SettingsButton")
+theme_override_font_sizes/font_size = 40
+text = "Main Menu"
+icon = SubResource("AtlasTexture_7vc5l")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Label" type="Label" parent="UI/PauseMenu" unique_id=425332203]
+offset_left = 62.0
+offset_top = 26.0
+offset_right = 459.0
+offset_bottom = 109.0
+scale = Vector2(1.112438, 1.108769)
+theme_override_font_sizes/font_size = 60
+text = "Game Paused"
+
+[node name="FurnaceImahe" type="TextureRect" parent="UI/PauseMenu" unique_id=2071960944]
+offset_left = 658.0
+offset_top = 64.0
+offset_right = 1158.0
+offset_bottom = 164.0
+scale = Vector2(0.6840891, 0.76350486)
+texture = ExtResource("43_y74ua")
+expand_mode = 1
+
+[node name="AnvilImage" type="TextureRect" parent="UI/PauseMenu" unique_id=1783727334]
+offset_left = 658.0
+offset_top = 133.0
+offset_right = 1158.0
+offset_bottom = 233.0
+scale = Vector2(0.6840891, 0.76350486)
+texture = ExtResource("44_rx2rv")
+expand_mode = 1
+
+[node name="GrindstoneImage" type="TextureRect" parent="UI/PauseMenu" unique_id=1325749892]
+offset_left = 658.0
+offset_top = 201.0
+offset_right = 1158.0
+offset_bottom = 301.0
+scale = Vector2(0.6840891, 0.76350486)
+texture = ExtResource("45_cgb57")
+expand_mode = 1
+
+[node name="ControlsLabel" type="Label" parent="UI/PauseMenu" unique_id=1791737565]
+offset_left = 592.0
+offset_top = 347.00003
+offset_right = 1254.0
+offset_bottom = 704.0
+scale = Vector2(0.7564578, 0.69364595)
+theme_override_font_sizes/font_size = 30
+text = "Actions                  Keyboard    │  Controller
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Pick-Up               │  Right Click │  Left Trigger
+Attack/Interact │  Left Click   │  Right Trigger
+Drop-Left-Item  │  Q                 │  Left Shoulder
+Drop-Right-Item│  E                 │  Right Shoulder
+Pause                  │  ESC             │  ☰
+Sequence           │  ←↑→↓          │  < > v ^"
+
+[node name="TextureRect" type="TextureRect" parent="UI/PauseMenu" unique_id=2022666450]
+z_index = -1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(32.10541, 17.914703)
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="UI/PauseMenu" unique_id=695410379]
+z_index = -1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(31.982666, 18.150393)
+mouse_filter = 2
+color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
+
+[node name="SettingsMenu" type="CanvasLayer" parent="UI" unique_id=1102677554 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton", "audio", "pauseMenu")]
+process_mode = 3
+script = ExtResource("46_7vc5l")
+masterSlider = NodePath("Panel/TabContainer/Sound/MasterVolumeLabel/MasterVolumeSlider")
+musicSlider = NodePath("Panel/TabContainer/Sound/MusicVolumeLabel/MusicVolumeSlider")
+sfxSlider = NodePath("Panel/TabContainer/Sound/SFXVolumeLabel/SFXVolumeSlider")
+fullScreenCheckBox = NodePath("Panel/TabContainer/Display/FullscreenLabel/FullScreenCheckBox")
+vsyncCheckBox = NodePath("Panel/TabContainer/Display/VSyncLabel/VSyncCheckBox")
+showFPSCheckBox = NodePath("Panel/TabContainer/Display/ShowFPSLabel/ShowFPSCheckBox")
+resolutionDropdown = NodePath("Panel/TabContainer/Display/ResolutionLabel/ResolutionOptionButton")
+maxFPSDropdown = NodePath("Panel/TabContainer/Display/FPSLabel/FPSOptionButton")
+applyButton = NodePath("Panel/ApplyButton")
+audio = NodePath("AudioStreamPlayer2D")
+pauseMenu = NodePath("../PauseMenu")
+metadata/_edit_use_anchors_ = true
+
+[node name="BackgroundImage" type="TextureRect" parent="UI/SettingsMenu" unique_id=702657135]
+visible = false
+visibility_layer = 2
+z_index = -1
+offset_left = -22.0
+offset_right = 1351.0
+offset_bottom = 772.0
+texture = ExtResource("50_v1uvm")
+stretch_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="UI/SettingsMenu" unique_id=1411980820]
+z_index = -1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(32.207207, 18.071495)
+color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
+
+[node name="Panel" type="Panel" parent="UI/SettingsMenu" unique_id=1992712515]
+offset_right = 1152.0
+offset_bottom = 650.0
+scale = Vector2(1.1202481, 1.1039494)
+
+[node name="Label" type="Label" parent="UI/SettingsMenu/Panel" unique_id=377217154]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3515625
+anchor_top = -0.035384614
+anchor_right = 0.3515625
+anchor_bottom = -0.035384614
+offset_left = 32.0
+offset_top = 24.0
+offset_right = 264.0
+offset_bottom = 107.0
+theme_override_font_sizes/font_size = 60
+text = "Settings"
+
+[node name="TabContainer" type="TabContainer" parent="UI/SettingsMenu/Panel" unique_id=715561975]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 102.0
+offset_right = 1150.0
+offset_bottom = 169.0
+mouse_filter = 0
+current_tab = 0
+
+[node name="Sound" type="Control" parent="UI/SettingsMenu/Panel/TabContainer" unique_id=945938639]
+layout_mode = 2
+focus_neighbor_right = NodePath("../Display")
+metadata/_tab_index = 0
+
+[node name="MasterVolumeLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Sound" unique_id=623849174]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.30989584
+anchor_top = 2.5
+anchor_right = 0.30989584
+anchor_bottom = 2.5
+offset_left = 34.0
+offset_top = -13.0
+offset_right = 254.0
+offset_bottom = 74.0
+focus_next = NodePath("../MusicVolumeLabel/MusicVolumeSlider")
+theme_override_font_sizes/font_size = 30
+text = "Master Volume
+"
+
+[node name="MasterVolumeSlider" type="HSlider" parent="UI/SettingsMenu/Panel/TabContainer/Sound/MasterVolumeLabel" unique_id=69567519]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.0045454544
+offset_left = 233.0
+offset_right = 343.0
+offset_bottom = 50.0
+focus_neighbor_top = NodePath("../..")
+focus_neighbor_bottom = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
+focus_next = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
+
+[node name="MusicVolumeLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Sound" unique_id=1061348198]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.30989584
+anchor_top = 3.1944444
+anchor_right = 0.30989584
+anchor_bottom = 3.1944444
+offset_left = 34.0
+offset_top = 43.0
+offset_right = 237.0
+offset_bottom = 90.0
+theme_override_font_sizes/font_size = 30
+text = "Music Volume"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="UI/SettingsMenu/Panel/TabContainer/Sound/MusicVolumeLabel" unique_id=485788284]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.009852217
+anchor_top = -0.14893617
+anchor_right = -0.009852217
+anchor_bottom = -0.14893617
+offset_left = 234.0
+offset_top = 7.0
+offset_right = 344.0
+offset_bottom = 57.0
+focus_neighbor_top = NodePath("../../MasterVolumeLabel/MasterVolumeSlider")
+focus_neighbor_bottom = NodePath("../../SFXVolumeLabel/SFXVolumeSlider")
+
+[node name="SFXVolumeLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Sound" unique_id=1916094470]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.30989584
+anchor_top = 4.111111
+anchor_right = 0.30989584
+anchor_bottom = 4.111111
+offset_left = 34.0
+offset_top = 91.0
+offset_right = 203.0
+offset_bottom = 138.0
+theme_override_font_sizes/font_size = 30
+text = "SFX Volume"
+
+[node name="SFXVolumeSlider" type="HSlider" parent="UI/SettingsMenu/Panel/TabContainer/Sound/SFXVolumeLabel" unique_id=934226244]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.01183432
+anchor_top = -0.23404256
+anchor_right = -0.01183432
+anchor_bottom = -0.23404256
+offset_left = 234.0
+offset_top = 4.0
+offset_right = 344.0
+offset_bottom = 54.0
+focus_neighbor_top = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
+focus_neighbor_bottom = NodePath("../../../../ApplyButton")
+
+[node name="Display" type="Control" parent="UI/SettingsMenu/Panel/TabContainer" unique_id=950378745]
+visible = false
+layout_mode = 2
+focus_neighbor_left = NodePath("../Sound")
+focus_neighbor_right = NodePath("../Controls")
+metadata/_tab_index = 1
+
+[node name="ResolutionLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=455957720]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3246528
+anchor_top = -2.0277777
+anchor_right = 0.3246528
+anchor_bottom = -2.0277777
+offset_left = 34.0
+offset_top = 299.0
+offset_right = 188.0
+offset_bottom = 346.0
+theme_override_font_sizes/font_size = 30
+text = "Resolution"
+metadata/_edit_use_anchors_ = true
+
+[node name="ResolutionOptionButton" type="OptionButton" parent="UI/SettingsMenu/Panel/TabContainer/Display/ResolutionLabel" unique_id=1269928450]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4090909
+anchor_top = -0.06382979
+anchor_right = 0.4090909
+anchor_bottom = -0.06382979
+offset_left = 169.0
+offset_top = 11.0
+offset_right = 297.0
+offset_bottom = 43.0
+focus_neighbor_top = NodePath("../../ShowFPSLabel/ShowFPSCheckBox")
+focus_neighbor_bottom = NodePath("../../FPSLabel/FPSOptionButton")
+metadata/_edit_use_anchors_ = true
+
+[node name="FPSLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=909295735]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3246528
+anchor_top = -2.0277777
+anchor_right = 0.3246528
+anchor_bottom = -2.0277777
+offset_left = 34.0
+offset_top = 355.0
+offset_right = 105.0
+offset_bottom = 402.0
+theme_override_font_sizes/font_size = 30
+text = "FPS"
+metadata/_edit_use_anchors_ = true
+
+[node name="FPSOptionButton" type="OptionButton" parent="UI/SettingsMenu/Panel/TabContainer/Display/FPSLabel" unique_id=832258005]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.5633802
+anchor_top = -0.06382979
+anchor_right = 1.5633802
+anchor_bottom = -0.06382979
+offset_left = 121.0
+offset_top = 11.0
+offset_right = 249.0
+offset_bottom = 43.0
+focus_neighbor_top = NodePath("../../ResolutionLabel/ResolutionOptionButton")
+focus_neighbor_bottom = NodePath("../../../../ApplyButton")
+metadata/_edit_use_anchors_ = true
+
+[node name="FullscreenLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=379190447]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3246528
+anchor_top = -2.0277777
+anchor_right = 0.3246528
+anchor_bottom = -2.0277777
+offset_left = 34.0
+offset_top = 139.0
+offset_right = 203.0
+offset_bottom = 186.0
+theme_override_font_sizes/font_size = 30
+text = "FullScreen"
+metadata/_edit_use_anchors_ = true
+
+[node name="FullScreenCheckBox" type="CheckBox" parent="UI/SettingsMenu/Panel/TabContainer/Display/FullscreenLabel" unique_id=1507425880]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.37899998
+anchor_top = -0.00021277083
+anchor_right = 0.37899998
+anchor_bottom = -0.00021273024
+offset_left = 167.949
+offset_top = 8.01
+offset_right = 191.949
+offset_bottom = 32.01
+focus_neighbor_top = NodePath("../..")
+focus_neighbor_bottom = NodePath("../../VSyncLabel/VSyncCheckBox")
+focus_next = NodePath(".")
+theme_override_font_sizes/font_size = 40
+metadata/_edit_use_anchors_ = true
+
+[node name="VSyncLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=839786519]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3246528
+anchor_top = -2.0277777
+anchor_right = 0.3246528
+anchor_bottom = -2.0277777
+offset_left = 34.0
+offset_top = 187.0
+offset_right = 203.0
+offset_bottom = 234.0
+theme_override_font_sizes/font_size = 30
+text = "VSync"
+metadata/_edit_use_anchors_ = true
+
+[node name="VSyncCheckBox" type="CheckBox" parent="UI/SettingsMenu/Panel/TabContainer/Display/VSyncLabel" unique_id=1697258783]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2366864
+anchor_right = 0.2366864
+offset_left = 192.0
+offset_top = -7.9999986
+offset_right = 224.0
+offset_bottom = 55.0
+focus_neighbor_top = NodePath("../../FullscreenLabel/FullScreenCheckBox")
+focus_neighbor_bottom = NodePath("../../ShowFPSLabel/ShowFPSCheckBox")
+focus_next = NodePath(".")
+theme_override_font_sizes/font_size = 40
+text = "
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="ShowFPSLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=1418577928]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3246528
+anchor_top = -2.0277777
+anchor_right = 0.3246528
+anchor_bottom = -2.0277777
+offset_left = 34.0
+offset_top = 243.0
+offset_right = 203.0
+offset_bottom = 290.0
+theme_override_font_sizes/font_size = 30
+text = "ShowFPS"
+metadata/_edit_use_anchors_ = true
+
+[node name="ShowFPSCheckBox" type="CheckBox" parent="UI/SettingsMenu/Panel/TabContainer/Display/ShowFPSLabel" unique_id=681377412]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.16568047
+anchor_top = 0.06382979
+anchor_right = 0.16568047
+anchor_bottom = 0.06382979
+offset_left = 204.0
+offset_top = -11.0
+offset_right = 236.0
+offset_bottom = 52.0
+focus_neighbor_top = NodePath("../../VSyncLabel/VSyncCheckBox")
+focus_neighbor_bottom = NodePath("../../ResolutionLabel/ResolutionOptionButton")
+focus_next = NodePath(".")
+theme_override_font_sizes/font_size = 40
+text = "
+
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="Controls" type="Control" parent="UI/SettingsMenu/Panel/TabContainer" unique_id=1020021993]
+visible = false
+layout_mode = 2
+focus_neighbor_left = NodePath("../Display")
+focus_neighbor_bottom = NodePath("../../ApplyButton")
+metadata/_tab_index = 2
+
+[node name="BackButton" type="Button" parent="UI/SettingsMenu/Panel" unique_id=1477639733]
+layout_mode = 0
+offset_left = -32.135742
+offset_top = 548.0325
+offset_right = 415.86423
+offset_bottom = 668.0325
+scale = Vector2(0.93444926, 0.8426638)
+focus_neighbor_right = NodePath("../ApplyButton")
+focus_next = NodePath("../SettingsButton")
+focus_previous = NodePath("../QuitButton")
+theme_override_font_sizes/font_size = 40
+text = "Back"
+icon = SubResource("AtlasTexture_v1uvm")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="ApplyButton" type="Button" parent="UI/SettingsMenu/Panel" unique_id=1295437788]
+layout_mode = 0
+offset_left = 765.0092
+offset_top = 548.9383
+offset_right = 1213.0093
+offset_bottom = 668.9383
+scale = Vector2(0.93444926, 0.8426638)
+focus_neighbor_left = NodePath("../BackButton")
+focus_next = NodePath("../SettingsButton")
+focus_previous = NodePath("../QuitButton")
+theme_override_font_sizes/font_size = 40
+text = "Apply"
+icon = SubResource("AtlasTexture_v1uvm")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="UI/SettingsMenu" unique_id=1281058457]
+stream = ExtResource("51_wwsfe")
+volume_db = -40.0
+
 [node name="Objects" type="Node" parent="." unique_id=179495125]
 
 [node name="Enemies" type="Node" parent="Objects" unique_id=913842636]
@@ -879,43 +917,33 @@ shape = SubResource("CylinderShape3D_v1uvm")
 
 [node name="Copper_Ore" parent="Objects/Items" unique_id=2110523039 instance=ExtResource("18_j4y01")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.98353, 0.015, 1.4931006)
-shouldDespawn = false
 
 [node name="Copper_Ore2" parent="Objects/Items" unique_id=60489756 instance=ExtResource("18_j4y01")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.20228, 0.015, -0.6208987)
-shouldDespawn = false
 
 [node name="Copper_Ore3" parent="Objects/Items" unique_id=608290316 instance=ExtResource("18_j4y01")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.54785, 0.015, 1.4011874)
-shouldDespawn = false
 
 [node name="Copper_Ore4" parent="Objects/Items" unique_id=1159909176 instance=ExtResource("18_j4y01")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.000893, 0.015, -0.20321798)
-shouldDespawn = false
 
 [node name="Copper_Ore5" parent="Objects/Items" unique_id=1690293563 instance=ExtResource("18_j4y01")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.360023, 0.015, 1.7293581)
-shouldDespawn = false
 
 [node name="Copper_Ore6" parent="Objects/Items" unique_id=754020436 instance=ExtResource("18_j4y01")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 308.1498, 0.015, -20.248615)
-shouldDespawn = false
 
 [node name="Copper_Ore7" parent="Objects/Items" unique_id=300861122 instance=ExtResource("18_j4y01")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 308.93106, 0.015, -22.362614)
-shouldDespawn = false
 
 [node name="Copper_Ore8" parent="Objects/Items" unique_id=224734069 instance=ExtResource("18_j4y01")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 310.5855, 0.015, -20.340527)
-shouldDespawn = false
 
 [node name="Copper_Ore9" parent="Objects/Items" unique_id=502607709 instance=ExtResource("18_j4y01")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 311.13245, 0.015, -21.944931)
-shouldDespawn = false
 
 [node name="Copper_Ore10" parent="Objects/Items" unique_id=681565344 instance=ExtResource("18_j4y01")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 306.59854, 0.015, -22.381762)
-shouldDespawn = false
 
 [node name="IronIngot2" parent="Objects/Items" unique_id=662424415 instance=ExtResource("21_dn1de")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 59.843506, 0, -33.53791)
@@ -1090,11 +1118,11 @@ material_override = SubResource("StandardMaterial3D_wkaxc")
 transparency = 0.15
 mesh = SubResource("BoxMesh_y74ua")
 
-[connection signal="pressed" from="UI/SettingsMenu/Panel/BackButton" to="UI/SettingsMenu" method="OnBackPressed"]
-[connection signal="pressed" from="UI/SettingsMenu/Panel/ApplyButton" to="UI/SettingsMenu" method="OnApplyPressed"]
 [connection signal="pressed" from="UI/PauseMenu/ResumeButton" to="UI/PauseMenu" method="OnResumePressed"]
 [connection signal="pressed" from="UI/PauseMenu/SettingsButton" to="UI/PauseMenu" method="OnSettingsPressed"]
 [connection signal="pressed" from="UI/PauseMenu/QuitButton" to="UI/PauseMenu" method="OnMainMenuPressed"]
+[connection signal="pressed" from="UI/SettingsMenu/Panel/BackButton" to="UI/SettingsMenu" method="OnBackPressed"]
+[connection signal="pressed" from="UI/SettingsMenu/Panel/ApplyButton" to="UI/SettingsMenu" method="OnApplyPressed"]
 [connection signal="body_entered" from="Objects/Enemies/Enemy/CharacterBody3D/Area3D" to="Objects/Enemies/Enemy" method="OnBodyEntered"]
 [connection signal="body_entered" from="Objects/Enemies/Enemy2/CharacterBody3D/Area3D" to="Objects/Enemies/Enemy2" method="OnBodyEntered"]
 [connection signal="body_exited" from="Objects/Stations/Ballista/BallistaTopElementLow/StaticBody3D/StationPort/Area3D" to="Objects/Stations/Ballista" method="OnInputBodyEntered"]

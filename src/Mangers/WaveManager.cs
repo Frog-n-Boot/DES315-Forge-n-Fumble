@@ -112,7 +112,7 @@ public partial class WaveManager : Node
 		if (enemiesRemaining != null)
 			enemiesRemaining.Text = $" X{enemiesLeft}";
 		if(wavesRemaining!= null)
-			wavesRemaining.Text = $" Max Waves: {maxWaves}  Current wave: {currentWave}";
+			wavesRemaining.Text = $" Wave {currentWave}/{maxWaves}";
 	}
 	#endregion
 

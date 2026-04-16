@@ -4,6 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://b0h4rjwc5lgiv" path="res://assets/PNG/Forge.webp" id="2_i47rn"]
 [ext_resource type="AudioStream" uid="uid://dy5lcoryjk0no" path="res://assets/Sounds/SFX/Click.wav" id="3_46duy"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_in2eo"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46duy"]
+atlas = SubResource("CompressedTexture2D_in2eo")
+region = Rect2(581, 500, 285, 91)
+
 [node name="Settings" type="Node2D" unique_id=2013459249]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1917096709 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton", "audio")]
@@ -56,7 +63,6 @@ offset_right = 264.0
 offset_bottom = 107.0
 theme_override_font_sizes/font_size = 60
 text = "Settings"
-metadata/_edit_use_anchors_ = true
 
 [node name="TabContainer" type="TabContainer" parent="CanvasLayer/Panel" unique_id=1936509500]
 layout_mode = 0
@@ -87,7 +93,6 @@ focus_next = NodePath("../MusicVolumeLabel/MusicVolumeSlider")
 theme_override_font_sizes/font_size = 30
 text = "Master Volume
 "
-metadata/_edit_use_anchors_ = true
 
 [node name="MasterVolumeSlider" type="HSlider" parent="CanvasLayer/Panel/TabContainer/Sound/MasterVolumeLabel" unique_id=640626161]
 layout_mode = 1
@@ -99,7 +104,6 @@ offset_bottom = 50.0
 focus_neighbor_top = NodePath("../..")
 focus_neighbor_bottom = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
 focus_next = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
-metadata/_edit_use_anchors_ = true
 
 [node name="MusicVolumeLabel" type="Label" parent="CanvasLayer/Panel/TabContainer/Sound" unique_id=1724888755]
 layout_mode = 1
@@ -114,7 +118,6 @@ offset_right = 237.0
 offset_bottom = 90.0
 theme_override_font_sizes/font_size = 30
 text = "Music Volume"
-metadata/_edit_use_anchors_ = true
 
 [node name="MusicVolumeSlider" type="HSlider" parent="CanvasLayer/Panel/TabContainer/Sound/MusicVolumeLabel" unique_id=928261697]
 layout_mode = 1
@@ -129,7 +132,6 @@ offset_right = 344.0
 offset_bottom = 57.0
 focus_neighbor_top = NodePath("../../MasterVolumeLabel/MasterVolumeSlider")
 focus_neighbor_bottom = NodePath("../../SFXVolumeLabel/SFXVolumeSlider")
-metadata/_edit_use_anchors_ = true
 
 [node name="SFXVolumeLabel" type="Label" parent="CanvasLayer/Panel/TabContainer/Sound" unique_id=172781238]
 layout_mode = 1
@@ -144,7 +146,6 @@ offset_right = 203.0
 offset_bottom = 138.0
 theme_override_font_sizes/font_size = 30
 text = "SFX Volume"
-metadata/_edit_use_anchors_ = true
 
 [node name="SFXVolumeSlider" type="HSlider" parent="CanvasLayer/Panel/TabContainer/Sound/SFXVolumeLabel" unique_id=2140574341]
 layout_mode = 1
@@ -158,8 +159,7 @@ offset_top = 4.0
 offset_right = 344.0
 offset_bottom = 54.0
 focus_neighbor_top = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
-focus_neighbor_bottom = NodePath("../../../Display/FullscreenLabel/FullScreenCheckBox")
-metadata/_edit_use_anchors_ = true
+focus_neighbor_bottom = NodePath("../../../../ApplyButton")
 
 [node name="Display" type="Control" parent="CanvasLayer/Panel/TabContainer" unique_id=1641168033]
 visible = false
@@ -225,7 +225,7 @@ offset_top = 11.0
 offset_right = 249.0
 offset_bottom = 43.0
 focus_neighbor_top = NodePath("../../ResolutionLabel/ResolutionOptionButton")
-focus_neighbor_bottom = NodePath("../../../../BackButton")
+focus_neighbor_bottom = NodePath("../../../../ApplyButton")
 metadata/_edit_use_anchors_ = true
 
 [node name="FullscreenLabel" type="Label" parent="CanvasLayer/Panel/TabContainer/Display" unique_id=919632768]
@@ -331,39 +331,42 @@ metadata/_edit_use_anchors_ = true
 visible = false
 layout_mode = 2
 focus_neighbor_left = NodePath("../Display")
+focus_neighbor_bottom = NodePath("../../ApplyButton")
 metadata/_tab_index = 2
 
-[node name="BackButton" type="Button" parent="CanvasLayer/Panel" unique_id=1299695499]
+[node name="BackButton" type="Button" parent="CanvasLayer/Panel" unique_id=1507465222]
 layout_mode = 0
-offset_left = 8.000006
-offset_top = 552.0
-offset_right = 456.0
-offset_bottom = 672.0
-scale = Vector2(0.8400012, 0.7599994)
-focus_neighbor_top = NodePath("../TabContainer/Sound/SFXVolumeLabel/SFXVolumeSlider")
+offset_left = -32.135742
+offset_top = 548.0325
+offset_right = 415.86423
+offset_bottom = 668.0325
+scale = Vector2(0.93444926, 0.8426638)
 focus_neighbor_right = NodePath("../ApplyButton")
-focus_next = NodePath("../TabContainer/Sound/MasterVolumeLabel/MasterVolumeSlider")
-mouse_filter = 1
+focus_next = NodePath("../SettingsButton")
+focus_previous = NodePath("../QuitButton")
 theme_override_font_sizes/font_size = 40
-text = "Back
-"
-metadata/_edit_use_anchors_ = true
+text = "Back"
+icon = SubResource("AtlasTexture_46duy")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
-[node name="ApplyButton" type="Button" parent="CanvasLayer/Panel" unique_id=1739649388]
+[node name="ApplyButton" type="Button" parent="CanvasLayer/Panel" unique_id=1516968218]
 layout_mode = 0
-offset_left = 759.99994
-offset_top = 552.0
-offset_right = 1208.0
-offset_bottom = 672.0
-scale = Vector2(0.8400012, 0.7599994)
+offset_left = 765.0092
+offset_top = 548.9383
+offset_right = 1213.0093
+offset_bottom = 668.9383
+scale = Vector2(0.93444926, 0.8426638)
 focus_neighbor_left = NodePath("../BackButton")
-focus_neighbor_top = NodePath("../TabContainer/Sound/SFXVolumeLabel/SFXVolumeSlider")
-mouse_filter = 1
+focus_next = NodePath("../SettingsButton")
+focus_previous = NodePath("../QuitButton")
 theme_override_font_sizes/font_size = 40
-text = "Apply
-
-"
-metadata/_edit_use_anchors_ = true
+text = "Apply"
+icon = SubResource("AtlasTexture_46duy")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CanvasLayer" unique_id=469625117]
 stream = ExtResource("3_46duy")
