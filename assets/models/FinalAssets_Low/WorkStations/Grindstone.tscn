@@ -52,10 +52,8 @@ viewport_path = NodePath("Sprite3D/SubViewport")
 [sub_resource type="ViewportTexture" id="ViewportTexture_n8ot4"]
 viewport_path = NodePath("Sprite3D2/SubViewport")
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jycwk"]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_bn2l6"]
-atlas = SubResource("CompressedTexture2D_jycwk")
+atlas = ExtResource("3_bn2l6")
 region = Rect2(114, 365, 40, 40)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_iap6j"]

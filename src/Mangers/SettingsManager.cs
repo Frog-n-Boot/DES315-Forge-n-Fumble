@@ -42,7 +42,7 @@ public partial class SettingsManager : Node
 		fpsLabel.AnchorRight = 1.0f;
 		fpsLabel.AnchorTop = 0.0f;
 		fpsLabel.GrowHorizontal = Control.GrowDirection.Begin;
-		fpsLabel.Position = new Vector2(-30.0f, 50.0f);
+		fpsLabel.Position = new Vector2(-30.0f, 100.0f);
 		fpsLabel.AddThemeColorOverride("font_color", Colors.Yellow);
 		fpsLabel.Visible = showFPS;
 		AddChild(fpsLabel);

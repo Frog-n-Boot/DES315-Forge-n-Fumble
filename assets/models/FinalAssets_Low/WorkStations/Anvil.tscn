@@ -37,8 +37,12 @@ normal_texture = ExtResource("5_o5b8a")
 heightmap_enabled = true
 heightmap_texture = ExtResource("5_u3lgt")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_gk661"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_uh5my"]
 viewport_path = NodePath("Sprite3D/SubViewport")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gpkw"]
+atlas = ExtResource("3_0gpkw")
+region = Rect2(21, 519, 261, 39)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_0gpkw"]
 viewport_path = NodePath("Sprite3D2/SubViewport")
@@ -91,7 +95,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07868272, 0.33549273, -1.15
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=840510996]
 transform = Transform3D(-2.359344e-07, 0, 4, 0, 4, 0, -5.3975496, 0, -1.7484555e-07, -0.6966152, 3.8950515, -1.6123558)
-texture = SubResource("ViewportTexture_gk661")
+texture = SubResource("ViewportTexture_uh5my")
 
 [node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=2072696855]
 transparent_bg = true
@@ -103,12 +107,6 @@ offset_right = 130.0
 offset_bottom = 79.0
 bbcode_enabled = true
 
-[node name="ProgressBar" type="ProgressBar" parent="Sprite3D/SubViewport" unique_id=624823659]
-visible = false
-offset_top = 10.0
-offset_right = 100.0
-offset_bottom = 60.0
-
 [node name="Label" type="Label" parent="Sprite3D/SubViewport" unique_id=1153088540]
 visible = false
 offset_left = 25.0
@@ -118,9 +116,10 @@ offset_bottom = 49.0
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Sprite3D/SubViewport" unique_id=539670618]
 offset_right = 40.0
 offset_bottom = 40.0
+texture_progress = SubResource("AtlasTexture_0gpkw")
 
 [node name="Sprite3D2" type="Sprite3D" parent="." unique_id=1337985502]
-transform = Transform3D(-1.24372e-07, -2, -3.4641016, -8.742278e-08, 3.4641016, -2, 4, 1.352435e-08, -1.5142069e-07, 2.2803192, 0, 0)
+transform = Transform3D(-1.24372e-07, -2, -3.4641016, -8.742278e-08, 3.4641016, -2, 4, 1.352435e-08, -1.5142069e-07, 1.8696947, 0.62830627, 0)
 texture = SubResource("ViewportTexture_0gpkw")
 
 [node name="SubViewport" type="SubViewport" parent="Sprite3D2" unique_id=1508301261]

@@ -159,7 +159,7 @@ offset_top = 4.0
 offset_right = 344.0
 offset_bottom = 54.0
 focus_neighbor_top = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
-focus_neighbor_bottom = NodePath("../../../Display/FullscreenLabel/FullScreenCheckBox")
+focus_neighbor_bottom = NodePath("../../../../ApplyButton")
 
 [node name="Display" type="Control" parent="CanvasLayer/Panel/TabContainer" unique_id=1641168033]
 visible = false
@@ -225,6 +225,7 @@ offset_top = 11.0
 offset_right = 249.0
 offset_bottom = 43.0
 focus_neighbor_top = NodePath("../../ResolutionLabel/ResolutionOptionButton")
+focus_neighbor_bottom = NodePath("../../../../ApplyButton")
 metadata/_edit_use_anchors_ = true
 
 [node name="FullscreenLabel" type="Label" parent="CanvasLayer/Panel/TabContainer/Display" unique_id=919632768]
@@ -330,6 +331,7 @@ metadata/_edit_use_anchors_ = true
 visible = false
 layout_mode = 2
 focus_neighbor_left = NodePath("../Display")
+focus_neighbor_bottom = NodePath("../../ApplyButton")
 metadata/_tab_index = 2
 
 [node name="BackButton" type="Button" parent="CanvasLayer/Panel" unique_id=1507465222]
@@ -339,8 +341,7 @@ offset_top = 548.0325
 offset_right = 415.86423
 offset_bottom = 668.0325
 scale = Vector2(0.93444926, 0.8426638)
-focus_neighbor_top = NodePath(".")
-focus_neighbor_bottom = NodePath("../SettingsButton")
+focus_neighbor_right = NodePath("../ApplyButton")
 focus_next = NodePath("../SettingsButton")
 focus_previous = NodePath("../QuitButton")
 theme_override_font_sizes/font_size = 40
@@ -357,8 +358,7 @@ offset_top = 548.9383
 offset_right = 1213.0093
 offset_bottom = 668.9383
 scale = Vector2(0.93444926, 0.8426638)
-focus_neighbor_top = NodePath(".")
-focus_neighbor_bottom = NodePath("../SettingsButton")
+focus_neighbor_left = NodePath("../BackButton")
 focus_next = NodePath("../SettingsButton")
 focus_previous = NodePath("../QuitButton")
 theme_override_font_sizes/font_size = 40

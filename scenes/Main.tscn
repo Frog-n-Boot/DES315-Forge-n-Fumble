@@ -108,25 +108,25 @@ load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00
 atlas = SubResource("CompressedTexture2D_gjpm3")
 region = Rect2(21, 519, 261, 39)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_in2eo"]
-load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dyyw8"]
-atlas = SubResource("CompressedTexture2D_in2eo")
-region = Rect2(581, 500, 285, 91)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dyyw8"]
-load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gjpm3"]
-atlas = SubResource("CompressedTexture2D_dyyw8")
-region = Rect2(581, 500, 285, 91)
-
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_knagv"]
 load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_siyqs"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyyw8"]
 atlas = SubResource("CompressedTexture2D_knagv")
+region = Rect2(581, 500, 285, 91)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pb578"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjpm3"]
+atlas = SubResource("CompressedTexture2D_pb578")
+region = Rect2(581, 500, 285, 91)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vshs7"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_siyqs"]
+atlas = SubResource("CompressedTexture2D_vshs7")
 region = Rect2(581, 500, 285, 91)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_siyqs"]
@@ -147,6 +147,13 @@ region = Rect2(758, 234, 98, 102)
 [sub_resource type="AtlasTexture" id="AtlasTexture_oa6sj"]
 atlas = ExtResource("28_oa6sj")
 region = Rect2(758, 234, 98, 102)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_in2eo"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vshs7"]
+atlas = SubResource("CompressedTexture2D_in2eo")
+region = Rect2(581, 500, 285, 91)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4vp4a"]
 size = Vector3(1, 1.1378174, 0.91204834)
@@ -175,7 +182,7 @@ _bundled = {
 [node name="Scene" type="Node3D" unique_id=989767663]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1253782712]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0354013, -0.13641739, 0.7309079)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0151768, -0.13641739, 0.73526096)
 navigation_mesh = SubResource("NavigationMesh_dg70y")
 
 [node name="Ground" type="StaticBody3D" parent="NavigationRegion3D" unique_id=750057617 groups=["navigation_mesh_source_group"]]
@@ -203,9 +210,6 @@ transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -0.017, 0, 0)
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10.535882, 0, -4.184)
 controllerButtonTexture = SubResource("AtlasTexture_cmqll")
 keyboardButtonTexture = SubResource("AtlasTexture_8cp6k")
-
-[node name="Anvil" parent="NavigationRegion3D" unique_id=1158721071 groups=["navigation_mesh_source_group"] instance=ExtResource("5_hq6as")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.855, 0, 2.3331976)
 
 [node name="Forge" parent="NavigationRegion3D" unique_id=994045895 instance=ExtResource("8_cmqll")]
 transform = Transform3D(-0.3, 0, -2.6226834e-08, 0, 0.3, 0, 2.6226834e-08, 0, -0.3, -0.5547695, 0.15882492, -0.04463482)
@@ -627,7 +631,7 @@ tint_under = Color(0.30692267, 0.3069227, 0.3069227, 1)
 [node name="StationPort3" parent="UI" unique_id=1915723754 instance=ExtResource("3_2c4at")]
 transform = Transform3D(0.016431808, 0, 6.7567225, 0, 1.375121, 0, -3.635261, 0, 0.030542374, 7.8126793, 0.93464184, 7.063262)
 
-[node name="SettingsMenu" type="CanvasLayer" parent="UI" unique_id=1884694510 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton", "audio", "pauseMenu")]
+[node name="SettingsMenu" type="CanvasLayer" parent="UI" unique_id=1417241995 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton", "audio", "pauseMenu")]
 process_mode = 3
 script = ExtResource("13_vua0o")
 masterSlider = NodePath("Panel/TabContainer/Sound/MasterVolumeLabel/MasterVolumeSlider")
@@ -638,12 +642,12 @@ vsyncCheckBox = NodePath("Panel/TabContainer/Display/VSyncLabel/VSyncCheckBox")
 showFPSCheckBox = NodePath("Panel/TabContainer/Display/ShowFPSLabel/ShowFPSCheckBox")
 resolutionDropdown = NodePath("Panel/TabContainer/Display/ResolutionLabel/ResolutionOptionButton")
 maxFPSDropdown = NodePath("Panel/TabContainer/Display/FPSLabel/FPSOptionButton")
-applyButton = NodePath("ApplyButton")
+applyButton = NodePath("Panel/ApplyButton")
 audio = NodePath("AudioStreamPlayer2D")
 pauseMenu = NodePath("../PauseMenu")
 metadata/_edit_use_anchors_ = true
 
-[node name="BackgroundImage" type="TextureRect" parent="UI/SettingsMenu" unique_id=960664519]
+[node name="BackgroundImage" type="TextureRect" parent="UI/SettingsMenu" unique_id=327071390]
 visible = false
 visibility_layer = 2
 z_index = -1
@@ -653,19 +657,19 @@ offset_bottom = 772.0
 texture = ExtResource("32_knagv")
 stretch_mode = 1
 
-[node name="ColorRect" type="ColorRect" parent="UI/SettingsMenu" unique_id=1577006816]
+[node name="ColorRect" type="ColorRect" parent="UI/SettingsMenu" unique_id=596057235]
 z_index = -1
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(32.207207, 18.071495)
 color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
 
-[node name="Panel" type="Panel" parent="UI/SettingsMenu" unique_id=210900386]
+[node name="Panel" type="Panel" parent="UI/SettingsMenu" unique_id=1778858075]
 offset_right = 1152.0
 offset_bottom = 650.0
 scale = Vector2(1.1202481, 1.1039494)
 
-[node name="Label" type="Label" parent="UI/SettingsMenu/Panel" unique_id=725454805]
+[node name="Label" type="Label" parent="UI/SettingsMenu/Panel" unique_id=707389190]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.3515625
@@ -678,9 +682,8 @@ offset_right = 264.0
 offset_bottom = 107.0
 theme_override_font_sizes/font_size = 60
 text = "Settings"
-metadata/_edit_use_anchors_ = true
 
-[node name="TabContainer" type="TabContainer" parent="UI/SettingsMenu/Panel" unique_id=2123980351]
+[node name="TabContainer" type="TabContainer" parent="UI/SettingsMenu/Panel" unique_id=968886870]
 layout_mode = 0
 offset_left = -2.0
 offset_top = 102.0
@@ -689,12 +692,12 @@ offset_bottom = 169.0
 mouse_filter = 0
 current_tab = 0
 
-[node name="Sound" type="Control" parent="UI/SettingsMenu/Panel/TabContainer" unique_id=1518274216]
+[node name="Sound" type="Control" parent="UI/SettingsMenu/Panel/TabContainer" unique_id=1989203924]
 layout_mode = 2
 focus_neighbor_right = NodePath("../Display")
 metadata/_tab_index = 0
 
-[node name="MasterVolumeLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Sound" unique_id=1878185411]
+[node name="MasterVolumeLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Sound" unique_id=393992191]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.30989584
@@ -709,9 +712,8 @@ focus_next = NodePath("../MusicVolumeLabel/MusicVolumeSlider")
 theme_override_font_sizes/font_size = 30
 text = "Master Volume
 "
-metadata/_edit_use_anchors_ = true
 
-[node name="MasterVolumeSlider" type="HSlider" parent="UI/SettingsMenu/Panel/TabContainer/Sound/MasterVolumeLabel" unique_id=1375149227]
+[node name="MasterVolumeSlider" type="HSlider" parent="UI/SettingsMenu/Panel/TabContainer/Sound/MasterVolumeLabel" unique_id=66751820]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.0045454544
@@ -721,9 +723,8 @@ offset_bottom = 50.0
 focus_neighbor_top = NodePath("../..")
 focus_neighbor_bottom = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
 focus_next = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
-metadata/_edit_use_anchors_ = true
 
-[node name="MusicVolumeLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Sound" unique_id=283981816]
+[node name="MusicVolumeLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Sound" unique_id=1684046763]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.30989584
@@ -736,9 +737,8 @@ offset_right = 237.0
 offset_bottom = 90.0
 theme_override_font_sizes/font_size = 30
 text = "Music Volume"
-metadata/_edit_use_anchors_ = true
 
-[node name="MusicVolumeSlider" type="HSlider" parent="UI/SettingsMenu/Panel/TabContainer/Sound/MusicVolumeLabel" unique_id=715257]
+[node name="MusicVolumeSlider" type="HSlider" parent="UI/SettingsMenu/Panel/TabContainer/Sound/MusicVolumeLabel" unique_id=1237679886]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.009852217
@@ -751,9 +751,8 @@ offset_right = 344.0
 offset_bottom = 57.0
 focus_neighbor_top = NodePath("../../MasterVolumeLabel/MasterVolumeSlider")
 focus_neighbor_bottom = NodePath("../../SFXVolumeLabel/SFXVolumeSlider")
-metadata/_edit_use_anchors_ = true
 
-[node name="SFXVolumeLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Sound" unique_id=579564354]
+[node name="SFXVolumeLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Sound" unique_id=2053239223]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.30989584
@@ -766,9 +765,8 @@ offset_right = 203.0
 offset_bottom = 138.0
 theme_override_font_sizes/font_size = 30
 text = "SFX Volume"
-metadata/_edit_use_anchors_ = true
 
-[node name="SFXVolumeSlider" type="HSlider" parent="UI/SettingsMenu/Panel/TabContainer/Sound/SFXVolumeLabel" unique_id=895766344]
+[node name="SFXVolumeSlider" type="HSlider" parent="UI/SettingsMenu/Panel/TabContainer/Sound/SFXVolumeLabel" unique_id=1379767842]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.01183432
@@ -780,17 +778,16 @@ offset_top = 4.0
 offset_right = 344.0
 offset_bottom = 54.0
 focus_neighbor_top = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
-focus_neighbor_bottom = NodePath("../../../Display/FullscreenLabel/FullScreenCheckBox")
-metadata/_edit_use_anchors_ = true
+focus_neighbor_bottom = NodePath("../../../../ApplyButton")
 
-[node name="Display" type="Control" parent="UI/SettingsMenu/Panel/TabContainer" unique_id=714555878]
+[node name="Display" type="Control" parent="UI/SettingsMenu/Panel/TabContainer" unique_id=1109690702]
 visible = false
 layout_mode = 2
 focus_neighbor_left = NodePath("../Sound")
 focus_neighbor_right = NodePath("../Controls")
 metadata/_tab_index = 1
 
-[node name="ResolutionLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=1575381587]
+[node name="ResolutionLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=770856024]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.3246528
@@ -805,7 +802,7 @@ theme_override_font_sizes/font_size = 30
 text = "Resolution"
 metadata/_edit_use_anchors_ = true
 
-[node name="ResolutionOptionButton" type="OptionButton" parent="UI/SettingsMenu/Panel/TabContainer/Display/ResolutionLabel" unique_id=1842216260]
+[node name="ResolutionOptionButton" type="OptionButton" parent="UI/SettingsMenu/Panel/TabContainer/Display/ResolutionLabel" unique_id=711595284]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.4090909
@@ -820,7 +817,7 @@ focus_neighbor_top = NodePath("../../ShowFPSLabel/ShowFPSCheckBox")
 focus_neighbor_bottom = NodePath("../../FPSLabel/FPSOptionButton")
 metadata/_edit_use_anchors_ = true
 
-[node name="FPSLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=392415605]
+[node name="FPSLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=2016526172]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.3246528
@@ -835,7 +832,7 @@ theme_override_font_sizes/font_size = 30
 text = "FPS"
 metadata/_edit_use_anchors_ = true
 
-[node name="FPSOptionButton" type="OptionButton" parent="UI/SettingsMenu/Panel/TabContainer/Display/FPSLabel" unique_id=2144939572]
+[node name="FPSOptionButton" type="OptionButton" parent="UI/SettingsMenu/Panel/TabContainer/Display/FPSLabel" unique_id=3862924]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.5633802
@@ -847,9 +844,10 @@ offset_top = 11.0
 offset_right = 249.0
 offset_bottom = 43.0
 focus_neighbor_top = NodePath("../../ResolutionLabel/ResolutionOptionButton")
+focus_neighbor_bottom = NodePath("../../../../ApplyButton")
 metadata/_edit_use_anchors_ = true
 
-[node name="FullscreenLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=1723262828]
+[node name="FullscreenLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=768714710]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.3246528
@@ -864,7 +862,7 @@ theme_override_font_sizes/font_size = 30
 text = "FullScreen"
 metadata/_edit_use_anchors_ = true
 
-[node name="FullScreenCheckBox" type="CheckBox" parent="UI/SettingsMenu/Panel/TabContainer/Display/FullscreenLabel" unique_id=667735507]
+[node name="FullScreenCheckBox" type="CheckBox" parent="UI/SettingsMenu/Panel/TabContainer/Display/FullscreenLabel" unique_id=794886591]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.37899998
@@ -881,7 +879,7 @@ focus_next = NodePath(".")
 theme_override_font_sizes/font_size = 40
 metadata/_edit_use_anchors_ = true
 
-[node name="VSyncLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=2057442781]
+[node name="VSyncLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=23022820]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.3246528
@@ -896,7 +894,7 @@ theme_override_font_sizes/font_size = 30
 text = "VSync"
 metadata/_edit_use_anchors_ = true
 
-[node name="VSyncCheckBox" type="CheckBox" parent="UI/SettingsMenu/Panel/TabContainer/Display/VSyncLabel" unique_id=876244459]
+[node name="VSyncCheckBox" type="CheckBox" parent="UI/SettingsMenu/Panel/TabContainer/Display/VSyncLabel" unique_id=807730405]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.2366864
@@ -913,7 +911,7 @@ text = "
 "
 metadata/_edit_use_anchors_ = true
 
-[node name="ShowFPSLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=1700641165]
+[node name="ShowFPSLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=84451888]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.3246528
@@ -928,7 +926,7 @@ theme_override_font_sizes/font_size = 30
 text = "ShowFPS"
 metadata/_edit_use_anchors_ = true
 
-[node name="ShowFPSCheckBox" type="CheckBox" parent="UI/SettingsMenu/Panel/TabContainer/Display/ShowFPSLabel" unique_id=925746824]
+[node name="ShowFPSCheckBox" type="CheckBox" parent="UI/SettingsMenu/Panel/TabContainer/Display/ShowFPSLabel" unique_id=716589053]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.16568047
@@ -948,49 +946,50 @@ text = "
 "
 metadata/_edit_use_anchors_ = true
 
-[node name="Controls" type="Control" parent="UI/SettingsMenu/Panel/TabContainer" unique_id=1757827030]
+[node name="Controls" type="Control" parent="UI/SettingsMenu/Panel/TabContainer" unique_id=1088571596]
 visible = false
 layout_mode = 2
 focus_neighbor_left = NodePath("../Display")
+focus_neighbor_bottom = NodePath("../../ApplyButton")
 metadata/_tab_index = 2
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="UI/SettingsMenu" unique_id=1971528002]
-stream = ExtResource("33_siyqs")
-volume_db = -40.0
-
-[node name="BackButton" type="Button" parent="UI/SettingsMenu" unique_id=4334514]
-offset_left = -40.0
-offset_top = 619.0
-offset_right = 407.99997
-offset_bottom = 739.0
+[node name="BackButton" type="Button" parent="UI/SettingsMenu/Panel" unique_id=1894926270]
+layout_mode = 0
+offset_left = -32.135742
+offset_top = 548.0325
+offset_right = 415.86423
+offset_bottom = 668.0325
 scale = Vector2(0.93444926, 0.8426638)
-focus_neighbor_top = NodePath(".")
-focus_neighbor_bottom = NodePath("../SettingsButton")
+focus_neighbor_right = NodePath("../ApplyButton")
 focus_next = NodePath("../SettingsButton")
 focus_previous = NodePath("../QuitButton")
 theme_override_font_sizes/font_size = 40
 text = "Back"
-icon = SubResource("AtlasTexture_dyyw8")
+icon = SubResource("AtlasTexture_vshs7")
 flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="ApplyButton" type="Button" parent="UI/SettingsMenu" unique_id=2024044511]
-offset_left = 888.0
-offset_top = 615.0
-offset_right = 1336.0
-offset_bottom = 735.0
+[node name="ApplyButton" type="Button" parent="UI/SettingsMenu/Panel" unique_id=2130382320]
+layout_mode = 0
+offset_left = 765.0092
+offset_top = 548.9383
+offset_right = 1213.0093
+offset_bottom = 668.9383
 scale = Vector2(0.93444926, 0.8426638)
-focus_neighbor_top = NodePath(".")
-focus_neighbor_bottom = NodePath("../SettingsButton")
+focus_neighbor_left = NodePath("../BackButton")
 focus_next = NodePath("../SettingsButton")
 focus_previous = NodePath("../QuitButton")
 theme_override_font_sizes/font_size = 40
 text = "Apply"
-icon = SubResource("AtlasTexture_dyyw8")
+icon = SubResource("AtlasTexture_vshs7")
 flat = true
 icon_alignment = 1
 expand_icon = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="UI/SettingsMenu" unique_id=26808277]
+stream = ExtResource("33_siyqs")
+volume_db = -40.0
 
 [node name="LootTable" type="Node" parent="." unique_id=317891680 groups=["LootTable"]]
 script = ExtResource("18_oa6sj")
@@ -1061,8 +1060,11 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 3, 0)
 
+[node name="Anvil" parent="." unique_id=1158721071 instance=ExtResource("5_hq6as")]
+transform = Transform3D(-0.036695987, 0, -0.99932647, 0, 1, 0, 0.99932647, 0, -0.036695987, -9.482155, -0.13641739, 4.470146)
+
 [connection signal="pressed" from="UI/PauseMenu/ResumeButton" to="UI/PauseMenu" method="OnResumePressed"]
 [connection signal="pressed" from="UI/PauseMenu/SettingsButton" to="UI/PauseMenu" method="OnSettingsPressed"]
 [connection signal="pressed" from="UI/PauseMenu/QuitButton" to="UI/PauseMenu" method="OnMainMenuPressed"]
-[connection signal="pressed" from="UI/SettingsMenu/BackButton" to="UI/SettingsMenu" method="OnBackPressed"]
-[connection signal="pressed" from="UI/SettingsMenu/ApplyButton" to="UI/SettingsMenu" method="OnApplyPressed"]
+[connection signal="pressed" from="UI/SettingsMenu/Panel/BackButton" to="UI/SettingsMenu" method="OnBackPressed"]
+[connection signal="pressed" from="UI/SettingsMenu/Panel/ApplyButton" to="UI/SettingsMenu" method="OnApplyPressed"]

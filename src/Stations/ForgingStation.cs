@@ -70,6 +70,7 @@ public partial class ForgingStation : BaseStationScript
 	{
 		if (body.IsInGroup("Player"))
 		{
+			buttonTexture.Visible = true;
 			var p= body as PlayerController;
 			itemCarrier = p as ItemCarrier;
 			player = p;
@@ -81,6 +82,7 @@ public partial class ForgingStation : BaseStationScript
 	protected override void OnInputBodyExited(Node3D body)
 	{
 		if(body.IsInGroup("Player")){
+			buttonTexture.Visible = false;
 			var p = body as PlayerController;
 			playersInZone.Remove(p);
 			p?.SetCurrentStation(null);
