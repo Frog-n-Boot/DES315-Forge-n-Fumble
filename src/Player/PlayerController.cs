@@ -83,7 +83,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 	public override void _Ready()
 	{
-
+		playerSpawner = GetTree().Root.GetNodeOrNull<PlayerSpawner>("Scene/PlayerSpawner");
 		health = maxHealth;
 		inputBuffer = new InputBuffer();
 		AddChild(inputBuffer);
@@ -894,6 +894,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		areaPickup.SetDeferred("monitorable", false);
 
 		GetTree().CreateTimer(playerSpawnTimer).Timeout += () =>{
+			GD.Print("Player spawning");
 			GlobalPosition = playerSpawner.spawnPoints[PlayerIndex].GlobalPosition;
 			health = maxHealth;
 			Visible = true;

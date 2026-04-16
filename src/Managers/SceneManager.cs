@@ -6,16 +6,18 @@ public partial class SceneManager : Node
 	public static SceneManager instance { get; private set;}
 	public string previousScene{ get; private set;}
 
-
+	private XRayManager xRayManager;
 	public override void _Ready()
 	{
 		instance = this;
+		
 	}
 
 	public void LoadScene(string path)
 	{
 		GetTree().Paused = false;
 		GetTree().ChangeSceneToFile(path);
+		
 	}
 	public void ReloadCurrentScene()
 	{
@@ -34,6 +36,11 @@ public partial class SceneManager : Node
 
 		var forge = GetNode<Forge>("/root/Forge");
 		if( forge != null) forge.ResetHealth();
+
+		xRayManager = GetNode<XRayManager>("res://src/Managers/XRayManager.cs");
+
+		
+		
 
 		LoadScene("res://scenes/LoadingScreen.tscn");
 	}
