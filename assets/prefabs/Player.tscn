@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="7_on3ce"]
 [ext_resource type="AudioStream" uid="uid://c4ymn22aaas8l" path="res://assets/Sounds/SFX/SwordSwipe.mp3" id="8_jnlb4"]
 [ext_resource type="Texture2D" uid="uid://bwvn5hsl7jk60" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/DwarfRed_low_BaseCol.tga" id="8_ob8sk"]
+[ext_resource type="AudioStream" uid="uid://br6ut1wl6mmys" path="res://src/SpinAttack.wav" id="15_40m61"]
 [ext_resource type="AudioStream" uid="uid://dhfcru8adja3" path="res://assets/Sounds/SFX/PlayerDamaged.wav" id="15_gp7mg"]
 [ext_resource type="Script" uid="uid://ddw54ydvlwsxr" path="res://src/Weapons/SpinAttack.cs" id="15_sq3q5"]
 [ext_resource type="AudioStream" uid="uid://detofwirhtkah" path="res://assets/Sounds/SFX/PlayerDeath.wav" id="16_yv8gf"]
@@ -402,6 +403,12 @@ bus = &"SFX"
 
 [node name="Death" type="AudioStreamPlayer3D" parent="." unique_id=1742382200]
 stream = ExtResource("16_yv8gf")
+volume_db = -60.0
+max_db = -24.0
+bus = &"SFX"
+
+[node name="SpinAttackSound" type="AudioStreamPlayer3D" parent="." unique_id=415563975]
+stream = ExtResource("15_40m61")
 volume_db = -60.0
 max_db = -24.0
 bus = &"SFX"

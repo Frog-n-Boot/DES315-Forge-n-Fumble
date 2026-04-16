@@ -15,6 +15,7 @@ public partial class SpinAttack : Node3D
 	[Export] private AnimationPlayer animPlayer;
 	[Export] private float dazeTimer = 2f;
 	[Export] Area3D spinArea;
+	[Export] AudioStreamPlayer3D spinAttackSound;
 
 	[Signal] public delegate void SpinChargeGainedEventHandler(int currentCharges, int maxCharges);
 	[Signal] public delegate void SpinAttackReadyEventHandler(int charges);
@@ -51,9 +52,9 @@ public partial class SpinAttack : Node3D
 			spinArea.AddToGroup("SpinAttack");
 		}
 		if(animPlayer == null)
-        {
-            animPlayer = parent.GetNode<AnimationPlayer>("CollisionShape3D/AnimationPlayer");
-        }
+		{
+			animPlayer = parent.GetNode<AnimationPlayer>("CollisionShape3D/AnimationPlayer");
+		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -118,10 +119,10 @@ public partial class SpinAttack : Node3D
 	public void StartCharging()
 	{
 		if(isCharging || isDazed || currentWeapon == null)
-        {
-            //DisableCollision();
+		{
+			//DisableCollision();
 			return;
-        } 
+		} 
 
 		isCharging = true;
 		spinCharges = 0;
@@ -150,7 +151,7 @@ public partial class SpinAttack : Node3D
 			animation.LoopMode = Animation.LoopModeEnum.Linear;
 
 			animPlayer.Play("Spin_Attack");
-			
+			spinAttackSound.Play();
 			animPlayer.SpeedScale = 2.0f;
 
 			if(spinArea != null)
