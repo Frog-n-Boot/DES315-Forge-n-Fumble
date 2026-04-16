@@ -17,8 +17,13 @@
 [ext_resource type="Script" uid="uid://bf02wgjk36psn" path="res://src/Enemy/EnemyData.cs" id="24_60v6u"]
 [ext_resource type="PackedScene" uid="uid://cmd758glwlnly" path="res://assets/models/FinalAssets_Low/WorkStations/Grindstone.tscn" id="25_0arig"]
 [ext_resource type="Script" uid="uid://brp6gsap0s2ok" path="res://src/UI/HealthBar.cs" id="25_o2eou"]
+<<<<<<< HEAD
 [ext_resource type="Script" uid="uid://dnqtfi3fpu8ue" path="res://src/Camera/CameraController.cs" id="25_ua5aw"]
 [ext_resource type="Script" uid="uid://dli7kb5c5sowk" path="res://src/Mangers/TutorialManager.cs" id="26_60v6u"]
+=======
+[ext_resource type="Script" uid="uid://dli7kb5c5sowk" path="res://src/Managers/TutorialManager.cs" id="26_60v6u"]
+[ext_resource type="PackedScene" uid="uid://706c56ie3ke" path="res://assets/prefabs/Turret.tscn" id="26_i52xd"]
+>>>>>>> Shaders
 [ext_resource type="Script" uid="uid://dfgcclikd3kvh" path="res://src/Enemy/AI/EnemyBehaviourData.cs" id="26_k01fx"]
 [ext_resource type="PackedScene" uid="uid://c36fijnqqehnq" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Ingot.tscn" id="28_dkmvo"]
 [ext_resource type="PackedScene" uid="uid://2dvvlktwdavs" path="res://assets/models/FinalAssets_Low/Ore/Copper_Ore.tscn" id="29_6weby"]
@@ -301,6 +306,7 @@ script = ExtResource("25_o2eou")
 isForge = false
 isEnemy = true
 
+<<<<<<< HEAD
 [node name="Enemy2" type="Node3D" parent="." unique_id=269328654 node_paths=PackedStringArray("mesh", "collisionArea") groups=["Enemy"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91.09285, 1.0000134, -8.02597)
 visible = false
@@ -402,6 +408,10 @@ isEnemy = true
 [node name="Node" type="Node" parent="." unique_id=1180301471 node_paths=PackedStringArray("playerSpawner")]
 script = ExtResource("26_60v6u")
 playerSpawner = [NodePath("../PlayerSpawner"), null, null, null]
+=======
+[node name="Node" type="Node" parent="." unique_id=1180301471]
+script = ExtResource("26_60v6u")
+>>>>>>> Shaders
 
 [node name="BallistaBottomElementLow" type="MeshInstance3D" parent="." unique_id=981068421]
 transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, 185.6683, 0.004035, -16.79192)

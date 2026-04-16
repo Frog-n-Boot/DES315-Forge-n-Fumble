@@ -14,13 +14,15 @@
 [ext_resource type="Script" uid="uid://bk2uam5leqcv8" path="res://src/Player/PlayerSpawner.cs" id="11_pdwbg"]
 [ext_resource type="PackedScene" uid="uid://8roa2xkb2ipl" path="res://assets/prefabs/Player.tscn" id="12_5grtr"]
 [ext_resource type="Script" uid="uid://bs44u3pohek1t" path="res://src/Menus/SettingsMenu.cs" id="13_vua0o"]
-[ext_resource type="Script" uid="uid://bj4pcgxjt3ru7" path="res://src/Mangers/WaveManager.cs" id="14_t70y2"]
+[ext_resource type="Script" uid="uid://bj4pcgxjt3ru7" path="res://src/Managers/WaveManager.cs" id="14_t70y2"]
 [ext_resource type="Resource" uid="uid://calih72lg8n07" path="res://assets/resources/AI/NormalEnemyData.tres" id="15_8gny2"]
 [ext_resource type="Resource" uid="uid://cdki2c88hftlb" path="res://assets/resources/AI/FastEnemyData.tres" id="16_s3wmy"]
 [ext_resource type="Resource" uid="uid://cvs5mxaqpoflx" path="res://assets/resources/AI/StrongEnemyData.tres" id="17_gdcyb"]
 [ext_resource type="Script" uid="uid://taddex4cilqa" path="res://src/Item/LootTable.cs" id="18_oa6sj"]
 [ext_resource type="PackedScene" uid="uid://cgv7jdbgqsgql" path="res://assets/models/FinalAssets_Low/Ore/Ore.tscn" id="19_0f1tp"]
 [ext_resource type="PackedScene" uid="uid://ckbl1y013dodk" path="res://assets/models/FinalAssets_Low/Ore/Iron_Ore.tscn" id="20_0qimb"]
+[ext_resource type="Texture2D" uid="uid://bgpx6e42afd1t" path="res://assets/textures/UI/healthbar_forge_back.webp" id="20_in2eo"]
+[ext_resource type="Texture2D" uid="uid://b5e0el27bnplu" path="res://assets/textures/UI/healthbar_forge_front.webp" id="21_dyyw8"]
 [ext_resource type="PackedScene" uid="uid://dgguk5limafel" path="res://assets/models/FinalAssets_Low/Ore/Gold_Ore.tscn" id="21_in2eo"]
 [ext_resource type="FontFile" uid="uid://b8ui8dbraydmr" path="res://assets/textures/UI/texgyrechorus-mediumitalic.otf" id="22_0qimb"]
 [ext_resource type="PackedScene" uid="uid://jnghu007q1m" path="res://assets/models/FinalAssets_Low/Items_Models/Healthpack.tscn" id="23_gjpm3"]
@@ -31,17 +33,20 @@
 [ext_resource type="Texture2D" uid="uid://dy1wiwwij327x" path="res://assets/materials/Texture_sets/2DTextures/furnaceImage.webp" id="28_2ki8c"]
 [ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="28_oa6sj"]
 [ext_resource type="Texture2D" uid="uid://bvw5yhtbch6ht" path="res://assets/materials/Texture_sets/2DTextures/anvilImage.webp" id="29_0owt5"]
+[ext_resource type="Texture2D" uid="uid://boxmect25s13k" path="res://assets/textures/UI/Button.tres" id="29_gjpm3"]
 [ext_resource type="Texture2D" uid="uid://dwexwmybryvpl" path="res://assets/materials/Texture_sets/2DTextures/grindstoneImage.webp" id="30_o1tg2"]
 [ext_resource type="PackedScene" uid="uid://176tgqxxk3p7" path="res://scenes/DebugMenu.tscn" id="31_hyu0y"]
 [ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Item/Pickable.cs" id="32_cobve"]
+[ext_resource type="Texture2D" uid="uid://b0h4rjwc5lgiv" path="res://assets/PNG/Forge.webp" id="32_knagv"]
 [ext_resource type="Script" uid="uid://cqrm013r0malu" path="res://src/Menus/ResultMenu.cs" id="32_lfilp"]
 [ext_resource type="Texture2D" uid="uid://b163ru6y04fds" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_BaseCol.tga" id="33_cmqll"]
+[ext_resource type="AudioStream" uid="uid://dy5lcoryjk0no" path="res://assets/Sounds/SFX/Click.wav" id="33_siyqs"]
 [ext_resource type="Texture2D" uid="uid://dmckkpafqq3bq" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_Normal.tga" id="34_8cp6k"]
 [ext_resource type="Texture2D" uid="uid://b1xjsa5p8f7rb" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_ORM.tga" id="35_8b871"]
 [ext_resource type="ArrayMesh" uid="uid://g007ahf37syv" path="res://assets/models/FinalAssets_Low/Ore/Damas_ing_low.obj" id="36_pdwbg"]
 [ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Dull_Sword.tscn" id="38_cmqll"]
 [ext_resource type="PackedScene" uid="uid://d1y4lf17i3iid" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Dull_Sword.tscn" id="39_8cp6k"]
-[ext_resource type="Script" uid="uid://d0qxci8nvqnkh" path="res://src/Mangers/LevelManager.cs" id="40_8cp6k"]
+[ext_resource type="Script" uid="uid://d0qxci8nvqnkh" path="res://src/Managers/LevelManager.cs" id="40_8cp6k"]
 [ext_resource type="PackedScene" uid="uid://bfvifq667vxvj" path="res://assets/models/FinalAssets_Low/Ore/Damas_Ore.tscn" id="41_8b871"]
 [ext_resource type="PackedScene" uid="uid://c36fijnqqehnq" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Ingot.tscn" id="42_s3wmy"]
 [ext_resource type="PackedScene" uid="uid://o7vvnubwicff" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Ingot.tscn" id="43_gdcyb"]
@@ -49,12 +54,11 @@
 [ext_resource type="PackedScene" uid="uid://kxj85aq1b0n0" path="res://assets/models/FinalAssets_Low/Items_Models/Damas_Ingot.tscn" id="45_0f1tp"]
 [ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Sword.tscn" id="46_0qimb"]
 [ext_resource type="PackedScene" uid="uid://di5odw2tmde5j" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Sword.tscn" id="47_in2eo"]
-[ext_resource type="PackedScene" uid="uid://cayfp8m51s7np" path="res://assets/models/FinalAssets_Low/Items_Models/Crossbow.tscn" id="49_oa6sj"]
 [ext_resource type="MeshLibrary" uid="uid://cui246c4brede" path="res://scenes/Gridmap/Tiles.tres" id="50_0f1tp"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_dg70y"]
-vertices = PackedVector3Array(7.6395187, 0.408823, -77.264465, 8.639519, 0.408823, -76.014465, 21.889519, 0.408823, -76.014465, 23.139519, 0.408823, -94.014465, 22.139519, 0.408823, -95.264465, 8.639519, 0.408823, -95.264465, 7.6395187, 0.408823, -94.014465, 23.139519, 0.408823, -77.514465, 2.1395187, 0.408823, -94.264465, 2.1395187, 0.408823, -77.014465, 28.389519, 0.408823, -77.014465, 28.389519, 0.408823, -94.264465, -65.11048, 0.408823, -19.264465, -27.860481, 0.408823, -19.264465, -26.610481, 0.408823, -22.264465, -23.860481, 0.408823, -23.014465, -23.860481, 0.408823, -69.014465, -65.11048, 0.408823, -69.014465, -19.610481, 0.408823, -20.264465, -8.610481, 0.408823, -20.764465, -8.360481, 0.408823, -23.014465, -21.360481, 0.408823, -22.514465, -6.3604813, 0.408823, -24.764465, -4.1104813, 0.408823, -25.514465, -4.1104813, 0.408823, -69.014465, -1.3604813, 0.408823, -24.264465, -0.61048126, 0.408823, -21.514465, 13.139519, 0.408823, -21.264465, 15.139519, 0.408823, -24.264465, 17.139519, 0.408823, -24.514465, 17.139519, 0.408823, -69.014465, 20.889519, 0.408823, -19.014465, 20.389519, 0.408823, -18.264465, 24.639519, 0.408823, -13.514465, 20.889519, 0.408823, -21.014465, 28.389519, 0.408823, -14.014465, 19.639519, 0.408823, -23.764465, 18.639519, 0.408823, -24.514465, 30.639519, 0.408823, -11.764465, 72.13952, 0.408823, -10.264465, 72.13952, 0.408823, -69.014465, 31.139519, 0.408823, -10.264465, 14.139519, 0.408823, -10.264465, 15.139519, 0.408823, -17.264465, 13.139519, 0.408823, -20.514465, 4.3895187, 0.408823, -10.514465, -1.1104813, 0.408823, -20.264465, -5.1104813, 0.408823, -10.764465, -4.8604813, 0.408823, -17.514465, -7.6104813, 0.408823, -18.514465, -21.110481, 0.408823, -16.514465, -15.110481, 0.408823, -9.514465, -14.110481, 0.408823, -10.514465, -19.860481, 0.408823, -18.014465, -3.6104813, 0.408823, -8.264465, 3.3895187, 0.408823, -8.264465, 3.3895187, 0.408823, -9.514465, -3.8604813, 0.408823, -10.014465, -3.1104813, 0.408823, -18.014465, -29.360481, 0.408823, -2.7644653, -27.360481, 0.408823, -2.5144653, -26.860481, 0.408823, -17.014465, -30.610481, 0.408823, -2.0144653, -31.610481, 0.408823, -0.76446533, -65.11048, 0.408823, 1.4855347, -31.860481, 0.408823, 1.4855347, 19.389519, 0.408823, -17.014465, 22.889519, 0.408823, -11.514465, 18.139519, 0.408823, -16.514465, 16.139519, 0.408823, -16.514465, 15.139519, 0.408823, -9.014465, 22.639519, 0.408823, -9.514465, -25.360481, 0.408823, -1.2644653, -24.610481, 0.408823, 1.7355347, -15.360481, 0.408823, 1.7355347, -25.110481, 0.408823, -15.514465, 29.389519, 0.408823, -7.0144653, 26.139519, 0.408823, -6.7644653, 25.889519, 0.408823, -3.7644653, 28.639519, 0.408823, -1.5144653, 29.389519, 0.408823, 0.23553467, 72.13952, 0.408823, 0.23553467, 24.139519, 0.408823, -7.5144653, 22.639519, 0.408823, -3.0144653, 15.139519, 0.408823, -0.26446533, 21.639519, 0.408823, -0.26446533, 21.889519, 0.408823, -2.0144653, -10.610481, 0.408823, -0.51446533, -9.360481, 0.408823, -0.51446533, -9.360481, 0.408823, -2.2644653, -10.610481, 0.408823, -6.0144653, 8.389519, 0.408823, -3.0144653, 8.639519, 0.408823, -6.0144653, 5.1395187, 0.408823, -5.2644653, 5.6395187, 0.408823, -2.7644653, 3.6395187, 0.408823, -6.2644653, 4.6395187, 0.408823, -1.7644653, -3.3604813, 0.408823, -2.2644653, -3.3604813, 0.408823, -0.51446533, 4.3895187, 0.408823, -0.51446533, -7.3604813, 0.408823, -6.0144653, -8.110481, 0.408823, -3.5144653, -6.6104813, 0.408823, -5.2644653, -3.8604813, 0.408823, -6.2644653, -5.3604813, 0.408823, -5.2644653, -4.1104813, 0.408823, -3.2644653, -9.110481, 0.408823, 4.9855347, -10.610481, 0.408823, 4.9855347, -10.610481, 0.408823, 5.9855347, -7.3604813, 0.408823, 5.9855347, -6.6104813, 0.408823, 2.9855347, -7.8604813, 0.408823, 1.9855347, -8.110481, 0.408823, 4.2355347, 6.1395187, 0.408823, 5.2355347, 6.8895187, 0.408823, 5.9855347, 8.389519, 0.408823, 3.2355347, 5.6395187, 0.408823, 2.9855347, -6.6104813, 0.408823, 5.2355347, -3.3604813, 0.408823, 1.4855347, -5.3604813, 0.408823, 5.2355347, -4.1104813, 0.408823, 2.4855347, 5.1395187, 0.408823, 5.2355347, 4.8895187, 0.408823, 1.9855347, 3.6395187, 0.408823, 6.4855347, 10.639519, 0.408823, -1.7644653, 9.639519, 0.408823, -1.7644653, 10.139519, 0.408823, 1.4855347, -3.8604813, 0.408823, 6.4855347, 10.639519, 0.408823, 5.9855347, -3.6104813, 0.408823, 8.485535, 3.3895187, 0.408823, 8.485535, 14.889519, 0.408823, 9.985535, 19.639519, 0.408823, 13.735535, 20.139519, 0.408823, 12.985535, 21.889519, 0.408823, 12.235535, 24.639519, 0.408823, 4.2355347, 22.139519, 0.408823, 1.9855347, 24.139519, 0.408823, 12.985535, 26.889519, 0.408823, 4.2355347, 27.889519, 0.408823, 3.7355347, 25.639519, 0.408823, 14.735535, 28.889519, 0.408823, 2.2355347, 25.639519, 0.408823, 16.235535, 72.13952, 0.408823, 16.235535, -28.610481, 0.408823, 11.985535, -27.360481, 0.408823, 10.235535, -27.860481, 0.408823, 5.7355347, -31.360481, 0.408823, 4.2355347, -65.11048, 0.408823, 14.235535, -29.110481, 0.408823, 14.235535, -25.610481, 0.408823, 9.235535, -24.360481, 0.408823, 9.235535, -24.860481, 0.408823, 3.2355347, -23.360481, 0.408823, 9.985535, -15.360481, 0.408823, 9.235535, 3.3895187, 0.408823, 9.735535, -3.8604813, 0.408823, 9.985535, 2.3895187, 0.408823, 20.235535, 3.6395187, 0.408823, 18.985535, 4.1395187, 0.408823, 10.735535, 6.1395187, 0.408823, 17.985535, 6.1395187, 0.408823, 10.985535, -21.860481, 0.408823, 15.235535, -23.360481, 0.408823, 16.735535, -16.860481, 0.408823, 19.235535, -15.860481, 0.408823, 18.235535, -12.860481, 0.408823, 17.735535, -12.860481, 0.408823, 10.735535, -14.610481, 0.408823, 10.485535, -21.610481, 0.408823, 11.735535, -11.860481, 0.408823, 17.735535, -10.860481, 0.408823, 18.485535, -4.8604813, 0.408823, 10.985535, -9.610481, 0.408823, 19.985535, -9.360481, 0.408823, 21.485535, 1.8895187, 0.408823, 21.985535, 13.889519, 0.408823, 10.735535, 18.139519, 0.408823, 16.985535, 9.889519, 0.408823, 20.235535, 18.889519, 0.408823, 18.985535, 18.139519, 0.408823, 17.985535, 7.8895187, 0.408823, 18.485535, -17.610481, 0.408823, 20.735535, -17.360481, 0.408823, 22.985535, -26.360481, 0.408823, 17.735535, -13.360481, 0.408823, 68.235535, -13.360481, 0.408823, 24.985535, -15.860481, 0.408823, 24.485535, -65.11048, 0.408823, 68.235535, -28.860481, 0.408823, 15.485535, 25.139519, 0.408823, 18.985535, 23.889519, 0.408823, 19.985535, 21.639519, 0.408823, 20.735535, 21.639519, 0.408823, 68.235535, 72.13952, 0.408823, 68.235535, 10.139519, 0.408823, 21.485535, 20.139519, 0.408823, 20.235535, 9.639519, 0.408823, 23.985535, 6.8895187, 0.408823, 25.485535, 5.6395187, 0.408823, 25.485535, 5.6395187, 0.408823, 68.235535, 2.1395187, 0.408823, 23.485535, -10.110481, 0.408823, 23.735535, 3.3895187, 0.408823, 24.985535, -10.860481, 0.408823, 24.485535)
-polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(5, 3, 6), PackedInt32Array(6, 3, 7), PackedInt32Array(6, 7, 2), PackedInt32Array(6, 2, 0), PackedInt32Array(6, 0, 8), PackedInt32Array(8, 0, 9), PackedInt32Array(3, 11, 7), PackedInt32Array(7, 11, 10), PackedInt32Array(14, 13, 12), PackedInt32Array(14, 12, 15), PackedInt32Array(15, 12, 16), PackedInt32Array(16, 12, 17), PackedInt32Array(20, 19, 18), PackedInt32Array(18, 21, 20), PackedInt32Array(20, 21, 22), PackedInt32Array(22, 21, 23), PackedInt32Array(23, 21, 15), PackedInt32Array(23, 15, 24), PackedInt32Array(24, 15, 16), PackedInt32Array(26, 25, 27), PackedInt32Array(27, 25, 28), PackedInt32Array(28, 25, 29), PackedInt32Array(29, 25, 23), PackedInt32Array(29, 23, 24), PackedInt32Array(29, 24, 30), PackedInt32Array(31, 33, 32), PackedInt32Array(33, 31, 34), PackedInt32Array(33, 34, 35), PackedInt32Array(35, 34, 36), PackedInt32Array(36, 37, 30), PackedInt32Array(35, 36, 38), PackedInt32Array(38, 36, 39), PackedInt32Array(39, 36, 30), PackedInt32Array(39, 30, 40), PackedInt32Array(39, 41, 38), PackedInt32Array(37, 29, 30), PackedInt32Array(43, 42, 44), PackedInt32Array(44, 42, 45), PackedInt32Array(46, 26, 45), PackedInt32Array(45, 26, 44), PackedInt32Array(44, 26, 27), PackedInt32Array(49, 48, 47), PackedInt32Array(51, 50, 52), PackedInt32Array(52, 50, 53), PackedInt32Array(49, 47, 19), PackedInt32Array(19, 47, 52), PackedInt32Array(19, 52, 53), PackedInt32Array(19, 53, 18), PackedInt32Array(55, 54, 56), PackedInt32Array(56, 54, 57), PackedInt32Array(56, 57, 45), PackedInt32Array(45, 57, 47), PackedInt32Array(45, 47, 58), PackedInt32Array(45, 58, 46), PackedInt32Array(58, 47, 48), PackedInt32Array(61, 60, 59), PackedInt32Array(61, 59, 62), PackedInt32Array(62, 63, 61), PackedInt32Array(61, 63, 13), PackedInt32Array(13, 63, 12), PackedInt32Array(12, 63, 64), PackedInt32Array(64, 63, 65), PackedInt32Array(66, 32, 33), PackedInt32Array(68, 66, 67), PackedInt32Array(67, 66, 33), PackedInt32Array(42, 43, 69), PackedInt32Array(42, 69, 70), PackedInt32Array(70, 69, 68), PackedInt32Array(70, 68, 67), PackedInt32Array(70, 67, 71), PackedInt32Array(72, 74, 73), PackedInt32Array(50, 51, 75), PackedInt32Array(75, 51, 60), PackedInt32Array(60, 51, 72), PackedInt32Array(72, 51, 74), PackedInt32Array(60, 61, 75), PackedInt32Array(77, 76, 78), PackedInt32Array(78, 76, 79), PackedInt32Array(79, 76, 80), PackedInt32Array(80, 76, 41), PackedInt32Array(80, 41, 39), PackedInt32Array(80, 39, 81), PackedInt32Array(77, 78, 82), PackedInt32Array(82, 78, 83), PackedInt32Array(86, 85, 84), PackedInt32Array(83, 86, 82), PackedInt32Array(82, 86, 71), PackedInt32Array(71, 86, 70), PackedInt32Array(70, 86, 84), PackedInt32Array(88, 87, 89), PackedInt32Array(89, 87, 90), PackedInt32Array(94, 93, 91), PackedInt32Array(91, 93, 92), PackedInt32Array(54, 55, 95), PackedInt32Array(94, 96, 93), PackedInt32Array(93, 96, 95), PackedInt32Array(99, 98, 97), PackedInt32Array(102, 101, 100), PackedInt32Array(100, 101, 89), PackedInt32Array(100, 89, 90), PackedInt32Array(96, 99, 95), PackedInt32Array(95, 99, 97), PackedInt32Array(95, 97, 103), PackedInt32Array(95, 103, 54), PackedInt32Array(104, 103, 105), PackedInt32Array(105, 103, 97), PackedInt32Array(104, 105, 102), PackedInt32Array(102, 105, 101), PackedInt32Array(107, 106, 108), PackedInt32Array(108, 106, 109), PackedInt32Array(112, 111, 110), PackedInt32Array(113, 116, 114), PackedInt32Array(114, 116, 115), PackedInt32Array(117, 109, 112), PackedInt32Array(112, 109, 106), PackedInt32Array(118, 98, 99), PackedInt32Array(117, 112, 119), PackedInt32Array(119, 112, 110), PackedInt32Array(119, 110, 120), PackedInt32Array(113, 121, 116), PackedInt32Array(116, 121, 122), PackedInt32Array(121, 123, 122), PackedInt32Array(122, 123, 99), PackedInt32Array(126, 125, 124), PackedInt32Array(120, 118, 119), PackedInt32Array(119, 118, 127), PackedInt32Array(126, 124, 128), PackedInt32Array(114, 115, 128), PackedInt32Array(128, 115, 126), PackedInt32Array(127, 118, 129), PackedInt32Array(129, 118, 130), PackedInt32Array(130, 118, 123), PackedInt32Array(123, 118, 99), PackedInt32Array(133, 132, 131), PackedInt32Array(133, 131, 134), PackedInt32Array(134, 131, 135), PackedInt32Array(135, 131, 136), PackedInt32Array(136, 131, 84), PackedInt32Array(84, 85, 136), PackedInt32Array(135, 137, 134), PackedInt32Array(137, 135, 138), PackedInt32Array(138, 139, 137), PackedInt32Array(137, 139, 140), PackedInt32Array(141, 80, 142), PackedInt32Array(142, 80, 81), PackedInt32Array(142, 81, 143), PackedInt32Array(140, 139, 142), PackedInt32Array(142, 139, 141), PackedInt32Array(146, 145, 144), PackedInt32Array(144, 149, 146), PackedInt32Array(146, 149, 147), PackedInt32Array(147, 149, 148), PackedInt32Array(147, 148, 64), PackedInt32Array(64, 65, 147), PackedInt32Array(150, 145, 146), PackedInt32Array(150, 146, 151), PackedInt32Array(151, 146, 152), PackedInt32Array(151, 152, 153), PackedInt32Array(153, 152, 73), PackedInt32Array(153, 73, 154), PackedInt32Array(154, 73, 74), PackedInt32Array(129, 130, 155), PackedInt32Array(129, 155, 156), PackedInt32Array(156, 155, 159), PackedInt32Array(156, 159, 158), PackedInt32Array(156, 158, 157), PackedInt32Array(161, 160, 159), PackedInt32Array(159, 160, 158), PackedInt32Array(165, 164, 162), PackedInt32Array(162, 164, 163), PackedInt32Array(167, 166, 168), PackedInt32Array(168, 166, 165), PackedInt32Array(168, 165, 162), PackedInt32Array(168, 162, 169), PackedInt32Array(168, 169, 154), PackedInt32Array(154, 169, 153), PackedInt32Array(170, 166, 167), PackedInt32Array(171, 170, 167), PackedInt32Array(171, 167, 173), PackedInt32Array(173, 167, 172), PackedInt32Array(173, 172, 174), PackedInt32Array(174, 172, 156), PackedInt32Array(174, 156, 157), PackedInt32Array(174, 157, 175), PackedInt32Array(131, 132, 176), PackedInt32Array(176, 132, 177), PackedInt32Array(180, 179, 178), PackedInt32Array(181, 160, 161), PackedInt32Array(177, 180, 176), PackedInt32Array(176, 180, 178), PackedInt32Array(176, 178, 181), PackedInt32Array(176, 181, 161), PackedInt32Array(163, 164, 182), PackedInt32Array(182, 183, 163), PackedInt32Array(163, 183, 184), PackedInt32Array(185, 187, 186), PackedInt32Array(183, 187, 184), PackedInt32Array(184, 187, 148), PackedInt32Array(148, 187, 185), PackedInt32Array(148, 185, 188), PackedInt32Array(189, 148, 149), PackedInt32Array(148, 189, 184), PackedInt32Array(143, 190, 142), PackedInt32Array(193, 192, 191), PackedInt32Array(190, 143, 191), PackedInt32Array(191, 143, 194), PackedInt32Array(191, 194, 193), PackedInt32Array(195, 178, 179), PackedInt32Array(179, 196, 195), PackedInt32Array(195, 196, 197), PackedInt32Array(200, 199, 198), PackedInt32Array(196, 192, 197), PackedInt32Array(197, 192, 198), PackedInt32Array(198, 192, 193), PackedInt32Array(198, 193, 200), PackedInt32Array(175, 201, 174), PackedInt32Array(174, 201, 202), PackedInt32Array(203, 199, 204), PackedInt32Array(204, 199, 186), PackedInt32Array(186, 199, 200), PackedInt32Array(186, 200, 185), PackedInt32Array(202, 201, 204), PackedInt32Array(204, 201, 203)]
+vertices = PackedVector3Array(24.50663, 0.40882492, -77.514465, 25.00663, 0.40882492, -77.014465, 28.50663, 0.40882492, -77.014465, 28.50663, 0.40882492, -94.264465, 23.25663, 0.40882492, -94.014465, 7.50663, 0.40882492, -77.264465, 8.50663, 0.40882492, -76.014465, 22.00663, 0.40882492, -76.014465, 22.25663, 0.40882492, -95.264465, 8.50663, 0.40882492, -95.264465, 7.50663, 0.40882492, -94.014465, 23.25663, 0.40882492, -77.514465, 2.25663, 0.40882492, -94.264465, 2.25663, 0.40882492, -77.014465, -64.99337, 0.40882492, -19.014465, -27.99337, 0.40882492, -19.014465, -26.99337, 0.40882492, -21.764465, -25.74337, 0.40882492, -22.764465, -24.49337, 0.40882492, -69.014465, -64.99337, 0.40882492, -69.014465, -24.24337, 0.40882492, -22.764465, -23.24337, 0.40882492, -23.014465, -22.99337, 0.40882492, -69.014465, -19.74337, 0.40882492, -20.764465, -8.74337, 0.40882492, -21.514465, -8.74337, 0.40882492, -22.514465, -7.99337, 0.40882492, -23.514465, -21.24337, 0.40882492, -22.514465, -4.24337, 0.40882492, -25.514465, -4.24337, 0.40882492, -69.014465, -1.24337, 0.40882492, -24.014465, -0.49337006, 0.40882492, -21.264465, 13.25663, 0.40882492, -21.014465, 15.00663, 0.40882492, -24.264465, -2.74337, 0.40882492, -25.264465, 17.00663, 0.40882492, -24.514465, 17.00663, 0.40882492, -69.014465, 20.75663, 0.40882492, -18.764465, 20.25663, 0.40882492, -18.014465, 24.50663, 0.40882492, -13.514465, 20.75663, 0.40882492, -21.514465, 28.50663, 0.40882492, -14.014465, 18.50663, 0.40882492, -24.514465, 19.75663, 0.40882492, -23.514465, 29.75663, 0.40882492, -13.014465, 72.25663, 0.40882492, -10.264465, 72.25663, 0.40882492, -69.014465, 31.00663, 0.40882492, -10.264465, -4.99337, 0.40882492, -10.764465, -4.74337, 0.40882492, -17.514465, -7.99337, 0.40882492, -19.014465, -14.24337, 0.40882492, -10.514465, -20.99337, 0.40882492, -16.514465, -15.24337, 0.40882492, -9.514465, -19.74337, 0.40882492, -18.264465, 14.25663, 0.40882492, -10.264465, 15.25663, 0.40882492, -17.014465, 13.25663, 0.40882492, -20.264465, 4.50663, 0.40882492, -10.514465, -1.74337, 0.40882492, -19.514465, -3.49337, 0.40882492, -8.514465, 3.50663, 0.40882492, -8.514465, 3.50663, 0.40882492, -9.514465, -3.74337, 0.40882492, -10.014465, -3.49337, 0.40882492, -17.764465, -29.99337, 0.40882492, -2.5144653, -27.49337, 0.40882492, -2.5144653, -26.74337, 0.40882492, -17.014465, -31.49337, 0.40882492, -1.0144653, -31.99337, 0.40882492, 0.98553467, -64.99337, 0.40882492, 0.73553467, 19.50663, 0.40882492, -17.014465, 23.00663, 0.40882492, -11.764465, 18.25663, 0.40882492, -16.514465, 16.00663, 0.40882492, -16.514465, 15.25663, 0.40882492, -9.014465, 22.75663, 0.40882492, -9.514465, -25.49337, 0.40882492, -1.5144653, -24.49337, 0.40882492, 1.9855347, -15.24337, 0.40882492, 1.9855347, -24.99337, 0.40882492, -15.514465, 29.25663, 0.40882492, -7.0144653, 26.25663, 0.40882492, -6.7644653, 26.00663, 0.40882492, -3.7644653, 28.25663, 0.40882492, -2.0144653, 30.75663, 0.40882492, -9.014465, 29.25663, 0.40882492, 0.23553467, 72.25663, 0.40882492, 0.23553467, 24.25663, 0.40882492, -7.5144653, 22.75663, 0.40882492, -3.0144653, 15.25663, 0.40882492, -0.26446533, 21.50663, 0.40882492, -0.26446533, -10.74337, 0.40882492, -0.51446533, -9.49337, 0.40882492, -0.51446533, -9.49337, 0.40882492, -2.2644653, -10.74337, 0.40882492, -6.0144653, 8.50663, 0.40882492, -6.0144653, 7.00663, 0.40882492, -6.0144653, 6.25663, 0.40882492, -5.2644653, 5.75663, 0.40882492, -2.7644653, 8.25663, 0.40882492, -3.0144653, -3.24337, 0.40882492, -2.2644653, -3.24337, 0.40882492, -0.51446533, 4.25663, 0.40882492, -0.51446533, 4.50663, 0.40882492, -1.5144653, 4.25663, 0.40882492, -5.7644653, -3.99337, 0.40882492, -6.2644653, -5.24337, 0.40882492, -5.2644653, -3.99337, 0.40882492, -3.2644653, -8.24337, 0.40882492, -3.5144653, -7.24337, 0.40882492, -6.0144653, 3.50663, 0.40882492, -6.7644653, -6.49337, 0.40882492, -5.2644653, -6.49337, 0.40882492, 2.9855347, -7.74337, 0.40882492, 1.9855347, -7.74337, 0.40882492, 3.7355347, -6.49337, 0.40882492, 5.2355347, -5.49337, 0.40882492, 5.2355347, -8.49337, 0.40882492, 4.7355347, -10.74337, 0.40882492, 4.9855347, -10.74337, 0.40882492, 5.9855347, -7.24337, 0.40882492, 5.9855347, 5.25663, 0.40882492, 5.2355347, 6.25663, 0.40882492, 5.2355347, 5.75663, 0.40882492, 2.9855347, 3.75663, 0.40882492, 6.4855347, 10.50663, 0.40882492, 5.9855347, 10.25663, 0.40882492, 1.2355347, 8.50663, 0.40882492, 3.2355347, -3.49337, 0.40882492, 7.7355347, 3.50663, 0.40882492, 7.7355347, -3.49337, 0.40882492, 1.4855347, 10.50663, 0.40882492, -1.7644653, 9.75663, 0.40882492, -1.7644653, -4.24337, 0.40882492, 2.4855347, -3.74337, 0.40882492, 6.4855347, 7.00663, 0.40882492, 5.9855347, 15.00663, 0.40882492, 9.985535, 19.25663, 0.40882492, 13.985535, 21.75663, 0.40882492, 12.235535, 22.50663, 0.40882492, 2.4855347, 23.50663, 0.40882492, 12.735535, 24.00663, 0.40882492, 3.9855347, 26.75663, 0.40882492, 4.2355347, 24.75663, 0.40882492, 13.485535, 27.75663, 0.40882492, 3.7355347, 28.75663, 0.40882492, 2.4855347, 25.75663, 0.40882492, 14.985535, 72.25663, 0.40882492, 14.985535, -64.99337, 0.40882492, 2.2355347, -31.74337, 0.40882492, 1.9855347, -26.49337, 0.40882492, 9.735535, -27.24337, 0.40882492, 5.2355347, -28.99337, 0.40882492, 5.4855347, -28.49337, 0.40882492, 11.735535, -30.74337, 0.40882492, 4.7355347, -31.74337, 0.40882492, 3.4855347, -64.99337, 0.40882492, 14.485535, -29.24337, 0.40882492, 14.485535, -24.49337, 0.40882492, 9.235535, -24.74337, 0.40882492, 3.2355347, -22.74337, 0.40882492, 10.235535, -21.74337, 0.40882492, 11.485535, -15.24337, 0.40882492, 9.735535, 6.25663, 0.40882492, 17.985535, 6.25663, 0.40882492, 10.735535, 4.75663, 0.40882492, 10.985535, 3.75663, 0.40882492, 10.235535, -3.99337, 0.40882492, 9.985535, 3.50663, 0.40882492, 19.235535, -22.24337, 0.40882492, 15.985535, -23.24337, 0.40882492, 16.735535, -16.99337, 0.40882492, 19.485535, -21.74337, 0.40882492, 14.735535, -15.74337, 0.40882492, 18.235535, -14.24337, 0.40882492, 10.735535, -12.99337, 0.40882492, 17.735535, -12.99337, 0.40882492, 10.735535, -11.49337, 0.40882492, 17.985535, -4.99337, 0.40882492, 10.985535, -9.49337, 0.40882492, 19.985535, -9.24337, 0.40882492, 21.235535, 2.00663, 0.40882492, 21.485535, 2.25663, 0.40882492, 20.235535, 14.00663, 0.40882492, 10.735535, 18.25663, 0.40882492, 16.485535, 18.25663, 0.40882492, 18.235535, 8.75663, 0.40882492, 18.985535, 10.00663, 0.40882492, 20.735535, 19.25663, 0.40882492, 19.235535, -17.49337, 0.40882492, 20.485535, -24.99337, 0.40882492, 17.485535, -26.49337, 0.40882492, 17.485535, -17.24337, 0.40882492, 23.235535, -13.49337, 0.40882492, 68.235535, -13.49337, 0.40882492, 24.985535, -15.49337, 0.40882492, 24.735535, -64.99337, 0.40882492, 68.235535, 72.25663, 0.40882492, 16.735535, 25.50663, 0.40882492, 16.485535, 25.00663, 0.40882492, 18.985535, 23.25663, 0.40882492, 20.235535, 21.50663, 0.40882492, 20.735535, 21.50663, 0.40882492, 68.235535, 72.25663, 0.40882492, 68.235535, 10.00663, 0.40882492, 22.985535, 20.50663, 0.40882492, 20.485535, 9.50663, 0.40882492, 23.985535, 6.75663, 0.40882492, 25.485535, 5.50663, 0.40882492, 25.485535, 5.50663, 0.40882492, 68.235535, 2.25663, 0.40882492, 23.985535, -10.74337, 0.40882492, 24.485535, 4.25663, 0.40882492, 25.485535)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 4), PackedInt32Array(2, 4, 3), PackedInt32Array(7, 6, 5), PackedInt32Array(9, 8, 4), PackedInt32Array(9, 4, 10), PackedInt32Array(10, 4, 11), PackedInt32Array(10, 11, 7), PackedInt32Array(10, 7, 5), PackedInt32Array(4, 0, 11), PackedInt32Array(10, 5, 12), PackedInt32Array(12, 5, 13), PackedInt32Array(16, 15, 14), PackedInt32Array(16, 14, 17), PackedInt32Array(17, 14, 18), PackedInt32Array(18, 14, 19), PackedInt32Array(18, 20, 17), PackedInt32Array(21, 20, 22), PackedInt32Array(22, 20, 18), PackedInt32Array(25, 24, 23), PackedInt32Array(25, 23, 26), PackedInt32Array(26, 23, 27), PackedInt32Array(27, 21, 26), PackedInt32Array(26, 21, 28), PackedInt32Array(28, 21, 29), PackedInt32Array(29, 21, 22), PackedInt32Array(32, 31, 30), PackedInt32Array(30, 34, 32), PackedInt32Array(32, 34, 33), PackedInt32Array(34, 28, 33), PackedInt32Array(33, 28, 35), PackedInt32Array(35, 28, 29), PackedInt32Array(35, 29, 36), PackedInt32Array(39, 38, 37), PackedInt32Array(37, 40, 39), PackedInt32Array(39, 40, 41), PackedInt32Array(43, 42, 36), PackedInt32Array(44, 41, 40), PackedInt32Array(40, 43, 44), PackedInt32Array(44, 43, 45), PackedInt32Array(45, 43, 36), PackedInt32Array(45, 36, 46), PackedInt32Array(47, 44, 45), PackedInt32Array(42, 35, 36), PackedInt32Array(49, 48, 50), PackedInt32Array(50, 48, 51), PackedInt32Array(53, 52, 51), PackedInt32Array(51, 52, 54), PackedInt32Array(54, 23, 51), PackedInt32Array(51, 23, 50), PackedInt32Array(50, 23, 24), PackedInt32Array(56, 55, 57), PackedInt32Array(57, 55, 58), PackedInt32Array(59, 31, 58), PackedInt32Array(58, 31, 57), PackedInt32Array(57, 31, 32), PackedInt32Array(61, 60, 62), PackedInt32Array(62, 60, 63), PackedInt32Array(48, 49, 64), PackedInt32Array(48, 64, 63), PackedInt32Array(63, 64, 59), PackedInt32Array(63, 59, 62), PackedInt32Array(62, 59, 58), PackedInt32Array(65, 67, 66), PackedInt32Array(65, 68, 67), PackedInt32Array(67, 68, 15), PackedInt32Array(68, 69, 15), PackedInt32Array(15, 69, 70), PackedInt32Array(15, 70, 14), PackedInt32Array(71, 38, 39), PackedInt32Array(73, 71, 72), PackedInt32Array(72, 71, 39), PackedInt32Array(55, 56, 74), PackedInt32Array(55, 74, 75), PackedInt32Array(75, 74, 73), PackedInt32Array(75, 73, 72), PackedInt32Array(75, 72, 76), PackedInt32Array(79, 78, 77), PackedInt32Array(52, 53, 80), PackedInt32Array(80, 53, 66), PackedInt32Array(66, 53, 77), PackedInt32Array(77, 53, 79), PackedInt32Array(66, 67, 80), PackedInt32Array(82, 81, 83), PackedInt32Array(83, 81, 84), PackedInt32Array(85, 47, 86), PackedInt32Array(86, 47, 45), PackedInt32Array(86, 45, 87), PackedInt32Array(84, 81, 86), PackedInt32Array(86, 81, 85), PackedInt32Array(82, 83, 88), PackedInt32Array(88, 83, 89), PackedInt32Array(88, 89, 76), PackedInt32Array(76, 89, 91), PackedInt32Array(76, 91, 90), PackedInt32Array(76, 90, 75), PackedInt32Array(93, 92, 94), PackedInt32Array(94, 92, 95), PackedInt32Array(97, 96, 98), PackedInt32Array(98, 96, 100), PackedInt32Array(98, 100, 99), PackedInt32Array(103, 102, 101), PackedInt32Array(105, 104, 103), PackedInt32Array(98, 99, 105), PackedInt32Array(105, 99, 104), PackedInt32Array(107, 106, 108), PackedInt32Array(108, 106, 101), PackedInt32Array(109, 94, 110), PackedInt32Array(110, 94, 95), PackedInt32Array(60, 61, 111), PackedInt32Array(109, 110, 112), PackedInt32Array(107, 108, 112), PackedInt32Array(112, 108, 109), PackedInt32Array(106, 60, 101), PackedInt32Array(101, 60, 111), PackedInt32Array(101, 111, 105), PackedInt32Array(101, 105, 103), PackedInt32Array(114, 113, 115), PackedInt32Array(115, 113, 116), PackedInt32Array(116, 113, 117), PackedInt32Array(119, 118, 120), PackedInt32Array(120, 118, 121), PackedInt32Array(124, 123, 122), PackedInt32Array(121, 118, 116), PackedInt32Array(116, 118, 115), PackedInt32Array(122, 125, 124), PackedInt32Array(124, 125, 103), PackedInt32Array(128, 127, 126), PackedInt32Array(130, 129, 125), PackedInt32Array(125, 129, 131), PackedInt32Array(125, 131, 102), PackedInt32Array(125, 102, 103), PackedInt32Array(127, 133, 132), PackedInt32Array(113, 134, 117), PackedInt32Array(117, 134, 135), PackedInt32Array(134, 131, 135), PackedInt32Array(135, 131, 129), PackedInt32Array(123, 124, 136), PackedInt32Array(136, 124, 128), PackedInt32Array(136, 128, 126), PackedInt32Array(127, 132, 126), PackedInt32Array(139, 138, 137), PackedInt32Array(90, 91, 140), PackedInt32Array(139, 137, 141), PackedInt32Array(141, 137, 142), PackedInt32Array(142, 137, 140), PackedInt32Array(140, 137, 90), PackedInt32Array(141, 142, 143), PackedInt32Array(141, 143, 144), PackedInt32Array(144, 143, 145), PackedInt32Array(146, 86, 87), PackedInt32Array(144, 145, 147), PackedInt32Array(147, 145, 146), PackedInt32Array(147, 146, 148), PackedInt32Array(148, 146, 87), PackedInt32Array(69, 150, 70), PackedInt32Array(70, 150, 149), PackedInt32Array(153, 152, 151), PackedInt32Array(153, 151, 155), PackedInt32Array(155, 151, 154), PackedInt32Array(149, 150, 156), PackedInt32Array(155, 154, 156), PackedInt32Array(156, 154, 158), PackedInt32Array(156, 158, 157), PackedInt32Array(156, 157, 149), PackedInt32Array(151, 152, 159), PackedInt32Array(159, 152, 160), PackedInt32Array(163, 162, 161), PackedInt32Array(160, 78, 159), PackedInt32Array(159, 78, 161), PackedInt32Array(161, 78, 163), PackedInt32Array(163, 78, 79), PackedInt32Array(166, 165, 164), PackedInt32Array(129, 130, 167), PackedInt32Array(166, 164, 167), PackedInt32Array(167, 164, 169), PackedInt32Array(167, 169, 168), PackedInt32Array(167, 168, 129), PackedInt32Array(172, 171, 170), PackedInt32Array(170, 173, 172), PackedInt32Array(172, 173, 174), PackedInt32Array(163, 175, 162), PackedInt32Array(162, 175, 173), PackedInt32Array(173, 175, 174), PackedInt32Array(174, 175, 176), PackedInt32Array(175, 177, 176), PackedInt32Array(178, 176, 177), PackedInt32Array(178, 177, 180), PackedInt32Array(180, 177, 179), PackedInt32Array(183, 182, 181), PackedInt32Array(180, 179, 181), PackedInt32Array(181, 179, 168), PackedInt32Array(181, 168, 183), PackedInt32Array(183, 168, 169), PackedInt32Array(137, 138, 184), PackedInt32Array(184, 138, 185), PackedInt32Array(185, 186, 184), PackedInt32Array(184, 186, 188), PackedInt32Array(184, 188, 187), PackedInt32Array(184, 187, 165), PackedInt32Array(187, 164, 165), PackedInt32Array(186, 189, 188), PackedInt32Array(172, 190, 171), PackedInt32Array(171, 190, 191), PackedInt32Array(157, 158, 192), PackedInt32Array(191, 190, 192), PackedInt32Array(192, 190, 193), PackedInt32Array(196, 195, 194), PackedInt32Array(193, 196, 192), PackedInt32Array(192, 196, 157), PackedInt32Array(157, 196, 194), PackedInt32Array(157, 194, 197), PackedInt32Array(148, 198, 147), PackedInt32Array(147, 198, 199), PackedInt32Array(200, 199, 198), PackedInt32Array(201, 203, 202), PackedInt32Array(200, 198, 201), PackedInt32Array(201, 198, 204), PackedInt32Array(201, 204, 203), PackedInt32Array(205, 188, 189), PackedInt32Array(205, 189, 207), PackedInt32Array(207, 189, 206), PackedInt32Array(210, 209, 208), PackedInt32Array(206, 202, 207), PackedInt32Array(207, 202, 208), PackedInt32Array(208, 202, 203), PackedInt32Array(208, 203, 210), PackedInt32Array(182, 211, 181), PackedInt32Array(181, 211, 212), PackedInt32Array(213, 209, 210), PackedInt32Array(211, 213, 212), PackedInt32Array(212, 213, 195), PackedInt32Array(195, 213, 194), PackedInt32Array(194, 213, 210)]
 geometry_source_geometry_mode = 1
 agent_radius = 1.5
 
@@ -97,21 +101,44 @@ fog_density = 1.0
 fog_depth_end = 242.5
 volumetric_fog_density = 0.0
 
-[sub_resource type="Gradient" id="Gradient_gdcyb"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gjpm3"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_8cp6k"]
-gradient = SubResource("Gradient_gdcyb")
-width = 1145
+[sub_resource type="AtlasTexture" id="AtlasTexture_knagv"]
+atlas = SubResource("CompressedTexture2D_gjpm3")
+region = Rect2(21, 519, 261, 39)
 
-[sub_resource type="Gradient" id="Gradient_oa6sj"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_knagv"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_8b871"]
-gradient = SubResource("Gradient_oa6sj")
-width = 1145
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyyw8"]
+atlas = SubResource("CompressedTexture2D_knagv")
+region = Rect2(581, 500, 285, 91)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pb578"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjpm3"]
+atlas = SubResource("CompressedTexture2D_pb578")
+region = Rect2(581, 500, 285, 91)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vshs7"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_siyqs"]
+atlas = SubResource("CompressedTexture2D_vshs7")
+region = Rect2(581, 500, 285, 91)
 
 [sub_resource type="LabelSettings" id="LabelSettings_in2eo"]
 font = ExtResource("22_0qimb")
 font_size = 85
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_siyqs"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb578"]
+atlas = SubResource("CompressedTexture2D_siyqs")
+region = Rect2(581, 500, 285, 91)
 
 [sub_resource type="LabelSettings" id="LabelSettings_0qimb"]
 font = ExtResource("22_0qimb")
@@ -128,6 +155,13 @@ region = Rect2(758, 234, 98, 102)
 [sub_resource type="AtlasTexture" id="AtlasTexture_oa6sj"]
 atlas = ExtResource("28_oa6sj")
 region = Rect2(758, 234, 98, 102)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_in2eo"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vshs7"]
+atlas = SubResource("CompressedTexture2D_in2eo")
+region = Rect2(581, 500, 285, 91)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4vp4a"]
 size = Vector3(1, 1.1378174, 0.91204834)
@@ -156,7 +190,7 @@ _bundled = {
 [node name="Scene" type="Node3D" unique_id=989767663]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1253782712]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0354013, -0.13641739, 0.7309079)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0151768, -0.13641739, 0.73526096)
 navigation_mesh = SubResource("NavigationMesh_dg70y")
 
 [node name="Ground" type="StaticBody3D" parent="NavigationRegion3D" unique_id=750057617 groups=["navigation_mesh_source_group"]]
@@ -185,11 +219,8 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10.5
 controllerButtonTexture = SubResource("AtlasTexture_cmqll")
 keyboardButtonTexture = SubResource("AtlasTexture_8cp6k")
 
-[node name="Anvil" parent="NavigationRegion3D" unique_id=1158721071 groups=["navigation_mesh_source_group"] instance=ExtResource("5_hq6as")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.855, 0, 2.3331976)
-
-[node name="Forge" parent="NavigationRegion3D" unique_id=994045895 groups=["navigation_mesh_source_group"] instance=ExtResource("8_cmqll")]
-transform = Transform3D(-0.3, 0, -2.6226834e-08, 0, 0.3, 0, 2.6226834e-08, 0, -0.3, -0.4806223, 0.15882301, 0)
+[node name="Forge" parent="NavigationRegion3D" unique_id=994045895 instance=ExtResource("8_cmqll")]
+transform = Transform3D(-0.3, 0, -2.6226834e-08, 0, 0.3, 0, 2.6226834e-08, 0, -0.3, -0.5547695, 0.15882492, -0.04463482)
 
 [node name="Rocks" type="Node" parent="NavigationRegion3D" unique_id=266735782 groups=["navigation_mesh_source_group"]]
 
@@ -224,7 +255,7 @@ transform = Transform3D(0.6630513, 0, -0.74857396, 0, 1, 0, 0.74857396, 0, 0.663
 transform = Transform3D(0.5850001, 0, 0.81103325, 0, 1, 0, -0.81103325, 0, 0.5850001, 27.881142, 0.0036263466, -9.415568)
 
 [node name="Copper_Ore" parent="NavigationRegion3D" unique_id=2110523039 instance=ExtResource("8_kxyth")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6431887, 0.014983, 4.170432)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3817103, 0.014982998, 5.134077)
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=686138009]
 transform = Transform3D(0.6920928, 0.008213635, 0.7217619, -0.72180855, 0.007875493, 0.69204795, -5.793235e-10, -0.99993527, 0.011379243, -0.65869904, 19.63105, -0.28507435)
@@ -334,36 +365,52 @@ spawner = NodePath("../../PlayerSpawner")
 portraitContainer = NodePath("HBoxContainer")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/CanvasLayer" unique_id=1200533580]
-offset_left = 26.0
-offset_top = 505.0
-offset_right = 66.00001
-offset_bottom = 545.0
-scale = Vector2(1.4340242, 1.4681656)
+offset_left = 46.0
+offset_top = 612.0
+offset_right = 86.0
+offset_bottom = 652.0
+scale = Vector2(1.2790005, 1)
 pivot_offset = Vector2(20, 0)
 theme_override_constants/separation = 225
 
-[node name="ForgeProgressBar" type="TextureProgressBar" parent="UI/CanvasLayer" unique_id=173815992]
-offset_left = 3.0
-offset_top = 4.0
-offset_right = 1149.0
-offset_bottom = 68.0
-scale = Vector2(1, 0.7199999)
+[node name="ForgeProgressBar_Back" type="TextureProgressBar" parent="UI/CanvasLayer" unique_id=391164803]
+offset_left = 0.99999976
+offset_top = 2.0
+offset_right = 1769.0
+offset_bottom = 195.0
+scale = Vector2(0.7263015, 0.51434565)
 value = 20.0
-texture_under = SubResource("GradientTexture2D_8cp6k")
-texture_progress = SubResource("GradientTexture2D_8b871")
+texture_under = ExtResource("20_in2eo")
+texture_over = ExtResource("21_dyyw8")
+tint_progress = Color(0, 1, 0, 1)
+script = ExtResource("26_pb578")
+targetPath = NodePath("../../..")
+
+[node name="ForgeProgressBar" type="TextureProgressBar" parent="UI/CanvasLayer" unique_id=173815992]
+offset_left = 44.000004
+offset_top = 23.999998
+offset_right = 305.0
+offset_bottom = 63.0
+scale = Vector2(4.488315, 1.0213243)
+value = 17.0
+texture_progress = SubResource("AtlasTexture_knagv")
 tint_under = Color(1, 0, 0, 1)
 tint_progress = Color(0, 1, 0, 1)
 script = ExtResource("26_pb578")
 targetPath = NodePath("../../..")
 
-[node name="EnemiesLeft" type="Label" parent="UI" unique_id=754514857]
-process_priority = 1
-offset_left = 47.0
-offset_top = 69.0
-offset_right = 113.0
-offset_bottom = 92.0
-text = "Enemies Left: "
-metadata/_edit_use_anchors_ = true
+[node name="ForgeProgressBar3_Front" type="TextureProgressBar" parent="UI/CanvasLayer" unique_id=295883399]
+offset_left = 0.99999976
+offset_top = 2.0
+offset_right = 1769.0
+offset_bottom = 195.0
+scale = Vector2(0.7263015, 0.51434565)
+value = 20.0
+texture_over = ExtResource("21_dyyw8")
+tint_under = Color(1, 0, 0, 1)
+tint_progress = Color(0, 1, 0, 1)
+script = ExtResource("26_pb578")
+targetPath = NodePath("../../..")
 
 [node name="PauseMenu" type="CanvasLayer" parent="UI" unique_id=385949872 node_paths=PackedStringArray("resumeButton", "settingsButton", "mainMenuButton", "settingsMenu")]
 process_mode = 3
@@ -379,43 +426,56 @@ offset_left = 71.00002
 offset_top = 175.0
 offset_right = 519.0
 offset_bottom = 295.0
-scale = Vector2(0.8400012, 0.7599994)
+scale = Vector2(0.93444926, 0.8426638)
 focus_neighbor_top = NodePath(".")
 focus_neighbor_bottom = NodePath("../SettingsButton")
 focus_next = NodePath("../SettingsButton")
 focus_previous = NodePath("../QuitButton")
 theme_override_font_sizes/font_size = 40
 text = "Resume"
+icon = SubResource("AtlasTexture_dyyw8")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="SettingsButton" type="Button" parent="UI/PauseMenu" unique_id=284510241]
 offset_left = 71.00002
 offset_top = 335.0
 offset_right = 519.0
 offset_bottom = 455.0
-scale = Vector2(0.8400012, 0.7599994)
+scale = Vector2(0.93444926, 0.8426638)
 focus_neighbor_top = NodePath("../ResumeButton")
 focus_neighbor_bottom = NodePath("../QuitButton")
 focus_next = NodePath("../QuitButton")
 focus_previous = NodePath("../ResumeButton")
 theme_override_font_sizes/font_size = 40
 text = "Settings"
+icon = SubResource("AtlasTexture_gjpm3")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="QuitButton" type="Button" parent="UI/PauseMenu" unique_id=1753223593]
 offset_left = 71.00002
 offset_top = 495.0
 offset_right = 519.0
 offset_bottom = 615.0
-scale = Vector2(0.8400012, 0.7599994)
+scale = Vector2(0.93444926, 0.8426638)
 focus_neighbor_top = NodePath("../SettingsButton")
 focus_previous = NodePath("../SettingsButton")
 theme_override_font_sizes/font_size = 40
 text = "Main Menu"
+icon = SubResource("AtlasTexture_siyqs")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="Label" type="Label" parent="UI/PauseMenu" unique_id=1356341263]
 offset_left = 62.0
 offset_top = 26.0
 offset_right = 459.0
 offset_bottom = 109.0
+scale = Vector2(1.112438, 1.108769)
 theme_override_font_sizes/font_size = 60
 text = "Game Paused"
 label_settings = SubResource("LabelSettings_in2eo")
@@ -425,7 +485,7 @@ offset_left = 658.0
 offset_top = 64.0
 offset_right = 1158.0
 offset_bottom = 164.0
-scale = Vector2(0.6149459, 0.68860584)
+scale = Vector2(0.6840891, 0.76350486)
 texture = ExtResource("28_2ki8c")
 expand_mode = 1
 
@@ -434,7 +494,7 @@ offset_left = 658.0
 offset_top = 133.0
 offset_right = 1158.0
 offset_bottom = 233.0
-scale = Vector2(0.6149459, 0.68860584)
+scale = Vector2(0.6840891, 0.76350486)
 texture = ExtResource("29_0owt5")
 expand_mode = 1
 
@@ -443,7 +503,7 @@ offset_left = 658.0
 offset_top = 201.0
 offset_right = 1158.0
 offset_bottom = 301.0
-scale = Vector2(0.6149459, 0.68860584)
+scale = Vector2(0.6840891, 0.76350486)
 texture = ExtResource("30_o1tg2")
 expand_mode = 1
 
@@ -452,7 +512,7 @@ offset_left = 592.0
 offset_top = 347.00003
 offset_right = 1254.0
 offset_bottom = 704.0
-scale = Vector2(0.68, 0.62560004)
+scale = Vector2(0.7564578, 0.69364595)
 theme_override_font_sizes/font_size = 30
 text = "Actions                  Keyboard    │  Controller
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -467,13 +527,15 @@ Sequence           │  ←↑→↓          │  < > v ^"
 z_index = -1
 offset_right = 40.0
 offset_bottom = 40.0
-scale = Vector2(28.860407, 16.15729)
+scale = Vector2(32.10541, 17.914703)
+mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="UI/PauseMenu" unique_id=25129296]
 z_index = -1
 offset_right = 40.0
 offset_bottom = 40.0
-scale = Vector2(28.750067, 16.369858)
+scale = Vector2(31.982666, 18.150393)
+mouse_filter = 2
 color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
 
 [node name="DebugMenu" parent="UI" unique_id=731638094 instance=ExtResource("31_hyu0y")]
@@ -493,31 +555,38 @@ offset_left = 362.0
 offset_top = 270.0
 offset_right = 810.0
 offset_bottom = 390.0
-scale = Vector2(0.8400012, 0.7599994)
+scale = Vector2(0.9324887, 0.83361644)
 focus_neighbor_bottom = NodePath("../QuitButton")
 theme_override_font_sizes/font_size = 40
 text = "Retry"
-metadata/_edit_use_anchors_ = true
+icon = SubResource("AtlasTexture_pb578")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="QuitButton" type="Button" parent="UI/ResultsMenu" unique_id=504194181]
 offset_left = 364.0
 offset_top = 436.00003
 offset_right = 812.0
 offset_bottom = 556.0
-scale = Vector2(0.8400012, 0.7599994)
+scale = Vector2(0.9324887, 0.83361644)
 focus_neighbor_top = NodePath("../RetryButton")
 theme_override_font_sizes/font_size = 40
 text = "Main Menu"
-metadata/_edit_use_anchors_ = true
+icon = ExtResource("29_gjpm3")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="Label" type="Label" parent="UI/ResultsMenu" unique_id=688697069]
 anchors_preset = -1
-anchor_left = 0.114583336
+anchor_left = 0.024305556
 anchor_right = 0.024305556
 offset_left = 231.0
 offset_top = 121.0
-offset_right = 722.0
+offset_right = 737.0
 offset_bottom = 204.0
+scale = Vector2(1.110104, 1.0968646)
 theme_override_font_sizes/font_size = 60
 text = "End Game Result"
 label_settings = SubResource("LabelSettings_0qimb")
@@ -527,73 +596,163 @@ metadata/_edit_use_anchors_ = true
 z_index = -1
 offset_right = 40.0
 offset_bottom = 40.0
-scale = Vector2(28.750067, 16.369858)
+scale = Vector2(31.915564, 17.955517)
+mouse_filter = 2
 color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
 
-[node name="SettingsMenu" type="CanvasLayer" parent="UI" unique_id=1617405091 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton", "pauseMenu")]
-visible = false
-script = ExtResource("13_vua0o")
-masterSlider = NodePath("Control/MasterVolumeLabel/MasterVolumeSlider")
-musicSlider = NodePath("Control/MusicVolumeLabel/MusicVolumeSlider")
-sfxSlider = NodePath("Control/SFXVolumeLabel/SFXVolumeSlider")
-fullScreenCheckBox = NodePath("Control/FullscreenLabel/FullScreenCheckBox")
-vsyncCheckBox = NodePath("Control/VSyncLabel/VSyncCheckBox")
-showFPSCheckBox = NodePath("Control/ShowFPSLabel/ShowFPSCheckBox")
-resolutionDropdown = NodePath("Control/ResolutionLabel/ResolutionOptionButton")
-maxFPSDropdown = NodePath("Control/FPSLabel/FPSOptionButton")
-applyButton = NodePath("Control/ApplyButton")
-pauseMenu = NodePath("../PauseMenu")
+[node name="TextureRect" type="TextureRect" parent="UI" unique_id=1003475988]
+offset_left = 19.0
+offset_top = 117.0
+offset_right = 112.0
+offset_bottom = 206.0
+scale = Vector2(0.5561729, 0.5470355)
+mouse_filter = 2
+texture = SubResource("AtlasTexture_0f1tp")
 
-[node name="Control" type="Control" parent="UI/SettingsMenu" unique_id=1260098093]
-process_mode = 3
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="EnemiesLeft" type="Label" parent="UI" unique_id=754514857]
+process_priority = 1
+z_index = 3
+offset_left = 27.0
+offset_top = 121.0
+offset_right = 135.0
+offset_bottom = 144.0
+scale = Vector2(1.1123458, 1.094071)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Enemies Left: "
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="UI/SettingsMenu/Control" unique_id=100261695]
-layout_mode = 0
+[node name="WaveRemaining" type="Label" parent="UI" unique_id=139448255]
+process_priority = 1
+offset_left = 14.0
+offset_top = 79.0
+offset_right = 122.0
+offset_bottom = 102.0
+scale = Vector2(1.2903215, 1.2691227)
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UI" unique_id=1024019081]
+offset_left = 508.0
+offset_top = 56.0
+offset_right = 606.0
+offset_bottom = 158.0
+scale = Vector2(1.1123458, 1.094071)
+value = 100.0
+fill_mode = 5
+texture_under = SubResource("AtlasTexture_0qimb")
+texture_progress = SubResource("AtlasTexture_oa6sj")
+tint_under = Color(0.30692267, 0.3069227, 0.3069227, 1)
+
+[node name="StationPort3" parent="UI" unique_id=1915723754 instance=ExtResource("3_2c4at")]
+transform = Transform3D(0.016431808, 0, 6.7567225, 0, 1.375121, 0, -3.635261, 0, 0.030542374, 7.8126793, 0.93464184, 7.063262)
+
+[node name="SettingsMenu" type="CanvasLayer" parent="UI" unique_id=1417241995 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton", "audio", "pauseMenu")]
+process_mode = 3
+script = ExtResource("13_vua0o")
+masterSlider = NodePath("Panel/TabContainer/Sound/MasterVolumeLabel/MasterVolumeSlider")
+musicSlider = NodePath("Panel/TabContainer/Sound/MusicVolumeLabel/MusicVolumeSlider")
+sfxSlider = NodePath("Panel/TabContainer/Sound/SFXVolumeLabel/SFXVolumeSlider")
+fullScreenCheckBox = NodePath("Panel/TabContainer/Display/FullscreenLabel/FullScreenCheckBox")
+vsyncCheckBox = NodePath("Panel/TabContainer/Display/VSyncLabel/VSyncCheckBox")
+showFPSCheckBox = NodePath("Panel/TabContainer/Display/ShowFPSLabel/ShowFPSCheckBox")
+resolutionDropdown = NodePath("Panel/TabContainer/Display/ResolutionLabel/ResolutionOptionButton")
+maxFPSDropdown = NodePath("Panel/TabContainer/Display/FPSLabel/FPSOptionButton")
+applyButton = NodePath("Panel/ApplyButton")
+audio = NodePath("AudioStreamPlayer2D")
+pauseMenu = NodePath("../PauseMenu")
+metadata/_edit_use_anchors_ = true
+
+[node name="BackgroundImage" type="TextureRect" parent="UI/SettingsMenu" unique_id=327071390]
+visible = false
+visibility_layer = 2
+z_index = -1
+offset_left = -22.0
+offset_right = 1351.0
+offset_bottom = 772.0
+texture = ExtResource("32_knagv")
+stretch_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="UI/SettingsMenu" unique_id=596057235]
+z_index = -1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(32.207207, 18.071495)
+color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
+
+[node name="Panel" type="Panel" parent="UI/SettingsMenu" unique_id=1778858075]
+offset_right = 1152.0
+offset_bottom = 650.0
+scale = Vector2(1.1202481, 1.1039494)
+
+[node name="Label" type="Label" parent="UI/SettingsMenu/Panel" unique_id=707389190]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3515625
+anchor_top = -0.035384614
+anchor_right = 0.3515625
+anchor_bottom = -0.035384614
 offset_left = 32.0
 offset_top = 24.0
 offset_right = 264.0
 offset_bottom = 107.0
 theme_override_font_sizes/font_size = 60
 text = "Settings"
-metadata/_edit_use_anchors_ = true
 
-[node name="MasterVolumeLabel" type="Label" parent="UI/SettingsMenu/Control" unique_id=1591004952]
+[node name="TabContainer" type="TabContainer" parent="UI/SettingsMenu/Panel" unique_id=968886870]
 layout_mode = 0
-offset_left = 32.0
-offset_top = 120.0
-offset_right = 252.0
-offset_bottom = 207.0
+offset_left = -2.0
+offset_top = 102.0
+offset_right = 1150.0
+offset_bottom = 169.0
+mouse_filter = 0
+current_tab = 0
+
+[node name="Sound" type="Control" parent="UI/SettingsMenu/Panel/TabContainer" unique_id=1989203924]
+layout_mode = 2
+focus_neighbor_right = NodePath("../Display")
+metadata/_tab_index = 0
+
+[node name="MasterVolumeLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Sound" unique_id=393992191]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.30989584
+anchor_top = 2.5
+anchor_right = 0.30989584
+anchor_bottom = 2.5
+offset_left = 34.0
+offset_top = -13.0
+offset_right = 254.0
+offset_bottom = 74.0
+focus_next = NodePath("../MusicVolumeLabel/MusicVolumeSlider")
 theme_override_font_sizes/font_size = 30
 text = "Master Volume
 "
-metadata/_edit_use_anchors_ = true
 
-[node name="MasterVolumeSlider" type="HSlider" parent="UI/SettingsMenu/Control/MasterVolumeLabel" unique_id=485278808]
+[node name="MasterVolumeSlider" type="HSlider" parent="UI/SettingsMenu/Panel/TabContainer/Sound/MasterVolumeLabel" unique_id=66751820]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.0045454544
 offset_left = 233.0
 offset_right = 343.0
 offset_bottom = 50.0
+focus_neighbor_top = NodePath("../..")
 focus_neighbor_bottom = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
-metadata/_edit_use_anchors_ = true
+focus_next = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
 
-[node name="MusicVolumeLabel" type="Label" parent="UI/SettingsMenu/Control" unique_id=1028329062]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 176.0
-offset_right = 235.0
-offset_bottom = 223.0
+[node name="MusicVolumeLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Sound" unique_id=1684046763]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.30989584
+anchor_top = 3.1944444
+anchor_right = 0.30989584
+anchor_bottom = 3.1944444
+offset_left = 34.0
+offset_top = 43.0
+offset_right = 237.0
+offset_bottom = 90.0
 theme_override_font_sizes/font_size = 30
 text = "Music Volume"
-metadata/_edit_use_anchors_ = true
 
-[node name="MusicVolumeSlider" type="HSlider" parent="UI/SettingsMenu/Control/MusicVolumeLabel" unique_id=513898678]
+[node name="MusicVolumeSlider" type="HSlider" parent="UI/SettingsMenu/Panel/TabContainer/Sound/MusicVolumeLabel" unique_id=1237679886]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.009852217
@@ -605,20 +764,59 @@ offset_top = 7.0
 offset_right = 344.0
 offset_bottom = 57.0
 focus_neighbor_top = NodePath("../../MasterVolumeLabel/MasterVolumeSlider")
-focus_neighbor_right = NodePath("../../SFXVolumeLabel/SFXVolumeSlider")
-metadata/_edit_use_anchors_ = true
+focus_neighbor_bottom = NodePath("../../SFXVolumeLabel/SFXVolumeSlider")
 
-[node name="ResolutionLabel" type="Label" parent="UI/SettingsMenu/Control" unique_id=1794153192]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 432.0
-offset_right = 186.0
-offset_bottom = 479.0
+[node name="SFXVolumeLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Sound" unique_id=2053239223]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.30989584
+anchor_top = 4.111111
+anchor_right = 0.30989584
+anchor_bottom = 4.111111
+offset_left = 34.0
+offset_top = 91.0
+offset_right = 203.0
+offset_bottom = 138.0
+theme_override_font_sizes/font_size = 30
+text = "SFX Volume"
+
+[node name="SFXVolumeSlider" type="HSlider" parent="UI/SettingsMenu/Panel/TabContainer/Sound/SFXVolumeLabel" unique_id=1379767842]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.01183432
+anchor_top = -0.23404256
+anchor_right = -0.01183432
+anchor_bottom = -0.23404256
+offset_left = 234.0
+offset_top = 4.0
+offset_right = 344.0
+offset_bottom = 54.0
+focus_neighbor_top = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
+focus_neighbor_bottom = NodePath("../../../../ApplyButton")
+
+[node name="Display" type="Control" parent="UI/SettingsMenu/Panel/TabContainer" unique_id=1109690702]
+visible = false
+layout_mode = 2
+focus_neighbor_left = NodePath("../Sound")
+focus_neighbor_right = NodePath("../Controls")
+metadata/_tab_index = 1
+
+[node name="ResolutionLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=770856024]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3246528
+anchor_top = -2.0277777
+anchor_right = 0.3246528
+anchor_bottom = -2.0277777
+offset_left = 34.0
+offset_top = 299.0
+offset_right = 188.0
+offset_bottom = 346.0
 theme_override_font_sizes/font_size = 30
 text = "Resolution"
 metadata/_edit_use_anchors_ = true
 
-[node name="ResolutionOptionButton" type="OptionButton" parent="UI/SettingsMenu/Control/ResolutionLabel" unique_id=827977499]
+[node name="ResolutionOptionButton" type="OptionButton" parent="UI/SettingsMenu/Panel/TabContainer/Display/ResolutionLabel" unique_id=711595284]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.4090909
@@ -633,17 +831,22 @@ focus_neighbor_top = NodePath("../../ShowFPSLabel/ShowFPSCheckBox")
 focus_neighbor_bottom = NodePath("../../FPSLabel/FPSOptionButton")
 metadata/_edit_use_anchors_ = true
 
-[node name="FPSLabel" type="Label" parent="UI/SettingsMenu/Control" unique_id=1616124073]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 488.0
-offset_right = 103.0
-offset_bottom = 535.0
+[node name="FPSLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=2016526172]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3246528
+anchor_top = -2.0277777
+anchor_right = 0.3246528
+anchor_bottom = -2.0277777
+offset_left = 34.0
+offset_top = 355.0
+offset_right = 105.0
+offset_bottom = 402.0
 theme_override_font_sizes/font_size = 30
 text = "FPS"
 metadata/_edit_use_anchors_ = true
 
-[node name="FPSOptionButton" type="OptionButton" parent="UI/SettingsMenu/Control/FPSLabel" unique_id=1628876376]
+[node name="FPSOptionButton" type="OptionButton" parent="UI/SettingsMenu/Panel/TabContainer/Display/FPSLabel" unique_id=3862924]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.5633802
@@ -655,95 +858,89 @@ offset_top = 11.0
 offset_right = 249.0
 offset_bottom = 43.0
 focus_neighbor_top = NodePath("../../ResolutionLabel/ResolutionOptionButton")
-focus_neighbor_bottom = NodePath("../../BackButton")
+focus_neighbor_bottom = NodePath("../../../../ApplyButton")
 metadata/_edit_use_anchors_ = true
 
-[node name="SFXVolumeLabel" type="Label" parent="UI/SettingsMenu/Control" unique_id=1506815955]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 224.0
-offset_right = 201.0
-offset_bottom = 271.0
-theme_override_font_sizes/font_size = 30
-text = "SFX Volume"
-metadata/_edit_use_anchors_ = true
-
-[node name="SFXVolumeSlider" type="HSlider" parent="UI/SettingsMenu/Control/SFXVolumeLabel" unique_id=1872170403]
+[node name="FullscreenLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=768714710]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.01183432
-anchor_top = -0.23404256
-anchor_right = -0.01183432
-anchor_bottom = -0.23404256
-offset_left = 234.0
-offset_top = 4.0
-offset_right = 344.0
-offset_bottom = 54.0
-focus_neighbor_top = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
-focus_neighbor_bottom = NodePath("../../FullscreenLabel/FullScreenCheckBox")
-metadata/_edit_use_anchors_ = true
-
-[node name="FullscreenLabel" type="Label" parent="UI/SettingsMenu/Control" unique_id=1560838557]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 272.0
-offset_right = 201.0
-offset_bottom = 319.0
+anchor_left = 0.3246528
+anchor_top = -2.0277777
+anchor_right = 0.3246528
+anchor_bottom = -2.0277777
+offset_left = 34.0
+offset_top = 139.0
+offset_right = 203.0
+offset_bottom = 186.0
 theme_override_font_sizes/font_size = 30
 text = "FullScreen"
 metadata/_edit_use_anchors_ = true
 
-[node name="FullScreenCheckBox" type="CheckBox" parent="UI/SettingsMenu/Control/FullscreenLabel" unique_id=1108551976]
+[node name="FullScreenCheckBox" type="CheckBox" parent="UI/SettingsMenu/Panel/TabContainer/Display/FullscreenLabel" unique_id=794886591]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.38700002
-anchor_right = 0.38700002
-offset_left = 166.59698
-offset_top = 10.0
-offset_right = 195.59698
-offset_bottom = 34.0
-focus_neighbor_top = NodePath("../../SFXVolumeLabel/SFXVolumeSlider")
+anchor_left = 0.37899998
+anchor_top = -0.00021277083
+anchor_right = 0.37899998
+anchor_bottom = -0.00021273024
+offset_left = 167.949
+offset_top = 8.01
+offset_right = 191.949
+offset_bottom = 32.01
+focus_neighbor_top = NodePath("../..")
 focus_neighbor_bottom = NodePath("../../VSyncLabel/VSyncCheckBox")
+focus_next = NodePath(".")
 theme_override_font_sizes/font_size = 40
 metadata/_edit_use_anchors_ = true
 
-[node name="VSyncLabel" type="Label" parent="UI/SettingsMenu/Control" unique_id=909808435]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 320.0
-offset_right = 201.0
-offset_bottom = 367.0
+[node name="VSyncLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=23022820]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3246528
+anchor_top = -2.0277777
+anchor_right = 0.3246528
+anchor_bottom = -2.0277777
+offset_left = 34.0
+offset_top = 187.0
+offset_right = 203.0
+offset_bottom = 234.0
 theme_override_font_sizes/font_size = 30
 text = "VSync"
 metadata/_edit_use_anchors_ = true
 
-[node name="VSyncCheckBox" type="CheckBox" parent="UI/SettingsMenu/Control/VSyncLabel" unique_id=913072526]
+[node name="VSyncCheckBox" type="CheckBox" parent="UI/SettingsMenu/Panel/TabContainer/Display/VSyncLabel" unique_id=807730405]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.2366864
 anchor_right = 0.2366864
 offset_left = 192.0
 offset_top = -7.9999986
-offset_right = 217.0
+offset_right = 224.0
 offset_bottom = 55.0
 focus_neighbor_top = NodePath("../../FullscreenLabel/FullScreenCheckBox")
 focus_neighbor_bottom = NodePath("../../ShowFPSLabel/ShowFPSCheckBox")
+focus_next = NodePath(".")
 theme_override_font_sizes/font_size = 40
 text = "
 "
 metadata/_edit_use_anchors_ = true
 
-[node name="ShowFPSLabel" type="Label" parent="UI/SettingsMenu/Control" unique_id=277186055]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 376.0
-offset_right = 201.0
-offset_bottom = 423.0
+[node name="ShowFPSLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=84451888]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3246528
+anchor_top = -2.0277777
+anchor_right = 0.3246528
+anchor_bottom = -2.0277777
+offset_left = 34.0
+offset_top = 243.0
+offset_right = 203.0
+offset_bottom = 290.0
 theme_override_font_sizes/font_size = 30
 text = "ShowFPS"
 metadata/_edit_use_anchors_ = true
 
-[node name="ShowFPSCheckBox" type="CheckBox" parent="UI/SettingsMenu/Control/ShowFPSLabel" unique_id=1148104484]
+[node name="ShowFPSCheckBox" type="CheckBox" parent="UI/SettingsMenu/Panel/TabContainer/Display/ShowFPSLabel" unique_id=716589053]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.16568047
@@ -752,80 +949,61 @@ anchor_right = 0.16568047
 anchor_bottom = 0.06382979
 offset_left = 204.0
 offset_top = -11.0
-offset_right = 228.0
+offset_right = 236.0
 offset_bottom = 52.0
 focus_neighbor_top = NodePath("../../VSyncLabel/VSyncCheckBox")
 focus_neighbor_bottom = NodePath("../../ResolutionLabel/ResolutionOptionButton")
+focus_next = NodePath(".")
 theme_override_font_sizes/font_size = 40
 text = "
 
 "
 metadata/_edit_use_anchors_ = true
 
-[node name="BackButton" type="Button" parent="UI/SettingsMenu/Control" unique_id=1184552180]
+[node name="Controls" type="Control" parent="UI/SettingsMenu/Panel/TabContainer" unique_id=1088571596]
+visible = false
+layout_mode = 2
+focus_neighbor_left = NodePath("../Display")
+focus_neighbor_bottom = NodePath("../../ApplyButton")
+metadata/_tab_index = 2
+
+[node name="BackButton" type="Button" parent="UI/SettingsMenu/Panel" unique_id=1894926270]
 layout_mode = 0
-offset_left = 8.000006
-offset_top = 552.0
-offset_right = 456.0
-offset_bottom = 672.0
-scale = Vector2(0.8400012, 0.7599994)
-focus_neighbor_top = NodePath("../FPSLabel/FPSOptionButton")
+offset_left = -32.135742
+offset_top = 548.0325
+offset_right = 415.86423
+offset_bottom = 668.0325
+scale = Vector2(0.93444926, 0.8426638)
 focus_neighbor_right = NodePath("../ApplyButton")
+focus_next = NodePath("../SettingsButton")
+focus_previous = NodePath("../QuitButton")
 theme_override_font_sizes/font_size = 40
-text = "Back
-"
-metadata/_edit_use_anchors_ = true
+text = "Back"
+icon = SubResource("AtlasTexture_vshs7")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
-[node name="ApplyButton" type="Button" parent="UI/SettingsMenu/Control" unique_id=1142629580]
+[node name="ApplyButton" type="Button" parent="UI/SettingsMenu/Panel" unique_id=2130382320]
 layout_mode = 0
-offset_left = 759.99994
-offset_top = 552.0
-offset_right = 1208.0
-offset_bottom = 672.0
-scale = Vector2(0.8400012, 0.7599994)
+offset_left = 765.0092
+offset_top = 548.9383
+offset_right = 1213.0093
+offset_bottom = 668.9383
+scale = Vector2(0.93444926, 0.8426638)
 focus_neighbor_left = NodePath("../BackButton")
-focus_neighbor_top = NodePath("../FPSLabel/FPSOptionButton")
+focus_next = NodePath("../SettingsButton")
+focus_previous = NodePath("../QuitButton")
 theme_override_font_sizes/font_size = 40
-text = "Apply
+text = "Apply"
+icon = SubResource("AtlasTexture_vshs7")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
-"
-metadata/_edit_use_anchors_ = true
-
-[node name="ColorRect" type="ColorRect" parent="UI/SettingsMenu" unique_id=1181463912]
-z_index = -1
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(28.750067, 16.369858)
-color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
-
-[node name="TextureRect" type="TextureRect" parent="UI" unique_id=1003475988]
-offset_top = 59.0
-offset_right = 93.0
-offset_bottom = 148.0
-scale = Vector2(0.5, 0.5)
-texture = SubResource("AtlasTexture_0f1tp")
-
-[node name="WaveRemaining" type="Label" parent="UI" unique_id=139448255]
-process_priority = 1
-offset_left = 3.0
-offset_top = 108.0
-offset_right = 111.0
-offset_bottom = 131.0
-metadata/_edit_use_anchors_ = true
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="UI" unique_id=1024019081]
-offset_left = 508.0
-offset_top = 56.0
-offset_right = 606.0
-offset_bottom = 158.0
-value = 100.0
-fill_mode = 5
-texture_under = SubResource("AtlasTexture_0qimb")
-texture_progress = SubResource("AtlasTexture_oa6sj")
-tint_under = Color(0.30692267, 0.3069227, 0.3069227, 1)
-
-[node name="StationPort3" parent="UI" unique_id=1915723754 instance=ExtResource("3_2c4at")]
-transform = Transform3D(0.016431808, 0, 6.7567225, 0, 1.375121, 0, -3.635261, 0, 0.030542374, 7.8126793, 0.93464184, 7.063262)
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="UI/SettingsMenu" unique_id=26808277]
+stream = ExtResource("33_siyqs")
+volume_db = -40.0
 
 [node name="LootTable" type="Node" parent="." unique_id=317891680 groups=["LootTable"]]
 script = ExtResource("18_oa6sj")
@@ -839,7 +1017,7 @@ damasOre = SubResource("PackedScene_5grtr")
 healthPackObject = ExtResource("23_gjpm3")
 
 [node name="IronOre" parent="." unique_id=904125942 instance=ExtResource("20_0qimb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5888362, 4.7683716e-07, 4.2512217)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.403659, 4.7683716e-07, 5.3548493)
 
 [node name="DullSword" parent="." unique_id=778246616 instance=ExtResource("38_cmqll")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8266451, 0.000985, 0.6228571)
@@ -854,7 +1032,6 @@ fastEnemyData = ExtResource("16_s3wmy")
 strongEnemyData = ExtResource("17_gdcyb")
 normalEnemyNumber = 10
 fastEnemyNumber = 10
-storngEnemyNumber = 10
 copperOreScene = ExtResource("8_kxyth")
 copperOreCount = 10
 ironOreScene = ExtResource("20_0qimb")
@@ -882,9 +1059,6 @@ ironSwordCount = 10
 healthPackObject = ExtResource("23_gjpm3")
 healthpackCount = 10
 
-[node name="Crossbow" parent="." unique_id=1323232309 instance=ExtResource("49_oa6sj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.044379234, 0.15771297, 4.972278)
-
 [node name="Gripmap" type="Node3D" parent="." unique_id=929500366 groups=["navigation_mesh_source_group"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.098751, -0.12141548, -85.37008)
 
@@ -897,8 +1071,11 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 3, 0)
 
+[node name="Anvil" parent="." unique_id=1158721071 instance=ExtResource("5_hq6as")]
+transform = Transform3D(-0.036695987, 0, -0.99932647, 0, 1, 0, 0.99932647, 0, -0.036695987, -9.482155, -0.13641739, 4.470146)
+
 [connection signal="pressed" from="UI/PauseMenu/ResumeButton" to="UI/PauseMenu" method="OnResumePressed"]
 [connection signal="pressed" from="UI/PauseMenu/SettingsButton" to="UI/PauseMenu" method="OnSettingsPressed"]
 [connection signal="pressed" from="UI/PauseMenu/QuitButton" to="UI/PauseMenu" method="OnMainMenuPressed"]
-[connection signal="pressed" from="UI/SettingsMenu/Control/BackButton" to="UI/SettingsMenu" method="OnBackPressed"]
-[connection signal="pressed" from="UI/SettingsMenu/Control/ApplyButton" to="UI/SettingsMenu" method="OnApplyPressed"]
+[connection signal="pressed" from="UI/SettingsMenu/Panel/BackButton" to="UI/SettingsMenu" method="OnBackPressed"]
+[connection signal="pressed" from="UI/SettingsMenu/Panel/ApplyButton" to="UI/SettingsMenu" method="OnApplyPressed"]

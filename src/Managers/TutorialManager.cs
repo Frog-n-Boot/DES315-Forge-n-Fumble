@@ -68,11 +68,11 @@ public partial class TutorialManager : Node
 		else
 		{
 			progressTime = 0;
-		}
-		if(Input.IsActionJustReleased("skip_tutorial"))
-		{
 			skipTutorialProgressBar.Visible = false;
 			skipTutorialProgressBar.Value = 0;
+		}
+		if(Input.IsActionJustReleased("pause"))
+		{
 			pauseMenu.TogglePause();
 		}
     }

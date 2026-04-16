@@ -20,26 +20,24 @@ region = Rect2(187, 601, 148, 165)
 atlas = ExtResource("3_ex5ym")
 region = Rect2(24, 601, 148, 165)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6mc1f"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_47stt"]
 atlas = ExtResource("3_ex5ym")
 region = Rect2(29, 260, 71, 35)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5almy"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6mc1f"]
 atlas = ExtResource("3_ex5ym")
 region = Rect2(113, 258, 72, 35)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pet0w"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5almy"]
 atlas = ExtResource("3_ex5ym")
 region = Rect2(30, 309, 71, 35)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gyfya"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pet0w"]
 atlas = ExtResource("3_ex5ym")
 region = Rect2(115, 308, 71, 35)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rwibj"]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_brnra"]
-atlas = SubResource("CompressedTexture2D_rwibj")
+atlas = ExtResource("3_ex5ym")
 region = Rect2(29, 14, 246, 230)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rwibj"]
@@ -50,14 +48,11 @@ region = Rect2(29, 14, 246, 230)
 atlas = ExtResource("3_ex5ym")
 region = Rect2(290, 25, 102, 219)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_03uyb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fs5d2"]
 atlas = ExtResource("3_ex5ym")
 region = Rect2(557, 29, 62, 192)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fs5d2"]
-atlas = SubResource("AtlasTexture_03uyb")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_47stt"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_03uyb"]
 atlas = ExtResource("3_ex5ym")
 region = Rect2(557, 29, 62, 192)
 
@@ -69,13 +64,14 @@ atlas = ExtResource("3_ex5ym")
 region = Rect2(759, 347, 93, 93)
 
 [node name="PlayerPortrait" type="PanelContainer" unique_id=1792981498 node_paths=PackedStringArray("itemTextureRect", "weaponDurabilityBar", "healthBar")]
+rotation = -0.004870423
 scale = Vector2(1.3600001, 1.12)
 script = ExtResource("1_xro7h")
 itemTextureRect = NodePath("Control/PlayerTexture/ItemTextureRect")
 weaponDurabilityBar = NodePath("Control/PlayerTexture/WeaponDurabilityProgressBar/TextureProgressBar")
 healthBar = NodePath("Control/PlayerTexture/TextureProgressBar")
 playerTextures = Array[Texture2D]([SubResource("AtlasTexture_n81mn"), SubResource("AtlasTexture_m201d"), SubResource("AtlasTexture_w8j84"), SubResource("AtlasTexture_3xijs")])
-playerLabel = Array[Texture2D]([SubResource("AtlasTexture_6mc1f"), SubResource("AtlasTexture_5almy"), SubResource("AtlasTexture_pet0w"), SubResource("AtlasTexture_gyfya")])
+playerLabel = Array[Texture2D]([SubResource("AtlasTexture_47stt"), SubResource("AtlasTexture_6mc1f"), SubResource("AtlasTexture_5almy"), SubResource("AtlasTexture_pet0w")])
 
 [node name="Control" type="Control" parent="." unique_id=332765825]
 layout_mode = 2
@@ -129,15 +125,15 @@ tint_progress = Color(0.2231029, 0.2231029, 0.22310287, 1)
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Control/PlayerTexture/WeaponDurabilityProgressBar" unique_id=1277525524]
 layout_mode = 0
-offset_left = 42.365086
-offset_top = 11.437838
-offset_right = 104.3651
-offset_bottom = 203.43784
+offset_left = 43.24344
+offset_top = 10.914057
+offset_right = 105.243454
+offset_bottom = 202.91406
 rotation = 0.20943952
 value = 100.0
 fill_mode = 3
 texture_under = SubResource("AtlasTexture_fs5d2")
-texture_progress = SubResource("AtlasTexture_47stt")
+texture_progress = SubResource("AtlasTexture_03uyb")
 tint_under = Color(0.20511743, 0.20511743, 0.20511743, 1)
 
 [node name="ItemTextureRect" type="TextureRect" parent="Control/PlayerTexture" unique_id=1583205173]

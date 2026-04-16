@@ -44,6 +44,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	private HashSet<Node> processPickable = new HashSet<Node>();
 	private BaseStationScript currentStation;
 	private Label3D pickupPrompt;
+	private Node3D pickupNode;
 
 	[Signal] public delegate void PlayerHealthChangedEventHandler(int current, int max);
 	[Signal] public delegate void DiedEventHandler();
@@ -80,6 +81,78 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 	public bool isDazed {get; private set;} = false;
 
+	public override void _Ready()
+	{
+
+		health = maxHealth;
+		inputBuffer = new InputBuffer();
+		AddChild(inputBuffer);
+
+		inputManager = GetNode<InputManager>("/root/InputManager");
+		if (inputManager == null)
+			GD.PrintErr("PlayerController: InputManager not found!");
+
+		world = GetTree().Root.GetNodeOrNull<StaticBody3D>("testing_lab");
+		if (world != null)
+			camera = world.GetNodeOrNull<Camera3D>("Camera3D");
+
+		if (camera == null)
+			camera = GetViewport().GetCamera3D();
+
+		forge = GetNodeOrNull<Forge>("/root/Forge");
+		healthPack = GetNodeOrNull<HealthPack>("/root/HealthPack");
+		areaPickup = GetNodeOrNull<Area3D>("Area3D");
+		areaPickup.AreaEntered += OnPickupAreaEntered;
+		areaPickup.AreaExited += OnPickUpAreaExited;
+		animPlayer.AnimationFinished += OnAnimationFinished;
+	
+
+		rightHand = GetNodeOrNull<Node3D>("CollisionShape3D/RightHand");
+		leftHand = GetNodeOrNull<Node3D>("CollisionShape3D/LeftHand");
+		if (rightHand != null)
+		{
+			FindExistingSword();
+		}
+		else
+		{
+			GD.PrintErr("Hand node not found!");
+		}
+
+		//pickupPrompt = pickupNode.GetNode<Label3D>("Label3D");
+
+		spinAttack = GetNode<SpinAttack>("SpinAttack");
+
+		if(currentWeapon is MeleeWeapon melee)
+			spinAttack.SetWeapon(melee);
+
+		lastRotation = Rotation.Y;
+
+		if (XRayManager.Instance == null) {	
+			GD.PrintErr("[Player]  XRayManager.Instance is null — autoload not ready yet");
+		}
+		else{
+        	GD.Print($"[Player]  XRayManager found, registering {Name}");
+		}
+        
+    	CallDeferred(MethodName.RegisterWithManager);
+	}
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+		XRayManager.Instance?.UnregisterPlayer(this);
+    }
+
+	private void RegisterWithManager()
+	{
+    	if (XRayManager.Instance == null)
+    	{
+        	GD.PrintErr("[Player] XRayManager.Instance is null!");
+        	return;
+    	}
+    	GD.Print($"[Player] Registering {Name} with XRayManager");
+    	XRayManager.Instance.RegisterPlayer(this);
+	}
 	public IEnumerable<ItemData> GetCarriedItems()
 	{
 		if(leftHand.GetChildCount() > 0)
@@ -113,54 +186,6 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			}
 		}
 	}
-	public override void _Ready()
-	{
-
-		health = maxHealth;
-		inputBuffer = new InputBuffer();
-		AddChild(inputBuffer);	
-
-		
-		inputManager = GetNode<InputManager>("/root/InputManager");
-		if (inputManager == null)
-			GD.PrintErr("PlayerController: InputManager not found!");
-
-		world = GetTree().Root.GetNodeOrNull<StaticBody3D>("Main");
-		if (world != null)
-			camera = world.GetNodeOrNull<Camera3D>("Camera3D");
-
-		if (camera == null)
-			camera = GetViewport().GetCamera3D();
-
-		playerSpawner = GetTree().Root.GetNodeOrNull<PlayerSpawner>("Scene/PlayerSpawner");
-		forge = GetNodeOrNull<Forge>("/root/Forge");
-		healthPack = GetNodeOrNull<HealthPack>("/root/HealthPack");
-		areaPickup = GetNodeOrNull<Area3D>("Area3D");
-		areaPickup.AreaEntered += OnPickupAreaEntered;
-		areaPickup.AreaExited += OnPickUpAreaExited;
-
-		animPlayer.AnimationFinished += OnAnimationFinished;
-	
-		// ADD THIS: Find existing sword in hand
-		rightHand = GetNodeOrNull<Node3D>("CollisionShape3D/RightHand");
-		leftHand = GetNodeOrNull<Node3D>("CollisionShape3D/LeftHand");
-		if (rightHand != null)
-		{
-			FindExistingSword();
-		}
-		else
-		{
-			GD.PrintErr("Hand node not found!");
-		}
-
-
-		spinAttack = GetNode<SpinAttack>("SpinAttack");
-
-		if(currentWeapon is MeleeWeapon melee)
-			spinAttack.SetWeapon(melee);
-
-		lastRotation = Rotation.Y;
-	}
 	
 	private void FindExistingSword()
 	{
@@ -176,6 +201,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 					sword.CheckDurability += OnSwordDurabilityChecked;
 								
 				currentWeapon.Broke += OnSwordBroke;
+				currentWeapon.SetEnemyCollisionEnabled(true);
 				GD.Print($"Player {PlayerIndex} found existing sword in hand!");
 				return;
 			}

@@ -11,101 +11,101 @@ transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
 [node name="Right_Wall" type="Node3D" parent="." unique_id=64987792]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6906579, 0, 1.4188743)
 
-[node name="CoblWallLow13" parent="Right_Wall" unique_id=1416519307 instance=ExtResource("1_mnjyu")]
+[node name="CoblWallLow13" parent="Right_Wall" unique_id=1416519307 groups=["xray"] instance=ExtResource("1_mnjyu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 1.016)
 
-[node name="CoblWallLow23" parent="Right_Wall" unique_id=1805225942 instance=ExtResource("1_mnjyu")]
+[node name="CoblWallLow23" parent="Right_Wall" unique_id=1805225942 groups=["xray"] instance=ExtResource("1_mnjyu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -1.423)
 
-[node name="CoblWallLow26" parent="Right_Wall" unique_id=1531021609 instance=ExtResource("1_mnjyu")]
+[node name="CoblWallLow26" parent="Right_Wall" unique_id=1531021609 groups=["xray"] instance=ExtResource("1_mnjyu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -3.852)
 
-[node name="CoblWallLow24" parent="Right_Wall" unique_id=1679972337 instance=ExtResource("1_mnjyu")]
+[node name="CoblWallLow24" parent="Right_Wall" unique_id=1679972337 groups=["xray"] instance=ExtResource("1_mnjyu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 3.449)
 
-[node name="CoblWallLow25" parent="Right_Wall" unique_id=619674886 instance=ExtResource("1_mnjyu")]
+[node name="CoblWallLow25" parent="Right_Wall" unique_id=619674886 groups=["xray"] instance=ExtResource("1_mnjyu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -6.2867403)
 
-[node name="CoblPillarLow2" parent="Right_Wall" unique_id=1439026198 instance=ExtResource("2_4iuju")]
+[node name="CoblPillarLow2" parent="Right_Wall" unique_id=1439026198 groups=["xray"] instance=ExtResource("2_4iuju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 5.2479687)
 
-[node name="CoblPillarLow5" parent="Right_Wall" unique_id=1389539033 instance=ExtResource("2_4iuju")]
+[node name="CoblPillarLow5" parent="Right_Wall" unique_id=1389539033 groups=["xray"] instance=ExtResource("2_4iuju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -8)
 
 [node name="Back_Wall" type="Node3D" parent="." unique_id=637309704]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4803395, 0, 1.4188743)
 
-[node name="CoblWallLow27" parent="Back_Wall" unique_id=465239587 instance=ExtResource("1_mnjyu")]
+[node name="CoblWallLow27" parent="Back_Wall" unique_id=465239587 groups=["xray"] instance=ExtResource("1_mnjyu")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.63392, 0, -8)
 
-[node name="CoblWallLow28" parent="Back_Wall" unique_id=1289637773 instance=ExtResource("1_mnjyu")]
+[node name="CoblWallLow28" parent="Back_Wall" unique_id=1289637773 groups=["xray"] instance=ExtResource("1_mnjyu")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -12.060073, 0, -8)
 
-[node name="CoblArchwayLow5" parent="Back_Wall" unique_id=1216911531 instance=ExtResource("3_wr2yq")]
+[node name="CoblArchwayLow5" parent="Back_Wall" unique_id=1216911531 groups=["xray"] instance=ExtResource("3_wr2yq")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.175, 0, -8)
 
-[node name="CoblWallLow29" parent="Back_Wall" unique_id=833870778 instance=ExtResource("1_mnjyu")]
+[node name="CoblWallLow29" parent="Back_Wall" unique_id=833870778 groups=["xray"] instance=ExtResource("1_mnjyu")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.5504587, 0, -8)
 
-[node name="CoblArchwayLow6" parent="Back_Wall" unique_id=1544870093 instance=ExtResource("3_wr2yq")]
+[node name="CoblArchwayLow6" parent="Back_Wall" unique_id=1544870093 groups=["xray"] instance=ExtResource("3_wr2yq")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.247, 0, -8)
 
-[node name="CoblHalfwallLow9" parent="Back_Wall" unique_id=1553971924 instance=ExtResource("4_cc8sf")]
+[node name="CoblHalfwallLow9" parent="Back_Wall" unique_id=1553971924 groups=["xray"] instance=ExtResource("4_cc8sf")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.342, 0, -8.02)
 
-[node name="CoblHalfwallLow10" parent="Back_Wall" unique_id=1563345564 instance=ExtResource("4_cc8sf")]
+[node name="CoblHalfwallLow10" parent="Back_Wall" unique_id=1563345564 groups=["xray"] instance=ExtResource("4_cc8sf")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4.797, 0, -8.02)
 
-[node name="CoblWallLow30" parent="Back_Wall" unique_id=298489055 instance=ExtResource("1_mnjyu")]
+[node name="CoblWallLow30" parent="Back_Wall" unique_id=298489055 groups=["xray"] instance=ExtResource("1_mnjyu")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.9836874, 0, -8)
 
 [node name="Left_Wall" type="Node3D" parent="." unique_id=1433953836]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5766201, 0, -0.47266722)
 
-[node name="CoblPillarLow6" parent="Left_Wall" unique_id=1599511447 instance=ExtResource("2_4iuju")]
+[node name="CoblPillarLow6" parent="Left_Wall" unique_id=1599511447 groups=["xray"] instance=ExtResource("2_4iuju")]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -12.007431, 0, -6.1025944)
 
-[node name="CoblWallLow31" parent="Left_Wall" unique_id=50006834 instance=ExtResource("1_mnjyu")]
+[node name="CoblWallLow31" parent="Left_Wall" unique_id=50006834 groups=["xray"] instance=ExtResource("1_mnjyu")]
 transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, -12, 0, -4.294184)
 
-[node name="CoblWallLow32" parent="Left_Wall" unique_id=1118354954 instance=ExtResource("1_mnjyu")]
+[node name="CoblWallLow32" parent="Left_Wall" unique_id=1118354954 groups=["xray"] instance=ExtResource("1_mnjyu")]
 transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, -12, 0, -1.8653082)
 
-[node name="CoblWallLow33" parent="Left_Wall" unique_id=379984124 instance=ExtResource("1_mnjyu")]
+[node name="CoblWallLow33" parent="Left_Wall" unique_id=379984124 groups=["xray"] instance=ExtResource("1_mnjyu")]
 transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, -12, 0, 5.4392233)
 
-[node name="CoblWallLow36" parent="Left_Wall" unique_id=2031217227 instance=ExtResource("1_mnjyu")]
+[node name="CoblWallLow36" parent="Left_Wall" unique_id=2031217227 groups=["xray"] instance=ExtResource("1_mnjyu")]
 transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, -12, 0, 2.986)
 
-[node name="CoblWallLow37" parent="Left_Wall" unique_id=559087396 instance=ExtResource("1_mnjyu")]
+[node name="CoblWallLow37" parent="Left_Wall" unique_id=559087396 groups=["xray"] instance=ExtResource("1_mnjyu")]
 transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, -12, 0, 0.557)
 
-[node name="CoblPillarLow7" parent="Left_Wall" unique_id=1085189046 instance=ExtResource("2_4iuju")]
+[node name="CoblPillarLow7" parent="Left_Wall" unique_id=1085189046 groups=["xray"] instance=ExtResource("2_4iuju")]
 transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, -12.012616, 0, 7.2519226)
 
 [node name="Front_Wall" type="Node3D" parent="." unique_id=1149416112]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.059007645, 0, 1.2918811)
 
-[node name="CoblWallLow34" parent="Front_Wall" unique_id=1165621768 instance=ExtResource("1_mnjyu")]
+[node name="CoblWallLow34" parent="Front_Wall" unique_id=1165621768 groups=["xray"] instance=ExtResource("1_mnjyu")]
 transform = Transform3D(7.54979e-08, 0, 1, 0, 1, 0, -1, 0, 7.54979e-08, 5.952319, 0.008947372, 5.4071445)
 
-[node name="CoblWallLow35" parent="Front_Wall" unique_id=12090646 instance=ExtResource("1_mnjyu")]
+[node name="CoblWallLow35" parent="Front_Wall" unique_id=12090646 groups=["xray"] instance=ExtResource("1_mnjyu")]
 transform = Transform3D(7.54979e-08, 0, 1, 0, 1, 0, -1, 0, 7.54979e-08, -6.266944, 0.008947372, 5.4071445)
 
-[node name="CoblArchwayLow7" parent="Front_Wall" unique_id=1082504227 instance=ExtResource("3_wr2yq")]
+[node name="CoblArchwayLow7" parent="Front_Wall" unique_id=1082504227 groups=["xray"] instance=ExtResource("3_wr2yq")]
 transform = Transform3D(7.54979e-08, 0, 1, 0, 1, 0, -1, 0, 7.54979e-08, -3.8295457, 0.008947372, 5.4071445)
 
-[node name="CoblWallLow38" parent="Front_Wall" unique_id=572023553 instance=ExtResource("1_mnjyu")]
+[node name="CoblWallLow38" parent="Front_Wall" unique_id=572023553 groups=["xray"] instance=ExtResource("1_mnjyu")]
 transform = Transform3D(-4.3711392e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711392e-08, -8.631693, 0.008947372, 5.4071445)
 
-[node name="CoblWallLow39" parent="Front_Wall" unique_id=1510522324 instance=ExtResource("1_mnjyu")]
+[node name="CoblWallLow39" parent="Front_Wall" unique_id=1510522324 groups=["xray"] instance=ExtResource("1_mnjyu")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8.434385, 0.008947372, 5.4071445)
 
-[node name="CoblArchwayLow8" parent="Front_Wall" unique_id=1998626741 instance=ExtResource("3_wr2yq")]
+[node name="CoblArchwayLow8" parent="Front_Wall" unique_id=1998626741 groups=["xray"] instance=ExtResource("3_wr2yq")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.5782804, 0.008947372, 5.4071445)
 
-[node name="CoblHalfwallLow11" parent="Front_Wall" unique_id=188197650 instance=ExtResource("4_cc8sf")]
+[node name="CoblHalfwallLow11" parent="Front_Wall" unique_id=188197650 groups=["xray"] instance=ExtResource("4_cc8sf")]
 transform = Transform3D(-4.3711392e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711392e-08, -1.3076832, 0.008947372, 5.4071445)
 
-[node name="CoblHalfwallLow12" parent="Front_Wall" unique_id=155690580 instance=ExtResource("4_cc8sf")]
+[node name="CoblHalfwallLow12" parent="Front_Wall" unique_id=155690580 groups=["xray"] instance=ExtResource("4_cc8sf")]
 transform = Transform3D(-4.3711392e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711392e-08, 1.1261393, 0.008947372, 5.4071445)

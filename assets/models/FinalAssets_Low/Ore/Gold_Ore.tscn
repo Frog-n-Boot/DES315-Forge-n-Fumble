@@ -23,7 +23,6 @@ viewport_path = NodePath("Sprite3D/SubViewport")
 [node name="GoldOre" type="Node3D" unique_id=546203985 node_paths=PackedStringArray("itemTextureRect")]
 script = ExtResource("1_yaxjs")
 itemDataPath = "uid://viwodjsqvjas"
-shouldDespawn = true
 itemPromptTexture = Array[Texture2D]([ExtResource("6_tq4g8"), ExtResource("3_vgjhu")])
 itemTextureRect = NodePath("Sprite3D/SubViewport/TextureRect")
 

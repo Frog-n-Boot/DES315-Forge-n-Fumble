@@ -102,7 +102,7 @@ public partial class Forge : Node3D
 		healCooldown = 5;
 		healAmount = 0f;
 		EmitSignal(SignalName.ForgeTookDamage, health, maxHealth);
-		CheckShockwave();
+		//CheckShockwave();
 
 		if(health <= 0)
 		{

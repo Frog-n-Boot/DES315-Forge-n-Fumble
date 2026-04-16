@@ -12,7 +12,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_15w0a"]
 
-[node name="DebugMenu" type="CanvasLayer" unique_id=731638094 node_paths=PackedStringArray("cameraControlNode", "smoothSpeed", "outerBoundsX", "outerBoundsY", "innerBoundsX", "innerBoundsY", "minSize", "maxSize", "playerMaxHealth", "playerSpeed", "playerSpawnTimer", "normalContainer", "fastContainer", "strongContainer", "oreDropChance", "healthPackDropChance", "weaponDurability", "weaponDamage", "turretRange", "turretConeAngle", "bulletDamage", "bulletSpeed", "forgeHealth", "forgeSmeltTimer", "grindstoneSmeltTimer", "addForgeHealth", "subtractForgeHealth", "showCollisions", "maxWaves", "timeBetweenEnemies", "startingEnemies", "enemyIncreasePerWave", "timeBetweenWaves", "goblinEnemySpawnChance", "skeletonEnemySpawnChance", "HobgoblinEnemySpawnChance", "spawnWeapon", "spawnOre", "spawnIngot", "spawnDullSword", "spawnHealthBox")]
+[node name="DebugMenu" type="CanvasLayer" unique_id=731638094 node_paths=PackedStringArray("cameraControlNode", "smoothSpeed", "outerBoundsX", "outerBoundsY", "innerBoundsX", "innerBoundsY", "minSize", "maxSize", "playerMaxHealth", "playerSpeed", "playerSpawnTimer", "normalContainer", "fastContainer", "strongContainer", "oreDropChance", "healthPackDropChance", "weaponDurability", "weaponDamage", "forgeHealth", "forgeSmeltTimer", "grindstoneSmeltTimer", "addForgeHealth", "subtractForgeHealth", "showCollisions", "maxWaves", "timeBetweenEnemies", "startingEnemies", "enemyIncreasePerWave", "timeBetweenWaves", "goblinEnemySpawnChance", "skeletonEnemySpawnChance", "HobgoblinEnemySpawnChance", "spawnWeapon", "spawnOre", "spawnIngot", "spawnDullSword", "spawnHealthBox")]
 process_mode = 3
 script = ExtResource("1_15w0a")
 cameraControlNode = NodePath("TabContainer/Camera")
@@ -36,10 +36,6 @@ oreDropChance = NodePath("TabContainer/Enemy/OreDropChanceSpinBox")
 healthPackDropChance = NodePath("TabContainer/Enemy/HealthpackDropChanceSpinBox")
 weaponDurability = NodePath("TabContainer/Weapons/DurabilitySpinBox")
 weaponDamage = NodePath("TabContainer/Weapons/DamageSpinBox")
-turretRange = NodePath("TabContainer/Weapons/TurretRangeSpinBox")
-turretConeAngle = NodePath("TabContainer/Weapons/TurretAngleConeSpinBox")
-bulletDamage = NodePath("TabContainer/Weapons/BulletDamageSpinBox")
-bulletSpeed = NodePath("TabContainer/Weapons/BulletSpeedSpinBox")
 forgeHealth = NodePath("TabContainer/Structures/ForgeHealthSpinBox")
 forgeSmeltTimer = NodePath("TabContainer/Structures/ForgeSmeltTimerSpinBox")
 grindstoneSmeltTimer = NodePath("TabContainer/Structures/GrindstoneSmeltTimerSpinBox")
@@ -68,10 +64,12 @@ healthBoxScene = ExtResource("9_qpuf6")
 [node name="Panel" type="Panel" parent="." unique_id=1084575992]
 offset_right = 1149.0
 offset_bottom = 642.0
+scale = Vector2(1.1145, 1.1257067)
 
 [node name="TabContainer" type="TabContainer" parent="." unique_id=733798386]
 offset_right = 1143.0
 offset_bottom = 634.0
+scale = Vector2(1.1145, 1.1257067)
 focus_mode = 2
 current_tab = 2
 

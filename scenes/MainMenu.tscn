@@ -23,6 +23,7 @@ atlas = ExtResource("2_l72w3")
 region = Rect2(581, 500, 285, 91)
 
 [node name="MainMenu" type="Node2D" unique_id=1633550726]
+scale = Vector2(1.0568588, 1.073399)
 
 [node name="Control" type="Control" parent="." unique_id=793476221 node_paths=PackedStringArray("startButton", "tutorialButton", "settingsButton", "quitMenu", "audio")]
 process_mode = 3
@@ -49,6 +50,7 @@ focus_neighbor_top = NodePath(".")
 focus_neighbor_bottom = NodePath("../TutorialButton")
 focus_next = NodePath("../SettingsButton")
 focus_previous = NodePath("../QuitButton")
+mouse_filter = 1
 theme_override_font_sizes/font_size = 40
 text = "Start Game"
 icon = SubResource("AtlasTexture_826wr")
@@ -67,6 +69,7 @@ focus_neighbor_top = NodePath("../StartButton")
 focus_neighbor_bottom = NodePath("../SettingsButton")
 focus_next = NodePath("../SettingsButton")
 focus_previous = NodePath("../QuitButton")
+mouse_filter = 1
 theme_override_font_sizes/font_size = 40
 text = "Tutorial"
 icon = SubResource("AtlasTexture_l72w3")
@@ -85,6 +88,7 @@ focus_neighbor_top = NodePath("../TutorialButton")
 focus_neighbor_bottom = NodePath("../QuitButton")
 focus_next = NodePath("../QuitButton")
 focus_previous = NodePath("../StartButton")
+mouse_filter = 1
 theme_override_font_sizes/font_size = 40
 text = "Settings"
 icon = SubResource("AtlasTexture_ucygd")
@@ -103,6 +107,7 @@ focus_neighbor_top = NodePath("../SettingsButton")
 focus_neighbor_bottom = NodePath(".")
 focus_next = NodePath("../StartButton")
 focus_previous = NodePath("../SettingsButton")
+mouse_filter = 1
 theme_override_font_sizes/font_size = 40
 text = "Quit"
 icon = SubResource("AtlasTexture_8a8k8")
@@ -120,10 +125,14 @@ text = "Forge-N-Fumble"
 
 [node name="ColorRect" type="ColorRect" parent="Control" unique_id=322622548]
 z_index = -1
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 30.047
+anchor_bottom = 16.876001
+offset_right = -1159.951
+offset_bottom = -633.8367
 scale = Vector2(28.750067, 16.369858)
+mouse_filter = 2
 color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Control" unique_id=1298095690]
@@ -136,14 +145,17 @@ volume_db = -80.0
 autoplay = true
 bus = &"Music"
 
-[node name="BackgroundImage" type="TextureRect" parent="." unique_id=2007621218]
+[node name="BackgroundImage" type="TextureRect" parent="Control" unique_id=2007621218]
 visibility_layer = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 30.300001
+anchor_bottom = 16.875
 offset_left = -2.0
 offset_top = -8.0
-offset_right = 1212.0
-offset_bottom = 675.0
+mouse_filter = 2
 texture = ExtResource("2_0ykhv")
-stretch_mode = 1
+stretch_mode = 6
 
 [connection signal="pressed" from="Control/StartButton" to="Control" method="OnStartButtonPressed"]
 [connection signal="pressed" from="Control/TutorialButton" to="Control" method="OnTutorialButtonPressed"]
