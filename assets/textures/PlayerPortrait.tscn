@@ -36,10 +36,8 @@ region = Rect2(30, 309, 71, 35)
 atlas = ExtResource("3_ex5ym")
 region = Rect2(115, 308, 71, 35)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rwibj"]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_brnra"]
-atlas = SubResource("CompressedTexture2D_rwibj")
+atlas = ExtResource("3_ex5ym")
 region = Rect2(29, 14, 246, 230)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rwibj"]
@@ -66,7 +64,7 @@ atlas = ExtResource("3_ex5ym")
 region = Rect2(759, 347, 93, 93)
 
 [node name="PlayerPortrait" type="PanelContainer" unique_id=1792981498 node_paths=PackedStringArray("itemTextureRect", "weaponDurabilityBar", "healthBar")]
-rotation = -0.0018223613
+rotation = -0.004870423
 scale = Vector2(1.3600001, 1.12)
 script = ExtResource("1_xro7h")
 itemTextureRect = NodePath("Control/PlayerTexture/ItemTextureRect")
