@@ -896,11 +896,10 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		GetTree().CreateTimer(playerSpawnTimer).Timeout += () =>{
 			GD.Print("Player spawning");
 			GlobalPosition = playerSpawner.spawnPoints[PlayerIndex].GlobalPosition;
-			health = maxHealth;
 			Visible = true;
 			SetPhysicsProcess(true);
 			SetProcess(true);
-
+			health = maxHealth;
 			GetNode<CollisionShape3D>("CollisionShape3D").SetDeferred("disabled", false);
 			areaPickup.SetDeferred("monitoring", true);
 			currentWeapon = null;
