@@ -1,5 +1,9 @@
 [gd_resource type="AudioBusLayout" format=3 uid="uid://bw3inhejuaaq6"]
 
+[sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_clvop"]
+resource_name = "Amplify"
+volume_db = -40.0
+
 [resource]
 bus/1/name = &"Music"
 bus/1/solo = false
@@ -11,5 +15,7 @@ bus/2/name = &"SFX"
 bus/2/solo = false
 bus/2/mute = false
 bus/2/bypass_fx = false
-bus/2/volume_db = 0.0
+bus/2/volume_db = 0.06726074
 bus/2/send = &"Master"
+bus/2/effect/0/effect = SubResource("AudioEffectAmplify_clvop")
+bus/2/effect/0/enabled = true
