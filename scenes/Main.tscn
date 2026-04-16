@@ -255,7 +255,7 @@ transform = Transform3D(0.6630513, 0, -0.74857396, 0, 1, 0, 0.74857396, 0, 0.663
 transform = Transform3D(0.5850001, 0, 0.81103325, 0, 1, 0, -0.81103325, 0, 0.5850001, 27.881142, 0.0036263466, -9.415568)
 
 [node name="Copper_Ore" parent="NavigationRegion3D" unique_id=2110523039 instance=ExtResource("8_kxyth")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3817103, 0.014982998, 5.134077)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3763244, 0.014982998, 3.8159184)
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=686138009]
 transform = Transform3D(0.6920928, 0.008213635, 0.7217619, -0.72180855, 0.007875493, 0.69204795, -5.793235e-10, -0.99993527, 0.011379243, -0.65869904, 19.63105, -0.28507435)
@@ -282,12 +282,12 @@ maxSize = 40.0
 [node name="Enviroment" type="Node" parent="." unique_id=1495741313]
 
 [node name="Ballista" parent="Enviroment" unique_id=353788340 node_paths=PackedStringArray("inputNode") instance=ExtResource("2_pnhog")]
-transform = Transform3D(0.807084, 0, -0.5904367, 0, 1, 0, 0.5904367, 0, 0.807084, 8.197841, 2.9593534, 8.394757)
+transform = Transform3D(0.807084, 0, -0.5904367, 0, 1, 0, 0.5904367, 0, 0.807084, 8.197841, 2.9593534, 9.185685)
 inputNode = NodePath("../../UI/StationPort3")
 arrowCount = 10
 
 [node name="Ballista2" parent="Enviroment" unique_id=1789132715 node_paths=PackedStringArray("inputNode") instance=ExtResource("2_pnhog")]
-transform = Transform3D(-0.7744369, 0, 0.6326513, 0, 1, 0, -0.6326513, 0, -0.7744369, -7.927705, 2.9262388, -8.25852)
+transform = Transform3D(-0.7744369, 0, 0.6326513, 0, 1, 0, -0.6326513, 0, -0.7744369, -7.927705, 2.9262388, -7.4056606)
 inputNode = NodePath("StationPort2")
 arrowCount = 10
 
@@ -365,13 +365,13 @@ spawner = NodePath("../../PlayerSpawner")
 portraitContainer = NodePath("HBoxContainer")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/CanvasLayer" unique_id=1200533580]
-offset_left = 46.0
-offset_top = 612.0
-offset_right = 86.0
-offset_bottom = 652.0
-scale = Vector2(1.2790005, 1)
+offset_left = 43.0
+offset_top = 603.0
+offset_right = 83.0
+offset_bottom = 643.0
+scale = Vector2(1.104, 1.058)
 pivot_offset = Vector2(20, 0)
-theme_override_constants/separation = 250
+theme_override_constants/separation = 275
 
 [node name="ForgeProgressBar_Back" type="TextureProgressBar" parent="UI/CanvasLayer" unique_id=391164803]
 offset_left = 0.99999976
@@ -612,9 +612,9 @@ texture = SubResource("AtlasTexture_0f1tp")
 [node name="EnemiesLeft" type="Label" parent="UI" unique_id=754514857]
 process_priority = 1
 z_index = 3
-offset_left = 27.0
+offset_left = 36.0
 offset_top = 121.0
-offset_right = 135.0
+offset_right = 144.0
 offset_bottom = 144.0
 scale = Vector2(1.1123458, 1.094071)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -647,6 +647,7 @@ transform = Transform3D(0.016431808, 0, 6.7567225, 0, 1.375121, 0, -3.635261, 0,
 
 [node name="SettingsMenu" type="CanvasLayer" parent="UI" unique_id=1417241995 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton", "audio", "pauseMenu")]
 process_mode = 3
+visible = false
 script = ExtResource("13_vua0o")
 masterSlider = NodePath("Panel/TabContainer/Sound/MasterVolumeLabel/MasterVolumeSlider")
 musicSlider = NodePath("Panel/TabContainer/Sound/MusicVolumeLabel/MusicVolumeSlider")

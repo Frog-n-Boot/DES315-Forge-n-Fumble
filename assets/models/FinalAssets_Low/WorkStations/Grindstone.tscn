@@ -7,16 +7,25 @@
 [ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/Resources/CraftingRecipes.cs" id="3_hj04q"]
 [ext_resource type="Texture2D" uid="uid://50xg82nov3j2" path="res://assets/materials/Texture_sets/WorkStations/Grinder_low_BaseCol.tga" id="4_chpgb"]
 [ext_resource type="PackedScene" uid="uid://di5odw2tmde5j" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Sword.tscn" id="4_uhy0b"]
-[ext_resource type="Texture2D" uid="uid://cmhg5fabsggpk" path="res://assets/textures/UI/ui_keyboard_e_button.tres" id="4_wwlso"]
 [ext_resource type="ArrayMesh" uid="uid://gxhgwjbmhtq6" path="res://assets/models/FinalAssets_Low/WorkStations/Grinder_low.obj" id="5_fgmgg"]
 [ext_resource type="Texture2D" uid="uid://6k5i0lfvsf5" path="res://assets/materials/Texture_sets/WorkStations/Grinder_low_ORM.tga" id="5_yoit8"]
 [ext_resource type="Texture2D" uid="uid://ui3qrxklkrbs" path="res://assets/materials/Texture_sets/WorkStations/Grinder_low_Normal.tga" id="6_8jrxj"]
 [ext_resource type="AudioStream" uid="uid://b4c81r30mgpwx" path="res://assets/Sounds/SFX/SwordSharpening.wav" id="9_8jrxj"]
 [ext_resource type="Script" uid="uid://by2c55xka33c5" path="res://src/Minigames/BarMinigame.cs" id="13_wwlso"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_n8ot4"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_wwlso"]
-atlas = ExtResource("3_bn2l6")
+atlas = SubResource("CompressedTexture2D_n8ot4")
 region = Rect2(114, 365, 40, 40)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3ynec"]
+load_path = "res://.godot/imported/ui_button_image.webp-8d113f5f867c016fe450d6c52d57ff98.s3tc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1v1a"]
+atlas = SubResource("CompressedTexture2D_3ynec")
+region = Rect2(220.0479, 808.2518, 36.18257, 37.863342)
 
 [sub_resource type="Resource" id="Resource_fgmgg"]
 script = ExtResource("3_hj04q")
@@ -108,7 +117,7 @@ timeProgressBar = NodePath("Sprite3D/SubViewport/TextureProgressBar")
 stationName = NodePath("Sprite3D/SubViewport/Label")
 buttonTexture = NodePath("Sprite3D2/SubViewport/TextureRect")
 controllerButtonTexture = SubResource("AtlasTexture_wwlso")
-keyboardButtonTexture = ExtResource("4_wwlso")
+keyboardButtonTexture = SubResource("AtlasTexture_g1v1a")
 recipes = Array[Object]([SubResource("Resource_fgmgg"), SubResource("Resource_wc540")])
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=90114362]
@@ -183,7 +192,7 @@ volume_db = -50.0
 bus = &"SFX"
 
 [node name="BarMinigameSprite3D" type="Sprite3D" parent="." unique_id=1798100092]
-transform = Transform3D(4.024219e-15, 7.4842774e-08, 1, 2.106165, -7.4842774e-08, 0, 9.2063395e-08, 1.712203, -4.371139e-08, 0, 3.638106, -0.17070091)
+transform = Transform3D(-1.4892834, 1.0584366e-07, 0.70710677, 1.4892836, 1.7816595e-15, 0.7071068, 9.2063395e-08, 1.712203, -4.3711385e-08, 0, 3.638106, -0.17070091)
 texture = SubResource("ViewportTexture_iap6j")
 
 [node name="SubViewport" type="SubViewport" parent="BarMinigameSprite3D" unique_id=556381544]
