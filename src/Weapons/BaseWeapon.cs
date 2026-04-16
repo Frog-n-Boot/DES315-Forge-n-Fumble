@@ -15,7 +15,7 @@ public abstract partial class BaseWeapon : Node3D
 	public int durability;
 	public bool isBeingPickedUp = false;
 	private int lastHitDamage;
-	
+
 	
 
 	[Signal] public delegate void BrokeEventHandler();
@@ -25,7 +25,8 @@ public abstract partial class BaseWeapon : Node3D
 	{
 		durability = maxDurability;
 		lastHitDamage = damage;
-		SetEnemyCollisionEnabled(false);
+
+		SetEnemyCollisionEnabled(false);	
 		OnReady();
 	}
 

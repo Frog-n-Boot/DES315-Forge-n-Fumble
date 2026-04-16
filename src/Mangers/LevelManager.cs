@@ -5,12 +5,13 @@ using System.Collections.Generic;
 public partial class LevelManager : Node
 {
 	[ExportGroup("Enemies")]
+	[Export] private PackedScene enemyScene;
 	[Export] EnemyData normalEnemyData;
 	[Export] EnemyData fastEnemyData;
 	[Export] EnemyData strongEnemyData;
 	[Export] int normalEnemyNumber;
 	[Export] int fastEnemyNumber;
-	[Export] int storngEnemyNumber;
+	[Export] int strongEnemyNumber;
 
 	[ExportCategory("Items")]
 	[ExportGroup("Ore")]
@@ -52,17 +53,17 @@ public partial class LevelManager : Node
 	private Node oreNode = new Node();
 	private Node ingotNode = new Node();
 
-	private List<PackedScene> oreList = new List<PackedScene>();
-	private List<PackedScene> weaponList = new List<PackedScene>();
-	private List<PackedScene> ingotList = new List<PackedScene>();
-	private List<PackedScene> enemiesList = new List<PackedScene>();
+	private Dictionary<PackedScene, List<Node3D>> pool = new();
+	
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		InitNodes();
-		InitWeapons();
-		InitOres();
-		InitIngots();
+		// InitNodes();
+		// InitWeapons();
+		// InitOres();
+		// InitIngots();
+		// //InitEnemies();
 	}
 
 	private void InitNodes()
@@ -80,16 +81,35 @@ public partial class LevelManager : Node
 
 	private void InitEnemies()
 	{
-		var enemeis = new[]
+		var enemies = new[]
 		{
-			(Scene:normalEnemyData, Count:normalEnemyNumber),
-			(Scene:fastEnemyData, Count:fastEnemyNumber),
-			(Scene:strongEnemyData, Count:storngEnemyNumber),
+			(Data:normalEnemyData, Count:normalEnemyNumber),
+			(Data:fastEnemyData, Count:fastEnemyNumber),
+			(Data:strongEnemyData, Count:strongEnemyNumber),
 		};
+		foreach(var enemy in enemies)
+		{
+			for(int i = 0; i < enemy.Count; i++)
+			{
+				var instance = enemyScene.Instantiate<EnemyController>();
 
+				instance.enemyData = enemy.Data;
+				
+				instance.Visible = false;
+				instance.ProcessMode = ProcessModeEnum.Disabled;
 
+				enemyNode.AddChild(instance);
+
+				if(!pool.ContainsKey(enemyScene))
+					pool[enemyScene] = new List<Node3D>();
+				
+				pool[enemyScene].Add(instance);
+			}
+		}
+		
 		
 	}
+
 	private void InitWeapons()
 	{
 		var weapons = new[]
@@ -110,6 +130,11 @@ public partial class LevelManager : Node
 				weaponInstance.Visible = false;
 				weaponInstance.ProcessMode = ProcessModeEnum.Disabled;
 				weaponNode.AddChild(weaponInstance);
+
+				if(!pool.ContainsKey(weapon.Scene))
+					pool[weapon.Scene] = new List<Node3D>();
+				
+				pool[weapon.Scene].Add(weaponInstance);
 			}
 		}
 	}
@@ -135,6 +160,11 @@ public partial class LevelManager : Node
 				area.SetDeferred("monitoring", false);
 				area.SetDeferred("monitorable", false);
 				oreNode.AddChild(oreInstance);
+
+				if(!pool.ContainsKey(ore.Scene))
+					pool[ore.Scene] = new List<Node3D>();
+				
+				pool[ore.Scene].Add(oreInstance);
 				
 			}
 		}
@@ -162,11 +192,72 @@ public partial class LevelManager : Node
 				area.SetDeferred("monitorable", false);
 				ingotNode.AddChild(ingotInstance);
 				
+				if(!pool.ContainsKey(ingot.Scene))
+					pool[ingot.Scene] = new List<Node3D>();
+				
+				pool[ingot.Scene].Add(ingotInstance);
 			}
 		}
 	}
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+
+	public Node3D GetFromPool(PackedScene scene)
 	{
+		if (!pool.ContainsKey(scene))
+		{
+			GD.PrintErr($"No pool for scene: {scene.ResourcePath}");
+			return null;
+		}
+
+		foreach(var obj in pool[scene])
+		{
+			if (!obj.Visible)
+			{
+
+				obj.Visible = true;
+				obj.ProcessMode = ProcessModeEnum.Inherit;
+
+				obj.SetProcess(true);
+				obj.SetPhysicsProcess(true);
+
+				var area = obj.GetNodeOrNull<Area3D>("Area3D");
+				if(area != null)
+				{
+					area.SetDeferred("monitoring", true);
+					area.SetDeferred("monitorable", true);
+				}
+
+				return obj;
+			}
+		}
+		GD.PrintErr($"Pool exhausted for: {scene.ResourcePath}");
+		return null;
 	}
+
+	public void ReturnToPool(Node3D obj)
+	{
+		if(obj.GetParent() != null)
+			obj.GetParent().RemoveChild(obj);
+		
+		
+
+		obj.Visible = false;
+		obj.ProcessMode = ProcessModeEnum.Disabled;
+
+		var area = obj.GetNodeOrNull<Area3D>("Area3D");
+		if(area != null)
+		{
+			area.SetDeferred("monitoring", false);
+			area.SetDeferred("monitorable", false);
+		}
+	}
+	public Node3D GetWeapon(PackedScene scene) => GetFromPool(scene);
+	public Node3D GetOre(PackedScene scene) => GetFromPool(scene);
+	public Node3D GetIngot(PackedScene scene) => GetFromPool(scene);
+	public Node3D GetEnemy(PackedScene scene) => GetFromPool(scene);
+
+	public void ReturnWeapon(Node3D obj) => ReturnToPool(obj);
+	public void ReturnOre(Node3D obj) => ReturnToPool(obj);
+	public void ReturnIngot(Node3D obj) => ReturnToPool(obj);
+	public void ReturnEnemy(Node3D obj) => ReturnToPool(obj);
+	
 }

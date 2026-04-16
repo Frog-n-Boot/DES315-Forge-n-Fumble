@@ -7,9 +7,8 @@
 [ext_resource type="Script" uid="uid://dnqtfi3fpu8ue" path="res://src/Camera/CameraController.cs" id="3_pgr2e"]
 [ext_resource type="Texture2D" uid="uid://r7wddf5hbwsn" path="res://assets/textures/tu 3.webp" id="3_xi6p3"]
 [ext_resource type="Texture2D" uid="uid://b3fr0jckkg0mm" path="res://assets/textures/Tu 1.webp" id="4_e4hrd"]
-[ext_resource type="Texture2D" uid="uid://de5i2lmkk12v1" path="res://assets/textures/UI/ui_controller_x_button.tres" id="6_xi6p3"]
+[ext_resource type="Texture2D" uid="uid://tbrctcwppirl" path="res://assets/textures/UI/ui_x_button.tres" id="6_cgb57"]
 [ext_resource type="Resource" uid="uid://cgsgoisaxb6rf" path="res://assets/resources/Recipes/SwordRecipe.tres" id="7_0hjnf"]
-[ext_resource type="Texture2D" uid="uid://cmhg5fabsggpk" path="res://assets/textures/UI/ui_keyboard_e_button.tres" id="7_e4hrd"]
 [ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/Resources/CraftingRecipes.cs" id="8_q5ijt"]
 [ext_resource type="PackedScene" uid="uid://cmd758glwlnly" path="res://assets/models/FinalAssets_Low/WorkStations/Grindstone.tscn" id="10_ei5ly"]
 [ext_resource type="PackedScene" uid="uid://g1gfmktihg8t" path="res://assets/models/FinalAssets_Low/WorkStations/Anvil.tscn" id="11_m6ekv"]
@@ -24,7 +23,6 @@
 [ext_resource type="Resource" uid="uid://cdki2c88hftlb" path="res://assets/resources/AI/FastEnemyData.tres" id="24_e4hrd"]
 [ext_resource type="ArrayMesh" uid="uid://8wpolus5qbva" path="res://assets/models/FinalAssets_Low/Character_Models/Skeleton_low.obj" id="24_ujnhc"]
 [ext_resource type="Material" uid="uid://btwle4bal72vo" path="res://assets/materials/Texture_sets/Character_Textures/Skeleton Textures/skeleton_material.tres" id="24_xi6p3"]
-[ext_resource type="ArrayMesh" uid="uid://ch821ffso52fw" path="res://assets/models/FinalAssets_Low/Items_Models/handheld_ballista.obj" id="25_4tybr"]
 [ext_resource type="Script" uid="uid://dli7kb5c5sowk" path="res://src/Mangers/TutorialManager.cs" id="27_bi4s5"]
 [ext_resource type="PackedScene" uid="uid://cayfp8m51s7np" path="res://assets/models/FinalAssets_Low/Items_Models/Crossbow.tscn" id="28_y74ua"]
 [ext_resource type="Script" uid="uid://bdt0s16a5rcia" path="res://src/Weapons/Ballista.cs" id="29_0a2r4"]
@@ -47,31 +45,10 @@
 [ext_resource type="Texture2D" uid="uid://bvw5yhtbch6ht" path="res://assets/materials/Texture_sets/2DTextures/anvilImage.webp" id="44_rx2rv"]
 [ext_resource type="Texture2D" uid="uid://dwexwmybryvpl" path="res://assets/materials/Texture_sets/2DTextures/grindstoneImage.webp" id="45_cgb57"]
 [ext_resource type="Script" uid="uid://bs44u3pohek1t" path="res://src/Menus/SettingsMenu.cs" id="46_7vc5l"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j4y01"]
-albedo_texture = ExtResource("1_q5ijt")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_oyacv"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f0oxr"]
-albedo_texture = ExtResource("2_bi4s5")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dn1de"]
-albedo_texture = ExtResource("3_xi6p3")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3s0s1"]
-albedo_texture = ExtResource("4_e4hrd")
+[ext_resource type="Texture2D" uid="uid://b0h4rjwc5lgiv" path="res://assets/PNG/Forge.webp" id="50_v1uvm"]
+[ext_resource type="AudioStream" uid="uid://dy5lcoryjk0no" path="res://assets/Sounds/SFX/Click.wav" id="51_wwsfe"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_0a2r4"]
-
-[sub_resource type="Resource" id="Resource_bi4s5"]
-script = ExtResource("8_q5ijt")
-recipeName = "Iron_Dull_Sword"
-requiredItemNames = PackedStringArray("Iron_Ingot")
-ouputName = "Iron_Dull_Sword"
-ouputScene = ExtResource("23_jw24r")
-ouputGroup = "Weapon"
-metadata/_custom_type_script = "uid://1bo1o367ybgk"
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mcs8j"]
 sky_top_color = Color(0.31378818, 0.45320868, 0.4966985, 1)
@@ -87,14 +64,6 @@ background_mode = 2
 sky = SubResource("Sky_7l3mh")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_7vc5l"]
-height = 2.4223633
-radius = 1.0214844
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_v1uvm"]
-height = 1.8012695
-radius = 0.6381836
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1y4d5"]
 sky_top_color = Color(0.5620234, 0.4562606, 0.1947913, 1)
@@ -113,6 +82,56 @@ fog_mode = 1
 fog_density = 1.0
 fog_depth_end = 242.5
 volumetric_fog_density = 0.0
+
+[sub_resource type="MeshTexture" id="MeshTexture_f0oxr"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dn1de"]
+texture = SubResource("MeshTexture_f0oxr")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y74ua"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rx2rv"]
+atlas = SubResource("CompressedTexture2D_y74ua")
+region = Rect2(581, 500, 285, 91)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dyyw8"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgb57"]
+atlas = SubResource("CompressedTexture2D_dyyw8")
+region = Rect2(581, 500, 285, 91)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_knagv"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vc5l"]
+atlas = SubResource("CompressedTexture2D_knagv")
+region = Rect2(581, 500, 285, 91)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rx2rv"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1uvm"]
+atlas = SubResource("CompressedTexture2D_rx2rv")
+region = Rect2(581, 500, 285, 91)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7vc5l"]
+height = 2.4223633
+radius = 1.0214844
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_v1uvm"]
+height = 1.8012695
+radius = 0.6381836
+
+[sub_resource type="Resource" id="Resource_bi4s5"]
+script = ExtResource("8_q5ijt")
+recipeName = "Iron_Dull_Sword"
+requiredItemNames = PackedStringArray("Iron_Ingot")
+ouputName = "Iron_Dull_Sword"
+ouputScene = ExtResource("23_jw24r")
+ouputGroup = "Weapon"
+metadata/_custom_type_script = "uid://1bo1o367ybgk"
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_sl1qq"]
 streams_count = 10
@@ -137,6 +156,20 @@ size = Vector3(0.6976929, 1, 0.6383629)
 
 [sub_resource type="BoxMesh" id="BoxMesh_m1e06"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j4y01"]
+albedo_texture = ExtResource("1_q5ijt")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_oyacv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f0oxr"]
+albedo_texture = ExtResource("2_bi4s5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dn1de"]
+albedo_texture = ExtResource("3_xi6p3")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3s0s1"]
+albedo_texture = ExtResource("4_e4hrd")
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_dn1de"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wkaxc"]
@@ -144,120 +177,11 @@ albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_y74ua"]
 
-[sub_resource type="MeshTexture" id="MeshTexture_f0oxr"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dn1de"]
-texture = SubResource("MeshTexture_f0oxr")
-
 [node name="TestingLab" type="StaticBody3D" unique_id=127569902]
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1914045173]
-transform = Transform3D(20, 0, 0, 0, 102, 0, 0, 0, 30, -62.754032, -0.028385594, -17.252653)
-material_override = SubResource("StandardMaterial3D_j4y01")
-mesh = SubResource("PlaneMesh_oyacv")
-skeleton = NodePath("../CollisionShape3D")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1977020187]
-transform = Transform3D(20, 0, 0, 0, 145.082, 0, 0, 0, 30, 64.9805, -0.028385714, -17.134506)
-material_override = SubResource("StandardMaterial3D_f0oxr")
-mesh = SubResource("PlaneMesh_oyacv")
-skeleton = NodePath("../CollisionShape3D")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=1425927920]
-transform = Transform3D(20, 0, 0, 0, 145.082, 0, 0, 0, 30, 193.2207, -0.028385594, -16.541855)
-material_override = SubResource("StandardMaterial3D_dn1de")
-mesh = SubResource("PlaneMesh_oyacv")
-skeleton = NodePath("../CollisionShape3D")
-
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="." unique_id=2060831325]
-transform = Transform3D(20, 0, 0, 0, 145.082, 0, 0, 0, 30, 320.2782, -0.028385594, -16.541859)
-material_override = SubResource("StandardMaterial3D_3s0s1")
-mesh = SubResource("PlaneMesh_oyacv")
-skeleton = NodePath("../CollisionShape3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1695761306]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -0.02279663, 0, -0.18181562)
 shape = SubResource("WorldBoundaryShape3D_0a2r4")
-
-[node name="Forge" parent="CollisionShape3D" unique_id=994045895 instance=ExtResource("11_tfuon")]
-transform = Transform3D(-0.083333336, 0, 1.25829835e-08, 0, 0.083333336, 0, -1.25829835e-08, 0, -0.083333336, -11.358131, 0, -3.0079582)
-controllerButtonTexture = ExtResource("6_xi6p3")
-keyboardButtonTexture = ExtResource("7_e4hrd")
-
-[node name="Anvil" parent="CollisionShape3D" unique_id=1158721071 instance=ExtResource("11_m6ekv")]
-transform = Transform3D(1.8874477e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, 1.8874477e-08, 12.874092, 0, -3.0479155)
-controllerButtonTexture = ExtResource("6_xi6p3")
-keyboardButtonTexture = ExtResource("7_e4hrd")
-recipes = Array[Object]([ExtResource("7_0hjnf"), SubResource("Resource_bi4s5")])
-
-[node name="Grindstone" parent="CollisionShape3D" unique_id=1536885273 instance=ExtResource("10_ei5ly")]
-transform = Transform3D(-1.0927847e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.0927847e-08, 10.07971, 0, -0.4805858)
-controllerButtonTexture = ExtResource("6_xi6p3")
-keyboardButtonTexture = ExtResource("7_e4hrd")
-
-[node name="Anvil2" parent="CollisionShape3D" unique_id=688992065 instance=ExtResource("11_m6ekv")]
-transform = Transform3D(1.8874477e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, 1.8874477e-08, 55.259365, -6.357829e-07, -2.9493666)
-controllerButtonTexture = ExtResource("6_xi6p3")
-keyboardButtonTexture = ExtResource("7_e4hrd")
-
-[node name="Grindstone2" parent="CollisionShape3D" unique_id=838819154 instance=ExtResource("10_ei5ly")]
-transform = Transform3D(-1.0927847e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.0927847e-08, 54.128456, -6.357829e-07, -0.38926157)
-controllerButtonTexture = ExtResource("6_xi6p3")
-keyboardButtonTexture = ExtResource("7_e4hrd")
-
-[node name="Copper_Ore" parent="CollisionShape3D" unique_id=2110523039 instance=ExtResource("18_j4y01")]
-transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -8.826789, 0.0025, 0.27915272)
-shouldDespawn = false
-
-[node name="Copper_Ore2" parent="CollisionShape3D" unique_id=60489756 instance=ExtResource("18_j4y01")]
-transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -8.69658, 0.0025, -0.07318052)
-shouldDespawn = false
-
-[node name="Copper_Ore3" parent="CollisionShape3D" unique_id=608290316 instance=ExtResource("18_j4y01")]
-transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -8.420842, 0.0025, 0.26383385)
-shouldDespawn = false
-
-[node name="Copper_Ore4" parent="CollisionShape3D" unique_id=1159909176 instance=ExtResource("18_j4y01")]
-transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -8.329682, 0.0025, -0.00356706)
-shouldDespawn = false
-
-[node name="Copper_Ore5" parent="CollisionShape3D" unique_id=1690293563 instance=ExtResource("18_j4y01")]
-transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -8.056205, 0.0025, 0.31852895)
-shouldDespawn = false
-
-[node name="Forge2" parent="CollisionShape3D" unique_id=414176730 instance=ExtResource("11_tfuon")]
-transform = Transform3D(-0.083333336, 0, 1.25829835e-08, 0, 0.083333336, 0, -1.25829835e-08, 0, -0.083333336, 53.257187, 0, -4.7166758)
-controllerButtonTexture = ExtResource("6_xi6p3")
-keyboardButtonTexture = ExtResource("7_e4hrd")
-
-[node name="Copper_Ore6" parent="CollisionShape3D" unique_id=754020436 instance=ExtResource("18_j4y01")]
-transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 51.362103, 0.0025, -3.3444667)
-shouldDespawn = false
-
-[node name="Copper_Ore7" parent="CollisionShape3D" unique_id=300861122 instance=ExtResource("18_j4y01")]
-transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 51.49231, 0.0025, -3.6967998)
-shouldDespawn = false
-
-[node name="Copper_Ore8" parent="CollisionShape3D" unique_id=224734069 instance=ExtResource("18_j4y01")]
-transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 51.76805, 0.0025, -3.359785)
-shouldDespawn = false
-
-[node name="Copper_Ore9" parent="CollisionShape3D" unique_id=502607709 instance=ExtResource("18_j4y01")]
-transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 51.859207, 0.0025, -3.6271858)
-shouldDespawn = false
-
-[node name="Copper_Ore10" parent="CollisionShape3D" unique_id=681565344 instance=ExtResource("18_j4y01")]
-transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 51.103554, 0.0025, -3.699991)
-shouldDespawn = false
-
-[node name="IronIngot2" parent="CollisionShape3D" unique_id=662424415 instance=ExtResource("21_dn1de")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 9.977717, 0, -5.559349)
-
-[node name="IronIngot4" parent="CollisionShape3D" unique_id=190457992 instance=ExtResource("21_dn1de")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 30.209877, 0, -2.8568525)
-
-[node name="IronIngot3" parent="CollisionShape3D" unique_id=982635605 instance=ExtResource("21_dn1de")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 10.546371, 0, -5.3318872)
 
 [node name="World" type="Node" parent="." unique_id=653261365]
 
@@ -292,178 +216,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 198.29456, 0, -39.210045)
 [node name="TP3" type="Marker3D" parent="PlayerSpawner/TP" unique_id=2007690728]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 329.32535, 0, -39.330086)
 
-[node name="Enemy" type="Node3D" parent="." unique_id=537096316 groups=["Enemy"]]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 203.90479, 0.8567555, -16.62267)
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="Enemy" unique_id=1415702169 node_paths=PackedStringArray("mesh", "collisionArea") groups=["Enemy"]]
-collision_layer = 4
-collision_mask = 235
-script = ExtResource("16_18x7b")
-enemyData = ExtResource("20_0hjnf")
-mesh = NodePath("MeshInstance3D")
-collisionArea = NodePath("Area3D")
-isStationary = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemy/CharacterBody3D" unique_id=2009392079]
-material_override = ExtResource("21_bi4s5")
-mesh = ExtResource("21_q5ijt")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy/CharacterBody3D" unique_id=124164956]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21118164, 0)
-shape = SubResource("CylinderShape3D_7vc5l")
-
-[node name="Area3D" type="Area3D" parent="Enemy/CharacterBody3D" unique_id=14099540]
-transform = Transform3D(1.4373442, 0, 0, 0, 1, 0, 0, 0, 1.492034, 0, 0, 0)
-collision_layer = 4
-collision_mask = 235
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy/CharacterBody3D/Area3D" unique_id=695734233]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77124023, 0)
-shape = SubResource("CylinderShape3D_v1uvm")
-
-[node name="Enemy2" type="Node3D" parent="." unique_id=473864975 groups=["Enemy"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 311.4813, 0.79634786, -1.1011009)
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="Enemy2" unique_id=1020805358 node_paths=PackedStringArray("mesh", "collisionArea") groups=["Enemy"]]
-collision_layer = 4
-collision_mask = 235
-script = ExtResource("16_18x7b")
-enemyData = ExtResource("24_e4hrd")
-mesh = NodePath("MeshInstance3D")
-collisionArea = NodePath("Area3D")
-isStationary = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemy2/CharacterBody3D" unique_id=647608748]
-material_override = ExtResource("24_xi6p3")
-mesh = ExtResource("24_ujnhc")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy2/CharacterBody3D" unique_id=589344257]
-shape = SubResource("CylinderShape3D_7vc5l")
-
-[node name="Area3D" type="Area3D" parent="Enemy2/CharacterBody3D" unique_id=445943001]
-collision_layer = 4
-collision_mask = 235
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy2/CharacterBody3D/Area3D" unique_id=1375004708]
-shape = SubResource("CylinderShape3D_v1uvm")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Enemy2/CharacterBody3D/Area3D" unique_id=1904624980]
-shape = SubResource("CylinderShape3D_v1uvm")
-
 [node name="TutorialManager" type="Node" parent="." unique_id=639408089 node_paths=PackedStringArray("roomSpawnPoints", "pauseMenu", "skipTutorialProgressBar", "smeltingStation", "itemDropOffBox", "grindstoneStation", "forgingStation", "weaponDropOffBox", "room3Enemy", "room4Enemy")]
 script = ExtResource("27_bi4s5")
 roomSpawnPoints = [NodePath("../PlayerSpawner/TP/TP1"), NodePath("../PlayerSpawner/TP/TP2"), NodePath("../PlayerSpawner/TP/TP3")]
-pauseMenu = NodePath("../PauseMenu")
-skipTutorialProgressBar = NodePath("../ProgressBar")
-smeltingStation = NodePath("../CollisionShape3D/Forge")
-itemDropOffBox = NodePath("../ItemDropOffNode")
-grindstoneStation = NodePath("../CollisionShape3D/Grindstone")
-forgingStation = NodePath("../CollisionShape3D/Anvil")
-weaponDropOffBox = NodePath("../WeaponDropOffNode")
-room3Enemy = NodePath("../Enemy/CharacterBody3D")
-room4Enemy = NodePath("../Enemy2/CharacterBody3D")
-
-[node name="HandheldBallista" type="MeshInstance3D" parent="." unique_id=836374485]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 117.01609, 0, -10.378091)
-visible = false
-mesh = ExtResource("25_4tybr")
-
-[node name="Text" type="Node3D" parent="." unique_id=551861238]
-
-[node name="Label3D" type="Label3D" parent="Text" unique_id=1005533518]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -49.388096, 1.5332108, -3.5558171)
-modulate = Color(1, 0.90000004, 0, 1)
-text = "Pick up ORE with X/E"
-font_size = 20
-
-[node name="Label3D15" type="Label3D" parent="Text" unique_id=1274583701]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -62.06752, 1.5332108, -7.5415535)
-modulate = Color(1, 0.90000004, 0, 1)
-text = "Drop item with B/Q
-Hold B/Q to drop Weapon"
-font_size = 20
-
-[node name="Label3D2" type="Label3D" parent="Text" unique_id=2087353095]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -52.346, 1.5332088, -20.538702)
-modulate = Color(1, 0.90000004, 0, 1)
-text = "Interact with 
-Workstations with X/E"
-font_size = 20
-
-[node name="Label3D3" type="Label3D" parent="Text" unique_id=2123131909]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -53.099648, 1.5332108, -39.648987)
-text = "Your objective is to keep 
-the Forge alive by crafting 
-weapons to defend off enemies"
-
-[node name="Label3D4" type="Label3D" parent="Text" unique_id=1327194277]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -62.425232, 1.5332108, -26.406786)
-text = "The Forge has a 
-limited amount of HP, 
-if it is destoryed you die"
-font_size = 23
-
-[node name="Label3D5" type="Label3D" parent="Text" unique_id=385033897]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 67.379135, 1.5332108, -22.959036)
-modulate = Color(1, 0.90000004, 0, 1)
-text = "Complete mini games 
-with the D-Pad"
-font_size = 20
-
-[node name="Label3D10" type="Label3D" parent="Text" unique_id=365336419]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 178.38152, 1.5332088, -8.1544895)
-modulate = Color(1, 0.90000004, 0, 1)
-text = "Reload Ballistae by 
-Interacting with 
-a Iron Ingot"
-font_size = 20
-horizontal_alignment = 0
-
-[node name="Label3D14" type="Label3D" parent="Text" unique_id=2096093989]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 192.98474, 1.5332088, -6.365054)
-modulate = Color(1, 0.90000004, 0, 1)
-text = "Essential for surviving late game"
-font_size = 20
-horizontal_alignment = 0
-
-[node name="Label3D13" type="Label3D" parent="Text" unique_id=1166096396]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 317.02032, 1.5332088, 2.331079)
-modulate = Color(1, 0.90000004, 0, 1)
-text = "Use RT to attack"
-font_size = 20
-
-[node name="Label3D6" type="Label3D" parent="Text" unique_id=1342330888]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 75.08888, 1.5332108, -7.8506937)
-modulate = Color(1, 0.90000004, 0, 1)
-text = "Drop resources with B. 
-Hold B to drop your weapon"
-font_size = 20
-
-[node name="Label3D7" type="Label3D" parent="Text" unique_id=275099191]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -52.82715, 2.1534605, 6.468112)
-outline_render_priority = -2
-text = "Place 3 Copper Ingot to continue"
-
-[node name="Label3D8" type="Label3D" parent="Text" unique_id=249894599]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 54.452797, 2.1703491, 6.464456)
-text = "Craft 2 Iron Swords to continue"
-
-[node name="Label3D9" type="Label3D" parent="Text" unique_id=1452463606]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 186.10196, 1.5332108, -20.451698)
-text = "Ballista's auto targets enemies "
-font_size = 20
-
-[node name="Label3D11" type="Label3D" parent="Text" unique_id=1748403666]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 116.43741, 1.5332127, -8.287705)
-visible = false
-text = "Hold Interact to 
-Equip/Unequip the Crossbow"
-
-[node name="Label3D12" type="Label3D" parent="Text" unique_id=1427816276]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 129.81158, 1.5332108, -14.271951)
-visible = false
-text = "Hold Interact while holding 
-a Ingot to reload the Crossbow"
+pauseMenu = NodePath("../UI/PauseMenu")
+skipTutorialProgressBar = NodePath("../UI/ProgressBar")
+smeltingStation = NodePath("../Objects/Stations/Forge")
+itemDropOffBox = NodePath("../LevelObjects/ItemDropOffNode")
+grindstoneStation = NodePath("../Objects/Stations/Grindstone")
+forgingStation = NodePath("../Objects/Stations/Anvil")
+weaponDropOffBox = NodePath("../LevelObjects/WeaponDropOffNode")
+room3Enemy = NodePath("../Objects/Enemies/Enemy/CharacterBody3D")
+room4Enemy = NodePath("../Objects/Enemies/Enemy2/CharacterBody3D")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2088959320 node_paths=PackedStringArray("playerSpawner") groups=["Camera"]]
 transform = Transform3D(1, 0, 0, 0, 0.71079946, 0.7033947, 0, -0.7033947, 0.71079946, -66.24388, 22.042484, 65.73964)
@@ -487,118 +251,9 @@ shadow_normal_bias = 0.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1529891518]
 environment = SubResource("Environment_47rdh")
 
-[node name="Ballista" type="Node3D" parent="." unique_id=1571022317 node_paths=PackedStringArray("arrowSpawnPosition", "ballistaHead", "ballistaBarrel", "inputNode", "label", "audio") groups=["Ballista"]]
-transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 185.16833, 0.0056490004, -16.676088)
-script = ExtResource("29_0a2r4")
-arrowSpawnPosition = NodePath("BallistaTopElementLow/BallistaBarrel/ArrowSpawnLocation")
-ballistaHead = NodePath("BallistaTopElementLow")
-crossbowScene = ExtResource("28_y74ua")
-ballistaBarrel = NodePath("BallistaTopElementLow/BallistaBarrel")
-arrowScene = ExtResource("30_mcs8j")
-inputNode = NodePath("BallistaTopElementLow/StaticBody3D/StationPort")
-arrowCount = 0
-label = NodePath("CanvasLayer/Node3D/Label3D")
-audio = NodePath("AudioStreamPlayer3D")
+[node name="UI" type="Node" parent="." unique_id=195859758]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Ballista" unique_id=2121636395]
-
-[node name="Node3D" type="Node3D" parent="Ballista/CanvasLayer" unique_id=1037465994]
-transform = Transform3D(-0.10386822, 0, 0.49802622, 0, 3.4232113, 0, -4.7299213, 0, -0.010936562, 0, 3.545107, 0)
-
-[node name="Label3D" type="Label3D" parent="Ballista/CanvasLayer/Node3D" unique_id=1012313719]
-visible = false
-text = "There"
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Ballista" unique_id=134283511]
-stream = SubResource("AudioStreamRandomizer_sl1qq")
-volume_db = -40.0
-max_db = -24.0
-max_polyphony = 20
-bus = &"SFX"
-
-[node name="BallistaBottomElementLow" type="MeshInstance3D" parent="Ballista" unique_id=1196528612]
-transform = Transform3D(0.71428573, 0, 0, 0, 0.71428573, 0, 0, 0, 0.71428573, 0, 0, 0)
-material_override = ExtResource("41_47rdh")
-mesh = ExtResource("42_4c805")
-
-[node name="BallistaTopElementLow" type="MeshInstance3D" parent="Ballista" unique_id=369042352]
-transform = Transform3D(0.71428573, 0, 0, 0, 0.71428573, 0, 0, 0, 0.71428573, 0, 0, 0)
-material_override = ExtResource("41_47rdh")
-mesh = ExtResource("43_podgh")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Ballista/BallistaTopElementLow" unique_id=440704571]
-transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0, 0)
-collision_layer = 32
-collision_mask = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ballista/BallistaTopElementLow/StaticBody3D" unique_id=1945830702]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9050009, 0)
-shape = SubResource("CapsuleShape3D_e7812")
-
-[node name="StationPort" type="Node3D" parent="Ballista/BallistaTopElementLow/StaticBody3D" unique_id=750325492]
-transform = Transform3D(62.81827, 0, 0, 0, 85.7798, 0, 0, 0, 34.782322, -0.19229126, 0.54238105, 0.27918434)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ballista/BallistaTopElementLow/StaticBody3D/StationPort" unique_id=812032035]
-transform = Transform3D(0.18727133, 0, 0, 0, 1, 0, 0, 0, 0.1909036, 0, 0, 0)
-visible = false
-material_override = SubResource("StandardMaterial3D_vl1yp")
-transparency = 1.0
-skeleton = NodePath("")
-
-[node name="Area3D" type="Area3D" parent="Ballista/BallistaTopElementLow/StaticBody3D/StationPort" unique_id=1490204633]
-transform = Transform3D(0.14721856, 0, 0, 0, -0.07687317, 0, 0, 0, 0.30185395, 0.0036346912, 0, -0.008695453)
-collision_layer = 32
-collision_mask = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ballista/BallistaTopElementLow/StaticBody3D/StationPort/Area3D" unique_id=280831638]
-transform = Transform3D(0.17999986, 0, 0, 0, 0.9999873, 0, 0, 0, 0.18999994, 0.0013348593, 0, -0.006333612)
-shape = SubResource("BoxShape3D_vl1yp")
-
-[node name="BallistaBarrel" type="Node3D" parent="Ballista/BallistaTopElementLow" unique_id=309150814]
-transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0, 0)
-
-[node name="ArrowSpawnLocation" type="Node3D" parent="Ballista/BallistaTopElementLow/BallistaBarrel" unique_id=1309432331]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.8982694, 0.7900001, 1.2700133, -0.048)
-visible = false
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Ballista/BallistaTopElementLow/BallistaBarrel/ArrowSpawnLocation" unique_id=1444911399]
-transform = Transform3D(1, 0, 0, 0, 0.33043814, 0, 0, 0, 0.2738446, -0.18170571, -0.027641058, 0.07790413)
-mesh = SubResource("BoxMesh_m1e06")
-skeleton = NodePath("../../../StaticBody3D")
-
-[node name="ItemDropOffNode" type="Node3D" parent="." unique_id=1176537791]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.3175284, -52.788494, 2.162654, 8.736044)
-
-[node name="Area3D" type="Area3D" parent="ItemDropOffNode" unique_id=2007190283]
-transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 5.4, 0, 0, 0.31873178)
-collision_mask = 16
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ItemDropOffNode/Area3D" unique_id=1957568453]
-shape = SubResource("BoxShape3D_dn1de")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="ItemDropOffNode" unique_id=1883276326]
-transform = Transform3D(20, 0, 0, 0, 0.09232774, 0, 0, 0, 5.4025326, 0, -2.1711469, 0.28949738)
-material_override = SubResource("StandardMaterial3D_wkaxc")
-transparency = 0.15
-mesh = SubResource("BoxMesh_y74ua")
-
-[node name="WeaponDropOffNode" type="Node3D" parent="." unique_id=476378771]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.3175284, 55.00113, 2.162654, 8.790767)
-
-[node name="Area3D" type="Area3D" parent="WeaponDropOffNode" unique_id=721241301]
-transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 5.4, 0, 0, 0.1792202)
-collision_mask = 24
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WeaponDropOffNode/Area3D" unique_id=975492336]
-shape = SubResource("BoxShape3D_dn1de")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="WeaponDropOffNode" unique_id=578781272]
-transform = Transform3D(20, 0, 0, 0, 0.09232774, 0, 0, 0, 5.4025326, 0, -2.1711469, 0.28949738)
-material_override = SubResource("StandardMaterial3D_wkaxc")
-transparency = 0.15
-mesh = SubResource("BoxMesh_y74ua")
-
-[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1132391527]
+[node name="ProgressBar" type="ProgressBar" parent="UI" unique_id=1132391527]
 offset_top = 26.0
 offset_right = 226.0
 offset_bottom = 40.0
@@ -606,12 +261,111 @@ theme_override_styles/fill = SubResource("StyleBoxTexture_dn1de")
 value = 50.0
 show_percentage = false
 
-[node name="Label" type="Label" parent="." unique_id=1872367308]
-offset_right = 83.0
-offset_bottom = 23.0
+[node name="Label" type="Label" parent="UI/ProgressBar" unique_id=1872367308]
+layout_mode = 0
+offset_top = -26.0
+offset_right = 116.0
+offset_bottom = -3.0
 text = "Skip? ESC/ ⧉/≡"
 
-[node name="PauseMenu" type="CanvasLayer" parent="." unique_id=270092890 node_paths=PackedStringArray("resumeButton", "settingsButton", "mainMenuButton", "settingsMenu", "tutorialManager")]
+[node name="Text" type="Node3D" parent="UI" unique_id=551861238]
+
+[node name="Label3D" type="Label3D" parent="UI/Text" unique_id=1005533518]
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -49.388096, 1.5332108, -3.5558171)
+modulate = Color(1, 0.90000004, 0, 1)
+text = "Pick up ORE with X/E"
+font_size = 20
+
+[node name="Label3D15" type="Label3D" parent="UI/Text" unique_id=1274583701]
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -62.06752, 1.5332108, -7.5415535)
+modulate = Color(1, 0.90000004, 0, 1)
+text = "Drop item with B/Q
+Hold B/Q to drop Weapon"
+font_size = 20
+
+[node name="Label3D2" type="Label3D" parent="UI/Text" unique_id=2087353095]
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -52.346, 1.5332088, -20.538702)
+modulate = Color(1, 0.90000004, 0, 1)
+text = "Interact with 
+Workstations with X/E"
+font_size = 20
+
+[node name="Label3D3" type="Label3D" parent="UI/Text" unique_id=2123131909]
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -53.099648, 1.5332108, -39.648987)
+text = "Your objective is to keep 
+the Forge alive by crafting 
+weapons to defend off enemies"
+
+[node name="Label3D4" type="Label3D" parent="UI/Text" unique_id=1327194277]
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -62.425232, 1.5332108, -26.406786)
+text = "The Forge has a 
+limited amount of HP, 
+if it is destoryed you die"
+font_size = 23
+
+[node name="Label3D5" type="Label3D" parent="UI/Text" unique_id=385033897]
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 67.379135, 1.5332108, -22.959036)
+modulate = Color(1, 0.90000004, 0, 1)
+text = "Complete mini games 
+with the D-Pad"
+font_size = 20
+
+[node name="Label3D10" type="Label3D" parent="UI/Text" unique_id=365336419]
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 178.38152, 1.5332088, -8.1544895)
+modulate = Color(1, 0.90000004, 0, 1)
+text = "Reload Ballistae by 
+Interacting with 
+a Iron Ingot"
+font_size = 20
+horizontal_alignment = 0
+
+[node name="Label3D14" type="Label3D" parent="UI/Text" unique_id=2096093989]
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 192.98474, 1.5332088, -6.365054)
+modulate = Color(1, 0.90000004, 0, 1)
+text = "Essential for surviving late game"
+font_size = 20
+horizontal_alignment = 0
+
+[node name="Label3D13" type="Label3D" parent="UI/Text" unique_id=1166096396]
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 317.02032, 1.5332088, 2.331079)
+modulate = Color(1, 0.90000004, 0, 1)
+text = "Use RT to attack"
+font_size = 20
+
+[node name="Label3D6" type="Label3D" parent="UI/Text" unique_id=1342330888]
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 75.08888, 1.5332108, -7.8506937)
+modulate = Color(1, 0.90000004, 0, 1)
+text = "Drop resources with B. 
+Hold B to drop your weapon"
+font_size = 20
+
+[node name="Label3D7" type="Label3D" parent="UI/Text" unique_id=275099191]
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -52.82715, 2.1534605, 6.468112)
+outline_render_priority = -2
+text = "Place 3 Copper Ingot to continue"
+
+[node name="Label3D8" type="Label3D" parent="UI/Text" unique_id=249894599]
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 54.452797, 2.1703491, 6.464456)
+text = "Craft 2 Iron Swords to continue"
+
+[node name="Label3D9" type="Label3D" parent="UI/Text" unique_id=1452463606]
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 186.10196, 1.5332108, -20.451698)
+text = "Ballista's auto targets enemies "
+font_size = 20
+
+[node name="Label3D11" type="Label3D" parent="UI/Text" unique_id=1748403666]
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 116.43741, 1.5332127, -8.287705)
+visible = false
+text = "Hold Interact to 
+Equip/Unequip the Crossbow"
+
+[node name="Label3D12" type="Label3D" parent="UI/Text" unique_id=1427816276]
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 129.81158, 1.5332108, -14.271951)
+visible = false
+text = "Hold Interact while holding 
+a Ingot to reload the Crossbow"
+
+[node name="PauseMenu" type="CanvasLayer" parent="UI" unique_id=468631936 node_paths=PackedStringArray("resumeButton", "settingsButton", "mainMenuButton", "settingsMenu", "tutorialManager")]
 process_mode = 3
 visible = false
 script = ExtResource("42_wkaxc")
@@ -619,86 +373,99 @@ resumeButton = NodePath("ResumeButton")
 settingsButton = NodePath("SettingsButton")
 mainMenuButton = NodePath("QuitButton")
 settingsMenu = NodePath("../SettingsMenu")
-tutorialManager = NodePath("../TutorialManager")
+tutorialManager = NodePath("../../TutorialManager")
 
-[node name="ResumeButton" type="Button" parent="PauseMenu" unique_id=263225920]
+[node name="ResumeButton" type="Button" parent="UI/PauseMenu" unique_id=471299529]
 offset_left = 71.00002
 offset_top = 175.0
 offset_right = 519.0
 offset_bottom = 295.0
-scale = Vector2(0.8400012, 0.7599994)
+scale = Vector2(0.93444926, 0.8426638)
 focus_neighbor_top = NodePath(".")
 focus_neighbor_bottom = NodePath("../SettingsButton")
 focus_next = NodePath("../SettingsButton")
 focus_previous = NodePath("../QuitButton")
 theme_override_font_sizes/font_size = 40
 text = "Resume"
+icon = SubResource("AtlasTexture_rx2rv")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
-[node name="SettingsButton" type="Button" parent="PauseMenu" unique_id=612249311]
+[node name="SettingsButton" type="Button" parent="UI/PauseMenu" unique_id=1844818521]
 offset_left = 71.00002
 offset_top = 335.0
 offset_right = 519.0
 offset_bottom = 455.0
-scale = Vector2(0.8400012, 0.7599994)
+scale = Vector2(0.93444926, 0.8426638)
 focus_neighbor_top = NodePath("../ResumeButton")
 focus_neighbor_bottom = NodePath("../QuitButton")
 focus_next = NodePath("../QuitButton")
 focus_previous = NodePath("../ResumeButton")
 theme_override_font_sizes/font_size = 40
 text = "Settings"
+icon = SubResource("AtlasTexture_cgb57")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
-[node name="QuitButton" type="Button" parent="PauseMenu" unique_id=937778779]
+[node name="QuitButton" type="Button" parent="UI/PauseMenu" unique_id=1606239591]
 offset_left = 71.00002
 offset_top = 495.0
 offset_right = 519.0
 offset_bottom = 615.0
-scale = Vector2(0.8400012, 0.7599994)
+scale = Vector2(0.93444926, 0.8426638)
 focus_neighbor_top = NodePath("../SettingsButton")
 focus_previous = NodePath("../SettingsButton")
 theme_override_font_sizes/font_size = 40
 text = "Main Menu"
+icon = SubResource("AtlasTexture_7vc5l")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
-[node name="Label" type="Label" parent="PauseMenu" unique_id=1897877340]
+[node name="Label" type="Label" parent="UI/PauseMenu" unique_id=425332203]
 offset_left = 62.0
 offset_top = 26.0
 offset_right = 459.0
 offset_bottom = 109.0
+scale = Vector2(1.112438, 1.108769)
 theme_override_font_sizes/font_size = 60
 text = "Game Paused"
 
-[node name="FurnaceImahe" type="TextureRect" parent="PauseMenu" unique_id=1419083924]
+[node name="FurnaceImahe" type="TextureRect" parent="UI/PauseMenu" unique_id=2071960944]
 offset_left = 658.0
 offset_top = 64.0
 offset_right = 1158.0
 offset_bottom = 164.0
-scale = Vector2(0.6149459, 0.68860584)
+scale = Vector2(0.6840891, 0.76350486)
 texture = ExtResource("43_y74ua")
 expand_mode = 1
 
-[node name="AnvilImage" type="TextureRect" parent="PauseMenu" unique_id=1140674292]
+[node name="AnvilImage" type="TextureRect" parent="UI/PauseMenu" unique_id=1783727334]
 offset_left = 658.0
 offset_top = 133.0
 offset_right = 1158.0
 offset_bottom = 233.0
-scale = Vector2(0.6149459, 0.68860584)
+scale = Vector2(0.6840891, 0.76350486)
 texture = ExtResource("44_rx2rv")
 expand_mode = 1
 
-[node name="GrindstoneImage" type="TextureRect" parent="PauseMenu" unique_id=1215423119]
+[node name="GrindstoneImage" type="TextureRect" parent="UI/PauseMenu" unique_id=1325749892]
 offset_left = 658.0
 offset_top = 201.0
 offset_right = 1158.0
 offset_bottom = 301.0
-scale = Vector2(0.6149459, 0.68860584)
+scale = Vector2(0.6840891, 0.76350486)
 texture = ExtResource("45_cgb57")
 expand_mode = 1
 
-[node name="ControlsLabel" type="Label" parent="PauseMenu" unique_id=1138207857]
+[node name="ControlsLabel" type="Label" parent="UI/PauseMenu" unique_id=1791737565]
 offset_left = 592.0
 offset_top = 347.00003
 offset_right = 1254.0
 offset_bottom = 704.0
-scale = Vector2(0.68, 0.62560004)
+scale = Vector2(0.7564578, 0.69364595)
 theme_override_font_sizes/font_size = 30
 text = "Actions                  Keyboard    │  Controller
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -709,43 +476,66 @@ Drop-Right-Item│  E                 │  Right Shoulder
 Pause                  │  ESC             │  ☰
 Sequence           │  ←↑→↓          │  < > v ^"
 
-[node name="TextureRect" type="TextureRect" parent="PauseMenu" unique_id=686546604]
+[node name="TextureRect" type="TextureRect" parent="UI/PauseMenu" unique_id=2022666450]
 z_index = -1
 offset_right = 40.0
 offset_bottom = 40.0
-scale = Vector2(28.860407, 16.15729)
+scale = Vector2(32.10541, 17.914703)
+mouse_filter = 2
 
-[node name="ColorRect" type="ColorRect" parent="PauseMenu" unique_id=606113047]
+[node name="ColorRect" type="ColorRect" parent="UI/PauseMenu" unique_id=695410379]
 z_index = -1
 offset_right = 40.0
 offset_bottom = 40.0
-scale = Vector2(28.750067, 16.369858)
+scale = Vector2(31.982666, 18.150393)
+mouse_filter = 2
 color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
 
-[node name="SettingsMenu" type="CanvasLayer" parent="." unique_id=80484946 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton", "pauseMenu")]
-visible = false
-script = ExtResource("46_7vc5l")
-masterSlider = NodePath("Control/MasterVolumeLabel/MasterVolumeSlider")
-musicSlider = NodePath("Control/MusicVolumeLabel/MusicVolumeSlider")
-sfxSlider = NodePath("Control/SFXVolumeLabel/SFXVolumeSlider")
-fullScreenCheckBox = NodePath("Control/FullscreenLabel/FullScreenCheckBox")
-vsyncCheckBox = NodePath("Control/VSyncLabel/VSyncCheckBox")
-showFPSCheckBox = NodePath("Control/ShowFPSLabel/ShowFPSCheckBox")
-resolutionDropdown = NodePath("Control/ResolutionLabel/ResolutionOptionButton")
-maxFPSDropdown = NodePath("Control/FPSLabel/FPSOptionButton")
-applyButton = NodePath("Control/ApplyButton")
-pauseMenu = NodePath("../PauseMenu")
-
-[node name="Control" type="Control" parent="SettingsMenu" unique_id=488765988]
+[node name="SettingsMenu" type="CanvasLayer" parent="UI" unique_id=837993701 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton", "audio", "pauseMenu")]
 process_mode = 3
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+script = ExtResource("46_7vc5l")
+masterSlider = NodePath("Panel/TabContainer/Sound/MasterVolumeLabel/MasterVolumeSlider")
+musicSlider = NodePath("Panel/TabContainer/Sound/MusicVolumeLabel/MusicVolumeSlider")
+sfxSlider = NodePath("Panel/TabContainer/Sound/SFXVolumeLabel/SFXVolumeSlider")
+fullScreenCheckBox = NodePath("Panel/TabContainer/Display/FullscreenLabel/FullScreenCheckBox")
+vsyncCheckBox = NodePath("Panel/TabContainer/Display/VSyncLabel/VSyncCheckBox")
+showFPSCheckBox = NodePath("Panel/TabContainer/Display/ShowFPSLabel/ShowFPSCheckBox")
+resolutionDropdown = NodePath("Panel/TabContainer/Display/ResolutionLabel/ResolutionOptionButton")
+maxFPSDropdown = NodePath("Panel/TabContainer/Display/FPSLabel/FPSOptionButton")
+applyButton = NodePath("ApplyButton")
+audio = NodePath("AudioStreamPlayer2D")
+pauseMenu = NodePath("../PauseMenu")
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="SettingsMenu/Control" unique_id=1975925768]
-layout_mode = 0
+[node name="BackgroundImage" type="TextureRect" parent="UI/SettingsMenu" unique_id=600485325]
+visible = false
+visibility_layer = 2
+z_index = -1
+offset_left = -22.0
+offset_right = 1351.0
+offset_bottom = 772.0
+texture = ExtResource("50_v1uvm")
+stretch_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="UI/SettingsMenu" unique_id=73200328]
+z_index = -1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(32.207207, 18.071495)
+color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
+
+[node name="Panel" type="Panel" parent="UI/SettingsMenu" unique_id=2022148491]
+offset_right = 1152.0
+offset_bottom = 650.0
+scale = Vector2(1.1202481, 1.1039494)
+
+[node name="Label" type="Label" parent="UI/SettingsMenu/Panel" unique_id=1028835755]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3515625
+anchor_top = -0.035384614
+anchor_right = 0.3515625
+anchor_bottom = -0.035384614
 offset_left = 32.0
 offset_top = 24.0
 offset_right = 264.0
@@ -754,38 +544,65 @@ theme_override_font_sizes/font_size = 60
 text = "Settings"
 metadata/_edit_use_anchors_ = true
 
-[node name="MasterVolumeLabel" type="Label" parent="SettingsMenu/Control" unique_id=872846124]
+[node name="TabContainer" type="TabContainer" parent="UI/SettingsMenu/Panel" unique_id=1148870683]
 layout_mode = 0
-offset_left = 32.0
-offset_top = 120.0
-offset_right = 252.0
-offset_bottom = 207.0
+offset_left = -2.0
+offset_top = 102.0
+offset_right = 1150.0
+offset_bottom = 169.0
+mouse_filter = 0
+current_tab = 0
+
+[node name="Sound" type="Control" parent="UI/SettingsMenu/Panel/TabContainer" unique_id=490291722]
+layout_mode = 2
+focus_neighbor_right = NodePath("../Display")
+metadata/_tab_index = 0
+
+[node name="MasterVolumeLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Sound" unique_id=103817631]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.30989584
+anchor_top = 2.5
+anchor_right = 0.30989584
+anchor_bottom = 2.5
+offset_left = 34.0
+offset_top = -13.0
+offset_right = 254.0
+offset_bottom = 74.0
+focus_next = NodePath("../MusicVolumeLabel/MusicVolumeSlider")
 theme_override_font_sizes/font_size = 30
 text = "Master Volume
 "
 metadata/_edit_use_anchors_ = true
 
-[node name="MasterVolumeSlider" type="HSlider" parent="SettingsMenu/Control/MasterVolumeLabel" unique_id=1869099308]
+[node name="MasterVolumeSlider" type="HSlider" parent="UI/SettingsMenu/Panel/TabContainer/Sound/MasterVolumeLabel" unique_id=1577752647]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.0045454544
 offset_left = 233.0
 offset_right = 343.0
 offset_bottom = 50.0
+focus_neighbor_top = NodePath("../..")
 focus_neighbor_bottom = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
+focus_next = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
 metadata/_edit_use_anchors_ = true
 
-[node name="MusicVolumeLabel" type="Label" parent="SettingsMenu/Control" unique_id=2141037783]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 176.0
-offset_right = 235.0
-offset_bottom = 223.0
+[node name="MusicVolumeLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Sound" unique_id=2065468228]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.30989584
+anchor_top = 3.1944444
+anchor_right = 0.30989584
+anchor_bottom = 3.1944444
+offset_left = 34.0
+offset_top = 43.0
+offset_right = 237.0
+offset_bottom = 90.0
 theme_override_font_sizes/font_size = 30
 text = "Music Volume"
 metadata/_edit_use_anchors_ = true
 
-[node name="MusicVolumeSlider" type="HSlider" parent="SettingsMenu/Control/MusicVolumeLabel" unique_id=1544822629]
+[node name="MusicVolumeSlider" type="HSlider" parent="UI/SettingsMenu/Panel/TabContainer/Sound/MusicVolumeLabel" unique_id=495238451]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.009852217
@@ -797,20 +614,62 @@ offset_top = 7.0
 offset_right = 344.0
 offset_bottom = 57.0
 focus_neighbor_top = NodePath("../../MasterVolumeLabel/MasterVolumeSlider")
-focus_neighbor_right = NodePath("../../SFXVolumeLabel/SFXVolumeSlider")
+focus_neighbor_bottom = NodePath("../../SFXVolumeLabel/SFXVolumeSlider")
 metadata/_edit_use_anchors_ = true
 
-[node name="ResolutionLabel" type="Label" parent="SettingsMenu/Control" unique_id=751930026]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 432.0
-offset_right = 186.0
-offset_bottom = 479.0
+[node name="SFXVolumeLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Sound" unique_id=797683548]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.30989584
+anchor_top = 4.111111
+anchor_right = 0.30989584
+anchor_bottom = 4.111111
+offset_left = 34.0
+offset_top = 91.0
+offset_right = 203.0
+offset_bottom = 138.0
+theme_override_font_sizes/font_size = 30
+text = "SFX Volume"
+metadata/_edit_use_anchors_ = true
+
+[node name="SFXVolumeSlider" type="HSlider" parent="UI/SettingsMenu/Panel/TabContainer/Sound/SFXVolumeLabel" unique_id=1999960699]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.01183432
+anchor_top = -0.23404256
+anchor_right = -0.01183432
+anchor_bottom = -0.23404256
+offset_left = 234.0
+offset_top = 4.0
+offset_right = 344.0
+offset_bottom = 54.0
+focus_neighbor_top = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
+focus_neighbor_bottom = NodePath("../../../Display/FullscreenLabel/FullScreenCheckBox")
+metadata/_edit_use_anchors_ = true
+
+[node name="Display" type="Control" parent="UI/SettingsMenu/Panel/TabContainer" unique_id=1222665065]
+visible = false
+layout_mode = 2
+focus_neighbor_left = NodePath("../Sound")
+focus_neighbor_right = NodePath("../Controls")
+metadata/_tab_index = 1
+
+[node name="ResolutionLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=2072875555]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3246528
+anchor_top = -2.0277777
+anchor_right = 0.3246528
+anchor_bottom = -2.0277777
+offset_left = 34.0
+offset_top = 299.0
+offset_right = 188.0
+offset_bottom = 346.0
 theme_override_font_sizes/font_size = 30
 text = "Resolution"
 metadata/_edit_use_anchors_ = true
 
-[node name="ResolutionOptionButton" type="OptionButton" parent="SettingsMenu/Control/ResolutionLabel" unique_id=1806905000]
+[node name="ResolutionOptionButton" type="OptionButton" parent="UI/SettingsMenu/Panel/TabContainer/Display/ResolutionLabel" unique_id=509207817]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.4090909
@@ -825,17 +684,22 @@ focus_neighbor_top = NodePath("../../ShowFPSLabel/ShowFPSCheckBox")
 focus_neighbor_bottom = NodePath("../../FPSLabel/FPSOptionButton")
 metadata/_edit_use_anchors_ = true
 
-[node name="FPSLabel" type="Label" parent="SettingsMenu/Control" unique_id=2092669501]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 488.0
-offset_right = 103.0
-offset_bottom = 535.0
+[node name="FPSLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=104648499]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3246528
+anchor_top = -2.0277777
+anchor_right = 0.3246528
+anchor_bottom = -2.0277777
+offset_left = 34.0
+offset_top = 355.0
+offset_right = 105.0
+offset_bottom = 402.0
 theme_override_font_sizes/font_size = 30
 text = "FPS"
 metadata/_edit_use_anchors_ = true
 
-[node name="FPSOptionButton" type="OptionButton" parent="SettingsMenu/Control/FPSLabel" unique_id=579356737]
+[node name="FPSOptionButton" type="OptionButton" parent="UI/SettingsMenu/Panel/TabContainer/Display/FPSLabel" unique_id=1187142794]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.5633802
@@ -847,95 +711,88 @@ offset_top = 11.0
 offset_right = 249.0
 offset_bottom = 43.0
 focus_neighbor_top = NodePath("../../ResolutionLabel/ResolutionOptionButton")
-focus_neighbor_bottom = NodePath("../../BackButton")
 metadata/_edit_use_anchors_ = true
 
-[node name="SFXVolumeLabel" type="Label" parent="SettingsMenu/Control" unique_id=2084979062]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 224.0
-offset_right = 201.0
-offset_bottom = 271.0
-theme_override_font_sizes/font_size = 30
-text = "SFX Volume"
-metadata/_edit_use_anchors_ = true
-
-[node name="SFXVolumeSlider" type="HSlider" parent="SettingsMenu/Control/SFXVolumeLabel" unique_id=932817048]
+[node name="FullscreenLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=2061239531]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.01183432
-anchor_top = -0.23404256
-anchor_right = -0.01183432
-anchor_bottom = -0.23404256
-offset_left = 234.0
-offset_top = 4.0
-offset_right = 344.0
-offset_bottom = 54.0
-focus_neighbor_top = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
-focus_neighbor_bottom = NodePath("../../FullscreenLabel/FullScreenCheckBox")
-metadata/_edit_use_anchors_ = true
-
-[node name="FullscreenLabel" type="Label" parent="SettingsMenu/Control" unique_id=1104181590]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 272.0
-offset_right = 201.0
-offset_bottom = 319.0
+anchor_left = 0.3246528
+anchor_top = -2.0277777
+anchor_right = 0.3246528
+anchor_bottom = -2.0277777
+offset_left = 34.0
+offset_top = 139.0
+offset_right = 203.0
+offset_bottom = 186.0
 theme_override_font_sizes/font_size = 30
 text = "FullScreen"
 metadata/_edit_use_anchors_ = true
 
-[node name="FullScreenCheckBox" type="CheckBox" parent="SettingsMenu/Control/FullscreenLabel" unique_id=2040999844]
+[node name="FullScreenCheckBox" type="CheckBox" parent="UI/SettingsMenu/Panel/TabContainer/Display/FullscreenLabel" unique_id=1109483038]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.38700002
-anchor_right = 0.38700002
-offset_left = 166.59698
-offset_top = 10.0
-offset_right = 195.59698
-offset_bottom = 34.0
-focus_neighbor_top = NodePath("../../SFXVolumeLabel/SFXVolumeSlider")
+anchor_left = 0.37899998
+anchor_top = -0.00021277083
+anchor_right = 0.37899998
+anchor_bottom = -0.00021273024
+offset_left = 167.949
+offset_top = 8.01
+offset_right = 191.949
+offset_bottom = 32.01
+focus_neighbor_top = NodePath("../..")
 focus_neighbor_bottom = NodePath("../../VSyncLabel/VSyncCheckBox")
+focus_next = NodePath(".")
 theme_override_font_sizes/font_size = 40
 metadata/_edit_use_anchors_ = true
 
-[node name="VSyncLabel" type="Label" parent="SettingsMenu/Control" unique_id=1434128149]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 320.0
-offset_right = 201.0
-offset_bottom = 367.0
+[node name="VSyncLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=1368732121]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3246528
+anchor_top = -2.0277777
+anchor_right = 0.3246528
+anchor_bottom = -2.0277777
+offset_left = 34.0
+offset_top = 187.0
+offset_right = 203.0
+offset_bottom = 234.0
 theme_override_font_sizes/font_size = 30
 text = "VSync"
 metadata/_edit_use_anchors_ = true
 
-[node name="VSyncCheckBox" type="CheckBox" parent="SettingsMenu/Control/VSyncLabel" unique_id=1093135889]
+[node name="VSyncCheckBox" type="CheckBox" parent="UI/SettingsMenu/Panel/TabContainer/Display/VSyncLabel" unique_id=709304080]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.2366864
 anchor_right = 0.2366864
 offset_left = 192.0
 offset_top = -7.9999986
-offset_right = 217.0
+offset_right = 224.0
 offset_bottom = 55.0
 focus_neighbor_top = NodePath("../../FullscreenLabel/FullScreenCheckBox")
 focus_neighbor_bottom = NodePath("../../ShowFPSLabel/ShowFPSCheckBox")
+focus_next = NodePath(".")
 theme_override_font_sizes/font_size = 40
 text = "
 "
 metadata/_edit_use_anchors_ = true
 
-[node name="ShowFPSLabel" type="Label" parent="SettingsMenu/Control" unique_id=461988413]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 376.0
-offset_right = 201.0
-offset_bottom = 423.0
+[node name="ShowFPSLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=1702089484]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3246528
+anchor_top = -2.0277777
+anchor_right = 0.3246528
+anchor_bottom = -2.0277777
+offset_left = 34.0
+offset_top = 243.0
+offset_right = 203.0
+offset_bottom = 290.0
 theme_override_font_sizes/font_size = 30
 text = "ShowFPS"
 metadata/_edit_use_anchors_ = true
 
-[node name="ShowFPSCheckBox" type="CheckBox" parent="SettingsMenu/Control/ShowFPSLabel" unique_id=870540957]
+[node name="ShowFPSCheckBox" type="CheckBox" parent="UI/SettingsMenu/Panel/TabContainer/Display/ShowFPSLabel" unique_id=866383731]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.16568047
@@ -944,59 +801,335 @@ anchor_right = 0.16568047
 anchor_bottom = 0.06382979
 offset_left = 204.0
 offset_top = -11.0
-offset_right = 228.0
+offset_right = 236.0
 offset_bottom = 52.0
 focus_neighbor_top = NodePath("../../VSyncLabel/VSyncCheckBox")
 focus_neighbor_bottom = NodePath("../../ResolutionLabel/ResolutionOptionButton")
+focus_next = NodePath(".")
 theme_override_font_sizes/font_size = 40
 text = "
 
 "
 metadata/_edit_use_anchors_ = true
 
-[node name="BackButton" type="Button" parent="SettingsMenu/Control" unique_id=1089192318]
-layout_mode = 0
-offset_left = 8.000006
-offset_top = 552.0
-offset_right = 456.0
-offset_bottom = 672.0
-scale = Vector2(0.8400012, 0.7599994)
-focus_neighbor_top = NodePath("../FPSLabel/FPSOptionButton")
-focus_neighbor_right = NodePath("../ApplyButton")
+[node name="Controls" type="Control" parent="UI/SettingsMenu/Panel/TabContainer" unique_id=468683127]
+visible = false
+layout_mode = 2
+focus_neighbor_left = NodePath("../Display")
+metadata/_tab_index = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="UI/SettingsMenu" unique_id=1436819544]
+stream = ExtResource("51_wwsfe")
+volume_db = -40.0
+
+[node name="BackButton" type="Button" parent="UI/SettingsMenu" unique_id=823538777]
+offset_left = -40.0
+offset_top = 619.0
+offset_right = 407.99997
+offset_bottom = 739.0
+scale = Vector2(0.93444926, 0.8426638)
+focus_neighbor_top = NodePath(".")
+focus_neighbor_bottom = NodePath("../SettingsButton")
+focus_next = NodePath("../SettingsButton")
+focus_previous = NodePath("../QuitButton")
 theme_override_font_sizes/font_size = 40
-text = "Back
-"
-metadata/_edit_use_anchors_ = true
+text = "Back"
+icon = SubResource("AtlasTexture_v1uvm")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
-[node name="ApplyButton" type="Button" parent="SettingsMenu/Control" unique_id=1827563534]
-layout_mode = 0
-offset_left = 759.99994
-offset_top = 552.0
-offset_right = 1208.0
-offset_bottom = 672.0
-scale = Vector2(0.8400012, 0.7599994)
-focus_neighbor_left = NodePath("../BackButton")
-focus_neighbor_top = NodePath("../FPSLabel/FPSOptionButton")
+[node name="ApplyButton" type="Button" parent="UI/SettingsMenu" unique_id=288142028]
+offset_left = 888.0
+offset_top = 615.0
+offset_right = 1336.0
+offset_bottom = 735.0
+scale = Vector2(0.93444926, 0.8426638)
+focus_neighbor_top = NodePath(".")
+focus_neighbor_bottom = NodePath("../SettingsButton")
+focus_next = NodePath("../SettingsButton")
+focus_previous = NodePath("../QuitButton")
 theme_override_font_sizes/font_size = 40
-text = "Apply
+text = "Apply"
+icon = SubResource("AtlasTexture_v1uvm")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
-"
-metadata/_edit_use_anchors_ = true
+[node name="Objects" type="Node" parent="." unique_id=179495125]
 
-[node name="ColorRect" type="ColorRect" parent="SettingsMenu" unique_id=1211899311]
-z_index = -1
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(28.750067, 16.369858)
-color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
+[node name="Enemies" type="Node" parent="Objects" unique_id=913842636]
 
-[connection signal="body_entered" from="Enemy/CharacterBody3D/Area3D" to="Enemy" method="OnBodyEntered"]
-[connection signal="body_entered" from="Enemy2/CharacterBody3D/Area3D" to="Enemy2" method="OnBodyEntered"]
-[connection signal="body_exited" from="Ballista/BallistaTopElementLow/StaticBody3D/StationPort/Area3D" to="Ballista" method="OnInputBodyEntered"]
-[connection signal="area_entered" from="ItemDropOffNode/Area3D" to="TutorialManager" method="OnDropOffAreaEntered"]
-[connection signal="body_entered" from="WeaponDropOffNode/Area3D" to="TutorialManager" method="OnWeaponDropOffBodyEntered"]
-[connection signal="pressed" from="PauseMenu/ResumeButton" to="PauseMenu" method="OnResumePressed"]
-[connection signal="pressed" from="PauseMenu/SettingsButton" to="PauseMenu" method="OnSettingsPressed"]
-[connection signal="pressed" from="PauseMenu/QuitButton" to="PauseMenu" method="OnMainMenuPressed"]
-[connection signal="pressed" from="SettingsMenu/Control/BackButton" to="SettingsMenu" method="OnBackPressed"]
-[connection signal="pressed" from="SettingsMenu/Control/ApplyButton" to="SettingsMenu" method="OnApplyPressed"]
+[node name="Enemy" type="Node3D" parent="Objects/Enemies" unique_id=537096316 groups=["Enemy"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 203.90479, 0.8567555, -16.62267)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="Objects/Enemies/Enemy" unique_id=1415702169 node_paths=PackedStringArray("mesh", "collisionArea") groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 235
+script = ExtResource("16_18x7b")
+enemyData = ExtResource("20_0hjnf")
+mesh = NodePath("MeshInstance3D")
+collisionArea = NodePath("Area3D")
+isStationary = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/Enemies/Enemy/CharacterBody3D" unique_id=2009392079]
+material_override = ExtResource("21_bi4s5")
+mesh = ExtResource("21_q5ijt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Enemies/Enemy/CharacterBody3D" unique_id=124164956]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21118164, 0)
+shape = SubResource("CylinderShape3D_7vc5l")
+
+[node name="Area3D" type="Area3D" parent="Objects/Enemies/Enemy/CharacterBody3D" unique_id=14099540]
+transform = Transform3D(1.4373442, 0, 0, 0, 1, 0, 0, 0, 1.492034, 0, 0, 0)
+collision_layer = 4
+collision_mask = 235
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Enemies/Enemy/CharacterBody3D/Area3D" unique_id=695734233]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77124023, 0)
+shape = SubResource("CylinderShape3D_v1uvm")
+
+[node name="Enemy2" type="Node3D" parent="Objects/Enemies" unique_id=473864975 groups=["Enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 311.4813, 0.79634786, -1.1011009)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="Objects/Enemies/Enemy2" unique_id=1020805358 node_paths=PackedStringArray("mesh", "collisionArea") groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 235
+script = ExtResource("16_18x7b")
+enemyData = ExtResource("24_e4hrd")
+mesh = NodePath("MeshInstance3D")
+collisionArea = NodePath("Area3D")
+isStationary = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/Enemies/Enemy2/CharacterBody3D" unique_id=647608748]
+material_override = ExtResource("24_xi6p3")
+mesh = ExtResource("24_ujnhc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Enemies/Enemy2/CharacterBody3D" unique_id=589344257]
+shape = SubResource("CylinderShape3D_7vc5l")
+
+[node name="Area3D" type="Area3D" parent="Objects/Enemies/Enemy2/CharacterBody3D" unique_id=445943001]
+collision_layer = 4
+collision_mask = 235
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Enemies/Enemy2/CharacterBody3D/Area3D" unique_id=1375004708]
+shape = SubResource("CylinderShape3D_v1uvm")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Objects/Enemies/Enemy2/CharacterBody3D/Area3D" unique_id=1904624980]
+shape = SubResource("CylinderShape3D_v1uvm")
+
+[node name="Items" type="Node" parent="Objects" unique_id=1204651498]
+
+[node name="Copper_Ore" parent="Objects/Items" unique_id=2110523039 instance=ExtResource("18_j4y01")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.98353, 0.015, 1.4931006)
+
+[node name="Copper_Ore2" parent="Objects/Items" unique_id=60489756 instance=ExtResource("18_j4y01")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.20228, 0.015, -0.6208987)
+
+[node name="Copper_Ore3" parent="Objects/Items" unique_id=608290316 instance=ExtResource("18_j4y01")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.54785, 0.015, 1.4011874)
+
+[node name="Copper_Ore4" parent="Objects/Items" unique_id=1159909176 instance=ExtResource("18_j4y01")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.000893, 0.015, -0.20321798)
+
+[node name="Copper_Ore5" parent="Objects/Items" unique_id=1690293563 instance=ExtResource("18_j4y01")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.360023, 0.015, 1.7293581)
+
+[node name="Copper_Ore6" parent="Objects/Items" unique_id=754020436 instance=ExtResource("18_j4y01")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 308.1498, 0.015, -20.248615)
+
+[node name="Copper_Ore7" parent="Objects/Items" unique_id=300861122 instance=ExtResource("18_j4y01")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 308.93106, 0.015, -22.362614)
+
+[node name="Copper_Ore8" parent="Objects/Items" unique_id=224734069 instance=ExtResource("18_j4y01")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 310.5855, 0.015, -20.340527)
+
+[node name="Copper_Ore9" parent="Objects/Items" unique_id=502607709 instance=ExtResource("18_j4y01")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 311.13245, 0.015, -21.944931)
+
+[node name="Copper_Ore10" parent="Objects/Items" unique_id=681565344 instance=ExtResource("18_j4y01")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 306.59854, 0.015, -22.381762)
+
+[node name="IronIngot2" parent="Objects/Items" unique_id=662424415 instance=ExtResource("21_dn1de")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 59.843506, 0, -33.53791)
+
+[node name="IronIngot4" parent="Objects/Items" unique_id=190457992 instance=ExtResource("21_dn1de")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 181.23647, 0, -17.322931)
+
+[node name="IronIngot3" parent="Objects/Items" unique_id=982635605 instance=ExtResource("21_dn1de")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 63.255432, 0, -32.173138)
+
+[node name="Stations" type="Node" parent="Objects" unique_id=2146589507]
+
+[node name="Forge" parent="Objects/Stations" unique_id=994045895 instance=ExtResource("11_tfuon")]
+transform = Transform3D(-0.5, 0, 7.54979e-08, 0, 0.5, 0, -7.54979e-08, 0, -0.5, -68.171585, 0, -18.229565)
+controllerButtonTexture = ExtResource("6_cgb57")
+
+[node name="Anvil" parent="Objects/Stations" unique_id=1158721071 instance=ExtResource("11_m6ekv")]
+transform = Transform3D(1.1324686e-07, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.1324686e-07, 77.221756, 0, -18.469309)
+controllerButtonTexture = ExtResource("6_cgb57")
+recipes = Array[Object]([ExtResource("7_0hjnf"), SubResource("Resource_bi4s5")])
+
+[node name="Grindstone" parent="Objects/Stations" unique_id=1536885273 instance=ExtResource("10_ei5ly")]
+transform = Transform3D(-6.556708e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.556708e-08, 60.455463, 0, -3.0653305)
+controllerButtonTexture = ExtResource("6_cgb57")
+
+[node name="Anvil2" parent="Objects/Stations" unique_id=688992065 instance=ExtResource("11_m6ekv")]
+transform = Transform3D(1.1324686e-07, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.1324686e-07, 331.5334, -3.8146973e-06, -17.878016)
+controllerButtonTexture = ExtResource("6_cgb57")
+
+[node name="Grindstone2" parent="Objects/Stations" unique_id=838819154 instance=ExtResource("10_ei5ly")]
+transform = Transform3D(-6.556708e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.556708e-08, 324.74796, -3.8146973e-06, -2.517385)
+controllerButtonTexture = ExtResource("6_cgb57")
+
+[node name="Forge2" parent="Objects/Stations" unique_id=414176730 instance=ExtResource("11_tfuon")]
+transform = Transform3D(-0.5, 0, 7.54979e-08, 0, 0.5, 0, -7.54979e-08, 0, -0.5, 319.52032, 0, -28.48187)
+controllerButtonTexture = ExtResource("6_cgb57")
+
+[node name="Ballista" type="Node3D" parent="Objects/Stations" unique_id=1571022317 node_paths=PackedStringArray("arrowSpawnPosition", "ballistaHead", "ballistaBarrel", "inputNode", "label", "audio") groups=["Ballista"]]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 185.16833, 0.0056490004, -16.676088)
+script = ExtResource("29_0a2r4")
+arrowSpawnPosition = NodePath("BallistaTopElementLow/BallistaBarrel/ArrowSpawnLocation")
+ballistaHead = NodePath("BallistaTopElementLow")
+crossbowScene = ExtResource("28_y74ua")
+ballistaBarrel = NodePath("BallistaTopElementLow/BallistaBarrel")
+arrowScene = ExtResource("30_mcs8j")
+inputNode = NodePath("BallistaTopElementLow/StaticBody3D/StationPort")
+arrowCount = 0
+label = NodePath("CanvasLayer/Node3D/Label3D")
+audio = NodePath("AudioStreamPlayer3D")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Objects/Stations/Ballista" unique_id=2121636395]
+
+[node name="Node3D" type="Node3D" parent="Objects/Stations/Ballista/CanvasLayer" unique_id=1037465994]
+transform = Transform3D(-0.10386822, 0, 0.49802622, 0, 3.4232113, 0, -4.7299213, 0, -0.010936562, 0, 3.545107, 0)
+
+[node name="Label3D" type="Label3D" parent="Objects/Stations/Ballista/CanvasLayer/Node3D" unique_id=1012313719]
+visible = false
+text = "There"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Objects/Stations/Ballista" unique_id=134283511]
+stream = SubResource("AudioStreamRandomizer_sl1qq")
+volume_db = -40.0
+max_db = -24.0
+max_polyphony = 20
+bus = &"SFX"
+
+[node name="BallistaBottomElementLow" type="MeshInstance3D" parent="Objects/Stations/Ballista" unique_id=1196528612]
+transform = Transform3D(0.71428573, 0, 0, 0, 0.71428573, 0, 0, 0, 0.71428573, 0, 0, 0)
+material_override = ExtResource("41_47rdh")
+mesh = ExtResource("42_4c805")
+
+[node name="BallistaTopElementLow" type="MeshInstance3D" parent="Objects/Stations/Ballista" unique_id=369042352]
+transform = Transform3D(0.71428573, 0, 0, 0, 0.71428573, 0, 0, 0, 0.71428573, 0, 0, 0)
+material_override = ExtResource("41_47rdh")
+mesh = ExtResource("43_podgh")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Objects/Stations/Ballista/BallistaTopElementLow" unique_id=440704571]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0, 0)
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Stations/Ballista/BallistaTopElementLow/StaticBody3D" unique_id=1945830702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9050009, 0)
+shape = SubResource("CapsuleShape3D_e7812")
+
+[node name="StationPort" type="Node3D" parent="Objects/Stations/Ballista/BallistaTopElementLow/StaticBody3D" unique_id=750325492]
+transform = Transform3D(62.81827, 0, 0, 0, 85.7798, 0, 0, 0, 34.782322, -0.19229126, 0.54238105, 0.27918434)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/Stations/Ballista/BallistaTopElementLow/StaticBody3D/StationPort" unique_id=812032035]
+transform = Transform3D(0.18727133, 0, 0, 0, 1, 0, 0, 0, 0.1909036, 0, 0, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_vl1yp")
+transparency = 1.0
+skeleton = NodePath("")
+
+[node name="Area3D" type="Area3D" parent="Objects/Stations/Ballista/BallistaTopElementLow/StaticBody3D/StationPort" unique_id=1490204633]
+transform = Transform3D(0.14721856, 0, 0, 0, -0.07687317, 0, 0, 0, 0.30185395, 0.0036346912, 0, -0.008695453)
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Stations/Ballista/BallistaTopElementLow/StaticBody3D/StationPort/Area3D" unique_id=280831638]
+transform = Transform3D(0.17999986, 0, 0, 0, 0.9999873, 0, 0, 0, 0.18999994, 0.0013348593, 0, -0.006333612)
+shape = SubResource("BoxShape3D_vl1yp")
+
+[node name="BallistaBarrel" type="Node3D" parent="Objects/Stations/Ballista/BallistaTopElementLow" unique_id=309150814]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0, 0)
+
+[node name="ArrowSpawnLocation" type="Node3D" parent="Objects/Stations/Ballista/BallistaTopElementLow/BallistaBarrel" unique_id=1309432331]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.8982694, 0.7900001, 1.2700133, -0.048)
+visible = false
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Objects/Stations/Ballista/BallistaTopElementLow/BallistaBarrel/ArrowSpawnLocation" unique_id=1444911399]
+transform = Transform3D(1, 0, 0, 0, 0.33043814, 0, 0, 0, 0.2738446, -0.18170571, -0.027641058, 0.07790413)
+mesh = SubResource("BoxMesh_m1e06")
+skeleton = NodePath("../../../StaticBody3D")
+
+[node name="LevelObjects" type="Node" parent="." unique_id=604129612]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="LevelObjects" unique_id=1914045173]
+transform = Transform3D(20, 0, 0, 0, 102, 0, 0, 0, 30, -62.754032, -0.028385594, -17.252653)
+material_override = SubResource("StandardMaterial3D_j4y01")
+mesh = SubResource("PlaneMesh_oyacv")
+skeleton = NodePath("../../CollisionShape3D")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="LevelObjects" unique_id=1977020187]
+transform = Transform3D(20, 0, 0, 0, 145.082, 0, 0, 0, 30, 64.9805, -0.028385714, -17.134506)
+material_override = SubResource("StandardMaterial3D_f0oxr")
+mesh = SubResource("PlaneMesh_oyacv")
+skeleton = NodePath("../../CollisionShape3D")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="LevelObjects" unique_id=1425927920]
+transform = Transform3D(20, 0, 0, 0, 145.082, 0, 0, 0, 30, 193.2207, -0.028385594, -16.541855)
+material_override = SubResource("StandardMaterial3D_dn1de")
+mesh = SubResource("PlaneMesh_oyacv")
+skeleton = NodePath("../../CollisionShape3D")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="LevelObjects" unique_id=2060831325]
+transform = Transform3D(20, 0, 0, 0, 145.082, 0, 0, 0, 30, 320.2782, -0.028385594, -16.541859)
+material_override = SubResource("StandardMaterial3D_3s0s1")
+mesh = SubResource("PlaneMesh_oyacv")
+skeleton = NodePath("../../CollisionShape3D")
+
+[node name="ItemDropOffNode" type="Node3D" parent="LevelObjects" unique_id=1176537791]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.3175284, -52.788494, 2.162654, 8.736044)
+
+[node name="Area3D" type="Area3D" parent="LevelObjects/ItemDropOffNode" unique_id=2007190283]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 5.4, 0, 0, 0.31873178)
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/ItemDropOffNode/Area3D" unique_id=1957568453]
+shape = SubResource("BoxShape3D_dn1de")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelObjects/ItemDropOffNode" unique_id=1883276326]
+transform = Transform3D(20, 0, 0, 0, 0.09232774, 0, 0, 0, 5.4025326, 0, -2.1711469, 0.28949738)
+material_override = SubResource("StandardMaterial3D_wkaxc")
+transparency = 0.15
+mesh = SubResource("BoxMesh_y74ua")
+
+[node name="WeaponDropOffNode" type="Node3D" parent="LevelObjects" unique_id=476378771]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.3175284, 55.00113, 2.162654, 8.790767)
+
+[node name="Area3D" type="Area3D" parent="LevelObjects/WeaponDropOffNode" unique_id=721241301]
+transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 5.4, 0, 0, 0.1792202)
+collision_mask = 24
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/WeaponDropOffNode/Area3D" unique_id=975492336]
+shape = SubResource("BoxShape3D_dn1de")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelObjects/WeaponDropOffNode" unique_id=578781272]
+transform = Transform3D(20, 0, 0, 0, 0.09232774, 0, 0, 0, 5.4025326, 0, -2.1711469, 0.28949738)
+material_override = SubResource("StandardMaterial3D_wkaxc")
+transparency = 0.15
+mesh = SubResource("BoxMesh_y74ua")
+
+[connection signal="pressed" from="UI/PauseMenu/ResumeButton" to="UI/PauseMenu" method="OnResumePressed"]
+[connection signal="pressed" from="UI/PauseMenu/SettingsButton" to="UI/PauseMenu" method="OnSettingsPressed"]
+[connection signal="pressed" from="UI/PauseMenu/QuitButton" to="UI/PauseMenu" method="OnMainMenuPressed"]
+[connection signal="pressed" from="UI/SettingsMenu/BackButton" to="UI/SettingsMenu" method="OnBackPressed"]
+[connection signal="pressed" from="UI/SettingsMenu/ApplyButton" to="UI/SettingsMenu" method="OnApplyPressed"]
+[connection signal="body_entered" from="Objects/Enemies/Enemy/CharacterBody3D/Area3D" to="Objects/Enemies/Enemy" method="OnBodyEntered"]
+[connection signal="body_entered" from="Objects/Enemies/Enemy2/CharacterBody3D/Area3D" to="Objects/Enemies/Enemy2" method="OnBodyEntered"]
+[connection signal="body_exited" from="Objects/Stations/Ballista/BallistaTopElementLow/StaticBody3D/StationPort/Area3D" to="Objects/Stations/Ballista" method="OnInputBodyEntered"]
+[connection signal="area_entered" from="LevelObjects/ItemDropOffNode/Area3D" to="TutorialManager" method="OnDropOffAreaEntered"]
+[connection signal="body_entered" from="LevelObjects/WeaponDropOffNode/Area3D" to="TutorialManager" method="OnWeaponDropOffBodyEntered"]

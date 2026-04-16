@@ -124,6 +124,7 @@ transform = Transform3D(-1.24372e-07, -2, -3.4641016, -8.742278e-08, 3.4641016, 
 texture = SubResource("ViewportTexture_0gpkw")
 
 [node name="SubViewport" type="SubViewport" parent="Sprite3D2" unique_id=1508301261]
+transparent_bg = true
 size = Vector2i(41, 40)
 
 [node name="TextureRect" type="TextureRect" parent="Sprite3D2/SubViewport" unique_id=1103403462]
