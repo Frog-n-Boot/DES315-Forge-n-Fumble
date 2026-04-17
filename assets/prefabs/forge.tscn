@@ -130,7 +130,7 @@ transparency = 1.0
 skeleton = NodePath("")
 
 [node name="Area3D" type="Area3D" parent="InputPort" unique_id=1490204633]
-transform = Transform3D(1.8234533, 0, 0, 0, 1, 0, 0, 0, 1.9250902, 0, 0, 0)
+transform = Transform3D(2, 0, 0, 0, 1.9999996, 0, 0, 0, 2, 0, 0, 0.021663403)
 collision_layer = 32
 collision_mask = 2
 
