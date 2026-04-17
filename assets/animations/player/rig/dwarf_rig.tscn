@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dhpc1tieo3k73"]
 
-[ext_resource type="PackedScene" uid="uid://u8cm8ijserkw" path="res://assets/animations/rig/DwarfRig.blend" id="1_skt1t"]
+[ext_resource type="PackedScene" uid="uid://u8cm8ijserkw" path="res://assets/animations/player/rig/DwarfRig.blend" id="1_skt1t"]
 
 [node name="DwarfRig" unique_id=1931430618 instance=ExtResource("1_skt1t")]
 

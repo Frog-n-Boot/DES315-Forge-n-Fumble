@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://u8cm8ijserkw"
-path="res://.godot/imported/DwarfRig.blend-d082ca335fdae77627cf2dfe2104ba1b.scn"
+path="res://.godot/imported/DwarfRig.blend-dc910da9b27cb543cc267645f6ffc903.scn"
 
 [deps]
 
-source_file="res://assets/animations/rig/DwarfRig.blend"
-dest_files=["res://.godot/imported/DwarfRig.blend-d082ca335fdae77627cf2dfe2104ba1b.scn"]
+source_file="res://assets/animations/player/rig/DwarfRig.blend"
+dest_files=["res://.godot/imported/DwarfRig.blend-dc910da9b27cb543cc267645f6ffc903.scn"]
 
 [params]
 
@@ -41,7 +41,7 @@ _subresources={
 "animations": {
 "ArmatureAction": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/animations/Walk.anim",
+"save_to_file/fallback_path": "res://assets/animations/player/Walk.anim",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://c6e3ur5qlirsf",
 "settings/loop_mode": 2,
@@ -2097,7 +2097,7 @@ _subresources={
 },
 "ArmatureAction_001": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/animations/Death.anim",
+"save_to_file/fallback_path": "res://assets/animations/player/Death.anim",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://81noijdt6l2d",
 "settings/loop_mode": 0,
@@ -4153,7 +4153,7 @@ _subresources={
 },
 "ArmatureAction_002": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/animations/StartSpin.anim",
+"save_to_file/fallback_path": "res://assets/animations/player/StartSpin.anim",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://6lke5jxsk76m",
 "settings/loop_mode": 0,
@@ -6209,7 +6209,7 @@ _subresources={
 },
 "ArmatureAction_003": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/animations/Swing.anim",
+"save_to_file/fallback_path": "res://assets/animations/player/Swing.anim",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://b6rbrln0mdl13",
 "settings/loop_mode": 0,
@@ -8265,7 +8265,7 @@ _subresources={
 },
 "ArmatureAction_004": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/animations/Idle.anim",
+"save_to_file/fallback_path": "res://assets/animations/player/Idle.anim",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://bwgrr0yo0tmr8",
 "settings/loop_mode": 1,
@@ -10321,7 +10321,7 @@ _subresources={
 },
 "ArmatureAction_005": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/animations/Spin.anim",
+"save_to_file/fallback_path": "res://assets/animations/player/Spin.anim",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://cfgp5euykl3wx",
 "settings/loop_mode": 1,
@@ -12377,7 +12377,7 @@ _subresources={
 },
 "ArmatureAction_006": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/animations/Dazed.anim",
+"save_to_file/fallback_path": "res://assets/animations/player/Dazed.anim",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://dvf1hgk8wqcvr",
 "settings/loop_mode": 0,
@@ -14433,7 +14433,7 @@ _subresources={
 },
 "ArmatureAction_008": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/animations/GetUp.anim",
+"save_to_file/fallback_path": "res://assets/animations/player/GetUp.anim",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://luow5cp3dqxd",
 "settings/loop_mode": 0,

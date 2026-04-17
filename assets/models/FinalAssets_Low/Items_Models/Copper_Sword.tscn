@@ -18,7 +18,7 @@ region = Rect2(557, 29, 62, 192)
 size = Vector3(5.340587, 1.6914063, 8.853933)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kpo4t"]
-size = Vector3(1.742096, 1.691742, 4.7293167)
+size = Vector3(3.1635513, 2.4126205, 15.1568165)
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_hbd7i"]
 albedo_texture = ExtResource("2_w7hbi")
@@ -57,7 +57,7 @@ collision_layer = 24
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/Area3D" unique_id=1446767842]
-transform = Transform3D(0.62693906, 0, 0, 0, 1.6399509, 0, 0, 0, 0.18563555, 0.004778548, 1.1241063, -0.01556235)
+transform = Transform3D(0.62693906, 0, 0, 0, 1.6399052, 0, 0, 0, 0.18562984, -0.14538176, 1.7152101, 0.2324812)
 shape = SubResource("BoxShape3D_kpo4t")
 
 [node name="SwordFirstLow" type="MeshInstance3D" parent="." unique_id=31124853]
