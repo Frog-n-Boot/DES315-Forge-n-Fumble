@@ -239,7 +239,6 @@ transform = Transform3D(0.5850001, 0, 0.81103325, 0, 1, 0, -0.81103325, 0, 0.585
 
 [node name="Copper_Ore" parent="NavigationRegion3D" unique_id=2110523039 instance=ExtResource("8_kxyth")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3817103, 0.014982998, 5.134077)
-itemPromptTexture = null
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=686138009]
 transform = Transform3D(0.6920928, 0.008213635, 0.7217619, -0.72180855, 0.007875493, 0.69204795, -5.793235e-10, -0.99993527, 0.011379243, -0.65869904, 19.63105, -0.28507435)
@@ -1004,7 +1003,6 @@ healthPackObject = ExtResource("23_gjpm3")
 
 [node name="IronOre" parent="." unique_id=904125942 instance=ExtResource("20_0qimb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.403659, 4.7683716e-07, 5.3548493)
-itemPromptTexture = null
 
 [node name="LevelManager" type="Node" parent="." unique_id=100606422]
 script = ExtResource("40_8cp6k")

@@ -750,6 +750,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			return;
 		}
 
+		pickable.PickUp();
 		pickable.CallDeferred("reparent", leftHand);
 
 		GetTree().CreateTimer(0.1f).Timeout += () =>
@@ -773,6 +774,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		nearbyWeapon.HideWeaponPrompt();
 
 		UpdateAnimationTreacks(nearbyWeapon.Name);
+		nearbyWeapon.isCarried = true;
 		nearbyWeapon.CallDeferred("reparent", rightHand);
 		GetTree().CreateTimer(0.1f).Timeout += () =>
 		{
@@ -1021,9 +1023,10 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 					bow.sourceBallista = null;
 				}
 			}
+			currentWeapon.isCarried = false;
 			currentWeapon.Broke -= OnSwordBroke;
 			currentWeapon = null;
-
+			
 			GetTree().CreateTimer(0.1f).Timeout += () =>
 			{
 				areaPickup.SetDeferred("monitoring", true);
@@ -1045,6 +1048,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 				areaPickup.SetDeferred("monitoring", true);
 			};
 			pickable.SetDeferred("rotation", Vector3.Zero);
+			pickable.isCarried = false;
 			return;
 		}
 
