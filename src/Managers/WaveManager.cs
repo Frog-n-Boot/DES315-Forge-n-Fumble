@@ -126,18 +126,27 @@ public partial class WaveManager : Node
 
 		if (spawnPositions == null || spawnPositions.Length == 0)
 		{
-			GD.Print("Spawn positions not set, attempting to auto-find...");
+			GD.PrintErr("Spawn positions not set, attempting to auto-find...");
 			FindSpawnPositions();
 		}
 
 		if (normalEnemyData == null)
+		{
 			normalEnemyData = CreateFallbackData("NormalEnemy", 10, 1, 5.0f, Vector3.One);
+			normalEnemyData.enemyType = EnemyController.EnemyType.Normal;
+		}
 
 		if (fastEnemyData == null)
+		{
 			fastEnemyData = CreateFallbackData("FastEnemy", 6, 1, 9.0f, Vector3.One);
+			fastEnemyData.enemyType = EnemyController.EnemyType.Fast;
+		}
 
 		if (strongEnemyData == null)
+		{
 			strongEnemyData = CreateFallbackData("StrongEnemy", 25, 3, 3.0f, new Vector3(2, 2, 2));
+			strongEnemyData.enemyType = EnemyController.EnemyType.Strong;
+		}
 	}
 
 	private EnemyData CreateFallbackData(string name, int health, int damage, float speed, Vector3 scale)

@@ -3,6 +3,7 @@ using Godot;
 [GlobalClass]
 public partial class EnemyData : Resource
 {
+    [ExportCategory("Data Type")]
     [ExportGroup("Identity")]
     [Export] public string   enemyName      = "Enemy";
     [Export] public int      maxHealth      = 10;
@@ -14,6 +15,8 @@ public partial class EnemyData : Resource
     [Export] public float    lootDropChance = 0.5f;
     [Export] public Material enemyMat;
     [Export] public Mesh     enemyMesh;
+    [Export] public Skin    enemySkin;
+    [Export] public EnemyController.EnemyType enemyType = EnemyController.EnemyType.Normal;
 
     [ExportGroup("Scene References")]
     [Export] public float collisionCooldown = 0.01f;
@@ -33,8 +36,8 @@ public partial class EnemyData : Resource
     // Evaluated before attack — survival first
     [Export] public Godot.Collections.Array<EnemyBehaviourData> defenceBehaviours = new();
 
-    [ExportSubgroup("Misc Behaviours")]
+    [ExportSubgroup("Movement Behaviours")]
     // Fallback behaviours e.g. MoveToForge, Patrol
     // Evaluated last when nothing else activates
-    [Export] public Godot.Collections.Array<EnemyBehaviourData> miscBehaviours = new();
+    [Export] public Godot.Collections.Array<EnemyBehaviourData> movementBehaviour = new();
 }

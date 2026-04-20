@@ -25,7 +25,7 @@ public partial class AIBrain : Node
             return;
 
         // Misc is the fallback — pathing, idle, etc.
-        if (TryActivateCategory(_controller.enemyData.miscBehaviours, healthPercent))
+        if (TryActivateCategory(_controller.enemyData.movementBehaviour, healthPercent))
             return;
 
         // Absolutely nothing activated — hard idle
