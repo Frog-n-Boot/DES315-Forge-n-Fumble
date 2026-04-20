@@ -14,6 +14,7 @@ public partial class EnemyData : Resource
     [Export] public float    lootDropChance = 0.5f;
     [Export] public Material enemyMat;
     [Export] public Mesh     enemyMesh;
+    [Export] public AudioStream deathSound;
 
     [ExportGroup("Scene References")]
     [Export] public float collisionCooldown = 0.01f;

@@ -24,6 +24,7 @@ public partial class EnemyController : CharacterBody3D
     [Export] public Area3D collisionArea;
     [Export] public NavigationAgent3D navigationAgent;
     [Export] private bool isStationary = false;
+    [Export] private AudioStreamPlayer3D audioStreamPlayer;
 
 	#endregion
 
@@ -635,7 +636,8 @@ public partial class EnemyController : CharacterBody3D
     #region Health Events
     private void OnHealthDepleted()
     {
-        EmitSignal(SignalName.Died, this, GlobalPosition);     
+        EmitSignal(SignalName.Died, this, GlobalPosition);    
+        audioStreamPlayer.Stream = enemyData.deathSound;
         QueueFree();
     }
     #endregion

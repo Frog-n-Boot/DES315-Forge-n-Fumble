@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://dfgcclikd3kvh" path="res://src/Enemy/AI/EnemyBehaviourData.cs" id="1_srwom"]
 [ext_resource type="ArrayMesh" uid="uid://bmq26ged3l0nq" path="res://assets/models/FinalAssets_Low/Character_Models/Goblin_low.obj" id="2_pfp6m"]
 [ext_resource type="Script" uid="uid://cafetq1ji4h5b" path="res://src/Enemy/AI/AttackForge.cs" id="2_srwom"]
+[ext_resource type="AudioStream" uid="uid://di7wor1ufp2cs" path="res://assets/Sounds/SFX/GoblinDeath.wav" id="3_pilw3"]
 [ext_resource type="Script" uid="uid://dcjcfda4rr8x3" path="res://src/Enemy/AI/MoveToForge.cs" id="5_srwom"]
 
 [sub_resource type="Resource" id="Resource_pilw3"]
@@ -26,6 +27,7 @@ scale = Vector3(2, 2, 2)
 lootDropChance = 100.0
 enemyMat = ExtResource("1_cj5mm")
 enemyMesh = ExtResource("2_pfp6m")
+deathSound = ExtResource("3_pilw3")
 attackBehaviours = Array[ExtResource("1_srwom")]([SubResource("Resource_pilw3")])
 miscBehaviours = Array[ExtResource("1_srwom")]([SubResource("Resource_t82my")])
 metadata/_custom_type_script = "uid://bf02wgjk36psn"

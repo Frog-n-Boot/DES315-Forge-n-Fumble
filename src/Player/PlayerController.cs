@@ -943,38 +943,48 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 		if(child is BaseWeapon weapon)
 		{
-			weapon.SetEnemyCollisionEnabled(false);
+			
+			if(weapon == currentWeapon)
+			{
+				if(weapon is Sword sword)
+				{
+					spinAttack?.SetWeapon(null);
+					if(weapon.IsConnected(Sword.SignalName.CheckDurability, Callable.From(OnSwordDurabilityChecked)))
+						weapon.Disconnect(Sword.SignalName.CheckDurability, Callable.From(OnSwordDurabilityChecked));
+				}
+				else if(weapon is Crossbow bow) {
+					bow.shootingDirectionMesh.Visible = false;
 
-			weapon.CallDeferred("reparent", GetTree().Root);
+					if(bow.sourceBallista != null)
+					{
+						bow.sourceBallista.isDetached = false;
+						bow.sourceBallista.ReattachHead(bow);
+						bow.sourceBallista = null;
+					}
+				}
+			
+				if(weapon.IsConnected(BaseWeapon.SignalName.Broke, Callable.From(OnSwordBroke)))
+					weapon.Disconnect(BaseWeapon.SignalName.Broke, Callable.From(OnSwordBroke));
+			
+				currentWeapon = null;
+			}
+
+			weapon.SetEnemyCollisionEnabled(false);
+			weapon.CallDeferred("reparent", GetTree().CurrentScene);
 			weapon.SetDeferred("global_position", dropPosition);
 			weapon.SetDeferred("rotation", Vector3.Zero);
-
-			if(weapon is Sword sword){
-				//sword.SetHitboxEnabled(false);
-				spinAttack.SetWeapon(null);
-				sword.CheckDurability -= OnSwordDurabilityChecked;
-			}
-			else if(weapon is Crossbow bow) {
-				bow.shootingDirectionMesh.Visible = false;
-
-				if(bow.sourceBallista != null)
-				{
-					bow.sourceBallista.isDetached = false;
-					bow.sourceBallista.ReattachHead(bow);
-					bow.sourceBallista = null;
-				}
-			}
-			currentWeapon.Broke -= OnSwordBroke;
-			currentWeapon = null;
 
 			GetTree().CreateTimer(0.1f).Timeout += () =>
 			{
 				areaPickup.SetDeferred("monitoring", true);
 
-				if(IsInstanceValid(weapon)) weapon.ShowWeaponPrompt();
+				if(IsInstanceValid(weapon)){
+					weapon.ShowWeaponPrompt();
+					if(weapon.pickUpArea != null)
+						weapon.pickUpArea.Monitoring = true;
+				}
 			};
-				
-			
+					
 			return;
 		}
 

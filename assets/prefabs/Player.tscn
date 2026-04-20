@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Sword.tscn" id="3_8d03m"]
 [ext_resource type="Texture2D" uid="uid://fywbkplmkbgs" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/Dwarf_low_BaseCol.tga" id="3_v0ggv"]
 [ext_resource type="Texture2D" uid="uid://bx0rnncaa27mi" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/Dwarf_low_ORM.tga" id="4_jnlb4"]
-[ext_resource type="ArrayMesh" uid="uid://dewjvcdn4tcwe" path="res://assets/models/FinalAssets_Low/Character_Models/Dwarf_low.obj" id="4_t0fpx"]
+[ext_resource type="ArrayMesh" uid="uid://dewjvcdn4tcwe" path="res://assets/models/FinalAssets_Low/Character_Models/dwarf_low.obj" id="4_t0fpx"]
 [ext_resource type="Texture2D" uid="uid://c7ffbeee7twxq" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/DwarfGreen_low_BaseCol.tga" id="5_ag2w6"]
 [ext_resource type="Texture2D" uid="uid://bgk03fcoiqv1l" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/Dwarf_low_Normal.tga" id="5_bw8qq"]
 [ext_resource type="Texture2D" uid="uid://bojhtl0pjp5on" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/DwarfPurple_low_BaseCol.tga" id="6_so67x"]
