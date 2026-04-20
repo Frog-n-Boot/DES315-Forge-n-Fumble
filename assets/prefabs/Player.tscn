@@ -122,6 +122,7 @@ deathAudio = NodePath("Death")
 rightHand = NodePath("Armature/Skeleton3D/RightHand")
 leftHand = NodePath("Armature/Skeleton3D/LeftHand")
 areaPickup = NodePath("Area3D")
+playerSpawnTimer = 2.0
 playerMaterialTextures = Array[Texture2D]([ExtResource("3_v0ggv"), ExtResource("5_ag2w6"), ExtResource("8_ob8sk"), ExtResource("6_so67x")])
 
 [node name="Armature" type="Node3D" parent="." unique_id=1822323546]

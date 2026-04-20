@@ -41,7 +41,7 @@ _subresources={
 "animations": {
 "ArmatureAction": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/animations/player/Walk.anim",
+"save_to_file/fallback_path": "res://assets/animations/player/PlayerWalk.anim",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://c6e3ur5qlirsf",
 "settings/loop_mode": 2,
@@ -2097,7 +2097,7 @@ _subresources={
 },
 "ArmatureAction_001": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/animations/player/Death.anim",
+"save_to_file/fallback_path": "res://assets/animations/player/PlayerDeath.anim",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://81noijdt6l2d",
 "settings/loop_mode": 0,
@@ -4153,7 +4153,7 @@ _subresources={
 },
 "ArmatureAction_002": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/animations/player/StartSpin.anim",
+"save_to_file/fallback_path": "res://assets/animations/player/PlayerStartSpin.anim",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://6lke5jxsk76m",
 "settings/loop_mode": 0,
@@ -6209,7 +6209,7 @@ _subresources={
 },
 "ArmatureAction_003": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/animations/player/Swing.anim",
+"save_to_file/fallback_path": "res://assets/animations/player/PlayerSwing.anim",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://b6rbrln0mdl13",
 "settings/loop_mode": 0,
@@ -8265,7 +8265,7 @@ _subresources={
 },
 "ArmatureAction_004": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/animations/player/Idle.anim",
+"save_to_file/fallback_path": "res://assets/animations/player/PlayerIdle.anim",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://bwgrr0yo0tmr8",
 "settings/loop_mode": 1,
@@ -10321,7 +10321,7 @@ _subresources={
 },
 "ArmatureAction_005": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/animations/player/Spin.anim",
+"save_to_file/fallback_path": "res://assets/animations/player/PlayerSpin.anim",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://cfgp5euykl3wx",
 "settings/loop_mode": 1,
@@ -12377,7 +12377,7 @@ _subresources={
 },
 "ArmatureAction_006": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/animations/player/Dazed.anim",
+"save_to_file/fallback_path": "res://assets/animations/player/PlayerDazed.anim",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://dvf1hgk8wqcvr",
 "settings/loop_mode": 0,
@@ -14433,7 +14433,7 @@ _subresources={
 },
 "ArmatureAction_008": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://assets/animations/player/GetUp.anim",
+"save_to_file/fallback_path": "res://assets/animations/player/PlayerGetUp.anim",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://luow5cp3dqxd",
 "settings/loop_mode": 0,
