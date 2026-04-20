@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Item/Pickable.cs" id="1_wlcvm"]
 [ext_resource type="Texture2D" uid="uid://b163ru6y04fds" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_BaseCol.tga" id="2_7m5v3"]
 [ext_resource type="Texture2D" uid="uid://tbrctcwppirl" path="res://assets/textures/UI/ui_x_button.tres" id="2_knlju"]
-[ext_resource type="Texture2D" uid="uid://dnrpwukmp1jyj" path="res://assets/textures/UI/ui_e_button.tres" id="3_bec3c"]
+[ext_resource type="Texture2D" uid="uid://cmhg5fabsggpk" path="res://assets/textures/UI/ui_keyboard_e_button.tres" id="3_bec3c"]
 [ext_resource type="Texture2D" uid="uid://dmckkpafqq3bq" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_Normal.tga" id="3_knlju"]
 [ext_resource type="Texture2D" uid="uid://b1xjsa5p8f7rb" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_ORM.tga" id="4_bec3c"]
 [ext_resource type="ArrayMesh" uid="uid://djed745msst20" path="res://assets/models/FinalAssets_Low/Ore/Copper_ing_low.obj" id="5_hoi3l"]

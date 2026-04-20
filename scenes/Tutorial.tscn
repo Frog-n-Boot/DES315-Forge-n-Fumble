@@ -23,7 +23,7 @@
 [ext_resource type="Resource" uid="uid://cdki2c88hftlb" path="res://assets/resources/AI/FastEnemyData.tres" id="24_e4hrd"]
 [ext_resource type="ArrayMesh" uid="uid://8wpolus5qbva" path="res://assets/models/FinalAssets_Low/Character_Models/Skeleton_low.obj" id="24_ujnhc"]
 [ext_resource type="Material" uid="uid://btwle4bal72vo" path="res://assets/materials/Texture_sets/Character_Textures/Skeleton Textures/skeleton_material.tres" id="24_xi6p3"]
-[ext_resource type="Script" uid="uid://dli7kb5c5sowk" path="res://src/Mangers/TutorialManager.cs" id="27_bi4s5"]
+[ext_resource type="Script" uid="uid://dli7kb5c5sowk" path="res://src/Managers/TutorialManager.cs" id="27_bi4s5"]
 [ext_resource type="PackedScene" uid="uid://cayfp8m51s7np" path="res://assets/models/FinalAssets_Low/Items_Models/Crossbow.tscn" id="28_y74ua"]
 [ext_resource type="Script" uid="uid://bdt0s16a5rcia" path="res://src/Weapons/Ballista.cs" id="29_0a2r4"]
 [ext_resource type="PackedScene" uid="uid://ds1kx4ru8gie6" path="res://assets/models/FinalAssets_Low/Items_Models/Arrow.tscn" id="30_mcs8j"]

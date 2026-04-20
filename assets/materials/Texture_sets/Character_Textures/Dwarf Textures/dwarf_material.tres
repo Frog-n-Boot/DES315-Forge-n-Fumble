@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bdkqu05vyfe0h"]
+
+[ext_resource type="Texture2D" uid="uid://fywbkplmkbgs" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/Dwarf_low_BaseCol.tga" id="1_lsofi"]
+[ext_resource type="Texture2D" uid="uid://bx0rnncaa27mi" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/Dwarf_low_ORM.tga" id="2_q2jsw"]
+[ext_resource type="Texture2D" uid="uid://bgk03fcoiqv1l" path="res://assets/materials/Texture_sets/Character_Textures/Dwarf Textures/Dwarf_low_Normal.tga" id="3_1ch58"]
+
+[resource]
+albedo_texture = ExtResource("1_lsofi")
+normal_enabled = true
+normal_texture = ExtResource("3_1ch58")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_q2jsw")

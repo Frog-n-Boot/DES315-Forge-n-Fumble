@@ -4,6 +4,8 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
+using System.Threading.Tasks.Dataflow;
 
 public abstract partial class BaseStationScript : Node3D
 {
@@ -56,13 +58,13 @@ public abstract partial class BaseStationScript : Node3D
 		}
 	}
 
-	private bool GetPlayerDevice()
+	protected bool GetPlayerDevice()
 	{
 		bool isController = activeDevice >= 0;
 		return isController;
 	}
 
-	private void UpdateButtonTexture(bool isController)
+	protected void UpdateButtonTexture(bool isController)
 	{
 		
 		if (isController)
@@ -156,14 +158,17 @@ public abstract partial class BaseStationScript : Node3D
 	protected virtual void ProduceOutput()
 	{
 		if(pendingRecipe == null) return;
+		var slot = GetFreeOutputSlot();
+		var spawnPos = slot !=null ? slot.GlobalPosition : outputNode.GlobalPosition;
+		var spawnParent = slot != null ? (Node3D)slot : outputNode;
 
 		var instance = pendingRecipe.ouputScene.Instantiate<Node3D>();
 
 		if(!string.IsNullOrEmpty(pendingRecipe.ouputGroup))
 			instance.AddToGroup(pendingRecipe.ouputGroup);
 
-		outputNode.AddChild(instance);
-		instance.GlobalPosition = outputNode.GlobalPosition;
+		spawnParent.AddChild(instance);
+		instance.GlobalPosition = spawnPos;
 		timeProgressBar.Value = 0;
 		pendingRecipe = null;
 
@@ -284,14 +289,20 @@ public abstract partial class BaseStationScript : Node3D
 
 	protected bool isOutputOccupied()
 	{
-		foreach(Node3D child in outputNode.GetChildren())
+		var markers = outputNode.GetChildren().OfType<Marker3D>().ToList();
+
+		if(markers.Count== 0)
 		{
-			if(child.IsInGroup("pickable") || child.IsInGroup("Weapon"))
-				return true;
+			return outputNode.GetChildren().OfType<Node3D>().Any(c => c.IsInGroup("pickable") || c.IsInGroup("Weapon"));
 		}
-		return false;
+		return markers.All(m => m.GetChildren().OfType<Node3D>().Any(c => c.IsInGroup("pickable") || c.IsInGroup("Weapon")));
+
 	}
 
+	protected Marker3D GetFreeOutputSlot()
+	{
+		return outputNode.GetChildren().OfType<Marker3D>().FirstOrDefault(m => !m.GetChildren().OfType<Node3D>().Any(c => c.IsInGroup("pickable") || c.IsInGroup("Weapon")));
+	}
 	public virtual SequenceMinigame GetSequenceMinigame() => null;
 	public virtual BarMinigame GetBarMinigame() => null;
 
