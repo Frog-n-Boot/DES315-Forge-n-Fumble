@@ -474,27 +474,27 @@ public partial class EnemyController : CharacterBody3D
         if (!_navReady)
         {
             _navReady = true;
-            GD.Print($"[{Name}] DIAG _PhysicsProcess: first frame — nav now ready.");
-            GD.Print($"  MapRid valid  : {navigationAgent?.GetNavigationMap().IsValid}");
-            GD.Print($"  PendingTarget : {_pendingNavTarget}  pos={_pendingTargetPos}");
-            GD.Print($"  moveTarget    : {moveTarget?.Name ?? "null"}  pos={moveTarget?.GlobalPosition.ToString() ?? "null"}");
+            //GD.Print($"[{Name}] DIAG _PhysicsProcess: first frame — nav now ready.");
+            //GD.Print($"  MapRid valid  : {navigationAgent?.GetNavigationMap().IsValid}");
+           // GD.Print($"  PendingTarget : {_pendingNavTarget}  pos={_pendingTargetPos}");
+           // GD.Print($"  moveTarget    : {moveTarget?.Name ?? "null"}  pos={moveTarget?.GlobalPosition.ToString() ?? "null"}");
 
             if (_pendingNavTarget && navigationAgent != null)
             {
-                GD.Print($"[{Name}] DIAG: flushing pending nav target {_pendingTargetPos}");
+                //GD.Print($"[{Name}] DIAG: flushing pending nav target {_pendingTargetPos}");
                 navigationAgent.TargetPosition = _pendingTargetPos;
                 _lastNavTarget    = _pendingTargetPos;
                 _pendingNavTarget = false;
             }
             else if (moveTarget != null && navigationAgent != null)
             {
-                GD.Print($"[{Name}] DIAG: setting nav target from moveTarget {moveTarget.GlobalPosition}");
+                //GD.Print($"[{Name}] DIAG: setting nav target from moveTarget {moveTarget.GlobalPosition}");
                 navigationAgent.TargetPosition = moveTarget.GlobalPosition;
                 _lastNavTarget = moveTarget.GlobalPosition;
             }
             else
             {
-                GD.PrintErr($"[{Name}] DIAG: nav ready but NO target available — enemy will not move!");
+                //GD.PrintErr($"[{Name}] DIAG: nav ready but NO target available — enemy will not move!");
             }
             return;
         }
@@ -844,31 +844,31 @@ public partial class EnemyController : CharacterBody3D
 
     public void PlayAnim(string animName)
     {
-        GD.Print($"[{Name}] PlayAnim called with: '{animName}'");
+        //GD.Print($"[{Name}] PlayAnim called with: '{animName}'");
     
         if(animPlayer == null)
         {
-            GD.PrintErr($"[{Name}] PlayAnim: animPlayer is null");
+            //GD.PrintErr($"[{Name}] PlayAnim: animPlayer is null");
             return;
         }
     
-        GD.Print($"[{Name}] AnimPlayer node: {animPlayer.Name}, current anim: '{animPlayer.CurrentAnimation}', is playing: {animPlayer.IsPlaying()}");
-        GD.Print($"[{Name}] Available animations: {string.Join(", ", animPlayer.GetAnimationList())}");
+        //GD.Print($"[{Name}] AnimPlayer node: {animPlayer.Name}, current anim: '{animPlayer.CurrentAnimation}', is playing: {animPlayer.IsPlaying()}");
+        //GD.Print($"[{Name}] Available animations: {string.Join(", ", animPlayer.GetAnimationList())}");
     
         if(!animPlayer.HasAnimation(animName)) {
-            GD.PrintErr($"[{Name}] PlayAnim: animation '{animName}' not found.");
+            //GD.PrintErr($"[{Name}] PlayAnim: animation '{animName}' not found.");
             return;
         }
     
         if(animPlayer.CurrentAnimation == animName && animPlayer.IsPlaying())
         {
-            GD.Print($"[{Name}] PlayAnim: '{animName}' already playing, skipping.");
+            //GD.Print($"[{Name}] PlayAnim: '{animName}' already playing, skipping.");
             return;
         }
     
-        GD.Print($"[{Name}] PlayAnim: playing '{animName}'");
+        //GD.Print($"[{Name}] PlayAnim: playing '{animName}'");
         animPlayer.Play(animName);
-        GD.Print($"[{Name}] PlayAnim: after Play() call — current: '{animPlayer.CurrentAnimation}', is playing: {animPlayer.IsPlaying()}");
+        //GD.Print($"[{Name}] PlayAnim: after Play() call — current: '{animPlayer.CurrentAnimation}', is playing: {animPlayer.IsPlaying()}");
     }
 
     public void PlayWalkAnim() => PlayAnim(animNames[enemyData.enemyType].walk);
