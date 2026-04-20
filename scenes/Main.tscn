@@ -1011,6 +1011,7 @@ fastEnemyData = ExtResource("16_s3wmy")
 strongEnemyData = ExtResource("17_gdcyb")
 normalEnemyNumber = 10
 fastEnemyNumber = 10
+strongEnemyNumber = 50
 copperOreScene = ExtResource("8_kxyth")
 copperOreCount = 10
 ironOreScene = ExtResource("20_0qimb")

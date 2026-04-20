@@ -45,6 +45,7 @@
 [ext_resource type="Texture2D" uid="uid://bvw5yhtbch6ht" path="res://assets/materials/Texture_sets/2DTextures/anvilImage.webp" id="44_rx2rv"]
 [ext_resource type="Texture2D" uid="uid://dwexwmybryvpl" path="res://assets/materials/Texture_sets/2DTextures/grindstoneImage.webp" id="45_cgb57"]
 [ext_resource type="Script" uid="uid://bs44u3pohek1t" path="res://src/Menus/SettingsMenu.cs" id="46_7vc5l"]
+[ext_resource type="AudioStream" uid="uid://y1tctqggt7p7" path="res://assets/Sounds/Music/A Bard's Tale LOOP.wav" id="48_rx2rv"]
 [ext_resource type="Texture2D" uid="uid://b0h4rjwc5lgiv" path="res://assets/PNG/Forge.webp" id="50_v1uvm"]
 [ext_resource type="AudioStream" uid="uid://dy5lcoryjk0no" path="res://assets/Sounds/SFX/Click.wav" id="51_wwsfe"]
 
@@ -1117,6 +1118,12 @@ transform = Transform3D(20, 0, 0, 0, 0.09232774, 0, 0, 0, 5.4025326, 0, -2.17114
 material_override = SubResource("StandardMaterial3D_wkaxc")
 transparency = 0.15
 mesh = SubResource("BoxMesh_y74ua")
+
+[node name="TutorialMusic" type="AudioStreamPlayer2D" parent="." unique_id=1091305920]
+stream = ExtResource("48_rx2rv")
+volume_db = -80.0
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="UI/PauseMenu/ResumeButton" to="UI/PauseMenu" method="OnResumePressed"]
 [connection signal="pressed" from="UI/PauseMenu/SettingsButton" to="UI/PauseMenu" method="OnSettingsPressed"]

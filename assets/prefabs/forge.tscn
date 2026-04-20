@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bj6c60ek3rd8c" path="res://assets/materials/Texture_sets/WorkStations/Furance_low_ORM.tga" id="7_2jum7"]
 [ext_resource type="Texture2D" uid="uid://cw0s6r8rhgp8c" path="res://assets/materials/Texture_sets/WorkStations/Furance_low_Normal.tga" id="8_yd14g"]
 [ext_resource type="AudioStream" uid="uid://d31rmb5i75h54" path="res://assets/Sounds/SFX/InitalForgeActivation.wav" id="10_yd14g"]
-[ext_resource type="AudioStream" uid="uid://nipmrmep3cnr" path="res://assets/Sounds/SFX/ForgeAfterActivation.wav" id="11_i2ejw"]
+[ext_resource type="AudioStream" uid="uid://dyrnndgvln2a8" path="res://assets/Sounds/SFX/ForgeAfterActivationAdjusted.wav" id="15_8inme"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8inme"]
 atlas = ExtResource("2_vocjd")
@@ -93,7 +93,7 @@ heightmap_texture = ExtResource("7_2jum7")
 loop = false
 stream_count = 2
 stream_0 = ExtResource("10_yd14g")
-stream_1 = ExtResource("11_i2ejw")
+stream_1 = ExtResource("15_8inme")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jycwk"]
 
