@@ -87,6 +87,7 @@ path_max_distance = 60.01
 avoidance_enabled = true
 time_horizon_obstacles = 0.5
 use_3d_avoidance = true
+debug_enabled = true
 debug_path_custom_color = Color(1, 0, 0, 1)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=414542561]

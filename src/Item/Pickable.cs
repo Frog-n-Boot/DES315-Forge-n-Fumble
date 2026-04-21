@@ -27,6 +27,7 @@ public partial class Pickable : Node3D
 	public void Initialize(ItemData itemdata)
 	{
 		itemData = itemdata;
+		
 	}
 	public override void _Ready()
 	{
@@ -60,6 +61,7 @@ public partial class Pickable : Node3D
 	#region PickUp
 	public void PickUp()
 	{
+		//itemTextureRect.Hide();
 		EmitSignal(SignalName.PickedUp);
 		//QueueFree();
 	}
@@ -67,12 +69,14 @@ public partial class Pickable : Node3D
 
 	public void SetItemPromptTexture(bool isController)
 	{
-		itemTextureRect.Show();
+		//itemTextureRect.Show();
 		itemTextureRect.Texture = isController? itemPromptTexture[0] : itemPromptTexture[1];
 	}
 	public void HideItemPrompt()
 	{
-		itemTextureRect.Hide();
+		if(itemTextureRect != null)
+			itemTextureRect.Hide();
+		
 	}
 	public void Highlight(bool enabled)
 	{

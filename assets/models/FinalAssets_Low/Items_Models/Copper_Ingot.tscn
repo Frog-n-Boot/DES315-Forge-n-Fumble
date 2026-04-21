@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Item/Pickable.cs" id="1_yrs3q"]
 [ext_resource type="Texture2D" uid="uid://l45fkj74rs44" path="res://assets/materials/Texture_sets/Item_Textures/Ingots_comb_low_BaseCol.tga" id="2_grctj"]
 [ext_resource type="Texture2D" uid="uid://tbrctcwppirl" path="res://assets/textures/UI/ui_x_button.tres" id="2_vkl38"]
-[ext_resource type="Texture2D" uid="uid://dnrpwukmp1jyj" path="res://assets/textures/UI/ui_e_button.tres" id="3_4d338"]
+[ext_resource type="Texture2D" uid="uid://cmhg5fabsggpk" path="res://assets/textures/UI/ui_keyboard_e_button.tres" id="3_4d338"]
 [ext_resource type="Texture2D" uid="uid://c4lqlcwn73h60" path="res://assets/materials/Texture_sets/Item_Textures/Ingots_comb_low_ORM.tga" id="3_vkl38"]
 [ext_resource type="Texture2D" uid="uid://dt7t6tu8lnf8y" path="res://assets/materials/Texture_sets/Item_Textures/Ingots_comb_low_Normal.tga" id="4_4d338"]
 [ext_resource type="ArrayMesh" uid="uid://cnx63eofodk83" path="res://assets/models/FinalAssets_Low/Items_Models/Ing_copper_low.obj" id="5_fvexs"]
