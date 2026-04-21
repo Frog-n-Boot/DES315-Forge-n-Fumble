@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://dgguk5limafel"]
+
+[ext_resource type="Texture2D" uid="uid://b163ru6y04fds" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_BaseCol.tga" id="1_6cu2b"]
+[ext_resource type="ArrayMesh" uid="uid://dw1l67bnyfk7s" path="res://assets/models/FinalAssets_Low/Ore/Gold_ing_low.obj" id="1_naam3"]
+[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Item/Pickable.cs" id="1_yaxjs"]
+[ext_resource type="Texture2D" uid="uid://dmckkpafqq3bq" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_Normal.tga" id="2_yaxjs"]
+[ext_resource type="Texture2D" uid="uid://b1xjsa5p8f7rb" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_ORM.tga" id="3_tq4g8"]
+[ext_resource type="Texture2D" uid="uid://dnrpwukmp1jyj" path="res://assets/textures/UI/ui_e_button.tres" id="3_vgjhu"]
+[ext_resource type="Texture2D" uid="uid://tbrctcwppirl" path="res://assets/textures/UI/ui_x_button.tres" id="6_tq4g8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8wu6d"]
+size = Vector3(1, 1.1378174, 0.91204834)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_vgjhu"]
+albedo_texture = ExtResource("1_6cu2b")
+orm_texture = ExtResource("3_tq4g8")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_yaxjs")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_vgjhu"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[node name="GoldOre" type="Node3D" unique_id=546203985 node_paths=PackedStringArray("itemTextureRect")]
+script = ExtResource("1_yaxjs")
+itemDataPath = "uid://viwodjsqvjas"
+itemPromptTexture = Array[Texture2D]([ExtResource("6_tq4g8"), ExtResource("3_vgjhu")])
+itemTextureRect = NodePath("Sprite3D/SubViewport/TextureRect")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=599362190 groups=["pickable"]]
+collision_layer = 16
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1033343971]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06890869, 0.30264282)
+visible = false
+shape = SubResource("BoxShape3D_8wu6d")
+
+[node name="GoldIngLow" type="MeshInstance3D" parent="Area3D" unique_id=199314679]
+material_override = SubResource("ORMMaterial3D_vgjhu")
+mesh = ExtResource("1_naam3")
+skeleton = NodePath("../..")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=642560410]
+transform = Transform3D(1.82, 0, 0, 0, 1.82, 0, 0, 0, 1.82, 0, 1.3, 0)
+texture = SubResource("ViewportTexture_vgjhu")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=1089652604]
+transparent_bg = true
+size = Vector2i(50, 50)
+
+[node name="TextureRect" type="TextureRect" parent="Sprite3D/SubViewport" unique_id=722759976]
+offset_right = 40.0
+offset_bottom = 40.0

@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://c2tw2fxkk6sbk"]
+
+[ext_resource type="ArrayMesh" uid="uid://cp0p2i6u4lsc1" path="res://assets/models/FinalAssets_Low/Lowpolies_interor/Int_barrel_low.obj" id="1_tmji1"]
+[ext_resource type="Material" uid="uid://dybi0h3puja63" path="res://assets/materials/Texture_sets/Lowpolly_interior_Textures/furniture.tres" id="2_clefa"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_clefa"]
+size = Vector3(1.1280518, 0.8360596, 1.138794)
+
+[node name="IntBarrelLow" type="Node3D" unique_id=450340970]
+
+[node name="IntBarrelLow" type="MeshInstance3D" parent="." unique_id=736671146]
+mesh = ExtResource("1_tmji1")
+surface_material_override/0 = ExtResource("2_clefa")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2124340681]
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2061377404]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0.008972168, 0.5982778, -0.0018788278)
+shape = SubResource("BoxShape3D_clefa")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=1562081458]
+height = 2.33
+vertices = PackedVector3Array(-0.39555103, 0, -0.412357, 0.003857538, 0, -0.58317316, 0.40075392, 0, -0.40984496, 0.56403416, 0, -0.01043646, 0.40828985, 0, 0.39399618, 0.003857538, 0, 0.56983644, -0.38299114, 0, 0.40404418, -0.5588314, 0, 0.0046355654)
+affect_navigation_mesh = true

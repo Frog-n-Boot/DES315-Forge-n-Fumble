@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://ctuka4h5wmpob"]
+
+[ext_resource type="Script" uid="uid://cltijj7du0h0v" path="res://src/LoadingMenu.cs" id="1_jqyhx"]
+[ext_resource type="PackedScene" uid="uid://88oq7ysmwuhi" path="res://scenes/Main.tscn" id="2_x85qc"]
+
+[node name="LoadingScreen" type="Node2D" unique_id=1773272142]
+
+[node name="Node3D" type="Node3D" parent="." unique_id=169874567 node_paths=PackedStringArray("progressBar")]
+script = ExtResource("1_jqyhx")
+scenePath = "res://scenes/Main.tscn"
+progressBar = NodePath("Control/ProgressBar")
+levelScene = ExtResource("2_x85qc")
+
+[node name="Control" type="Control" parent="Node3D" unique_id=323109060]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(1.1325623, 1.0945792)
+
+[node name="ProgressBar" type="ProgressBar" parent="Node3D/Control" unique_id=626182632]
+layout_mode = 0
+offset_left = 406.0
+offset_top = 287.0
+offset_right = 724.0
+offset_bottom = 342.0

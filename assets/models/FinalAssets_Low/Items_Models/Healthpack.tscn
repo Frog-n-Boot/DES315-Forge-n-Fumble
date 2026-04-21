@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://jnghu007q1m"]
 
-[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Pickable.cs" id="1_6yd4e"]
+[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Item/Pickable.cs" id="1_6yd4e"]
 [ext_resource type="Texture2D" uid="uid://bdnp2pelon8t8" path="res://assets/materials/Texture_sets/Item_Textures/Boxstick_comb_low_BaseCol.tga" id="2_mifg4"]
 [ext_resource type="ArrayMesh" uid="uid://crx852n177rh5" path="res://assets/models/FinalAssets_Low/Items_Models/Healthbox_low.obj" id="2_rtuan"]
 [ext_resource type="Texture2D" uid="uid://dfytb5ad7y8k3" path="res://assets/materials/Texture_sets/Item_Textures/Boxstick_comb_low_Normal.tga" id="3_p6oyn"]

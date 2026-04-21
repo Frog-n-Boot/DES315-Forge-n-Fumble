@@ -1,0 +1,11 @@
+[gd_resource type="ORMMaterial3D" format=3 uid="uid://dybi0h3puja63"]
+
+[ext_resource type="Texture2D" uid="uid://bfvef7n12hfhh" path="res://assets/materials/Texture_sets/Lowpolly_interior_Textures/furntiture_comb_BaseCol.tga" id="1_tfilh"]
+[ext_resource type="Texture2D" uid="uid://bdphafqpy6453" path="res://assets/materials/Texture_sets/Lowpolly_interior_Textures/furntiture_comb_Normal.tga" id="2_ojbcn"]
+[ext_resource type="Texture2D" uid="uid://cbopburmcy3i1" path="res://assets/materials/Texture_sets/Lowpolly_interior_Textures/furntiture_comb_ORM.tga" id="3_7hkvl"]
+
+[resource]
+albedo_texture = ExtResource("1_tfilh")
+orm_texture = ExtResource("3_7hkvl")
+normal_enabled = true
+normal_texture = ExtResource("2_ojbcn")

@@ -1,18 +1,18 @@
 [gd_scene format=3 uid="uid://176tgqxxk3p7"]
 
-[ext_resource type="Script" uid="uid://eq2143vlw65v" path="res://src/DebugMenu.cs" id="1_15w0a"]
-[ext_resource type="Resource" uid="uid://calih72lg8n07" path="res://assets/resources/NormalEnemyData.tres" id="2_ll2f6"]
-[ext_resource type="Resource" uid="uid://cdki2c88hftlb" path="res://assets/resources/FastEnemyData.tres" id="3_4j2py"]
-[ext_resource type="Resource" uid="uid://cvs5mxaqpoflx" path="res://assets/resources/StrongEnemyData.tres" id="4_jp8kx"]
-[ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/FinalAssets_Low/Items_Models/Sword.tscn" id="5_4j2py"]
-[ext_resource type="PackedScene" uid="uid://cgv7jdbgqsgql" path="res://assets/models/FinalAssets_Low/Ore/Ore.tscn" id="6_jp8kx"]
-[ext_resource type="PackedScene" uid="uid://dq8nubqatqhum" path="res://assets/models/FinalAssets_Low/Items_Models/Ingot.tscn" id="7_fwk7n"]
-[ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/FinalAssets_Low/Items_Models/DullSword.tscn" id="8_5tspd"]
+[ext_resource type="Script" uid="uid://eq2143vlw65v" path="res://src/Debug/DebugMenu.cs" id="1_15w0a"]
+[ext_resource type="Resource" uid="uid://calih72lg8n07" path="res://assets/resources/AI/NormalEnemyData.tres" id="2_ll2f6"]
+[ext_resource type="Resource" uid="uid://cdki2c88hftlb" path="res://assets/resources/AI/FastEnemyData.tres" id="3_4j2py"]
+[ext_resource type="Resource" uid="uid://cvs5mxaqpoflx" path="res://assets/resources/AI/StrongEnemyData.tres" id="4_jp8kx"]
+[ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Sword.tscn" id="5_4j2py"]
+[ext_resource type="PackedScene" uid="uid://2dvvlktwdavs" path="res://assets/models/FinalAssets_Low/Ore/Copper_Ore.tscn" id="6_jp8kx"]
+[ext_resource type="PackedScene" uid="uid://c36fijnqqehnq" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Ingot.tscn" id="7_fwk7n"]
+[ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Dull_Sword.tscn" id="8_5tspd"]
 [ext_resource type="PackedScene" uid="uid://jnghu007q1m" path="res://assets/models/FinalAssets_Low/Items_Models/Healthpack.tscn" id="9_qpuf6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_15w0a"]
 
-[node name="DebugMenu" type="CanvasLayer" unique_id=731638094 node_paths=PackedStringArray("cameraControlNode", "smoothSpeed", "outerBoundsX", "outerBoundsY", "innerBoundsX", "innerBoundsY", "minSize", "maxSize", "playerMaxHealth", "playerSpeed", "playerSpawnTimer", "normalContainer", "fastContainer", "strongContainer", "oreDropChance", "healthPackDropChance", "weaponDurability", "weaponDamage", "turretRange", "turretConeAngle", "bulletDamage", "bulletSpeed", "forgeHealth", "forgeSmeltTimer", "grindstoneSmeltTimer", "addForgeHealth", "subtractForgeHealth", "showCollisions", "maxWaves", "timeBetweenEnemies", "startingEnemies", "enemyIncreasePerWave", "timeBetweenWaves", "goblinEnemySpawnChance", "skeletonEnemySpawnChance", "HobgoblinEnemySpawnChance", "spawnWeapon", "spawnOre", "spawnIngot", "spawnDullSword", "spawnHealthBox")]
+[node name="DebugMenu" type="CanvasLayer" unique_id=731638094 node_paths=PackedStringArray("cameraControlNode", "smoothSpeed", "outerBoundsX", "outerBoundsY", "innerBoundsX", "innerBoundsY", "minSize", "maxSize", "playerMaxHealth", "playerSpeed", "playerSpawnTimer", "normalContainer", "fastContainer", "strongContainer", "oreDropChance", "healthPackDropChance", "weaponDurability", "weaponDamage", "forgeHealth", "forgeSmeltTimer", "grindstoneSmeltTimer", "addForgeHealth", "subtractForgeHealth", "showCollisions", "maxWaves", "timeBetweenEnemies", "startingEnemies", "enemyIncreasePerWave", "timeBetweenWaves", "goblinEnemySpawnChance", "skeletonEnemySpawnChance", "HobgoblinEnemySpawnChance", "spawnWeapon", "spawnOre", "spawnIngot", "spawnDullSword", "spawnHealthBox")]
 process_mode = 3
 script = ExtResource("1_15w0a")
 cameraControlNode = NodePath("TabContainer/Camera")
@@ -36,10 +36,6 @@ oreDropChance = NodePath("TabContainer/Enemy/OreDropChanceSpinBox")
 healthPackDropChance = NodePath("TabContainer/Enemy/HealthpackDropChanceSpinBox")
 weaponDurability = NodePath("TabContainer/Weapons/DurabilitySpinBox")
 weaponDamage = NodePath("TabContainer/Weapons/DamageSpinBox")
-turretRange = NodePath("TabContainer/Weapons/TurretRangeSpinBox")
-turretConeAngle = NodePath("TabContainer/Weapons/TurretAngleConeSpinBox")
-bulletDamage = NodePath("TabContainer/Weapons/BulletDamageSpinBox")
-bulletSpeed = NodePath("TabContainer/Weapons/BulletSpeedSpinBox")
 forgeHealth = NodePath("TabContainer/Structures/ForgeHealthSpinBox")
 forgeSmeltTimer = NodePath("TabContainer/Structures/ForgeSmeltTimerSpinBox")
 grindstoneSmeltTimer = NodePath("TabContainer/Structures/GrindstoneSmeltTimerSpinBox")
@@ -68,10 +64,12 @@ healthBoxScene = ExtResource("9_qpuf6")
 [node name="Panel" type="Panel" parent="." unique_id=1084575992]
 offset_right = 1149.0
 offset_bottom = 642.0
+scale = Vector2(1.1145, 1.1257067)
 
 [node name="TabContainer" type="TabContainer" parent="." unique_id=733798386]
 offset_right = 1143.0
 offset_bottom = 634.0
+scale = Vector2(1.1145, 1.1257067)
 focus_mode = 2
 current_tab = 2
 

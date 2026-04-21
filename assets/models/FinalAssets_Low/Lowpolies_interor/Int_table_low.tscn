@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://c84o7kaedo78k"]
+
+[ext_resource type="ArrayMesh" uid="uid://b8k25tabtwdbr" path="res://assets/models/FinalAssets_Low/Lowpolies_interor/Int_table_low.obj" id="1_2gde5"]
+[ext_resource type="Material" uid="uid://dybi0h3puja63" path="res://assets/materials/Texture_sets/Lowpolly_interior_Textures/furniture.tres" id="2_8jv3g"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2gde5"]
+size = Vector3(2.2787209, 0.7827759, 1.2069092)
+
+[node name="IntTableLow" type="Node3D" unique_id=1401044304]
+
+[node name="IntTableLow" type="MeshInstance3D" parent="." unique_id=802275259]
+mesh = ExtResource("1_2gde5")
+surface_material_override/0 = ExtResource("2_8jv3g")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=436710530]
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1659101681]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0.026239395, 0.26456118, 0.06450167)
+shape = SubResource("BoxShape3D_2gde5")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=1026461027]
+height = 2.37
+vertices = PackedVector3Array(-1.1254675, 0, -0.5920149, -1.0457435, 0, -0.66376656, 1.0509992, 0, -0.66775274, 1.2263918, 0, -0.50830466, 1.2104473, 0, 0.65566635, 1.0350542, 0, 0.82707304, -1.0497296, 0, 0.84700406, -1.2410674, 0, 0.66762495, -1.2251225, 0, -0.49634606)
+affect_navigation_mesh = true

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="AttackForge" format=3 uid="uid://d2n5u37sa71du"]
+
+[ext_resource type="Script" uid="uid://cafetq1ji4h5b" path="res://src/Enemy/AI/AttackForge.cs" id="1_svsg0"]
+
+[resource]
+script = ExtResource("1_svsg0")
+metadata/_custom_type_script = "uid://cafetq1ji4h5b"

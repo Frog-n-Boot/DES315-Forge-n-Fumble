@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cgv7jdbgqsgql"]
 
-[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Pickable.cs" id="1_mnpp1"]
+[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Item/Pickable.cs" id="1_mnpp1"]
 [ext_resource type="ArrayMesh" uid="uid://djed745msst20" path="res://assets/models/FinalAssets_Low/Ore/Copper_ing_low.obj" id="2_22731"]
 [ext_resource type="Texture2D" uid="uid://b163ru6y04fds" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_BaseCol.tga" id="2_l6tsy"]
 [ext_resource type="Texture2D" uid="uid://b1xjsa5p8f7rb" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_ORM.tga" id="3_1phh0"]
@@ -18,6 +18,7 @@ normal_texture = ExtResource("3_lnrql")
 [node name="Ore" type="Node3D" unique_id=2110523039]
 script = ExtResource("1_mnpp1")
 itemDataPath = "uid://c6k5q27uaxle2"
+shouldDespawn = true
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1899132528 groups=["pickable"]]
 collision_layer = 16

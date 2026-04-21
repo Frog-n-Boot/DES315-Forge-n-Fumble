@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://ca0mi8oydr1i0"]
+
+[ext_resource type="Texture2D" uid="uid://b163ru6y04fds" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_BaseCol.tga" id="1_tu5fx"]
+
+[resource]
+atlas = ExtResource("1_tu5fx")
+region = Rect2(0, 0, 256, 256)
