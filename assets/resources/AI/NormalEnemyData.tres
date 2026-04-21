@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://b5ljy5ajp4m3g" path="res://src/Enemy/AI/AttackPlayer.cs" id="3_433q0"]
 [ext_resource type="AudioStream" uid="uid://di7wor1ufp2cs" path="res://assets/Sounds/SFX/GoblinDeathSound.wav" id="4_fl57o"]
 [ext_resource type="ArrayMesh" uid="uid://ddna22yt5xn4q" path="res://assets/models/FinalAssets_Low/Character_Models/Goblin_low.mesh" id="5_fl57o"]
-[ext_resource type="Skin" path="res://assets/models/FinalAssets_Low/Character_Models/Goblin_low_skin.res" id="6_433q0"]
+[ext_resource type="Skin" uid="uid://by0geq85qph2r" path="res://assets/models/FinalAssets_Low/Character_Models/Goblin_low_skin.res" id="6_433q0"]
 [ext_resource type="Resource" uid="uid://b8b53k7npfa4a" path="res://assets/resources/AI/Behaviour/MoveToForge.tres" id="8_fl57o"]
 
 [sub_resource type="Resource" id="Resource_kxpql"]
@@ -28,7 +28,6 @@ lootDropChance = 30.0
 enemyMat = ExtResource("1_7n161")
 enemyMesh = ExtResource("5_fl57o")
 deathSound = ExtResource("4_fl57o")
-soundPitch = 0.5
 enemySkin = ExtResource("6_433q0")
 isStationary = true
 attackBehaviours = Array[ExtResource("1_fl57o")]([SubResource("Resource_kxpql"), SubResource("Resource_820ot")])

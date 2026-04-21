@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://b5ljy5ajp4m3g" path="res://src/Enemy/AI/AttackPlayer.cs" id="2_cbrvt"]
 [ext_resource type="AudioStream" uid="uid://dcf1cm7d4p3cg" path="res://assets/Sounds/SFX/SkeletonDeathSound.wav" id="3_n0vnf"]
 [ext_resource type="ArrayMesh" uid="uid://d0x12qwju6kcs" path="res://assets/models/FinalAssets_Low/Character_Models/Skeleton_low.mesh" id="4_cbrvt"]
-[ext_resource type="Skin" path="res://assets/models/FinalAssets_Low/Character_Models/Skeleton_low_skin.res" id="5_n0vnf"]
+[ext_resource type="Skin" uid="uid://exj4s5efuua2" path="res://assets/models/FinalAssets_Low/Character_Models/Skeleton_low_skin.res" id="5_n0vnf"]
 [ext_resource type="Resource" uid="uid://bfacy6hhsbqfk" path="res://assets/resources/AI/Behaviour/ChasePlayer.tres" id="6_gli4c"]
 
 [sub_resource type="Resource" id="Resource_g6gon"]
@@ -22,7 +22,6 @@ lootDropChance = 50.0
 enemyMat = ExtResource("1_40oxs")
 enemyMesh = ExtResource("4_cbrvt")
 deathSound = ExtResource("3_n0vnf")
-soundPitch = 0.5
 enemySkin = ExtResource("5_n0vnf")
 enemyType = 1
 attackBehaviours = Array[ExtResource("1_cbrvt")]([SubResource("Resource_g6gon")])
