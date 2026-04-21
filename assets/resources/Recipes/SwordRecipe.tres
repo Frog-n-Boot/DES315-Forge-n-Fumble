@@ -1,13 +1,15 @@
 [gd_resource type="Resource" script_class="CraftingRecipes" format=3 uid="uid://cgsgoisaxb6rf"]
 
 [ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/Resources/CraftingRecipes.cs" id="1_t82vg"]
-[ext_resource type="PackedScene" uid="uid://i3hf4fb7cghh" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Dull_Sword.tscn" id="1_ufdbt"]
+
+[sub_resource type="Resource" id="Resource_t82vg"]
+metadata/__load_path__ = "res://assets/models/FinalAssets_Low/Items_Models/DullSword.tscn"
 
 [resource]
 script = ExtResource("1_t82vg")
 recipeName = "Copper_Dull_Sword"
 requiredItemNames = PackedStringArray("Copper_Ingot")
 ouputName = "Copper_Dull_Sword"
-ouputScene = ExtResource("1_ufdbt")
+ouputScene = SubResource("Resource_t82vg")
 ouputGroup = "Weapon"
 metadata/_custom_type_script = "uid://1bo1o367ybgk"
