@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cq2hdafsss4y7" path="res://src/Menus/MainMenu.cs" id="1_yqorp"]
 [ext_resource type="AudioStream" uid="uid://brbu62attbvtp" path="res://assets/Sounds/SFX/Anvil1.wav" id="2_2wh52"]
+[ext_resource type="FontFile" uid="uid://jc0e5wwfs5d7" path="res://assets/textures/UI/Blackney-Light.otf" id="2_826wr"]
 [ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="2_l72w3"]
 [ext_resource type="AudioStream" uid="uid://i4t1sy6mjdaa" path="res://assets/Sounds/Music/Townsfolk LOOP.wav" id="3_ow34m"]
 [ext_resource type="Texture2D" uid="uid://b32ma1du5ci52" path="res://assets/PNG/Title_screen_redone.webp" id="5_l72w3"]
@@ -51,6 +52,9 @@ focus_neighbor_bottom = NodePath("../TutorialButton")
 focus_next = NodePath("../SettingsButton")
 focus_previous = NodePath("../QuitButton")
 mouse_filter = 1
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_826wr")
 theme_override_font_sizes/font_size = 40
 text = "Start Game"
 icon = SubResource("AtlasTexture_826wr")
@@ -70,6 +74,9 @@ focus_neighbor_bottom = NodePath("../SettingsButton")
 focus_next = NodePath("../SettingsButton")
 focus_previous = NodePath("../QuitButton")
 mouse_filter = 1
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_826wr")
 theme_override_font_sizes/font_size = 40
 text = "Tutorial"
 icon = SubResource("AtlasTexture_l72w3")
@@ -89,6 +96,9 @@ focus_neighbor_bottom = NodePath("../QuitButton")
 focus_next = NodePath("../QuitButton")
 focus_previous = NodePath("../StartButton")
 mouse_filter = 1
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_826wr")
 theme_override_font_sizes/font_size = 40
 text = "Settings"
 icon = SubResource("AtlasTexture_ucygd")
@@ -108,6 +118,9 @@ focus_neighbor_bottom = NodePath(".")
 focus_next = NodePath("../StartButton")
 focus_previous = NodePath("../SettingsButton")
 mouse_filter = 1
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_826wr")
 theme_override_font_sizes/font_size = 40
 text = "Quit"
 icon = SubResource("AtlasTexture_8a8k8")
