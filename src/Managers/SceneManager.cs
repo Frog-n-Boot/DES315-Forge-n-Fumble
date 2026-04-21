@@ -37,7 +37,7 @@ public partial class SceneManager : Node
 		var forge = GetNode<Forge>("/root/Forge");
 		if( forge != null) forge.ResetHealth();
 
-		LoadScene("res://scenes/Main.tscn");
+		LoadScene("res://scenes/LoadingScreen.tscn");
 	}
 	public void LoadTutorial() => LoadScene("res://scenes/Tutorial.tscn");
 	public void LoadSettings()
