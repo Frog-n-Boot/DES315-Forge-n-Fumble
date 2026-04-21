@@ -24,6 +24,7 @@ public partial class GrindstoneStation : BaseStationScript
 
 	}
 
+	
 	protected override string GetStationName() => "Grindstone";
 
 	public bool DepositSword(Sword sword)
@@ -105,6 +106,7 @@ public partial class GrindstoneStation : BaseStationScript
 			itemCarrier = p as ItemCarrier;
 			player = p;
 			playersInZone.Add(p);
+			UpdateButtonTexture(GetPlayerDevice());
 			p.SetCurrentStation(this);
 		}
 	}

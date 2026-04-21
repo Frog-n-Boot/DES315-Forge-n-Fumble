@@ -37,11 +37,6 @@ public partial class SceneManager : Node
 		var forge = GetNode<Forge>("/root/Forge");
 		if( forge != null) forge.ResetHealth();
 
-		xRayManager = GetNode<XRayManager>("res://src/Managers/XRayManager.cs");
-
-		
-		
-
 		LoadScene("res://scenes/LoadingScreen.tscn");
 	}
 	public void LoadTutorial() => LoadScene("res://scenes/Tutorial.tscn");

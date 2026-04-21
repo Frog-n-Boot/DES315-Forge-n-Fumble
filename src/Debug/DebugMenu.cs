@@ -231,7 +231,7 @@ public partial class DebugMenu : CanvasLayer
 
 		forgeHealth.Value = forge.maxHealth;
 		forgeSmeltTimer.Value = forgeScript.GetCraftDuration();
-		grindstoneSmeltTimer.Value = grindstoneScript.GetCraftDuration();
+		//grindstoneSmeltTimer.Value = grindstoneScript.GetCraftDuration();
 
 		oreDropChance.Value = lootTable.copperDropChance;
 		healthPackDropChance.Value = lootTable.healthPackDropChance;
