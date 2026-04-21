@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ctaas5facg287"
+path="res://.godot/imported/Cobble_archway_refixed_low.obj-f21109c546fe2540f6df2feac97a90fb.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Cobble_archway_refixed_low.obj-f21109c546fe2540f6df2feac97a90fb.mesh"]
+
+source_file="res://assets/models/FinalAssets_Low/Structure_models/Cobble_archway_refixed_low.obj"
+dest_files=["res://.godot/imported/Cobble_archway_refixed_low.obj-f21109c546fe2540f6df2feac97a90fb.mesh", "res://.godot/imported/Cobble_archway_refixed_low.obj-f21109c546fe2540f6df2feac97a90fb.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
