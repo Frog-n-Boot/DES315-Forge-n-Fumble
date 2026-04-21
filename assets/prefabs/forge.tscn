@@ -208,10 +208,10 @@ max_db = -24.0
 bus = &"SFX"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1161138031]
-transform = Transform3D(2.857143, 0, 0, 0, 2.857143, 0, 0, 0, 2.857143, -3.8203022, 3.5038965, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8203022, 3.5038965, 0)
 light_color = Color(2.4304428, 0.6644703, 0, 1)
 light_energy = 1.5
-omni_range = 2.9051983
+omni_range = 3.0
 
 [node name="Area3D" type="Area3D" parent="." unique_id=2011341028]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5253863, 2.1853385, -0.8195835)

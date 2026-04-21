@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_3dv07")
-DetectionRange = 100.0
+DetectionRange = 200.0
 metadata/_custom_type_script = "uid://by87lhisv36nt"

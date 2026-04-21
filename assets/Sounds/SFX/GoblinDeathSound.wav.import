@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://di7wor1ufp2cs"
-path="res://.godot/imported/GoblinDeath.wav-1fffd59ed6ea5610daeafcc48d49e471.sample"
+path="res://.godot/imported/GoblinDeathSound.wav-6c7dcfc1e826850bd038ca29f98013be.sample"
 
 [deps]
 
-source_file="res://assets/Sounds/SFX/GoblinDeath.wav"
-dest_files=["res://.godot/imported/GoblinDeath.wav-1fffd59ed6ea5610daeafcc48d49e471.sample"]
+source_file="res://assets/Sounds/SFX/GoblinDeathSound.wav"
+dest_files=["res://.godot/imported/GoblinDeathSound.wav-6c7dcfc1e826850bd038ca29f98013be.sample"]
 
 [params]
 
