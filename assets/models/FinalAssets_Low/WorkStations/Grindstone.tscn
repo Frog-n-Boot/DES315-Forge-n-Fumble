@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="3_fgmgg"]
 [ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/Resources/CraftingRecipes.cs" id="3_hj04q"]
 [ext_resource type="Texture2D" uid="uid://50xg82nov3j2" path="res://assets/materials/Texture_sets/WorkStations/Grinder_low_BaseCol.tga" id="4_chpgb"]
+[ext_resource type="Texture2D" uid="uid://c17qxymr0rbo2" path="res://assets/textures/UI/ui_button_image.webp" id="4_kecgh"]
 [ext_resource type="PackedScene" uid="uid://di5odw2tmde5j" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Sword.tscn" id="4_uhy0b"]
-[ext_resource type="Texture2D" uid="uid://cmhg5fabsggpk" path="res://assets/textures/UI/ui_keyboard_e_button.tres" id="4_wwlso"]
 [ext_resource type="ArrayMesh" uid="uid://gxhgwjbmhtq6" path="res://assets/models/FinalAssets_Low/WorkStations/Grinder_low.obj" id="5_fgmgg"]
 [ext_resource type="Texture2D" uid="uid://6k5i0lfvsf5" path="res://assets/materials/Texture_sets/WorkStations/Grinder_low_ORM.tga" id="5_yoit8"]
 [ext_resource type="Texture2D" uid="uid://ui3qrxklkrbs" path="res://assets/materials/Texture_sets/WorkStations/Grinder_low_Normal.tga" id="6_8jrxj"]
@@ -17,6 +17,10 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_wwlso"]
 atlas = ExtResource("3_bn2l6")
 region = Rect2(114, 365, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1v1a"]
+atlas = ExtResource("4_kecgh")
+region = Rect2(220.0479, 808.2518, 36.18257, 37.863342)
 
 [sub_resource type="Resource" id="Resource_fgmgg"]
 script = ExtResource("3_hj04q")
@@ -108,7 +112,7 @@ timeProgressBar = NodePath("Sprite3D/SubViewport/TextureProgressBar")
 stationName = NodePath("Sprite3D/SubViewport/Label")
 buttonTexture = NodePath("Sprite3D2/SubViewport/TextureRect")
 controllerButtonTexture = SubResource("AtlasTexture_wwlso")
-keyboardButtonTexture = ExtResource("4_wwlso")
+keyboardButtonTexture = SubResource("AtlasTexture_g1v1a")
 recipes = Array[Object]([SubResource("Resource_fgmgg"), SubResource("Resource_wc540")])
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=90114362]
@@ -165,7 +169,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Sprite3D2" type="Sprite3D" parent="." unique_id=1666375140]
-transform = Transform3D(6.119593e-07, -3.5000005, 6.062178, 5.2997257e-07, 6.062178, 3.5000005, -6.9999995, 1.5298984e-07, 7.9495857e-07, 2.232731, 0.76380336, -0.25583744)
+transform = Transform3D(6.357298e-08, -1.0000001, 1.7320508, 1.5142075e-07, 1.7320508, 1.0000001, -2, 9.9347716e-08, 1.307662e-07, 1.5525401, 0.38798475, -0.09157038)
 texture = SubResource("ViewportTexture_n8ot4")
 
 [node name="SubViewport" type="SubViewport" parent="Sprite3D2" unique_id=568560399]
@@ -188,7 +192,7 @@ texture = SubResource("ViewportTexture_iap6j")
 
 [node name="SubViewport" type="SubViewport" parent="BarMinigameSprite3D" unique_id=556381544]
 transparent_bg = true
-size = Vector2i(70, 430)
+size = Vector2i(86, 437)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="BarMinigameSprite3D/SubViewport" unique_id=1400798563]
 
@@ -267,6 +271,7 @@ position = Vector2(0, 2.2222137)
 shape = SubResource("RectangleShape2D_eh3gw")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="BarMinigameSprite3D/SubViewport/CanvasLayer/BarMinigame/Outside" unique_id=1081946159]
+z_index = 2
 scale = Vector2(0.6666564, 0.17857051)
 gravity_scale = 0.0
 lock_rotation = true

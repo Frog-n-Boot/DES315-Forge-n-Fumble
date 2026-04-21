@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Item/Pickable.cs" id="1_yaxjs"]
 [ext_resource type="Texture2D" uid="uid://dmckkpafqq3bq" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_Normal.tga" id="2_yaxjs"]
 [ext_resource type="Texture2D" uid="uid://b1xjsa5p8f7rb" path="res://assets/materials/Texture_sets/Ore_Textures/Ores_comb_ORM.tga" id="3_tq4g8"]
-[ext_resource type="Texture2D" uid="uid://dnrpwukmp1jyj" path="res://assets/textures/UI/ui_e_button.tres" id="3_vgjhu"]
+[ext_resource type="Texture2D" uid="uid://cmhg5fabsggpk" path="res://assets/textures/UI/ui_keyboard_e_button.tres" id="3_vgjhu"]
 [ext_resource type="Texture2D" uid="uid://tbrctcwppirl" path="res://assets/textures/UI/ui_x_button.tres" id="6_tq4g8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8wu6d"]
@@ -42,6 +42,7 @@ skeleton = NodePath("../..")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=642560410]
 transform = Transform3D(1.82, 0, 0, 0, 1.82, 0, 0, 0, 1.82, 0, 1.3, 0)
+billboard = 1
 texture = SubResource("ViewportTexture_vgjhu")
 
 [node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=1089652604]

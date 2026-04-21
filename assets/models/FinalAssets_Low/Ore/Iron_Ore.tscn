@@ -3,10 +3,11 @@
 [ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Item/Pickable.cs" id="1_h3w5l"]
 [ext_resource type="Texture2D" uid="uid://l45fkj74rs44" path="res://assets/materials/Texture_sets/Item_Textures/Ingots_comb_low_BaseCol.tga" id="2_ggg7d"]
 [ext_resource type="Texture2D" uid="uid://tbrctcwppirl" path="res://assets/textures/UI/ui_x_button.tres" id="2_me13d"]
-[ext_resource type="Texture2D" uid="uid://dnrpwukmp1jyj" path="res://assets/textures/UI/ui_e_button.tres" id="3_kcdys"]
+[ext_resource type="Texture2D" uid="uid://cmhg5fabsggpk" path="res://assets/textures/UI/ui_keyboard_e_button.tres" id="3_kcdys"]
 [ext_resource type="Texture2D" uid="uid://dt7t6tu8lnf8y" path="res://assets/materials/Texture_sets/Item_Textures/Ingots_comb_low_Normal.tga" id="3_me13d"]
 [ext_resource type="Texture2D" uid="uid://c4lqlcwn73h60" path="res://assets/materials/Texture_sets/Item_Textures/Ingots_comb_low_ORM.tga" id="4_kcdys"]
 [ext_resource type="ArrayMesh" uid="uid://c4fwx076gmst6" path="res://assets/models/FinalAssets_Low/Ore/Iron_ing_low.obj" id="5_wwwv2"]
+[ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="8_kcdys"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a5fh3"]
 size = Vector3(1, 1.1378174, 0.91204834)
@@ -19,6 +20,10 @@ heightmap_texture = ExtResource("3_me13d")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_me13d"]
 viewport_path = NodePath("Sprite3D/SubViewport")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcdys"]
+atlas = ExtResource("8_kcdys")
+region = Rect2(0, 0, 876, 876)
 
 [node name="IronOre" type="Node3D" unique_id=904125942 node_paths=PackedStringArray("itemTextureRect")]
 script = ExtResource("1_h3w5l")
@@ -42,6 +47,7 @@ skeleton = NodePath("../..")
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=247892545]
 transform = Transform3D(1.82, 0, 0, 0, 1.82, 0, 0, 0, 1.82, 0, 1.3, 0)
+billboard = 1
 texture = SubResource("ViewportTexture_me13d")
 
 [node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=761628324]
@@ -51,3 +57,4 @@ size = Vector2i(50, 50)
 [node name="TextureRect" type="TextureRect" parent="Sprite3D/SubViewport" unique_id=780134702]
 offset_right = 40.0
 offset_bottom = 40.0
+texture = SubResource("AtlasTexture_kcdys")

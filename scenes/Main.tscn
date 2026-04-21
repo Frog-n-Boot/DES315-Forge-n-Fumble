@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://bgpx6e42afd1t" path="res://assets/textures/UI/healthbar_forge_back.webp" id="20_in2eo"]
 [ext_resource type="Texture2D" uid="uid://b5e0el27bnplu" path="res://assets/textures/UI/healthbar_forge_front.webp" id="21_dyyw8"]
 [ext_resource type="PackedScene" uid="uid://dgguk5limafel" path="res://assets/models/FinalAssets_Low/Ore/Gold_Ore.tscn" id="21_in2eo"]
+[ext_resource type="FontFile" uid="uid://b8ui8dbraydmr" path="res://assets/textures/UI/texgyrechorus-mediumitalic.otf" id="22_0qimb"]
 [ext_resource type="PackedScene" uid="uid://jnghu007q1m" path="res://assets/models/FinalAssets_Low/Items_Models/Healthpack.tscn" id="23_gjpm3"]
 [ext_resource type="Script" uid="uid://b2l2l45t253bx" path="res://src/UI/HUD.cs" id="24_knagv"]
 [ext_resource type="PackedScene" uid="uid://cd12og6qvmqm7" path="res://assets/textures/PlayerPortrait.tscn" id="25_siyqs"]
@@ -69,18 +70,6 @@ uv1_scale = Vector3(10, 10, 10)
 uv1_triplanar = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3lnvk"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bn2l6"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cmqll"]
-atlas = SubResource("CompressedTexture2D_bn2l6")
-region = Rect2(114, 365, 40, 40)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g1v1a"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8cp6k"]
-atlas = SubResource("CompressedTexture2D_g1v1a")
-region = Rect2(216, 805, 40, 43)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wt1ef"]
 sky_top_color = Color(0.5620234, 0.4562606, 0.1947913, 1)
@@ -128,12 +117,20 @@ load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00
 atlas = SubResource("CompressedTexture2D_vshs7")
 region = Rect2(581, 500, 285, 91)
 
+[sub_resource type="LabelSettings" id="LabelSettings_in2eo"]
+font = ExtResource("22_0qimb")
+font_size = 85
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_siyqs"]
 load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pb578"]
 atlas = SubResource("CompressedTexture2D_siyqs")
 region = Rect2(581, 500, 285, 91)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0qimb"]
+font = ExtResource("22_0qimb")
+font_size = 60
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0f1tp"]
 atlas = ExtResource("28_oa6sj")
@@ -204,11 +201,6 @@ transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -0.017, 0, -0.001)
 
 [node name="ForgeWalls" parent="NavigationRegion3D" unique_id=1476112399 groups=["navigation_mesh_source_group"] instance=ExtResource("7_cobve")]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, -0.017, 0, 0)
-
-[node name="Grindstone" parent="NavigationRegion3D" unique_id=1599248455 groups=["Grindstone", "navigation_mesh_source_group"] instance=ExtResource("4_g6wdg")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10.535882, 0, -4.184)
-controllerButtonTexture = SubResource("AtlasTexture_cmqll")
-keyboardButtonTexture = SubResource("AtlasTexture_8cp6k")
 
 [node name="Forge" parent="NavigationRegion3D" unique_id=994045895 instance=ExtResource("8_cmqll")]
 transform = Transform3D(-0.3, 0, -2.6226834e-08, 0, 0.3, 0, 2.6226834e-08, 0, -0.3, -0.5547695, 0.15882492, -0.04463482)
@@ -318,7 +310,7 @@ startingEnemiesPerWave = 5
 enemyIncreasedPerWave = 1
 enemiesRemaining = NodePath("../UI/EnemiesLeft")
 wavesRemaining = NodePath("../UI/WaveRemaining")
-waveTimerProgressBar = NodePath("../UI/TextureProgressBar")
+waveTimerProgressBar = NodePath("../UI/WaveTimerProgressBar")
 
 [node name="EnemySpawn1" type="Marker3D" parent="EnemySpawner" unique_id=829387820]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.135, 0, 22.009)
@@ -342,10 +334,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.46764, 0, 29.443832)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.418777, 0, -44.94906)
 
 [node name="EnemySpawn7" type="Marker3D" parent="EnemySpawner" unique_id=1941235768]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.385963, 0, -28.569515)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.667763, 0, -28.569515)
 
 [node name="EnemySpawn8" type="Marker3D" parent="EnemySpawner" unique_id=1838745660]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.615433, 0, 4.568985)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.858765, 0, 4.568985)
 
 [node name="UI" type="Node" parent="." unique_id=1005891100]
 
@@ -362,7 +354,7 @@ offset_right = 86.0
 offset_bottom = 652.0
 scale = Vector2(1.2790005, 1)
 pivot_offset = Vector2(20, 0)
-theme_override_constants/separation = 225
+theme_override_constants/separation = 250
 
 [node name="ForgeProgressBar_Back" type="TextureProgressBar" parent="UI/CanvasLayer" unique_id=391164803]
 offset_left = 0.99999976
@@ -469,6 +461,7 @@ offset_bottom = 109.0
 scale = Vector2(1.112438, 1.108769)
 theme_override_font_sizes/font_size = 60
 text = "Game Paused"
+label_settings = SubResource("LabelSettings_in2eo")
 
 [node name="FurnaceImahe" type="TextureRect" parent="UI/PauseMenu" unique_id=1306127748]
 offset_left = 658.0
@@ -569,13 +562,18 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Label" type="Label" parent="UI/ResultsMenu" unique_id=688697069]
-offset_left = 246.0
+anchors_preset = -1
+anchor_left = 0.024305556
+anchor_right = 0.024305556
+offset_left = 231.0
 offset_top = 121.0
 offset_right = 737.0
 offset_bottom = 204.0
 scale = Vector2(1.110104, 1.0968646)
 theme_override_font_sizes/font_size = 60
 text = "End Game Result"
+label_settings = SubResource("LabelSettings_0qimb")
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="UI/ResultsMenu" unique_id=2039402556]
 z_index = -1
@@ -615,7 +613,7 @@ offset_bottom = 102.0
 scale = Vector2(1.2903215, 1.2691227)
 metadata/_edit_use_anchors_ = true
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="UI" unique_id=1024019081]
+[node name="WaveTimerProgressBar" type="TextureProgressBar" parent="UI" unique_id=1024019081]
 offset_left = 508.0
 offset_top = 56.0
 offset_right = 606.0
@@ -629,9 +627,11 @@ tint_under = Color(0.30692267, 0.3069227, 0.3069227, 1)
 
 [node name="StationPort3" parent="UI" unique_id=1915723754 instance=ExtResource("3_2c4at")]
 transform = Transform3D(0.016431808, 0, 6.7567225, 0, 1.375121, 0, -3.635261, 0, 0.030542374, 7.8126793, 0.93464184, 7.063262)
+visible = false
 
 [node name="SettingsMenu" type="CanvasLayer" parent="UI" unique_id=1417241995 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton", "audio", "pauseMenu")]
 process_mode = 3
+visible = false
 script = ExtResource("13_vua0o")
 masterSlider = NodePath("Panel/TabContainer/Sound/MasterVolumeLabel/MasterVolumeSlider")
 musicSlider = NodePath("Panel/TabContainer/Sound/MusicVolumeLabel/MusicVolumeSlider")
@@ -1004,12 +1004,6 @@ healthPackObject = ExtResource("23_gjpm3")
 [node name="IronOre" parent="." unique_id=904125942 instance=ExtResource("20_0qimb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.403659, 4.7683716e-07, 5.3548493)
 
-[node name="DullSword" parent="." unique_id=778246616 instance=ExtResource("38_cmqll")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8266451, 0.000985, 0.6228571)
-
-[node name="IronDullSword" parent="." unique_id=803566957 instance=ExtResource("39_8cp6k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4278347, 0.0009840463, 1.1268263)
-
 [node name="LevelManager" type="Node" parent="." unique_id=100606422]
 script = ExtResource("40_8cp6k")
 normalEnemyData = ExtResource("15_8gny2")
@@ -1017,6 +1011,7 @@ fastEnemyData = ExtResource("16_s3wmy")
 strongEnemyData = ExtResource("17_gdcyb")
 normalEnemyNumber = 10
 fastEnemyNumber = 10
+strongEnemyNumber = 50
 copperOreScene = ExtResource("8_kxyth")
 copperOreCount = 10
 ironOreScene = ExtResource("20_0qimb")
@@ -1056,8 +1051,17 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 3, 0)
 
-[node name="Anvil" parent="." unique_id=1158721071 instance=ExtResource("5_hq6as")]
-transform = Transform3D(-0.036695987, 0, -0.99932647, 0, 1, 0, 0.99932647, 0, -0.036695987, -9.482155, -0.13641739, 4.470146)
+[node name="Anvil" parent="." unique_id=1499855734 instance=ExtResource("5_hq6as")]
+transform = Transform3D(-0.036695987, 0, -0.99932647, 0, 1, 0, 0.99932647, 0, -0.036695987, -9.482155, -0.13641739, 3.7299843)
+
+[node name="IronDullSword2" parent="." unique_id=803566957 instance=ExtResource("39_8cp6k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3722587, -0.13543335, 0.9101467)
+
+[node name="CopperDullSword" parent="." unique_id=778246616 instance=ExtResource("38_cmqll")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.841159, -0.13543192, 0.30928683)
+
+[node name="Grindstone" parent="." unique_id=634870041 instance=ExtResource("4_g6wdg")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 9.121622, -0.13641739, -4.090804)
 
 [connection signal="pressed" from="UI/PauseMenu/ResumeButton" to="UI/PauseMenu" method="OnResumePressed"]
 [connection signal="pressed" from="UI/PauseMenu/SettingsButton" to="UI/PauseMenu" method="OnSettingsPressed"]

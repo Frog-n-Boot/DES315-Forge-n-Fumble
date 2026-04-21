@@ -2,7 +2,49 @@
 
 [ext_resource type="Script" uid="uid://bs44u3pohek1t" path="res://src/Menus/SettingsMenu.cs" id="1_rbmmp"]
 [ext_resource type="Texture2D" uid="uid://b0h4rjwc5lgiv" path="res://assets/PNG/Forge.webp" id="2_i47rn"]
+[ext_resource type="FontFile" uid="uid://b8ui8dbraydmr" path="res://assets/textures/UI/texgyrechorus-mediumitalic.otf" id="3_8e7v8"]
 [ext_resource type="AudioStream" uid="uid://dy5lcoryjk0no" path="res://assets/Sounds/SFX/Click.wav" id="3_46duy"]
+[ext_resource type="FontFile" uid="uid://jc0e5wwfs5d7" path="res://assets/textures/UI/Blackney-Light.otf" id="4_j1j16"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_slqrs"]
+font = ExtResource("4_j1j16")
+font_size = 32
+outline_size = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_y661j"]
+font = ExtResource("4_j1j16")
+font_size = 32
+outline_size = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_3ba70"]
+font = ExtResource("4_j1j16")
+font_size = 32
+outline_size = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_8e7v8"]
+font = ExtResource("4_j1j16")
+font_size = 30
+outline_size = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_j1j16"]
+font = ExtResource("4_j1j16")
+font_size = 30
+outline_size = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_oej8g"]
+font = ExtResource("4_j1j16")
+font_size = 30
+outline_size = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_0xugd"]
+font = ExtResource("4_j1j16")
+font_size = 30
+outline_size = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_i0b0f"]
+font = ExtResource("4_j1j16")
+font_size = 30
+outline_size = 3
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_in2eo"]
 load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
@@ -61,7 +103,8 @@ offset_left = 32.0
 offset_top = 24.0
 offset_right = 264.0
 offset_bottom = 107.0
-theme_override_font_sizes/font_size = 60
+theme_override_fonts/font = ExtResource("3_8e7v8")
+theme_override_font_sizes/font_size = 75
 text = "Settings"
 
 [node name="TabContainer" type="TabContainer" parent="CanvasLayer/Panel" unique_id=1936509500]
@@ -74,6 +117,7 @@ mouse_filter = 0
 current_tab = 0
 
 [node name="Sound" type="Control" parent="CanvasLayer/Panel/TabContainer" unique_id=1674981246]
+visible = false
 layout_mode = 2
 focus_neighbor_right = NodePath("../Display")
 metadata/_tab_index = 0
@@ -93,6 +137,8 @@ focus_next = NodePath("../MusicVolumeLabel/MusicVolumeSlider")
 theme_override_font_sizes/font_size = 30
 text = "Master Volume
 "
+label_settings = SubResource("LabelSettings_slqrs")
+metadata/_edit_use_anchors_ = true
 
 [node name="MasterVolumeSlider" type="HSlider" parent="CanvasLayer/Panel/TabContainer/Sound/MasterVolumeLabel" unique_id=640626161]
 layout_mode = 1
@@ -118,6 +164,8 @@ offset_right = 237.0
 offset_bottom = 90.0
 theme_override_font_sizes/font_size = 30
 text = "Music Volume"
+label_settings = SubResource("LabelSettings_y661j")
+metadata/_edit_use_anchors_ = true
 
 [node name="MusicVolumeSlider" type="HSlider" parent="CanvasLayer/Panel/TabContainer/Sound/MusicVolumeLabel" unique_id=928261697]
 layout_mode = 1
@@ -146,6 +194,8 @@ offset_right = 203.0
 offset_bottom = 138.0
 theme_override_font_sizes/font_size = 30
 text = "SFX Volume"
+label_settings = SubResource("LabelSettings_3ba70")
+metadata/_edit_use_anchors_ = true
 
 [node name="SFXVolumeSlider" type="HSlider" parent="CanvasLayer/Panel/TabContainer/Sound/SFXVolumeLabel" unique_id=2140574341]
 layout_mode = 1
@@ -181,6 +231,7 @@ offset_right = 188.0
 offset_bottom = 346.0
 theme_override_font_sizes/font_size = 30
 text = "Resolution"
+label_settings = SubResource("LabelSettings_8e7v8")
 metadata/_edit_use_anchors_ = true
 
 [node name="ResolutionOptionButton" type="OptionButton" parent="CanvasLayer/Panel/TabContainer/Display/ResolutionLabel" unique_id=406450757]
@@ -211,6 +262,7 @@ offset_right = 105.0
 offset_bottom = 402.0
 theme_override_font_sizes/font_size = 30
 text = "FPS"
+label_settings = SubResource("LabelSettings_j1j16")
 metadata/_edit_use_anchors_ = true
 
 [node name="FPSOptionButton" type="OptionButton" parent="CanvasLayer/Panel/TabContainer/Display/FPSLabel" unique_id=67388654]
@@ -241,6 +293,7 @@ offset_right = 203.0
 offset_bottom = 186.0
 theme_override_font_sizes/font_size = 30
 text = "FullScreen"
+label_settings = SubResource("LabelSettings_oej8g")
 metadata/_edit_use_anchors_ = true
 
 [node name="FullScreenCheckBox" type="CheckBox" parent="CanvasLayer/Panel/TabContainer/Display/FullscreenLabel" unique_id=1622636175]
@@ -273,6 +326,7 @@ offset_right = 203.0
 offset_bottom = 234.0
 theme_override_font_sizes/font_size = 30
 text = "VSync"
+label_settings = SubResource("LabelSettings_0xugd")
 metadata/_edit_use_anchors_ = true
 
 [node name="VSyncCheckBox" type="CheckBox" parent="CanvasLayer/Panel/TabContainer/Display/VSyncLabel" unique_id=1028722197]
@@ -305,6 +359,7 @@ offset_right = 203.0
 offset_bottom = 290.0
 theme_override_font_sizes/font_size = 30
 text = "ShowFPS"
+label_settings = SubResource("LabelSettings_i0b0f")
 metadata/_edit_use_anchors_ = true
 
 [node name="ShowFPSCheckBox" type="CheckBox" parent="CanvasLayer/Panel/TabContainer/Display/ShowFPSLabel" unique_id=8727718]
@@ -328,7 +383,6 @@ text = "
 metadata/_edit_use_anchors_ = true
 
 [node name="Controls" type="Control" parent="CanvasLayer/Panel/TabContainer" unique_id=2116679023]
-visible = false
 layout_mode = 2
 focus_neighbor_left = NodePath("../Display")
 focus_neighbor_bottom = NodePath("../../ApplyButton")
