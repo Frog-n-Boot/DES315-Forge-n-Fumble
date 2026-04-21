@@ -75,6 +75,7 @@ public partial class ForgingStation : BaseStationScript
 			itemCarrier = p as ItemCarrier;
 			player = p;
 			playersInZone.Add(p);
+			UpdateButtonTexture(GetPlayerDevice());
 			p.SetCurrentStation(this);
 		}
 	}

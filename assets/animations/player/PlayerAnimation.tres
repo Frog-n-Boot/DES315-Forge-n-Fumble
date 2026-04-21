@@ -1,0 +1,76 @@
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://cmokg5r0aiwx1"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_bhhr1"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:Bone", "Armature/Skeleton3D:Bone.001", "Armature/Skeleton3D:Bone.002.L", "Armature/Skeleton3D:Bone.002.R"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wgoep"]
+animation = &"Dazed"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_papv8"]
+animation = &"GetUp"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_vtqja"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_wgoep")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_papv8")
+blend_point_1/pos = 1.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_25pwf"]
+animation = &"Death"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_s7w3r"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_vjfbk"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bhhr1"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vjfbk"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_ceocb"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_bhhr1")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_vjfbk")
+blend_point_1/pos = 1.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wkecn"]
+animation = &"Spin"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_j8736"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_5skin"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gokfk"]
+animation = &"StartSpin"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s7w3r"]
+animation = &"Swing"
+
+[resource]
+graph_offset = Vector2(-564.30115, -82.459)
+nodes/output/position = Vector2(960, 300)
+nodes/IdleWalk/node = SubResource("AnimationNodeBlendSpace1D_ceocb")
+nodes/IdleWalk/position = Vector2(-200, 60)
+nodes/FallBlend/node = SubResource("AnimationNodeBlend2_vjfbk")
+nodes/FallBlend/position = Vector2(120, 400)
+nodes/DyingBlend/node = SubResource("AnimationNodeBlend2_s7w3r")
+nodes/DyingBlend/position = Vector2(740, 280)
+nodes/Death/node = SubResource("AnimationNodeAnimation_25pwf")
+nodes/Death/position = Vector2(420, 480)
+nodes/AttackBlend/node = SubResource("AnimationNodeBlend2_bhhr1")
+nodes/AttackBlend/position = Vector2(80, 120)
+nodes/SpinBlend/node = SubResource("AnimationNodeBlend2_j8736")
+nodes/SpinBlend/position = Vector2(420, 200)
+nodes/StartSpin/node = SubResource("AnimationNodeAnimation_gokfk")
+nodes/StartSpin/position = Vector2(-500, 420)
+nodes/Spin/node = SubResource("AnimationNodeAnimation_wkecn")
+nodes/Spin/position = Vector2(-500, 600)
+nodes/Spinning/node = SubResource("AnimationNodeOneShot_5skin")
+nodes/Spinning/position = Vector2(-220, 440)
+nodes/DazedGetup/node = SubResource("AnimationNodeBlendSpace1D_vtqja")
+nodes/DazedGetup/position = Vector2(-240, 740)
+nodes/Swing/node = SubResource("AnimationNodeAnimation_s7w3r")
+nodes/Swing/position = Vector2(-180, 260)
+node_connections = [&"output", 0, &"DyingBlend", &"FallBlend", 0, &"Spinning", &"FallBlend", 1, &"DazedGetup", &"DyingBlend", 0, &"SpinBlend", &"DyingBlend", 1, &"Death", &"AttackBlend", 0, &"IdleWalk", &"AttackBlend", 1, &"Swing", &"SpinBlend", 0, &"AttackBlend", &"SpinBlend", 1, &"FallBlend", &"Spinning", 0, &"StartSpin", &"Spinning", 1, &"Spin"]

@@ -1,14 +1,14 @@
-[gd_scene format=3 uid="uid://bmre2ran8suad"]
+[gd_scene format=3 uid="uid://cqnu1p1pt5v5o"]
 
-[ext_resource type="ArrayMesh" uid="uid://d1tkusp0rw8hx" path="res://assets/models/FinalAssets_Low/Structure_models/Cobble_arch_Faceremoved_revrs.obj" id="1_lrjko"]
-[ext_resource type="Material" uid="uid://dp140br76vlls" path="res://assets/materials/Texture_sets/Environment_Textures/cobble_forge.tres" id="2_lrjko"]
+[ext_resource type="ArrayMesh" uid="uid://bnsyl4ghlh4i6" path="res://assets/models/FinalAssets_Low/Structure_models/Cobble_arch_Faceremoved.obj" id="1_i2axx"]
+[ext_resource type="Material" uid="uid://dp140br76vlls" path="res://assets/materials/Texture_sets/Environment_Textures/cobble_forge.tres" id="2_vhbql"]
 
 [node name="Cobl_archway_rev" type="Node3D" unique_id=1216911531 groups=["xray"]]
 
 [node name="Cobl_archway_reversed" type="MeshInstance3D" parent="." unique_id=1950556591]
 transform = Transform3D(0.72, 0, 0, 0, 0.72, 0, 0, 0, 0.72, 0, 0, 0)
-mesh = ExtResource("1_lrjko")
-surface_material_override/0 = ExtResource("2_lrjko")
+mesh = ExtResource("1_i2axx")
+surface_material_override/0 = ExtResource("2_vhbql")
 
 [node name="NavigationObstacle3D_01" type="NavigationObstacle3D" parent="." unique_id=494175072]
 visible = false
