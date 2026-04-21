@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dwaboo54wtvbp"
-path="res://.godot/imported/dwarf_low.glb-1b8be66d77ea35b94df8e8a3d21ffb14.scn"
+path="res://.godot/imported/Dwarf_low.glb-8e6fb233ff75279589da6a48e16bdb71.scn"
 
 [deps]
 
-source_file="res://assets/models/FinalAssets_Low/Character_Models/dwarf_low.glb"
-dest_files=["res://.godot/imported/dwarf_low.glb-1b8be66d77ea35b94df8e8a3d21ffb14.scn"]
+source_file="res://assets/models/FinalAssets_Low/Character_Models/Dwarf_low.glb"
+dest_files=["res://.godot/imported/Dwarf_low.glb-8e6fb233ff75279589da6a48e16bdb71.scn"]
 
 [params]
 
