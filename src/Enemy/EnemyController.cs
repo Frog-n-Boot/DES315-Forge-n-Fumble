@@ -320,16 +320,15 @@ public partial class EnemyController : CharacterBody3D
 		//if (_diagFrame % DiagInterval == 0)
 			//PrintDiagnostics(targetPosition, nextPoint, direction);
 	}
-
 	public void MoveTowards(Vector3 targetPosition, double delta)
 	{
+
 		Vector3 direction = (targetPosition - GlobalPosition).Normalized();
 		if (direction.LengthSquared() > 0.01f)
 			RotateTowards(direction, delta);
 		knockback = knockback.Lerp(Vector3.Zero, 0.15f);
 
 		Vector3 desiredVelocity = direction * Speed;
-
 		// Apply knockback on top if active.
 		if (knockback.LengthSquared() > 0.01f)
 			desiredVelocity = knockback;
@@ -340,6 +339,7 @@ public partial class EnemyController : CharacterBody3D
 			navigationAgent.Velocity = desiredVelocity;
 		else
 			Velocity = desiredVelocity;
+		
 	}
 
 	private void RotateTowards(Vector3 direction, double delta)
@@ -456,6 +456,7 @@ public partial class EnemyController : CharacterBody3D
     }
 
 
+	private float gravity = 9.8f;
     public override void _Process(double delta)
     {
         if(isStationary) return;
@@ -501,6 +502,7 @@ public partial class EnemyController : CharacterBody3D
             }
             return;
         }
+		
         CurrentState?.PhysicsUpdate(this, delta);
         MoveAndSlide();
 
@@ -670,17 +672,18 @@ public partial class EnemyController : CharacterBody3D
 		audioStream.Stream = enemyData.deathSound;
 		audioStream.PitchScale = enemyData.soundPitch;
 		audioStream.Play();
-		
+
         PlayDeathAnim();
-        EmitSignal(SignalName.Died, this, GlobalPosition);     
 		collisionArea.SetDeferred("monitoring", false);
 		collisionArea.SetDeferred("monitorable", false);
+        EmitSignal(SignalName.Died, this, GlobalPosition);     	
         animPlayer.AnimationFinished += OnDeathAnimationFinished;
     }
 
     private void OnDeathAnimationFinished(StringName animName)
     {
         animPlayer.AnimationFinished -= OnDeathAnimationFinished;
+		this.ProcessMode = ProcessModeEnum.Disabled;
         QueueFree();
     }
 

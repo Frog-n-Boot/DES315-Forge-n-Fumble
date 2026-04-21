@@ -19,7 +19,7 @@ metadata/_custom_type_script = "uid://bf02wgjk36psn"
 [sub_resource type="CylinderMesh" id="CylinderMesh_qlugu"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_pfjfy"]
-height = 3.8271484
+height = 2.1748047
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_d71qb"]
 viewport_path = NodePath("HealthBar/SubViewport")
@@ -143,6 +143,7 @@ bones/9/scale = Vector3(0.99999994, 1.0000001, 1)
 mesh = SubResource("CylinderMesh_qlugu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1909118665]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5761719, 0)
 shape = SubResource("CylinderShape3D_pfjfy")
 
 [node name="HealthBar" type="Sprite3D" parent="." unique_id=833760103]

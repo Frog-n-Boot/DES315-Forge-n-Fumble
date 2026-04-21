@@ -30,6 +30,7 @@ enemyMesh = ExtResource("5_fl57o")
 deathSound = ExtResource("4_fl57o")
 soundPitch = 1.0
 enemySkin = ExtResource("6_433q0")
+isStationary = true
 attackBehaviours = Array[ExtResource("1_fl57o")]([SubResource("Resource_kxpql"), SubResource("Resource_820ot")])
 movementBehaviour = Array[ExtResource("1_fl57o")]([ExtResource("8_fl57o")])
 metadata/_custom_type_script = "uid://bf02wgjk36psn"
