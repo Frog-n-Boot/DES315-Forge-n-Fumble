@@ -110,7 +110,7 @@ public partial class WaveManager : Node
 		}
 
 		if (enemiesRemaining != null)
-			enemiesRemaining.Text = $" X{enemiesLeft}";
+			enemiesRemaining.Text = $" {enemiesLeft}";
 		if(wavesRemaining!= null)
 			wavesRemaining.Text = $" Wave {currentWave}/{maxWaves}";
 	}
