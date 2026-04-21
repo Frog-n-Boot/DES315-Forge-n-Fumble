@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://rpehubwg1agq"]
+
+[ext_resource type="PackedScene" uid="uid://l60b0ea27c2r" path="res://assets/animations/enemy/rig/GoblinRig.blend" id="1_4epw2"]
+
+[node name="GoblinRig" unique_id=1304505124 instance=ExtResource("1_4epw2")]

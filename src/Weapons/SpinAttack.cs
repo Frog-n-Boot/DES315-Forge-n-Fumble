@@ -203,14 +203,10 @@ public partial class SpinAttack : Node3D
 		}
 
 		PlayAnim(ANIM_DAZED, 0f);
-
-		// After dazeTimer the game-state daze ends. This is also a stuck-state
-		// safety net — if GetUp's AnimationFinished never fires for any reason
-		// (weapon dropped, scene change, etc.) the player is fully unstuck here.
+		
 		parent.GetTree().CreateTimer(dazeTimer).Timeout += () =>
 		{
 			isDazed = false;
-			animPlayer.SpeedScale = 1f;
 
 			if (parent is PlayerController player)
 			{
@@ -251,16 +247,24 @@ public partial class SpinAttack : Node3D
 		{
 			animPlayer.SpeedScale = 1f;
 			PlayAnim(ANIM_GET_UP, 0f);
+			animPlayer.SpeedScale = 2f;
 		}
 
 		// GetUp finished → back to Idle, notify PlayerController
 		if (name == ANIM_GET_UP)
 		{
 			isDazedTriggered = false;
-			PlayAnim(ANIM_IDLE, BLEND_TIME);
 
 			if (parent is PlayerController player)
+			{
 				player.OnDazedSequenceEnded();
+			}
+			else
+			{
+				PlayAnim(ANIM_IDLE, BLEND_TIME);
+			}
+
+		
 		}
 	}
 

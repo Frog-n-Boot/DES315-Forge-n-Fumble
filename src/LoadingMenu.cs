@@ -1,10 +1,10 @@
 using Godot;
 using System;
 
-public partial class LoadingMenu : Node3D
+public partial class LoadingMenu : Node2D
 {
 	[Export] private string scenePath;
-	[Export] private ProgressBar progressBar;
+	[Export] private TextureProgressBar textureProgressBar;
 	[Export] private PackedScene levelScene;
 	
 	private bool sceneLoading =false;
@@ -24,7 +24,7 @@ public partial class LoadingMenu : Node3D
 
 			
             var status = ResourceLoader.LoadThreadedGetStatus(scenePath, progress);
-       		progressBar.Value = (float)progress[0] * 100;
+       		textureProgressBar.Value = (float)progress[0] * 100;
 
      		
 			if(status == ResourceLoader.ThreadLoadStatus.Loaded)

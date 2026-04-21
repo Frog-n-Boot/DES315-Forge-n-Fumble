@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bj6c60ek3rd8c" path="res://assets/materials/Texture_sets/WorkStations/Furance_low_ORM.tga" id="7_2jum7"]
 [ext_resource type="Texture2D" uid="uid://cw0s6r8rhgp8c" path="res://assets/materials/Texture_sets/WorkStations/Furance_low_Normal.tga" id="8_yd14g"]
 [ext_resource type="AudioStream" uid="uid://d31rmb5i75h54" path="res://assets/Sounds/SFX/InitalForgeActivation.wav" id="10_yd14g"]
-[ext_resource type="AudioStream" uid="uid://nipmrmep3cnr" path="res://assets/Sounds/SFX/ForgeAfterActivation.wav" id="11_i2ejw"]
+[ext_resource type="AudioStream" uid="uid://dyrnndgvln2a8" path="res://assets/Sounds/SFX/ForgeAfterActivationAdjusted.wav" id="15_8inme"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8inme"]
 atlas = ExtResource("2_vocjd")
@@ -93,7 +93,7 @@ heightmap_texture = ExtResource("7_2jum7")
 loop = false
 stream_count = 2
 stream_0 = ExtResource("10_yd14g")
-stream_1 = ExtResource("11_i2ejw")
+stream_1 = ExtResource("15_8inme")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jycwk"]
 
@@ -208,10 +208,10 @@ max_db = -24.0
 bus = &"SFX"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1161138031]
-transform = Transform3D(2.857143, 0, 0, 0, 2.857143, 0, 0, 0, 2.857143, -3.8203022, 3.5038965, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8203022, 3.5038965, 0)
 light_color = Color(2.4304428, 0.6644703, 0, 1)
 light_energy = 1.5
-omni_range = 2.9051983
+omni_range = 3.0
 
 [node name="Area3D" type="Area3D" parent="." unique_id=2011341028]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5253863, 2.1853385, -0.8195835)

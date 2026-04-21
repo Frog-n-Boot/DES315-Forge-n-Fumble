@@ -1,11 +1,12 @@
 using Godot;
 
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 
 
 public partial class EnemyController : CharacterBody3D
-
 {
 
 	public enum EnemyType { Normal, Fast, Strong }
@@ -19,15 +20,31 @@ public partial class EnemyController : CharacterBody3D
 	#endregion
 	#region Exports
 
-    [Export] public EnemyData enemyData;
-    [Export] public MeshInstance3D mesh;
-    [Export] public Area3D collisionArea;
-    [Export] public NavigationAgent3D navigationAgent;
-    [Export] private bool isStationary = false;
-    [Export] private AudioStreamPlayer3D audioStreamPlayer;
+	[Export] public EnemyData enemyData;
+	[Export] public MeshInstance3D mesh;
+	[Export] public Area3D collisionArea;
+	[Export] public NavigationAgent3D navigationAgent;
+	[Export] private bool isStationary = false;
+	[Export] AudioStreamPlayer3D audioStream; 
+    [ExportGroup("FX")]
+    [Export] private AnimationPlayer animPlayer;
+    [Export] private AudioStreamPlayer3D audioPlayer;
 
 	#endregion
 
+    #region Animations
+    private static readonly Dictionary<EnemyType, (string walk, string attack, string death)> animNames = new(){
+    { EnemyType.Fast,   ("SkeletonAnimations/SkeletonWalk", "SkeletonAnimations/SkeletonAttack", "SkeletonAnimations/SkeletonDeath") },
+    { EnemyType.Normal, ("GoblinAnimations/GoblinWalk", "GoblinAnimations/GoblinAttack", "GoblinAnimations/GoblinDeath") },
+    { EnemyType.Strong, ("GoblinAnimations/GoblinWalk", "GoblinAnimations/GoblinAttack", "GoblinAnimations/GoblinDeath") },
+    };
+	private static readonly Dictionary<EnemyType, (string death, float pitch)> soundNames = new(){
+	{EnemyType.Fast, ("SkeletonSounds/SkeletonDeathSound", 1.0f)},
+	{EnemyType.Normal, ("GoblinSounds/GoblinDeathSound", 1.0f)},
+	{EnemyType.Strong, ("GoblinSounds/GoblinDeathSound", 0.0f)},
+	};
+
+    #endregion
 
 	#region Runtime Stats
 	public string EnemyName     => enemyData.enemyName;
@@ -182,237 +199,242 @@ public partial class EnemyController : CharacterBody3D
 		Velocity = safeVelocity;
 	}
    
-    private void PrintDiagnostics(Vector3 targetPosition, Vector3 nextPoint, Vector3 direction)
-    {
-        bool navFinished    = navigationAgent?.IsNavigationFinished() ?? true;
-        int  pathPointCount = 0;
-        try { pathPointCount = navigationAgent?.GetCurrentNavigationPath().Length ?? 0; } catch { }
-        GD.Print("──────────────────────────────────────────────");
-        GD.Print($"[{Name}, {enemyCount}] DIAG @ physics frame {_diagFrame}");
-        GD.Print($"  State         : {CurrentState?.GetType().Name ?? "null"}");
-        GD.Print($"  IsStationary  : {IsStationary}");
-        GD.Print($"  _navReady     : {_navReady}");
-        GD.Print($"  Speed         : {Speed}");
-        GD.Print($"  MyPosition    : {GlobalPosition}");
-        GD.Print($"  TargetPos     : {targetPosition}");
-        GD.Print($"  DistToTarget  : {GlobalPosition.DistanceTo(targetPosition):F2}");
-        GD.Print($"  NextPathPoint : {nextPoint}");
-        GD.Print($"  Direction     : {direction}  LenSq={direction.LengthSquared():F4}");
-        GD.Print($"  Velocity      : {Velocity}");
-        GD.Print($"  Knockback     : {knockback}  LenSq={knockback.LengthSquared():F4}");
-        GD.Print($"  NavFinished   : {navFinished}");
-        GD.Print($"  PathPoints    : {pathPointCount}");
-        GD.Print($"  NavAgent null : {navigationAgent == null}");
-        if (navigationAgent != null)
-        {
-            GD.Print($"  NavTarget set : {navigationAgent.TargetPosition}");
-            GD.Print($"  MapRid valid  : {navigationAgent.GetNavigationMap().IsValid}");
-            GD.Print($"  NavAgent MaxSpeed : {navigationAgent.MaxSpeed}");
-            GD.Print($"  TargetDesiredDist : {navigationAgent.TargetDesiredDistance}");
-        }
-        GD.Print($"  Forge         : {(Forge != null ? Forge.GlobalPosition.ToString() : "null")}");
-        GD.Print($"  NearestPlayer : {(NearestPlayer != null ? NearestPlayer.GlobalPosition.ToString() : "null")}");
-        GD.Print($"  moveTarget    : {(moveTarget != null ? moveTarget.Name : "null")}");
-        GD.Print("──────────────────────────────────────────────");
-        enemyCount++;
-    }
+	private void PrintDiagnostics(Vector3 targetPosition, Vector3 nextPoint, Vector3 direction)
+	{
+		bool navFinished    = navigationAgent?.IsNavigationFinished() ?? true;
+		int  pathPointCount = 0;
+		try { pathPointCount = navigationAgent?.GetCurrentNavigationPath().Length ?? 0; } catch { }
+		GD.Print("──────────────────────────────────────────────");
+		GD.Print($"[{Name}, {enemyCount}] DIAG @ physics frame {_diagFrame}");
+		GD.Print($"  State         : {CurrentState?.GetType().Name ?? "null"}");
+		GD.Print($"  IsStationary  : {IsStationary}");
+		GD.Print($"  _navReady     : {_navReady}");
+		GD.Print($"  Speed         : {Speed}");
+		GD.Print($"  MyPosition    : {GlobalPosition}");
+		GD.Print($"  TargetPos     : {targetPosition}");
+		GD.Print($"  DistToTarget  : {GlobalPosition.DistanceTo(targetPosition):F2}");
+		GD.Print($"  NextPathPoint : {nextPoint}");
+		GD.Print($"  Direction     : {direction}  LenSq={direction.LengthSquared():F4}");
+		GD.Print($"  Velocity      : {Velocity}");
+		GD.Print($"  Knockback     : {knockback}  LenSq={knockback.LengthSquared():F4}");
+		GD.Print($"  NavFinished   : {navFinished}");
+		GD.Print($"  PathPoints    : {pathPointCount}");
+		GD.Print($"  NavAgent null : {navigationAgent == null}");
+		if (navigationAgent != null)
+		{
+			GD.Print($"  NavTarget set : {navigationAgent.TargetPosition}");
+			GD.Print($"  MapRid valid  : {navigationAgent.GetNavigationMap().IsValid}");
+			GD.Print($"  NavAgent MaxSpeed : {navigationAgent.MaxSpeed}");
+			GD.Print($"  TargetDesiredDist : {navigationAgent.TargetDesiredDistance}");
+		}
+		GD.Print($"  Forge         : {(Forge != null ? Forge.GlobalPosition.ToString() : "null")}");
+		GD.Print($"  NearestPlayer : {(NearestPlayer != null ? NearestPlayer.GlobalPosition.ToString() : "null")}");
+		GD.Print($"  moveTarget    : {(moveTarget != null ? moveTarget.Name : "null")}");
+		GD.Print("──────────────────────────────────────────────");
+		enemyCount++;
+	}
 
 
-    public void SetNavTarget(Vector3 target)
-    {
-        if (navigationAgent == null)
-        {
-            GD.PrintErr($"[{Name}] SetNavTarget({target}): navigationAgent is NULL.");
-            return;
-        }
-        if (!_navReady)
-        {
-            GD.Print($"[{Name}] SetNavTarget({target}): nav not ready — queued.");
-            _pendingNavTarget = true;
-            _pendingTargetPos = target;
-            return;
-        }
-        GD.Print($"[{Name}] SetNavTarget({target}): applied.");
-        navigationAgent.TargetPosition = target;
-        _lastNavTarget    = target;
-        _pendingNavTarget = false;
-    }
+	public void SetNavTarget(Vector3 target)
+	{
+		if (navigationAgent == null)
+		{
+			GD.PrintErr($"[{Name}] SetNavTarget({target}): navigationAgent is NULL.");
+			return;
+		}
+		if (!_navReady)
+		{
+			GD.Print($"[{Name}] SetNavTarget({target}): nav not ready — queued.");
+			_pendingNavTarget = true;
+			_pendingTargetPos = target;
+			return;
+		}
+		GD.Print($"[{Name}] SetNavTarget({target}): applied.");
+		navigationAgent.TargetPosition = target;
+		_lastNavTarget    = target;
+		_pendingNavTarget = false;
+	}
 
-    public void NavigateTo(Vector3 targetPosition, double delta)
-    {
-        if (navigationAgent == null)
-        {
-            GD.PrintErr($"[{Name}] NavigateTo: navigationAgent is NULL — cannot move.");
-            return;
-        }
+	public void NavigateTo(Vector3 targetPosition, double delta)
+	{
+		if (navigationAgent == null)
+		{
+			GD.PrintErr($"[{Name}] NavigateTo: navigationAgent is NULL — cannot move.");
+			return;
+		}
 
-        _navUpdateTimer -= (float)delta;
-        if (_navUpdateTimer <= 0f)
-        {
-            _navUpdateTimer = NavUpdateInterval;
-            if (_lastNavTarget.DistanceSquaredTo(targetPosition) >
-                NavTargetMoveThreshold * NavTargetMoveThreshold)
-            {
-                _lastNavTarget = targetPosition;
-                SetNavTarget(targetPosition);
-            }
-        }
+		_navUpdateTimer -= (float)delta;
+		if (_navUpdateTimer <= 0f)
+		{
+			_navUpdateTimer = NavUpdateInterval;
+			if (_lastNavTarget.DistanceSquaredTo(targetPosition) >
+				NavTargetMoveThreshold * NavTargetMoveThreshold)
+			{
+				_lastNavTarget = targetPosition;
+				SetNavTarget(targetPosition);
+			}
+		}
 
-        // 1. Stop if the agent has reached its destination.
-        if (navigationAgent.IsNavigationFinished())
-        {
-            Velocity = Vector3.Zero;
-            return;
-        }
+		// 1. Stop if the agent has reached its destination.
+		if (navigationAgent.IsNavigationFinished())
+		{
+			Velocity = Vector3.Zero;
+			return;
+		}
 
-        // 2. Knockback overrides normal movement.
-        if (knockback.LengthSquared() > 0.01f)
-        {
-            Velocity  = knockback;
-            knockback = knockback.Lerp(Vector3.Zero, 0.15f);
-            return;
-        }
+		// 2. Knockback overrides normal movement.
+		if (knockback.LengthSquared() > 0.01f)
+		{
+			Velocity  = knockback;
+			knockback = knockback.Lerp(Vector3.Zero, 0.15f);
+			return;
+		}
 
-        Vector3 nextPoint = navigationAgent.GetNextPathPosition();
-        Vector3 direction = nextPoint - GlobalPosition;
-        direction.Y = 0f;
+		Vector3 nextPoint = navigationAgent.GetNextPathPosition();
+		Vector3 direction = nextPoint - GlobalPosition;
+		direction.Y = 0f;
 
-        if (direction.LengthSquared() < 0.001f)
-            return;
+		if (direction.LengthSquared() < 0.001f)
+			return;
 
-        direction = direction.Normalized();
-        RotateTowards(direction, delta);
+		direction = direction.Normalized();
+		RotateTowards(direction, delta);
 
-        navigationAgent.Velocity = direction * Speed;
+		navigationAgent.Velocity = direction * Speed;
 
-        _stuckTimer += (float)delta;
-        if (_stuckTimer >= StuckCheckInterval)
-        {
-            if (GlobalPosition.DistanceSquaredTo(_stuckCheckPos) <
-                StuckMoveThreshold * StuckMoveThreshold)
-            {
-                GD.Print($"[{Name}] Stuck detected — forcing repath.");
-                _lastNavTarget = Vector3.Zero; // invalidate so threshold passes
-                SetNavTarget(targetPosition);
-            }
-            _stuckCheckPos = GlobalPosition;
-            _stuckTimer    = 0f;
-        }
+		_stuckTimer += (float)delta;
+		if (_stuckTimer >= StuckCheckInterval)
+		{
+			if (GlobalPosition.DistanceSquaredTo(_stuckCheckPos) <
+				StuckMoveThreshold * StuckMoveThreshold)
+			{
+				GD.Print($"[{Name}] Stuck detected — forcing repath.");
+				_lastNavTarget = Vector3.Zero; // invalidate so threshold passes
+				SetNavTarget(targetPosition);
+			}
+			_stuckCheckPos = GlobalPosition;
+			_stuckTimer    = 0f;
+		}
 
-        _diagFrame++;
-        //if (_diagFrame % DiagInterval == 0)
-            //PrintDiagnostics(targetPosition, nextPoint, direction);
-    }
+		_diagFrame++;
+		//if (_diagFrame % DiagInterval == 0)
+			//PrintDiagnostics(targetPosition, nextPoint, direction);
+	}
+	public void MoveTowards(Vector3 targetPosition, double delta)
+	{
 
-    public void MoveTowards(Vector3 targetPosition, double delta)
-    {
-        Vector3 direction = (targetPosition - GlobalPosition).Normalized();
-        if (direction.LengthSquared() > 0.01f)
-            RotateTowards(direction, delta);
-        knockback = knockback.Lerp(Vector3.Zero, 0.15f);
+		Vector3 direction = (targetPosition - GlobalPosition).Normalized();
+		if (direction.LengthSquared() > 0.01f)
+			RotateTowards(direction, delta);
+		knockback = knockback.Lerp(Vector3.Zero, 0.15f);
 
-        Vector3 desiredVelocity = direction * Speed;
+		Vector3 desiredVelocity = direction * Speed;
+		// Apply knockback on top if active.
+		if (knockback.LengthSquared() > 0.01f)
+			desiredVelocity = knockback;
 
-        // Apply knockback on top if active.
-        if (knockback.LengthSquared() > 0.01f)
-            desiredVelocity = knockback;
+		// Route through the avoidance system so enemies don't stack even
+		// during the direct final approach.
+		if (navigationAgent != null && navigationAgent.AvoidanceEnabled)
+			navigationAgent.Velocity = desiredVelocity;
+		else
+			Velocity = desiredVelocity;
+		
+	}
 
-        // Route through the avoidance system so enemies don't stack even
-        // during the direct final approach.
-        if (navigationAgent != null && navigationAgent.AvoidanceEnabled)
-            navigationAgent.Velocity = desiredVelocity;
-        else
-            Velocity = desiredVelocity;
-    }
+	private void RotateTowards(Vector3 direction, double delta)
+	{
+		Vector3 targetRotation = new Vector3(0, Mathf.Atan2(direction.X, direction.Z), 0);
+		Rotation = Rotation.Lerp(targetRotation, rotationSpeed * (float)delta);
+	}
 
-    private void RotateTowards(Vector3 direction, double delta)
-    {
-        Vector3 targetRotation = new Vector3(0, Mathf.Atan2(direction.X, direction.Z), 0);
-        Rotation = Rotation.Lerp(targetRotation, rotationSpeed * (float)delta);
-    }
+	private void ApplyKnockbackFromBody(Node3D body, string group)
+	{
+		Vector3 pushDir = Vector3.Zero;
 
-    private void ApplyKnockbackFromBody(Node3D body, string group)
-    {
-        Vector3 pushDir = Vector3.Zero;
+		switch (group)
+		{
+			case "Forge":
+				pushDir = (GlobalPosition - body.GlobalPosition).Normalized();
+				pushDir.Y = 0;
+				ApplyKnockback(pushDir, 25f);
+				break;
 
-        switch (group)
-        {
-            case "Forge":
-                pushDir = (GlobalPosition - body.GlobalPosition).Normalized();
-                pushDir.Y = 0;
-                ApplyKnockback(pushDir, 25f);
-                break;
+			case "Player":
+			if(body is PlayerController player)
+				{
+					pushDir = (GlobalPosition - player.GlobalPosition).Normalized();
+					pushDir.Y = 0;
+					ApplyKnockback(pushDir, 25f);
+				}          
+				break;
+		}
+	}
+	public void ApplyKnockback(Vector3 direction, float force)
+	{
+		knockback = direction * force;
+		
+	}
 
-            case "Player":
-            if(body is PlayerController player)
-                {
-                    pushDir = (GlobalPosition - player.GlobalPosition).Normalized();
-                    pushDir.Y = 0;
-                    ApplyKnockback(pushDir, 25f);
-                }          
-                break;
-        }
-    }
-    public void ApplyKnockback(Vector3 direction, float force)
-    {
-        knockback = direction * force;
-        
-    }
-
-    #endregion
-
-
-    #region Collision
-    private bool canCollide = true;
-
-    private void InitializeCollisionArea(Area3D area)
-    {
-        area.BodyEntered += OnBodyEntered;
-    }
-
-    private void OnBodyEntered(Node3D body)
-    {
-        if (!canCollide) return;
-
-        string group = GetBodyGroup(body);
-
-        if (!string.IsNullOrEmpty(group))
-        {
-            canCollide = false;
-            OnCollisionDetected(body, group);
-            GetTree().CreateTimer(enemyData.collisionCooldown).Timeout += () => canCollide = true;
-        }
-    }
-
-    private string GetBodyGroup(Node3D body)
-    {
-        if (body.IsInGroup("Player")) return "Player";
-        if (body.IsInGroup("Forge"))  return "Forge";
-        if (body.IsInGroup("Weapon")) return "Weapon";
-        if (body.IsInGroup("SpinAttack")) return "SpinAttack";
-        if (body.IsInGroup("Enemy"))  return "Enemy";
-        if (body.IsInGroup("Bullet")) return "Bullet";
-        if (body.IsInGroup("Arrow"))  return "Arrow";
-        return "";
-    }
-    #endregion
-
-    #region Private State
-    private Forge   forgeScript;
-    private bool    isDying        = false;
-    private Vector3 _spawnPosition = Vector3.Zero;
-    #endregion
+	#endregion
 
 
-    #region Lifecycle
-    public override void _Ready()
-    {
-        if (enemyData == null)
-        {
-            GD.PrintErr($"[{Name}] DIAG _Ready: enemyData is NULL — aborting.");
-            return;
-        }
-        GD.Print($"[{Name}] DIAG _Ready: start. SpawnPos={_spawnPosition}");
+	#region Collision
+	private bool canCollide = true;
+
+	private void InitializeCollisionArea(Area3D area)
+	{
+		area.BodyEntered += OnBodyEntered;
+	}
+
+	private void OnBodyEntered(Node3D body)
+	{
+		if (!canCollide) return;
+
+		string group = GetBodyGroup(body);
+
+		if (!string.IsNullOrEmpty(group))
+		{
+			canCollide = false;
+			OnCollisionDetected(body, group);
+			GetTree().CreateTimer(enemyData.collisionCooldown).Timeout += () => canCollide = true;
+		}
+	}
+
+	private string GetBodyGroup(Node3D body)
+	{
+		if (body.IsInGroup("Player")) return "Player";
+		if (body.IsInGroup("Forge"))  return "Forge";
+		if (body.IsInGroup("Weapon")) return "Weapon";
+		if (body.IsInGroup("SpinAttack")) return "SpinAttack";
+		if (body.IsInGroup("Enemy"))  return "Enemy";
+		if (body.IsInGroup("Bullet")) return "Bullet";
+		if (body.IsInGroup("Arrow"))  return "Arrow";
+		return "";
+	}
+	#endregion
+
+	#region Private State
+	private Forge   forgeScript;
+	private bool    isDying        = false;
+	private Vector3 _spawnPosition = Vector3.Zero;
+	#endregion
+
+
+	#region Lifecycle
+	public override void _Ready()
+	{
+		if (enemyData == null)
+		{
+			GD.PrintErr($"[{Name}] DIAG _Ready: enemyData is NULL — aborting.");
+			return;
+		}
+		GD.Print($"[{Name}] DIAG _Ready: start. SpawnPos={_spawnPosition}");
+
+        //GD.Print($"[{Name}] enemyData.enemyType = {enemyData.enemyType}");
+        //GD.Print($"[{Name}] animPlayer is null: {animPlayer == null}");
+        //if(animPlayer != null)
+            //GD.Print($"[{Name}] All animations in player: {string.Join(", ", animPlayer.GetAnimationList())}");
 
         AutoFindNodes();
         ApplyVisuals();
@@ -422,19 +444,24 @@ public partial class EnemyController : CharacterBody3D
         RefreshNearestPlayer();
         FindForge();
 
+
+
         GD.Print($"[{Name}] DIAG _Ready: Forge={Forge?.GlobalPosition.ToString() ?? "null"}  NearestPlayer={NearestPlayer?.GlobalPosition.ToString() ?? "null"}");
         if (_spawnPosition != Vector3.Zero)
             GlobalPosition = _spawnPosition;
         GD.Print($"[{Name}] DIAG _Ready: GlobalPosition after spawn={GlobalPosition}");
         TransitionTo(new MoveToForgeState());
+        PlayWalkAnim();
         GD.Print($"[{Name}] DIAG _Ready: done. State={CurrentState?.GetType().Name}  IsStationary={IsStationary}");
     }
 
 
+	private float gravity = 9.8f;
     public override void _Process(double delta)
     {
         if(isStationary) return;
-        //if (IsStationary) return;
+        if(isDying) return;
+
         _playerRefreshTimer -= (float)delta;
         if (_playerRefreshTimer <= 0f)
         {
@@ -447,40 +474,41 @@ public partial class EnemyController : CharacterBody3D
     public override void _PhysicsProcess(double delta)
     {
         if(isStationary) return;
-       // if (IsStationary) return;
+        if(isDying) return;
         if (!_navReady)
         {
             _navReady = true;
-            GD.Print($"[{Name}] DIAG _PhysicsProcess: first frame — nav now ready.");
-            GD.Print($"  MapRid valid  : {navigationAgent?.GetNavigationMap().IsValid}");
-            GD.Print($"  PendingTarget : {_pendingNavTarget}  pos={_pendingTargetPos}");
-            GD.Print($"  moveTarget    : {moveTarget?.Name ?? "null"}  pos={moveTarget?.GlobalPosition.ToString() ?? "null"}");
+            //GD.Print($"[{Name}] DIAG _PhysicsProcess: first frame — nav now ready.");
+            //GD.Print($"  MapRid valid  : {navigationAgent?.GetNavigationMap().IsValid}");
+           // GD.Print($"  PendingTarget : {_pendingNavTarget}  pos={_pendingTargetPos}");
+           // GD.Print($"  moveTarget    : {moveTarget?.Name ?? "null"}  pos={moveTarget?.GlobalPosition.ToString() ?? "null"}");
 
             if (_pendingNavTarget && navigationAgent != null)
             {
-                GD.Print($"[{Name}] DIAG: flushing pending nav target {_pendingTargetPos}");
+                //GD.Print($"[{Name}] DIAG: flushing pending nav target {_pendingTargetPos}");
                 navigationAgent.TargetPosition = _pendingTargetPos;
                 _lastNavTarget    = _pendingTargetPos;
                 _pendingNavTarget = false;
             }
             else if (moveTarget != null && navigationAgent != null)
             {
-                GD.Print($"[{Name}] DIAG: setting nav target from moveTarget {moveTarget.GlobalPosition}");
+                //GD.Print($"[{Name}] DIAG: setting nav target from moveTarget {moveTarget.GlobalPosition}");
                 navigationAgent.TargetPosition = moveTarget.GlobalPosition;
                 _lastNavTarget = moveTarget.GlobalPosition;
             }
             else
             {
-                GD.PrintErr($"[{Name}] DIAG: nav ready but NO target available — enemy will not move!");
+                //GD.PrintErr($"[{Name}] DIAG: nav ready but NO target available — enemy will not move!");
             }
             return;
         }
+		
         CurrentState?.PhysicsUpdate(this, delta);
         MoveAndSlide();
 
-        CheckContinuousCollisions();
-    }
-    #endregion
+		CheckContinuousCollisions();
+	}
+	#endregion
 
     
     #region Setup
@@ -491,6 +519,7 @@ public partial class EnemyController : CharacterBody3D
         {
             if (enemyData.enemyMesh != null) mesh.Mesh             = enemyData.enemyMesh;
             if (enemyData.enemyMat  != null) mesh.MaterialOverride = enemyData.enemyMat;
+            if (enemyData.enemySkin != null) mesh.Skin             = enemyData.enemySkin;
         }
         if (enemyData.enemyMat != null)
         {
@@ -503,22 +532,27 @@ public partial class EnemyController : CharacterBody3D
             Scale = enemyData.scale;
     }
 
-    private void SetupCollision()
-    {
-        if (collisionArea == null)
-            collisionArea = GetNodeOrNull<Area3D>("Area3D");
-        if (collisionArea != null)
-            InitializeCollisionArea(collisionArea);
-        else
-            GD.PrintErr($"[{Name}] DIAG SetupCollision: Area3D not found.");
-    }
+	private void SetupCollision()
+	{
+		if (collisionArea == null)
+			collisionArea = GetNodeOrNull<Area3D>("Area3D");
+		if (collisionArea != null)
+			InitializeCollisionArea(collisionArea);
+		else
+			GD.PrintErr($"[{Name}] DIAG SetupCollision: Area3D not found.");
+	}
 
     private void AutoFindNodes()
     {
         if (mesh == null)
-            mesh = GetNodeOrNull<MeshInstance3D>("MeshInstance3D");
+            mesh = GetNodeOrNull<MeshInstance3D>("Armature/Skeleton3D/MeshInstance3D");
         if (mesh == null)
             GD.PrintErr($"[{Name}] DIAG AutoFindNodes: MeshInstance3D not found.");
+
+        if (animPlayer == null)
+            animPlayer = GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
+        if (animPlayer == null)
+            GD.PrintErr($"[{Name}] DIAG AutoFindNodes: AnimationPlayer not found.");
     }
     #endregion
 
@@ -529,39 +563,35 @@ public partial class EnemyController : CharacterBody3D
         enemyData      = data;
         moveTarget     = target;
         _spawnPosition = spawnPosition;
-        GD.Print($"[{Name}] DIAG Initialize: data={data?.enemyName}  target={target?.Name}  spawnPos={spawnPosition}");
+        //GD.Print($"[{Name}] DIAG Initialize: data={data?.enemyName}  target={target?.Name}  spawnPos={spawnPosition}");
     }
 
-    public static EnemyController Create(EnemyData data, Node3D target, Node parent, Vector3 spawnPosition)
-    {
-        var enemyScene = GD.Load<PackedScene>("res://assets/prefabs/Enemy.tscn");
-        var enemy      = enemyScene.Instantiate<EnemyController>();
-        enemy.Initialize(data, target, spawnPosition);
-        parent.CallDeferred(Node.MethodName.AddChild, enemy);
-        return enemy;
-    }
-    #endregion
+	public static EnemyController Create(EnemyData data, Node3D target, Node parent, Vector3 spawnPosition)
+	{
+		var enemyScene = GD.Load<PackedScene>("res://assets/prefabs/Enemy.tscn");
+		var enemy      = enemyScene.Instantiate<EnemyController>();
+		enemy.Initialize(data, target, spawnPosition);
+		parent.CallDeferred(Node.MethodName.AddChild, enemy);
+		return enemy;
+	}
+	#endregion
 
 
-    #region Forge
-    private Forge GetForge()
-    {
-        if (forgeScript == null)
-            forgeScript = GetNode<Forge>("/root/Forge");
-        return forgeScript;
-    }
-    #endregion
+	#region Forge
+	private Forge GetForge()
+	{
+		if (forgeScript == null)
+			forgeScript = GetNode<Forge>("/root/Forge");
+		return forgeScript;
+	}
+	#endregion
 
-    #region Collision Handling
+	#region Collision Handling
 
     private void CheckContinuousCollisions()
     {
         if(isDying) return;
-
-        var collisionArea = GetNode<Area3D>("Area3D");
-        if(collisionArea == null) {
-            return;
-        }
+        if(collisionArea == null) {return;}
 
         var overlappingBodies = collisionArea.GetOverlappingBodies();
         foreach(var body in overlappingBodies)
@@ -587,6 +617,7 @@ public partial class EnemyController : CharacterBody3D
         switch (groupName)
         {
             case "Forge":
+                PlayAttackAnim();
                 EmitSignal(SignalName.DamagedTarget, body, Damage);
                 Forge forge = GetForge();
                 if (forge != null) { forge.TakeDamage(Damage); GD.Print(forge.health); }
@@ -596,6 +627,7 @@ public partial class EnemyController : CharacterBody3D
                 ApplyKnockback(forgePushDir, 15f);
                 break;
             case "Player":
+                PlayAttackAnim();
                 EmitSignal(SignalName.DamagedTarget, body, Damage);
                 if (body is PlayerController playerController)
                 {
@@ -636,69 +668,84 @@ public partial class EnemyController : CharacterBody3D
     #region Health Events
     private void OnHealthDepleted()
     {
-        EmitSignal(SignalName.Died, this, GlobalPosition);    
-        audioStreamPlayer.Stream = enemyData.deathSound;
+        isDying = true;
+		audioStream.Stream = enemyData.deathSound;
+		audioStream.PitchScale = enemyData.soundPitch;
+		audioStream.Play();
+
+        PlayDeathAnim();
+		collisionArea.SetDeferred("monitoring", false);
+		collisionArea.SetDeferred("monitorable", false);
+        EmitSignal(SignalName.Died, this, GlobalPosition);     	
+        animPlayer.AnimationFinished += OnDeathAnimationFinished;
+    }
+
+    private void OnDeathAnimationFinished(StringName animName)
+    {
+        animPlayer.AnimationFinished -= OnDeathAnimationFinished;
+		this.ProcessMode = ProcessModeEnum.Disabled;
         QueueFree();
     }
+
     #endregion
 
-    #region Public API
-    public void TakeDamage(int amount)
+	#region Public API
+	public void TakeDamage(int amount)
 	{
 		Flash();
 		TakeHealthDamage(amount);
 		DamageNumbers.Spawn(amount, GlobalPosition, GetParent());
 	}
-    public void Die() { EmitSignal(SignalName.Died, this, GlobalPosition); QueueFree(); }
-    public void SetTarget(Node3D newTarget) => moveTarget = newTarget;
-    #endregion
+	public void Die() { EmitSignal(SignalName.Died, this, GlobalPosition); QueueFree(); }
+	public void SetTarget(Node3D newTarget) => moveTarget = newTarget;
+	#endregion
 
 
-    #region Helpers
-    private BaseWeapon FindWeaponInHierarchy(Node current)
-    {
-        while (current != null)
-        {
-            if (current is BaseWeapon weapon) return weapon;
-            current = current.GetParent();
-        }
-        return null;
-    }
-    #endregion
+	#region Helpers
+	private BaseWeapon FindWeaponInHierarchy(Node current)
+	{
+		while (current != null)
+		{
+			if (current is BaseWeapon weapon) return weapon;
+			current = current.GetParent();
+		}
+		return null;
+	}
+	#endregion
 
 
-    #region Flash
-    private void Flash()
-    {
-        if (material == null) return;
-        Color white = new Color(1, 1, 1);
-        Color red   = new Color(1, 0, 0);
-        var tween = CreateTween();
-        tween.TweenProperty(material, "emission_energy_multiplier", 2.0f, enemyData.flashDuration / 4);
-        tween.Parallel().TweenProperty(material, "emission", white, enemyData.flashDuration / 4);
-        tween.TweenProperty(material, "emission", red, enemyData.flashDuration / 4);
-        tween.TweenProperty(material, "emission_energy_multiplier", 0.0f, enemyData.flashDuration / 2);
-    }
-    #endregion
+	#region Flash
+	private void Flash()
+	{
+		if (material == null) return;
+		Color white = new Color(1, 1, 1);
+		Color red   = new Color(1, 0, 0);
+		var tween = CreateTween();
+		tween.TweenProperty(material, "emission_energy_multiplier", 2.0f, enemyData.flashDuration / 4);
+		tween.Parallel().TweenProperty(material, "emission", white, enemyData.flashDuration / 4);
+		tween.TweenProperty(material, "emission", red, enemyData.flashDuration / 4);
+		tween.TweenProperty(material, "emission_energy_multiplier", 0.0f, enemyData.flashDuration / 2);
+	}
+	#endregion
 
 
-    // ── Base State ───────────────────────────────────────────────────────────
-    public class EnemyStateBase : IEnemyState
-    {
-        public virtual void Enter(EnemyController c) { }
-        public virtual void Update(EnemyController c, double delta) { }
-        public virtual void PhysicsUpdate(EnemyController c, double delta) { }
-        public virtual void Exit(EnemyController c) { }
-    }
+	// ── Base State ───────────────────────────────────────────────────────────
+	public class EnemyStateBase : IEnemyState
+	{
+		public virtual void Enter(EnemyController c) { }
+		public virtual void Update(EnemyController c, double delta) { }
+		public virtual void PhysicsUpdate(EnemyController c, double delta) { }
+		public virtual void Exit(EnemyController c) { }
+	}
 
-    // ── States ───────────────────────────────────────────────────────────────
-    public class IdleState : EnemyStateBase { }
+	// ── States ───────────────────────────────────────────────────────────────
+	public class IdleState : EnemyStateBase { }
 
     public class ChasePlayerState : EnemyStateBase
     {
         public override void Enter(EnemyController c)
         {
-            GD.Print($"[{c.Name}] Enter ChasePlayerState. NearestPlayer={c.NearestPlayer?.GlobalPosition.ToString() ?? "null"}");
+           // GD.Print($"[{c.Name}] Enter ChasePlayerState. NearestPlayer={c.NearestPlayer?.GlobalPosition.ToString() ?? "null"}");
             c.moveTarget = c.NearestPlayer;
             if (c.NearestPlayer != null)
                 c.SetNavTarget(c.NearestPlayer.GlobalPosition);
@@ -707,6 +754,7 @@ public partial class EnemyController : CharacterBody3D
         {
             if (c.NearestPlayer == null) return;
             c.moveTarget = c.NearestPlayer;
+            c.PlayWalkAnim();
             c.NavigateTo(c.NearestPlayer.GlobalPosition, delta);
         }
     }
@@ -714,13 +762,11 @@ public partial class EnemyController : CharacterBody3D
     public class MoveToForgeState : EnemyStateBase
     {
         // Distance at which we abandon the nav mesh and walk directly into
-        // the forge. Keep this tight (just larger than the nav mesh gap) so
-        // enemies are clear of rocks before switching to direct movement.
         private const float DirectApproachDistance = 2.0f;
 
         public override void Enter(EnemyController c)
         {
-            GD.Print($"[{c.Name}] Enter MoveToForgeState. Forge={c.Forge?.GlobalPosition.ToString() ?? "null"}");
+            //GD.Print($"[{c.Name}] Enter MoveToForgeState. Forge={c.Forge?.GlobalPosition.ToString() ?? "null"}");
             c.moveTarget = c.Forge;
             if (c.Forge != null)
                 c.SetNavTarget(c.Forge.GlobalPosition);
@@ -731,14 +777,10 @@ public partial class EnemyController : CharacterBody3D
             
             
             if (c.Forge == null) return;
+            c.PlayWalkAnim();
 
             float dist = c.GlobalPosition.DistanceTo(c.Forge.GlobalPosition);
-
             // Nav mesh ends before the forge collision shape boundary.
-            // Once close enough (or nav says finished), drive the next path
-            // point rather than the forge centre directly — this keeps the
-            // enemy following the computed path around rocks instead of
-            // cutting straight through them.
             if (dist <= DirectApproachDistance || c.navigationAgent.IsNavigationFinished())
                 c.MoveTowards(c.navigationAgent.GetNextPathPosition(), delta);
             else
@@ -750,7 +792,7 @@ public partial class EnemyController : CharacterBody3D
     {
         public override void Enter(EnemyController c)
         {
-            GD.Print($"[{c.Name}] Enter AttackPlayerState. NearestPlayer={c.NearestPlayer?.GlobalPosition.ToString() ?? "null"}");
+            //GD.Print($"[{c.Name}] Enter AttackPlayerState. NearestPlayer={c.NearestPlayer?.GlobalPosition.ToString() ?? "null"}");
             c.moveTarget = c.NearestPlayer;
             if (c.NearestPlayer != null)
                 c.SetNavTarget(c.NearestPlayer.GlobalPosition);
@@ -759,18 +801,19 @@ public partial class EnemyController : CharacterBody3D
         {
             if (c.NearestPlayer == null) return;
             c.moveTarget = c.NearestPlayer;
+            c.PlayWalkAnim();
             c.NavigateTo(c.NearestPlayer.GlobalPosition, delta);
         }
     }
 
-    public class AttackForgeState : EnemyStateBase
-    {
-        // Same threshold as MoveToForgeState — keeps the two states consistent.
-        private const float DirectApproachDistance = 2.0f;
+	public class AttackForgeState : EnemyStateBase
+	{
+		// Same threshold as MoveToForgeState — keeps the two states consistent.
+		private const float DirectApproachDistance = 2.0f;
 
         public override void Enter(EnemyController c)
         {
-            GD.Print($"[{c.Name}] Enter AttackForgeState. Forge={c.Forge?.GlobalPosition.ToString() ?? "null"}");
+            //GD.Print($"[{c.Name}] Enter AttackForgeState. Forge={c.Forge?.GlobalPosition.ToString() ?? "null"}");
             c.moveTarget = c.Forge;
             if (c.Forge != null)
                 c.SetNavTarget(c.Forge.GlobalPosition);
@@ -779,13 +822,20 @@ public partial class EnemyController : CharacterBody3D
         public override void PhysicsUpdate(EnemyController c, double delta)
         {
             if (c.Forge == null) return;
+            c.PlayWalkAnim();
 
-            float dist = c.GlobalPosition.DistanceTo(c.Forge.GlobalPosition);
+			float dist = c.GlobalPosition.DistanceTo(c.Forge.GlobalPosition);
 
             if (dist <= DirectApproachDistance || c.navigationAgent.IsNavigationFinished())
+            {
+                c.PlayAttackAnim();
                 c.MoveTowards(c.navigationAgent.GetNextPathPosition(), delta);
+            }
             else
+            {
+                c.PlayWalkAnim();
                 c.NavigateTo(c.Forge.GlobalPosition, delta);
+            }
         }
     }
 
@@ -793,6 +843,7 @@ public partial class EnemyController : CharacterBody3D
     {
         public override void PhysicsUpdate(EnemyController c, double delta)
         {
+            c.PlayWalkAnim();
             Vector3 fleeDir = Vector3.Zero;
             if (c.NearestPlayer != null)
                 fleeDir += (c.GlobalPosition - c.NearestPlayer.GlobalPosition).Normalized();
@@ -802,4 +853,46 @@ public partial class EnemyController : CharacterBody3D
             c.MoveTowards(c.GlobalPosition + fleeDir.Normalized() * 20f, delta);
         }
     }
+
+    public void PlayAnim(string animName)
+    {
+        //GD.Print($"[{Name}] PlayAnim called with: '{animName}'");
+    
+        if(animPlayer == null)
+        {
+            //GD.PrintErr($"[{Name}] PlayAnim: animPlayer is null");
+            return;
+        }
+    
+        //GD.Print($"[{Name}] AnimPlayer node: {animPlayer.Name}, current anim: '{animPlayer.CurrentAnimation}', is playing: {animPlayer.IsPlaying()}");
+        //GD.Print($"[{Name}] Available animations: {string.Join(", ", animPlayer.GetAnimationList())}");
+    
+        if(!animPlayer.HasAnimation(animName)) {
+            //GD.PrintErr($"[{Name}] PlayAnim: animation '{animName}' not found.");
+            return;
+        }
+    
+        if(animPlayer.CurrentAnimation == animName && animPlayer.IsPlaying())
+        {
+            //GD.Print($"[{Name}] PlayAnim: '{animName}' already playing, skipping.");
+            return;
+        }
+    
+        //GD.Print($"[{Name}] PlayAnim: playing '{animName}'");
+        animPlayer.Play(animName);
+        //GD.Print($"[{Name}] PlayAnim: after Play() call — current: '{animPlayer.CurrentAnimation}', is playing: {animPlayer.IsPlaying()}");
+    }
+
+	public void PlaySound(string soundName, float pitch)
+	{
+		if(audioStream == null) return;
+		audioStream.PitchScale = pitch;
+
+		
+	}
+
+    public void PlayWalkAnim() => PlayAnim(animNames[enemyData.enemyType].walk);
+    public void PlayAttackAnim() => PlayAnim(animNames[enemyData.enemyType].attack);
+    public void PlayDeathAnim() => PlayAnim(animNames[enemyData.enemyType].death);
+	public void PlayDeathSound() => PlaySound(soundNames[enemyData.enemyType].death, soundNames[enemyData.enemyType].pitch);
 }

@@ -2,13 +2,15 @@
 
 [ext_resource type="Script" uid="uid://cltijj7du0h0v" path="res://src/LoadingMenu.cs" id="1_jqyhx"]
 [ext_resource type="PackedScene" uid="uid://88oq7ysmwuhi" path="res://scenes/Main.tscn" id="2_x85qc"]
+[ext_resource type="Texture2D" uid="uid://bi1h1rttgjwqr" path="res://assets/PNG/Loadingscreen_backround.webp" id="3_814mh"]
+[ext_resource type="Texture2D" uid="uid://cbx2c3ppbseci" path="res://assets/PNG/Loadingscreen_border.webp" id="4_3gg4b"]
 
 [node name="LoadingScreen" type="Node2D" unique_id=1773272142]
 
-[node name="Node3D" type="Node3D" parent="." unique_id=169874567 node_paths=PackedStringArray("progressBar")]
+[node name="Node3D" type="Node2D" parent="." unique_id=1678082519 node_paths=PackedStringArray("textureProgressBar")]
 script = ExtResource("1_jqyhx")
 scenePath = "res://scenes/Main.tscn"
-progressBar = NodePath("Control/ProgressBar")
+textureProgressBar = NodePath("Control/TextureProgressBar")
 levelScene = ExtResource("2_x85qc")
 
 [node name="Control" type="Control" parent="Node3D" unique_id=323109060]
@@ -18,7 +20,19 @@ offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(1.1325623, 1.0945792)
 
-[node name="ProgressBar" type="ProgressBar" parent="Node3D/Control" unique_id=626182632]
+[node name="LoadingScreenBackground" type="TextureRect" parent="Node3D/Control" unique_id=977858615]
+layout_mode = 0
+offset_right = 1141.659
+offset_bottom = 671.49097
+texture = ExtResource("3_814mh")
+
+[node name="LoadingScreenBorder" type="TextureRect" parent="Node3D/Control" unique_id=314286814]
+layout_mode = 0
+offset_right = 1141.659
+offset_bottom = 671.49097
+texture = ExtResource("4_3gg4b")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Node3D/Control" unique_id=1966092534]
 layout_mode = 0
 offset_left = 406.0
 offset_top = 287.0
