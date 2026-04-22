@@ -27,7 +27,7 @@ public partial class TutorialManager : Node
 
 	[Signal] public delegate void TutorialCompletedEventHandler();
 	
-	private int currentRoom = 0;
+	public int currentRoom {get; private set;}= 0;
 	private int ingotsCrafted = 0;
 	private int swordsCrafted = 0;
 	private bool room3Completed = false;

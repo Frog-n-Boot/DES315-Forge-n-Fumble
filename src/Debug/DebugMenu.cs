@@ -273,26 +273,26 @@ public partial class DebugMenu : CanvasLayer
 	#region "Camera Settings"
 	private void SetCameraSettings()
     {
-        smoothSpeed.Value = cameraController.smoothSpeed;
-		smoothSpeed.ValueChanged += v => cameraController.smoothSpeed = (int)v;
+        // smoothSpeed.Value = cameraController.smoothSpeed;
+		// smoothSpeed.ValueChanged += v => cameraController.smoothSpeed = (int)v;
 
-		outerBoundsX.Value = cameraController.outerBounds.X;
-		outerBoundsX.ValueChanged += v => cameraController.outerBounds.X = (int)v;	
+		// outerBoundsX.Value = cameraController.outerBounds.X;
+		// outerBoundsX.ValueChanged += v => cameraController.outerBounds.X = (int)v;	
 
-		outerBoundsY.Value = cameraController.outerBounds.Y;
-		outerBoundsY.ValueChanged += v => cameraController.outerBounds.Y = (int)v;
+		// outerBoundsY.Value = cameraController.outerBounds.Y;
+		// outerBoundsY.ValueChanged += v => cameraController.outerBounds.Y = (int)v;
 
-		innerBoundsX.Value = cameraController.innerBounds.X;
-		innerBoundsX.ValueChanged += v => cameraController.innerBounds.X = (int)v;
+		// innerBoundsX.Value = cameraController.innerBounds.X;
+		// innerBoundsX.ValueChanged += v => cameraController.innerBounds.X = (int)v;
 
-		innerBoundsY.Value = cameraController.innerBounds.Y;
-		innerBoundsY.ValueChanged += v => cameraController.innerBounds.Y = (int)v;
+		// innerBoundsY.Value = cameraController.innerBounds.Y;
+		// innerBoundsY.ValueChanged += v => cameraController.innerBounds.Y = (int)v;
 
-		minSize.Value = cameraController.minSize;
-		minSize.ValueChanged += v => cameraController.minSize = (int)v;
+		// minSize.Value = cameraController.minSize;
+		// minSize.ValueChanged += v => cameraController.minSize = (int)v;
 
-		maxSize.Value = cameraController.maxSize;
-		maxSize.ValueChanged += v => cameraController.maxSize = (int)v;
+		// maxSize.Value = cameraController.maxSize;
+		// maxSize.ValueChanged += v => cameraController.maxSize = (int)v;
 		
     }
 	#endregion
