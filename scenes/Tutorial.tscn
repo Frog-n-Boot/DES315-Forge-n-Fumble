@@ -314,6 +314,7 @@ offset_bottom = -3.0
 text = "Skip? ESC/ ⧉/≡"
 
 [node name="Text" type="Node3D" parent="UI" unique_id=551861238]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7764058, 1.9883995)
 
 [node name="Label3D" type="Label3D" parent="UI/Text" unique_id=1005533518]
 transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -49.388096, 1.5332108, -3.5558171)
@@ -345,7 +346,14 @@ weapons to defend off enemies"
 transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -62.425232, 1.5332108, -26.406786)
 text = "The Forge has a 
 limited amount of HP, 
-if it is destoryed you die"
+if it is destoryed you lose"
+font_size = 23
+
+[node name="Label3D18" type="Label3D" parent="UI/Text" unique_id=1834344684]
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -62.425232, 1.5332108, -26.406786)
+text = "The Forge has a 
+limited amount of HP, 
+if it is destoryed you lose"
 font_size = 23
 
 [node name="Label3D5" type="Label3D" parent="UI/Text" unique_id=385033897]
@@ -917,7 +925,7 @@ volume_db = -40.0
 
 [node name="Enemies" type="Node" parent="Objects" unique_id=913842636]
 
-[node name="Enemy" type="CharacterBody3D" parent="Objects/Enemies" unique_id=356561528 node_paths=PackedStringArray("mesh", "collisionArea", "navigationAgent", "audioStream", "animPlayer", "audioPlayer") groups=["Enemy"]]
+[node name="Enemy" type="CharacterBody3D" parent="Objects/Enemies" unique_id=356561528 node_paths=PackedStringArray("mesh", "collisionArea", "navigationAgent") groups=["Enemy"]]
 transform = Transform3D(0.07167157, 0, -0.9974283, 0, 1, 0, 0.9974283, 0, 0.07167157, 203.78946, 1.0190563, -9.21179)
 collision_layer = 4
 collision_mask = 235
@@ -927,9 +935,6 @@ mesh = NodePath("Armature/Skeleton3D/MeshInstance3D")
 collisionArea = NodePath("Area3D")
 navigationAgent = NodePath("NavigationAgent3D")
 isStationary = true
-audioStream = NodePath("EnemyDeathSounds")
-animPlayer = NodePath("AnimationPlayer")
-audioPlayer = NodePath("EnemyDeathSounds")
 
 [node name="Armature" type="Node3D" parent="Objects/Enemies/Enemy" unique_id=543957702]
 
@@ -1066,7 +1071,7 @@ libraries/SkeletonAnimations = SubResource("AnimationLibrary_72r1g")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Objects/Enemies/Enemy" unique_id=1992914578]
 
-[node name="Enemy2" type="CharacterBody3D" parent="Objects/Enemies" unique_id=1904101275 node_paths=PackedStringArray("mesh", "collisionArea", "navigationAgent", "audioStream", "animPlayer", "audioPlayer") groups=["Enemy"]]
+[node name="Enemy2" type="CharacterBody3D" parent="Objects/Enemies" unique_id=1904101275 node_paths=PackedStringArray("mesh", "collisionArea", "navigationAgent") groups=["Enemy"]]
 transform = Transform3D(0.9927301, 0, 0.12036218, 0, 1, 0, -0.12036218, 0, 0.9927301, 311.51697, 0.8236625, -1.9071844)
 collision_layer = 4
 collision_mask = 235
@@ -1076,9 +1081,6 @@ mesh = NodePath("Armature/Skeleton3D/MeshInstance3D")
 collisionArea = NodePath("Area3D")
 navigationAgent = NodePath("NavigationAgent3D")
 isStationary = true
-audioStream = NodePath("EnemyDeathSounds")
-animPlayer = NodePath("AnimationPlayer")
-audioPlayer = NodePath("EnemyDeathSounds")
 
 [node name="Armature" type="Node3D" parent="Objects/Enemies/Enemy2" unique_id=1433257793]
 

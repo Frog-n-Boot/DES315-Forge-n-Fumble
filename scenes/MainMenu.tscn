@@ -4,9 +4,8 @@
 [ext_resource type="AudioStream" uid="uid://brbu62attbvtp" path="res://assets/Sounds/SFX/Anvil1.wav" id="2_2wh52"]
 [ext_resource type="FontFile" uid="uid://jc0e5wwfs5d7" path="res://assets/textures/UI/Blackney-Light.otf" id="2_826wr"]
 [ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="2_l72w3"]
-[ext_resource type="AudioStream" uid="uid://i4t1sy6mjdaa" path="res://assets/Sounds/Music/Townsfolk LOOP.wav" id="3_ow34m"]
-[ext_resource type="AudioStream" uid="uid://dw6sr2a1g6wm3" path="res://assets/Sounds/Music/Pillage LOOP.wav" id="3_ucygd"]
 [ext_resource type="Texture2D" uid="uid://b32ma1du5ci52" path="res://assets/PNG/Title_screen_redone.webp" id="5_l72w3"]
+[ext_resource type="Texture2D" uid="uid://daxc30i1t26tu" path="res://assets/PNG/FORGENFUMBLESIGN.webp" id="6_826wr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_826wr"]
 atlas = ExtResource("2_l72w3")
@@ -39,8 +38,6 @@ tutorialButton = NodePath("TutorialButton")
 settingsButton = NodePath("SettingsButton")
 quitMenu = NodePath("QuitButton")
 audio = NodePath("AudioStreamPlayer2D")
-menuMusic = ExtResource("3_ow34m")
-levelMusic = ExtResource("3_ucygd")
 
 [node name="StartButton" type="Button" parent="Control" unique_id=1277000304]
 z_index = 1
@@ -130,17 +127,6 @@ icon = SubResource("AtlasTexture_8a8k8")
 flat = true
 icon_alignment = 1
 
-[node name="Label" type="Label" parent="Control" unique_id=1589327339]
-z_index = 1
-layout_mode = 0
-offset_left = 33.117004
-offset_top = 29.81184
-offset_right = 497.117
-offset_bottom = 112.811844
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 60
-text = "Forge-N-Fumble"
-
 [node name="ColorRect" type="ColorRect" parent="Control" unique_id=322622548]
 z_index = -1
 layout_mode = 1
@@ -171,6 +157,11 @@ mouse_filter = 2
 texture = ExtResource("5_l72w3")
 expand_mode = 1
 stretch_mode = 6
+
+[node name="Forgenfumblesign" type="Sprite2D" parent="." unique_id=627642813]
+position = Vector2(213.84125, 119.247345)
+scale = Vector2(0.43540746, 0.43540746)
+texture = ExtResource("6_826wr")
 
 [connection signal="pressed" from="Control/StartButton" to="Control" method="OnStartButtonPressed"]
 [connection signal="pressed" from="Control/TutorialButton" to="Control" method="OnTutorialButtonPressed"]
