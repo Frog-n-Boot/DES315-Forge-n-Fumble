@@ -289,6 +289,10 @@ texture = SubResource("AtlasTexture_kecgh")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D" unique_id=1984295763]
 
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=1112835317]
+height = 1.6
+vertices = PackedVector3Array(-1.325306, 0, -1.0780604, -1.3779141, 0, 0.9000089, 1.3471922, 0, 0.984182, 1.3998002, 0, -1.088582)
+
 [connection signal="body_entered" from="BarMinigameSprite3D/BarMinigameSubViewport/CanvasLayer/Sword/Area2D" to="BarMinigameSprite3D/BarMinigameSubViewport/CanvasLayer/BarMinigame" method="OnBodyEntered"]
 [connection signal="body_exited" from="BarMinigameSprite3D/BarMinigameSubViewport/CanvasLayer/Sword/Area2D" to="BarMinigameSprite3D/BarMinigameSubViewport/CanvasLayer/BarMinigame" method="OnBodyExited"]
 [connection signal="timeout" from="BarMinigameSprite3D/BarMinigameSubViewport/CanvasLayer/BarMinigame/ProgressTimer" to="BarMinigameSprite3D/BarMinigameSubViewport/CanvasLayer/BarMinigame" method="OnTimerTimeout"]

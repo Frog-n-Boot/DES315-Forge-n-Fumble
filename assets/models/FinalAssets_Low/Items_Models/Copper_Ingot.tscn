@@ -37,7 +37,7 @@ transform = Transform3D(1.6660101, 0, 0, 0, 1.7407122, 0, 0, 0, 1.2056247, 0.006
 shape = SubResource("BoxShape3D_rqadj")
 
 [node name="IngCopperLow" type="MeshInstance3D" parent="Area3D" unique_id=284386029]
-transform = Transform3D(1, 0, 0, 0, 5.278786, 0, 0, 0, 1.4028854, 0, 0, 0)
+transform = Transform3D(1.25, 0, 0, 0, 6.599, 0, 0, 0, 1.753, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_pkkf6")
 mesh = ExtResource("5_fvexs")
 skeleton = NodePath("../..")

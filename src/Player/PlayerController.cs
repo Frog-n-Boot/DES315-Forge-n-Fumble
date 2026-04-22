@@ -27,7 +27,6 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	[Export] private Area3D areaPickup;
 	[Export] public float playerSpawnTimer;
 	[Export] private Texture2D[] playerMaterialTextures;
-	[Export] private MeshInstance3D dwarfMesh;
 	[Export] public float flashDuration = 0.2f;
 	[Export] public float spinStartThreshold = 3.0f;
 	[Export] public float spinStopThreshold = 1.0f;
@@ -43,7 +42,8 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	private const string ANIM_SPIN       = "Spin";
 	private const string ANIM_START_SPIN = "StartSpin";
 
-	private const float BLEND_TIME = 0.4f;
+	// Blend time in seconds between animations
+	private const float BLEND_TIME = 0.2f;
 
 	public int currentDevice = -2;
 
@@ -93,6 +93,8 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 	public bool isDazed { get; private set; } = false;
 
+	// Tracks whether we're currently in the dazed/getup sequence so idle/walk
+	// don't interrupt it.
 	public bool isInDazedSequence = false;
 
 	public override void _Ready()
@@ -130,10 +132,8 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		if (animPlayer == null)
 			GD.PrintErr("PlayerController: animPlayer not assigned in Inspector!");
 		else
-		{	
-			animPlayer.SpeedScale = 2.0f;
 			animPlayer.AnimationFinished += OnAnimationFinished;
-		}
+
 		// rightHand / leftHand are BoneAttachment3D nodes assigned via @Export.
 		// Do NOT re-fetch by path — that would overwrite the inspector values with null.
 		if (rightHand == null)
@@ -143,6 +143,8 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 		if (rightHand != null)
 			FindExistingSword();
+		else
+			GD.PrintErr("Hand node not found!");
 
 		spinAttack = GetNode<SpinAttack>("SpinAttack");
 
@@ -151,13 +153,15 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 		lastRotation = Rotation.Y;
 
-		
+		// Start in idle
 		PlayAnim(ANIM_IDLE);
 
-		if (XRayManager.Instance == null){
+		if (XRayManager.Instance == null)
+		{
 			GD.PrintErr("[Player]  XRayManager.Instance is null — autoload not ready yet");
 		}
-		else{
+		else
+		{
 			GD.Print($"[Player]  XRayManager found, registering {Name}");
 		}
 
@@ -180,6 +184,10 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		GD.Print($"[Player] Registering {Name} with XRayManager");
 		XRayManager.Instance.RegisterPlayer(this);
 	}
+
+	// -------------------------------------------------------------------------
+	// Helper: play an animation with blending, only if not already playing it.
+	// -------------------------------------------------------------------------
 	private void PlayAnim(string animName, float blend = BLEND_TIME)
 	{
 		if (animPlayer == null) return;
@@ -192,6 +200,10 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		animPlayer.Play(animName, customBlend: blend);
 	}
 
+	// -------------------------------------------------------------------------
+	// Update the locomotion animation (Idle / Walk) unless something higher
+	// priority is running (attack, dazed sequence, spin, death).
+	// -------------------------------------------------------------------------
 	private void UpdateLocomotionAnim()
 	{
 		if (isAttacking || isInDazedSequence) return;
@@ -286,6 +298,20 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 	public override void _Process(double delta)
 	{
+		if (spinAttack.IsDazed()) return;
+
+		float rotationSpeed = Mathf.Abs(Rotation.Y - lastRotation) / (float)delta;
+		lastRotation = Rotation.Y;
+
+		if (rotationSpeed > spinStartThreshold && !spinAttack.IsCharging())
+		{
+			spinAttack.StartCharging();
+		}
+
+		if (rotationSpeed < spinStopThreshold && spinAttack.IsCharging())
+		{
+			spinAttack.StopCharging();
+		}
 
 		if (sequenceMinigame != null && sequenceMinigame.IsActiveFor(this))
 			return;
@@ -463,6 +489,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		if (isDazed)
 		{
 			Velocity = Vector3.Zero;
+			isAttacking = true;
 			return;
 		}
 
@@ -505,28 +532,12 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			float targetAngle = Mathf.Atan2(lookDir.X, lookDir.Z);
 			Rotation = new Vector3(Rotation.X, targetAngle, Rotation.Z);
 		}
-		
-		if (!spinAttack.IsDazed())
-		{
-			float rotationSpeed = Mathf.Abs(Rotation.Y - lastRotation) / (float)delta;
-			lastRotation = Rotation.Y;
-
-			if (rotationSpeed > spinStartThreshold && !spinAttack.IsCharging())
-			{
-				spinAttack.StartCharging();
-			}
-
-			if (rotationSpeed < spinStopThreshold && spinAttack.IsCharging())
-			{
-				spinAttack.StopCharging();
-			}
-		}
 
 		tick += 1;
 		if (tick % 10 == 0)
 		{
 			if (health <= 0) Die();
-		}	
+		}
 
 		MoveAndSlide();
 	}
@@ -648,29 +659,28 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	{
 		string name = animName.ToString();
 
-		// Attack finished -> back to locomotion
+		// Attack finished → back to locomotion
 		if (name == ANIM_SWING || name.Contains("Swing"))
 		{
 			isAttacking = false;
 			UpdateLocomotionAnim();
 		}
 
-		// Dazed finished -> play GetUp
+		// Dazed finished → play GetUp
 		if (name == ANIM_DAZED)
 		{
 			PlayAnim(ANIM_GET_UP, 0f);
 		}
 
-		// GetUp finished -> back to Idle
+		// GetUp finished → back to Idle
 		if (name == ANIM_GET_UP)
 		{
-			// Guards against race condition with SpinAttack.cs
-			if (!isInDazedSequence)
-			{
-				isInDazedSequence = false;
-				PlayAnim(ANIM_IDLE);
-			}
+			isInDazedSequence = false;
+			PlayAnim(ANIM_IDLE);
 		}
+
+		// Death finished → hold on last frame (no loop)
+		// Nothing extra needed; the animation just stops.
 	}
 
 	private void OnPickupAreaEntered(Area3D area)
@@ -725,7 +735,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	private static readonly Vector3 LeftHandPosOffset  = new Vector3( 0.26f,  0.229f, -0.0f);
 	private static readonly Vector3 LeftHandRotOffset  = new Vector3(
 		Mathf.DegToRad(1f),  Mathf.DegToRad(13f),  Mathf.DegToRad(66f));
-	private static readonly Vector3 HandScale = new Vector3(0.8f, 0.8f, 0.8f);
+	private static readonly Vector3 HandScale = new Vector3(1f, 1f, 1f);
 
 	private void ProcessPickable(Pickable pickable)
 	{
@@ -740,7 +750,6 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			return;
 		}
 
-		pickable.PickUp();
 		pickable.CallDeferred("reparent", leftHand);
 
 		GetTree().CreateTimer(0.1f).Timeout += () =>
@@ -883,7 +892,8 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	{
 		Texture2D texture = playerMaterialTextures[PlayerIndex % playerMaterialTextures.Length];
 
-		if (dwarfMesh == null)
+		var meshInstance = GetNodeOrNull<MeshInstance3D>("CollisionShape3D/DwarfLow");
+		if (meshInstance == null)
 		{
 			GD.PrintErr($"Player {PlayerIndex}: MeshInstance3D not found at CollisionShape3D/MeshInstance3D");
 			return;
@@ -896,7 +906,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			EmissionEnergyMultiplier = 0f
 		};
 
-		dwarfMesh.MaterialOverride = material;
+		meshInstance.MaterialOverride = material;
 	}
 
 	public void TakeDamage(int damage)
@@ -1015,7 +1025,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			currentWeapon.isCarried = false;
 			currentWeapon.Broke -= OnSwordBroke;
 			currentWeapon = null;
-			
+
 			GetTree().CreateTimer(0.1f).Timeout += () =>
 			{
 				areaPickup.SetDeferred("monitoring", true);

@@ -34,13 +34,13 @@ transform = Transform3D(0.918984, 0, -0.39429483, 0, 1, 0, 0.39429483, 0, 0.9189
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.10653, 0.797283, -5.9465375)
 
 [node name="IntLanternHangLow5" parent="." unique_id=1872810731 instance=ExtResource("6_yhgrm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.725782, 0.98222697, -5.977735)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.726, 0.797, -5.978)
 
 [node name="IntLanternHangLow3" parent="." unique_id=851327741 instance=ExtResource("6_yhgrm")]
-transform = Transform3D(-1, 0, -8.7422784e-08, 0, 1, 0, 8.7422784e-08, 0, -1, 4.9976816, 0.986941, 6.1045995)
+transform = Transform3D(-1, 0, -8.7422784e-08, 0, 1, 0, 8.7422784e-08, 0, -1, 5.3410697, 0.797, 6.160915)
 
 [node name="IntLanternHangLow6" parent="." unique_id=2015402390 instance=ExtResource("6_yhgrm")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4.6237, 0.986941, 5.996937)
+transform = Transform3D(-1, 0, -8.7422784e-08, 0, 1, 0, 8.7422784e-08, 0, -1, -5.107, 0.797, 6.160915)
 
 [node name="IntLanternStandLow" parent="." unique_id=364970141 groups=["navigation_mesh_source_group"] instance=ExtResource("7_7kcs5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.8977036, 0.96734476, 0.077705085)
