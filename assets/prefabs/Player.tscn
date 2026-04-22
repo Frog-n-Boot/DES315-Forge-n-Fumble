@@ -108,7 +108,7 @@ stream_0/stream = ExtResource("8_jnlb4")
 streams_count = 1
 stream_0/stream = ExtResource("15_gp7mg")
 
-[node name="Player" type="CharacterBody3D" unique_id=489937195 node_paths=PackedStringArray("animPlayer", "weaponAudio", "damagedAudio", "deathAudio", "rightHand", "leftHand", "areaPickup") groups=["Player"]]
+[node name="Player" type="CharacterBody3D" unique_id=489937195 node_paths=PackedStringArray("animPlayer", "weaponAudio", "damagedAudio", "deathAudio", "rightHand", "leftHand", "areaPickup", "dwarfMesh") groups=["Player"]]
 collision_layer = 2
 collision_mask = 53
 velocity = Vector3(0, -228.01021, 0)
@@ -124,6 +124,7 @@ leftHand = NodePath("Armature/Skeleton3D/LeftHand")
 areaPickup = NodePath("Area3D")
 playerSpawnTimer = 2.0
 playerMaterialTextures = Array[Texture2D]([ExtResource("3_v0ggv"), ExtResource("5_ag2w6"), ExtResource("8_ob8sk"), ExtResource("6_so67x")])
+dwarfMesh = NodePath("Armature/Skeleton3D/Dwarf_low")
 
 [node name="Armature" type="Node3D" parent="." unique_id=1822323546]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0008281246, 0.25434718, 0.03766477)

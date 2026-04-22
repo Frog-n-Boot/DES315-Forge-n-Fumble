@@ -8,10 +8,13 @@ public partial class MainMenu : Control
 	[Export] Button settingsButton;
 	[Export] Button quitMenu;
 	[Export] private AudioStreamPlayer2D audio;
+	[Export] private AudioStream menuMusic;
+	[Export] private AudioStream levelMusic;
 	
 
 	public override void _Ready()
 	{
+		AudioManager.instance.PlayMusic(menuMusic);
 		startButton.GrabFocus();
 	}
 
@@ -19,6 +22,7 @@ public partial class MainMenu : Control
 		audio.Play();
 		GetTree().CreateTimer(0.3f).Timeout += () =>
 		{
+			AudioManager.instance.PlayMusic(levelMusic);
 			SceneManager.instance.LoadGame(); 
 		};
 	}

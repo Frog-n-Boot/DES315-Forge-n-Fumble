@@ -27,6 +27,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	[Export] private Area3D areaPickup;
 	[Export] public float playerSpawnTimer;
 	[Export] private Texture2D[] playerMaterialTextures;
+	[Export] private MeshInstance3D dwarfMesh;
 	[Export] public float flashDuration = 0.2f;
 	[Export] public float spinStartThreshold = 3.0f;
 	[Export] public float spinStopThreshold = 1.0f;
@@ -285,20 +286,6 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 	public override void _Process(double delta)
 	{
-		if (spinAttack.IsDazed()) return;
-
-		float rotationSpeed = Mathf.Abs(Rotation.Y - lastRotation) / (float)delta;
-		lastRotation = Rotation.Y;
-
-		if (rotationSpeed > spinStartThreshold && !spinAttack.IsCharging())
-		{
-			spinAttack.StartCharging();
-		}
-
-		if (rotationSpeed < spinStopThreshold && spinAttack.IsCharging())
-		{
-			spinAttack.StopCharging();
-		}
 
 		if (sequenceMinigame != null && sequenceMinigame.IsActiveFor(this))
 			return;
@@ -409,6 +396,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		}
 		else if (currentWeapon is Crossbow bow2)
 		{
+			
 			bow2.shootingDirectionMesh.Visible = true;
 
 			if (Input.IsActionPressed("attack"))
@@ -518,12 +506,28 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			float targetAngle = Mathf.Atan2(lookDir.X, lookDir.Z);
 			Rotation = new Vector3(Rotation.X, targetAngle, Rotation.Z);
 		}
+		
+		if (!spinAttack.IsDazed())
+		{
+			float rotationSpeed = Mathf.Abs(Rotation.Y - lastRotation) / (float)delta;
+			lastRotation = Rotation.Y;
+
+			if (rotationSpeed > spinStartThreshold && !spinAttack.IsCharging())
+			{
+				spinAttack.StartCharging();
+			}
+
+			if (rotationSpeed < spinStopThreshold && spinAttack.IsCharging())
+			{
+				spinAttack.StopCharging();
+			}
+		}
 
 		tick += 1;
 		if (tick % 10 == 0)
 		{
 			if (health <= 0) Die();
-		}
+		}	
 
 		MoveAndSlide();
 	}
@@ -783,7 +787,10 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 				sword.Connect(Sword.SignalName.CheckDurability, Callable.From(OnSwordDurabilityChecked));
 				sword.SetHitboxEnabled(true);
 			}
-
+			if(currentWeapon is Crossbow)
+			{
+				nearbyWeapon.Rotation = new Vector3 (0 ,0 ,0);
+			}
 			nearbyWeapon.SetEnemyCollisionEnabled(true);
 
 			if (currentWeapon.IsConnected(BaseWeapon.SignalName.Broke, Callable.From(OnSwordBroke)))
@@ -810,6 +817,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 	private Vector3 GetLookVector()
 	{
+		//if(animPlayer.CurrentAnimation =="spinAnim") break;
 		if (currentDevice == -2)
 			return currentLookTarget;
 
@@ -880,8 +888,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	{
 		Texture2D texture = playerMaterialTextures[PlayerIndex % playerMaterialTextures.Length];
 
-		var meshInstance = GetNodeOrNull<MeshInstance3D>("CollisionShape3D/DwarfLow");
-		if (meshInstance == null)
+		if (dwarfMesh == null)
 		{
 			GD.PrintErr($"Player {PlayerIndex}: MeshInstance3D not found at CollisionShape3D/MeshInstance3D");
 			return;
@@ -894,7 +901,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			EmissionEnergyMultiplier = 0f
 		};
 
-		meshInstance.MaterialOverride = material;
+		dwarfMesh.MaterialOverride = material;
 	}
 
 	public void TakeDamage(int damage)
@@ -922,7 +929,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		areaPickup.SetDeferred("monitoring", true);
 		areaPickup.SetDeferred("monitorable", true);
 
-		Visible = false;
+		
 		deathAudio.Play();
 
 		// Play death animation before hiding/disabling

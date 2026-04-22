@@ -94,15 +94,20 @@ public partial class SpinAttack : Node3D
 
 		float currentRotation = parent.Rotation.Y;
 		float frameDelta = Mathf.AngleDifference(startRotationY, currentRotation);
-		if (Mathf.Sign(frameDelta) == Mathf.Sign(accumulatedRotation) || accumulatedRotation == 0)
-		{
-			accumulatedRotation += frameDelta;
-		}
-		else
-		{
-			accumulatedRotation = frameDelta;
-		}
 		startRotationY = currentRotation;
+		if(Mathf.Abs(frameDelta) > 0.001f)
+		{
+			if (accumulatedRotation == 0 || Mathf.Sign(frameDelta) == Mathf.Sign(accumulatedRotation))
+			{
+				accumulatedRotation += frameDelta;
+			}
+			else
+			{
+				accumulatedRotation = 0;
+			}
+		}
+		
+		
 		float totalDegrees = Mathf.RadToDeg(Mathf.Abs(accumulatedRotation));
 
 		if (totalDegrees >= spinThreshold)
@@ -113,6 +118,8 @@ public partial class SpinAttack : Node3D
 
 			if (spinCharges >= maxSpinCharges)
 				ExecuteSpinAttack();
+			else
+				EmitSignal(SignalName.SpinChargeGained, spinCharges, maxSpinCharges);
 		}
 		else
 		{
@@ -161,7 +168,7 @@ public partial class SpinAttack : Node3D
 			{
 				spinArea.Monitoring = true;
 				isSpinning = true;
-
+				
 				var overlappingBodies = spinArea.GetOverlappingBodies();
 				foreach (var body in overlappingBodies)
 					ProcessSpinHit(body);
