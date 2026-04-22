@@ -8,7 +8,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if Input.is_action_pressed("skip_tutorial"):
+		get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
+	
 
 
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:

@@ -396,6 +396,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		}
 		else if (currentWeapon is Crossbow bow2)
 		{
+			
 			bow2.shootingDirectionMesh.Visible = true;
 
 			if (Input.IsActionPressed("attack"))
@@ -786,7 +787,10 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 				sword.Connect(Sword.SignalName.CheckDurability, Callable.From(OnSwordDurabilityChecked));
 				sword.SetHitboxEnabled(true);
 			}
-
+			if(currentWeapon is Crossbow)
+			{
+				nearbyWeapon.Rotation = new Vector3 (0 ,0 ,0);
+			}
 			nearbyWeapon.SetEnemyCollisionEnabled(true);
 
 			if (currentWeapon.IsConnected(BaseWeapon.SignalName.Broke, Callable.From(OnSwordBroke)))
@@ -813,6 +817,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 	private Vector3 GetLookVector()
 	{
+		//if(animPlayer.CurrentAnimation =="spinAnim") break;
 		if (currentDevice == -2)
 			return currentLookTarget;
 
@@ -924,7 +929,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		areaPickup.SetDeferred("monitoring", true);
 		areaPickup.SetDeferred("monitorable", true);
 
-		Visible = false;
+		
 		deathAudio.Play();
 
 		// Play death animation before hiding/disabling

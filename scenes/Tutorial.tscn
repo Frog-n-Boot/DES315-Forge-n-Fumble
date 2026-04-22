@@ -329,7 +329,7 @@ Hold B/Q to drop Weapon"
 font_size = 20
 
 [node name="Label3D2" type="Label3D" parent="UI/Text" unique_id=2087353095]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -52.346, 1.5332088, -20.538702)
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -52.346, 4.1943817, -20.538702)
 modulate = Color(1, 0.90000004, 0, 1)
 text = "Interact with 
 Workstations with X/E"
