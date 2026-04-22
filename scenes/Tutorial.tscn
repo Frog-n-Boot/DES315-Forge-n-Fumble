@@ -227,6 +227,7 @@ size = Vector3(1.467041, 3.7841187, 61.637733)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1695761306]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -0.02279663, 0, -0.18181562)
 shape = SubResource("WorldBoundaryShape3D_0a2r4")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="World" type="Node" parent="." unique_id=653261365]
 
@@ -1012,6 +1013,7 @@ surface_material_override/0 = ExtResource("21_bi4s5")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Enemies/Enemy" unique_id=1909118665]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5761719, 0)
 shape = SubResource("CylinderShape3D_pfjfy")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="HealthBar" type="Sprite3D" parent="Objects/Enemies/Enemy" unique_id=833760103]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0)
@@ -1041,6 +1043,7 @@ collision_mask = 235
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Enemies/Enemy/Area3D" unique_id=1172694664]
 shape = SubResource("CylinderShape3D_82iww")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="AI" type="Node" parent="Objects/Enemies/Enemy" unique_id=130780360 node_paths=PackedStringArray("_controller")]
 script = ExtResource("22_cys1x")
@@ -1161,6 +1164,7 @@ surface_material_override/0 = ExtResource("24_xi6p3")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Enemies/Enemy2" unique_id=1166668092]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5761719, 0)
 shape = SubResource("CylinderShape3D_pfjfy")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="HealthBar" type="Sprite3D" parent="Objects/Enemies/Enemy2" unique_id=1325828689]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0)
@@ -1190,6 +1194,7 @@ collision_mask = 235
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Enemies/Enemy2/Area3D" unique_id=606537948]
 shape = SubResource("CylinderShape3D_82iww")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="AI" type="Node" parent="Objects/Enemies/Enemy2" unique_id=1380881225 node_paths=PackedStringArray("_controller")]
 script = ExtResource("22_cys1x")
@@ -1334,6 +1339,7 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Stations/Ballista/BallistaTopElementLow/StaticBody3D" unique_id=1945830702]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9050009, 0)
 shape = SubResource("CapsuleShape3D_e7812")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="StationPort" type="Node3D" parent="Objects/Stations/Ballista/BallistaTopElementLow/StaticBody3D" unique_id=750325492]
 transform = Transform3D(62.81827, 0, 0, 0, 85.7798, 0, 0, 0, 34.782322, -0.19229126, 0.54238105, 0.27918434)
@@ -1353,6 +1359,7 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Stations/Ballista/BallistaTopElementLow/StaticBody3D/StationPort/Area3D" unique_id=280831638]
 transform = Transform3D(0.17999986, 0, 0, 0, 0.9999873, 0, 0, 0, 0.18999994, 0.0013348593, 0, -0.006333612)
 shape = SubResource("BoxShape3D_vl1yp")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="BallistaBarrel" type="Node3D" parent="Objects/Stations/Ballista/BallistaTopElementLow" unique_id=309150814]
 transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0, 0)
@@ -1414,6 +1421,7 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Stations/Ballista2/BallistaTopElementLow/StaticBody3D" unique_id=170709386]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9050009, 0)
 shape = SubResource("CapsuleShape3D_e7812")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="StationPort" type="Node3D" parent="Objects/Stations/Ballista2/BallistaTopElementLow/StaticBody3D" unique_id=867504175]
 transform = Transform3D(62.81827, 0, 0, 0, 85.7798, 0, 0, 0, 34.782322, -0.19229126, 0.54238105, 0.27918434)
@@ -1433,6 +1441,7 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Stations/Ballista2/BallistaTopElementLow/StaticBody3D/StationPort/Area3D" unique_id=1924897383]
 transform = Transform3D(0.17999986, 0, 0, 0, 0.9999873, 0, 0, 0, 0.18999994, 0.0013348593, 0, -0.006333612)
 shape = SubResource("BoxShape3D_vl1yp")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="BallistaBarrel" type="Node3D" parent="Objects/Stations/Ballista2/BallistaTopElementLow" unique_id=1918361004]
 transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0, 0)
@@ -1481,6 +1490,7 @@ collision_mask = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/ItemDropOffNode/Area3D" unique_id=1957568453]
 shape = SubResource("BoxShape3D_dn1de")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="LevelObjects/ItemDropOffNode" unique_id=1883276326]
 transform = Transform3D(20, 0, 0, 0, 0.09232774, 0, 0, 0, 5.4025326, 0, -2.1711469, 0.28949738)
@@ -1497,6 +1507,7 @@ collision_mask = 24
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/WeaponDropOffNode/Area3D" unique_id=975492336]
 shape = SubResource("BoxShape3D_dn1de")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="LevelObjects/WeaponDropOffNode" unique_id=578781272]
 transform = Transform3D(20, 0, 0, 0, 0.09232774, 0, 0, 0, 5.4025326, 0, -2.1711469, 0.28949738)
@@ -1511,96 +1522,112 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 172.13019, 0, -16.740286)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D" unique_id=334164790]
 shape = SubResource("BoxShape3D_y74ua")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=1669204492]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 213.83702, 0, -16.740286)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D2" unique_id=1389143932]
 shape = SubResource("BoxShape3D_y74ua")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="StaticBody3D3" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=79852438]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 192.98361, 0, 13.945482)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D3" unique_id=1763132247]
 shape = SubResource("BoxShape3D_y74ua")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="StaticBody3D4" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=317657735]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 192.98361, 0, -47.069412)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D4" unique_id=1619444998]
 shape = SubResource("BoxShape3D_y74ua")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="StaticBody3D5" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=1569548930]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 299.29517, 0, -16.740286)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D5" unique_id=1609901054]
 shape = SubResource("BoxShape3D_y74ua")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="StaticBody3D6" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=236881832]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 341.00198, 0, -16.740286)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D6" unique_id=418171981]
 shape = SubResource("BoxShape3D_y74ua")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="StaticBody3D7" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=1628213661]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 320.1486, 0, 13.945482)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D7" unique_id=331436476]
 shape = SubResource("BoxShape3D_y74ua")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="StaticBody3D8" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=1222623035]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 320.1486, 0, -47.069412)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D8" unique_id=1449150470]
 shape = SubResource("BoxShape3D_y74ua")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="StaticBody3D9" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=1059058741]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83.77997, 0, -16.740286)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D9" unique_id=411424988]
 shape = SubResource("BoxShape3D_y74ua")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="StaticBody3D10" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=1454729644]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.07315, 0, -16.740286)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D10" unique_id=907327545]
 shape = SubResource("BoxShape3D_y74ua")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="StaticBody3D11" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=14642237]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -62.926544, 0, 13.945482)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D11" unique_id=1056371198]
 shape = SubResource("BoxShape3D_y74ua")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="StaticBody3D12" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=759351976]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -62.926544, 0, -47.069412)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D12" unique_id=523911611]
 shape = SubResource("BoxShape3D_y74ua")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="StaticBody3D13" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=255256808]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.431435, 0, -16.740286)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D13" unique_id=1972378433]
 shape = SubResource("BoxShape3D_y74ua")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="StaticBody3D14" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=1251389859]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85.13825, 0, -16.740286)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D14" unique_id=1760414386]
 shape = SubResource("BoxShape3D_y74ua")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="StaticBody3D15" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=123075497]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 64.28486, 0, 13.945482)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D15" unique_id=1978296003]
 shape = SubResource("BoxShape3D_y74ua")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="StaticBody3D16" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=522813639]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 64.28486, 0, -47.069412)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D16" unique_id=1434986337]
 shape = SubResource("BoxShape3D_y74ua")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [connection signal="pressed" from="UI/PauseMenu/ResumeButton" to="UI/PauseMenu" method="OnResumePressed"]
 [connection signal="pressed" from="UI/PauseMenu/SettingsButton" to="UI/PauseMenu" method="OnSettingsPressed"]

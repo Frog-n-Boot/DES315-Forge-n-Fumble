@@ -224,6 +224,7 @@ speed_scale = 2.5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.039611816, 0.9244385, 0.058440506)
 visible = false
 shape = SubResource("BoxShape3D_t0fpx")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="SpinAttack" type="Node3D" parent="." unique_id=589698554 node_paths=PackedStringArray("collisionShape", "animPlayer", "spinArea") groups=["SpinAttack"]]
 visible = false
@@ -240,6 +241,7 @@ collision_mask = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SpinAttack/Area3D" unique_id=254676150 groups=["SpinAttack"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8003911, 0)
 shape = SubResource("SphereShape3D_gp7mg")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1712685090]
 visible = false
@@ -249,6 +251,7 @@ collision_mask = 53
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=48449025]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.026974827, 0.8700485, -0.0689888)
 shape = SubResource("BoxShape3D_8d03m")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1391184845]
 visible = false

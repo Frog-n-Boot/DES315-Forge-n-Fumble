@@ -501,7 +501,8 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		knockback = knockback.Lerp(Vector3.Zero, 0.15f);
 		Velocity = velocity;
 
-		if (lookDir != Vector3.Zero)
+		
+		if (animPlayer.CurrentAnimation != "spinAnim" && animPlayer.IsPlaying() && lookDir != Vector3.Zero)
 		{
 			float targetAngle = Mathf.Atan2(lookDir.X, lookDir.Z);
 			Rotation = new Vector3(Rotation.X, targetAngle, Rotation.Z);
@@ -817,7 +818,13 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 	private Vector3 GetLookVector()
 	{
-		//if(animPlayer.CurrentAnimation =="spinAnim") break;
+		if(animPlayer.CurrentAnimation == "spinAnim" && animPlayer.IsPlaying())
+		{
+			GD.Print("Spin Attack Initialized");
+			return currentLookTarget;
+		}
+			
+
 		if (currentDevice == -2)
 			return currentLookTarget;
 
