@@ -20,9 +20,7 @@ public partial class CameraController : Camera3D
     [Export(PropertyHint.Range, "10.0, 40.0")] public float zoomPadding = 20f;
     [Export(PropertyHint.Range, "0.0, 50.0")] public float singlePlayerZoomRadius = 12f;
     [Export] private Marker3D cameraAnchor;
-
-    [ExportGroup("Bounding Box")]
-    [Export] private CameraBoundingBox boundingBox;
+    private CameraBoundingBox cameraBoundingBox;
 
     private float _targetSize;
 
@@ -32,6 +30,7 @@ public partial class CameraController : Camera3D
         ProcessPhysicsPriority = 1;
         Size = minSize;
         _targetSize = minSize;
+        cameraBoundingBox = cameraAnchor as CameraBoundingBox;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -73,9 +72,9 @@ public partial class CameraController : Camera3D
 
             requiredSize = Mathf.Max(worldSpreadZ + zoomPadding, (worldSpreadX + zoomPadding) / aspect);
         }
-        if (boundingBox != null)
+        if (cameraBoundingBox != null)
         {
-            var (minX, maxX, minZ, maxZ) = boundingBox.GetBounds();
+            var (minX, maxX, minZ, maxZ) = cameraBoundingBox.GetBounds();
             float angleRad = Mathf.DegToRad(Mathf.Abs(RotationDegrees.X));
             float zStretch = 1f / Mathf.Cos(angleRad);
             float boxMaxSizeH = (maxZ - minZ) / zStretch;
@@ -89,8 +88,8 @@ public partial class CameraController : Camera3D
         if (followPlayers)
         {
             List<Vector3> followPoints = players.Select(p => p.GlobalPosition).ToList();
-            if (cameraAnchor != null)
-                followPoints.Add(cameraAnchor.GlobalPosition);
+            //if (cameraAnchor != null)
+                //followPoints.Add(cameraAnchor.GlobalPosition);
 
             Vector3 centroid = followPoints
                 .Aggregate(Vector3.Zero, (sum, p) => sum + p)
@@ -105,9 +104,9 @@ public partial class CameraController : Camera3D
 
     private Vector3 ClampToBounds(Vector3 desired, float currentSize)
     {
-        if (boundingBox == null) return desired;
+        if (cameraBoundingBox == null) return desired;
 
-        var (minX, maxX, minZ, maxZ) = boundingBox.GetBounds();
+        var (minX, maxX, minZ, maxZ) = cameraBoundingBox.GetBounds();
 
         float aspect = GetViewport().GetVisibleRect().Size.X / GetViewport().GetVisibleRect().Size.Y;
 

@@ -40,6 +40,8 @@ AudioManager="*uid://bucgoqsuhfarl"
 [debug]
 
 file_logging/enable_file_logging=true
+shapes/navigation/3d/geometry_edge_color=Color(0.90588236, 0.5254902, 0.14509805, 1)
+shapes/navigation/3d/geometry_face_color=Color(0.98465794, 0.92974263, 7.70092e-07, 0.4)
 
 [display]
 

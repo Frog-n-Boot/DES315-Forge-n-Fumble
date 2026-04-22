@@ -10,9 +10,9 @@ using System.Linq;
 // Set WorldCenter to the room's center and HalfExtents to its half-size in
 // world units (X = horizontal, Y = vertical (maps Y to Z, treat this as the Z axis).
 // ─────────────────────────────────────────────────────────────────────────────
-public partial class CameraBoundingBox : Node3D
+public partial class CameraBoundingBox : Marker3D
 {
-    [Export] public Vector2 HalfExtents = new Vector2(40f, 25f); // world units
+    [Export] public Vector2 HalfExtents = new Vector2(40f, 40f); // world units
     
     // Convenience: the world-space AABB on the XZ plane
     public (float MinX, float MaxX, float MinZ, float MaxZ) GetBounds()
