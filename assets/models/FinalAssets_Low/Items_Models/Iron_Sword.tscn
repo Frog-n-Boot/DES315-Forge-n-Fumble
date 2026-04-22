@@ -15,12 +15,6 @@
 atlas = ExtResource("2_gsg4f")
 region = Rect2(557, 29, 62, 192)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_p43h7"]
-size = Vector3(7.15668, 1.6914063, 14.032881)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_hgo20"]
-size = Vector3(1.742096, 1.691742, 4.7293167)
-
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_7epq2"]
 albedo_texture = ExtResource("1_uek6e")
 orm_texture = ExtResource("4_gsg4f")
@@ -29,10 +23,17 @@ normal_texture = ExtResource("3_xvnj0")
 heightmap_enabled = true
 heightmap_texture = ExtResource("2_d8pt4")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_p43h7"]
+size = Vector3(7.15668, 1.6914063, 14.032881)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hgo20"]
+size = Vector3(1.742096, 1.691742, 4.7293167)
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_gsg4f"]
 viewport_path = NodePath("Sprite3D/SubViewport")
 
 [node name="IronSword" type="Node3D" unique_id=1461625584 node_paths=PackedStringArray("audio", "weaponTextureRect", "pickUpArea", "weaponBody")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 script = ExtResource("1_d8pt4")
 audio = NodePath("SwordBreak")
 damage = 7
@@ -42,6 +43,11 @@ weaponPromptTexture = Array[Texture2D]([ExtResource("3_p43h7"), ExtResource("4_p
 weaponTextureRect = NodePath("Sprite3D/SubViewport/TextureRect")
 pickUpArea = NodePath("StaticBody3D/Area3D")
 weaponBody = NodePath("StaticBody3D")
+
+[node name="SwordFirstLow" type="MeshInstance3D" parent="." unique_id=204139238]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+material_override = SubResource("ORMMaterial3D_7epq2")
+mesh = ExtResource("5_acyf5")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1544211731 groups=["Sword", "Weapon"]]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
@@ -60,11 +66,6 @@ collision_mask = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/Area3D" unique_id=305553541]
 transform = Transform3D(0.62693906, 0, 0, 0, 1.6399509, 0, 0, 0, 0.18563555, 0.004778548, 1.1241063, -0.01556235)
 shape = SubResource("BoxShape3D_hgo20")
-
-[node name="SwordFirstLow" type="MeshInstance3D" parent="." unique_id=204139238]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
-material_override = SubResource("ORMMaterial3D_7epq2")
-mesh = ExtResource("5_acyf5")
 
 [node name="SwordBreak" type="AudioStreamPlayer3D" parent="." unique_id=2122115406]
 stream = ExtResource("7_xvnj0")

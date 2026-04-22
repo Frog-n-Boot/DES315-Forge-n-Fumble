@@ -134,7 +134,7 @@ skeleton = NodePath("../..")
 transform = Transform3D(9.291697, 0, 0, 0, 1.837871, 0, 0, 0, 6.8115783, 0.00969851, 0.88491654, -0.01149559)
 
 [node name="OutputPort" parent="." unique_id=1109718632 instance=ExtResource("3_fgmgg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0206666, 0.3782071, 0.9554943)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.0206666, 0.3782071, 0.9554943)
 
 [node name="UISprite3D" type="Sprite3D" parent="." unique_id=840510996]
 transform = Transform3D(-1.7484555e-07, 0, 4, 0, 4, 0, -4, 0, -1.7484555e-07, -0.022883892, 3.6945045, 0)
@@ -187,7 +187,7 @@ volume_db = -50.0
 bus = &"SFX"
 
 [node name="BarMinigameSprite3D" type="Sprite3D" parent="." unique_id=1798100092]
-transform = Transform3D(4.024219e-15, 7.4842774e-08, 1, 2.106165, -7.4842774e-08, 0, 9.2063395e-08, 1.712203, -4.371139e-08, 0, 3.638106, -0.17070091)
+transform = Transform3D(-1.0530825, 1.1226415e-07, 0.8660254, 1.8239923, -6.4815744e-08, 0.5, 1.3809509e-07, 1.712203, -3.7855173e-08, 0, 3.638106, -0.17070091)
 texture = SubResource("ViewportTexture_3ynec")
 
 [node name="BarMinigameSubViewport" type="SubViewport" parent="BarMinigameSprite3D" unique_id=556381544]
@@ -199,8 +199,9 @@ size = Vector2i(86, 437)
 [node name="Sword" type="Sprite2D" parent="BarMinigameSprite3D/BarMinigameSubViewport/CanvasLayer" unique_id=1267677379]
 z_index = 1
 position = Vector2(22.400002, 286)
-rotation = 0.2617994
-scale = Vector2(0.79, 0.553)
+rotation = 0.33895808
+scale = Vector2(0.6149299, 0.5451201)
+skew = -0.13806391
 texture = SubResource("AtlasTexture_n8ot4")
 
 [node name="Area2D" type="Area2D" parent="BarMinigameSprite3D/BarMinigameSubViewport/CanvasLayer/Sword" unique_id=264612975]
@@ -282,7 +283,7 @@ scale = Vector2(0.38571793, 0.771436)
 shape = SubResource("RectangleShape2D_n5xar")
 
 [node name="Inside" type="Sprite2D" parent="BarMinigameSprite3D/BarMinigameSubViewport/CanvasLayer/BarMinigame/Outside/RigidBody2D" unique_id=1414347988]
-scale = Vector2(0.8015868, 0.9618993)
+scale = Vector2(0.611085, 0.5925034)
 texture = SubResource("AtlasTexture_kecgh")
 
 [node name="Node3D" type="Node3D" parent="." unique_id=426888249]
