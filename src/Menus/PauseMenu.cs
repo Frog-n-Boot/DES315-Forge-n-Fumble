@@ -62,7 +62,7 @@ public partial class PauseMenu : CanvasLayer
 	}
 	public void OnMainMenuPressed()
 	{
-		GetTree().Paused = false;
+		//GetTree().Paused = false;
 		SceneManager.instance.LoadMainMenu();
 	}
 

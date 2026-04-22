@@ -7,8 +7,8 @@ public partial class ForgingStation : BaseStationScript
 {
 	[Export] public PackedScene dullSwordScene {get; private set;}
 	[Export] private SequenceMinigame sequenceMinigame;
-	private List<PlayerController> playersInZone = new List<PlayerController>();
 
+	private bool sessionActive = false;
 	protected override void OnReady()
 	{
 		
@@ -20,6 +20,9 @@ public partial class ForgingStation : BaseStationScript
 			dullSwordScene = GD.Load<PackedScene>("res://assets/models/DullSword.tscn");
 		}
 	}
+
+    protected override bool IsStationBusy() => sessionActive;
+
 	private int GetSequenceLength()
 	{
 		//int playerCount = GetTree().GetNodesInGroup("Player").Count;
@@ -28,15 +31,21 @@ public partial class ForgingStation : BaseStationScript
 
 	private void OnSequenceCompleted()
 	{
+		sessionActive = false;
 		base.ConsumeItems();
 		ProduceOutput();
+		CheckForWaitingPlayer();
 	}
 
 	private void OnSequenceFailed()
 	{
 		GD.Print("Sequence Failed");
+		sessionActive = false;
+
 		if(pendingConsume == null) return;
 		GD.Print($"Items to return {pendingConsume.Count}");
+
+		var owningPlayer  = player;
 
 		foreach(var item in pendingConsume)
 		{
@@ -45,8 +54,8 @@ public partial class ForgingStation : BaseStationScript
 			{
 				var pickable = item.itemScene.Instantiate<Pickable>();
 				GetTree().Root.AddChild(pickable);
-				pickable.GlobalPosition = player.GlobalPosition;
-				player.GiveItem(pickable);
+				pickable.GlobalPosition = owningPlayer.GlobalPosition;
+				owningPlayer.GiveItem(pickable);
 				GD.Print("Item returned to player");
 			}
 			else
@@ -60,10 +69,21 @@ public partial class ForgingStation : BaseStationScript
 		pendingConsume = null;
 		pendingRecipe = null;
 		
+		CheckForWaitingPlayer();
 	}
 
+	private void CheckForWaitingPlayer()
+	{
+		if(player != null && !playersInZone.Contains(player))
+		{
+			player = playersInZone.Count > 0 ? playersInZone[0] : null;
+			itemCarrier = player as ItemCarrier;
+		}
+	}
+	
 	protected override void OnCraftingRequirementsMet()
 	{
+		sessionActive = true;
 		sequenceMinigame.Start(GetSequenceLength(), player);
 	}
 

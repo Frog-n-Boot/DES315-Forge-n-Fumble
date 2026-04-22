@@ -267,7 +267,7 @@ visible = false
 [node name="SwordSwipes" type="AudioStreamPlayer3D" parent="." unique_id=1910028207]
 visible = false
 stream = SubResource("AudioStreamRandomizer_jnlb4")
-volume_db = -80.0
+volume_db = -60.0
 max_db = -24.0
 max_polyphony = 10
 bus = &"SFX"

@@ -7,9 +7,10 @@ public partial class GrindstoneStation : BaseStationScript
 	[Export] public PackedScene swordScene {get; private set;}
 	[Export] private AudioStreamPlayer3D grindstoneSound;
 	[Export] private BarMinigame barMinigame;
-	private List<PlayerController> playersInZone = new List<PlayerController>();
 	private Sword depositedSowrd;
 	[Signal] public delegate void SwordCraftedEventHandler();
+
+	private PlayerController activePlayer = null;
 	
 
 	protected override void OnReady()
@@ -27,15 +28,21 @@ public partial class GrindstoneStation : BaseStationScript
 	
 	protected override string GetStationName() => "Grindstone";
 
+    protected override bool IsStationBusy() => depositedSowrd != null;
+
 	public bool DepositSword(Sword sword)
 	{
 		GD.Print($"Deposit sword called, sword in group: {sword.IsInGroup("DullSword")}");
 		if(!sword.IsInGroup("DullSword")) return false;
 		if(depositedSowrd != null) return false;
 		if(sword.sharpenedVersion == null) return false;
+		if(IsStationBusy()) return false;
+		
+		//if(activePlayer != null && activePlayer != player) return false; 
+		
 		player.DisconnectWeapon(sword);
-
 		depositedSowrd = sword;
+		//activePlayer = player;
 		
 		if(!isOutputOccupied() && craftingTimer.IsStopped())
 			OnCraftingRequirementsMet();
@@ -70,6 +77,7 @@ public partial class GrindstoneStation : BaseStationScript
 		//EmitSignal(SignalName.SwordCrafted);
 		GD.Print("Grindstone Signal Emiited");
 		ProduceOutput();
+		CheckForWaitingPlayer();
 	}
 
 	private void OnMinigameFailed()
@@ -81,7 +89,9 @@ public partial class GrindstoneStation : BaseStationScript
 		if(player == null) {GD.PrintErr("Player is null"); return; }
 
 		var sword = depositedSowrd;
+		var owningPlayer = player;
 		depositedSowrd = null;
+		pendingRecipe = null;
 
 		GD.Print($"Sword: {sword.Name}, parent: {sword.GetParent()?.Name}");
 
@@ -90,11 +100,20 @@ public partial class GrindstoneStation : BaseStationScript
 				if(!IsInstanceValid(sword)) return;
 				sword.Position = Vector3.Zero;
 				sword.Rotation = Vector3.Zero;
-				player.GiveWeapon(sword);
+				owningPlayer.GiveWeapon(sword);
 			};
-
+		CheckForWaitingPlayer();
 		
-		pendingRecipe = null;
+		
+	}
+
+	private void CheckForWaitingPlayer()
+	{
+		if(player != null && !playersInZone.Contains(player))
+		{
+			player = playersInZone.Count > 0 ? playersInZone[0] : null;
+			itemCarrier = player as ItemCarrier;
+		}
 	}
 
 	public float GetCraftDuration()=> craftDuration;

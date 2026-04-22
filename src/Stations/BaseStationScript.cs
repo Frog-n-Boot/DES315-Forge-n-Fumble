@@ -32,7 +32,7 @@ public abstract partial class BaseStationScript : Node3D
 	protected List<ItemData> pendingConsume = new List<ItemData>();
 
 	protected List<ItemData> itemsToDeposit = new List<ItemData>();
-	private List<PlayerController> playersInZone = new List<PlayerController>();
+	protected List<PlayerController> playersInZone = new List<PlayerController>();
 
 	private int activeDevice;
 	
@@ -243,13 +243,18 @@ public abstract partial class BaseStationScript : Node3D
 		if (body.IsInGroup("Player"))
 		{
 			var p= body as PlayerController;
-			itemCarrier = p as ItemCarrier;
-			player = p;
-			activeDevice = player.currentDevice;
 			playersInZone.Add(p);
 			p.SetCurrentStation(this);
-			UpdateButtonTexture(GetPlayerDevice());
-			buttonTexture.Visible = true;
+
+			if (!IsStationBusy())
+			{
+				itemCarrier = p as ItemCarrier;
+				player = p;
+				activeDevice = player.currentDevice;
+				UpdateButtonTexture(GetPlayerDevice());
+				buttonTexture.Visible = true;
+			}
+			
 
 		}
 		
@@ -261,12 +266,25 @@ public abstract partial class BaseStationScript : Node3D
 			var p = body as PlayerController;
 			playersInZone.Remove(p);
 			p?.SetCurrentStation(null);
-			buttonTexture.Visible =false;
 
 			if(player == p)
 			{
-				player = playersInZone.Count > 0 ? playersInZone[0] : null;
-				itemCarrier = player as ItemCarrier;
+				if (!IsStationBusy())
+				{
+					player = playersInZone.Count > 0 ? playersInZone[0] : null;
+					itemCarrier = player as ItemCarrier;
+					activeDevice = player?.currentDevice ?? -2;
+					buttonTexture.Visible = player != null;
+				}
+				else
+				{
+					
+				}
+				
+			}
+			else
+			{
+				buttonTexture.Visible =playersInZone.Count > 0;
 			}
 		}
 	}
@@ -323,6 +341,8 @@ public abstract partial class BaseStationScript : Node3D
 		pendingConsume = null;
 		
 	}
+
+	protected virtual bool IsStationBusy() => !craftingTimer.IsStopped();
 	
 
 }

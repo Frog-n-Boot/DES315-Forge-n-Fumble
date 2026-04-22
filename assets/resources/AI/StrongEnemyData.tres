@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dfgcclikd3kvh" path="res://src/Enemy/AI/EnemyBehaviourData.cs" id="1_srwom"]
 [ext_resource type="Script" uid="uid://cafetq1ji4h5b" path="res://src/Enemy/AI/AttackForge.cs" id="2_srwom"]
 [ext_resource type="AudioStream" uid="uid://di7wor1ufp2cs" path="res://assets/Sounds/SFX/GoblinDeathSound.wav" id="3_t82my"]
-[ext_resource type="Material" uid="uid://mnfdpt4tpeag" path="res://assets/materials/Texture_sets/Character_Textures/Goblin Textures/stronggoblin_material.tres" id="4_pilw3"]
+[ext_resource type="Material" path="res://assets/materials/Texture_sets/Character_Textures/Goblin Textures/stronggoblin_material.tres" id="4_pilw3"]
 [ext_resource type="ArrayMesh" uid="uid://ddna22yt5xn4q" path="res://assets/models/FinalAssets_Low/Character_Models/Goblin_low.mesh" id="5_0lay7"]
 [ext_resource type="Skin" uid="uid://by0geq85qph2r" path="res://assets/models/FinalAssets_Low/Character_Models/Goblin_low_skin.res" id="5_t82my"]
 [ext_resource type="Resource" uid="uid://b8b53k7npfa4a" path="res://assets/resources/AI/Behaviour/MoveToForge.tres" id="7_t82my"]

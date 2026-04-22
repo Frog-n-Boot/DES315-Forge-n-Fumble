@@ -156,6 +156,7 @@ color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Control" unique_id=1298095690]
 stream = ExtResource("2_2wh52")
 volume_db = -40.0
+bus = &"SFX"
 
 [node name="BackgroundImage" type="TextureRect" parent="Control" unique_id=2007621218]
 visibility_layer = 2

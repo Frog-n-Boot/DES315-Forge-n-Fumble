@@ -13,6 +13,7 @@ public partial class AudioManager : Node
 	{
 		instance = this;
 		musicPlayer = new AudioStreamPlayer();
+		musicPlayer.Bus = "Music";
 		AddChild(musicPlayer);
 	}
 
