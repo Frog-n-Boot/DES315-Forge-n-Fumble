@@ -94,15 +94,20 @@ public partial class SpinAttack : Node3D
 
 		float currentRotation = parent.Rotation.Y;
 		float frameDelta = Mathf.AngleDifference(startRotationY, currentRotation);
-		if (Mathf.Sign(frameDelta) == Mathf.Sign(accumulatedRotation) || accumulatedRotation == 0)
-		{
-			accumulatedRotation += frameDelta;
-		}
-		else
-		{
-			accumulatedRotation = frameDelta;
-		}
 		startRotationY = currentRotation;
+		if(Mathf.Abs(frameDelta) > 0.001f)
+		{
+			if (accumulatedRotation == 0 || Mathf.Sign(frameDelta) == Mathf.Sign(accumulatedRotation))
+			{
+				accumulatedRotation += frameDelta;
+			}
+			else
+			{
+				accumulatedRotation = 0;
+			}
+		}
+		
+		
 		float totalDegrees = Mathf.RadToDeg(Mathf.Abs(accumulatedRotation));
 
 		if (totalDegrees >= spinThreshold)
@@ -113,6 +118,8 @@ public partial class SpinAttack : Node3D
 
 			if (spinCharges >= maxSpinCharges)
 				ExecuteSpinAttack();
+			else
+				EmitSignal(SignalName.SpinChargeGained, spinCharges, maxSpinCharges);
 		}
 		else
 		{
@@ -161,7 +168,7 @@ public partial class SpinAttack : Node3D
 			{
 				spinArea.Monitoring = true;
 				isSpinning = true;
-
+				
 				var overlappingBodies = spinArea.GetOverlappingBodies();
 				foreach (var body in overlappingBodies)
 					ProcessSpinHit(body);
@@ -203,14 +210,10 @@ public partial class SpinAttack : Node3D
 		}
 
 		PlayAnim(ANIM_DAZED, 0f);
-
-		// After dazeTimer the game-state daze ends. This is also a stuck-state
-		// safety net — if GetUp's AnimationFinished never fires for any reason
-		// (weapon dropped, scene change, etc.) the player is fully unstuck here.
+		
 		parent.GetTree().CreateTimer(dazeTimer).Timeout += () =>
 		{
 			isDazed = false;
-			animPlayer.SpeedScale = 1f;
 
 			if (parent is PlayerController player)
 			{
@@ -251,16 +254,24 @@ public partial class SpinAttack : Node3D
 		{
 			animPlayer.SpeedScale = 1f;
 			PlayAnim(ANIM_GET_UP, 0f);
+			animPlayer.SpeedScale = 2f;
 		}
 
 		// GetUp finished → back to Idle, notify PlayerController
 		if (name == ANIM_GET_UP)
 		{
 			isDazedTriggered = false;
-			PlayAnim(ANIM_IDLE, BLEND_TIME);
 
 			if (parent is PlayerController player)
+			{
 				player.OnDazedSequenceEnded();
+			}
+			else
+			{
+				PlayAnim(ANIM_IDLE, BLEND_TIME);
+			}
+
+		
 		}
 	}
 

@@ -5,7 +5,8 @@
 [ext_resource type="FontFile" uid="uid://jc0e5wwfs5d7" path="res://assets/textures/UI/Blackney-Light.otf" id="2_826wr"]
 [ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="2_l72w3"]
 [ext_resource type="AudioStream" uid="uid://i4t1sy6mjdaa" path="res://assets/Sounds/Music/Townsfolk LOOP.wav" id="3_ow34m"]
-[ext_resource type="Texture2D" uid="uid://scbobqbe42nm" path="res://assets/PNG/TitleScreen_new.png" id="5_l72w3"]
+[ext_resource type="AudioStream" uid="uid://dw6sr2a1g6wm3" path="res://assets/Sounds/Music/Pillage LOOP.wav" id="3_ucygd"]
+[ext_resource type="Texture2D" uid="uid://b32ma1du5ci52" path="res://assets/PNG/Title_screen_redone.webp" id="5_l72w3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_826wr"]
 atlas = ExtResource("2_l72w3")
@@ -38,6 +39,8 @@ tutorialButton = NodePath("TutorialButton")
 settingsButton = NodePath("SettingsButton")
 quitMenu = NodePath("QuitButton")
 audio = NodePath("AudioStreamPlayer2D")
+menuMusic = ExtResource("3_ow34m")
+levelMusic = ExtResource("3_ucygd")
 
 [node name="StartButton" type="Button" parent="Control" unique_id=1277000304]
 z_index = 1
@@ -154,21 +157,19 @@ color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
 stream = ExtResource("2_2wh52")
 volume_db = -40.0
 
-[node name="MenuMusic" type="AudioStreamPlayer2D" parent="Control" unique_id=885990981]
-stream = ExtResource("3_ow34m")
-volume_db = -80.0
-autoplay = true
-bus = &"Music"
-
 [node name="BackgroundImage" type="TextureRect" parent="Control" unique_id=2007621218]
 visibility_layer = 2
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 30.300001
-anchor_bottom = 16.875
+anchor_right = 30.160002
+anchor_bottom = 16.769001
 offset_left = -2.0
+offset_top = -8.0
+offset_right = 0.0052490234
+offset_bottom = 0.0064086914
 mouse_filter = 2
 texture = ExtResource("5_l72w3")
+expand_mode = 1
 stretch_mode = 6
 
 [connection signal="pressed" from="Control/StartButton" to="Control" method="OnStartButtonPressed"]

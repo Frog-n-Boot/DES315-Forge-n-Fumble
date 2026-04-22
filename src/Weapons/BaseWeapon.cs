@@ -15,6 +15,8 @@ public abstract partial class BaseWeapon : Node3D
 	public int durability;
 	public bool isBeingPickedUp = false;
 	private int lastHitDamage;
+	public bool isCarried = false;
+	public bool IsCarried() => isCarried;
 
 	
 
@@ -54,6 +56,8 @@ public abstract partial class BaseWeapon : Node3D
 
 	public void SetWeaponPromptTexture(bool isController)
 	{
+		if(isCarried) return;
+		weaponTextureRect.Show();
 		weaponTextureRect.Texture = isController? weaponPromptTexture[0] : weaponPromptTexture[1];
 	}
 	public void HideWeaponPrompt()
@@ -74,6 +78,7 @@ public abstract partial class BaseWeapon : Node3D
 	public void SetEnemyCollisionEnabled(bool enabled)
 	{
 		if(weaponBody == null) return;
+		
 		if(enabled) {
 			weaponBody.AddToGroup("Weapon");
 		}

@@ -15,19 +15,19 @@
 [node name="Interior" type="Node3D" unique_id=1066486656]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
 
-[node name="IntBarrelLow" parent="." unique_id=450340970 instance=ExtResource("1_owy77")]
+[node name="IntBarrelLow" parent="." unique_id=450340970 groups=["navigation_mesh_source_group"] instance=ExtResource("1_owy77")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5612526, -0.004412611, 0.4049043)
 
 [node name="IntBoardsLow" parent="." unique_id=330279951 instance=ExtResource("2_fvkf0")]
 transform = Transform3D(-4.3711392e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711392e-08, 9.722198, 1.2699424, 0.6825348)
 
-[node name="IntBrushLow" parent="." unique_id=1515723218 instance=ExtResource("3_nbld2")]
+[node name="IntBrushLow" parent="." unique_id=1515723218 groups=["navigation_mesh_source_group"] instance=ExtResource("3_nbld2")]
 transform = Transform3D(-0.94125265, 0, -0.3377032, 0, 1, 0, 0.3377032, 0, -0.94125265, -4.6224194, 1.0277725, -0.68114233)
 
-[node name="IntGrabberLow" parent="." unique_id=1381013930 instance=ExtResource("4_mjtes")]
+[node name="IntGrabberLow" parent="." unique_id=1381013930 groups=["navigation_mesh_source_group"] instance=ExtResource("4_mjtes")]
 transform = Transform3D(0.8452819, -0.53198636, -0.049890272, 0.12794863, 0.29218218, -0.9477651, 0.5187751, 0.7947453, 0.3150432, -4.787174, 0.6735992, 0.91236204)
 
-[node name="IntHammerLow" parent="." unique_id=1407326090 instance=ExtResource("5_japgo")]
+[node name="IntHammerLow" parent="." unique_id=1407326090 groups=["navigation_mesh_source_group"] instance=ExtResource("5_japgo")]
 transform = Transform3D(0.918984, 0, -0.39429483, 0, 1, 0, 0.39429483, 0, 0.918984, -5.798126, 1.0487446, -0.81788754)
 
 [node name="IntLanternHangLow2" parent="." unique_id=1006239222 instance=ExtResource("6_yhgrm")]
@@ -42,7 +42,7 @@ transform = Transform3D(-1, 0, -8.7422784e-08, 0, 1, 0, 8.7422784e-08, 0, -1, 4.
 [node name="IntLanternHangLow6" parent="." unique_id=2015402390 instance=ExtResource("6_yhgrm")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4.6237, 0.986941, 5.996937)
 
-[node name="IntLanternStandLow" parent="." unique_id=364970141 instance=ExtResource("7_7kcs5")]
+[node name="IntLanternStandLow" parent="." unique_id=364970141 groups=["navigation_mesh_source_group"] instance=ExtResource("7_7kcs5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.8977036, 0.96734476, 0.077705085)
 
 [node name="IntLanternStandLow2" parent="." unique_id=569226641 instance=ExtResource("7_7kcs5")]
@@ -60,17 +60,17 @@ transform = Transform3D(-4.3711392e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711392e-08, 9.
 [node name="IntShelfLow4" parent="." unique_id=1915596820 instance=ExtResource("8_8o3j2")]
 transform = Transform3D(-4.3711392e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711392e-08, -9.642456, 0.7156765, -0.058148146)
 
-[node name="IntStoolLow" parent="." unique_id=2102236486 instance=ExtResource("9_5wyme")]
+[node name="IntStoolLow" parent="." unique_id=2102236486 groups=["navigation_mesh_source_group"] instance=ExtResource("9_5wyme")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.085956, 0.006216647, -0.41312268)
 
-[node name="IntStoolLow2" parent="." unique_id=1876469849 instance=ExtResource("9_5wyme")]
+[node name="IntStoolLow2" parent="." unique_id=1876469849 groups=["navigation_mesh_source_group"] instance=ExtResource("9_5wyme")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.5635686, 0.006216647, 0.4755007)
 
-[node name="IntTableLow" parent="." unique_id=1401044304 instance=ExtResource("10_wyv8v")]
+[node name="IntTableLow" parent="." unique_id=1401044304 groups=["navigation_mesh_source_group"] instance=ExtResource("10_wyv8v")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.8119273, 0.0014311669, 0.09635544)
 
-[node name="IntTableLow2" parent="." unique_id=838529632 instance=ExtResource("10_wyv8v")]
+[node name="IntTableLow2" parent="." unique_id=838529632 groups=["navigation_mesh_source_group"] instance=ExtResource("10_wyv8v")]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -5.0847683, 0.0014311669, -0.78253263)
 
-[node name="IntTrowelLow" parent="." unique_id=34111228 instance=ExtResource("11_xud15")]
+[node name="IntTrowelLow" parent="." unique_id=34111228 groups=["navigation_mesh_source_group"] instance=ExtResource("11_xud15")]
 transform = Transform3D(-0.9947136, 0, 0.10268833, 0, 1, 0, -0.10268833, 0, -0.9947136, -5.337946, 1.0560362, -0.8617157)

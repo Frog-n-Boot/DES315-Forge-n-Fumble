@@ -9,7 +9,7 @@ public partial class XRayManager : Node
     private const int maxPlayers = 4;
     private readonly List<Node3D>_players = new();
     private readonly List<MeshInstance3D> walls = new();
-    private static readonly string ShaderPath ="res://src//Shaders/xray.gdshader";
+    private static readonly string ShaderPath ="res://src/Shaders/Xray.gdshader";
     private Shader _xrayShader;
 	private bool wallsCollected = false;
 	public static XRayManager Instance {get; private set;}

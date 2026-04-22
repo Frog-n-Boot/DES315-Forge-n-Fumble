@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://ccvl8wqeyujsn"]
+[gd_scene format=3 uid="uid://pbu374ijt1cc"]
 
-[ext_resource type="Script" uid="uid://7x71makbgbgu" path="res://scenes/splash_screen.gd" id="1_l2g8s"]
+[ext_resource type="Script" path="res://scenes/splash_screen.gd" id="1_l2g8s"]
 [ext_resource type="Texture2D" uid="uid://bkhjpcidblfei" path="res://froggysketch-logoTRANSPARENT.webp" id="2_rc2kg"]
 [ext_resource type="Texture2D" uid="uid://47qpemik7pvh" path="res://logo_large_color_light.png" id="3_rc2kg"]
 

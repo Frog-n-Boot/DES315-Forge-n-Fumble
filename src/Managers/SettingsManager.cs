@@ -101,11 +101,13 @@ public partial class SettingsManager : Node
 		if (value)
 		{
 			DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
+			DisplayServer.WindowSetFlag(DisplayServer.WindowFlags.Borderless, true);
 			Engine.MaxFps = maxFPS;
 		}
 		else
 		{
 			DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
+			DisplayServer.WindowSetFlag(DisplayServer.WindowFlags.Borderless, false);
 			DisplayServer.WindowSetSize(resolution);
 			SetWindowPosition();
 		}

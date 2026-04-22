@@ -69,7 +69,7 @@ public partial class LootTable : Node
 		{
 			var droppedItem = itemToDrop.Instantiate<Node3D>();
 			GetTree().Root.AddChild(droppedItem);
-			droppedItem.GlobalPosition = dropPosition;
+			droppedItem.GlobalPosition = new Vector3(dropPosition.X, 0, dropPosition.Z);
 
 			if(droppedItem is Pickable pickable)
 				pickable.shouldDespawn = true;

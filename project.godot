@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Forge-n-Fumble"
-run/main_scene="uid://ccvl8wqeyujsn"
+run/main_scene="uid://pbu374ijt1cc"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 run/max_fps=60
 boot_splash/bg_color=Color(1, 1, 1, 1)
@@ -35,6 +35,7 @@ SettingsManager="*uid://bmvu35qw3l2o1"
 SceneManager="*uid://whjx5ow2exj4"
 Forge="*uid://csp7j7pbfs6rf"
 XRayManager="*uid://tdc3uinptads"
+AudioManager="*uid://bucgoqsuhfarl"
 
 [debug]
 
@@ -45,7 +46,6 @@ file_logging/enable_file_logging=true
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/size/mode=3
-window/size/borderless=true
 window/stretch/mode="canvas_items"
 window/vsync/vsync_mode=0
 

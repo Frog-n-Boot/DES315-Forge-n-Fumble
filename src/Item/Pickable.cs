@@ -18,6 +18,8 @@ public partial class Pickable : Node3D
 	public ItemData itemData;
 	[ExtenderProvidedProperty] public float highLightDistance = 5.0f;
 
+	public bool isCarried = false;
+
 	[Signal] public delegate void PickedUpEventHandler();
 
 	#endregion
@@ -31,6 +33,7 @@ public partial class Pickable : Node3D
 	}
 	public override void _Ready()
 	{
+		
 		if (!string.IsNullOrEmpty(itemDataPath))
 		{
 			itemData = GD.Load<ItemData>(itemDataPath);
@@ -47,6 +50,8 @@ public partial class Pickable : Node3D
 		}
 		if(shouldDespawn)
 			GetTree().CreateTimer(despawnTime).Timeout += QueueFree;
+		
+		
 	}
 	
 	#endregion
@@ -61,7 +66,8 @@ public partial class Pickable : Node3D
 	#region PickUp
 	public void PickUp()
 	{
-		//itemTextureRect.Hide();
+		isCarried = true;
+		itemTextureRect.Hide();
 		EmitSignal(SignalName.PickedUp);
 		//QueueFree();
 	}
@@ -69,13 +75,15 @@ public partial class Pickable : Node3D
 
 	public void SetItemPromptTexture(bool isController)
 	{
-		//itemTextureRect.Show();
+		if(isCarried) return;
+		
 		itemTextureRect.Texture = isController? itemPromptTexture[0] : itemPromptTexture[1];
+		itemTextureRect.Show();
 	}
 	public void HideItemPrompt()
 	{
-		if(itemTextureRect != null)
-			itemTextureRect.Hide();
+		//if(itemTextureRect != null)
+		itemTextureRect.Hide();
 		
 	}
 	public void Highlight(bool enabled)
@@ -83,5 +91,6 @@ public partial class Pickable : Node3D
 		
 	}
 
+	public bool IsCarried() => isCarried;
 
 }
