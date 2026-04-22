@@ -61,7 +61,7 @@ enemyData = SubResource("Resource_k4bng")
 mesh = NodePath("Armature/Skeleton3D/MeshInstance3D")
 collisionArea = NodePath("Area3D")
 navigationAgent = NodePath("NavigationAgent3D")
-audioStream = NodePath("AudioStreamPlayer3D")
+audioStream = NodePath("EnemyDeathSounds")
 animPlayer = NodePath("AnimationPlayer")
 audioPlayer = NodePath("EnemyDeathSounds")
 

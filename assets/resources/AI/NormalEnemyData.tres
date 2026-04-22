@@ -28,6 +28,7 @@ lootDropChance = 30.0
 enemyMat = ExtResource("1_7n161")
 enemyMesh = ExtResource("5_fl57o")
 deathSound = ExtResource("4_fl57o")
+soundPitch = 1.0
 enemySkin = ExtResource("6_433q0")
 isStationary = true
 attackBehaviours = Array[ExtResource("1_fl57o")]([SubResource("Resource_kxpql"), SubResource("Resource_820ot")])

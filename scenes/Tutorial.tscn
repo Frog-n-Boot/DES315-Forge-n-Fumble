@@ -1275,6 +1275,30 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -62.
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D12" unique_id=523911611]
 shape = SubResource("BoxShape3D_y74ua")
 
+[node name="StaticBody3D13" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=255256808]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.431435, 0, -16.740286)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D13" unique_id=1972378433]
+shape = SubResource("BoxShape3D_y74ua")
+
+[node name="StaticBody3D14" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=1251389859]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85.13825, 0, -16.740286)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D14" unique_id=1760414386]
+shape = SubResource("BoxShape3D_y74ua")
+
+[node name="StaticBody3D15" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=123075497]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 64.28486, 0, 13.945482)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D15" unique_id=1978296003]
+shape = SubResource("BoxShape3D_y74ua")
+
+[node name="StaticBody3D16" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=522813639]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 64.28486, 0, -47.069412)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D16" unique_id=1434986337]
+shape = SubResource("BoxShape3D_y74ua")
+
 [connection signal="pressed" from="UI/PauseMenu/ResumeButton" to="UI/PauseMenu" method="OnResumePressed"]
 [connection signal="pressed" from="UI/PauseMenu/SettingsButton" to="UI/PauseMenu" method="OnSettingsPressed"]
 [connection signal="pressed" from="UI/PauseMenu/QuitButton" to="UI/PauseMenu" method="OnMainMenuPressed"]

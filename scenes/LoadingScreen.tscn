@@ -1,17 +1,25 @@
 [gd_scene format=3 uid="uid://ctuka4h5wmpob"]
 
 [ext_resource type="Script" uid="uid://cltijj7du0h0v" path="res://src/LoadingMenu.cs" id="1_jqyhx"]
-[ext_resource type="PackedScene" uid="uid://88oq7ysmwuhi" path="res://scenes/Main.tscn" id="2_x85qc"]
 [ext_resource type="Texture2D" uid="uid://bi1h1rttgjwqr" path="res://assets/PNG/Loadingscreen_backround.webp" id="3_814mh"]
 [ext_resource type="Texture2D" uid="uid://cbx2c3ppbseci" path="res://assets/PNG/Loadingscreen_border.webp" id="4_3gg4b"]
+[ext_resource type="Texture2D" uid="uid://bgpx6e42afd1t" path="res://assets/textures/UI/healthbar_forge_back.webp" id="4_eljrs"]
+[ext_resource type="Texture2D" uid="uid://b5e0el27bnplu" path="res://assets/textures/UI/healthbar_forge_front.webp" id="5_ef7dr"]
+[ext_resource type="Script" uid="uid://brp6gsap0s2ok" path="res://src/UI/HealthBar.cs" id="6_l04bg"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gjpm3"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24gww"]
+atlas = SubResource("CompressedTexture2D_gjpm3")
+region = Rect2(21, 519, 261, 39)
 
 [node name="LoadingScreen" type="Node2D" unique_id=1773272142]
 
 [node name="Node3D" type="Node2D" parent="." unique_id=1678082519 node_paths=PackedStringArray("textureProgressBar")]
 script = ExtResource("1_jqyhx")
 scenePath = "res://scenes/Main.tscn"
-textureProgressBar = NodePath("Control/TextureProgressBar")
-levelScene = ExtResource("2_x85qc")
+textureProgressBar = NodePath("Control/ForgeProgressBar")
 
 [node name="Control" type="Control" parent="Node3D" unique_id=323109060]
 layout_mode = 3
@@ -32,9 +40,44 @@ offset_right = 1141.659
 offset_bottom = 671.49097
 texture = ExtResource("4_3gg4b")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="Node3D/Control" unique_id=1966092534]
+[node name="ForgeProgressBar_Back" type="TextureProgressBar" parent="Node3D/Control" unique_id=323140692]
 layout_mode = 0
-offset_left = 406.0
-offset_top = 287.0
-offset_right = 724.0
-offset_bottom = 342.0
+offset_left = 317.8633
+offset_top = 302.39932
+offset_right = 2085.8633
+offset_bottom = 495.39932
+scale = Vector2(0.29262257, 0.51434565)
+value = 20.0
+texture_under = ExtResource("4_eljrs")
+texture_over = ExtResource("5_ef7dr")
+tint_progress = Color(0, 1, 0, 1)
+script = ExtResource("6_l04bg")
+targetPath = NodePath("../../../../..")
+
+[node name="ForgeProgressBar" type="TextureProgressBar" parent="Node3D/Control" unique_id=2126037651]
+layout_mode = 0
+offset_left = 355.83035
+offset_top = 326.15274
+offset_right = 616.8303
+offset_bottom = 365.15274
+scale = Vector2(1.8083153, 1.0213243)
+value = 17.0
+texture_progress = SubResource("AtlasTexture_24gww")
+tint_under = Color(1, 0, 0, 1)
+tint_progress = Color(0, 1, 0, 1)
+script = ExtResource("6_l04bg")
+targetPath = NodePath("../../../../..")
+
+[node name="ForgeProgressBar3_Front" type="TextureProgressBar" parent="Node3D/Control" unique_id=481837447]
+layout_mode = 0
+offset_left = 317.8633
+offset_top = 302.39932
+offset_right = 2085.8633
+offset_bottom = 495.39932
+scale = Vector2(0.29262257, 0.51434565)
+value = 20.0
+texture_over = ExtResource("5_ef7dr")
+tint_under = Color(1, 0, 0, 1)
+tint_progress = Color(0, 1, 0, 1)
+script = ExtResource("6_l04bg")
+targetPath = NodePath("../../../../..")
