@@ -619,9 +619,12 @@ public partial class EnemyController : CharacterBody3D
             case "Forge":
                 PlayAttackAnim();
                 EmitSignal(SignalName.DamagedTarget, body, Damage);
-                Forge forge = GetForge();
-                if (forge != null) { forge.TakeDamage(Damage); GD.Print(forge.health); }
-                
+				if(enemyData.enemyType != EnemyType.Fast)
+				{
+					Forge forge = GetForge();
+                	if (forge != null) { forge.TakeDamage(Damage); GD.Print(forge.health); }
+				}
+                             
                 Vector3 forgePushDir = (GlobalPosition - body.GlobalPosition).Normalized();
                 forgePushDir.Y = 0;
                 ApplyKnockback(forgePushDir, 15f);

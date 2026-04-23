@@ -219,6 +219,7 @@ size = Vector3(165.44485, 4.0629883, 2.6912842)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1695761306]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -0.02279663, 0, -0.18181562)
 shape = SubResource("WorldBoundaryShape3D_0a2r4")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="World" type="Node" parent="." unique_id=653261365]
 
@@ -993,6 +994,7 @@ surface_material_override/0 = ExtResource("21_bi4s5")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Enemies/Enemy" unique_id=1909118665]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5761719, 0)
 shape = SubResource("CylinderShape3D_pfjfy")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="HealthBar" type="Sprite3D" parent="Objects/Enemies/Enemy" unique_id=833760103]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0)
@@ -1022,6 +1024,7 @@ collision_mask = 235
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Enemies/Enemy/Area3D" unique_id=1172694664]
 shape = SubResource("CylinderShape3D_82iww")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="AI" type="Node" parent="Objects/Enemies/Enemy" unique_id=130780360 node_paths=PackedStringArray("_controller")]
 script = ExtResource("22_cys1x")
@@ -1143,6 +1146,7 @@ surface_material_override/0 = ExtResource("24_xi6p3")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Enemies/Enemy2" unique_id=769617196]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5761719, 0)
 shape = SubResource("CylinderShape3D_pfjfy")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="HealthBar" type="Sprite3D" parent="Objects/Enemies/Enemy2" unique_id=1753529906]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0)
@@ -1172,6 +1176,7 @@ collision_mask = 235
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Enemies/Enemy2/Area3D" unique_id=437690040]
 shape = SubResource("CylinderShape3D_82iww")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="AI" type="Node" parent="Objects/Enemies/Enemy2" unique_id=1007741186 node_paths=PackedStringArray("_controller")]
 script = ExtResource("22_cys1x")
@@ -1317,6 +1322,7 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Stations/Ballista/BallistaTopElementLow/StaticBody3D" unique_id=1945830702]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9050009, 0)
 shape = SubResource("CapsuleShape3D_e7812")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="StationPort" type="Node3D" parent="Objects/Stations/Ballista/BallistaTopElementLow/StaticBody3D" unique_id=750325492]
 transform = Transform3D(62.81827, 0, 0, 0, 85.7798, 0, 0, 0, 34.782322, -0.19229126, 0.54238105, 0.27918434)
@@ -1336,6 +1342,7 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Stations/Ballista/BallistaTopElementLow/StaticBody3D/StationPort/Area3D" unique_id=280831638]
 transform = Transform3D(0.17999986, 0, 0, 0, 0.9999873, 0, 0, 0, 0.18999994, 0.0013348593, 0, 0)
 shape = SubResource("BoxShape3D_vl1yp")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="BallistaBarrel" type="Node3D" parent="Objects/Stations/Ballista/BallistaTopElementLow" unique_id=309150814]
 transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0, 0)
@@ -1397,6 +1404,7 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Stations/Ballista2/BallistaTopElementLow/StaticBody3D" unique_id=170709386]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9050009, 0)
 shape = SubResource("CapsuleShape3D_e7812")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="StationPort" type="Node3D" parent="Objects/Stations/Ballista2/BallistaTopElementLow/StaticBody3D" unique_id=867504175]
 transform = Transform3D(62.81827, 0, 0, 0, 85.7798, 0, 0, 0, 34.782322, -0.19229126, 0.54238105, 0.27918434)
@@ -1416,6 +1424,7 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Stations/Ballista2/BallistaTopElementLow/StaticBody3D/StationPort/Area3D" unique_id=1924897383]
 transform = Transform3D(0.17999986, 0, 0, 0, 0.9999873, 0, 0, 0, 0.18999994, 0.0013348593, 0, 0)
 shape = SubResource("BoxShape3D_vl1yp")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="BallistaBarrel" type="Node3D" parent="Objects/Stations/Ballista2/BallistaTopElementLow" unique_id=1918361004]
 transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0, 0)

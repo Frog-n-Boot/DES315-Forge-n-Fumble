@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using System.Reflection.Metadata;
 
@@ -69,8 +70,8 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	public BaseWeapon currentWeapon;
 	private bool isAttacking = false;
 	private int tick = 0;
-	private Pickable nearbyPickable;
-	private BaseWeapon nearbyWeapon;
+	private HashSet<Pickable> nearbyPickable = new HashSet<Pickable>();
+	private HashSet<BaseWeapon> nearbyWeapon = new HashSet<BaseWeapon>();
 
 	private Vector3 knockback = Vector3.Zero;
 	private StandardMaterial3D material;
@@ -286,6 +287,12 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 	public override void _Process(double delta)
 	{
+		if (currentWeapon != null && !IsInstanceValid(currentWeapon))
+			{
+				currentWeapon = null;
+				isAttacking = false;
+				UpdateLocomotionAnim();
+			}
 
 		if (sequenceMinigame != null && sequenceMinigame.IsActiveFor(this))
 			return;
@@ -368,12 +375,15 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 		if (IsActionPressed("pick_up"))
 		{
-			if (nearbyWeapon != null && rightHand.GetChildCount() == 0)
+			var weapon = nearbyWeapon.FirstOrDefault(w => IsInstanceValid(w));
+			var pickable = nearbyPickable.FirstOrDefault(p => IsInstanceValid(p));
+
+			if (weapon != null && rightHand.GetChildCount() == 0)
 			{
-				PickUpWeapon(nearbyWeapon);
+				PickUpWeapon(weapon);
 			}
-			else if (nearbyPickable != null)
-				ProcessPickable(nearbyPickable);
+			else if (pickable != null)
+				ProcessPickable(pickable);
 		}
 
 		if (Input.IsActionPressed("drop_item"))
@@ -386,11 +396,12 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			}
 		}
 
-		if (currentWeapon is Sword sword2)
+		if (currentWeapon is Sword sword)
 		{
+			
 			if (inputBuffer.IsInputBuffered("attack") && !isAttacking)
 			{
-				sword2.PerformComboAttack(inputBuffer);
+				sword.PerformComboAttack(inputBuffer);
 				StartAttack();
 			}
 		}
@@ -501,7 +512,8 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		knockback = knockback.Lerp(Vector3.Zero, 0.15f);
 		Velocity = velocity;
 
-		if (lookDir != Vector3.Zero)
+		
+		if (animPlayer.CurrentAnimation != "spinAnim" && animPlayer.IsPlaying() && lookDir != Vector3.Zero)
 		{
 			float targetAngle = Mathf.Atan2(lookDir.X, lookDir.Z);
 			Rotation = new Vector3(Rotation.X, targetAngle, Rotation.Z);
@@ -682,11 +694,11 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 		if (area.IsInGroup("pickable"))
 		{
-			nearbyPickable = area.GetParent() as Pickable;
-			GD.Print($"NearbyPickable: {nearbyPickable?.Name ?? "null"}");
-			if (nearbyPickable != null)
+			var pickable = area.GetParent() as Pickable;
+			GD.Print($"NearbyPickable: {pickable?.Name ?? "null"}");
+			if (pickable != null && nearbyPickable.Add(pickable))
 			{
-				try { nearbyPickable.SetItemPromptTexture(IsUsingController()); }
+				try { pickable.SetItemPromptTexture(IsUsingController()); }
 				catch (Exception e) { GD.PrintErr($"[PlayerController] SetItemPromptTexture failed: {e.Message}"); }
 			}
 		}
@@ -694,10 +706,11 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		if (area.IsInGroup("Weapon"))
 		{
 			StaticBody3D areaParent = area.GetParent() as StaticBody3D;
-			nearbyWeapon = areaParent?.GetParent() as BaseWeapon;
-			if (nearbyWeapon != null)
+
+			var weapon = areaParent?.GetParent() as BaseWeapon;
+			if (nearbyWeapon != null && nearbyWeapon.Add(weapon))
 			{
-				try { nearbyWeapon.SetWeaponPromptTexture(IsUsingController()); }
+				try { weapon.SetWeaponPromptTexture(IsUsingController()); }
 				catch (Exception e) { GD.PrintErr($"[PlayerController] SetWeaponPromptTexture failed: {e.Message}"); }
 			}
 		}
@@ -707,14 +720,17 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	{
 		if (area.IsInGroup("pickable"))
 		{
-			if (nearbyPickable != null) nearbyPickable.HideItemPrompt();
-			nearbyPickable = null;
+			var pickable = area.GetParent() as Pickable;
+			if (pickable != null && nearbyPickable.Remove(pickable))
+				pickable.HideItemPrompt();
 		}
 
 		if (area.IsInGroup("Weapon"))
 		{
-			if (nearbyWeapon != null) nearbyWeapon.HideWeaponPrompt();
-			nearbyWeapon = null;
+			StaticBody3D areaParent = area.GetParent() as StaticBody3D;
+			var weapon = areaParent?.GetParent() as BaseWeapon;
+			if (weapon != null && nearbyWeapon.Remove(weapon))
+				weapon.HideWeaponPrompt();
 		}
 	}
 
@@ -732,6 +748,9 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	{
 		if (!IsInstanceValid(pickable)) return;
 		if (processPickable.Contains(pickable)) return;
+
+		nearbyPickable.Remove(pickable);
+		pickable.HideItemPrompt();
 
 		processPickable.Add(pickable);
 
@@ -756,26 +775,27 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		};
 	}
 
-	public void PickUpWeapon(BaseWeapon nearbyWeapon)
+	public void PickUpWeapon(BaseWeapon weapon)
 	{
-		if (nearbyWeapon.isBeingPickedUp) return;
-		nearbyWeapon.isBeingPickedUp = true;
+		if (weapon.isBeingPickedUp) return;
+		weapon.isBeingPickedUp = true;
+		nearbyWeapon.Remove(weapon);
 
-		if (nearbyWeapon.pickUpArea != null) nearbyWeapon.pickUpArea.Monitoring = false;
-		nearbyWeapon.HideWeaponPrompt();
+		if (weapon.pickUpArea != null) weapon.pickUpArea.Monitoring = false;
+		weapon.HideWeaponPrompt();
 
-		UpdateAnimationTreacks(nearbyWeapon.Name);
-		nearbyWeapon.isCarried = true;
-		nearbyWeapon.CallDeferred("reparent", rightHand);
+		UpdateAnimationTreacks(weapon.Name);
+		weapon.isCarried = true;
+		weapon.CallDeferred("reparent", rightHand);
 		GetTree().CreateTimer(0.1f).Timeout += () =>
 		{
-			if (!IsInstanceValid(nearbyWeapon)) return;
-			nearbyWeapon.Position = RightHandPosOffset;
-			nearbyWeapon.Rotation = RightHandRotOffset;
-			nearbyWeapon.Scale    = HandScale;
+			if (!IsInstanceValid(weapon)) return;
+			weapon.Position = RightHandPosOffset;
+			weapon.Rotation = RightHandRotOffset; 
+			weapon.Scale    = HandScale;
 
-			currentWeapon = nearbyWeapon;
-			nearbyWeapon.SetOwner(this);
+			currentWeapon = weapon;
+			weapon.SetOwner(this);
 
 			if (currentWeapon is Sword sword)
 			{
@@ -789,17 +809,15 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			}
 			if(currentWeapon is Crossbow)
 			{
-				nearbyWeapon.Rotation = new Vector3 (0 ,0 ,0);
+				weapon.Rotation = new Vector3 (0 ,0 ,0);
 			}
-			nearbyWeapon.SetEnemyCollisionEnabled(true);
+			weapon.SetEnemyCollisionEnabled(true);
 
 			if (currentWeapon.IsConnected(BaseWeapon.SignalName.Broke, Callable.From(OnSwordBroke)))
 				currentWeapon.Disconnect(BaseWeapon.SignalName.Broke, Callable.From(OnSwordBroke));
 			currentWeapon.Connect(BaseWeapon.SignalName.Broke, Callable.From(OnSwordBroke));
 
 			currentWeapon.isBeingPickedUp = false;
-
-			nearbyWeapon = null;
 
 			if (spinAttack == null)
 			{
@@ -817,7 +835,13 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 	private Vector3 GetLookVector()
 	{
-		//if(animPlayer.CurrentAnimation =="spinAnim") break;
+		if(animPlayer.CurrentAnimation == "spinAnim" && animPlayer.IsPlaying())
+		{
+			GD.Print("Spin Attack Initialized");
+			return currentLookTarget;
+		}
+			
+
 		if (currentDevice == -2)
 			return currentLookTarget;
 

@@ -39,7 +39,14 @@ public partial class SceneManager : Node
 
 		LoadScene("res://scenes/LoadingScreen.tscn");
 	}
-	public void LoadTutorial() => LoadScene("res://scenes/Tutorial.tscn");
+	public void LoadTutorial(){
+		GetTree().CallGroup("Weapon", "queue_free");
+		GetTree().CallGroup("DullSword", "queue_free");
+		GetTree().CallGroup("Enemy", "queue_free");
+		GetTree().CallGroup("pickable", "queue_free");
+		
+		LoadScene("res://scenes/Tutorial.tscn");
+	}
 	public void LoadSettings()
 	{
 		previousScene = GetTree().CurrentScene.SceneFilePath;

@@ -215,12 +215,12 @@ public partial class DebugMenu : CanvasLayer
 		{
 			var player = p as PlayerController;
 			if(player == null) GD.Print("Player is null in debug menu");
-			playerMaxHealth.Value = player.maxHealth;
-			playerSpeed.Value= player.speed;
-			playerSpawnTimer.Value = player.playerSpawnTimer;
+			//playerMaxHealth.Value = player.maxHealth;
+			//playerSpeed.Value= player.speed;
+			//playerSpawnTimer.Value = player.playerSpawnTimer;
 
-			var playerSword = player.currentWeapon;
-			var sword = playerSword as Sword;
+			//var playerSword = player.currentWeapon;
+			//var sword = playerSword as Sword;
 
 			//weaponDurability.Value = sword.durability;
 			//weaponDamage.Value = sword.damage;

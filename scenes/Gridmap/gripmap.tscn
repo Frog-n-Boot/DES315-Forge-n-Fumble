@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dosl17c5s7ina"]
 
-[ext_resource type="MeshLibrary" path="res://scenes/Gridmap/Tiles.tres" id="1_env7g"]
+[ext_resource type="MeshLibrary" uid="uid://cui246c4brede" path="res://scenes/Gridmap/Tiles.tres" id="1_env7g"]
 
 [node name="Gripmap" type="Node3D" unique_id=929500366]
 

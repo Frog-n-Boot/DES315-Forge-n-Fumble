@@ -394,6 +394,7 @@ transform = Transform3D(70, 0, 0, 0, 70, 0, 0, 0, 70, -23.599941, 0, -7.7060113)
 [node name="Grass" type="CollisionShape3D" parent="NavigationRegion3D/Ground" unique_id=1286559043]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1920929e-07, 4.656613e-10, -1.4901161e-08)
 shape = SubResource("WorldBoundaryShape3D_wko22")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Ground/Grass" unique_id=1902630742]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.9999998, 0.38779908, -0.0010001585, 0.106066324)
@@ -498,8 +499,6 @@ resultMenu = NodePath("../UI/ResultsMenu")
 normalEnemyData = ExtResource("15_8gny2")
 fastEnemyData = ExtResource("16_s3wmy")
 strongEnemyData = ExtResource("17_gdcyb")
-normalEnemyChance = 70
-strongEnemyChance = 10
 maxWaves = 6
 startingEnemiesPerWave = 5
 enemyIncreasedPerWave = 1
@@ -508,31 +507,31 @@ wavesRemaining = NodePath("../UI/WaveRemaining")
 waveTimerProgressBar = NodePath("../UI/WaveTimerProgressBar")
 
 [node name="EnemySpawn1" type="Marker3D" parent="EnemySpawner" unique_id=829387820]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.50084, 0, 29.098368)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.917, 0, 29.098)
 
 [node name="EnemySpawn2" type="Marker3D" parent="EnemySpawner" unique_id=1036047724]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.3937607, 0, -39.883232)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.609676, 0, -64.52103)
 
 [node name="EnemySpawn3" type="Marker3D" parent="EnemySpawner" unique_id=269155436]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0535583, 0, 32.288765)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.511974, 0, 57.348816)
 
 [node name="EnemySpawn9" type="Marker3D" parent="EnemySpawner" unique_id=348894196]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.341758, 0, 34.63748)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.994995, 0, 52.260468)
 
 [node name="EnemySpawn4" type="Marker3D" parent="EnemySpawner" unique_id=732551147]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.52831, 0, -9.271702)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.63442, 0, -11.059287)
 
 [node name="EnemySpawn5" type="Marker3D" parent="EnemySpawner" unique_id=1147873908]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.40036, 0, 11.58009)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.089912, 0, 31.484192)
 
 [node name="EnemySpawn6" type="Marker3D" parent="EnemySpawner" unique_id=890423285]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.418777, 0, -35.746693)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.5586, 0, -52.725178)
 
 [node name="EnemySpawn7" type="Marker3D" parent="EnemySpawner" unique_id=1941235768]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.33567, 0, -10.350807)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.52504, 0, -27.03862)
 
 [node name="EnemySpawn8" type="Marker3D" parent="EnemySpawner" unique_id=1838745660]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.324657, 0, -45.453995)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.201942, 0, -62.29859)
 
 [node name="UI" type="Node" parent="." unique_id=1005891100]
 
@@ -899,10 +898,9 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("23_siyqs")
 theme_override_font_sizes/font_size = 30
-current_tab = 1
+current_tab = 0
 
 [node name="Sound" type="Control" parent="UI/SettingsMenu/Panel/TabContainer" unique_id=1989203924]
-visible = false
 layout_mode = 2
 focus_neighbor_right = NodePath("../Display")
 metadata/_tab_index = 0
@@ -994,6 +992,7 @@ focus_neighbor_top = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
 focus_neighbor_bottom = NodePath("../../../../ApplyButton")
 
 [node name="Display" type="Control" parent="UI/SettingsMenu/Panel/TabContainer" unique_id=1109690702]
+visible = false
 layout_mode = 2
 focus_neighbor_left = NodePath("../Sound")
 focus_neighbor_right = NodePath("../Controls")
@@ -1213,6 +1212,7 @@ expand_icon = true
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="UI/SettingsMenu" unique_id=26808277]
 stream = ExtResource("33_siyqs")
 volume_db = -40.0
+bus = &"SFX"
 
 [node name="LootTable" type="Node" parent="." unique_id=317891680 groups=["LootTable"]]
 script = ExtResource("18_oa6sj")
@@ -1287,7 +1287,6 @@ render_mode = 2
 modifier_stack = SubResource("Resource_aqa1v")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
-metadata/_custom_type_script = "uid://bwa528ng6f33g"
 
 [node name="ScatterItem" type="Node3D" parent="Folliage/bush_berry2" unique_id=1392754082]
 script = ExtResource("63_fcv70")
@@ -1302,7 +1301,6 @@ shape = SubResource("Resource_1x1rp")
 script = ExtResource("64_mou0d")
 negative = true
 shape = SubResource("Resource_ylqph")
-metadata/_custom_type_script = "uid://by6ewpeiblvea"
 
 [node name="ferns_budded2" type="Node3D" parent="Folliage" unique_id=1294270641]
 transform = Transform3D(14.29, 0, 0, 0, 14.29, 0, 0, 0, 14.29, 0.85756207, 0, 0)
@@ -1312,7 +1310,6 @@ render_mode = 2
 modifier_stack = SubResource("Resource_qd1pt")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
-metadata/_custom_type_script = "uid://bwa528ng6f33g"
 
 [node name="ScatterItem" type="Node3D" parent="Folliage/ferns_budded2" unique_id=1955987110]
 script = ExtResource("63_fcv70")
@@ -1327,7 +1324,6 @@ shape = SubResource("Resource_rsknx")
 script = ExtResource("64_mou0d")
 negative = true
 shape = SubResource("Resource_gia1l")
-metadata/_custom_type_script = "uid://by6ewpeiblvea"
 
 [node name="flowery_patch2" type="Node3D" parent="Folliage" unique_id=1664728813]
 transform = Transform3D(14.29, 0, 0, 0, 14.29, 0, 0, 0, 14.29, 0.85756207, 0, 0)
@@ -1337,7 +1333,6 @@ render_mode = 2
 modifier_stack = SubResource("Resource_sj5fg")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
-metadata/_custom_type_script = "uid://bwa528ng6f33g"
 
 [node name="ScatterItem" type="Node3D" parent="Folliage/flowery_patch2" unique_id=2078632204]
 script = ExtResource("63_fcv70")
@@ -1352,7 +1347,6 @@ shape = SubResource("Resource_x1gp3")
 script = ExtResource("64_mou0d")
 negative = true
 shape = SubResource("Resource_le2d2")
-metadata/_custom_type_script = "uid://by6ewpeiblvea"
 
 [node name="treetrunk2" type="Node3D" parent="Folliage" unique_id=1505085439]
 transform = Transform3D(14.29, 0, 0, 0, 14.29, 0, 0, 0, 14.29, 0.85756207, 0, 0)
@@ -1362,7 +1356,6 @@ render_mode = 2
 modifier_stack = SubResource("Resource_4pmbt")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
-metadata/_custom_type_script = "uid://bwa528ng6f33g"
 
 [node name="ScatterItem" type="Node3D" parent="Folliage/treetrunk2" unique_id=507399819]
 script = ExtResource("63_fcv70")
@@ -1377,7 +1370,6 @@ shape = SubResource("Resource_iarty")
 script = ExtResource("64_mou0d")
 negative = true
 shape = SubResource("Resource_tcd68")
-metadata/_custom_type_script = "uid://by6ewpeiblvea"
 
 [node name="Camera3D2" type="Camera3D" parent="." unique_id=254897524 node_paths=PackedStringArray("playerSpawner", "cameraAnchor") groups=["Camera"]]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 30, 30)
