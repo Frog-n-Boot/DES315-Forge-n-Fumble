@@ -71,8 +71,6 @@ public partial class CameraController : Camera3D
         else
         {
             List<Vector3> trackPoints = players.Select(p => p.GlobalPosition).ToList();
-            if (cameraAnchor != null)
-                trackPoints.Add(cameraAnchor.GlobalPosition);
 
             float minX = trackPoints.Min(p => p.X);
             float maxX = trackPoints.Max(p => p.X);
@@ -93,22 +91,19 @@ public partial class CameraController : Camera3D
             float boxMaxSizeW = (maxX - minX) * aspect;
             requiredSize = Mathf.Min(requiredSize, Mathf.Min(boxMaxSizeH, boxMaxSizeW));
         }
-
         _targetSize = Mathf.Clamp(requiredSize, minSize, maxSize);
         Size = Mathf.Lerp(Size, _targetSize, zoomSmoothSpeed * (float)delta);
 
         if (followPlayers)
         {
             List<Vector3> followPoints = players.Select(p => p.GlobalPosition).ToList();
-            //if (cameraAnchor != null)
-                //followPoints.Add(cameraAnchor.GlobalPosition);
 
             Vector3 centroid = followPoints
                 .Aggregate(Vector3.Zero, (sum, p) => sum + p)
                 / followPoints.Count;
 
             Vector3 targetPos = new Vector3(centroid.X, GlobalPosition.Y, centroid.Z);
-            targetPos = ClampToBounds(targetPos, Size);
+            targetPos = ClampToBounds(targetPos, _targetSize); // <-- use _targetSize, not Size
             targetPos.Z += cameraZOffset;
             GlobalPosition = GlobalPosition.Lerp(targetPos, followSmoothSpeed * (float)delta);
         }

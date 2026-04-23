@@ -1578,7 +1578,7 @@ minSize = 16.0
 maxSize = 20.0
 zoomSmoothSpeed = 5.0
 zoomPadding = 40.0
-singlePlayerZoomRadius = 20.0
+singlePlayerZoomRadius = 30.0
 cameraAnchor = NodePath("../Camera/CameraAnchor")
 
 [node name="Camera" type="Node" parent="." unique_id=1194639982]
