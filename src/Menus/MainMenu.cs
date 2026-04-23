@@ -14,7 +14,7 @@ public partial class MainMenu : Control
 
 	public override void _Ready()
 	{
-		AudioManager.instance.PlayMusic(menuMusic);
+		//AudioManager.instance.PlayMusic(menuMusic);//
 		startButton.GrabFocus();
 		startButton.Modulate = new Color(0.5f, 0.5f, 0.5f, 1);
 		tutorialButton.Modulate = new Color(0.5f, 0.5f, 0.5f, 1);

@@ -36,7 +36,7 @@ transform = Transform3D(1.6660101, 0, 0, 0, 1.7407122, 0, 0, 0, 1.2056247, 0.006
 shape = SubResource("BoxShape3D_uaukt")
 
 [node name="IngIronLow" type="MeshInstance3D" parent="Area3D" unique_id=926745115]
-transform = Transform3D(1, 0, 0, 0, 5.278786, 0, 0, 0, 1.4028854, 0, 0, 0)
+transform = Transform3D(1.25, 0, 0, 0, 6.599, 0, 0, 0, 1.754, 0, 0, 0)
 material_override = SubResource("ORMMaterial3D_vs45c")
 mesh = ExtResource("4_6ylmd")
 skeleton = NodePath("../..")

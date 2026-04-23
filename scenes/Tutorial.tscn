@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bag1qnax1it55"]
+[gd_scene format=3 uid="uid://djipkildhb8qc"]
 
 [ext_resource type="Script" uid="uid://bk2uam5leqcv8" path="res://src/Player/PlayerSpawner.cs" id="1_ci5ev"]
 [ext_resource type="Texture2D" uid="uid://1o5xtfd8hydv" path="res://assets/textures/tu 4.webp" id="1_q5ijt"]

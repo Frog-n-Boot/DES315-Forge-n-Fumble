@@ -24,8 +24,8 @@ public partial class LoadingMenu : Node2D
 			Godot.Collections.Array progress = new Godot.Collections.Array();
 
 			
-            var status = ResourceLoader.LoadThreadedGetStatus(scenePath, progress);
-       		textureProgressBar.Value = (float)progress[0] * 100;
+			var status = ResourceLoader.LoadThreadedGetStatus(scenePath, progress);
+	   		textureProgressBar.Value = (float)progress[0] * 100;
 
 	 		
 			if(status == ResourceLoader.ThreadLoadStatus.Loaded && !transfitioning)

@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cshd4prtkqa33"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8xstk"]
+
+[node name="Node3D" type="Node3D" unique_id=272387544]
+
+[node name="StaticBody3D11" type="StaticBody3D" parent="." unique_id=2061799218]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D11" unique_id=1158648433]
+shape = SubResource("BoxShape3D_8xstk")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=112847416 groups=["navigation_mesh_source_group"]]
+vertices = PackedVector3Array(-0.7012364, 0, -0.6880049, -0.7232682, 0, 0.6339169, 0.7914341, 0, 0.606377, 0.8134659, 0, -0.7045289)
