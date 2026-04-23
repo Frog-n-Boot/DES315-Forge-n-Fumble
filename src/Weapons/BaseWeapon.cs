@@ -65,13 +65,11 @@ public abstract partial class BaseWeapon : Node3D
 		if(weaponTextureRect != null)
 			weaponTextureRect.Hide();
 
-		if(pickUpArea != null)
-			pickUpArea.Monitoring = false;
-
 	}
 
 	public void ShowWeaponPrompt()
 	{
+		if(isCarried) return;
 		weaponTextureRect.Show();
 		if(pickUpArea != null) pickUpArea.Monitoring = true;
 	}

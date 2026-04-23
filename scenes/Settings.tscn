@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://b8ui8dbraydmr" path="res://assets/textures/UI/texgyrechorus-mediumitalic.otf" id="3_8e7v8"]
 [ext_resource type="AudioStream" uid="uid://dy5lcoryjk0no" path="res://assets/Sounds/SFX/Click.wav" id="3_46duy"]
 [ext_resource type="FontFile" uid="uid://jc0e5wwfs5d7" path="res://assets/textures/UI/Blackney-Light.otf" id="4_j1j16"]
+[ext_resource type="Texture2D" uid="uid://bw4227wj3cjq" path="res://assets/PNG/UI_controller.png" id="5_j1j16"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_slqrs"]
 font = ExtResource("4_j1j16")
@@ -45,6 +46,18 @@ outline_size = 3
 font = ExtResource("4_j1j16")
 font_size = 30
 outline_size = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_nve26"]
+font = ExtResource("4_j1j16")
+font_size = 32
+outline_size = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_fd4am"]
+font = ExtResource("4_j1j16")
+font_size = 30
+outline_size = 3
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j1j16"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_in2eo"]
 load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
@@ -392,6 +405,65 @@ focus_neighbor_left = NodePath("../Display")
 focus_neighbor_bottom = NodePath("../../ApplyButton")
 metadata/_tab_index = 2
 
+[node name="Label" type="Label" parent="CanvasLayer/Panel/TabContainer/Controls" unique_id=199154234]
+layout_mode = 0
+offset_left = 105.54849
+offset_top = 15.615919
+offset_right = 1015.54846
+offset_bottom = 118.928444
+text = "Actions               │   Keyboard    │  Controller
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+label_settings = SubResource("LabelSettings_nve26")
+
+[node name="Label2" type="Label" parent="CanvasLayer/Panel/TabContainer/Controls" unique_id=2117091142]
+layout_mode = 0
+offset_left = 109.119125
+offset_top = 101.670586
+offset_right = 408.16003
+offset_bottom = 370.01547
+text = "Pick-Up/Interact                 
+Attack        
+Drop Left Item         
+Drop Right Item
+Pause
+Minigames"
+label_settings = SubResource("LabelSettings_fd4am")
+
+[node name="Label2" type="Label" parent="CanvasLayer/Panel/TabContainer/Controls/Label2" unique_id=1149380422]
+layout_mode = 0
+offset_left = 299.93356
+offset_top = -3.6233673
+offset_right = 598.9745
+offset_bottom = 264.7215
+text = "E
+Left Click
+Q
+Hold Q
+Escape
+Arrow Keys"
+label_settings = SubResource("LabelSettings_fd4am")
+
+[node name="Label2" type="Label" parent="CanvasLayer/Panel/TabContainer/Controls/Label2/Label2" unique_id=2072559742]
+layout_mode = 0
+offset_left = 244.5887
+offset_top = -3.6233673
+offset_right = 543.6296
+offset_bottom = 264.7215
+text = "X
+Right Trigger
+B
+Hold B
+☰
+D-Pad"
+label_settings = SubResource("LabelSettings_fd4am")
+
+[node name="UiController" type="Sprite2D" parent="CanvasLayer/Panel" unique_id=121511826]
+visible = false
+position = Vector2(284.75836, 161.23927)
+scale = Vector2(0.8926594, 0.9058386)
+texture = ExtResource("5_j1j16")
+centered = false
+
 [node name="BackButton" type="Button" parent="CanvasLayer/Panel" unique_id=1507465222]
 layout_mode = 0
 offset_left = -32.135742
@@ -406,6 +478,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("4_j1j16")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j1j16")
 text = "Back"
 icon = SubResource("AtlasTexture_46duy")
 flat = true
@@ -426,6 +499,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("4_j1j16")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j1j16")
 text = "Apply"
 icon = SubResource("AtlasTexture_46duy")
 flat = true

@@ -45,11 +45,8 @@
 [ext_resource type="PackedScene" uid="uid://cd12og6qvmqm7" path="res://assets/textures/PlayerPortrait.tscn" id="25_siyqs"]
 [ext_resource type="Script" uid="uid://brp6gsap0s2ok" path="res://src/UI/HealthBar.cs" id="26_pb578"]
 [ext_resource type="Script" uid="uid://dnliu2440i283" path="res://src/Menus/PauseMenu.cs" id="27_vshs7"]
-[ext_resource type="Texture2D" uid="uid://dy1wiwwij327x" path="res://assets/materials/Texture_sets/2DTextures/furnaceImage.webp" id="28_2ki8c"]
 [ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="28_oa6sj"]
-[ext_resource type="Texture2D" uid="uid://bvw5yhtbch6ht" path="res://assets/materials/Texture_sets/2DTextures/anvilImage.webp" id="29_0owt5"]
 [ext_resource type="Texture2D" uid="uid://boxmect25s13k" path="res://assets/textures/UI/Button.tres" id="29_gjpm3"]
-[ext_resource type="Texture2D" uid="uid://dwexwmybryvpl" path="res://assets/materials/Texture_sets/2DTextures/grindstoneImage.webp" id="30_o1tg2"]
 [ext_resource type="PackedScene" uid="uid://176tgqxxk3p7" path="res://scenes/DebugMenu.tscn" id="31_hyu0y"]
 [ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Item/Pickable.cs" id="32_cobve"]
 [ext_resource type="Texture2D" uid="uid://b0h4rjwc5lgiv" path="res://assets/PNG/Forge.webp" id="32_knagv"]
@@ -233,6 +230,16 @@ outline_size = 3
 [sub_resource type="LabelSettings" id="LabelSettings_nu61c"]
 font = ExtResource("23_siyqs")
 font_size = 32
+outline_size = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_a3hxr"]
+font = ExtResource("23_siyqs")
+font_size = 32
+outline_size = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_gcaob"]
+font = ExtResource("23_siyqs")
+font_size = 30
 outline_size = 3
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_in2eo"]
@@ -740,7 +747,6 @@ targetPath = NodePath("../../..")
 
 [node name="PauseMenu" type="CanvasLayer" parent="UI" unique_id=385949872 node_paths=PackedStringArray("resumeButton", "settingsButton", "mainMenuButton", "settingsMenu")]
 process_mode = 3
-visible = false
 script = ExtResource("27_vshs7")
 resumeButton = NodePath("ResumeButton")
 settingsButton = NodePath("SettingsButton")
@@ -814,49 +820,6 @@ scale = Vector2(1.112438, 1.108769)
 theme_override_font_sizes/font_size = 60
 text = "Game Paused"
 label_settings = SubResource("LabelSettings_in2eo")
-
-[node name="FurnaceImahe" type="TextureRect" parent="UI/PauseMenu" unique_id=1306127748]
-offset_left = 658.0
-offset_top = 64.0
-offset_right = 1158.0
-offset_bottom = 164.0
-scale = Vector2(0.6840891, 0.76350486)
-texture = ExtResource("28_2ki8c")
-expand_mode = 1
-
-[node name="AnvilImage" type="TextureRect" parent="UI/PauseMenu" unique_id=1655853165]
-offset_left = 658.0
-offset_top = 133.0
-offset_right = 1158.0
-offset_bottom = 233.0
-scale = Vector2(0.6840891, 0.76350486)
-texture = ExtResource("29_0owt5")
-expand_mode = 1
-
-[node name="GrindstoneImage" type="TextureRect" parent="UI/PauseMenu" unique_id=983736741]
-offset_left = 658.0
-offset_top = 201.0
-offset_right = 1158.0
-offset_bottom = 301.0
-scale = Vector2(0.6840891, 0.76350486)
-texture = ExtResource("30_o1tg2")
-expand_mode = 1
-
-[node name="ControlsLabel" type="Label" parent="UI/PauseMenu" unique_id=1322837801]
-offset_left = 592.0
-offset_top = 347.00003
-offset_right = 1254.0
-offset_bottom = 704.0
-scale = Vector2(0.7564578, 0.69364595)
-theme_override_font_sizes/font_size = 30
-text = "Actions                  Keyboard    │  Controller
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Pick-Up               │  Right Click │  Left Trigger
-Attack/Interact │  Left Click   │  Right Trigger
-Drop-Left-Item  │  Q                 │  Left Shoulder
-Drop-Right-Item│  E                 │  Right Shoulder
-Pause                  │  ESC             │  ☰
-Sequence           │  ←↑→↓          │  < > v ^"
 
 [node name="TextureRect" type="TextureRect" parent="UI/PauseMenu" unique_id=261957256]
 z_index = -1
@@ -984,7 +947,6 @@ visible = false
 
 [node name="SettingsMenu" type="CanvasLayer" parent="UI" unique_id=1417241995 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton", "audio", "pauseMenu")]
 process_mode = 3
-visible = false
 script = ExtResource("13_vua0o")
 masterSlider = NodePath("Panel/TabContainer/Sound/MasterVolumeLabel/MasterVolumeSlider")
 musicSlider = NodePath("Panel/TabContainer/Sound/MusicVolumeLabel/MusicVolumeSlider")
@@ -1312,11 +1274,62 @@ text = "
 metadata/_edit_use_anchors_ = true
 
 [node name="Controls" type="Control" parent="UI/SettingsMenu/Panel/TabContainer" unique_id=1088571596]
-visible = false
 layout_mode = 2
 focus_neighbor_left = NodePath("../Display")
 focus_neighbor_bottom = NodePath("../../ApplyButton")
 metadata/_tab_index = 2
+
+[node name="Label" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Controls" unique_id=475495174]
+layout_mode = 0
+offset_left = 100.192535
+offset_top = 26.485983
+offset_right = 1010.1925
+offset_bottom = 129.79851
+text = "Actions               │   Keyboard    │  Controller
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+label_settings = SubResource("LabelSettings_a3hxr")
+
+[node name="Label2" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Controls" unique_id=1541259978]
+layout_mode = 0
+offset_left = 104.65583
+offset_top = 107.10562
+offset_right = 499.65582
+offset_bottom = 375.4505
+text = "Pick-Up/Interact                 
+Attack        
+Drop Left Item         
+Drop Right Item
+Pause
+Minigames"
+label_settings = SubResource("LabelSettings_gcaob")
+
+[node name="Label2" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Controls/Label2" unique_id=1020925003]
+layout_mode = 0
+offset_left = 282.97302
+offset_top = 8.1525345
+offset_right = 582.0139
+offset_bottom = 276.49738
+text = "E
+Left Click
+Q
+Hold Q
+Escape
+Arrow Keys"
+label_settings = SubResource("LabelSettings_gcaob")
+
+[node name="Label2" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Controls/Label2/Label2" unique_id=497819167]
+layout_mode = 0
+offset_left = 244.5887
+offset_top = -3.6233673
+offset_right = 543.6296
+offset_bottom = 264.7215
+text = "X
+Right Trigger
+B
+Hold B
+☰
+D-Pad"
+label_settings = SubResource("LabelSettings_gcaob")
 
 [node name="BackButton" type="Button" parent="UI/SettingsMenu/Panel" unique_id=1894926270]
 layout_mode = 0

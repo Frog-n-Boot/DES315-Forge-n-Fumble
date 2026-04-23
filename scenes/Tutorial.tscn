@@ -279,6 +279,7 @@ offset_bottom = -3.0
 text = "Skip? ESC/ ⧉/≡"
 
 [node name="Text" type="Node3D" parent="UI" unique_id=551861238]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7764058, 1.9883995)
 
 [node name="Label3D" type="Label3D" parent="UI/Text" unique_id=1005533518]
 transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -49.388096, 1.5332108, -2.2250128)
@@ -310,7 +311,14 @@ weapons to defend off enemies"
 transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -62.425232, 1.5332108, -4.3555565)
 text = "The Forge has a 
 limited amount of HP, 
-if it is destoryed you die"
+if it is destoryed you lose"
+font_size = 23
+
+[node name="Label3D18" type="Label3D" parent="UI/Text" unique_id=1834344684]
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -62.425232, 1.5332108, -26.406786)
+text = "The Forge has a 
+limited amount of HP, 
+if it is destoryed you lose"
 font_size = 23
 
 [node name="Label3D5" type="Label3D" parent="UI/Text" unique_id=385033897]
@@ -907,9 +915,6 @@ mesh = NodePath("Armature/Skeleton3D/MeshInstance3D")
 collisionArea = NodePath("Area3D")
 navigationAgent = NodePath("NavigationAgent3D")
 isStationary = true
-audioStream = NodePath("EnemyDeathSounds")
-animPlayer = NodePath("AnimationPlayer")
-audioPlayer = NodePath("EnemyDeathSounds")
 
 [node name="Armature" type="Node3D" parent="Objects/Enemies/Enemy" unique_id=543957702]
 
@@ -1060,9 +1065,6 @@ mesh = NodePath("Armature/Skeleton3D/MeshInstance3D")
 collisionArea = NodePath("Area3D")
 navigationAgent = NodePath("NavigationAgent3D")
 isStationary = true
-audioStream = NodePath("EnemyDeathSounds")
-animPlayer = NodePath("AnimationPlayer")
-audioPlayer = NodePath("EnemyDeathSounds")
 
 [node name="Armature" type="Node3D" parent="Objects/Enemies/Enemy2" unique_id=71627255]
 
