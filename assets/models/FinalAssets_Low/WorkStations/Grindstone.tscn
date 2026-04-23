@@ -131,7 +131,7 @@ mesh = ExtResource("5_fgmgg")
 skeleton = NodePath("../..")
 
 [node name="InputPort" parent="." unique_id=750325492 instance=ExtResource("3_fgmgg")]
-transform = Transform3D(9.291697, 0, 0, 0, 1.837871, 0, 0, 0, 6.8115783, 0.00969851, 0.88491654, -0.01149559)
+transform = Transform3D(2.3, 0, 0, 0, 1.838, 0, 0, 0, 2.3, 0.00969851, 0.88491654, -0.01149559)
 
 [node name="OutputPort" parent="." unique_id=1109718632 instance=ExtResource("3_fgmgg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0206666, 0.3782071, 0.9554943)

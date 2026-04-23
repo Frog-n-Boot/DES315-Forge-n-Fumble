@@ -88,7 +88,7 @@ mesh = ExtResource("4_1latb")
 skeleton = NodePath("../..")
 
 [node name="InputPort" parent="." unique_id=750325492 instance=ExtResource("3_yb3nn")]
-transform = Transform3D(12.001051, 0, 0, 0, 1.3650613, 0, 0, 0, 6.8070707, -0.02589643, 0.5367638, 0.06567299)
+transform = Transform3D(2.5, 0, 0, 0, 1.365, 0, 0, 0, 2.5, -0.02589643, 0.5367638, 0.06567299)
 
 [node name="OutputPort" parent="." unique_id=1109718632 instance=ExtResource("3_yb3nn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07868272, 0.33549273, -1.1562169)
@@ -130,7 +130,7 @@ offset_bottom = 40.0
 texture_progress = SubResource("AtlasTexture_0gpkw")
 
 [node name="Sprite3D2" type="Sprite3D" parent="." unique_id=1337985502]
-transform = Transform3D(-6.2186e-08, -1, -1.7320508, -4.371139e-08, 1.7320508, -1, 2, 6.762175e-09, -7.5710346e-08, 1.4791862, 0.36335433, 0.029955745)
+transform = Transform3D(0.08246125, 1.5296421, -1.2858444, 0.06266968, -1.2882856, -1.5285267, -1.9973167, 0.022730302, -0.101048045, 1.4791862, 0.36335433, 0.029955745)
 texture = SubResource("ViewportTexture_0gpkw")
 
 [node name="SubViewport" type="SubViewport" parent="Sprite3D2" unique_id=1508301261]

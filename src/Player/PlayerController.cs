@@ -708,7 +708,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			StaticBody3D areaParent = area.GetParent() as StaticBody3D;
 
 			var weapon = areaParent?.GetParent() as BaseWeapon;
-			if (nearbyWeapon != null && nearbyWeapon.Add(weapon))
+			if (nearbyWeapon != null && !weapon.isCarried && nearbyWeapon.Add(weapon))
 			{
 				try { weapon.SetWeaponPromptTexture(IsUsingController()); }
 				catch (Exception e) { GD.PrintErr($"[PlayerController] SetWeaponPromptTexture failed: {e.Message}"); }
@@ -1046,9 +1046,18 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			
 			GetTree().CreateTimer(0.1f).Timeout += () =>
 			{
-				areaPickup.SetDeferred("monitoring", true);
+				
+				if(!IsInstanceValid(weapon)) return;
+				weapon.GlobalPosition = dropPosition;
+				weapon.SetWeaponPromptTexture(IsUsingController());
 
-				if (IsInstanceValid(weapon)) weapon.ShowWeaponPrompt();
+				GetTree().CreateTimer(0.3f).Timeout += () =>
+				{
+					if(!IsInstanceValid(weapon)) return;
+					if(weapon.pickUpArea != null)
+						weapon.pickUpArea.Monitoring = true;
+					areaPickup.SetDeferred("monitoring", true);
+				};
 			};
 
 			return;
@@ -1062,7 +1071,12 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			{
 				if (IsInstanceValid(pickable))
 					pickable.GlobalPosition = dropPosition;
-				areaPickup.SetDeferred("monitoring", true);
+				
+				GetTree().CreateTimer(0.3f).Timeout += () =>
+				{
+					areaPickup.SetDeferred("monitoring", true);
+				};
+				
 			};
 			pickable.SetDeferred("rotation", Vector3.Zero);
 			pickable.isCarried = false;

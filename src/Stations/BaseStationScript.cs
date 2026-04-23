@@ -190,6 +190,7 @@ public abstract partial class BaseStationScript : Node3D
 		if(GetRequiredItems(out var itemsToConsume, out var recipes))
 		{	
 			timeProgressBar.Visible = true; 
+			buttonTexture.Visible = false;
 			pendingRecipe = recipes;
 			pendingConsume = itemsToConsume;
 			ConsumeItems();
@@ -235,6 +236,8 @@ public abstract partial class BaseStationScript : Node3D
 		{
 			timeProgressBar.Visible = false; 
 			ProduceOutput();
+
+			buttonTexture.Visible = playersInZone.Count > 0;
 		}
 	}
 
@@ -266,6 +269,7 @@ public abstract partial class BaseStationScript : Node3D
 			var p = body as PlayerController;
 			playersInZone.Remove(p);
 			p?.SetCurrentStation(null);
+			
 
 			if(player == p)
 			{
