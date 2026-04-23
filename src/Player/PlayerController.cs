@@ -532,6 +532,22 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			Rotation = new Vector3(Rotation.X, targetAngle, Rotation.Z);
 		}
 
+		if (!spinAttack.IsDazed())
+		{
+			float rotationSpeed = Mathf.Abs(Rotation.Y - lastRotation) / (float)delta;
+			lastRotation = Rotation.Y;
+
+			if (rotationSpeed > spinStartThreshold && !spinAttack.IsCharging())
+			{
+				spinAttack.StartCharging();
+			}
+
+			if (rotationSpeed < spinStopThreshold && spinAttack.IsCharging())
+			{
+				spinAttack.StopCharging();
+			}
+		}
+		
 		tick += 1;
 		if (tick % 10 == 0)
 		{
