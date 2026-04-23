@@ -12,7 +12,7 @@ public partial class Ballista : Node3D
 	[Export] public float range = 20.0f;
 	[Export] public float coneAngle = 360.0f;
 	[Export] protected Node3D inputNode;
-	[Export] int arrowCount= 10;
+	[Export] public int arrowCount= 10;
 
 	[Export] protected Label3D label;
 
@@ -75,6 +75,8 @@ public partial class Ballista : Node3D
 			ballistaHead.LookAt(targetPos, Vector3.Up);
 
 		}
+		if( isDetached == false && interactingPlayer != null && Input.IsActionPressed("interact"))
+			CheckItem();
 
 	}
 
@@ -169,7 +171,7 @@ public partial class Ballista : Node3D
 			interactingPlayer = p;
 			playersInZone.Add(p);
 			p.SetNearbyBallista(this);
-			CheckItem();
+			
 		}
 	}
 
@@ -189,14 +191,12 @@ public partial class Ballista : Node3D
 			GD.Print($"Checking item: {item.name}");
 			if(item.name == "Iron_Ingot")
 			{
-				if (Input.IsActionPressed("interact"))
-				{
-					GD.Print("Ingot was added");
-					arrowCount += 10;
-					label.Text = $"{arrowCount}";
-					shootTimer.Start();
-					itemCarrier.RemoveItem(item);
-				}	
+				GD.Print("Ingot was added");
+				arrowCount += 10;
+				label.Text = $"{arrowCount}";
+				shootTimer.Start();
+				itemCarrier.RemoveItem(item);
+				return;
 			}
 		}
 	}

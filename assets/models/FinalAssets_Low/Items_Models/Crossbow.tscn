@@ -48,6 +48,7 @@ collision_mask = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1819511398 groups=["Weapon"]]
 transform = Transform3D(0.13, 0, 0, 0, 1, 0, 0, 0, 0.12, -0.0397363, 1.1227821, -0.02485475)
 shape = SubResource("BoxShape3D_vvdjd")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="Area3D" type="Area3D" parent="StaticBody3D" unique_id=389783254 groups=["Weapon"]]
 collision_layer = 24
@@ -56,6 +57,7 @@ collision_mask = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/Area3D" unique_id=945717470]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.044433594, 1.0837269, -0.02279663)
 shape = SubResource("BoxShape3D_c8bbo")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="BallistaTopElementLow" type="MeshInstance3D" parent="." unique_id=1812349953]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.034608364, 0, 0)

@@ -19,6 +19,7 @@ surface_material_override/0 = ExtResource("2_3djbd")
 transform = Transform3D(0.72, 0, 0, 0, 0.72, 0, 0, 0, 0.72, -0.010810547, 1.0078638, 0.01725953)
 visible = false
 shape = SubResource("BoxShape3D_3djbd")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=232944753]
 visible = false

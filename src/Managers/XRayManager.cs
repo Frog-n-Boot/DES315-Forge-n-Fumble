@@ -39,6 +39,7 @@ public partial class XRayManager : Node
 
 	private void OnTreeChange()
 	{
+        if(walls == null) return;
 		int currentWallCount = GetTree().GetNodesInGroup("xray").Count;
     
         // Only re-collect if wall count has changed

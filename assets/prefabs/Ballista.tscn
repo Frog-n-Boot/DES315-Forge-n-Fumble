@@ -83,9 +83,10 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BallistaTopElementLow/StaticBody3D" unique_id=1945830702]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9050009, 0)
 shape = SubResource("CapsuleShape3D_e7812")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="StationPort" parent="BallistaTopElementLow/StaticBody3D" unique_id=750325492 instance=ExtResource("3_n82r5")]
-transform = Transform3D(1.9209249, 0, 0, 0, 1, 0, 0, 0, 3.0908144, -0.7449594, 0.5, 0)
+transform = Transform3D(0.49451265, 0, 0, 0, 0.9419282, 0, 0, 0, 0.6492386, -0.018610239, 0.5, 0.60249853)
 
 [node name="BallistaBarrel" type="Node3D" parent="BallistaTopElementLow" unique_id=309150814]
 transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0, 0)

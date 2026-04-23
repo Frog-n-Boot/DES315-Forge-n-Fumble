@@ -37,6 +37,11 @@ public partial class DebugMenu : CanvasLayer
 	[ExportGroup("Weapon Attributes")]
 	[Export] private SpinBox weaponDurability;
 	[Export] private SpinBox weaponDamage;
+	[Export] private SpinBox arrowDamage;
+	[Export] private SpinBox arrowSpeed;
+	[Export] private SpinBox arrowCount;
+	[Export] private SpinBox ballistaRange;
+	[Export] private SpinBox ballistaCone;
 
 	[ExportGroup("Station Attributes")]
 	[Export] private SpinBox forgeHealth;
@@ -108,6 +113,7 @@ public partial class DebugMenu : CanvasLayer
 		SetupValueRange();
 		SetCameraSettings();
 		SetupWeaponSettings();
+		SetupBallistaSettings();
 		SetupStationsSettings();
 		PopulatePanel(normalEnemy, normalContainer);
 		PopulatePanel(fastEnemy, fastContainer);
@@ -146,7 +152,15 @@ public partial class DebugMenu : CanvasLayer
 		arrow = GetTree().GetFirstNodeInGroup("Arrow") as Arrow;
 		
 		if(playerSpawner != null)
-			playerSpawner.PlayerSpawned += OnPlayerSpawned;			
+			playerSpawner.PlayerSpawned += OnPlayerSpawned;		
+
+		var existingPlayer = GetTree().GetFirstNodeInGroup("Player") as PlayerController;
+		if(existingPlayer != null && !playerSettingsInitialized)
+		{
+			playerController = existingPlayer;
+			SetupPlayerSettings();
+			playerSettingsInitialized = true;
+		}	
     }
 	#endregion
 	
@@ -233,11 +247,6 @@ public partial class DebugMenu : CanvasLayer
 		oreDropChance.Value = lootTable.copperDropChance;
 		healthPackDropChance.Value = lootTable.healthPackDropChance;
 
-		if(ballista != null)
-		{
-			//ballistaRange.Value = ballista.range;
-			//ballistaConeAngle.Value = ballista.coneAngle;
-		}	
 	}
 	#endregion
 
@@ -291,88 +300,102 @@ public partial class DebugMenu : CanvasLayer
 	#region "Player Settings"
 	private void SetupPlayerSettings()
 	{
+		if(playerController == null) return;
+
 		playerMaxHealth.Value = playerController.maxHealth;
-		playerMaxHealth.ValueChanged += v =>
-		{
-			GD.Print("Player spawned in SetupPlayerSettings");
-			foreach(Node p in GetTree().GetNodesInGroup("Player"))
-			{
-				GD.Print("Players Found");
-				var player = p as PlayerController;
-				if(player != null)
-				{
-					GD.Print("Players are not null");
-					player.maxHealth = (int)v;
-					player.health = player.maxHealth;
-				}
-			}
-		};
-
 		playerSpeed.Value = playerController.speed;
-		playerSpeed.ValueChanged += v =>
-		{
-			foreach(Node p in GetTree().GetNodesInGroup("Player"))
-			{
-				var player = p as PlayerController;
-				if(player != null) player.speed = (float)v;
-			}
-
-		};
-
 		playerSpawnTimer.Value = playerController.playerSpawnTimer;
-		playerSpawnTimer.ValueChanged +=v =>
-		{
-			foreach(Node p in GetTree().GetNodesInGroup("Player"))
-			{
-				var player = p as PlayerController;
-				if(player != null) player.playerSpawnTimer = (int)v;
-			}
-		};
 
+		playerMaxHealth.ValueChanged -= OnPlayerMaxHealthChanged;
+		playerSpeed.ValueChanged -= OnPlayerSpeedChanged;
+		playerSpawnTimer.ValueChanged -= OnPlayerSpawnTimerChanged;
+
+		playerMaxHealth.ValueChanged += OnPlayerMaxHealthChanged;
+		playerSpeed.ValueChanged += OnPlayerSpeedChanged;
+		playerSpawnTimer.ValueChanged += OnPlayerSpawnTimerChanged;
+
+	}
+
+	private IEnumerable<PlayerController> AllPlayers()
+	{
+		foreach(Node p in GetTree().GetNodesInGroup("Player"))
+			if(p is PlayerController player) yield return player;
+	}
+
+	private void OnPlayerMaxHealthChanged(double v)
+	{
+		foreach(var player in AllPlayers())
+		{
+			player.maxHealth = (int)v;
+			player.health = player.maxHealth;
+			player.EmitSignal(PlayerController.SignalName.PlayerHealthChanged, player.health, player.maxHealth);
+		}
+	}
+	private void OnPlayerSpeedChanged(double v)
+	{
+		foreach(var player in AllPlayers())
+			player.speed = (float)v;
+	}
+	private void OnPlayerSpawnTimerChanged(double v)
+	{
+		foreach(var player in AllPlayers())
+			player.playerSpawnTimer = (int)v;
 	}
 	#endregion
 
 	#region "Weapon Settings"
 	private void SetupWeaponSettings()
 	{
+		var firstWeapon = GetTree().GetFirstNodeInGroup("Weapon") as BaseWeapon;
+		if(firstWeapon != null)
+		{
+			weaponDamage.Value = firstWeapon.damage;
+			weaponDurability.Value = firstWeapon.durability;
+		}
+
 		weaponDamage.ValueChanged += v =>
 		{
 			foreach(Node s in GetTree().GetNodesInGroup("Weapon"))
-			{
-				var sword = s as Sword;
-				if(sword != null) sword.damage = (int)v;
-			}
+				if(s is BaseWeapon w) w.damage = (int)v;
 		};
 
 		weaponDurability.ValueChanged += v =>
 		{
 			foreach(Node s in GetTree().GetNodesInGroup("Weapon"))
-			{
-				var sword = s as Sword;
-				if(sword != null) sword.durability = (int)v;
-			}
+				if(s is BaseWeapon w) w.durability = (int)v;
 		};
 
-		// ballistaRange.ValueChanged += v =>
-		// {
-		// 	foreach(Node t in GetTree().GetNodesInGroup("Ballista"))
-		// 	{
-		// 		var ballista = t as Ballista;
-		// 		if(ballista != null) ballista.range = (int)v;
-		// 	}
-		// };
-
-		// ballistaConeAngle.ValueChanged += v =>
-		// {
-		// 	foreach(Node t in GetTree().GetNodesInGroup("Ballista"))
-		// 	{
-		// 		var ballista = t as Ballista;
-		// 		if(ballista != null) ballista.coneAngle = (int)v;
-		// 	}
-		// };
-		//arrowDamage.ValueChanged += v =>Arrow.defaultDamage = (int)v;
-		//arrowSpeed.ValueChanged += v =>Arrow.defaultSpeed = (float)v;
+		arrowDamage.ValueChanged += v =>Arrow.defaultDamage = (int)v;
+		arrowSpeed.ValueChanged += v =>Arrow.defaultSpeed = (float)v;
 		
+	}
+
+	private void SetupBallistaSettings()
+	{
+		if(ballista == null) return;
+
+		ballistaRange.Value = ballista.range;
+		ballistaCone.Value = ballista.coneAngle;
+		arrowCount.Value = ballista.arrowCount;
+
+		ballistaRange.ValueChanged += v =>
+		{
+			foreach(Node t in GetTree().GetNodesInGroup("Ballista"))
+				if(t is Ballista b) b.range = (float)v;
+		};
+
+		ballistaCone.ValueChanged += v =>
+		{
+			foreach(Node t in GetTree().GetNodesInGroup("Ballista"))
+				if(t is Ballista b) b.coneAngle = (float)v;
+		};
+		arrowCount.ValueChanged += v =>
+		{
+			foreach(Node t in GetTree().GetNodesInGroup("Ballista"))
+				if(t is Ballista b) b.arrowCount = (int)v;
+		};
+		
+
 	}
 	#endregion
 

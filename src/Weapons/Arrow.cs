@@ -10,7 +10,7 @@ public partial class Arrow : Node3D
 
 	public static int defaultDamage = 10;
 	public static float defaultSpeed = 20f;
-	private Vector3 velocity;
+	private Vector3 _velocity;
 	private bool hasHit = false;
 	
 	
@@ -21,11 +21,14 @@ public partial class Arrow : Node3D
 
 	public void Initialize(Vector3 direction, float power)
 	{
+		damage = defaultDamage;
+		speed = defaultSpeed;
+
 		GD.Print("Arrow initialized");
 		float finalSpeed = speed * power;
-		velocity = direction.Normalized() * finalSpeed;
+		_velocity = direction.Normalized() * finalSpeed;
 
-		GD.Print($"Arrow initialized with velocity: {velocity}, power: {power}, direction: {direction}");
+		GD.Print($"Arrow initialized with velocity: {_velocity}, power: {power}, direction: {direction}");
 		if(direction.Normalized() != Vector3.Up && direction.Normalized() != Vector3.Down)
 			LookAt(GlobalPosition + direction, Vector3.Up);
 	}
@@ -35,13 +38,13 @@ public partial class Arrow : Node3D
 	{
 		if(hasHit) return;
 
-		GlobalPosition += velocity * (float)delta;
+		_velocity.Y -= gravityStrength * (float)delta;
 
-		if(velocity.LengthSquared() > 0.01f)
-		{
-			LookAt(GlobalPosition + velocity.Normalized(), Vector3.Up);
-		}
-		GetTree().CreateTimer(3.0f).Timeout += () => velocity.Y -= gravityStrength * (float)delta;
+		GlobalPosition += _velocity * (float)delta;
+
+		if(_velocity.LengthSquared() > 0.01f)
+			LookAt(GlobalPosition + _velocity.Normalized(), Vector3.Up);
+		
 	}
 	public void OnCollisionDetected(Node3D body)
 	{

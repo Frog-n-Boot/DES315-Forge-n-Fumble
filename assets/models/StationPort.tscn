@@ -4,7 +4,6 @@
 albedo_color = Color(0, 0, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vl1yp"]
-size = Vector3(0.6976929, 1, 0.6383629)
 
 [node name="StationPort" type="Node3D" unique_id=750325492]
 
@@ -16,10 +15,8 @@ transparency = 1.0
 skeleton = NodePath("")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1490204633]
-transform = Transform3D(1.8234533, 0, 0, 0, 1, 0, 0, 0, 1.9250902, 0, 0, 0)
 collision_layer = 32
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=280831638]
-transform = Transform3D(0.17999986, 0, 0, 0, 0.9999873, 0, 0, 0, 0.18999994, 0.0013348593, 0, -0.006333612)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=339638044]
 shape = SubResource("BoxShape3D_vl1yp")
