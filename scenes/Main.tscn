@@ -136,25 +136,27 @@ load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00
 atlas = SubResource("CompressedTexture2D_nu61c")
 region = Rect2(21, 519, 261, 39)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_knagv"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gia1l"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gia1l"]
 load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dyyw8"]
-atlas = SubResource("CompressedTexture2D_knagv")
+atlas = SubResource("CompressedTexture2D_gia1l")
 region = Rect2(581, 500, 285, 91)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pb578"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_aw8hi"]
 load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gjpm3"]
-atlas = SubResource("CompressedTexture2D_pb578")
+atlas = SubResource("CompressedTexture2D_aw8hi")
 region = Rect2(581, 500, 285, 91)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vshs7"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cm7k6"]
 load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_siyqs"]
-atlas = SubResource("CompressedTexture2D_vshs7")
+atlas = SubResource("CompressedTexture2D_cm7k6")
 region = Rect2(581, 500, 285, 91)
 
 [sub_resource type="LabelSettings" id="LabelSettings_in2eo"]
@@ -226,25 +228,25 @@ font = ExtResource("23_siyqs")
 font_size = 30
 outline_size = 3
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_j1j16"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_csfbn"]
 load_path = "res://.godot/imported/tuto_arrows.webp-1842c10df86330904d0ef39130643f7b.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gia1l"]
-atlas = SubResource("CompressedTexture2D_j1j16")
+atlas = SubResource("CompressedTexture2D_csfbn")
 region = Rect2(135, 26, 75, 133)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_slqrs"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sj5fg"]
 load_path = "res://.godot/imported/tuto_arrows.webp-1842c10df86330904d0ef39130643f7b.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aw8hi"]
-atlas = SubResource("CompressedTexture2D_slqrs")
+atlas = SubResource("CompressedTexture2D_sj5fg")
 region = Rect2(24, 18, 67, 136)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_in2eo"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1xgkc"]
 load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vshs7"]
-atlas = SubResource("CompressedTexture2D_in2eo")
+atlas = SubResource("CompressedTexture2D_1xgkc")
 region = Rect2(581, 500, 285, 91)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0f1tp"]
@@ -771,6 +773,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("23_siyqs")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gia1l")
 text = "Resume"
 icon = SubResource("AtlasTexture_dyyw8")
 flat = true
@@ -791,6 +794,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("23_siyqs")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gia1l")
 text = "Settings"
 icon = SubResource("AtlasTexture_gjpm3")
 flat = true
@@ -809,6 +813,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("23_siyqs")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gia1l")
 text = "Main Menu"
 icon = SubResource("AtlasTexture_siyqs")
 flat = true
@@ -845,7 +850,6 @@ visible = false
 
 [node name="ResultsMenu" type="CanvasLayer" parent="UI" unique_id=470572280 node_paths=PackedStringArray("titleLabel", "retryButton", "mainMenuButton")]
 process_mode = 3
-visible = false
 script = ExtResource("32_lfilp")
 titleLabel = NodePath("Label")
 retryButton = NodePath("RetryButton")
@@ -863,6 +867,7 @@ theme_override_colors/font_outline_color = Color(18.892157, 18.892157, 18.892157
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("23_siyqs")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gia1l")
 text = "Retry"
 icon = SubResource("AtlasTexture_pb578")
 flat = true
@@ -880,6 +885,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("23_siyqs")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gia1l")
 text = "Main Menu"
 icon = ExtResource("29_gjpm3")
 flat = true
@@ -908,8 +914,9 @@ scale = Vector2(31.915564, 17.955517)
 mouse_filter = 2
 color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
 
-[node name="SettingsMenu" type="CanvasLayer" parent="UI" unique_id=1417241995 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton", "audio", "pauseMenu")]
+[node name="SettingsMenu" type="CanvasLayer" parent="UI" unique_id=1417241995 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton", "backButton", "audio", "pauseMenu")]
 process_mode = 3
+visible = false
 script = ExtResource("13_vua0o")
 masterSlider = NodePath("Panel/TabContainer/Sound/MasterVolumeLabel/MasterVolumeSlider")
 musicSlider = NodePath("Panel/TabContainer/Sound/MusicVolumeLabel/MusicVolumeSlider")
@@ -920,6 +927,7 @@ showFPSCheckBox = NodePath("Panel/TabContainer/Display/ShowFPSLabel/ShowFPSCheck
 resolutionDropdown = NodePath("Panel/TabContainer/Display/ResolutionLabel/ResolutionOptionButton")
 maxFPSDropdown = NodePath("Panel/TabContainer/Display/FPSLabel/FPSOptionButton")
 applyButton = NodePath("Panel/ApplyButton")
+backButton = NodePath("Panel/BackButton")
 audio = NodePath("AudioStreamPlayer2D")
 pauseMenu = NodePath("../PauseMenu")
 metadata/_edit_use_anchors_ = true
@@ -973,10 +981,9 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("23_siyqs")
 theme_override_font_sizes/font_size = 40
-current_tab = 2
+current_tab = 0
 
 [node name="Sound" type="Control" parent="UI/SettingsMenu/Panel/TabContainer" unique_id=1989203924]
-visible = false
 layout_mode = 2
 focus_neighbor_right = NodePath("../Display")
 metadata/_tab_index = 0
@@ -1244,6 +1251,7 @@ text = "
 metadata/_edit_use_anchors_ = true
 
 [node name="Controls" type="Control" parent="UI/SettingsMenu/Panel/TabContainer" unique_id=1088571596]
+visible = false
 layout_mode = 2
 focus_neighbor_left = NodePath("../Display")
 focus_neighbor_bottom = NodePath("../../ApplyButton")
@@ -1384,6 +1392,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("23_siyqs")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gia1l")
 text = "Back"
 icon = SubResource("AtlasTexture_vshs7")
 flat = true
@@ -1404,6 +1413,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("23_siyqs")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gia1l")
 text = "Apply"
 icon = SubResource("AtlasTexture_vshs7")
 flat = true
@@ -1658,8 +1668,36 @@ cameraAnchor = NodePath("../Camera/CameraAnchor")
 [node name="CameraAnchor" type="Marker3D" parent="Camera" unique_id=1264387962]
 script = ExtResource("56_siyqs")
 
+[connection signal="focus_entered" from="UI/PauseMenu/ResumeButton" to="UI/PauseMenu" method="OnResumeButtonMouseEntered"]
+[connection signal="focus_exited" from="UI/PauseMenu/ResumeButton" to="UI/PauseMenu" method="OnResumeButtonMouseExited"]
+[connection signal="mouse_entered" from="UI/PauseMenu/ResumeButton" to="UI/PauseMenu" method="OnResumeButtonMouseEntered"]
+[connection signal="mouse_exited" from="UI/PauseMenu/ResumeButton" to="UI/PauseMenu" method="OnResumeButtonMouseExited"]
 [connection signal="pressed" from="UI/PauseMenu/ResumeButton" to="UI/PauseMenu" method="OnResumePressed"]
+[connection signal="focus_entered" from="UI/PauseMenu/SettingsButton" to="UI/PauseMenu" method="OnSettingsButtonMouseEntered"]
+[connection signal="focus_exited" from="UI/PauseMenu/SettingsButton" to="UI/PauseMenu" method="OnSettingsButtonMouseExited"]
+[connection signal="mouse_entered" from="UI/PauseMenu/SettingsButton" to="UI/PauseMenu" method="OnSettingsButtonMouseEntered"]
+[connection signal="mouse_exited" from="UI/PauseMenu/SettingsButton" to="UI/PauseMenu" method="OnSettingsButtonMouseExited"]
 [connection signal="pressed" from="UI/PauseMenu/SettingsButton" to="UI/PauseMenu" method="OnSettingsPressed"]
+[connection signal="focus_entered" from="UI/PauseMenu/QuitButton" to="UI/PauseMenu" method="OnMainMenuButtonMouseEntered"]
+[connection signal="focus_exited" from="UI/PauseMenu/QuitButton" to="UI/PauseMenu" method="OnMainMenuButtonMouseExited"]
+[connection signal="mouse_entered" from="UI/PauseMenu/QuitButton" to="UI/PauseMenu" method="OnMainMenuButtonMouseEntered"]
+[connection signal="mouse_exited" from="UI/PauseMenu/QuitButton" to="UI/PauseMenu" method="OnMainMenuButtonMouseExited"]
 [connection signal="pressed" from="UI/PauseMenu/QuitButton" to="UI/PauseMenu" method="OnMainMenuPressed"]
+[connection signal="focus_entered" from="UI/ResultsMenu/RetryButton" to="UI/ResultsMenu" method="OnRetryButtonMouseEntered"]
+[connection signal="focus_exited" from="UI/ResultsMenu/RetryButton" to="UI/ResultsMenu" method="OnRetryButtonMouseExited"]
+[connection signal="mouse_entered" from="UI/ResultsMenu/RetryButton" to="UI/ResultsMenu" method="OnRetryButtonMouseEntered"]
+[connection signal="mouse_exited" from="UI/ResultsMenu/RetryButton" to="UI/ResultsMenu" method="OnRetryButtonMouseExited"]
+[connection signal="focus_entered" from="UI/ResultsMenu/QuitButton" to="UI/ResultsMenu" method="OnMainMenuButtonMouseEntered"]
+[connection signal="focus_exited" from="UI/ResultsMenu/QuitButton" to="UI/ResultsMenu" method="OnMainMenuButtononMouseExited"]
+[connection signal="mouse_entered" from="UI/ResultsMenu/QuitButton" to="UI/ResultsMenu" method="OnMainMenuButtonMouseEntered"]
+[connection signal="mouse_exited" from="UI/ResultsMenu/QuitButton" to="UI/ResultsMenu" method="OnMainMenuButtononMouseExited"]
+[connection signal="focus_entered" from="UI/SettingsMenu/Panel/BackButton" to="UI/SettingsMenu" method="OnBackMouseEntered"]
+[connection signal="focus_exited" from="UI/SettingsMenu/Panel/BackButton" to="UI/SettingsMenu" method="OnBackMouseExited"]
+[connection signal="mouse_entered" from="UI/SettingsMenu/Panel/BackButton" to="UI/SettingsMenu" method="OnBackMouseEntered"]
+[connection signal="mouse_exited" from="UI/SettingsMenu/Panel/BackButton" to="UI/SettingsMenu" method="OnBackMouseExited"]
 [connection signal="pressed" from="UI/SettingsMenu/Panel/BackButton" to="UI/SettingsMenu" method="OnBackPressed"]
+[connection signal="focus_entered" from="UI/SettingsMenu/Panel/ApplyButton" to="UI/SettingsMenu" method="OnApplyMouseEntered"]
+[connection signal="focus_exited" from="UI/SettingsMenu/Panel/ApplyButton" to="UI/SettingsMenu" method="OnApplyMouseExited"]
+[connection signal="mouse_entered" from="UI/SettingsMenu/Panel/ApplyButton" to="UI/SettingsMenu" method="OnApplyMouseEntered"]
+[connection signal="mouse_exited" from="UI/SettingsMenu/Panel/ApplyButton" to="UI/SettingsMenu" method="OnApplyMouseExited"]
 [connection signal="pressed" from="UI/SettingsMenu/Panel/ApplyButton" to="UI/SettingsMenu" method="OnApplyPressed"]

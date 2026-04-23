@@ -26,6 +26,9 @@ public partial class ResultMenu : CanvasLayer
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		retryButton.Modulate = new Color(0.8f, 0.8f, 0.8f, 1);
+		mainMenuButton.Modulate = new Color(0.8f, 0.8f, 0.8f, 1);
+		
 		Hide();
 		retryButton.Pressed += () =>{
 			GetTree().Paused = false;
@@ -56,4 +59,23 @@ public partial class ResultMenu : CanvasLayer
 		};
 
 	}
+	
+	public void OnRetryButtonMouseEntered()
+	{
+		retryButton.Modulate = new Color(1.25f, 1.25f, 1.25f, 1);
+	}
+	public void OnRetryButtonMouseExited()
+	{
+		retryButton.Modulate = new Color(0.8f, 0.8f, 0.8f, 1);
+	}
+	
+	public void OnMainMenuButtonMouseEntered()
+	{
+		mainMenuButton.Modulate = new Color(1.25f, 1.25f, 1.25f, 1);
+	}
+	public void OnMainMenuButtononMouseExited()
+	{
+		mainMenuButton.Modulate = new Color(0.8f, 0.8f, 0.8f, 1);
+	}
+	
 }

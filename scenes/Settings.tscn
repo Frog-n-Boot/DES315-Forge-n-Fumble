@@ -83,7 +83,7 @@ region = Rect2(581, 500, 285, 91)
 [node name="Settings" type="Node2D" unique_id=2013459249]
 metadata/_edit_horizontal_guides_ = [242.0]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1917096709 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton", "audio")]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1917096709 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton", "backButton", "audio")]
 process_mode = 3
 script = ExtResource("1_rbmmp")
 masterSlider = NodePath("Panel/TabContainer/Sound/MasterVolumeLabel/MasterVolumeSlider")
@@ -95,6 +95,7 @@ showFPSCheckBox = NodePath("Panel/TabContainer/Display/ShowFPSLabel/ShowFPSCheck
 resolutionDropdown = NodePath("Panel/TabContainer/Display/ResolutionLabel/ResolutionOptionButton")
 maxFPSDropdown = NodePath("Panel/TabContainer/Display/FPSLabel/FPSOptionButton")
 applyButton = NodePath("Panel/ApplyButton")
+backButton = NodePath("Panel/BackButton")
 audio = NodePath("AudioStreamPlayer2D")
 metadata/_edit_use_anchors_ = true
 
@@ -489,6 +490,7 @@ theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("4_j1j16")
 theme_override_font_sizes/font_size = 22
 text = "Right Trigger:  Attack"
+metadata/_edit_use_anchors_ = true
 
 [node name="B" type="Sprite2D" parent="CanvasLayer/Panel/TabContainer/Controls/UiController" unique_id=247535341]
 position = Vector2(563.7904, 117.013016)
@@ -508,6 +510,7 @@ theme_override_fonts/font = ExtResource("4_j1j16")
 theme_override_font_sizes/font_size = 22
 text = "Press B:  Drop Item
 Hold B:  Drop Weapon"
+metadata/_edit_use_anchors_ = true
 
 [node name="X" type="Sprite2D" parent="CanvasLayer/Panel/TabContainer/Controls/UiController" unique_id=344438137]
 position = Vector2(358.131, 21.275051)
@@ -526,6 +529,7 @@ theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("4_j1j16")
 theme_override_font_sizes/font_size = 22
 text = "Press X:  Pick up / Interact"
+metadata/_edit_use_anchors_ = true
 
 [node name="DPad" type="Sprite2D" parent="CanvasLayer/Panel/TabContainer/Controls/UiController" unique_id=128667535]
 position = Vector2(269.4847, 333.3099)
@@ -544,6 +548,7 @@ theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("4_j1j16")
 theme_override_font_sizes/font_size = 22
 text = "D-Pad:  Minigames"
+metadata/_edit_use_anchors_ = true
 
 [node name="BackButton" type="Button" parent="CanvasLayer/Panel" unique_id=1507465222]
 layout_mode = 0
@@ -591,5 +596,13 @@ expand_icon = true
 stream = ExtResource("3_46duy")
 volume_db = -40.0
 
+[connection signal="focus_entered" from="CanvasLayer/Panel/BackButton" to="CanvasLayer" method="OnBackMouseEntered"]
+[connection signal="focus_exited" from="CanvasLayer/Panel/BackButton" to="CanvasLayer" method="OnBackMouseExited"]
+[connection signal="mouse_entered" from="CanvasLayer/Panel/BackButton" to="CanvasLayer" method="OnBackMouseEntered"]
+[connection signal="mouse_exited" from="CanvasLayer/Panel/BackButton" to="CanvasLayer" method="OnBackMouseExited"]
 [connection signal="pressed" from="CanvasLayer/Panel/BackButton" to="CanvasLayer" method="OnBackPressed"]
+[connection signal="focus_entered" from="CanvasLayer/Panel/ApplyButton" to="CanvasLayer" method="OnApplyMouseEntered"]
+[connection signal="focus_exited" from="CanvasLayer/Panel/ApplyButton" to="CanvasLayer" method="OnApplyMouseExited"]
+[connection signal="mouse_entered" from="CanvasLayer/Panel/ApplyButton" to="CanvasLayer" method="OnApplyMouseEntered"]
+[connection signal="mouse_exited" from="CanvasLayer/Panel/ApplyButton" to="CanvasLayer" method="OnApplyMouseExited"]
 [connection signal="pressed" from="CanvasLayer/Panel/ApplyButton" to="CanvasLayer" method="OnApplyPressed"]

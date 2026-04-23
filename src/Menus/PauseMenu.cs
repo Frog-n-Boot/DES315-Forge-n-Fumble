@@ -13,6 +13,10 @@ public partial class PauseMenu : CanvasLayer
 	private Forge forge;
 	public override void _Ready()
 	{
+		resumeButton.Modulate = new Color(0.8f, 0.8f, 0.8f, 1);
+		settingsButton.Modulate = new Color(0.8f, 0.8f, 0.8f, 1);
+		mainMenuButton.Modulate = new Color(0.8f, 0.8f, 0.8f, 1);
+		
 		Hide();
 		settingsMenu.Hide();
 		GetTree().Paused = false;
@@ -64,6 +68,32 @@ public partial class PauseMenu : CanvasLayer
 	{
 		//GetTree().Paused = false;
 		SceneManager.instance.LoadMainMenu();
+	}
+
+
+	public void OnResumeButtonMouseEntered()
+	{
+		resumeButton.Modulate = new Color(1.25f, 1.25f, 1.25f, 1);
+	}
+	public void OnResumeButtonMouseExited()
+	{
+		resumeButton.Modulate = new Color(0.8f, 0.8f, 0.8f, 1);
+	}
+	public void OnSettingsButtonMouseEntered()
+	{
+		settingsButton.Modulate = new Color(1.25f, 1.25f, 1.25f, 1);
+	}
+	public void OnSettingsButtonMouseExited()
+	{
+		settingsButton.Modulate = new Color(0.8f, 0.8f, 0.8f, 1);
+	}
+	public void OnMainMenuButtonMouseEntered()
+	{
+		mainMenuButton.Modulate = new Color(1.25f, 1.25f, 1.25f, 1);
+	}
+	public void OnMainMenuButtonMouseExited()
+	{
+		mainMenuButton.Modulate = new Color(0.8f, 0.8f, 0.8f, 1);
 	}
 
 }
