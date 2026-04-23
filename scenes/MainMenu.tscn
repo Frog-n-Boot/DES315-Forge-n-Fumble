@@ -4,13 +4,28 @@
 [ext_resource type="AudioStream" uid="uid://brbu62attbvtp" path="res://assets/Sounds/SFX/Anvil1.wav" id="2_2wh52"]
 [ext_resource type="FontFile" uid="uid://jc0e5wwfs5d7" path="res://assets/textures/UI/Blackney-Light.otf" id="2_826wr"]
 [ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="2_l72w3"]
-[ext_resource type="AudioStream" uid="uid://i4t1sy6mjdaa" path="res://assets/Sounds/Music/Townsfolk LOOP.wav" id="3_ow34m"]
-[ext_resource type="AudioStream" uid="uid://dw6sr2a1g6wm3" path="res://assets/Sounds/Music/Pillage LOOP.wav" id="3_ucygd"]
 [ext_resource type="Texture2D" uid="uid://b32ma1du5ci52" path="res://assets/PNG/Title_screen_redone.webp" id="5_l72w3"]
+[ext_resource type="Texture2D" uid="uid://daxc30i1t26tu" path="res://assets/PNG/FORGENFUMBLESIGN.webp" id="6_826wr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_826wr"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.15050223, 0.15050223, 0.15050223, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_826wr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_826wr"]
 atlas = ExtResource("2_l72w3")
 region = Rect2(581, 500, 285, 91)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ucygd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l72w3"]
 atlas = ExtResource("2_l72w3")
@@ -39,8 +54,6 @@ tutorialButton = NodePath("TutorialButton")
 settingsButton = NodePath("SettingsButton")
 quitMenu = NodePath("QuitButton")
 audio = NodePath("AudioStreamPlayer2D")
-menuMusic = ExtResource("3_ow34m")
-levelMusic = ExtResource("3_ucygd")
 
 [node name="StartButton" type="Button" parent="Control" unique_id=1277000304]
 z_index = 1
@@ -59,6 +72,8 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("2_826wr")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_826wr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_826wr")
 text = "Start Game"
 icon = SubResource("AtlasTexture_826wr")
 flat = true
@@ -81,6 +96,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("2_826wr")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ucygd")
 text = "Tutorial"
 icon = SubResource("AtlasTexture_l72w3")
 flat = true
@@ -103,6 +119,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("2_826wr")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ucygd")
 text = "Settings"
 icon = SubResource("AtlasTexture_ucygd")
 flat = true
@@ -125,21 +142,11 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("2_826wr")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ucygd")
 text = "Quit"
 icon = SubResource("AtlasTexture_8a8k8")
 flat = true
 icon_alignment = 1
-
-[node name="Label" type="Label" parent="Control" unique_id=1589327339]
-z_index = 1
-layout_mode = 0
-offset_left = 33.117004
-offset_top = 29.81184
-offset_right = 497.117
-offset_bottom = 112.811844
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 60
-text = "Forge-N-Fumble"
 
 [node name="ColorRect" type="ColorRect" parent="Control" unique_id=322622548]
 z_index = -1
@@ -173,7 +180,30 @@ texture = ExtResource("5_l72w3")
 expand_mode = 1
 stretch_mode = 6
 
+[node name="Forgenfumblesign" type="Sprite2D" parent="." unique_id=627642813]
+position = Vector2(213.84125, 119.247345)
+scale = Vector2(0.43540746, 0.43540746)
+texture = ExtResource("6_826wr")
+
+[connection signal="focus_entered" from="Control/StartButton" to="Control" method="OnStartButtonMouseEntered"]
+[connection signal="focus_exited" from="Control/StartButton" to="Control" method="OnStartButtonMouseExited"]
+[connection signal="mouse_entered" from="Control/StartButton" to="Control" method="OnStartButtonMouseEntered"]
+[connection signal="mouse_exited" from="Control/StartButton" to="Control" method="OnStartButtonMouseExited"]
 [connection signal="pressed" from="Control/StartButton" to="Control" method="OnStartButtonPressed"]
+[connection signal="focus_entered" from="Control/TutorialButton" to="Control" method="OnTutorialButtonMouseEntered"]
+[connection signal="focus_exited" from="Control/TutorialButton" to="Control" method="OnTutorialButtonMouseExited"]
+[connection signal="mouse_entered" from="Control/TutorialButton" to="Control" method="OnTutorialButtonMouseEntered"]
+[connection signal="mouse_entered" from="Control/TutorialButton" to="Control" method="OnTutorialMouseButtonEntered"]
+[connection signal="mouse_exited" from="Control/TutorialButton" to="Control" method="OnTutorialMouseButtonExited"]
+[connection signal="mouse_exited" from="Control/TutorialButton" to="Control" method="OnTutorialButtonMouseExited"]
 [connection signal="pressed" from="Control/TutorialButton" to="Control" method="OnTutorialButtonPressed"]
+[connection signal="focus_entered" from="Control/SettingsButton" to="Control" method="OnSettingsButtonMouseEntered"]
+[connection signal="focus_exited" from="Control/SettingsButton" to="Control" method="OnSettingsButtonMouseExited"]
+[connection signal="mouse_entered" from="Control/SettingsButton" to="Control" method="OnSettingsButtonMouseEntered"]
+[connection signal="mouse_exited" from="Control/SettingsButton" to="Control" method="OnSettingsButtonMouseExited"]
 [connection signal="pressed" from="Control/SettingsButton" to="Control" method="OnSettingsButtonPressed"]
+[connection signal="focus_entered" from="Control/QuitButton" to="Control" method="OnQuitButtonMouseEntered"]
+[connection signal="focus_exited" from="Control/QuitButton" to="Control" method="OnQuitButtonMouseExited"]
+[connection signal="mouse_entered" from="Control/QuitButton" to="Control" method="OnQuitButtonMouseEntered"]
+[connection signal="mouse_exited" from="Control/QuitButton" to="Control" method="OnQuitButtonMouseExited"]
 [connection signal="pressed" from="Control/QuitButton" to="Control" method="OnQuitButtonPressed"]
