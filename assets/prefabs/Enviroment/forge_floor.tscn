@@ -165,10 +165,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -9, 0, -2)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -8, 0, -3)
 
 [node name="Node3D59" parent="." unique_id=865272953 instance=ExtResource("1_hvmtv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -8.993336, 4.7683716e-07, 2.000012)
-
-[node name="Node3D60" parent="." unique_id=2030633446 instance=ExtResource("1_hvmtv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -10, -0.009464264, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -9, 0, 2)
 
 [node name="Node3D61" parent="." unique_id=1329671292 instance=ExtResource("1_hvmtv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -10, 0, 1)
@@ -176,14 +173,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -10, 0, 1)
 [node name="Node3D62" parent="." unique_id=1994087801 instance=ExtResource("1_hvmtv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -10, 0, -1)
 
-[node name="Node3D63" parent="." unique_id=2074940531 instance=ExtResource("1_hvmtv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -10, -0.009464264, -2)
-
 [node name="Node3D64" parent="." unique_id=1035573289 instance=ExtResource("1_hvmtv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -10, 0, -3)
-
-[node name="Node3D65" parent="." unique_id=435060289 instance=ExtResource("1_hvmtv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -9.990043, 0.010851145, 2)
 
 [node name="Node3D36" parent="." unique_id=1089380807 instance=ExtResource("1_hvmtv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -7, 0, 0)
@@ -228,7 +219,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 8, 0, 3)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 9, -0.00022268295, 3)
 
 [node name="Node3D74" parent="." unique_id=98333278 instance=ExtResource("1_hvmtv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -7.9933357, 4.7683716e-07, 3.000012)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -8, 0, 3)
 
 [node name="Node3D75" parent="." unique_id=657368667 instance=ExtResource("1_hvmtv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -10.000069, 0.010851145, 3)
@@ -261,10 +252,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 7, 0, 4)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 9, 0, 4)
 
 [node name="Node3D85" parent="." unique_id=1893779156 instance=ExtResource("1_hvmtv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -8.993336, 4.7683716e-07, 4.000012)
-
-[node name="Node3D86" parent="." unique_id=2005479409 instance=ExtResource("1_hvmtv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -9.997195, 0.010851145, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -9, 0, 4)
 
 [node name="Node3D87" parent="." unique_id=9505556 instance=ExtResource("1_hvmtv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -7, 0, 4)
@@ -296,9 +284,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 9, 0, -4)
 [node name="Node3D96" parent="." unique_id=2129897271 instance=ExtResource("1_hvmtv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -8.993336, 4.7683716e-07, -3.999988)
 
-[node name="Node3D97" parent="." unique_id=884162724 instance=ExtResource("1_hvmtv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -10.000069, 0.0013868809, -4)
-
 [node name="Node3D98" parent="." unique_id=664259566 instance=ExtResource("1_hvmtv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -7, 0, -4)
 
@@ -327,7 +312,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 8, 0, -5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 9, -0.00022268295, -5)
 
 [node name="Node3D107" parent="." unique_id=1687681409 instance=ExtResource("1_hvmtv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -7.9933357, 4.7683716e-07, -4.999988)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -8, 0, -5)
 
 [node name="Node3D108" parent="." unique_id=1839962160 instance=ExtResource("1_hvmtv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -10.000069, 0.010851145, -5)
@@ -360,7 +345,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 8, 0, 5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 9, -0.00022268295, 5)
 
 [node name="Node3D118" parent="." unique_id=782008413 instance=ExtResource("1_hvmtv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -7.9933357, 4.7683716e-07, 5.000012)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -8, 0, 5)
 
 [node name="Node3D119" parent="." unique_id=2099329873 instance=ExtResource("1_hvmtv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -10.000069, 0.010851145, 5)
@@ -393,10 +378,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 7, 0, 6)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 9, 0, 6)
 
 [node name="Node3D140" parent="." unique_id=1934892113 instance=ExtResource("1_hvmtv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -8.993336, 4.7683716e-07, 6.000012)
-
-[node name="Node3D141" parent="." unique_id=2094945257 instance=ExtResource("1_hvmtv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -9.988824, 0.010851145, 6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -9, 0, 6)
 
 [node name="Node3D142" parent="." unique_id=862755964 instance=ExtResource("1_hvmtv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -7, 0, 6)
@@ -426,7 +408,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 8, 0, -7)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 9, -0.00022268295, -7)
 
 [node name="Node3D151" parent="." unique_id=281346741 instance=ExtResource("1_hvmtv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -7.9933357, 4.7683716e-07, -6.999988)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -8, 0, -7)
 
 [node name="Node3D152" parent="." unique_id=529284773 instance=ExtResource("1_hvmtv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -10.000069, 0.010851145, -7)
@@ -459,10 +441,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 7, 0, -6)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 9, 0, -6)
 
 [node name="Node3D129" parent="." unique_id=162033386 instance=ExtResource("1_hvmtv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -8.993336, 4.7683716e-07, -5.999988)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -9, 0, -6)
 
-[node name="Node3D130" parent="." unique_id=1525967988 instance=ExtResource("1_hvmtv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -10.000069, 0.0013868809, -6)
+[node name="Node3D60" parent="." unique_id=251866193 instance=ExtResource("1_hvmtv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -10, -0.001, 0)
+
+[node name="Node3D63" parent="." unique_id=1682916487 instance=ExtResource("1_hvmtv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -10, -0.001, -2)
+
+[node name="Node3D65" parent="." unique_id=1924560 instance=ExtResource("1_hvmtv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -10, -0.001, 2)
+
+[node name="Node3D86" parent="." unique_id=1054648943 instance=ExtResource("1_hvmtv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -10, -0.001, 4)
+
+[node name="Node3D97" parent="." unique_id=295812231 instance=ExtResource("1_hvmtv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -10, -0.001, -3.9999883)
+
+[node name="Node3D141" parent="." unique_id=1775976780 instance=ExtResource("1_hvmtv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -10, -0.001, 6)
+
+[node name="Node3D130" parent="." unique_id=336008913 instance=ExtResource("1_hvmtv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -10, -0.001, -6)
 
 [node name="Node3D131" parent="." unique_id=1464842103 instance=ExtResource("1_hvmtv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -7, 0, -6)

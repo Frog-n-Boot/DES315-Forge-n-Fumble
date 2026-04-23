@@ -9,7 +9,7 @@ public partial class Pickable : Node3D
 
 	#region Variables
 	[Export(PropertyHint.File, "*.tres")] public string itemDataPath = "";
-	
+
 	[Export] public bool shouldDespawn = false;
 	[Export] public float despawnTime = 30f;
 	[Export] public Texture2D[] itemPromptTexture;
@@ -29,11 +29,11 @@ public partial class Pickable : Node3D
 	public void Initialize(ItemData itemdata)
 	{
 		itemData = itemdata;
-		
+
 	}
 	public override void _Ready()
 	{
-		
+
 		if (!string.IsNullOrEmpty(itemDataPath))
 		{
 			itemData = GD.Load<ItemData>(itemDataPath);
@@ -50,10 +50,10 @@ public partial class Pickable : Node3D
 		}
 		if(shouldDespawn)
 			GetTree().CreateTimer(despawnTime).Timeout += QueueFree;
-		
-		
+
+
 	}
-	
+
 	#endregion
 
 	#region GetItemData
@@ -76,7 +76,7 @@ public partial class Pickable : Node3D
 	public void SetItemPromptTexture(bool isController)
 	{
 		if(isCarried) return;
-		
+
 		itemTextureRect.Texture = isController? itemPromptTexture[0] : itemPromptTexture[1];
 		itemTextureRect.Show();
 	}
@@ -84,11 +84,11 @@ public partial class Pickable : Node3D
 	{
 		//if(itemTextureRect != null)
 		itemTextureRect.Hide();
-		
+
 	}
 	public void Highlight(bool enabled)
 	{
-		
+
 	}
 
 	public bool IsCarried() => isCarried;

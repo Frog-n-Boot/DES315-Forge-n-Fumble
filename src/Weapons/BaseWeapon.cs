@@ -11,14 +11,14 @@ public abstract partial class BaseWeapon : Node3D
 	[Export] public TextureRect weaponTextureRect;
 	[Export] public Area3D pickUpArea;
 	[Export] private StaticBody3D weaponBody;
-	
+
 	public int durability;
 	public bool isBeingPickedUp = false;
 	private int lastHitDamage;
 	public bool isCarried = false;
 	public bool IsCarried() => isCarried;
 
-	
+
 
 	[Signal] public delegate void BrokeEventHandler();
 
@@ -28,7 +28,7 @@ public abstract partial class BaseWeapon : Node3D
 		durability = maxDurability;
 		lastHitDamage = damage;
 
-		SetEnemyCollisionEnabled(false);	
+		SetEnemyCollisionEnabled(false);
 		OnReady();
 	}
 
@@ -38,7 +38,7 @@ public abstract partial class BaseWeapon : Node3D
 	{
 		durability -= amount;
 		//EmitSignal(SignalName.DurabilityChanged, durability, maxDurability);
-		
+
 		if(durability <= 0)
 		{
 			durability = 0;
@@ -47,7 +47,7 @@ public abstract partial class BaseWeapon : Node3D
 		}
 	}
 
-	
+
 	protected virtual void OnBroke()
 	{
 		EmitSignal(SignalName.Broke);
@@ -76,7 +76,7 @@ public abstract partial class BaseWeapon : Node3D
 	public void SetEnemyCollisionEnabled(bool enabled)
 	{
 		if(weaponBody == null) return;
-		
+
 		if(enabled) {
 			weaponBody.AddToGroup("Weapon");
 		}
@@ -84,7 +84,7 @@ public abstract partial class BaseWeapon : Node3D
 		{
 			weaponBody.RemoveFromGroup("Weapon");
 		}
-		
+
 
 		//weaponBody.SetCollisionLayerValue(4, enabled);
 		GD.Print($"{Name} enemy collision: {enabled}, In Weapon group: {IsInGroup("Weapon")}");

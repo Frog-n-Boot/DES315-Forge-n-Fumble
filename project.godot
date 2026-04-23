@@ -48,6 +48,7 @@ shapes/collision/shape_color=Color(0.90588236, 0.5254902, 0.14509805, 1)
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/size/mode=3
+window/size/borderless=true
 window/stretch/mode="canvas_items"
 
 [dotnet]
