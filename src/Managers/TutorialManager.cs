@@ -55,8 +55,8 @@ public partial class TutorialManager : Node
 		//enemy.Died += OnTutorialEnemyDied;
 	}
 
-    public override void _Process(double delta)
-    {
+	public override void _Process(double delta)
+	{
 		if (Input.IsActionPressed("skip_tutorial"))
 		{
 			skipTutorialProgressBar.Visible = true;
@@ -77,7 +77,7 @@ public partial class TutorialManager : Node
 		{
 			pauseMenu.TogglePause();
 		}
-    }
+	}
 
 	private void OnDropOffAreaEntered(Area3D area)
 	{
@@ -205,20 +205,20 @@ public partial class TutorialManager : Node
 	}
 
 	public void OnRoom3EnemyKilled(EnemyController enemy, Vector3 pos)
-    {
-        if(currentRoom != 2) return;
+	{
+		if(currentRoom != 2) return;
 		CompleteRoom();
-    }
+	}
 
 	public void OnRoom4EnemyKilled(EnemyController enemy, Vector3 pos)
-    {
+	{
 		if(currentRoom != 3) return;
 		CompleteTutorial();  
-    }
-    
+	}
+	
 	
 	private void CompleteRoom()
-    {
+	{
 		if(isCompletingRoom) return;
 		isCompletingRoom = true;
 		
@@ -238,7 +238,7 @@ public partial class TutorialManager : Node
 		
 		
 		
-    }	
+	}	
 
 	private void TeleportPlayers()
 	{

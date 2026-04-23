@@ -62,9 +62,9 @@ tutorialMusic = ExtResource("3_8a8k8")
 [node name="StartButton" type="Button" parent="Control" unique_id=1277000304]
 z_index = 1
 layout_mode = 0
-offset_left = 83.266
+offset_left = 79.48119
 offset_top = 286.00726
-offset_right = 403.5465
+offset_right = 399.76172
 offset_bottom = 385.00732
 scale = Vector2(0.8646251, 0.7558707)
 focus_neighbor_top = NodePath(".")
@@ -86,10 +86,10 @@ icon_alignment = 1
 [node name="TutorialButton" type="Button" parent="Control" unique_id=1244603073]
 z_index = 1
 layout_mode = 0
-offset_left = 83.266
-offset_top = 368.92178
-offset_right = 403.5465
-offset_bottom = 467.9218
+offset_left = 79.48119
+offset_top = 368.92175
+offset_right = 399.76172
+offset_bottom = 467.92178
 scale = Vector2(0.8646251, 0.7558707)
 focus_neighbor_top = NodePath("../StartButton")
 focus_neighbor_bottom = NodePath("../SettingsButton")
@@ -109,9 +109,9 @@ icon_alignment = 1
 [node name="SettingsButton" type="Button" parent="Control" unique_id=1975986720]
 z_index = 1
 layout_mode = 0
-offset_left = 83.2656
-offset_top = 451.83566
-offset_right = 403.5461
+offset_left = 79.4808
+offset_top = 451.83563
+offset_right = 399.76132
 offset_bottom = 550.8357
 scale = Vector2(0.8646251, 0.7558707)
 focus_neighbor_top = NodePath("../TutorialButton")
@@ -132,9 +132,9 @@ icon_alignment = 1
 [node name="QuitButton" type="Button" parent="Control" unique_id=1290285225]
 z_index = 1
 layout_mode = 0
-offset_left = 83.26561
+offset_left = 79.48079
 offset_top = 532.88666
-offset_right = 403.54614
+offset_right = 399.7613
 offset_bottom = 631.88666
 scale = Vector2(0.8646251, 0.7558707)
 focus_neighbor_top = NodePath("../SettingsButton")
@@ -175,7 +175,7 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 30.160002
 anchor_bottom = 16.769001
-offset_left = -2.0
+offset_left = -2.0000005
 offset_top = -8.0
 offset_right = 0.0052490234
 offset_bottom = 0.0064086914
@@ -185,7 +185,7 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="Forgenfumblesign" type="Sprite2D" parent="." unique_id=627642813]
-position = Vector2(213.84125, 119.247345)
+position = Vector2(217.62604, 119.247345)
 scale = Vector2(0.43540746, 0.43540746)
 texture = ExtResource("6_826wr")
 
@@ -196,8 +196,8 @@ texture = ExtResource("6_826wr")
 [connection signal="pressed" from="Control/StartButton" to="Control" method="OnStartButtonPressed"]
 [connection signal="focus_entered" from="Control/TutorialButton" to="Control" method="OnTutorialButtonMouseEntered"]
 [connection signal="focus_exited" from="Control/TutorialButton" to="Control" method="OnTutorialButtonMouseExited"]
-[connection signal="mouse_entered" from="Control/TutorialButton" to="Control" method="OnTutorialMouseButtonEntered"]
 [connection signal="mouse_entered" from="Control/TutorialButton" to="Control" method="OnTutorialButtonMouseEntered"]
+[connection signal="mouse_entered" from="Control/TutorialButton" to="Control" method="OnTutorialMouseButtonEntered"]
 [connection signal="mouse_exited" from="Control/TutorialButton" to="Control" method="OnTutorialMouseButtonExited"]
 [connection signal="mouse_exited" from="Control/TutorialButton" to="Control" method="OnTutorialButtonMouseExited"]
 [connection signal="pressed" from="Control/TutorialButton" to="Control" method="OnTutorialButtonPressed"]
