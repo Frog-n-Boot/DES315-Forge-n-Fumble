@@ -19,6 +19,7 @@
 [ext_resource type="Animation" uid="uid://c6e3ur5qlirsf" path="res://assets/animations/player/PlayerWalk.anim" id="15_papv8"]
 [ext_resource type="Script" uid="uid://ddw54ydvlwsxr" path="res://src/Weapons/SpinAttack.cs" id="15_sq3q5"]
 [ext_resource type="AudioStream" uid="uid://detofwirhtkah" path="res://assets/Sounds/SFX/PlayerDeath.wav" id="16_yv8gf"]
+[ext_resource type="AudioStream" uid="uid://br6ut1wl6mmys" path="res://src/SpinAttack.wav" id="17_s7w3r"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rgphp"]
 resource_name = "lambert2SG"
@@ -100,7 +101,6 @@ radius = 2.648853
 size = Vector3(1.5324149, 2.3322906, 1.533226)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jnlb4"]
-random_pitch = 1.7817973
 streams_count = 1
 stream_0/stream = ExtResource("8_jnlb4")
 
@@ -226,13 +226,14 @@ visible = false
 shape = SubResource("BoxShape3D_t0fpx")
 debug_color = Color(0, 0.6, 0.7, 0.42)
 
-[node name="SpinAttack" type="Node3D" parent="." unique_id=589698554 node_paths=PackedStringArray("collisionShape", "animPlayer", "spinArea") groups=["SpinAttack"]]
+[node name="SpinAttack" type="Node3D" parent="." unique_id=589698554 node_paths=PackedStringArray("collisionShape", "animPlayer", "spinArea", "spinAttackSound") groups=["SpinAttack"]]
 visible = false
 script = ExtResource("15_sq3q5")
-spinDuration = 5.0
+spinDuration = 2.5
 collisionShape = NodePath("../Area3D/CollisionShape3D")
 animPlayer = NodePath("../AnimationPlayer")
 spinArea = NodePath("Area3D")
+spinAttackSound = NodePath("../SpinAttackSound")
 
 [node name="Area3D" type="Area3D" parent="SpinAttack" unique_id=767540904 groups=["SpinAttack"]]
 collision_layer = 8
@@ -264,10 +265,16 @@ transform = Transform3D(1.6779308, 0, 0, 0, 1.8431246, 0, 0, 0, 1, 0, 2.7833214,
 [node name="AudioListener3D" type="AudioListener3D" parent="." unique_id=814154132]
 visible = false
 
-[node name="SwordSwipes" type="AudioStreamPlayer3D" parent="." unique_id=1910028207]
+[node name="SpinAttackSound" type="AudioStreamPlayer3D" parent="." unique_id=1910028207]
+visible = false
+stream = ExtResource("17_s7w3r")
+max_db = -24.0
+max_polyphony = 10
+bus = &"SFX"
+
+[node name="SwordSwipes" type="AudioStreamPlayer3D" parent="." unique_id=1322005572]
 visible = false
 stream = SubResource("AudioStreamRandomizer_jnlb4")
-volume_db = -60.0
 max_db = -24.0
 max_polyphony = 10
 bus = &"SFX"
@@ -275,7 +282,6 @@ bus = &"SFX"
 [node name="Damaged" type="AudioStreamPlayer3D" parent="." unique_id=1776841700]
 visible = false
 stream = SubResource("AudioStreamRandomizer_ob8sk")
-volume_db = -80.0
 max_db = -24.0
 max_polyphony = 10
 bus = &"SFX"

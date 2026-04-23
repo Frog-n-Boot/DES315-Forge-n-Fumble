@@ -542,8 +542,8 @@ environment = SubResource("Environment_81oh0")
 
 [node name="Enviroment" type="Node" parent="." unique_id=1495741313]
 
-[node name="Ballista" type="Node3D" parent="Enviroment" unique_id=353788340 node_paths=PackedStringArray("arrowSpawnPosition", "ballistaHead", "ballistaBarrel", "inputNode", "label", "audio") groups=["Ballista"]]
-transform = Transform3D(-0.7398895, 0, -0.67272854, 0, 1, 0, 0.67272854, 0, -0.7398895, 7.500963, 2.9593534, 8.999366)
+[node name="Ballista" type="Node3D" parent="Enviroment" unique_id=353788340 node_paths=PackedStringArray("arrowSpawnPosition", "ballistaHead", "ballistaBarrel", "inputNode", "ammoCounter", "label", "audio") groups=["Ballista"]]
+transform = Transform3D(-0.7398895, 0, -0.67272854, 0, 1, 0, 0.67272854, 0, -0.7398895, 9.313421, 3.3650918, 10.865126)
 script = ExtResource("7_csfbn")
 arrowSpawnPosition = NodePath("BallistaTopElementLow/BallistaBarrel/ArrowSpawnLocation")
 ballistaHead = NodePath("BallistaTopElementLow")
@@ -552,7 +552,8 @@ ballistaBarrel = NodePath("BallistaTopElementLow/BallistaBarrel")
 arrowScene = ExtResource("9_1xgkc")
 inputNode = NodePath("../../UI/StationPort3")
 arrowCount = 0
-label = NodePath("CanvasLayer/Node3D/Label3D")
+ammoCounter = NodePath("AmmoCount")
+label = NodePath("AmmoCount")
 audio = NodePath("AudioStreamPlayer3D")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Enviroment/Ballista" unique_id=2121636395]
@@ -560,10 +561,6 @@ audio = NodePath("AudioStreamPlayer3D")
 [node name="Node3D" type="Node3D" parent="Enviroment/Ballista/CanvasLayer" unique_id=1037465994]
 transform = Transform3D(-0.10386822, 0, 0.49802622, 0, 3.4232113, 0, -4.7299213, 0, -0.010936562, 0, 3.545107, 0)
 visible = false
-
-[node name="Label3D" type="Label3D" parent="Enviroment/Ballista/CanvasLayer/Node3D" unique_id=1012313719]
-visible = false
-text = "There"
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Enviroment/Ballista" unique_id=134283511]
 stream = SubResource("AudioStreamRandomizer_sl1qq")
@@ -593,7 +590,7 @@ shape = SubResource("CapsuleShape3D_e7812")
 debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="StationPort" parent="Enviroment/Ballista/BallistaTopElementLow/StaticBody3D" unique_id=750325492 instance=ExtResource("3_2c4at")]
-transform = Transform3D(1.428017, 0, -1.4002742, 0, 2, 0, 1.4002742, 0, 1.428017, -1.2824669, -1.9654452, 0.6190853)
+transform = Transform3D(1.4280176, 0, -1.4002748, 0, 2, 0, 1.4002748, 0, 1.4280176, -1.2543998, -1.9654452, 1.1937361)
 
 [node name="BallistaBarrel" type="Node3D" parent="Enviroment/Ballista/BallistaTopElementLow" unique_id=309150814]
 transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0, 0)
@@ -607,8 +604,12 @@ transform = Transform3D(1, 0, 0, 0, 0.33043814, 0, 0, 0, 0.2738446, -0.18170571,
 mesh = SubResource("BoxMesh_m1e06")
 skeleton = NodePath("../../../StaticBody3D")
 
-[node name="Ballista2" type="Node3D" parent="Enviroment" unique_id=1789132715 node_paths=PackedStringArray("arrowSpawnPosition", "ballistaHead", "ballistaBarrel", "inputNode", "label", "audio") groups=["Ballista"]]
-transform = Transform3D(0.9383665, 0, 0.34564215, 0, 1, 0, -0.34564215, 0, 0.9383665, -7.927705, 2.9262388, -7.460148)
+[node name="AmmoCount" type="Label3D" parent="Enviroment/Ballista" unique_id=990364260]
+transform = Transform3D(-3.599076, -2.124413, 1.8162144, -0.16636993, 1.8669524, 4.3849525, -3.5092506, 2.0902815, -2.0705898, 0, 2.034326, 0)
+text = "Hello"
+
+[node name="Ballista2" type="Node3D" parent="Enviroment" unique_id=1789132715 node_paths=PackedStringArray("arrowSpawnPosition", "ballistaHead", "ballistaBarrel", "inputNode", "ammoCounter", "label", "audio") groups=["Ballista"]]
+transform = Transform3D(0.9383665, 0, 0.34564215, 0, 1, 0, -0.34564215, 0, 0.9383665, -7.927705, 3.4046319, -9.257391)
 script = ExtResource("7_csfbn")
 arrowSpawnPosition = NodePath("BallistaTopElementLow/BallistaBarrel/ArrowSpawnLocation")
 ballistaHead = NodePath("BallistaTopElementLow")
@@ -617,7 +618,8 @@ ballistaBarrel = NodePath("BallistaTopElementLow/BallistaBarrel")
 arrowScene = ExtResource("9_1xgkc")
 inputNode = NodePath("BallistaTopElementLow/StaticBody3D/StationPort")
 arrowCount = 0
-label = NodePath("CanvasLayer/Node3D/Label3D")
+ammoCounter = NodePath("AmmoCount")
+label = NodePath("AmmoCount")
 audio = NodePath("AudioStreamPlayer3D")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Enviroment/Ballista2" unique_id=1444606935]
@@ -625,10 +627,6 @@ audio = NodePath("AudioStreamPlayer3D")
 [node name="Node3D" type="Node3D" parent="Enviroment/Ballista2/CanvasLayer" unique_id=396143954]
 transform = Transform3D(-0.10386822, 0, 0.49802622, 0, 3.4232113, 0, -4.7299213, 0, -0.010936562, 0, 3.545107, 0)
 visible = false
-
-[node name="Label3D" type="Label3D" parent="Enviroment/Ballista2/CanvasLayer/Node3D" unique_id=517796984]
-visible = false
-text = "There"
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Enviroment/Ballista2" unique_id=243142403]
 stream = SubResource("AudioStreamRandomizer_sl1qq")
@@ -658,7 +656,7 @@ shape = SubResource("CapsuleShape3D_e7812")
 debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="StationPort" parent="Enviroment/Ballista2/BallistaTopElementLow/StaticBody3D" unique_id=2026586739 instance=ExtResource("3_2c4at")]
-transform = Transform3D(1.8667601, 0, -0.7177786, 0, 2, 0, 0.7177786, 0, 1.8667601, -0.3866167, -2.3317094, 1.6015844)
+transform = Transform3D(1.8667601, 0, -0.7177786, 0, 2, 0, 0.7177786, 0, 1.8667601, -0.85228443, -2.3317094, 1.7496786)
 
 [node name="BallistaBarrel" type="Node3D" parent="Enviroment/Ballista2/BallistaTopElementLow" unique_id=235881616]
 transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0, 0)
@@ -721,6 +719,9 @@ mesh = SubResource("BoxMesh_cm7k6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/BoundingBox/StaticBody3D4" unique_id=352369420]
 shape = SubResource("BoxShape3D_csfbn")
+[node name="AmmoCount" type="Label3D" parent="Enviroment/Ballista2" unique_id=960228351]
+transform = Transform3D(4.6760406, 1.1509455, -0.87433183, -0.16636983, 1.8669528, 4.3849535, 1.8446779, -2.7491322, 2.6118033, 0, 2.0343263, 0)
+text = "Hello"
 
 [node name="PlayerSpawner" type="Node" parent="." unique_id=1347135134 node_paths=PackedStringArray("spawnParent") groups=["PlayerSpawner"]]
 script = ExtResource("11_pdwbg")
@@ -749,8 +750,8 @@ normalEnemyData = ExtResource("15_8gny2")
 fastEnemyData = ExtResource("16_s3wmy")
 strongEnemyData = ExtResource("17_gdcyb")
 maxWaves = 6
-startingEnemiesPerWave = 5
-enemyIncreasedPerWave = 1
+startingEnemiesPerWave = 10
+enemyIncreasedPerWave = 2
 enemiesRemaining = NodePath("../UI/EnemiesLeft")
 wavesRemaining = NodePath("../UI/WaveRemaining")
 waveTimerProgressBar = NodePath("../UI/WaveTimerProgressBar")
