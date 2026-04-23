@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cmd758glwlnly" path="res://assets/models/FinalAssets_Low/WorkStations/Grindstone.tscn" id="10_ei5ly"]
 [ext_resource type="PackedScene" uid="uid://g1gfmktihg8t" path="res://assets/models/FinalAssets_Low/WorkStations/Anvil.tscn" id="11_m6ekv"]
 [ext_resource type="PackedScene" uid="uid://bm6vf4tjk48gj" path="res://assets/prefabs/forge.tscn" id="11_tfuon"]
+[ext_resource type="Skin" uid="uid://by0geq85qph2r" path="res://assets/models/FinalAssets_Low/Character_Models/Goblin_low_skin.res" id="16_4c805"]
 [ext_resource type="Script" uid="uid://bqbrwko4kb7sp" path="res://src/Enemy/EnemyController.cs" id="16_18x7b"]
 [ext_resource type="PackedScene" uid="uid://2dvvlktwdavs" path="res://assets/models/FinalAssets_Low/Ore/Copper_Ore.tscn" id="18_j4y01"]
 [ext_resource type="Script" uid="uid://dfgcclikd3kvh" path="res://src/Enemy/AI/EnemyBehaviourData.cs" id="19_4c805"]
@@ -31,6 +32,7 @@
 [ext_resource type="Animation" uid="uid://blndgkgu3vk4i" path="res://assets/animations/enemy/SkeletonAttack.anim" id="26_lyjt2"]
 [ext_resource type="Script" uid="uid://dli7kb5c5sowk" path="res://src/Managers/TutorialManager.cs" id="27_bi4s5"]
 [ext_resource type="Animation" uid="uid://cop7jcun713s8" path="res://assets/animations/enemy/SkeletonDeath.anim" id="27_g0kia"]
+[ext_resource type="Skin" uid="uid://exj4s5efuua2" path="res://assets/models/FinalAssets_Low/Character_Models/Skeleton_low_skin.res" id="27_podgh"]
 [ext_resource type="Animation" uid="uid://dgb2ugdkhr1ce" path="res://assets/animations/enemy/SkeletonWalk.anim" id="28_qv16m"]
 [ext_resource type="PackedScene" uid="uid://cayfp8m51s7np" path="res://assets/models/FinalAssets_Low/Items_Models/Crossbow.tscn" id="28_y74ua"]
 [ext_resource type="Script" uid="uid://bdt0s16a5rcia" path="res://src/Weapons/Ballista.cs" id="29_0a2r4"]
@@ -55,6 +57,7 @@
 [ext_resource type="Script" uid="uid://bs44u3pohek1t" path="res://src/Menus/SettingsMenu.cs" id="46_7vc5l"]
 [ext_resource type="Texture2D" uid="uid://b0h4rjwc5lgiv" path="res://assets/PNG/Forge.webp" id="50_v1uvm"]
 [ext_resource type="AudioStream" uid="uid://dy5lcoryjk0no" path="res://assets/Sounds/SFX/Click.wav" id="51_wwsfe"]
+[ext_resource type="Script" uid="uid://cplth4dd2h1c6" path="res://src/Camera/CameraBoundingBox.cs" id="58_podgh"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_0a2r4"]
 
@@ -72,24 +75,6 @@ background_mode = 2
 sky = SubResource("Sky_7l3mh")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1y4d5"]
-sky_top_color = Color(0.5620234, 0.4562606, 0.1947913, 1)
-sky_horizon_color = Color(0.8877065, 0.40235606, 7.70092e-07, 1)
-sky_curve = 0.0891909
-
-[sub_resource type="Sky" id="Sky_60v6u"]
-sky_material = SubResource("ProceduralSkyMaterial_1y4d5")
-
-[sub_resource type="Environment" id="Environment_47rdh"]
-background_mode = 2
-sky = SubResource("Sky_60v6u")
-tonemap_mode = 2
-glow_enabled = true
-fog_mode = 1
-fog_density = 1.0
-fog_depth_end = 242.5
-volumetric_fog_density = 0.0
 
 [sub_resource type="MeshTexture" id="MeshTexture_f0oxr"]
 
@@ -131,7 +116,7 @@ metadata/_custom_type_script = "uid://bf02wgjk36psn"
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_pfjfy"]
 height = 2.1748047
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_j1le7"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_s4wry"]
 viewport_path = NodePath("HealthBar/SubViewport")
 
 [sub_resource type="Gradient" id="Gradient_d71qb"]
@@ -163,7 +148,7 @@ _data = {
 &"SkeletonWalk": ExtResource("28_qv16m")
 }
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_1y4d5"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_hmhye"]
 viewport_path = NodePath("HealthBar/SubViewport")
 
 [sub_resource type="Resource" id="Resource_bi4s5"]
@@ -213,19 +198,26 @@ albedo_texture = ExtResource("3_xi6p3")
 albedo_texture = ExtResource("4_e4hrd")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dn1de"]
+size = Vector3(20.432343, 4.06604, 6.229309)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wkaxc"]
 albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_y74ua"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_y74ua"]
-size = Vector3(1.467041, 3.7841187, 61.637733)
+[sub_resource type="BoxShape3D" id="BoxShape3D_aeeye"]
+size = Vector3(1, 2.9638672, 61.01996)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4c805"]
+size = Vector3(6.022217, 4.1502686, 62.4718)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_podgh"]
+size = Vector3(165.44485, 4.0629883, 2.6912842)
 
 [node name="TestingLab" type="StaticBody3D" unique_id=127569902]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1695761306]
-transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -0.02279663, 0, -0.18181562)
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -0.02279663, 0, -0.18181562)
 shape = SubResource("WorldBoundaryShape3D_0a2r4")
 
 [node name="World" type="Node" parent="." unique_id=653261365]
@@ -239,62 +231,34 @@ playerScene = ExtResource("2_pgr2e")
 spawnParent = NodePath("..")
 
 [node name="SpawnPoint0" type="Marker3D" parent="PlayerSpawner" unique_id=214374119]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.54654, 0, -37.507088)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.41316, 0, -24.205868)
 
 [node name="SpawnPoint1" type="Marker3D" parent="PlayerSpawner" unique_id=1855886865]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.287598, 0, -39.567406)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.79405, 0, -21.323265)
 
 [node name="SpawnPoint2" type="Marker3D" parent="PlayerSpawner" unique_id=1323073965]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.669617, 0, -36.40018)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71.8517, 0, -24.586433)
 
 [node name="SpawnPoint3" type="Marker3D" parent="PlayerSpawner" unique_id=186247942]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.436493, 0, -36.00175)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.51628, 0, -20.888666)
 
 [node name="TP" type="Node" parent="PlayerSpawner" unique_id=373094355]
 
 [node name="TP1" type="Marker3D" parent="PlayerSpawner/TP" unique_id=937894083]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.191, 0, -39.308197)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.228722, 0, 0)
 
 [node name="TP2" type="Marker3D" parent="PlayerSpawner/TP" unique_id=1887004473]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 198.29456, 0, -39.210045)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.294556, 0, 0)
 
 [node name="TP3" type="Marker3D" parent="PlayerSpawner/TP" unique_id=2007690728]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 329.32535, 0, -39.330086)
-
-[node name="TutorialManager" type="Node" parent="." unique_id=639408089 node_paths=PackedStringArray("roomSpawnPoints", "pauseMenu", "skipTutorialProgressBar", "smeltingStation", "itemDropOffBox", "grindstoneStation", "forgingStation", "weaponDropOffBox", "room3Enemy", "room4Enemy")]
-script = ExtResource("27_bi4s5")
-roomSpawnPoints = [NodePath("../PlayerSpawner/TP/TP1"), NodePath("../PlayerSpawner/TP/TP2"), NodePath("../PlayerSpawner/TP/TP3")]
-pauseMenu = NodePath("../UI/PauseMenu")
-skipTutorialProgressBar = NodePath("../UI/ProgressBar")
-smeltingStation = NodePath("../Objects/Stations/Forge")
-itemDropOffBox = NodePath("../LevelObjects/ItemDropOffNode")
-grindstoneStation = NodePath("../Objects/Stations/Grindstone")
-forgingStation = NodePath("../Objects/Stations/Anvil")
-weaponDropOffBox = NodePath("../LevelObjects/WeaponDropOffNode")
-room3Enemy = NodePath("../Objects/Enemies/Enemy")
-room4Enemy = NodePath("../Objects/Enemies/Enemy2")
-
-[node name="Camera3D" type="Camera3D" parent="." unique_id=2088959320 node_paths=PackedStringArray("playerSpawner") groups=["Camera"]]
-transform = Transform3D(1, 0, 0, 0, 0.71079946, 0.7033947, 0, -0.7033947, 0.71079946, -66.24388, 22.042484, 65.73964)
-projection = 1
-size = 28.411
-script = ExtResource("3_pgr2e")
-playerSpawner = NodePath("../PlayerSpawner")
-outerBounds = Vector2(0, 0)
-innerBounds = Vector2(0, 0)
-minSize = 1.0
-maxSize = 20.174
-followPlayer = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.32535, 0, 0)
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=424752858]
-transform = Transform3D(0.6920928, 0.008213636, 0.7217619, -0.72180855, 0.007875491, 0.69204795, -5.793235e-10, -0.99993527, 0.011379244, -0.65869904, 19.63105, -0.28507435)
+transform = Transform3D(0.6920928, 0.008213635, 0.7217619, -0.72180855, 0.007875493, 0.69204795, -5.793235e-10, -0.99993527, 0.011379243, -6.0784225, 19.63105, 0)
 light_color = Color(0.47735137, 0.4088744, 0.36183918, 1)
 light_energy = 2.485
 shadow_enabled = true
 shadow_normal_bias = 0.0
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1529891518]
-environment = SubResource("Environment_47rdh")
 
 [node name="UI" type="Node" parent="." unique_id=195859758]
 
@@ -316,47 +280,47 @@ text = "Skip? ESC/ ⧉/≡"
 [node name="Text" type="Node3D" parent="UI" unique_id=551861238]
 
 [node name="Label3D" type="Label3D" parent="UI/Text" unique_id=1005533518]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -49.388096, 1.5332108, -3.5558171)
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -49.388096, 1.5332108, -2.2250128)
 modulate = Color(1, 0.90000004, 0, 1)
 text = "Pick up ORE with X/E"
 font_size = 20
 
 [node name="Label3D15" type="Label3D" parent="UI/Text" unique_id=1274583701]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -61.55315, 1.5332108, 2.6986217)
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -51.596615, 1.5332108, 16.56374)
 modulate = Color(1, 0.90000004, 0, 1)
 text = "Drop item with B/Q
 Hold B/Q to drop Weapon"
 font_size = 20
 
 [node name="Label3D2" type="Label3D" parent="UI/Text" unique_id=2087353095]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -52.346, 4.1943817, -20.538702)
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -62.870983, 4.1943817, -7.465954)
 modulate = Color(1, 0.90000004, 0, 1)
 text = "Interact with 
 Workstations with X/E"
 font_size = 20
 
 [node name="Label3D3" type="Label3D" parent="UI/Text" unique_id=2123131909]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -53.099648, 1.5332108, -39.648987)
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -53.448795, 1.5332108, -18.929113)
 text = "Your objective is to keep 
 the Forge alive by crafting 
 weapons to defend off enemies"
 
 [node name="Label3D4" type="Label3D" parent="UI/Text" unique_id=1327194277]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -62.425232, 1.5332108, -26.406786)
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -62.425232, 1.5332108, -4.3555565)
 text = "The Forge has a 
 limited amount of HP, 
 if it is destoryed you die"
 font_size = 23
 
 [node name="Label3D5" type="Label3D" parent="UI/Text" unique_id=385033897]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 67.379135, 1.5332108, -22.959036)
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -18.040588, 1.5332108, 3)
 modulate = Color(1, 0.90000004, 0, 1)
 text = "Complete mini games 
 with the D-Pad/Arrow keys"
 font_size = 20
 
 [node name="Label3D10" type="Label3D" parent="UI/Text" unique_id=365336419]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 176.91246, 1.5332088, -5.359188)
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 9.580926, 1.5332088, 9.615289)
 modulate = Color(1, 0.90000004, 0, 1)
 text = "Reload Ballistae by 
 walking near it with 
@@ -365,16 +329,16 @@ font_size = 20
 horizontal_alignment = 0
 
 [node name="Label3D17" type="Label3D" parent="UI/Text" unique_id=1102642046]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 190.43335, 1.5332088, -17.65702)
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 16.20889, 1.5332088, -4.3764815)
 modulate = Color(1, 0.90000004, 0, 1)
-text = "Reload Ballistae by 
+text = "Reload Crossbow by 
 holding Interact with 
 a Iron Ingot"
 font_size = 20
 horizontal_alignment = 0
 
 [node name="Label3D16" type="Label3D" parent="UI/Text" unique_id=606091330]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 189.64828, 1.5332088, -24.436193)
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 23.82347, 1.5332088, -11.651563)
 modulate = Color(1, 0.90000004, 0, 1)
 text = "Hold Interact with a empty
 hand to pick up a Crossbow"
@@ -382,36 +346,36 @@ font_size = 20
 horizontal_alignment = 0
 
 [node name="Label3D14" type="Label3D" parent="UI/Text" unique_id=2096093989]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 195.46252, 1.5332088, -5.2147512)
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 24.462524, 1.5332088, 7.1600046)
 modulate = Color(1, 0.90000004, 0, 1)
 text = "Essential for surviving late game"
 font_size = 20
 horizontal_alignment = 0
 
 [node name="Label3D13" type="Label3D" parent="UI/Text" unique_id=1166096396]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 317.02032, 1.5332088, 2.331079)
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 74.62165, 1.5332088, 14.904757)
 modulate = Color(1, 0.90000004, 0, 1)
 text = "Use RT to attack"
 font_size = 20
 
 [node name="Label3D6" type="Label3D" parent="UI/Text" unique_id=1342330888]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 68.54336, 1.5332108, 1.6747084)
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -22.876366, 1.5332108, -11)
 modulate = Color(1, 0.90000004, 0, 1)
 text = "Drop resources with B/Q. 
 Hold B/Q to drop your weapon"
 font_size = 20
 
 [node name="Label3D7" type="Label3D" parent="UI/Text" unique_id=275099191]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -52.82715, 2.1534605, 6.468112)
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -64.81858, 2.1534605, 24.51603)
 outline_render_priority = -2
 text = "Place 3 Copper Ingot to continue"
 
 [node name="Label3D8" type="Label3D" parent="UI/Text" unique_id=249894599]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 54.452797, 2.1703491, 6.464456)
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -32.966927, 1.4973764, 12.434632)
 text = "Craft 2 Iron Swords to continue"
 
 [node name="Label3D9" type="Label3D" parent="UI/Text" unique_id=1452463606]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 190.63939, 1.5332108, -7.4482827)
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, 29.466217, 1.5332108, 5.75013)
 text = "Ballista's auto targets enemies "
 font_size = 20
 
@@ -435,7 +399,7 @@ resumeButton = NodePath("ResumeButton")
 settingsButton = NodePath("SettingsButton")
 mainMenuButton = NodePath("QuitButton")
 settingsMenu = NodePath("../SettingsMenu")
-tutorialManager = NodePath("../../TutorialManager")
+tutorialManager = NodePath("../TutorialManager")
 
 [node name="ResumeButton" type="Button" parent="UI/PauseMenu" unique_id=471299529]
 offset_left = 71.00002
@@ -552,6 +516,21 @@ offset_bottom = 40.0
 scale = Vector2(31.982666, 18.150393)
 mouse_filter = 2
 color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
+
+[node name="TutorialManager" type="Node" parent="UI" unique_id=639408089 node_paths=PackedStringArray("roomSpawnPoints", "cameraAnchorPoints", "cameraController", "pauseMenu", "skipTutorialProgressBar", "smeltingStation", "itemDropOffBox", "grindstoneStation", "forgingStation", "weaponDropOffBox", "room3Enemy", "room4Enemy")]
+script = ExtResource("27_bi4s5")
+roomSpawnPoints = [NodePath("../../PlayerTP/TP1"), NodePath("../../PlayerTP/TP2"), NodePath("../../PlayerTP/TP3")]
+cameraAnchorPoints = [NodePath("../../Camera/CameraAnchorTP"), NodePath("../../Camera/CameraAnchorTP2"), NodePath("../../Camera/CameraAnchorTP3")]
+cameraController = NodePath("../../Camera3D")
+pauseMenu = NodePath("../PauseMenu")
+skipTutorialProgressBar = NodePath("../ProgressBar")
+smeltingStation = NodePath("../../Objects/Stations/Forge")
+itemDropOffBox = NodePath("../../LevelObjects/ItemDropOffNode")
+grindstoneStation = NodePath("../../Objects/Stations/Grindstone")
+forgingStation = NodePath("../../Objects/Stations/Anvil")
+weaponDropOffBox = NodePath("../../LevelObjects/WeaponDropOffNode")
+room3Enemy = NodePath("../../Objects/Enemies/Enemy")
+room4Enemy = NodePath("../../Objects/Enemies/Enemy2")
 
 [node name="SettingsMenu" type="CanvasLayer" parent="UI" unique_id=1102677554 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton", "audio", "pauseMenu")]
 process_mode = 3
@@ -918,7 +897,7 @@ volume_db = -40.0
 [node name="Enemies" type="Node" parent="Objects" unique_id=913842636]
 
 [node name="Enemy" type="CharacterBody3D" parent="Objects/Enemies" unique_id=356561528 node_paths=PackedStringArray("mesh", "collisionArea", "navigationAgent", "audioStream", "animPlayer", "audioPlayer") groups=["Enemy"]]
-transform = Transform3D(0.07167157, 0, -0.9974283, 0, 1, 0, 0.9974283, 0, 0.07167157, 203.78946, 1.0190563, -9.21179)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.152155, 1, 9.887)
 collision_layer = 4
 collision_mask = 235
 script = ExtResource("16_18x7b")
@@ -1006,7 +985,9 @@ bones/9/rotation = Quaternion(-0.0043408633, 0.0016717633, -0.01600612, 0.999861
 bones/9/scale = Vector3(0.99999994, 1.0000001, 1)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/Enemies/Enemy/Armature/Skeleton3D" unique_id=941343698]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 mesh = ExtResource("21_q5ijt")
+skin = ExtResource("16_4c805")
 surface_material_override/0 = ExtResource("21_bi4s5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Enemies/Enemy" unique_id=1909118665]
@@ -1017,7 +998,7 @@ shape = SubResource("CylinderShape3D_pfjfy")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0)
 visible = false
 billboard = 1
-texture = SubResource("ViewportTexture_j1le7")
+texture = SubResource("ViewportTexture_s4wry")
 
 [node name="SubViewport" type="SubViewport" parent="Objects/Enemies/Enemy/HealthBar" unique_id=1475723139]
 size = Vector2i(200, 30)
@@ -1066,8 +1047,8 @@ libraries/SkeletonAnimations = SubResource("AnimationLibrary_72r1g")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Objects/Enemies/Enemy" unique_id=1992914578]
 
-[node name="Enemy2" type="CharacterBody3D" parent="Objects/Enemies" unique_id=1904101275 node_paths=PackedStringArray("mesh", "collisionArea", "navigationAgent", "audioStream", "animPlayer", "audioPlayer") groups=["Enemy"]]
-transform = Transform3D(0.9927301, 0, 0.12036218, 0, 1, 0, -0.12036218, 0, 0.9927301, 311.51697, 0.8236625, -1.9071844)
+[node name="Enemy2" type="CharacterBody3D" parent="Objects/Enemies" unique_id=941761006 node_paths=PackedStringArray("mesh", "collisionArea", "navigationAgent", "audioStream", "animPlayer", "audioPlayer") groups=["Enemy"]]
+transform = Transform3D(-0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, -0.70710677, 76.47367, 0.7889476, 25.77922)
 collision_layer = 4
 collision_mask = 235
 script = ExtResource("16_18x7b")
@@ -1080,9 +1061,9 @@ audioStream = NodePath("EnemyDeathSounds")
 animPlayer = NodePath("AnimationPlayer")
 audioPlayer = NodePath("EnemyDeathSounds")
 
-[node name="Armature" type="Node3D" parent="Objects/Enemies/Enemy2" unique_id=1433257793]
+[node name="Armature" type="Node3D" parent="Objects/Enemies/Enemy2" unique_id=71627255]
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Objects/Enemies/Enemy2/Armature" unique_id=1138715062]
+[node name="Skeleton3D" type="Skeleton3D" parent="Objects/Enemies/Enemy2/Armature" unique_id=1848892039]
 bones/0/name = "BoneBody"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, -9.992006e-15, 2.3841856e-07, -1.2936698e-09, 0.9999852, 0.005426086, -2.3841507e-07, -0.005426086, 0.9999852, 0, 0, 0)
@@ -1154,24 +1135,25 @@ bones/9/position = Vector3(3.9972097e-08, 0.28859, -1.9025848e-09)
 bones/9/rotation = Quaternion(-0.0043408633, 0.0016717633, -0.01600612, 0.9998612)
 bones/9/scale = Vector3(0.99999994, 1.0000001, 1)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/Enemies/Enemy2/Armature/Skeleton3D" unique_id=86333081]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Objects/Enemies/Enemy2/Armature/Skeleton3D" unique_id=886057161]
 mesh = ExtResource("24_ujnhc")
+skin = ExtResource("27_podgh")
 surface_material_override/0 = ExtResource("24_xi6p3")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Enemies/Enemy2" unique_id=1166668092]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Enemies/Enemy2" unique_id=769617196]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5761719, 0)
 shape = SubResource("CylinderShape3D_pfjfy")
 
-[node name="HealthBar" type="Sprite3D" parent="Objects/Enemies/Enemy2" unique_id=1325828689]
+[node name="HealthBar" type="Sprite3D" parent="Objects/Enemies/Enemy2" unique_id=1753529906]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0)
 visible = false
 billboard = 1
-texture = SubResource("ViewportTexture_1y4d5")
+texture = SubResource("ViewportTexture_hmhye")
 
-[node name="SubViewport" type="SubViewport" parent="Objects/Enemies/Enemy2/HealthBar" unique_id=1604552681]
+[node name="SubViewport" type="SubViewport" parent="Objects/Enemies/Enemy2/HealthBar" unique_id=150211335]
 size = Vector2i(200, 30)
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="Objects/Enemies/Enemy2/HealthBar/SubViewport" unique_id=778365856]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Objects/Enemies/Enemy2/HealthBar/SubViewport" unique_id=1866919148]
 offset_right = 256.0
 offset_bottom = 64.0
 value = 50.0
@@ -1184,18 +1166,18 @@ targetPath = NodePath("../../..")
 isForge = false
 isEnemy = true
 
-[node name="Area3D" type="Area3D" parent="Objects/Enemies/Enemy2" unique_id=1564186143 groups=["Enemy"]]
+[node name="Area3D" type="Area3D" parent="Objects/Enemies/Enemy2" unique_id=1891204765 groups=["Enemy"]]
 collision_layer = 4
 collision_mask = 235
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Enemies/Enemy2/Area3D" unique_id=606537948]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Enemies/Enemy2/Area3D" unique_id=437690040]
 shape = SubResource("CylinderShape3D_82iww")
 
-[node name="AI" type="Node" parent="Objects/Enemies/Enemy2" unique_id=1380881225 node_paths=PackedStringArray("_controller")]
+[node name="AI" type="Node" parent="Objects/Enemies/Enemy2" unique_id=1007741186 node_paths=PackedStringArray("_controller")]
 script = ExtResource("22_cys1x")
 _controller = NodePath("..")
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Objects/Enemies/Enemy2" unique_id=992848344]
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Objects/Enemies/Enemy2" unique_id=825899434]
 path_desired_distance = 3.2
 path_max_distance = 60.01
 avoidance_enabled = true
@@ -1204,96 +1186,97 @@ use_3d_avoidance = true
 debug_enabled = true
 debug_path_custom_color = Color(1, 0, 0, 1)
 
-[node name="EnemyDeathSounds" type="AudioStreamPlayer3D" parent="Objects/Enemies/Enemy2" unique_id=2146555985]
+[node name="EnemyDeathSounds" type="AudioStreamPlayer3D" parent="Objects/Enemies/Enemy2" unique_id=1332980545]
 volume_db = -50.0
 max_polyphony = 20
 bus = &"SFX"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Objects/Enemies/Enemy2" unique_id=1273643111]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Objects/Enemies/Enemy2" unique_id=1775346274]
 libraries/GoblinAnimations = SubResource("AnimationLibrary_xm78t")
 libraries/SkeletonAnimations = SubResource("AnimationLibrary_72r1g")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Objects/Enemies/Enemy2" unique_id=180877668]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Objects/Enemies/Enemy2" unique_id=182357222]
 
 [node name="Items" type="Node" parent="Objects" unique_id=1204651498]
 
 [node name="Copper_Ore" parent="Objects/Items" unique_id=2110523039 instance=ExtResource("18_j4y01")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.98353, 0.015, 1.4931006)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.98353, 0.015, 0)
 
 [node name="Copper_Ore2" parent="Objects/Items" unique_id=60489756 instance=ExtResource("18_j4y01")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.20228, 0.015, -0.6208987)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.20228, 0.015, 0)
 
 [node name="Copper_Ore3" parent="Objects/Items" unique_id=608290316 instance=ExtResource("18_j4y01")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.54785, 0.015, 1.4011874)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.54785, 0.015, 0)
 
 [node name="Copper_Ore4" parent="Objects/Items" unique_id=1159909176 instance=ExtResource("18_j4y01")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.000893, 0.015, -0.20321798)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.000893, 0.015, 0)
 
 [node name="Copper_Ore5" parent="Objects/Items" unique_id=1690293563 instance=ExtResource("18_j4y01")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.360023, 0.015, 1.7293581)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.360023, 0.015, 0)
 
 [node name="Copper_Ore6" parent="Objects/Items" unique_id=754020436 instance=ExtResource("18_j4y01")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 308.1498, 0.015, -20.248615)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.94081, 0.015, -5.429648)
 
 [node name="Copper_Ore7" parent="Objects/Items" unique_id=300861122 instance=ExtResource("18_j4y01")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 308.93106, 0.015, -22.362614)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.076397, 0.015, -0.44521666)
 
 [node name="Copper_Ore8" parent="Objects/Items" unique_id=224734069 instance=ExtResource("18_j4y01")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 310.5855, 0.015, -20.340527)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.762695, 0.015, -7.3174715)
 
 [node name="Copper_Ore9" parent="Objects/Items" unique_id=502607709 instance=ExtResource("18_j4y01")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 311.13245, 0.015, -21.944931)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.806637, 0.015, -9.2638645)
 
 [node name="Copper_Ore10" parent="Objects/Items" unique_id=681565344 instance=ExtResource("18_j4y01")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 306.59854, 0.015, -22.381762)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.96546, 0.015, -0.42809272)
 
 [node name="IronIngot2" parent="Objects/Items" unique_id=662424415 instance=ExtResource("21_dn1de")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 59.843506, 0, -33.53791)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -27.576218, 0, -16)
 
 [node name="IronIngot4" parent="Objects/Items" unique_id=190457992 instance=ExtResource("21_dn1de")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 181.23647, 0, -10.386852)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 28.523216, 0, -4.815353)
 
 [node name="IronIngot5" parent="Objects/Items" unique_id=2071596505 instance=ExtResource("21_dn1de")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 181.23647, 0, -19.7639)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 19.152327, 0, 3.9193583)
 
 [node name="IronIngot3" parent="Objects/Items" unique_id=982635605 instance=ExtResource("21_dn1de")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 63.255432, 0, -32.173138)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -32.16429, 0, -12)
 
 [node name="Stations" type="Node" parent="Objects" unique_id=2146589507]
 
 [node name="Forge" parent="Objects/Stations" unique_id=994045895 instance=ExtResource("11_tfuon")]
-transform = Transform3D(-0.5, 0, 7.54979e-08, 0, 0.5, 0, -7.54979e-08, 0, -0.5, -68.171585, 0.14728355, -18.229565)
+transform = Transform3D(-0.5, 0, 7.54979e-08, 0, 0.5, 0, -7.54979e-08, 0, -0.5, -68.12015, 0.13133812, 0.019342422)
 controllerButtonTexture = ExtResource("6_cgb57")
 
 [node name="Anvil" parent="Objects/Stations" unique_id=1158721071 instance=ExtResource("11_m6ekv")]
-transform = Transform3D(1.1324686e-07, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.1324686e-07, 77.221756, 0, -18.469309)
+transform = Transform3D(1.1324686e-07, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.1324686e-07, -24.197968, 0, -1)
 controllerButtonTexture = ExtResource("6_cgb57")
 recipes = Array[Object]([ExtResource("7_0hjnf"), SubResource("Resource_bi4s5")])
 
 [node name="Grindstone" parent="Objects/Stations" unique_id=1536885273 instance=ExtResource("10_ei5ly")]
-transform = Transform3D(-6.556708e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.556708e-08, 61.691788, 0, -7.471264)
+transform = Transform3D(-6.556708e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.556708e-08, -33.727936, 0, 9)
 controllerButtonTexture = ExtResource("6_cgb57")
 
 [node name="Anvil2" parent="Objects/Stations" unique_id=688992065 instance=ExtResource("11_m6ekv")]
-transform = Transform3D(1.1324686e-07, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.1324686e-07, 331.5334, -3.8146973e-06, -17.878016)
+transform = Transform3D(1.1324686e-07, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.1324686e-07, 49.70672, -0.4507265, -6.7690206)
 controllerButtonTexture = ExtResource("6_cgb57")
 
 [node name="Grindstone2" parent="Objects/Stations" unique_id=838819154 instance=ExtResource("10_ei5ly")]
-transform = Transform3D(-6.556708e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.556708e-08, 324.74796, -3.8146973e-06, -2.517385)
+transform = Transform3D(-6.556708e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.556708e-08, 53.75401, -3.8146973e-06, 13.732048)
 controllerButtonTexture = ExtResource("6_cgb57")
 
 [node name="Forge2" parent="Objects/Stations" unique_id=414176730 instance=ExtResource("11_tfuon")]
-transform = Transform3D(-0.5, 0, 7.54979e-08, 0, 0.5, 0, -7.54979e-08, 0, -0.5, 319.52032, 0, -28.48187)
+transform = Transform3D(-0.5, 0, 7.54979e-08, 0, 0.5, 0, -7.54979e-08, 0, -0.5, 48.175663, 9.536743e-07, -21.237206)
 controllerButtonTexture = ExtResource("6_cgb57")
 
 [node name="Ballista" type="Node3D" parent="Objects/Stations" unique_id=1571022317 node_paths=PackedStringArray("arrowSpawnPosition", "ballistaHead", "ballistaBarrel", "inputNode", "label", "audio") groups=["Ballista"]]
-transform = Transform3D(0.043559823, 0, -1.3993222, 0, 1.4, 0, 1.3993222, 0, 0.043559823, 192.72937, 0.0056490004, -11.5781975)
+transform = Transform3D(0.043559823, 0, -1.3993222, 0, 1.4, 0, 1.3993222, 0, 0.043559823, 19.16889, 0.0056490004, -4.8346577)
 script = ExtResource("29_0a2r4")
 arrowSpawnPosition = NodePath("BallistaTopElementLow/BallistaBarrel/ArrowSpawnLocation")
 ballistaHead = NodePath("BallistaTopElementLow")
 crossbowScene = ExtResource("28_y74ua")
 ballistaBarrel = NodePath("BallistaTopElementLow/BallistaBarrel")
 arrowScene = ExtResource("30_mcs8j")
+range = 0.0
 inputNode = NodePath("BallistaTopElementLow/StaticBody3D/StationPort")
 arrowCount = 0
 label = NodePath("CanvasLayer/Node3D/Label3D")
@@ -1309,7 +1292,7 @@ visible = false
 text = "There"
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Objects/Stations/Ballista" unique_id=134283511]
-transform = Transform3D(0.71428573, 0, 0, 0, 0.71428573, 0, 0, 0, 0.71428573, 1.2377625, 0, 4.9295416)
+transform = Transform3D(0.71428573, 0, 7.450581e-09, 0, 0.71428573, 0, -7.450581e-09, 0, 0.71428573, -2.8844924, 0, 0)
 stream = SubResource("AudioStreamRandomizer_sl1qq")
 volume_db = -40.0
 max_db = -24.0
@@ -1317,12 +1300,12 @@ max_polyphony = 20
 bus = &"SFX"
 
 [node name="BallistaBottomElementLow" type="MeshInstance3D" parent="Objects/Stations/Ballista" unique_id=1196528612]
-transform = Transform3D(0.71428573, 0, 0, 0, 0.71428573, 0, 0, 0, 0.71428573, 1.2377625, 0, 4.9295416)
+transform = Transform3D(0.71428573, 0, 7.450581e-09, 0, 0.71428573, 0, -7.450581e-09, 0, 0.71428573, -2.8844924, 0, 0)
 material_override = ExtResource("41_47rdh")
 mesh = ExtResource("42_4c805")
 
 [node name="BallistaTopElementLow" type="MeshInstance3D" parent="Objects/Stations/Ballista" unique_id=369042352]
-transform = Transform3D(0.71428573, 0, 0, 0, 0.71428573, 0, 0, 0, 0.71428573, 1.2377625, 0, 4.9295416)
+transform = Transform3D(0.71428573, 0, 7.450581e-09, 0, 0.71428573, 0, -7.450581e-09, 0, 0.71428573, -2.8844924, 0, 0)
 material_override = ExtResource("41_47rdh")
 mesh = ExtResource("43_podgh")
 
@@ -1351,7 +1334,7 @@ collision_layer = 32
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Stations/Ballista/BallistaTopElementLow/StaticBody3D/StationPort/Area3D" unique_id=280831638]
-transform = Transform3D(0.17999986, 0, 0, 0, 0.9999873, 0, 0, 0, 0.18999994, 0.0013348593, 0, -0.006333612)
+transform = Transform3D(0.17999986, 0, 0, 0, 0.9999873, 0, 0, 0, 0.18999994, 0.0013348593, 0, 0)
 shape = SubResource("BoxShape3D_vl1yp")
 
 [node name="BallistaBarrel" type="Node3D" parent="Objects/Stations/Ballista/BallistaTopElementLow" unique_id=309150814]
@@ -1367,7 +1350,7 @@ mesh = SubResource("BoxMesh_m1e06")
 skeleton = NodePath("../../../StaticBody3D")
 
 [node name="Ballista2" type="Node3D" parent="Objects/Stations" unique_id=1274337909 node_paths=PackedStringArray("arrowSpawnPosition", "ballistaHead", "ballistaBarrel", "inputNode", "label", "audio") groups=["Ballista"]]
-transform = Transform3D(-0.03618356, 0, -1.3995323, 0, 1.4, 0, 1.3995323, 0, -0.03618356, 192.64384, 0.0056494772, -20.453314)
+transform = Transform3D(-0.03618356, 0, -1.3995323, 0, 1.4, 0, 1.3995323, 0, -0.03618356, 17.245884, 0.0056494772, 3.4815364)
 script = ExtResource("29_0a2r4")
 arrowSpawnPosition = NodePath("BallistaTopElementLow/BallistaBarrel/ArrowSpawnLocation")
 ballistaHead = NodePath("BallistaTopElementLow")
@@ -1389,7 +1372,7 @@ visible = false
 text = "There"
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Objects/Stations/Ballista2" unique_id=1382183422]
-transform = Transform3D(0.71428573, 0, 0, 0, 0.71428573, 0, 0, 0, 0.71428573, 1.2377625, 0, 4.9295416)
+transform = Transform3D(0.71428573, 0, 0, 0, 0.71428573, 0, 0, 0, 0.71428573, 4.113353, 0, 0)
 stream = SubResource("AudioStreamRandomizer_sl1qq")
 volume_db = -40.0
 max_db = -24.0
@@ -1397,12 +1380,12 @@ max_polyphony = 20
 bus = &"SFX"
 
 [node name="BallistaBottomElementLow" type="MeshInstance3D" parent="Objects/Stations/Ballista2" unique_id=509106242]
-transform = Transform3D(0.71428573, 0, 0, 0, 0.71428573, 0, 0, 0, 0.71428573, 1.2377625, 0, 4.9295416)
+transform = Transform3D(0.71428573, 0, 0, 0, 0.71428573, 0, 0, 0, 0.71428573, 4.113353, 0, 0)
 material_override = ExtResource("41_47rdh")
 mesh = ExtResource("42_4c805")
 
 [node name="BallistaTopElementLow" type="MeshInstance3D" parent="Objects/Stations/Ballista2" unique_id=1422062443]
-transform = Transform3D(0.71428573, 0, 0, 0, 0.71428573, 0, 0, 0, 0.71428573, 1.2377625, 0, 4.9295416)
+transform = Transform3D(0.71428573, 0, 0, 0, 0.71428573, 0, 0, 0, 0.71428573, 4.113353, 0, 0)
 material_override = ExtResource("41_47rdh")
 mesh = ExtResource("43_podgh")
 
@@ -1431,7 +1414,7 @@ collision_layer = 32
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Stations/Ballista2/BallistaTopElementLow/StaticBody3D/StationPort/Area3D" unique_id=1924897383]
-transform = Transform3D(0.17999986, 0, 0, 0, 0.9999873, 0, 0, 0, 0.18999994, 0.0013348593, 0, -0.006333612)
+transform = Transform3D(0.17999986, 0, 0, 0, 0.9999873, 0, 0, 0, 0.18999994, 0.0013348593, 0, 0)
 shape = SubResource("BoxShape3D_vl1yp")
 
 [node name="BallistaBarrel" type="Node3D" parent="Objects/Stations/Ballista2/BallistaTopElementLow" unique_id=1918361004]
@@ -1449,158 +1432,164 @@ skeleton = NodePath("../../../StaticBody3D")
 [node name="LevelObjects" type="Node" parent="." unique_id=604129612]
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="LevelObjects" unique_id=1914045173]
-transform = Transform3D(20, 0, 0, 0, 102, 0, 0, 0, 30, -62.754032, -0.028385594, -17.252653)
+transform = Transform3D(20, 0, 0, 0, 102, 0, 0, 0, 30, -62.754032, -0.028385594, 0)
 material_override = SubResource("StandardMaterial3D_j4y01")
 mesh = SubResource("PlaneMesh_oyacv")
 skeleton = NodePath("../../CollisionShape3D")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="LevelObjects" unique_id=1977020187]
-transform = Transform3D(20, 0, 0, 0, 145.082, 0, 0, 0, 30, 64.9805, -0.028385714, -17.134506)
+transform = Transform3D(20, 0, 0, 0, 145.082, 0, 0, 0, 30, -22.439224, -0.028385714, 0)
 material_override = SubResource("StandardMaterial3D_f0oxr")
 mesh = SubResource("PlaneMesh_oyacv")
 skeleton = NodePath("../../CollisionShape3D")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="LevelObjects" unique_id=1425927920]
-transform = Transform3D(20, 0, 0, 0, 145.082, 0, 0, 0, 30, 193.2207, -0.028385594, -16.541855)
+transform = Transform3D(20, 0, 0, 0, 145.082, 0, 0, 0, 30, 22.220703, -0.028385594, 0)
 material_override = SubResource("StandardMaterial3D_dn1de")
 mesh = SubResource("PlaneMesh_oyacv")
 skeleton = NodePath("../../CollisionShape3D")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="LevelObjects" unique_id=2060831325]
-transform = Transform3D(20, 0, 0, 0, 145.082, 0, 0, 0, 30, 320.2782, -0.028385594, -16.541859)
+transform = Transform3D(20, 0, 0, 0, 145.082, 0, 0, 0, 30, 62.2782, -0.028385594, 0)
 material_override = SubResource("StandardMaterial3D_3s0s1")
 mesh = SubResource("PlaneMesh_oyacv")
 skeleton = NodePath("../../CollisionShape3D")
 
 [node name="ItemDropOffNode" type="Node3D" parent="LevelObjects" unique_id=1176537791]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.3175284, -52.788494, 2.162654, 8.736044)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.77405, 0, 27.257357)
 
 [node name="Area3D" type="Area3D" parent="LevelObjects/ItemDropOffNode" unique_id=2007190283]
-transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 5.4, 0, 0, 0.31873178)
 collision_mask = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/ItemDropOffNode/Area3D" unique_id=1957568453]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22398376, 0, 0)
 shape = SubResource("BoxShape3D_dn1de")
+debug_color = Color(0.9078813, 0.028730208, 0.73037034, 0.41960785)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="LevelObjects/ItemDropOffNode" unique_id=1883276326]
-transform = Transform3D(20, 0, 0, 0, 0.09232774, 0, 0, 0, 5.4025326, 0, -2.1711469, 0.28949738)
+transform = Transform3D(20, 0, 0, 0, 0.09232774, 0, 0, 0, 5.4025326, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_wkaxc")
 transparency = 0.15
 mesh = SubResource("BoxMesh_y74ua")
 
 [node name="WeaponDropOffNode" type="Node3D" parent="LevelObjects" unique_id=476378771]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.3175284, 55.00113, 2.162654, 8.790767)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.34308, -0.071158886, 27.199833)
 
 [node name="Area3D" type="Area3D" parent="LevelObjects/WeaponDropOffNode" unique_id=721241301]
-transform = Transform3D(20, 0, 0, 0, 5, 0, 0, 0, 5.4, 0, 0, 0.1792202)
 collision_mask = 24
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/WeaponDropOffNode/Area3D" unique_id=975492336]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.9999996, 0, 0, 0)
 shape = SubResource("BoxShape3D_dn1de")
+debug_color = Color(0.9078813, 0.028730208, 0.73037034, 0.41960785)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="LevelObjects/WeaponDropOffNode" unique_id=578781272]
-transform = Transform3D(20, 0, 0, 0, 0.09232774, 0, 0, 0, 5.4025326, 0, -2.1711469, 0.28949738)
+transform = Transform3D(20, 0, 0, 0, 0.09232774, 0, 0, 0, 5.4025326, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_wkaxc")
 transparency = 0.15
 mesh = SubResource("BoxMesh_y74ua")
 
 [node name="InvisWalls" type="Node" parent="LevelObjects" unique_id=782182056]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=1307335911]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 172.13019, 0, -16.740286)
+[node name="Bounds" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=2005198505]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D" unique_id=334164790]
-shape = SubResource("BoxShape3D_y74ua")
+[node name="CollisionShape3D0" type="CollisionShape3D" parent="LevelObjects/InvisWalls/Bounds" unique_id=707335677]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4510803, 0.9819336, 0.19387817)
+shape = SubResource("BoxShape3D_aeeye")
+debug_color = Color(0.843977, 0.20483953, 0.9328845, 0.41960785)
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=1669204492]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 213.83702, 0, -16.740286)
+[node name="Bounds2" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=1858113227]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.61044, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D2" unique_id=1389143932]
-shape = SubResource("BoxShape3D_y74ua")
+[node name="CollisionShape3D1" type="CollisionShape3D" parent="LevelObjects/InvisWalls/Bounds2" unique_id=863719326]
+unique_name_in_owner = true
+shape = SubResource("BoxShape3D_aeeye")
+debug_color = Color(0.843977, 0.20483953, 0.9328845, 0.41960785)
 
-[node name="StaticBody3D3" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=79852438]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 192.98361, 0, 13.945482)
+[node name="Bounds3" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=1518400717]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.20808, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D3" unique_id=1763132247]
-shape = SubResource("BoxShape3D_y74ua")
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LevelObjects/InvisWalls/Bounds3" unique_id=725792780]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.72533417, 0, 0)
+shape = SubResource("BoxShape3D_aeeye")
+debug_color = Color(0.843977, 0.20483953, 0.9328845, 0.41960785)
 
-[node name="StaticBody3D4" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=317657735]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 192.98361, 0, -47.069412)
+[node name="Bounds4" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=149014917]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.310658, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D4" unique_id=1619444998]
-shape = SubResource("BoxShape3D_y74ua")
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="LevelObjects/InvisWalls/Bounds4" unique_id=1721309919]
+unique_name_in_owner = true
+shape = SubResource("BoxShape3D_aeeye")
+debug_color = Color(0.843977, 0.20483953, 0.9328845, 0.41960785)
 
-[node name="StaticBody3D5" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=1569548930]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 299.29517, 0, -16.740286)
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=1774773864]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D5" unique_id=1609901054]
-shape = SubResource("BoxShape3D_y74ua")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D" unique_id=1727736627]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18933105, 1.5751343, -0.42156982)
+shape = SubResource("BoxShape3D_4c805")
+debug_color = Color(0.47331077, 0.99999994, 0.46544307, 0.41960785)
 
-[node name="StaticBody3D6" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=236881832]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 341.00198, 0, -16.740286)
+[node name="StaticBody3D2" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=1204384537]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30.324797)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D6" unique_id=418171981]
-shape = SubResource("BoxShape3D_y74ua")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D2" unique_id=95226766]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.69111633, 1.5314941, -1.8714943)
+shape = SubResource("BoxShape3D_podgh")
+debug_color = Color(0.34906358, 0.8850461, 0.99164325, 0.41960785)
 
-[node name="StaticBody3D7" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=1628213661]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 320.1486, 0, 13.945482)
+[node name="StaticBody3D3" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=1032464971]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30.675203)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D7" unique_id=331436476]
-shape = SubResource("BoxShape3D_y74ua")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D3" unique_id=1135857917]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.4235153)
+shape = SubResource("BoxShape3D_podgh")
+debug_color = Color(0.34906358, 0.8850461, 0.99164325, 0.41960785)
 
-[node name="StaticBody3D8" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=1222623035]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 320.1486, 0, -47.069412)
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2088959320 node_paths=PackedStringArray("playerSpawner", "cameraAnchor") groups=["Camera"]]
+transform = Transform3D(1, 0, 0, 0, 0.71079946, 0.7033947, 0, -0.7033947, 0.71079946, -62, 13, 1)
+projection = 1
+size = 16.664581
+script = ExtResource("3_pgr2e")
+playerSpawner = NodePath("../PlayerSpawner")
+cameraZOffset = 15.0
+minSize = 16.0
+maxSize = 20.0
+zoomSmoothSpeed = 5.0
+zoomPadding = 40.0
+singlePlayerZoomRadius = 20.0
+cameraAnchor = NodePath("../Camera/CameraAnchor")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D8" unique_id=1449150470]
-shape = SubResource("BoxShape3D_y74ua")
+[node name="Camera" type="Node" parent="." unique_id=1194639982]
 
-[node name="StaticBody3D9" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=1059058741]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83.77997, 0, -16.740286)
+[node name="CameraAnchor" type="Marker3D" parent="Camera" unique_id=129367945]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62, 0, -2)
+script = ExtResource("58_podgh")
+HalfExtents = Vector2(11, 22)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D9" unique_id=411424988]
-shape = SubResource("BoxShape3D_y74ua")
+[node name="CameraAnchorTP" type="Marker3D" parent="Camera" unique_id=495323333]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, -2)
 
-[node name="StaticBody3D10" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=1454729644]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.07315, 0, -16.740286)
+[node name="CameraAnchorTP2" type="Marker3D" parent="Camera" unique_id=1752308600]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, -2)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D10" unique_id=907327545]
-shape = SubResource("BoxShape3D_y74ua")
+[node name="CameraAnchorTP3" type="Marker3D" parent="Camera" unique_id=1547890286]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, 0, -2)
 
-[node name="StaticBody3D11" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=14642237]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -62.926544, 0, 13.945482)
+[node name="PlayerTP" type="Node" parent="." unique_id=403454395]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D11" unique_id=1056371198]
-shape = SubResource("BoxShape3D_y74ua")
+[node name="TP1" type="Marker3D" parent="PlayerTP" unique_id=1052108253]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.436789, 0, -23.77401)
 
-[node name="StaticBody3D12" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=759351976]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -62.926544, 0, -47.069412)
+[node name="TP2" type="Marker3D" parent="PlayerTP" unique_id=1727452451]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.22946, 0, -22.493752)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D12" unique_id=523911611]
-shape = SubResource("BoxShape3D_y74ua")
-
-[node name="StaticBody3D13" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=255256808]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.431435, 0, -16.740286)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D13" unique_id=1972378433]
-shape = SubResource("BoxShape3D_y74ua")
-
-[node name="StaticBody3D14" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=1251389859]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85.13825, 0, -16.740286)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D14" unique_id=1760414386]
-shape = SubResource("BoxShape3D_y74ua")
-
-[node name="StaticBody3D15" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=123075497]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 64.28486, 0, 13.945482)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D15" unique_id=1978296003]
-shape = SubResource("BoxShape3D_y74ua")
-
-[node name="StaticBody3D16" type="StaticBody3D" parent="LevelObjects/InvisWalls" unique_id=522813639]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 64.28486, 0, -47.069412)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D16" unique_id=1434986337]
-shape = SubResource("BoxShape3D_y74ua")
+[node name="TP3" type="Marker3D" parent="PlayerTP" unique_id=1309864898]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.87366, 0, -17.428986)
 
 [connection signal="pressed" from="UI/PauseMenu/ResumeButton" to="UI/PauseMenu" method="OnResumePressed"]
 [connection signal="pressed" from="UI/PauseMenu/SettingsButton" to="UI/PauseMenu" method="OnSettingsPressed"]
@@ -1611,5 +1600,5 @@ shape = SubResource("BoxShape3D_y74ua")
 [connection signal="body_entered" from="Objects/Enemies/Enemy2/Area3D" to="Objects/Enemies/Enemy2" method="OnBodyEntered"]
 [connection signal="body_exited" from="Objects/Stations/Ballista/BallistaTopElementLow/StaticBody3D/StationPort/Area3D" to="Objects/Stations/Ballista" method="OnInputBodyEntered"]
 [connection signal="body_exited" from="Objects/Stations/Ballista2/BallistaTopElementLow/StaticBody3D/StationPort/Area3D" to="Objects/Stations/Ballista2" method="OnInputBodyEntered"]
-[connection signal="area_entered" from="LevelObjects/ItemDropOffNode/Area3D" to="TutorialManager" method="OnDropOffAreaEntered"]
-[connection signal="body_entered" from="LevelObjects/WeaponDropOffNode/Area3D" to="TutorialManager" method="OnWeaponDropOffBodyEntered"]
+[connection signal="area_entered" from="LevelObjects/ItemDropOffNode/Area3D" to="UI/TutorialManager" method="OnDropOffAreaEntered"]
+[connection signal="body_entered" from="LevelObjects/WeaponDropOffNode/Area3D" to="UI/TutorialManager" method="OnWeaponDropOffBodyEntered"]

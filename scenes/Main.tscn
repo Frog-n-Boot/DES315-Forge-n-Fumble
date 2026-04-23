@@ -55,6 +55,7 @@
 [ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Sword.tscn" id="46_0qimb"]
 [ext_resource type="PackedScene" uid="uid://di5odw2tmde5j" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Sword.tscn" id="47_in2eo"]
 [ext_resource type="Script" uid="uid://bwa528ng6f33g" path="res://addons/proton_scatter/src/scatter.gd" id="56_e2bht"]
+[ext_resource type="Script" uid="uid://cplth4dd2h1c6" path="res://src/Camera/CameraBoundingBox.cs" id="56_siyqs"]
 [ext_resource type="Script" uid="uid://8obq5b17ef84" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="57_a3hxr"]
 [ext_resource type="Script" uid="uid://dvru8fpbq7k1c" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="58_gcaob"]
 [ext_resource type="Script" uid="uid://clhu3chb2f1wp" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="59_aqa1v"]
@@ -455,18 +456,6 @@ shadow_normal_bias = 0.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1038820763]
 environment = SubResource("Environment_81oh0")
-
-[node name="Camera3D" type="Camera3D" parent="." unique_id=254897524 node_paths=PackedStringArray("playerSpawner") groups=["Camera"]]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 39, 37.28587)
-projection = 1
-current = true
-size = 22.0
-script = ExtResource("10_8b871")
-playerSpawner = NodePath("../PlayerSpawner")
-outerBounds = Vector2(400, 300)
-innerBounds = Vector2(250, 100)
-minSize = 20.0
-maxSize = 50.0
 
 [node name="Enviroment" type="Node" parent="." unique_id=1495741313]
 
@@ -1389,6 +1378,21 @@ script = ExtResource("64_mou0d")
 negative = true
 shape = SubResource("Resource_tcd68")
 metadata/_custom_type_script = "uid://by6ewpeiblvea"
+
+[node name="Camera3D2" type="Camera3D" parent="." unique_id=254897524 node_paths=PackedStringArray("playerSpawner", "cameraAnchor") groups=["Camera"]]
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 30, 30)
+projection = 1
+current = true
+near = 0.001
+script = ExtResource("10_8b871")
+playerSpawner = NodePath("../PlayerSpawner")
+followPlayers = false
+cameraAnchor = NodePath("../Camera/CameraAnchor")
+
+[node name="Camera" type="Node" parent="." unique_id=2038316344]
+
+[node name="CameraAnchor" type="Marker3D" parent="Camera" unique_id=1264387962]
+script = ExtResource("56_siyqs")
 
 [connection signal="pressed" from="UI/PauseMenu/ResumeButton" to="UI/PauseMenu" method="OnResumePressed"]
 [connection signal="pressed" from="UI/PauseMenu/SettingsButton" to="UI/PauseMenu" method="OnSettingsPressed"]
