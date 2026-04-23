@@ -306,9 +306,10 @@ public partial class DebugMenu : CanvasLayer
 		playerSpeed.Value = playerController.speed;
 		playerSpawnTimer.Value = playerController.playerSpawnTimer;
 
-		playerMaxHealth.ValueChanged -= OnPlayerMaxHealthChanged;
-		playerSpeed.ValueChanged -= OnPlayerSpeedChanged;
-		playerSpawnTimer.ValueChanged -= OnPlayerSpawnTimerChanged;
+		//if(playerMaxHealth.IsConnected(PlayerController.SignalName.PlayerHealthChanged, Callable.From(OnPlayerMaxHealthChanged)))
+		//playerMaxHealth.ValueChanged -= OnPlayerMaxHealthChanged;
+		//playerSpeed.ValueChanged -= OnPlayerSpeedChanged;
+		//playerSpawnTimer.ValueChanged -= OnPlayerSpawnTimerChanged;
 
 		playerMaxHealth.ValueChanged += OnPlayerMaxHealthChanged;
 		playerSpeed.ValueChanged += OnPlayerSpeedChanged;
