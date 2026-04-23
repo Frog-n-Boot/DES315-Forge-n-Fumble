@@ -163,16 +163,21 @@ public partial class SpinAttack : Node3D
 		{
 			// Play StartSpin first — OnAnimationFinished chains it into Spin
 			PlayAnim(ANIM_START_SPIN, 0f);
-
-			if (spinArea != null)
+			if (parent is PlayerController player)
 			{
-				spinArea.Monitoring = true;
-				isSpinning = true;
+				if (spinArea != null)
+				{
+					//player.isAttacking = true;
+					spinArea.Monitoring = true;
+					isSpinning = true;
 				
-				var overlappingBodies = spinArea.GetOverlappingBodies();
-				foreach (var body in overlappingBodies)
-					ProcessSpinHit(body);
+					var overlappingBodies = spinArea.GetOverlappingBodies();
+					foreach (var body in overlappingBodies)
+						ProcessSpinHit(body);
+				}
 			}
+
+			
 
 			// Always schedule the daze regardless of spinArea — this is the only
 			// place the timer fires, TriggerDaze's guard prevents double-calls.
@@ -182,7 +187,7 @@ public partial class SpinAttack : Node3D
 
 				if (IsInstanceValid(spinArea))
 					spinArea.Monitoring = false;
-
+				
 				TriggerDaze();
 			};
 		}
@@ -223,11 +228,12 @@ public partial class SpinAttack : Node3D
 				if (player.isInDazedSequence)
 				{
 					isDazedTriggered = false;
+					//player.isAttacking = false;
 					player.OnDazedSequenceEnded();
 				}
 			}
 		};
-
+		
 		Reset();
 	}
 
@@ -292,6 +298,7 @@ public partial class SpinAttack : Node3D
 
 	private void Reset()
 	{
+		
 		isCharging = false;
 		spinCharges = 0;
 		hitEnemies.Clear();

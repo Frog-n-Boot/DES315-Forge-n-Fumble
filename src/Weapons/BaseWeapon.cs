@@ -77,6 +77,7 @@ public abstract partial class BaseWeapon : Node3D
 	{
 		if(weaponBody == null) return;
 
+		weaponBody.SetCollisionLayerValue(4, enabled);
 		if(enabled) {
 			weaponBody.AddToGroup("Weapon");
 		}
