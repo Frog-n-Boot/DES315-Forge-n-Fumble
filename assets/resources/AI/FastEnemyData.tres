@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://dcf1cm7d4p3cg" path="res://assets/Sounds/SFX/SkeletonDeathSound.wav" id="3_n0vnf"]
 [ext_resource type="ArrayMesh" uid="uid://d0x12qwju6kcs" path="res://assets/models/FinalAssets_Low/Character_Models/Skeleton_low.mesh" id="4_cbrvt"]
 [ext_resource type="Script" uid="uid://by87lhisv36nt" path="res://src/Enemy/AI/ChasePlayer.cs" id="5_6t4ss"]
-[ext_resource type="Skin" uid="uid://exj4s5efuua2" path="res://assets/models/FinalAssets_Low/Character_Models/Skeleton_low_skin.res" id="6_gli4c"]
+[ext_resource type="Skin" path="res://assets/models/FinalAssets_Low/Character_Models/Skeleton_low_skin.res" id="6_gli4c"]
 
 [sub_resource type="Resource" id="Resource_g6gon"]
 script = ExtResource("2_cbrvt")
