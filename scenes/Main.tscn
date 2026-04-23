@@ -1532,7 +1532,7 @@ metadata/_custom_type_script = "uid://bwa528ng6f33g"
 [node name="ScatterItem" type="Node3D" parent="Folliage/InvisWalls" unique_id=1139171413]
 script = ExtResource("63_fcv70")
 source_scale_multiplier = 0.1
-path = "uid://34piljirnp7k"
+path = "uid://cshd4prtkqa33"
 
 [node name="ScatterShape" type="Node3D" parent="Folliage/InvisWalls" unique_id=310578084]
 script = ExtResource("64_mou0d")
