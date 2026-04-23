@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://djipkildhb8qc"]
+[gd_scene format=3 uid="uid://bag1qnax1it55"]
 
 [ext_resource type="Script" uid="uid://bk2uam5leqcv8" path="res://src/Player/PlayerSpawner.cs" id="1_ci5ev"]
 [ext_resource type="Texture2D" uid="uid://1o5xtfd8hydv" path="res://assets/textures/tu 4.webp" id="1_q5ijt"]
@@ -308,7 +308,7 @@ the Forge alive by crafting
 weapons to defend off enemies"
 
 [node name="Label3D4" type="Label3D" parent="UI/Text" unique_id=1327194277]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -62.425232, 1.5332108, -4.3555565)
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -59.520813, 1.5332108, -4.3555565)
 text = "The Forge has a 
 limited amount of HP, 
 if it is destoryed you lose"
@@ -915,6 +915,9 @@ mesh = NodePath("Armature/Skeleton3D/MeshInstance3D")
 collisionArea = NodePath("Area3D")
 navigationAgent = NodePath("NavigationAgent3D")
 isStationary = true
+audioStream = NodePath("EnemyDeathSounds")
+animPlayer = NodePath("AnimationPlayer")
+audioPlayer = NodePath("EnemyDeathSounds")
 
 [node name="Armature" type="Node3D" parent="Objects/Enemies/Enemy" unique_id=543957702]
 
@@ -1065,6 +1068,9 @@ mesh = NodePath("Armature/Skeleton3D/MeshInstance3D")
 collisionArea = NodePath("Area3D")
 navigationAgent = NodePath("NavigationAgent3D")
 isStationary = true
+audioStream = NodePath("EnemyDeathSounds")
+animPlayer = NodePath("AnimationPlayer")
+audioPlayer = NodePath("EnemyDeathSounds")
 
 [node name="Armature" type="Node3D" parent="Objects/Enemies/Enemy2" unique_id=71627255]
 

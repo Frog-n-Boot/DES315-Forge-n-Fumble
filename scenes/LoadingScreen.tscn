@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ctuka4h5wmpob"]
 
 [ext_resource type="Script" uid="uid://cltijj7du0h0v" path="res://src/LoadingMenu.cs" id="1_jqyhx"]
+[ext_resource type="AudioStream" uid="uid://dw6sr2a1g6wm3" path="res://assets/Sounds/Music/Pillage LOOP.wav" id="2_ef7dr"]
 [ext_resource type="Texture2D" uid="uid://bi1h1rttgjwqr" path="res://assets/PNG/Loadingscreen_backround.webp" id="3_814mh"]
 [ext_resource type="Texture2D" uid="uid://cbx2c3ppbseci" path="res://assets/PNG/Loadingscreen_border.webp" id="4_3gg4b"]
 [ext_resource type="Texture2D" uid="uid://bgpx6e42afd1t" path="res://assets/textures/UI/healthbar_forge_back.webp" id="4_eljrs"]
@@ -20,6 +21,7 @@ region = Rect2(21, 519, 261, 39)
 script = ExtResource("1_jqyhx")
 scenePath = "res://scenes/Main.tscn"
 textureProgressBar = NodePath("Control/ForgeProgressBar")
+levelMusic = ExtResource("2_ef7dr")
 
 [node name="Control" type="Control" parent="Node3D" unique_id=323109060]
 layout_mode = 3
