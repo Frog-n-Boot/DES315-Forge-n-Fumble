@@ -16,6 +16,11 @@ public partial class MainMenu : Control
 	{
 		AudioManager.instance.PlayMusic(menuMusic);
 		startButton.GrabFocus();
+		startButton.Modulate = new Color(0.5f, 0.5f, 0.5f, 1);
+		tutorialButton.Modulate = new Color(0.5f, 0.5f, 0.5f, 1);
+		settingsButton.Modulate = new Color(0.5f, 0.5f, 0.5f, 1);
+		quitMenu.Modulate = new Color(0.5f, 0.5f, 0.5f, 1);
+		
 	}
 
 	public void OnStartButtonPressed(){
@@ -48,6 +53,38 @@ public partial class MainMenu : Control
 			SceneManager.instance.QuitGame();
 		};
 	} 
+	public void OnStartButtonMouseEntered()
+	{
+		startButton.Modulate = new Color(1, 1, 1, 1);
+	}
+	public void OnStartButtonMouseExited()
+	{
+		startButton.Modulate = new Color(0.5f, 0.5f, 0.5f, 1);
+	}
+	public void OnTutorialButtonMouseEntered()
+	{
+		tutorialButton.Modulate = new Color(1, 1, 1, 1);
+	}
+	public void OnTutorialButtonMouseExited()
+	{
+		tutorialButton.Modulate = new Color(0.5f, 0.5f, 0.5f, 1);
+	}
+	public void OnSettingsButtonMouseEntered()
+	{
+		settingsButton.Modulate = new Color(1, 1, 1, 1);
+	}
+	public void OnSettingsButtonMouseExited()
+	{
+		settingsButton.Modulate = new Color(0.5f, 0.5f, 0.5f, 1);
+	}
+	public void OnQuitButtonMouseEntered()
+	{
+		quitMenu.Modulate = new Color(1, 1, 1, 1);
+	}
+	public void OnQuitButtonMouseExited()
+	{
+		quitMenu.Modulate = new Color(0.5f, 0.5f, 0.5f, 1);
+	}
 
 
 }

@@ -7,6 +7,18 @@
 [ext_resource type="Texture2D" uid="uid://b32ma1du5ci52" path="res://assets/PNG/Title_screen_redone.webp" id="5_l72w3"]
 [ext_resource type="Texture2D" uid="uid://daxc30i1t26tu" path="res://assets/PNG/FORGENFUMBLESIGN.webp" id="6_826wr"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_826wr"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.15050223, 0.15050223, 0.15050223, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_826wr"]
 atlas = ExtResource("2_l72w3")
 region = Rect2(581, 500, 285, 91)
@@ -56,6 +68,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("2_826wr")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_826wr")
 text = "Start Game"
 icon = SubResource("AtlasTexture_826wr")
 flat = true
@@ -163,7 +176,25 @@ position = Vector2(213.84125, 119.247345)
 scale = Vector2(0.43540746, 0.43540746)
 texture = ExtResource("6_826wr")
 
+[connection signal="focus_entered" from="Control/StartButton" to="Control" method="OnStartButtonMouseEntered"]
+[connection signal="focus_exited" from="Control/StartButton" to="Control" method="OnStartButtonMouseExited"]
+[connection signal="mouse_entered" from="Control/StartButton" to="Control" method="OnStartButtonMouseEntered"]
+[connection signal="mouse_exited" from="Control/StartButton" to="Control" method="OnStartButtonMouseExited"]
 [connection signal="pressed" from="Control/StartButton" to="Control" method="OnStartButtonPressed"]
+[connection signal="focus_entered" from="Control/TutorialButton" to="Control" method="OnTutorialButtonMouseEntered"]
+[connection signal="focus_exited" from="Control/TutorialButton" to="Control" method="OnTutorialButtonMouseExited"]
+[connection signal="mouse_entered" from="Control/TutorialButton" to="Control" method="OnTutorialButtonMouseEntered"]
+[connection signal="mouse_entered" from="Control/TutorialButton" to="Control" method="OnTutorialMouseButtonEntered"]
+[connection signal="mouse_exited" from="Control/TutorialButton" to="Control" method="OnTutorialButtonMouseExited"]
+[connection signal="mouse_exited" from="Control/TutorialButton" to="Control" method="OnTutorialMouseButtonExited"]
 [connection signal="pressed" from="Control/TutorialButton" to="Control" method="OnTutorialButtonPressed"]
+[connection signal="focus_entered" from="Control/SettingsButton" to="Control" method="OnSettingsButtonMouseEntered"]
+[connection signal="focus_exited" from="Control/SettingsButton" to="Control" method="OnSettingsButtonMouseExited"]
+[connection signal="mouse_entered" from="Control/SettingsButton" to="Control" method="OnSettingsButtonMouseEntered"]
+[connection signal="mouse_exited" from="Control/SettingsButton" to="Control" method="OnSettingsButtonMouseExited"]
 [connection signal="pressed" from="Control/SettingsButton" to="Control" method="OnSettingsButtonPressed"]
+[connection signal="focus_entered" from="Control/QuitButton" to="Control" method="OnQuitButtonMouseEntered"]
+[connection signal="focus_exited" from="Control/QuitButton" to="Control" method="OnQuitButtonMouseExited"]
+[connection signal="mouse_entered" from="Control/QuitButton" to="Control" method="OnQuitButtonMouseEntered"]
+[connection signal="mouse_exited" from="Control/QuitButton" to="Control" method="OnQuitButtonMouseExited"]
 [connection signal="pressed" from="Control/QuitButton" to="Control" method="OnQuitButtonPressed"]

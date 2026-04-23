@@ -1155,10 +1155,10 @@ label_settings = SubResource("LabelSettings_a3hxr")
 
 [node name="Label2" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Controls" unique_id=1541259978]
 layout_mode = 0
-offset_left = 109.119125
-offset_top = 101.670586
-offset_right = 408.16003
-offset_bottom = 370.01547
+offset_left = 104.65583
+offset_top = 107.10562
+offset_right = 499.65582
+offset_bottom = 375.4505
 text = "Pick-Up/Interact                 
 Attack        
 Drop Left Item         
@@ -1169,15 +1169,15 @@ label_settings = SubResource("LabelSettings_gcaob")
 
 [node name="Label2" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Controls/Label2" unique_id=1020925003]
 layout_mode = 0
-offset_left = 299.93356
-offset_top = -3.6233673
-offset_right = 598.9745
-offset_bottom = 264.7215
-text = "Right Click
+offset_left = 282.97302
+offset_top = 8.1525345
+offset_right = 582.0139
+offset_bottom = 276.49738
+text = "E
 Left Click
 Q
-E
-☰
+Hold Q
+Escape
 Arrow Keys"
 label_settings = SubResource("LabelSettings_gcaob")
 
