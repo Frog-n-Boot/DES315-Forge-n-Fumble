@@ -22,7 +22,7 @@ public partial class AudioManager : Node
 		if (!musicPlayer.Playing)
 		{
 			musicPlayer.Stream = stream;
-			musicPlayer.VolumeDb = -40f;
+			musicPlayer.VolumeDb = -70f;
 			musicPlayer.Play();
 			return;
 		}
@@ -38,7 +38,7 @@ public partial class AudioManager : Node
 			musicPlayer.Play();
 		}));
 
-		tween.TweenProperty(musicPlayer, "volume_db", -30, fadeInDuration);
+		tween.TweenProperty(musicPlayer, "volume_db", -70, fadeInDuration);
 	}
 
 	public void StopMusic(float fadeOutDuration = 1.5f)

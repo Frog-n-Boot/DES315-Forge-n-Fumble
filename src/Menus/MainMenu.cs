@@ -9,13 +9,14 @@ public partial class MainMenu : Control
 	[Export] Button quitMenu;
 	[Export] private AudioStreamPlayer2D audio;
 	[Export] private AudioStream menuMusic;
-	[Export] private AudioStream levelMusic;
+	[Export] private AudioStream tutorialMusic;
 	
 
 	public override void _Ready()
 	{
-		//AudioManager.instance.PlayMusic(menuMusic);//
+		AudioManager.instance.PlayMusic(menuMusic);
 		startButton.GrabFocus();
+		
 		startButton.Modulate = new Color(0.5f, 0.5f, 0.5f, 1);
 		tutorialButton.Modulate = new Color(0.5f, 0.5f, 0.5f, 1);
 		settingsButton.Modulate = new Color(0.5f, 0.5f, 0.5f, 1);
@@ -27,7 +28,7 @@ public partial class MainMenu : Control
 		audio.Play();
 		GetTree().CreateTimer(0.3f).Timeout += () =>
 		{
-			AudioManager.instance.PlayMusic(levelMusic);
+			//AudioManager.instance.PlayMusic(levelMusic);
 			SceneManager.instance.LoadGame(); 
 		};
 	}
@@ -35,6 +36,7 @@ public partial class MainMenu : Control
 		audio.Play();
 		GetTree().CreateTimer(0.3f).Timeout += () =>
 		{
+			AudioManager.instance.PlayMusic(tutorialMusic);
 			SceneManager.instance.LoadTutorial(); 
 		};
 	}

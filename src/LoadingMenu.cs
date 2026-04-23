@@ -6,6 +6,7 @@ public partial class LoadingMenu : Node2D
 {
 	[Export] private string scenePath;
 	[Export] private TextureProgressBar textureProgressBar;
+	[Export] private AudioStream levelMusic;
 	//[Export] private PackedScene levelScene;
 	private bool transfitioning = false;
 	private bool sceneLoading =false;
@@ -30,6 +31,7 @@ public partial class LoadingMenu : Node2D
 	 		
 			if(status == ResourceLoader.ThreadLoadStatus.Loaded && !transfitioning)
 			{	
+				AudioManager.instance.PlayMusic(levelMusic);
 				transfitioning = true;
 				//await ToSignal(GetTree().CreateTimer(3.0f), "timeout");
 				var loadedScene = (PackedScene)ResourceLoader.LoadThreadedGet(scenePath);
