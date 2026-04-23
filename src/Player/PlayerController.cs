@@ -489,7 +489,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		if (isDazed)
 		{
 			Velocity = Vector3.Zero;
-			isAttacking = true;
+			//isAttacking = true;
 			return;
 		}
 
@@ -684,7 +684,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		if (name == ANIM_SWING || name.Contains("Swing"))
 		{
 			isAttacking = false;
-			currentWeapon.SetEnemyCollisionEnabled(false);
+			currentWeapon?.SetEnemyCollisionEnabled(false);
 			UpdateLocomotionAnim();
 		}
 
@@ -853,11 +853,9 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 	private Vector3 GetLookVector()
 	{
-		if(animPlayer.CurrentAnimation == "spinAnim" && animPlayer.IsPlaying())
-		{
-			GD.Print("Spin Attack Initialized");
+		string cur = animPlayer.CurrentAnimation;
+		if((cur == ANIM_SPIN || cur == ANIM_START_SPIN) && animPlayer.IsPlaying())
 			return currentLookTarget;
-		}
 			
 
 		if (currentDevice == -2)
@@ -1170,6 +1168,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	{
 		isInDazedSequence = false;
 		isAttacking = false;
+		currentWeapon?.SetEnemyCollisionEnabled(false);
 		UpdateLocomotionAnim();
 	}
 

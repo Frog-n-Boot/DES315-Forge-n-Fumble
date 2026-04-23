@@ -110,7 +110,7 @@ stream_0/stream = ExtResource("15_gp7mg")
 
 [node name="Player" type="CharacterBody3D" unique_id=489937195 node_paths=PackedStringArray("animPlayer", "weaponAudio", "damagedAudio", "deathAudio", "rightHand", "leftHand", "areaPickup", "meshInstance") groups=["Player"]]
 collision_layer = 2
-collision_mask = 53
+collision_mask = 309
 velocity = Vector3(0, -228.01021, 0)
 script = ExtResource("1_ormyk")
 speed = 10.0
@@ -246,7 +246,7 @@ debug_color = Color(0, 0.6, 0.7, 0.42)
 [node name="Area3D" type="Area3D" parent="." unique_id=1712685090]
 visible = false
 collision_layer = 2
-collision_mask = 53
+collision_mask = 309
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=48449025]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.026974827, 0.8700485, -0.0689888)

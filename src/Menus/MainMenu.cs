@@ -17,7 +17,7 @@ public partial class MainMenu : Control
 		AudioManager.instance.PlayMusic(menuMusic);
 		startButton.GrabFocus();
 		
-		startButton.Modulate = new Color(0.5f, 0.5f, 0.5f, 1);
+		startButton.Modulate = new Color(1f, 1f, 1f, 1);
 		tutorialButton.Modulate = new Color(0.5f, 0.5f, 0.5f, 1);
 		settingsButton.Modulate = new Color(0.5f, 0.5f, 0.5f, 1);
 		quitMenu.Modulate = new Color(0.5f, 0.5f, 0.5f, 1);

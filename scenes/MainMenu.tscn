@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="2_l72w3"]
 [ext_resource type="AudioStream" uid="uid://y1tctqggt7p7" path="res://assets/Sounds/Music/A Bard's Tale LOOP.wav" id="3_8a8k8"]
 [ext_resource type="AudioStream" uid="uid://i4t1sy6mjdaa" path="res://assets/Sounds/Music/Townsfolk LOOP.wav" id="3_ow34m"]
-[ext_resource type="AudioStream" uid="uid://dw6sr2a1g6wm3" path="res://assets/Sounds/Music/Pillage LOOP.wav" id="3_ucygd"]
 [ext_resource type="Texture2D" uid="uid://b32ma1du5ci52" path="res://assets/PNG/Title_screen_redone.webp" id="5_l72w3"]
 [ext_resource type="Texture2D" uid="uid://daxc30i1t26tu" path="res://assets/PNG/FORGENFUMBLESIGN.webp" id="6_826wr"]
 
@@ -59,7 +58,6 @@ quitMenu = NodePath("QuitButton")
 audio = NodePath("AudioStreamPlayer2D")
 menuMusic = ExtResource("3_ow34m")
 tutorialMusic = ExtResource("3_8a8k8")
-levelMusic = ExtResource("3_ucygd")
 
 [node name="StartButton" type="Button" parent="Control" unique_id=1277000304]
 z_index = 1

@@ -375,7 +375,7 @@ Hold B/Q to drop your weapon"
 font_size = 20
 
 [node name="Label3D7" type="Label3D" parent="UI/Text" unique_id=275099191]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -64.81858, 2.1534605, 24.51603)
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -64.81858, 2.1534605, 19.433678)
 outline_render_priority = -2
 text = "Place 3 Copper Ingot to continue"
 
@@ -1473,7 +1473,7 @@ mesh = SubResource("PlaneMesh_oyacv")
 skeleton = NodePath("../../CollisionShape3D")
 
 [node name="ItemDropOffNode" type="Node3D" parent="LevelObjects" unique_id=1176537791]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.77405, 0, 27.257357)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.77405, 0, 25.577765)
 
 [node name="Area3D" type="Area3D" parent="LevelObjects/ItemDropOffNode" unique_id=2007190283]
 collision_mask = 16
@@ -1490,7 +1490,7 @@ transparency = 0.15
 mesh = SubResource("BoxMesh_y74ua")
 
 [node name="WeaponDropOffNode" type="Node3D" parent="LevelObjects" unique_id=476378771]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.34308, -0.071158886, 27.199833)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.34308, -0.071158886, 25.52024)
 
 [node name="Area3D" type="Area3D" parent="LevelObjects/WeaponDropOffNode" unique_id=721241301]
 collision_mask = 24
