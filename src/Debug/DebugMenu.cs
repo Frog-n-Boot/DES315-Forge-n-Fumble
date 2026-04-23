@@ -37,10 +37,6 @@ public partial class DebugMenu : CanvasLayer
 	[ExportGroup("Weapon Attributes")]
 	[Export] private SpinBox weaponDurability;
 	[Export] private SpinBox weaponDamage;
-	[Export] private SpinBox ballistaRange;
-	[Export] private SpinBox ballistaConeAngle;
-	[Export] private SpinBox arrowDamage;
-	[Export] private SpinBox arrowSpeed;
 
 	[ExportGroup("Station Attributes")]
 	[Export] private SpinBox forgeHealth;
@@ -157,6 +153,7 @@ public partial class DebugMenu : CanvasLayer
 	#region "On Player Spawned"
 	private void OnPlayerSpawned(PlayerController player, int playerIndex)
 	{
+		GD.Print("Player spawned in onplayer spawned");
 		playerController = player;
 
 		if (!playerSettingsInitialized)
@@ -217,11 +214,11 @@ public partial class DebugMenu : CanvasLayer
 		foreach(Node p in GetTree().GetNodesInGroup("Player"))
 		{
 			var player = p as PlayerController;
-			if(player == null) continue;
+			if(player == null) GD.Print("Player is null in debug menu");
 			playerMaxHealth.Value = player.maxHealth;
 			playerSpeed.Value= player.speed;
 			playerSpawnTimer.Value = player.playerSpawnTimer;
-			
+
 			var playerSword = player.currentWeapon;
 			var sword = playerSword as Sword;
 
@@ -231,7 +228,7 @@ public partial class DebugMenu : CanvasLayer
 
 		forgeHealth.Value = forge.maxHealth;
 		forgeSmeltTimer.Value = forgeScript.GetCraftDuration();
-		grindstoneSmeltTimer.Value = grindstoneScript.GetCraftDuration();
+		//grindstoneSmeltTimer.Value = grindstoneScript.GetCraftDuration();
 
 		oreDropChance.Value = lootTable.copperDropChance;
 		healthPackDropChance.Value = lootTable.healthPackDropChance;
@@ -240,13 +237,7 @@ public partial class DebugMenu : CanvasLayer
 		{
 			//ballistaRange.Value = ballista.range;
 			//ballistaConeAngle.Value = ballista.coneAngle;
-		}
-		
-		if(arrow != null)
-		{
-			arrowDamage.Value = arrow.damage;
-			arrowSpeed.Value = arrow.speed;
-		}		
+		}	
 	}
 	#endregion
 
@@ -273,26 +264,26 @@ public partial class DebugMenu : CanvasLayer
 	#region "Camera Settings"
 	private void SetCameraSettings()
     {
-        smoothSpeed.Value = cameraController.smoothSpeed;
-		smoothSpeed.ValueChanged += v => cameraController.smoothSpeed = (int)v;
+        // smoothSpeed.Value = cameraController.smoothSpeed;
+		// smoothSpeed.ValueChanged += v => cameraController.smoothSpeed = (int)v;
 
-		outerBoundsX.Value = cameraController.outerBounds.X;
-		outerBoundsX.ValueChanged += v => cameraController.outerBounds.X = (int)v;	
+		// outerBoundsX.Value = cameraController.outerBounds.X;
+		// outerBoundsX.ValueChanged += v => cameraController.outerBounds.X = (int)v;	
 
-		outerBoundsY.Value = cameraController.outerBounds.Y;
-		outerBoundsY.ValueChanged += v => cameraController.outerBounds.Y = (int)v;
+		// outerBoundsY.Value = cameraController.outerBounds.Y;
+		// outerBoundsY.ValueChanged += v => cameraController.outerBounds.Y = (int)v;
 
-		innerBoundsX.Value = cameraController.innerBounds.X;
-		innerBoundsX.ValueChanged += v => cameraController.innerBounds.X = (int)v;
+		// innerBoundsX.Value = cameraController.innerBounds.X;
+		// innerBoundsX.ValueChanged += v => cameraController.innerBounds.X = (int)v;
 
-		innerBoundsY.Value = cameraController.innerBounds.Y;
-		innerBoundsY.ValueChanged += v => cameraController.innerBounds.Y = (int)v;
+		// innerBoundsY.Value = cameraController.innerBounds.Y;
+		// innerBoundsY.ValueChanged += v => cameraController.innerBounds.Y = (int)v;
 
-		minSize.Value = cameraController.minSize;
-		minSize.ValueChanged += v => cameraController.minSize = (int)v;
+		// minSize.Value = cameraController.minSize;
+		// minSize.ValueChanged += v => cameraController.minSize = (int)v;
 
-		maxSize.Value = cameraController.maxSize;
-		maxSize.ValueChanged += v => cameraController.maxSize = (int)v;
+		// maxSize.Value = cameraController.maxSize;
+		// maxSize.ValueChanged += v => cameraController.maxSize = (int)v;
 		
     }
 	#endregion
@@ -303,11 +294,14 @@ public partial class DebugMenu : CanvasLayer
 		playerMaxHealth.Value = playerController.maxHealth;
 		playerMaxHealth.ValueChanged += v =>
 		{
+			GD.Print("Player spawned in SetupPlayerSettings");
 			foreach(Node p in GetTree().GetNodesInGroup("Player"))
 			{
+				GD.Print("Players Found");
 				var player = p as PlayerController;
 				if(player != null)
 				{
+					GD.Print("Players are not null");
 					player.maxHealth = (int)v;
 					player.health = player.maxHealth;
 				}
@@ -343,7 +337,7 @@ public partial class DebugMenu : CanvasLayer
 	{
 		weaponDamage.ValueChanged += v =>
 		{
-			foreach(Node s in GetTree().GetNodesInGroup("Sword"))
+			foreach(Node s in GetTree().GetNodesInGroup("Weapon"))
 			{
 				var sword = s as Sword;
 				if(sword != null) sword.damage = (int)v;
@@ -352,7 +346,7 @@ public partial class DebugMenu : CanvasLayer
 
 		weaponDurability.ValueChanged += v =>
 		{
-			foreach(Node s in GetTree().GetNodesInGroup("Sword"))
+			foreach(Node s in GetTree().GetNodesInGroup("Weapon"))
 			{
 				var sword = s as Sword;
 				if(sword != null) sword.durability = (int)v;

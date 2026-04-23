@@ -8,7 +8,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ni7xv"]
 albedo_texture = ExtResource("4_6623a")
 
-[node name="FolTreetrunkLow" type="Node3D" unique_id=1016778218]
+[node name="FolTreetrunkLow" type="Node3D" unique_id=1016778218 groups=["navigation_mesh_source_group"]]
 
 [node name="FolTreetrunkLow" type="MeshInstance3D" parent="." unique_id=1214845701]
 mesh = ExtResource("1_igxuc")
@@ -21,3 +21,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ni7xv")
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=309705165]
 height = 5.64
 vertices = PackedVector3Array(-0.25618654, 0, -0.4541747, 0.19810963, 0, -0.5230892, 0.5181703, 0, -0.22642268, 0.50905985, 0, 0.26552162, 0.06266588, 0, 0.41128317, -0.39283806, 0, 0.22908133)
+
+[node name="NavigationObstacle3D2" type="NavigationObstacle3D" parent="." unique_id=1962787605]
+height = 2.33
+vertices = PackedVector3Array(-0.39555103, 0, -0.412357, 0.33844817, 0, -0.9525442, 0.55066323, 0, -0.636588, 0.46219873, 0, 0.06587595, 0.7389239, 0, 0.94616866, 0.05703777, 0, 0.57161295, -0.3214473, 0, 0.31209123, -0.7868089, 0, -0.04776895)
+affect_navigation_mesh = true

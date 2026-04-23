@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bhjxja66s4xyo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aeeye"]
+size = Vector3(1, 2.9638672, 61.01996)
+
+[node name="Bounds" type="StaticBody3D" unique_id=2005198505]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=707335677]
+shape = SubResource("BoxShape3D_aeeye")
+debug_color = Color(0.843977, 0.20483953, 0.9328845, 0.41960785)

@@ -15,10 +15,10 @@ atlas = ExtResource("2_c2h1v")
 region = Rect2(557, 29, 62, 192)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xv1ii"]
-size = Vector3(5.340587, 1.6914063, 8.853933)
+size = Vector3(0.6725491, 3.697998, 0.7203803)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kpo4t"]
-size = Vector3(1.742096, 1.691742, 4.7293167)
+size = Vector3(3.1635513, 4.408758, 3.025044)
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_hbd7i"]
 albedo_texture = ExtResource("2_w7hbi")
@@ -48,7 +48,7 @@ collision_layer = 8
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=481175609 groups=["Sword", "Weapon"]]
-transform = Transform3D(0.20340535, 7.280779e-16, 0, -9.030358e-17, 1.6399672, 0, 0, 0, 0.09999808, 0.004674003, 1.1159198, -0.022993883)
+transform = Transform3D(1, 0, 0, 0, 0.9999683, 0, 0, 0, 0.9999683, 0, 2, 0)
 shape = SubResource("BoxShape3D_xv1ii")
 disabled = true
 
@@ -57,7 +57,7 @@ collision_layer = 24
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/Area3D" unique_id=1446767842]
-transform = Transform3D(0.62693906, 0, 0, 0, 1.6399509, 0, 0, 0, 0.18563555, 0.004778548, 1.1241063, -0.01556235)
+transform = Transform3D(1, 0, 0, 0, 0.99998736, 0, 0, 0, 0.99998736, 0, 0.99998736, 0)
 shape = SubResource("BoxShape3D_kpo4t")
 
 [node name="SwordFirstLow" type="MeshInstance3D" parent="." unique_id=31124853]
@@ -74,6 +74,7 @@ bus = &"SFX"
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=389676655]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0038314, 0)
+billboard = 1
 texture = SubResource("ViewportTexture_w7hbi")
 
 [node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=1679428274]

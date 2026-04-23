@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bex2iafxdk06p"]
+
+[ext_resource type="PackedScene" uid="uid://cfq0pk2wrp2dt" path="res://assets/animations/enemy/rig/SkeletonRig.blend" id="1_88mxb"]
+[ext_resource type="ArrayMesh" uid="uid://d0x12qwju6kcs" path="res://assets/models/FinalAssets_Low/Character_Models/Skeleton_low.mesh" id="2_ntryc"]
+[ext_resource type="Material" uid="uid://btwle4bal72vo" path="res://assets/materials/Texture_sets/Character_Textures/Skeleton Textures/skeleton_material.tres" id="3_eritx"]
+
+[node name="SkeletonRig" unique_id=1020403375 instance=ExtResource("1_88mxb")]
+
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(2134745466) index="0" unique_id=311609247]
+bones/0/position = Vector3(-8.3824153e-10, 0.120304264, -0.0037390655)
+bones/0/rotation = Quaternion(-0.002713053, 1.19208835e-07, -3.2341615e-10, 0.9999963)
+bones/1/rotation = Quaternion(0.050025176, 0.015056766, -0.0033324494, 0.998629)
+bones/2/position = Vector3(0.5946611, 0.53411895, -0.15660548)
+bones/2/rotation = Quaternion(-0.06151531, -0.20193365, 0.95867044, -0.19076124)
+bones/3/position = Vector3(0.31017172, -0.06608822, 0.2831609)
+bones/3/rotation = Quaternion(0.9756331, 0.02405567, 0.14123228, 0.16617705)
+bones/5/rotation = Quaternion(-0.004340858, -0.0016717623, 0.016006112, 0.9998612)
+bones/6/position = Vector3(-0.55890745, 0.5453718, 0.24322127)
+bones/6/rotation = Quaternion(-0.034986973, 0.22951871, 0.93487906, 0.26851112)
+bones/7/position = Vector3(-0.31017184, -0.010251164, -0.35989612)
+bones/7/rotation = Quaternion(0.9703007, 0.029437883, -0.15795787, -0.1808301)
+bones/8/rotation = Quaternion(-0.6950197, 0.1301821, 0.13018267, 0.6950199)
+bones/9/rotation = Quaternion(-0.12658453, 0.0055198213, -0.016064823, 0.9918104)
+
+[node name="Skeleton_low" parent="Armature/Skeleton3D" index="0" unique_id=87373153]
+mesh = ExtResource("2_ntryc")
+surface_material_override/0 = ExtResource("3_eritx")

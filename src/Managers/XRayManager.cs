@@ -9,7 +9,7 @@ public partial class XRayManager : Node
     private const int maxPlayers = 4;
     private readonly List<Node3D>_players = new();
     private readonly List<MeshInstance3D> walls = new();
-    private static readonly string ShaderPath ="res://src//Shaders/xray.gdshader";
+    private static readonly string ShaderPath ="res://src/Shaders/Xray.gdshader";
     private Shader _xrayShader;
 	private bool wallsCollected = false;
 	public static XRayManager Instance {get; private set;}
@@ -39,10 +39,12 @@ public partial class XRayManager : Node
 
 	private void OnTreeChange()
 	{
-		if(!wallsCollected || walls.Count == 0)
-		{
-			CallDeferred(MethodName.CollectWalls);
-		}
+		int currentWallCount = GetTree().GetNodesInGroup("xray").Count;
+    
+        // Only re-collect if wall count has changed
+        if (currentWallCount != walls.Count){
+            CallDeferred(MethodName.CollectWalls);
+        }
 	}
 
     public void RegisterPlayer(Node3D player)
@@ -67,7 +69,6 @@ public partial class XRayManager : Node
     private void CollectWalls()
     {
         walls.Clear();
-    	wallsCollected = true;
 
     	var wallNodes = GetTree().GetNodesInGroup("xray");
     	//GD.Print($"[XRayManager] Collecting walls — found {wallNodes.Count} nodes in group 'xray'");

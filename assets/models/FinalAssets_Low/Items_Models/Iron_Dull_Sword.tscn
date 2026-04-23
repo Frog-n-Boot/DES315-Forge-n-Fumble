@@ -78,6 +78,7 @@ bus = &"SFX"
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=889598787]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4590406, 0)
+billboard = 1
 texture = SubResource("ViewportTexture_v6vne")
 
 [node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=289028794]

@@ -189,11 +189,14 @@ public partial class Ballista : Node3D
 			GD.Print($"Checking item: {item.name}");
 			if(item.name == "Iron_Ingot")
 			{
-				GD.Print("Ingot was added");
-				arrowCount += 10;
-				label.Text = $"{arrowCount}";
-				shootTimer.Start();
-				itemCarrier.RemoveItem(item);
+				if (Input.IsActionPressed("interact"))
+				{
+					GD.Print("Ingot was added");
+					arrowCount += 10;
+					label.Text = $"{arrowCount}";
+					shootTimer.Start();
+					itemCarrier.RemoveItem(item);
+				}	
 			}
 		}
 	}

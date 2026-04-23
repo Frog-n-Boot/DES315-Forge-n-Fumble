@@ -24,6 +24,7 @@ public partial class GrindstoneStation : BaseStationScript
 
 	}
 
+	
 	protected override string GetStationName() => "Grindstone";
 
 	public bool DepositSword(Sword sword)
@@ -94,29 +95,6 @@ public partial class GrindstoneStation : BaseStationScript
 
 		
 		pendingRecipe = null;
-	}
-
-	protected override void OnInputBodyEntered(Node3D body)
-	{
-		if (body.IsInGroup("Player"))
-		{
-			buttonTexture.Visible = true;
-			var p= body as PlayerController;
-			itemCarrier = p as ItemCarrier;
-			player = p;
-			playersInZone.Add(p);
-			p.SetCurrentStation(this);
-		}
-	}
-
-	protected override void OnInputBodyExited(Node3D body)
-	{
-		if(body.IsInGroup("Player")){
-			buttonTexture.Visible = false;
-			var p = body as PlayerController;
-			playersInZone.Remove(p);
-			p?.SetCurrentStation(null);
-		}
 	}
 
 	public float GetCraftDuration()=> craftDuration;

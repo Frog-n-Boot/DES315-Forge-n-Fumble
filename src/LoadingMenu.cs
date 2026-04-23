@@ -1,40 +1,41 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
-public partial class LoadingMenu : Node3D
+public partial class LoadingMenu : Node2D
 {
 	[Export] private string scenePath;
-	[Export] private ProgressBar progressBar;
-	[Export] private PackedScene levelScene;
-	
+	[Export] private TextureProgressBar textureProgressBar;
+	//[Export] private PackedScene levelScene;
+	private bool transfitioning = false;
 	private bool sceneLoading =false;
 	// Called when the node enters the scene tree for the first time.
 
 	public override void _Ready()
-    {	
+	{	
 		ResourceLoader.LoadThreadedRequest(scenePath);
 		sceneLoading = true;
-    }
+	}
 
 	public override void _Process(double delta)
-    {
-        if (sceneLoading)
-        {
-			Godot.Collections.Array progress = [];
+	{
+		if (sceneLoading)
+		{
+			Godot.Collections.Array progress = new Godot.Collections.Array();
 
 			
             var status = ResourceLoader.LoadThreadedGetStatus(scenePath, progress);
-       		progressBar.Value = (float)progress[0] * 100;
+       		textureProgressBar.Value = (float)progress[0] * 100;
 
-     		
-			if(status == ResourceLoader.ThreadLoadStatus.Loaded)
-            {		
-				GetTree().ChangeSceneToPacked(levelScene);
+	 		
+			if(status == ResourceLoader.ThreadLoadStatus.Loaded && !transfitioning)
+			{	
+				transfitioning = true;
+				//await ToSignal(GetTree().CreateTimer(3.0f), "timeout");
+				var loadedScene = (PackedScene)ResourceLoader.LoadThreadedGet(scenePath);
+				GetTree().ChangeSceneToPacked(loadedScene);
 				sceneLoading = false;
-            }
-        }
-        
-       
-       
-    }
+			}
+		}   
+	}
 }

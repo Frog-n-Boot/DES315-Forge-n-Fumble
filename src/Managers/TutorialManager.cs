@@ -7,6 +7,8 @@ public partial class TutorialManager : Node
 	//[Export] EnemyController enemy;
 	[ExportCategory("General")]
 	[Export] private Marker3D[] roomSpawnPoints;
+	[Export] private Marker3D[] cameraAnchorPoints;
+	[Export] private CameraController cameraController; 
 	[Export] private PauseMenu pauseMenu;
 	[Export] private ProgressBar skipTutorialProgressBar;
 
@@ -27,7 +29,7 @@ public partial class TutorialManager : Node
 
 	[Signal] public delegate void TutorialCompletedEventHandler();
 	
-	private int currentRoom = 0;
+	public int currentRoom {get; private set;}= 0;
 	private int ingotsCrafted = 0;
 	private int swordsCrafted = 0;
 	private bool room3Completed = false;
@@ -241,12 +243,19 @@ public partial class TutorialManager : Node
 	private void TeleportPlayers()
 	{
 		int markerIndex = currentRoom - 1;
-		if(markerIndex <0 || markerIndex >= roomSpawnPoints.Length) return;
+		if (markerIndex < 0 || markerIndex >= roomSpawnPoints.Length) return;
 
-		foreach(Node n in GetTree().GetNodesInGroup("Player"))
+		foreach (Node n in GetTree().GetNodesInGroup("Player"))
 		{
-			if(n is PlayerController player)
+			if (n is PlayerController player)
 				player.GlobalPosition = roomSpawnPoints[markerIndex].GlobalPosition;
+		}
+
+		if (cameraController != null && cameraAnchorPoints != null && markerIndex < cameraAnchorPoints.Length)
+		{
+			Vector3 anchorPos = cameraAnchorPoints[markerIndex].GlobalPosition;
+			cameraController.cameraAnchor.GlobalPosition = anchorPos;
+			cameraController.GlobalPosition = new Vector3(anchorPos.X, cameraController.GlobalPosition.Y, anchorPos.Z + cameraController.cameraZOffset);
 		}
 	}
 

@@ -114,10 +114,13 @@ offset_top = 102.0
 offset_right = 1150.0
 offset_bottom = 169.0
 mouse_filter = 0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("4_j1j16")
+theme_override_font_sizes/font_size = 30
 current_tab = 0
 
 [node name="Sound" type="Control" parent="CanvasLayer/Panel/TabContainer" unique_id=1674981246]
-visible = false
 layout_mode = 2
 focus_neighbor_right = NodePath("../Display")
 metadata/_tab_index = 0
@@ -383,6 +386,7 @@ text = "
 metadata/_edit_use_anchors_ = true
 
 [node name="Controls" type="Control" parent="CanvasLayer/Panel/TabContainer" unique_id=2116679023]
+visible = false
 layout_mode = 2
 focus_neighbor_left = NodePath("../Display")
 focus_neighbor_bottom = NodePath("../../ApplyButton")
@@ -398,6 +402,9 @@ scale = Vector2(0.93444926, 0.8426638)
 focus_neighbor_right = NodePath("../ApplyButton")
 focus_next = NodePath("../SettingsButton")
 focus_previous = NodePath("../QuitButton")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("4_j1j16")
 theme_override_font_sizes/font_size = 40
 text = "Back"
 icon = SubResource("AtlasTexture_46duy")
@@ -415,6 +422,9 @@ scale = Vector2(0.93444926, 0.8426638)
 focus_neighbor_left = NodePath("../BackButton")
 focus_next = NodePath("../SettingsButton")
 focus_previous = NodePath("../QuitButton")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("4_j1j16")
 theme_override_font_sizes/font_size = 40
 text = "Apply"
 icon = SubResource("AtlasTexture_46duy")
