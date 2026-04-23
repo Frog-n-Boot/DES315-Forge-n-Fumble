@@ -253,19 +253,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.294556, 0, 0)
 [node name="TP3" type="Marker3D" parent="PlayerSpawner/TP" unique_id=2007690728]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.32535, 0, 0)
 
-[node name="TutorialManager" type="Node" parent="." unique_id=639408089 node_paths=PackedStringArray("roomSpawnPoints", "pauseMenu", "skipTutorialProgressBar", "smeltingStation", "itemDropOffBox", "grindstoneStation", "forgingStation", "weaponDropOffBox", "room3Enemy", "room4Enemy")]
-script = ExtResource("27_bi4s5")
-roomSpawnPoints = [NodePath("../PlayerSpawner/TP/TP1"), NodePath("../PlayerSpawner/TP/TP2"), NodePath("../PlayerSpawner/TP/TP3")]
-pauseMenu = NodePath("../UI/PauseMenu")
-skipTutorialProgressBar = NodePath("../UI/ProgressBar")
-smeltingStation = NodePath("../Objects/Stations/Forge")
-itemDropOffBox = NodePath("../LevelObjects/ItemDropOffNode")
-grindstoneStation = NodePath("../Objects/Stations/Grindstone")
-forgingStation = NodePath("../Objects/Stations/Anvil")
-weaponDropOffBox = NodePath("../LevelObjects/WeaponDropOffNode")
-room3Enemy = NodePath("../Objects/Enemies/Enemy")
-room4Enemy = NodePath("../Objects/Enemies/Enemy2")
-
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=424752858]
 transform = Transform3D(0.6920928, 0.008213635, 0.7217619, -0.72180855, 0.007875493, 0.69204795, -5.793235e-10, -0.99993527, 0.011379243, -6.0784225, 19.63105, 0)
 light_color = Color(0.47735137, 0.4088744, 0.36183918, 1)
@@ -299,7 +286,7 @@ text = "Pick up ORE with X/E"
 font_size = 20
 
 [node name="Label3D15" type="Label3D" parent="UI/Text" unique_id=1274583701]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -49.540195, 1.5332108, 16.56374)
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -51.596615, 1.5332108, 16.56374)
 modulate = Color(1, 0.90000004, 0, 1)
 text = "Drop item with B/Q
 Hold B/Q to drop Weapon"
@@ -313,7 +300,7 @@ Workstations with X/E"
 font_size = 20
 
 [node name="Label3D3" type="Label3D" parent="UI/Text" unique_id=2123131909]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -52.05862, 1.5332108, -23.642618)
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -53.448795, 1.5332108, -18.929113)
 text = "Your objective is to keep 
 the Forge alive by crafting 
 weapons to defend off enemies"
@@ -412,7 +399,7 @@ resumeButton = NodePath("ResumeButton")
 settingsButton = NodePath("SettingsButton")
 mainMenuButton = NodePath("QuitButton")
 settingsMenu = NodePath("../SettingsMenu")
-tutorialManager = NodePath("../../TutorialManager")
+tutorialManager = NodePath("../TutorialManager")
 
 [node name="ResumeButton" type="Button" parent="UI/PauseMenu" unique_id=471299529]
 offset_left = 71.00002
@@ -529,6 +516,21 @@ offset_bottom = 40.0
 scale = Vector2(31.982666, 18.150393)
 mouse_filter = 2
 color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
+
+[node name="TutorialManager" type="Node" parent="UI" unique_id=639408089 node_paths=PackedStringArray("roomSpawnPoints", "cameraAnchorPoints", "cameraController", "pauseMenu", "skipTutorialProgressBar", "smeltingStation", "itemDropOffBox", "grindstoneStation", "forgingStation", "weaponDropOffBox", "room3Enemy", "room4Enemy")]
+script = ExtResource("27_bi4s5")
+roomSpawnPoints = [NodePath("../../PlayerTP/TP1"), NodePath("../../PlayerTP/TP2"), NodePath("../../PlayerTP/TP3")]
+cameraAnchorPoints = [NodePath("../../Camera/CameraAnchorTP"), NodePath("../../Camera/CameraAnchorTP2"), NodePath("../../Camera/CameraAnchorTP3")]
+cameraController = NodePath("../../Camera3D")
+pauseMenu = NodePath("../PauseMenu")
+skipTutorialProgressBar = NodePath("../ProgressBar")
+smeltingStation = NodePath("../../Objects/Stations/Forge")
+itemDropOffBox = NodePath("../../LevelObjects/ItemDropOffNode")
+grindstoneStation = NodePath("../../Objects/Stations/Grindstone")
+forgingStation = NodePath("../../Objects/Stations/Anvil")
+weaponDropOffBox = NodePath("../../LevelObjects/WeaponDropOffNode")
+room3Enemy = NodePath("../../Objects/Enemies/Enemy")
+room4Enemy = NodePath("../../Objects/Enemies/Enemy2")
 
 [node name="SettingsMenu" type="CanvasLayer" parent="UI" unique_id=1102677554 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton", "audio", "pauseMenu")]
 process_mode = 3
@@ -1493,7 +1495,7 @@ mesh = SubResource("BoxMesh_y74ua")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83, 0, 0)
 
 [node name="CollisionShape3D0" type="CollisionShape3D" parent="LevelObjects/InvisWalls/Bounds" unique_id=707335677]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9819336, 0.19387817)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4510803, 0.9819336, 0.19387817)
 shape = SubResource("BoxShape3D_aeeye")
 debug_color = Color(0.843977, 0.20483953, 0.9328845, 0.41960785)
 
@@ -1512,6 +1514,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.20808, 0, 0)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="LevelObjects/InvisWalls/Bounds3" unique_id=725792780]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.72533417, 0, 0)
 shape = SubResource("BoxShape3D_aeeye")
 debug_color = Color(0.843977, 0.20483953, 0.9328845, 0.41960785)
 
@@ -1535,7 +1538,7 @@ debug_color = Color(0.47331077, 0.99999994, 0.46544307, 0.41960785)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30.324797)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D2" unique_id=95226766]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.69111633, 1.5314941, -0.2793579)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.69111633, 1.5314941, -1.8714943)
 shape = SubResource("BoxShape3D_podgh")
 debug_color = Color(0.34906358, 0.8850461, 0.99164325, 0.41960785)
 
@@ -1543,6 +1546,7 @@ debug_color = Color(0.34906358, 0.8850461, 0.99164325, 0.41960785)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30.675203)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelObjects/InvisWalls/StaticBody3D3" unique_id=1135857917]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.4235153)
 shape = SubResource("BoxShape3D_podgh")
 debug_color = Color(0.34906358, 0.8850461, 0.99164325, 0.41960785)
 
@@ -1565,7 +1569,27 @@ cameraAnchor = NodePath("../Camera/CameraAnchor")
 [node name="CameraAnchor" type="Marker3D" parent="Camera" unique_id=129367945]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62, 0, -2)
 script = ExtResource("58_podgh")
-HalfExtents = Vector2(10, 22)
+HalfExtents = Vector2(11, 22)
+
+[node name="CameraAnchorTP" type="Marker3D" parent="Camera" unique_id=495323333]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, -2)
+
+[node name="CameraAnchorTP2" type="Marker3D" parent="Camera" unique_id=1752308600]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, -2)
+
+[node name="CameraAnchorTP3" type="Marker3D" parent="Camera" unique_id=1547890286]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, 0, -2)
+
+[node name="PlayerTP" type="Node" parent="." unique_id=403454395]
+
+[node name="TP1" type="Marker3D" parent="PlayerTP" unique_id=1052108253]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.436789, 0, -23.77401)
+
+[node name="TP2" type="Marker3D" parent="PlayerTP" unique_id=1727452451]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.22946, 0, -22.493752)
+
+[node name="TP3" type="Marker3D" parent="PlayerTP" unique_id=1309864898]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.87366, 0, -17.428986)
 
 [connection signal="pressed" from="UI/PauseMenu/ResumeButton" to="UI/PauseMenu" method="OnResumePressed"]
 [connection signal="pressed" from="UI/PauseMenu/SettingsButton" to="UI/PauseMenu" method="OnSettingsPressed"]
@@ -1576,5 +1600,5 @@ HalfExtents = Vector2(10, 22)
 [connection signal="body_entered" from="Objects/Enemies/Enemy2/Area3D" to="Objects/Enemies/Enemy2" method="OnBodyEntered"]
 [connection signal="body_exited" from="Objects/Stations/Ballista/BallistaTopElementLow/StaticBody3D/StationPort/Area3D" to="Objects/Stations/Ballista" method="OnInputBodyEntered"]
 [connection signal="body_exited" from="Objects/Stations/Ballista2/BallistaTopElementLow/StaticBody3D/StationPort/Area3D" to="Objects/Stations/Ballista2" method="OnInputBodyEntered"]
-[connection signal="area_entered" from="LevelObjects/ItemDropOffNode/Area3D" to="TutorialManager" method="OnDropOffAreaEntered"]
-[connection signal="body_entered" from="LevelObjects/WeaponDropOffNode/Area3D" to="TutorialManager" method="OnWeaponDropOffBodyEntered"]
+[connection signal="area_entered" from="LevelObjects/ItemDropOffNode/Area3D" to="UI/TutorialManager" method="OnDropOffAreaEntered"]
+[connection signal="body_entered" from="LevelObjects/WeaponDropOffNode/Area3D" to="UI/TutorialManager" method="OnWeaponDropOffBodyEntered"]

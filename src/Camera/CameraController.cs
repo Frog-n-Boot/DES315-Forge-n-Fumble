@@ -19,7 +19,7 @@ public partial class CameraController : Camera3D
     [Export(PropertyHint.Range, "0.1, 20.0")] public float zoomSmoothSpeed = 8f;
     [Export(PropertyHint.Range, "10.0, 40.0")] public float zoomPadding = 20f;
     [Export(PropertyHint.Range, "0.0, 50.0")] public float singlePlayerZoomRadius = 12f;
-    [Export] private Marker3D cameraAnchor;
+    [Export] public Marker3D cameraAnchor {get; private set;}
     private CameraBoundingBox cameraBoundingBox;
 
     private float _targetSize;
@@ -45,16 +45,28 @@ public partial class CameraController : Camera3D
         float aspect = viewportSize.X / viewportSize.Y;
         float requiredSize = minSize;
 
+        // Single player block
         if (players.Count == 1)
         {
-            if (cameraAnchor != null)
-            {
-                Vector3 anchorPos = cameraAnchor.GlobalPosition;
-                Vector3 playerPos = players[0].GlobalPosition;
-                float dist = new Vector2(playerPos.X - anchorPos.X, playerPos.Z - anchorPos.Z).Length();
-                float t = Mathf.Clamp((dist - singlePlayerZoomRadius) / singlePlayerZoomRadius, 0f, 1f);
-                requiredSize = Mathf.Lerp(minSize, maxSize, t);
-            }
+            Vector3 playerPos = players[0].GlobalPosition;
+
+            // Use the camera's current XZ position as the screen centre
+            Vector3 screenCentre = new Vector3(GlobalPosition.X, playerPos.Y, GlobalPosition.Z - cameraZOffset);
+            Vector2 offsetFromCentre = new Vector2(playerPos.X - screenCentre.X, playerPos.Z - screenCentre.Z);
+
+            // How much of the half-view the player is occupying
+            float aspectSingle = viewportSize.X / viewportSize.Y;
+            float halfW = Size / 2f;
+            float halfH = halfW / aspectSingle;
+
+            // Normalised distance: 0 = dead centre, 1 = at the edge
+            float normX = Mathf.Abs(offsetFromCentre.X) / halfW;
+            float normZ = Mathf.Abs(offsetFromCentre.Y) / halfH;
+            float edgeProximity = Mathf.Max(normX, normZ);
+
+            // Start zooming out when player reaches the inner threshold
+            float t = Mathf.Clamp((edgeProximity - singlePlayerZoomRadius / 100f) / (1f - singlePlayerZoomRadius / 100f), 0f, 1f);
+            requiredSize = Mathf.Lerp(minSize, maxSize, t);
         }
         else
         {
