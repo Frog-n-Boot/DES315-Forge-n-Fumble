@@ -13,6 +13,7 @@ public partial class Ballista : Node3D
 	[Export] public float coneAngle = 360.0f;
 	[Export] protected Node3D inputNode;
 	[Export] public int arrowCount= 10;
+	[Export] Label3D ammoCounter;
 
 	[Export] protected Label3D label;
 
@@ -77,7 +78,8 @@ public partial class Ballista : Node3D
 		}
 		if( isDetached == false && interactingPlayer != null && Input.IsActionPressed("interact"))
 			CheckItem();
-
+		
+		ammoCounter.Text = $"{arrowCount}";
 	}
 
 	private void SpawnArrow()
@@ -103,7 +105,7 @@ public partial class Ballista : Node3D
 		arrow.Initialize(direction, 2);
 
 		arrowCount--;
-		label.Text = $"{arrowCount}";
+		ammoCounter.Text = $"{arrowCount}";
 		audio.Play();
 	}
 

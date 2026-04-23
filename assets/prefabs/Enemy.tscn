@@ -183,6 +183,7 @@ _controller = NodePath("..")
 path_desired_distance = 3.2
 path_max_distance = 60.01
 avoidance_enabled = true
+radius = 0.3
 time_horizon_obstacles = 0.5
 use_3d_avoidance = true
 debug_path_custom_color = Color(1, 0, 0, 1)

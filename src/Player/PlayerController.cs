@@ -27,6 +27,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	[Export] private BoneAttachment3D leftHand;
 	[Export] private Area3D areaPickup;
 	[Export] public float playerSpawnTimer;
+	[Export] private MeshInstance3D meshInstance;
 	[Export] private Texture2D[] playerMaterialTextures;
 	[Export] public float flashDuration = 0.2f;
 	[Export] public float spinStartThreshold = 3.0f;
@@ -68,7 +69,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	private int _healthPack;
 	private Vector3 currentLookTarget;
 	public BaseWeapon currentWeapon;
-	private bool isAttacking = false;
+	public bool isAttacking = false;
 	private int tick = 0;
 	private HashSet<Pickable> nearbyPickable = new HashSet<Pickable>();
 	private HashSet<BaseWeapon> nearbyWeapon = new HashSet<BaseWeapon>();
@@ -303,6 +304,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			{
 				currentWeapon = null;
 				isAttacking = false;
+				currentWeapon.SetEnemyCollisionEnabled(false);
 				UpdateLocomotionAnim();
 			}
 
@@ -487,7 +489,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		if (isDazed)
 		{
 			Velocity = Vector3.Zero;
-			isAttacking = true;
+			//isAttacking = true;
 			return;
 		}
 
@@ -547,7 +549,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 				spinAttack.StopCharging();
 			}
 		}
-		
+
 		tick += 1;
 		if (tick % 10 == 0)
 		{
@@ -628,7 +630,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			GD.Print("No sword to attack with!");
 			return;
 		}
-
+		currentWeapon.SetEnemyCollisionEnabled(true);
 		isAttacking = true;
 
 		if (currentWeapon is MeleeWeapon melee)
@@ -658,12 +660,16 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 		if (currentWeapon is MeleeWeapon melee)
 		{
-			if (!isAttacking) return;
-			isAttacking = false;
+			if (!isAttacking) return;{
+				currentWeapon.SetEnemyCollisionEnabled(false);
+				isAttacking = false;
+			}
+			
 		}
 		else if (currentWeapon is Crossbow bow)
 		{
 			isAttacking = false;
+			currentWeapon.SetEnemyCollisionEnabled(false);
 		}
 
 		// Return to locomotion immediately on end-attack
@@ -678,6 +684,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		if (name == ANIM_SWING || name.Contains("Swing"))
 		{
 			isAttacking = false;
+			currentWeapon?.SetEnemyCollisionEnabled(false);
 			UpdateLocomotionAnim();
 		}
 
@@ -846,11 +853,9 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 
 	private Vector3 GetLookVector()
 	{
-		if(animPlayer.CurrentAnimation == "spinAnim" && animPlayer.IsPlaying())
-		{
-			GD.Print("Spin Attack Initialized");
+		string cur = animPlayer.CurrentAnimation;
+		if((cur == ANIM_SPIN || cur == ANIM_START_SPIN) && animPlayer.IsPlaying())
 			return currentLookTarget;
-		}
 			
 
 		if (currentDevice == -2)
@@ -923,7 +928,6 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	{
 		Texture2D texture = playerMaterialTextures[PlayerIndex % playerMaterialTextures.Length];
 
-		var meshInstance = GetNodeOrNull<MeshInstance3D>("CollisionShape3D/DwarfLow");
 		if (meshInstance == null)
 		{
 			GD.PrintErr($"Player {PlayerIndex}: MeshInstance3D not found at CollisionShape3D/MeshInstance3D");
@@ -1164,6 +1168,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	{
 		isInDazedSequence = false;
 		isAttacking = false;
+		currentWeapon?.SetEnemyCollisionEnabled(false);
 		UpdateLocomotionAnim();
 	}
 

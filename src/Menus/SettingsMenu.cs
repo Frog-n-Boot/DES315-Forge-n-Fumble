@@ -12,6 +12,7 @@ public partial class SettingsMenu : CanvasLayer
 	[Export] private OptionButton resolutionDropdown;
 	[Export] private OptionButton maxFPSDropdown;
 	[Export] private Button applyButton;
+	[Export] private Button backButton;
 	[Export] private AudioStreamPlayer2D audio;
 
 	[Export] private PauseMenu pauseMenu;
@@ -41,6 +42,9 @@ public partial class SettingsMenu : CanvasLayer
 
 	public override void _Ready()
 	{
+		applyButton.Modulate = new Color(0.8f, 0.8f, 0.8f, 1);
+		backButton.Modulate = new Color(0.8f, 0.8f, 0.8f, 1);
+		
 		foreach(var res in resolution)
 			resolutionDropdown.AddItem($"{res.X}x{res.Y}");
 		foreach (var fps in fpsOptions)
@@ -116,6 +120,11 @@ public partial class SettingsMenu : CanvasLayer
 	public void OnResolutionSelected(long index) => SettingsManager.instance.SetResolution(resolution[index]);
 	public void OnMaxFPSSelected(long index) => SettingsManager.instance.SetMaxFPS(fpsOptions[index]);
 
+	public void OnBackMouseEntered()
+	{
+		backButton.Modulate = new Color(1.25f, 1.25f, 1.25f, 1);
+	}
+	
 	public void OnBackPressed()
 	{
 		SettingsManager.instance.SaveSettings();
@@ -133,12 +142,28 @@ public partial class SettingsMenu : CanvasLayer
 			SceneManager.instance.GoBack();
 		};
 		}
-
 	}
+	
+	public void OnBackMouseExited()
+	{
+		backButton.Modulate = new Color(0.8f, 0.8f, 0.8f, 1);
+	}
+	
+	
+	public void OnApplyMouseEntered()
+	{
+		applyButton.Modulate = new Color(1.25f, 1.25f, 1.25f, 1);
+	}
+	
 	public void OnApplyPressed()
 	{
 		audio.Play();
 		SettingsManager.instance.SaveSettings();
 		SettingsManager.instance.ApplySettings();
+	}
+	
+	public void OnApplyMouseExited()
+	{
+		applyButton.Modulate = new Color(0.8f, 0.8f, 0.8f, 1);
 	}
 }

@@ -7,9 +7,12 @@
 [ext_resource type="Script" uid="uid://dnqtfi3fpu8ue" path="res://src/Camera/CameraController.cs" id="3_pgr2e"]
 [ext_resource type="Texture2D" uid="uid://r7wddf5hbwsn" path="res://assets/textures/tu 3.webp" id="3_xi6p3"]
 [ext_resource type="Texture2D" uid="uid://b3fr0jckkg0mm" path="res://assets/textures/Tu 1.webp" id="4_e4hrd"]
+[ext_resource type="FontFile" uid="uid://jc0e5wwfs5d7" path="res://assets/textures/UI/Blackney-Light.otf" id="5_podgh"]
 [ext_resource type="Texture2D" uid="uid://tbrctcwppirl" path="res://assets/textures/UI/ui_x_button.tres" id="6_cgb57"]
+[ext_resource type="FontFile" uid="uid://b8ui8dbraydmr" path="res://assets/textures/UI/texgyrechorus-mediumitalic.otf" id="6_hmhye"]
 [ext_resource type="Resource" uid="uid://cgsgoisaxb6rf" path="res://assets/resources/Recipes/SwordRecipe.tres" id="7_0hjnf"]
 [ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/Resources/CraftingRecipes.cs" id="8_q5ijt"]
+[ext_resource type="Texture2D" uid="uid://bw4227wj3cjq" path="res://assets/PNG/UI_controller.png" id="9_cys1x"]
 [ext_resource type="PackedScene" uid="uid://cmd758glwlnly" path="res://assets/models/FinalAssets_Low/WorkStations/Grindstone.tscn" id="10_ei5ly"]
 [ext_resource type="PackedScene" uid="uid://g1gfmktihg8t" path="res://assets/models/FinalAssets_Low/WorkStations/Anvil.tscn" id="11_m6ekv"]
 [ext_resource type="PackedScene" uid="uid://bm6vf4tjk48gj" path="res://assets/prefabs/forge.tscn" id="11_tfuon"]
@@ -51,9 +54,6 @@
 [ext_resource type="ArrayMesh" uid="uid://d2w54yxgv34j" path="res://assets/models/FinalAssets_Low/WorkStations/Ballista/Ballista_Bottom_element_low.obj" id="42_4c805"]
 [ext_resource type="Script" uid="uid://dnliu2440i283" path="res://src/Menus/PauseMenu.cs" id="42_wkaxc"]
 [ext_resource type="ArrayMesh" uid="uid://dfauyerha08a2" path="res://assets/models/FinalAssets_Low/WorkStations/Ballista/Ballista_Top_element_low.obj" id="43_podgh"]
-[ext_resource type="Texture2D" uid="uid://dy1wiwwij327x" path="res://assets/materials/Texture_sets/2DTextures/furnaceImage.webp" id="43_y74ua"]
-[ext_resource type="Texture2D" uid="uid://bvw5yhtbch6ht" path="res://assets/materials/Texture_sets/2DTextures/anvilImage.webp" id="44_rx2rv"]
-[ext_resource type="Texture2D" uid="uid://dwexwmybryvpl" path="res://assets/materials/Texture_sets/2DTextures/grindstoneImage.webp" id="45_cgb57"]
 [ext_resource type="Script" uid="uid://bs44u3pohek1t" path="res://src/Menus/SettingsMenu.cs" id="46_7vc5l"]
 [ext_resource type="Texture2D" uid="uid://b0h4rjwc5lgiv" path="res://assets/PNG/Forge.webp" id="50_v1uvm"]
 [ext_resource type="AudioStream" uid="uid://dy5lcoryjk0no" path="res://assets/Sounds/SFX/Click.wav" id="51_wwsfe"]
@@ -81,32 +81,106 @@ glow_enabled = true
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dn1de"]
 texture = SubResource("MeshTexture_f0oxr")
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y74ua"]
-load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rx2rv"]
-atlas = SubResource("CompressedTexture2D_y74ua")
-region = Rect2(581, 500, 285, 91)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dyyw8"]
-load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cgb57"]
-atlas = SubResource("CompressedTexture2D_dyyw8")
-region = Rect2(581, 500, 285, 91)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_podgh"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_knagv"]
 load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7vc5l"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghtxm"]
 atlas = SubResource("CompressedTexture2D_knagv")
 region = Rect2(581, 500, 285, 91)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rx2rv"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pb578"]
 load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_v1uvm"]
-atlas = SubResource("CompressedTexture2D_rx2rv")
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdfau"]
+atlas = SubResource("CompressedTexture2D_pb578")
+region = Rect2(581, 500, 285, 91)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vshs7"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vle24"]
+atlas = SubResource("CompressedTexture2D_vshs7")
+region = Rect2(581, 500, 285, 91)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lyjt2"]
+font = ExtResource("6_hmhye")
+font_size = 85
+
+[sub_resource type="LabelSettings" id="LabelSettings_g0kia"]
+font = ExtResource("6_hmhye")
+font_size = 75
+
+[sub_resource type="LabelSettings" id="LabelSettings_qv16m"]
+font = ExtResource("5_podgh")
+font_size = 32
+outline_size = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_j1le7"]
+font = ExtResource("5_podgh")
+font_size = 32
+outline_size = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_qj6lb"]
+font = ExtResource("5_podgh")
+font_size = 32
+outline_size = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_ttgpl"]
+font = ExtResource("5_podgh")
+font_size = 32
+outline_size = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_lejac"]
+font = ExtResource("5_podgh")
+font_size = 32
+outline_size = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_sffvf"]
+font = ExtResource("5_podgh")
+font_size = 32
+outline_size = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_1665q"]
+font = ExtResource("5_podgh")
+font_size = 32
+outline_size = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_5uj83"]
+font = ExtResource("5_podgh")
+font_size = 32
+outline_size = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_eaijc"]
+font = ExtResource("5_podgh")
+font_size = 32
+outline_size = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_dwyhm"]
+font = ExtResource("5_podgh")
+font_size = 30
+outline_size = 3
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_j1j16"]
+load_path = "res://.godot/imported/tuto_arrows.webp-1842c10df86330904d0ef39130643f7b.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ao5hm"]
+atlas = SubResource("CompressedTexture2D_j1j16")
+region = Rect2(135, 26, 75, 133)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_slqrs"]
+load_path = "res://.godot/imported/tuto_arrows.webp-1842c10df86330904d0ef39130643f7b.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10m7h"]
+atlas = SubResource("CompressedTexture2D_slqrs")
+region = Rect2(24, 18, 67, 136)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gia1l"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1os5s"]
+atlas = SubResource("CompressedTexture2D_gia1l")
 region = Rect2(581, 500, 285, 91)
 
 [sub_resource type="Resource" id="Resource_k4bng"]
@@ -315,7 +389,7 @@ if it is destoryed you lose"
 font_size = 23
 
 [node name="Label3D18" type="Label3D" parent="UI/Text" unique_id=1834344684]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -62.425232, 1.5332108, -26.406786)
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -71.73279, 1.5332108, -22.011969)
 text = "The Forge has a 
 limited amount of HP, 
 if it is destoryed you lose"
@@ -375,9 +449,9 @@ Hold B/Q to drop your weapon"
 font_size = 20
 
 [node name="Label3D7" type="Label3D" parent="UI/Text" unique_id=275099191]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -64.81858, 2.1534605, 24.51603)
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -64.43628, 2.1534605, 20.273829)
 outline_render_priority = -2
-text = "Place 3 Copper Ingot to continue"
+text = "Place 3 Copper Ingot in the red box to continue"
 
 [node name="Label3D8" type="Label3D" parent="UI/Text" unique_id=249894599]
 transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -32.966927, 1.4973764, 12.434632)
@@ -400,138 +474,12 @@ visible = false
 text = "Hold Interact while holding 
 a Ingot to reload the Crossbow"
 
-[node name="PauseMenu" type="CanvasLayer" parent="UI" unique_id=468631936 node_paths=PackedStringArray("resumeButton", "settingsButton", "mainMenuButton", "settingsMenu", "tutorialManager")]
-process_mode = 3
-visible = false
-script = ExtResource("42_wkaxc")
-resumeButton = NodePath("ResumeButton")
-settingsButton = NodePath("SettingsButton")
-mainMenuButton = NodePath("QuitButton")
-settingsMenu = NodePath("../SettingsMenu")
-tutorialManager = NodePath("../TutorialManager")
-
-[node name="ResumeButton" type="Button" parent="UI/PauseMenu" unique_id=471299529]
-offset_left = 71.00002
-offset_top = 175.0
-offset_right = 519.0
-offset_bottom = 295.0
-scale = Vector2(0.93444926, 0.8426638)
-focus_neighbor_top = NodePath(".")
-focus_neighbor_bottom = NodePath("../SettingsButton")
-focus_next = NodePath("../SettingsButton")
-focus_previous = NodePath("../QuitButton")
-theme_override_font_sizes/font_size = 40
-text = "Resume"
-icon = SubResource("AtlasTexture_rx2rv")
-flat = true
-icon_alignment = 1
-expand_icon = true
-
-[node name="SettingsButton" type="Button" parent="UI/PauseMenu" unique_id=1844818521]
-offset_left = 71.00002
-offset_top = 335.0
-offset_right = 519.0
-offset_bottom = 455.0
-scale = Vector2(0.93444926, 0.8426638)
-focus_neighbor_top = NodePath("../ResumeButton")
-focus_neighbor_bottom = NodePath("../QuitButton")
-focus_next = NodePath("../QuitButton")
-focus_previous = NodePath("../ResumeButton")
-theme_override_font_sizes/font_size = 40
-text = "Settings"
-icon = SubResource("AtlasTexture_cgb57")
-flat = true
-icon_alignment = 1
-expand_icon = true
-
-[node name="QuitButton" type="Button" parent="UI/PauseMenu" unique_id=1606239591]
-offset_left = 71.00002
-offset_top = 495.0
-offset_right = 519.0
-offset_bottom = 615.0
-scale = Vector2(0.93444926, 0.8426638)
-focus_neighbor_top = NodePath("../SettingsButton")
-focus_previous = NodePath("../SettingsButton")
-theme_override_font_sizes/font_size = 40
-text = "Main Menu"
-icon = SubResource("AtlasTexture_7vc5l")
-flat = true
-icon_alignment = 1
-expand_icon = true
-
-[node name="Label" type="Label" parent="UI/PauseMenu" unique_id=425332203]
-offset_left = 62.0
-offset_top = 26.0
-offset_right = 459.0
-offset_bottom = 109.0
-scale = Vector2(1.112438, 1.108769)
-theme_override_font_sizes/font_size = 60
-text = "Game Paused"
-
-[node name="FurnaceImahe" type="TextureRect" parent="UI/PauseMenu" unique_id=2071960944]
-offset_left = 658.0
-offset_top = 64.0
-offset_right = 1158.0
-offset_bottom = 164.0
-scale = Vector2(0.6840891, 0.76350486)
-texture = ExtResource("43_y74ua")
-expand_mode = 1
-
-[node name="AnvilImage" type="TextureRect" parent="UI/PauseMenu" unique_id=1783727334]
-offset_left = 658.0
-offset_top = 133.0
-offset_right = 1158.0
-offset_bottom = 233.0
-scale = Vector2(0.6840891, 0.76350486)
-texture = ExtResource("44_rx2rv")
-expand_mode = 1
-
-[node name="GrindstoneImage" type="TextureRect" parent="UI/PauseMenu" unique_id=1325749892]
-offset_left = 658.0
-offset_top = 201.0
-offset_right = 1158.0
-offset_bottom = 301.0
-scale = Vector2(0.6840891, 0.76350486)
-texture = ExtResource("45_cgb57")
-expand_mode = 1
-
-[node name="ControlsLabel" type="Label" parent="UI/PauseMenu" unique_id=1791737565]
-offset_left = 592.0
-offset_top = 347.00003
-offset_right = 1254.0
-offset_bottom = 704.0
-scale = Vector2(0.7564578, 0.69364595)
-theme_override_font_sizes/font_size = 30
-text = "Actions                  Keyboard    │  Controller
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Pick-Up               │  Right Click │  Left Trigger
-Attack/Interact │  Left Click   │  Right Trigger
-Drop-Left-Item  │  Q                 │  Left Shoulder
-Drop-Right-Item│  E                 │  Right Shoulder
-Pause                  │  ESC             │  ☰
-Sequence           │  ←↑→↓          │  < > v ^"
-
-[node name="TextureRect" type="TextureRect" parent="UI/PauseMenu" unique_id=2022666450]
-z_index = -1
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(32.10541, 17.914703)
-mouse_filter = 2
-
-[node name="ColorRect" type="ColorRect" parent="UI/PauseMenu" unique_id=695410379]
-z_index = -1
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(31.982666, 18.150393)
-mouse_filter = 2
-color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
-
 [node name="TutorialManager" type="Node" parent="UI" unique_id=639408089 node_paths=PackedStringArray("roomSpawnPoints", "cameraAnchorPoints", "cameraController", "pauseMenu", "skipTutorialProgressBar", "smeltingStation", "itemDropOffBox", "grindstoneStation", "forgingStation", "weaponDropOffBox", "room3Enemy", "room4Enemy")]
 script = ExtResource("27_bi4s5")
 roomSpawnPoints = [NodePath("../../PlayerTP/TP1"), NodePath("../../PlayerTP/TP2"), NodePath("../../PlayerTP/TP3")]
 cameraAnchorPoints = [NodePath("../../Camera/CameraAnchorTP"), NodePath("../../Camera/CameraAnchorTP2"), NodePath("../../Camera/CameraAnchorTP3")]
 cameraController = NodePath("../../Camera3D")
-pauseMenu = NodePath("../PauseMenu")
+pauseMenu = NodePath("../PauseMenu2")
 skipTutorialProgressBar = NodePath("../ProgressBar")
 smeltingStation = NodePath("../../Objects/Stations/Forge")
 itemDropOffBox = NodePath("../../LevelObjects/ItemDropOffNode")
@@ -541,8 +489,104 @@ weaponDropOffBox = NodePath("../../LevelObjects/WeaponDropOffNode")
 room3Enemy = NodePath("../../Objects/Enemies/Enemy")
 room4Enemy = NodePath("../../Objects/Enemies/Enemy2")
 
-[node name="SettingsMenu" type="CanvasLayer" parent="UI" unique_id=1102677554 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton", "audio", "pauseMenu")]
+[node name="PauseMenu2" type="CanvasLayer" parent="UI" unique_id=455253165 node_paths=PackedStringArray("resumeButton", "settingsButton", "mainMenuButton", "settingsMenu", "tutorialManager")]
 process_mode = 3
+script = ExtResource("42_wkaxc")
+resumeButton = NodePath("ResumeButton")
+settingsButton = NodePath("SettingsButton")
+mainMenuButton = NodePath("QuitButton")
+settingsMenu = NodePath("../SettingsMenu2")
+tutorialManager = NodePath("../TutorialManager")
+
+[node name="ResumeButton" type="Button" parent="UI/PauseMenu2" unique_id=1838267239]
+offset_left = 430.14697
+offset_top = 210.834
+offset_right = 878.147
+offset_bottom = 330.83398
+scale = Vector2(0.93444926, 0.8426638)
+focus_neighbor_top = NodePath(".")
+focus_neighbor_bottom = NodePath("../SettingsButton")
+focus_next = NodePath("../SettingsButton")
+focus_previous = NodePath("../QuitButton")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("5_podgh")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_podgh")
+text = "Resume"
+icon = SubResource("AtlasTexture_ghtxm")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="SettingsButton" type="Button" parent="UI/PauseMenu2" unique_id=637010609]
+offset_left = 430.14697
+offset_top = 370.834
+offset_right = 878.147
+offset_bottom = 490.834
+scale = Vector2(0.93444926, 0.8426638)
+focus_neighbor_top = NodePath("../ResumeButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+focus_next = NodePath("../QuitButton")
+focus_previous = NodePath("../ResumeButton")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("5_podgh")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_podgh")
+text = "Settings"
+icon = SubResource("AtlasTexture_jdfau")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="QuitButton" type="Button" parent="UI/PauseMenu2" unique_id=1050032548]
+offset_left = 430.14697
+offset_top = 530.834
+offset_right = 878.147
+offset_bottom = 650.834
+scale = Vector2(0.93444926, 0.8426638)
+focus_neighbor_top = NodePath("../SettingsButton")
+focus_previous = NodePath("../SettingsButton")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("5_podgh")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_podgh")
+text = "Main Menu"
+icon = SubResource("AtlasTexture_vle24")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Label" type="Label" parent="UI/PauseMenu2" unique_id=566278390]
+offset_left = 366.147
+offset_top = 10.999996
+offset_right = 769.1471
+offset_bottom = 124.0
+scale = Vector2(1.357, 1.357)
+theme_override_font_sizes/font_size = 60
+text = "Game Paused"
+label_settings = SubResource("LabelSettings_lyjt2")
+
+[node name="TextureRect" type="TextureRect" parent="UI/PauseMenu2" unique_id=1021348446]
+z_index = -1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(32.10541, 17.914703)
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="UI/PauseMenu2" unique_id=2039650440]
+z_index = -1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(31.982666, 18.150393)
+mouse_filter = 2
+color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
+
+[node name="SettingsMenu2" type="CanvasLayer" parent="UI" unique_id=793483266 node_paths=PackedStringArray("masterSlider", "musicSlider", "sfxSlider", "fullScreenCheckBox", "vsyncCheckBox", "showFPSCheckBox", "resolutionDropdown", "maxFPSDropdown", "applyButton", "backButton", "audio", "pauseMenu")]
+process_mode = 3
+visible = false
 script = ExtResource("46_7vc5l")
 masterSlider = NodePath("Panel/TabContainer/Sound/MasterVolumeLabel/MasterVolumeSlider")
 musicSlider = NodePath("Panel/TabContainer/Sound/MusicVolumeLabel/MusicVolumeSlider")
@@ -553,11 +597,12 @@ showFPSCheckBox = NodePath("Panel/TabContainer/Display/ShowFPSLabel/ShowFPSCheck
 resolutionDropdown = NodePath("Panel/TabContainer/Display/ResolutionLabel/ResolutionOptionButton")
 maxFPSDropdown = NodePath("Panel/TabContainer/Display/FPSLabel/FPSOptionButton")
 applyButton = NodePath("Panel/ApplyButton")
+backButton = NodePath("Panel/BackButton")
 audio = NodePath("AudioStreamPlayer2D")
-pauseMenu = NodePath("../PauseMenu")
+pauseMenu = NodePath("../PauseMenu2")
 metadata/_edit_use_anchors_ = true
 
-[node name="BackgroundImage" type="TextureRect" parent="UI/SettingsMenu" unique_id=702657135]
+[node name="BackgroundImage" type="TextureRect" parent="UI/SettingsMenu2" unique_id=1115476857]
 visible = false
 visibility_layer = 2
 z_index = -1
@@ -567,221 +612,236 @@ offset_bottom = 772.0
 texture = ExtResource("50_v1uvm")
 stretch_mode = 1
 
-[node name="ColorRect" type="ColorRect" parent="UI/SettingsMenu" unique_id=1411980820]
+[node name="ColorRect" type="ColorRect" parent="UI/SettingsMenu2" unique_id=1173968638]
 z_index = -1
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(32.207207, 18.071495)
 color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
 
-[node name="Panel" type="Panel" parent="UI/SettingsMenu" unique_id=1992712515]
+[node name="Panel" type="Panel" parent="UI/SettingsMenu2" unique_id=764722833]
 offset_right = 1152.0
 offset_bottom = 650.0
 scale = Vector2(1.1202481, 1.1039494)
 
-[node name="Label" type="Label" parent="UI/SettingsMenu/Panel" unique_id=377217154]
+[node name="Label" type="Label" parent="UI/SettingsMenu2/Panel" unique_id=1240215326]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.3515625
 anchor_top = -0.035384614
 anchor_right = 0.3515625
 anchor_bottom = -0.035384614
-offset_left = 32.0
-offset_top = 24.0
-offset_right = 264.0
-offset_bottom = 107.0
+offset_left = -387.147
+offset_top = 2.1660004
+offset_right = -155.14699
+offset_bottom = 102.166
+scale = Vector2(1.357, 1.357)
 theme_override_font_sizes/font_size = 60
 text = "Settings"
+label_settings = SubResource("LabelSettings_g0kia")
 
-[node name="TabContainer" type="TabContainer" parent="UI/SettingsMenu/Panel" unique_id=715561975]
+[node name="TabContainer" type="TabContainer" parent="UI/SettingsMenu2/Panel" unique_id=1969437490]
 layout_mode = 0
-offset_left = -2.0
-offset_top = 102.0
-offset_right = 1150.0
-offset_bottom = 169.0
+offset_left = -1.785
+offset_top = 125.912
+offset_right = 1150.215
+offset_bottom = 192.912
 mouse_filter = 0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("5_podgh")
+theme_override_font_sizes/font_size = 40
 current_tab = 0
 
-[node name="Sound" type="Control" parent="UI/SettingsMenu/Panel/TabContainer" unique_id=945938639]
+[node name="Sound" type="Control" parent="UI/SettingsMenu2/Panel/TabContainer" unique_id=641115846]
 layout_mode = 2
 focus_neighbor_right = NodePath("../Display")
 metadata/_tab_index = 0
 
-[node name="MasterVolumeLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Sound" unique_id=623849174]
+[node name="MasterVolumeLabel" type="Label" parent="UI/SettingsMenu2/Panel/TabContainer/Sound" unique_id=243181481]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.30989584
 anchor_top = 2.5
 anchor_right = 0.30989584
 anchor_bottom = 2.5
-offset_left = 34.0
-offset_top = -13.0
-offset_right = 254.0
-offset_bottom = 74.0
+offset_left = -337.361
+offset_top = -14.199001
+offset_right = -117.36099
+offset_bottom = 72.800995
 focus_next = NodePath("../MusicVolumeLabel/MusicVolumeSlider")
 theme_override_font_sizes/font_size = 30
 text = "Master Volume
 "
+label_settings = SubResource("LabelSettings_qv16m")
 
-[node name="MasterVolumeSlider" type="HSlider" parent="UI/SettingsMenu/Panel/TabContainer/Sound/MasterVolumeLabel" unique_id=69567519]
+[node name="MasterVolumeSlider" type="HSlider" parent="UI/SettingsMenu2/Panel/TabContainer/Sound/MasterVolumeLabel" unique_id=1638728880]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.0045454544
-offset_left = 233.0
-offset_right = 343.0
+offset_left = 262.549
+offset_right = 372.549
 offset_bottom = 50.0
 focus_neighbor_top = NodePath("../..")
 focus_neighbor_bottom = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
 focus_next = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
 
-[node name="MusicVolumeLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Sound" unique_id=1061348198]
+[node name="MusicVolumeLabel" type="Label" parent="UI/SettingsMenu2/Panel/TabContainer/Sound" unique_id=1419151699]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.30989584
 anchor_top = 3.1944444
 anchor_right = 0.30989584
 anchor_bottom = 3.1944444
-offset_left = 34.0
-offset_top = 43.0
-offset_right = 237.0
-offset_bottom = 90.0
+offset_left = -337.361
+offset_top = 41.800995
+offset_right = -134.361
+offset_bottom = 88.800995
 theme_override_font_sizes/font_size = 30
 text = "Music Volume"
+label_settings = SubResource("LabelSettings_j1le7")
 
-[node name="MusicVolumeSlider" type="HSlider" parent="UI/SettingsMenu/Panel/TabContainer/Sound/MusicVolumeLabel" unique_id=485788284]
+[node name="MusicVolumeSlider" type="HSlider" parent="UI/SettingsMenu2/Panel/TabContainer/Sound/MusicVolumeLabel" unique_id=1375581525]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.009852217
 anchor_top = -0.14893617
 anchor_right = -0.009852217
 anchor_bottom = -0.14893617
-offset_left = 234.0
+offset_left = 264.549
 offset_top = 7.0
-offset_right = 344.0
+offset_right = 374.549
 offset_bottom = 57.0
 focus_neighbor_top = NodePath("../../MasterVolumeLabel/MasterVolumeSlider")
 focus_neighbor_bottom = NodePath("../../SFXVolumeLabel/SFXVolumeSlider")
 
-[node name="SFXVolumeLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Sound" unique_id=1916094470]
+[node name="SFXVolumeLabel" type="Label" parent="UI/SettingsMenu2/Panel/TabContainer/Sound" unique_id=1447027876]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.30989584
 anchor_top = 4.111111
 anchor_right = 0.30989584
 anchor_bottom = 4.111111
-offset_left = 34.0
-offset_top = 91.0
-offset_right = 203.0
-offset_bottom = 138.0
+offset_left = -337.361
+offset_top = 89.800995
+offset_right = -168.361
+offset_bottom = 136.801
 theme_override_font_sizes/font_size = 30
 text = "SFX Volume"
+label_settings = SubResource("LabelSettings_qj6lb")
 
-[node name="SFXVolumeSlider" type="HSlider" parent="UI/SettingsMenu/Panel/TabContainer/Sound/SFXVolumeLabel" unique_id=934226244]
+[node name="SFXVolumeSlider" type="HSlider" parent="UI/SettingsMenu2/Panel/TabContainer/Sound/SFXVolumeLabel" unique_id=680322139]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.01183432
 anchor_top = -0.23404256
 anchor_right = -0.01183432
 anchor_bottom = -0.23404256
-offset_left = 234.0
-offset_top = 4.0
-offset_right = 344.0
-offset_bottom = 54.0
+offset_left = 264.549
+offset_top = 11.0
+offset_right = 374.549
+offset_bottom = 61.0
 focus_neighbor_top = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
 focus_neighbor_bottom = NodePath("../../../../ApplyButton")
 
-[node name="Display" type="Control" parent="UI/SettingsMenu/Panel/TabContainer" unique_id=950378745]
+[node name="Display" type="Control" parent="UI/SettingsMenu2/Panel/TabContainer" unique_id=1396602427]
 visible = false
 layout_mode = 2
 focus_neighbor_left = NodePath("../Sound")
 focus_neighbor_right = NodePath("../Controls")
 metadata/_tab_index = 1
 
-[node name="ResolutionLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=455957720]
+[node name="ResolutionLabel" type="Label" parent="UI/SettingsMenu2/Panel/TabContainer/Display" unique_id=771249160]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.3246528
 anchor_top = -2.0277777
 anchor_right = 0.3246528
 anchor_bottom = -2.0277777
-offset_left = 34.0
-offset_top = 299.0
-offset_right = 188.0
-offset_bottom = 346.0
+offset_left = -354.361
+offset_top = 275.298
+offset_right = -200.361
+offset_bottom = 322.298
 theme_override_font_sizes/font_size = 30
 text = "Resolution"
+label_settings = SubResource("LabelSettings_ttgpl")
 metadata/_edit_use_anchors_ = true
 
-[node name="ResolutionOptionButton" type="OptionButton" parent="UI/SettingsMenu/Panel/TabContainer/Display/ResolutionLabel" unique_id=1269928450]
+[node name="ResolutionOptionButton" type="OptionButton" parent="UI/SettingsMenu2/Panel/TabContainer/Display/ResolutionLabel" unique_id=672598623]
+modulate = Color(4.6817894, 4.6817894, 4.6817894, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.4090909
 anchor_top = -0.06382979
 anchor_right = 0.4090909
 anchor_bottom = -0.06382979
-offset_left = 169.0
-offset_top = 11.0
-offset_right = 297.0
-offset_bottom = 43.0
+offset_left = 199.44199
+offset_top = 11.153
+offset_right = 327.442
+offset_bottom = 43.153
 focus_neighbor_top = NodePath("../../ShowFPSLabel/ShowFPSCheckBox")
 focus_neighbor_bottom = NodePath("../../FPSLabel/FPSOptionButton")
 metadata/_edit_use_anchors_ = true
 
-[node name="FPSLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=909295735]
+[node name="FPSLabel" type="Label" parent="UI/SettingsMenu2/Panel/TabContainer/Display" unique_id=369820382]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.3246528
 anchor_top = -2.0277777
 anchor_right = 0.3246528
 anchor_bottom = -2.0277777
-offset_left = 34.0
-offset_top = 355.0
-offset_right = 105.0
-offset_bottom = 402.0
+offset_left = -354.361
+offset_top = 331.298
+offset_right = -283.361
+offset_bottom = 378.298
 theme_override_font_sizes/font_size = 30
 text = "FPS"
+label_settings = SubResource("LabelSettings_lejac")
 metadata/_edit_use_anchors_ = true
 
-[node name="FPSOptionButton" type="OptionButton" parent="UI/SettingsMenu/Panel/TabContainer/Display/FPSLabel" unique_id=832258005]
+[node name="FPSOptionButton" type="OptionButton" parent="UI/SettingsMenu2/Panel/TabContainer/Display/FPSLabel" unique_id=1425824962]
+modulate = Color(4.6817894, 4.6817894, 4.6817894, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.5633802
 anchor_top = -0.06382979
 anchor_right = 1.5633802
 anchor_bottom = -0.06382979
-offset_left = 121.0
-offset_top = 11.0
-offset_right = 249.0
-offset_bottom = 43.0
+offset_left = 151.44199
+offset_top = 11.153
+offset_right = 279.442
+offset_bottom = 43.153
 focus_neighbor_top = NodePath("../../ResolutionLabel/ResolutionOptionButton")
 focus_neighbor_bottom = NodePath("../../../../ApplyButton")
 metadata/_edit_use_anchors_ = true
 
-[node name="FullscreenLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=379190447]
+[node name="FullscreenLabel" type="Label" parent="UI/SettingsMenu2/Panel/TabContainer/Display" unique_id=560580548]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.3246528
 anchor_top = -2.0277777
 anchor_right = 0.3246528
 anchor_bottom = -2.0277777
-offset_left = 34.0
-offset_top = 139.0
-offset_right = 203.0
-offset_bottom = 186.0
+offset_left = -354.361
+offset_top = 108.050995
+offset_right = -185.361
+offset_bottom = 155.051
 theme_override_font_sizes/font_size = 30
 text = "FullScreen"
+label_settings = SubResource("LabelSettings_sffvf")
 metadata/_edit_use_anchors_ = true
 
-[node name="FullScreenCheckBox" type="CheckBox" parent="UI/SettingsMenu/Panel/TabContainer/Display/FullscreenLabel" unique_id=1507425880]
+[node name="FullScreenCheckBox" type="CheckBox" parent="UI/SettingsMenu2/Panel/TabContainer/Display/FullscreenLabel" unique_id=1496623701]
+modulate = Color(4.6817894, 4.6817894, 4.6817894, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.37899998
 anchor_top = -0.00021277083
 anchor_right = 0.37899998
 anchor_bottom = -0.00021273024
-offset_left = 167.949
+offset_left = 193.035
 offset_top = 8.01
-offset_right = 191.949
+offset_right = 217.035
 offset_bottom = 32.01
 focus_neighbor_top = NodePath("../..")
 focus_neighbor_bottom = NodePath("../../VSyncLabel/VSyncCheckBox")
@@ -789,29 +849,31 @@ focus_next = NodePath(".")
 theme_override_font_sizes/font_size = 40
 metadata/_edit_use_anchors_ = true
 
-[node name="VSyncLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=839786519]
+[node name="VSyncLabel" type="Label" parent="UI/SettingsMenu2/Panel/TabContainer/Display" unique_id=1913019098]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.3246528
 anchor_top = -2.0277777
 anchor_right = 0.3246528
 anchor_bottom = -2.0277777
-offset_left = 34.0
-offset_top = 187.0
-offset_right = 203.0
-offset_bottom = 234.0
+offset_left = -354.361
+offset_top = 163.29799
+offset_right = -185.361
+offset_bottom = 210.298
 theme_override_font_sizes/font_size = 30
 text = "VSync"
+label_settings = SubResource("LabelSettings_1665q")
 metadata/_edit_use_anchors_ = true
 
-[node name="VSyncCheckBox" type="CheckBox" parent="UI/SettingsMenu/Panel/TabContainer/Display/VSyncLabel" unique_id=1697258783]
+[node name="VSyncCheckBox" type="CheckBox" parent="UI/SettingsMenu2/Panel/TabContainer/Display/VSyncLabel" unique_id=26407523]
+modulate = Color(4.6817894, 4.6817894, 4.6817894, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.2366864
 anchor_right = 0.2366864
-offset_left = 192.0
-offset_top = -7.9999986
-offset_right = 224.0
+offset_left = 217.086
+offset_top = -8.0
+offset_right = 249.086
 offset_bottom = 55.0
 focus_neighbor_top = NodePath("../../FullscreenLabel/FullScreenCheckBox")
 focus_neighbor_bottom = NodePath("../../ShowFPSLabel/ShowFPSCheckBox")
@@ -821,31 +883,33 @@ text = "
 "
 metadata/_edit_use_anchors_ = true
 
-[node name="ShowFPSLabel" type="Label" parent="UI/SettingsMenu/Panel/TabContainer/Display" unique_id=1418577928]
+[node name="ShowFPSLabel" type="Label" parent="UI/SettingsMenu2/Panel/TabContainer/Display" unique_id=1050356344]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.3246528
 anchor_top = -2.0277777
 anchor_right = 0.3246528
 anchor_bottom = -2.0277777
-offset_left = 34.0
-offset_top = 243.0
-offset_right = 203.0
-offset_bottom = 290.0
+offset_left = -354.361
+offset_top = 219.298
+offset_right = -185.361
+offset_bottom = 266.298
 theme_override_font_sizes/font_size = 30
 text = "ShowFPS"
+label_settings = SubResource("LabelSettings_5uj83")
 metadata/_edit_use_anchors_ = true
 
-[node name="ShowFPSCheckBox" type="CheckBox" parent="UI/SettingsMenu/Panel/TabContainer/Display/ShowFPSLabel" unique_id=681377412]
+[node name="ShowFPSCheckBox" type="CheckBox" parent="UI/SettingsMenu2/Panel/TabContainer/Display/ShowFPSLabel" unique_id=1109970991]
+modulate = Color(4.6817894, 4.6817894, 4.6817894, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.16568047
 anchor_top = 0.06382979
 anchor_right = 0.16568047
 anchor_bottom = 0.06382979
-offset_left = 204.0
+offset_left = 229.086
 offset_top = -11.0
-offset_right = 236.0
+offset_right = 261.086
 offset_bottom = 52.0
 focus_neighbor_top = NodePath("../../VSyncLabel/VSyncCheckBox")
 focus_neighbor_bottom = NodePath("../../ResolutionLabel/ResolutionOptionButton")
@@ -856,31 +920,156 @@ text = "
 "
 metadata/_edit_use_anchors_ = true
 
-[node name="Controls" type="Control" parent="UI/SettingsMenu/Panel/TabContainer" unique_id=1020021993]
+[node name="Controls" type="Control" parent="UI/SettingsMenu2/Panel/TabContainer" unique_id=425358019]
 visible = false
 layout_mode = 2
 focus_neighbor_left = NodePath("../Display")
 focus_neighbor_bottom = NodePath("../../ApplyButton")
 metadata/_tab_index = 2
 
-[node name="BackButton" type="Button" parent="UI/SettingsMenu/Panel" unique_id=1477639733]
+[node name="Label" type="Label" parent="UI/SettingsMenu2/Panel/TabContainer/Controls" unique_id=1752226966]
+visible = false
 layout_mode = 0
-offset_left = -32.135742
-offset_top = 548.0325
-offset_right = 415.86423
-offset_bottom = 668.0325
+offset_left = 100.192535
+offset_top = 26.485983
+offset_right = 1010.1925
+offset_bottom = 129.79851
+text = "Actions               │   Keyboard    │  Controller
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+label_settings = SubResource("LabelSettings_eaijc")
+
+[node name="Label2" type="Label" parent="UI/SettingsMenu2/Panel/TabContainer/Controls" unique_id=119832743]
+layout_mode = 0
+offset_left = 19.639
+offset_top = 53.301
+offset_right = 414.639
+offset_bottom = 321.64584
+text = "Pick-Up/Interact                 
+Attack        
+Drop Left Item         
+Drop Right Item
+Pause
+Minigames"
+label_settings = SubResource("LabelSettings_dwyhm")
+
+[node name="Label2" type="Label" parent="UI/SettingsMenu2/Panel/TabContainer/Controls/Label2" unique_id=353375978]
+layout_mode = 0
+offset_left = 262.442
+offset_right = 561.4829
+offset_bottom = 268.34485
+text = "E
+Left Click
+Q
+Hold Q
+Escape
+Arrow Keys"
+label_settings = SubResource("LabelSettings_dwyhm")
+
+[node name="UiController" type="Sprite2D" parent="UI/SettingsMenu2/Panel/TabContainer/Controls" unique_id=413825663]
+position = Vector2(554.34143, 113.99255)
+scale = Vector2(0.5034951, 0.5109288)
+texture = ExtResource("9_cys1x")
+centered = false
+
+[node name="RT" type="Sprite2D" parent="UI/SettingsMenu2/Panel/TabContainer/Controls/UiController" unique_id=781555985]
+position = Vector2(466.27945, -33.68564)
+rotation = 0.48500967
+texture = SubResource("AtlasTexture_ao5hm")
+
+[node name="Label" type="Label" parent="UI/SettingsMenu2/Panel/TabContainer/Controls/UiController/RT" unique_id=1991347609]
+offset_left = 32.32468
+offset_top = -83.16858
+offset_right = 236.32468
+offset_bottom = -34.16858
+rotation = -0.48520154
+scale = Vector2(2.3606536, 2.3606536)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("5_podgh")
+theme_override_font_sizes/font_size = 22
+text = "Right Trigger:  Attack"
+metadata/_edit_use_anchors_ = true
+
+[node name="B" type="Sprite2D" parent="UI/SettingsMenu2/Panel/TabContainer/Controls/UiController" unique_id=1746157241]
+position = Vector2(563.7904, 117.013016)
+rotation = 1.2004459
+texture = SubResource("AtlasTexture_ao5hm")
+
+[node name="Label2" type="Label" parent="UI/SettingsMenu2/Panel/TabContainer/Controls/UiController/B" unique_id=635823860]
+offset_left = 19.971104
+offset_top = -75.92835
+offset_right = 232.9711
+offset_bottom = -26.928352
+rotation = -1.1990412
+scale = Vector2(2.3606536, 2.3606536)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("5_podgh")
+theme_override_font_sizes/font_size = 22
+text = "Press B:  Drop Item
+Hold B:  Drop Weapon"
+metadata/_edit_use_anchors_ = true
+
+[node name="X" type="Sprite2D" parent="UI/SettingsMenu2/Panel/TabContainer/Controls/UiController" unique_id=1454500763]
+position = Vector2(358.131, 21.275051)
+rotation = -0.29465097
+scale = Vector2(1, 1.3622724)
+texture = SubResource("AtlasTexture_10m7h")
+
+[node name="Label" type="Label" parent="UI/SettingsMenu2/Panel/TabContainer/Controls/UiController" unique_id=70395147]
+offset_left = -161.33624
+offset_top = -125.87768
+offset_right = 94.66376
+offset_bottom = -102.87768
+scale = Vector2(2.361, 2.361)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("5_podgh")
+theme_override_font_sizes/font_size = 22
+text = "Press X:  Pick up / Interact"
+metadata/_edit_use_anchors_ = true
+
+[node name="DPad" type="Sprite2D" parent="UI/SettingsMenu2/Panel/TabContainer/Controls/UiController" unique_id=1881570857]
+position = Vector2(269.4847, 333.3099)
+rotation = -3.6864564
+texture = SubResource("AtlasTexture_10m7h")
+
+[node name="Label2" type="Label" parent="UI/SettingsMenu2/Panel/TabContainer/Controls/UiController/DPad" unique_id=192253682]
+offset_left = 74.33971
+offset_top = -33.72406
+offset_right = 241.33972
+offset_bottom = 15.27594
+rotation = -2.59705
+scale = Vector2(2.3606536, 2.3606536)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("5_podgh")
+theme_override_font_sizes/font_size = 22
+text = "D-Pad:  Minigames"
+metadata/_edit_use_anchors_ = true
+
+[node name="BackButton" type="Button" parent="UI/SettingsMenu2/Panel" unique_id=473328976]
+layout_mode = 0
+offset_left = -38.384357
+offset_top = 548.03253
+offset_right = 409.61557
+offset_bottom = 668.03253
 scale = Vector2(0.93444926, 0.8426638)
 focus_neighbor_right = NodePath("../ApplyButton")
 focus_next = NodePath("../SettingsButton")
 focus_previous = NodePath("../QuitButton")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("5_podgh")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_podgh")
 text = "Back"
-icon = SubResource("AtlasTexture_v1uvm")
+icon = SubResource("AtlasTexture_1os5s")
 flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="ApplyButton" type="Button" parent="UI/SettingsMenu/Panel" unique_id=1295437788]
+[node name="ApplyButton" type="Button" parent="UI/SettingsMenu2/Panel" unique_id=1480683877]
 layout_mode = 0
 offset_left = 765.0092
 offset_top = 548.9383
@@ -890,16 +1079,21 @@ scale = Vector2(0.93444926, 0.8426638)
 focus_neighbor_left = NodePath("../BackButton")
 focus_next = NodePath("../SettingsButton")
 focus_previous = NodePath("../QuitButton")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("5_podgh")
 theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_podgh")
 text = "Apply"
-icon = SubResource("AtlasTexture_v1uvm")
+icon = SubResource("AtlasTexture_1os5s")
 flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="UI/SettingsMenu" unique_id=1281058457]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="UI/SettingsMenu2" unique_id=789965647]
 stream = ExtResource("51_wwsfe")
 volume_db = -40.0
+bus = &"SFX"
 
 [node name="Objects" type="Node" parent="." unique_id=179495125]
 
@@ -1270,7 +1464,7 @@ transform = Transform3D(-6.556708e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.556708e-08
 controllerButtonTexture = ExtResource("6_cgb57")
 
 [node name="Anvil2" parent="Objects/Stations" unique_id=688992065 instance=ExtResource("11_m6ekv")]
-transform = Transform3D(1.1324686e-07, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.1324686e-07, 49.70672, -0.4507265, -6.7690206)
+transform = Transform3D(1.1324686e-07, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.1324686e-07, 64.8358, -0.4507265, 6.5816207)
 controllerButtonTexture = ExtResource("6_cgb57")
 
 [node name="Grindstone2" parent="Objects/Stations" unique_id=838819154 instance=ExtResource("10_ei5ly")]
@@ -1278,10 +1472,10 @@ transform = Transform3D(-6.556708e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.556708e-08
 controllerButtonTexture = ExtResource("6_cgb57")
 
 [node name="Forge2" parent="Objects/Stations" unique_id=414176730 instance=ExtResource("11_tfuon")]
-transform = Transform3D(-0.5, 0, 7.54979e-08, 0, 0.5, 0, -7.54979e-08, 0, -0.5, 48.175663, 9.536743e-07, -21.237206)
+transform = Transform3D(-0.5, 0, 7.54979e-08, 0, 0.5, 0, -7.54979e-08, 0, -0.5, 50.140217, 9.536743e-07, -6.4846954)
 controllerButtonTexture = ExtResource("6_cgb57")
 
-[node name="Ballista" type="Node3D" parent="Objects/Stations" unique_id=1571022317 node_paths=PackedStringArray("arrowSpawnPosition", "ballistaHead", "ballistaBarrel", "inputNode", "label", "audio") groups=["Ballista"]]
+[node name="Ballista" type="Node3D" parent="Objects/Stations" unique_id=1571022317 node_paths=PackedStringArray("arrowSpawnPosition", "ballistaHead", "ballistaBarrel", "inputNode", "ammoCounter", "label", "audio") groups=["Ballista"]]
 transform = Transform3D(0.043559823, 0, -1.3993222, 0, 1.4, 0, 1.3993222, 0, 0.043559823, 19.16889, 0.0056490004, -4.8346577)
 script = ExtResource("29_0a2r4")
 arrowSpawnPosition = NodePath("BallistaTopElementLow/BallistaBarrel/ArrowSpawnLocation")
@@ -1292,6 +1486,7 @@ arrowScene = ExtResource("30_mcs8j")
 range = 0.0
 inputNode = NodePath("BallistaTopElementLow/StaticBody3D/StationPort")
 arrowCount = 0
+ammoCounter = NodePath("CanvasLayer/Node3D/Label3D")
 label = NodePath("CanvasLayer/Node3D/Label3D")
 audio = NodePath("AudioStreamPlayer3D")
 
@@ -1364,7 +1559,7 @@ transform = Transform3D(1, 0, 0, 0, 0.33043814, 0, 0, 0, 0.2738446, -0.18170571,
 mesh = SubResource("BoxMesh_m1e06")
 skeleton = NodePath("../../../StaticBody3D")
 
-[node name="Ballista2" type="Node3D" parent="Objects/Stations" unique_id=1274337909 node_paths=PackedStringArray("arrowSpawnPosition", "ballistaHead", "ballistaBarrel", "inputNode", "label", "audio") groups=["Ballista"]]
+[node name="Ballista2" type="Node3D" parent="Objects/Stations" unique_id=1274337909 node_paths=PackedStringArray("arrowSpawnPosition", "ballistaHead", "ballistaBarrel", "inputNode", "ammoCounter", "label", "audio") groups=["Ballista"]]
 transform = Transform3D(-0.03618356, 0, -1.3995323, 0, 1.4, 0, 1.3995323, 0, -0.03618356, 17.245884, 0.0056494772, 3.4815364)
 script = ExtResource("29_0a2r4")
 arrowSpawnPosition = NodePath("BallistaTopElementLow/BallistaBarrel/ArrowSpawnLocation")
@@ -1374,6 +1569,7 @@ ballistaBarrel = NodePath("BallistaTopElementLow/BallistaBarrel")
 arrowScene = ExtResource("30_mcs8j")
 inputNode = NodePath("BallistaTopElementLow/StaticBody3D/StationPort")
 arrowCount = 0
+ammoCounter = NodePath("CanvasLayer/Node3D/Label3D")
 label = NodePath("CanvasLayer/Node3D/Label3D")
 audio = NodePath("AudioStreamPlayer3D")
 
@@ -1473,7 +1669,7 @@ mesh = SubResource("PlaneMesh_oyacv")
 skeleton = NodePath("../../CollisionShape3D")
 
 [node name="ItemDropOffNode" type="Node3D" parent="LevelObjects" unique_id=1176537791]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.77405, 0, 27.257357)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.77405, 0, 25.577765)
 
 [node name="Area3D" type="Area3D" parent="LevelObjects/ItemDropOffNode" unique_id=2007190283]
 collision_mask = 16
@@ -1490,7 +1686,7 @@ transparency = 0.15
 mesh = SubResource("BoxMesh_y74ua")
 
 [node name="WeaponDropOffNode" type="Node3D" parent="LevelObjects" unique_id=476378771]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.34308, -0.071158886, 27.199833)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.34308, -0.071158886, 25.52024)
 
 [node name="Area3D" type="Area3D" parent="LevelObjects/WeaponDropOffNode" unique_id=721241301]
 collision_mask = 24
@@ -1578,7 +1774,7 @@ minSize = 16.0
 maxSize = 20.0
 zoomSmoothSpeed = 5.0
 zoomPadding = 40.0
-singlePlayerZoomRadius = 20.0
+singlePlayerZoomRadius = 30.0
 cameraAnchor = NodePath("../Camera/CameraAnchor")
 
 [node name="Camera" type="Node" parent="." unique_id=1194639982]
@@ -1608,11 +1804,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.22946, 0, -22.493752)
 [node name="TP3" type="Marker3D" parent="PlayerTP" unique_id=1309864898]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.87366, 0, -17.428986)
 
-[connection signal="pressed" from="UI/PauseMenu/ResumeButton" to="UI/PauseMenu" method="OnResumePressed"]
-[connection signal="pressed" from="UI/PauseMenu/SettingsButton" to="UI/PauseMenu" method="OnSettingsPressed"]
-[connection signal="pressed" from="UI/PauseMenu/QuitButton" to="UI/PauseMenu" method="OnMainMenuPressed"]
-[connection signal="pressed" from="UI/SettingsMenu/Panel/BackButton" to="UI/SettingsMenu" method="OnBackPressed"]
-[connection signal="pressed" from="UI/SettingsMenu/Panel/ApplyButton" to="UI/SettingsMenu" method="OnApplyPressed"]
+[connection signal="focus_entered" from="UI/PauseMenu2/ResumeButton" to="UI/PauseMenu2" method="OnResumeButtonMouseEntered"]
+[connection signal="focus_exited" from="UI/PauseMenu2/ResumeButton" to="UI/PauseMenu2" method="OnResumeButtonMouseExited"]
+[connection signal="mouse_entered" from="UI/PauseMenu2/ResumeButton" to="UI/PauseMenu2" method="OnResumeButtonMouseEntered"]
+[connection signal="mouse_exited" from="UI/PauseMenu2/ResumeButton" to="UI/PauseMenu2" method="OnResumeButtonMouseExited"]
+[connection signal="pressed" from="UI/PauseMenu2/ResumeButton" to="UI/PauseMenu2" method="OnResumePressed"]
+[connection signal="focus_entered" from="UI/PauseMenu2/SettingsButton" to="UI/PauseMenu2" method="OnSettingsButtonMouseEntered"]
+[connection signal="focus_exited" from="UI/PauseMenu2/SettingsButton" to="UI/PauseMenu2" method="OnSettingsButtonMouseExited"]
+[connection signal="mouse_entered" from="UI/PauseMenu2/SettingsButton" to="UI/PauseMenu2" method="OnSettingsButtonMouseEntered"]
+[connection signal="mouse_exited" from="UI/PauseMenu2/SettingsButton" to="UI/PauseMenu2" method="OnSettingsButtonMouseExited"]
+[connection signal="pressed" from="UI/PauseMenu2/SettingsButton" to="UI/PauseMenu2" method="OnSettingsPressed"]
+[connection signal="focus_entered" from="UI/PauseMenu2/QuitButton" to="UI/PauseMenu2" method="OnMainMenuButtonMouseEntered"]
+[connection signal="focus_exited" from="UI/PauseMenu2/QuitButton" to="UI/PauseMenu2" method="OnMainMenuButtonMouseExited"]
+[connection signal="mouse_entered" from="UI/PauseMenu2/QuitButton" to="UI/PauseMenu2" method="OnMainMenuButtonMouseEntered"]
+[connection signal="mouse_exited" from="UI/PauseMenu2/QuitButton" to="UI/PauseMenu2" method="OnMainMenuButtonMouseExited"]
+[connection signal="pressed" from="UI/PauseMenu2/QuitButton" to="UI/PauseMenu2" method="OnMainMenuPressed"]
+[connection signal="focus_entered" from="UI/SettingsMenu2/Panel/BackButton" to="UI/SettingsMenu2" method="OnBackMouseEntered"]
+[connection signal="focus_exited" from="UI/SettingsMenu2/Panel/BackButton" to="UI/SettingsMenu2" method="OnBackMouseExited"]
+[connection signal="mouse_entered" from="UI/SettingsMenu2/Panel/BackButton" to="UI/SettingsMenu2" method="OnBackMouseEntered"]
+[connection signal="mouse_exited" from="UI/SettingsMenu2/Panel/BackButton" to="UI/SettingsMenu2" method="OnBackMouseExited"]
+[connection signal="pressed" from="UI/SettingsMenu2/Panel/BackButton" to="UI/SettingsMenu2" method="OnBackPressed"]
+[connection signal="focus_entered" from="UI/SettingsMenu2/Panel/ApplyButton" to="UI/SettingsMenu2" method="OnApplyMouseEntered"]
+[connection signal="focus_exited" from="UI/SettingsMenu2/Panel/ApplyButton" to="UI/SettingsMenu2" method="OnApplyMouseExited"]
+[connection signal="mouse_entered" from="UI/SettingsMenu2/Panel/ApplyButton" to="UI/SettingsMenu2" method="OnApplyMouseEntered"]
+[connection signal="mouse_exited" from="UI/SettingsMenu2/Panel/ApplyButton" to="UI/SettingsMenu2" method="OnApplyMouseExited"]
+[connection signal="pressed" from="UI/SettingsMenu2/Panel/ApplyButton" to="UI/SettingsMenu2" method="OnApplyPressed"]
 [connection signal="body_entered" from="Objects/Enemies/Enemy/Area3D" to="Objects/Enemies/Enemy" method="OnBodyEntered"]
 [connection signal="body_entered" from="Objects/Enemies/Enemy2/Area3D" to="Objects/Enemies/Enemy2" method="OnBodyEntered"]
 [connection signal="body_exited" from="Objects/Stations/Ballista/BallistaTopElementLow/StaticBody3D/StationPort/Area3D" to="Objects/Stations/Ballista" method="OnInputBodyEntered"]
