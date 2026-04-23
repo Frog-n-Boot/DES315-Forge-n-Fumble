@@ -15,6 +15,7 @@ public partial class SpinAttack : Node3D
 	[Export] private AnimationPlayer animPlayer;
 	[Export] private float dazeTimer = 2f;
 	[Export] Area3D spinArea;
+	[Export] private AudioStreamPlayer3D spinAttackSound;
 
 	[Signal] public delegate void SpinChargeGainedEventHandler(int currentCharges, int maxCharges);
 	[Signal] public delegate void SpinAttackReadyEventHandler(int charges);
@@ -163,7 +164,7 @@ public partial class SpinAttack : Node3D
 		{
 			// Play StartSpin first — OnAnimationFinished chains it into Spin
 			PlayAnim(ANIM_START_SPIN, 0f);
-
+			spinAttackSound.Play();
 			if (spinArea != null)
 			{
 				spinArea.Monitoring = true;

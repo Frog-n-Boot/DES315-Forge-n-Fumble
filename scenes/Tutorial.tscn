@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bag1qnax1it55"]
+[gd_scene format=3 uid="uid://djipkildhb8qc"]
 
 [ext_resource type="Script" uid="uid://bk2uam5leqcv8" path="res://src/Player/PlayerSpawner.cs" id="1_ci5ev"]
 [ext_resource type="Texture2D" uid="uid://1o5xtfd8hydv" path="res://assets/textures/tu 4.webp" id="1_q5ijt"]
@@ -315,7 +315,7 @@ if it is destoryed you lose"
 font_size = 23
 
 [node name="Label3D18" type="Label3D" parent="UI/Text" unique_id=1834344684]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -62.425232, 1.5332108, -26.406786)
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -71.73279, 1.5332108, -22.011969)
 text = "The Forge has a 
 limited amount of HP, 
 if it is destoryed you lose"
@@ -375,9 +375,9 @@ Hold B/Q to drop your weapon"
 font_size = 20
 
 [node name="Label3D7" type="Label3D" parent="UI/Text" unique_id=275099191]
-transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -64.81858, 2.1534605, 24.51603)
+transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -64.43628, 2.1534605, 20.273829)
 outline_render_priority = -2
-text = "Place 3 Copper Ingot to continue"
+text = "Place 3 Copper Ingot in the red box to continue"
 
 [node name="Label3D8" type="Label3D" parent="UI/Text" unique_id=249894599]
 transform = Transform3D(7, 0, 0, 0, 3.4999998, 6.062178, 0, -6.062178, 3.4999998, -32.966927, 1.4973764, 12.434632)
@@ -1270,7 +1270,7 @@ transform = Transform3D(-6.556708e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.556708e-08
 controllerButtonTexture = ExtResource("6_cgb57")
 
 [node name="Anvil2" parent="Objects/Stations" unique_id=688992065 instance=ExtResource("11_m6ekv")]
-transform = Transform3D(1.1324686e-07, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.1324686e-07, 49.70672, -0.4507265, -6.7690206)
+transform = Transform3D(1.1324686e-07, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.1324686e-07, 64.8358, -0.4507265, 6.5816207)
 controllerButtonTexture = ExtResource("6_cgb57")
 
 [node name="Grindstone2" parent="Objects/Stations" unique_id=838819154 instance=ExtResource("10_ei5ly")]
@@ -1278,7 +1278,7 @@ transform = Transform3D(-6.556708e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.556708e-08
 controllerButtonTexture = ExtResource("6_cgb57")
 
 [node name="Forge2" parent="Objects/Stations" unique_id=414176730 instance=ExtResource("11_tfuon")]
-transform = Transform3D(-0.5, 0, 7.54979e-08, 0, 0.5, 0, -7.54979e-08, 0, -0.5, 48.175663, 9.536743e-07, -21.237206)
+transform = Transform3D(-0.5, 0, 7.54979e-08, 0, 0.5, 0, -7.54979e-08, 0, -0.5, 50.140217, 9.536743e-07, -6.4846954)
 controllerButtonTexture = ExtResource("6_cgb57")
 
 [node name="Ballista" type="Node3D" parent="Objects/Stations" unique_id=1571022317 node_paths=PackedStringArray("arrowSpawnPosition", "ballistaHead", "ballistaBarrel", "inputNode", "label", "audio") groups=["Ballista"]]
