@@ -80,7 +80,13 @@ public partial class CameraController : Camera3D
             float worldSpreadX = maxX - minX;
             float worldSpreadZ = maxZ - minZ;
 
-            requiredSize = Mathf.Max(worldSpreadZ + zoomPadding, (worldSpreadX + zoomPadding) / aspect);
+            float angleRad = Mathf.DegToRad(Mathf.Abs(RotationDegrees.X));
+            float zStretch = 1f / Mathf.Cos(angleRad);
+
+            float sizeForX = (worldSpreadX + zoomPadding) / aspect;
+            float sizeForZ = (worldSpreadZ + zoomPadding) / zStretch;
+
+            requiredSize = Mathf.Max(sizeForX, sizeForZ);
         }
         if (cameraBoundingBox != null)
         {
