@@ -745,102 +745,96 @@ public partial class EnemyController : CharacterBody3D
 	public class IdleState : EnemyStateBase { }
 
     public class ChasePlayerState : EnemyStateBase
-    {
-        public override void Enter(EnemyController c)
-        {
-           // GD.Print($"[{c.Name}] Enter ChasePlayerState. NearestPlayer={c.NearestPlayer?.GlobalPosition.ToString() ?? "null"}");
-            c.moveTarget = c.NearestPlayer;
-            if (c.NearestPlayer != null)
-                c.SetNavTarget(c.NearestPlayer.GlobalPosition);
-        }
-        public override void PhysicsUpdate(EnemyController c, double delta)
-        {
-            if (c.NearestPlayer == null) return;
-            c.moveTarget = c.NearestPlayer;
-            c.PlayWalkAnim();
-            c.NavigateTo(c.NearestPlayer.GlobalPosition, delta);
-        }
-    }
+	{
+		public override void Enter(EnemyController c)
+		{
+			c.moveTarget = c.NearestPlayer;
+			if (c.NearestPlayer != null)
+				c.SetNavTarget(c.NearestPlayer.GlobalPosition);
+		}
+		public override void PhysicsUpdate(EnemyController c, double delta)
+		{
+			if (c.NearestPlayer == null) return;
+			c.moveTarget = c.NearestPlayer;
+			c.PlayWalkAnim();
+			c.NavigateTo(c.NearestPlayer.GlobalPosition, delta);
+		}
+	}
 
     public class MoveToForgeState : EnemyStateBase
-    {
-        // Distance at which we abandon the nav mesh and walk directly into
-        private const float DirectApproachDistance = 2.0f;
+	{
+		public override void Enter(EnemyController c)
+		{
+			c.moveTarget = c.Forge;
+			if (c.Forge != null)
+				c.SetNavTarget(c.Forge.GlobalPosition);
+		}
 
-        public override void Enter(EnemyController c)
-        {
-            //GD.Print($"[{c.Name}] Enter MoveToForgeState. Forge={c.Forge?.GlobalPosition.ToString() ?? "null"}");
-            c.moveTarget = c.Forge;
-            if (c.Forge != null)
-                c.SetNavTarget(c.Forge.GlobalPosition);
-        }
-
-        public override void PhysicsUpdate(EnemyController c, double delta)
-        {
-            
-            
-            if (c.Forge == null) return;
-            c.PlayWalkAnim();
-
-            float dist = c.GlobalPosition.DistanceTo(c.Forge.GlobalPosition);
-            // Nav mesh ends before the forge collision shape boundary.
-            if (dist <= DirectApproachDistance || c.navigationAgent.IsNavigationFinished())
-                c.MoveTowards(c.navigationAgent.GetNextPathPosition(), delta);
-            else
-                c.NavigateTo(c.Forge.GlobalPosition, delta);
-        }
-    }
+		public override void PhysicsUpdate(EnemyController c, double delta)
+		{
+			if (c.Forge == null) return;
+			c.PlayWalkAnim();
+			c.NavigateTo(c.Forge.GlobalPosition, delta);
+		}
+	}
 
     public class AttackPlayerState : EnemyStateBase
-    {
-        public override void Enter(EnemyController c)
-        {
-            //GD.Print($"[{c.Name}] Enter AttackPlayerState. NearestPlayer={c.NearestPlayer?.GlobalPosition.ToString() ?? "null"}");
-            c.moveTarget = c.NearestPlayer;
-            if (c.NearestPlayer != null)
-                c.SetNavTarget(c.NearestPlayer.GlobalPosition);
-        }
-        public override void PhysicsUpdate(EnemyController c, double delta)
-        {
-            if (c.NearestPlayer == null) return;
-            c.moveTarget = c.NearestPlayer;
-            c.PlayWalkAnim();
-            c.NavigateTo(c.NearestPlayer.GlobalPosition, delta);
-        }
-    }
+	{
+		private const float DirectApproachDistance = 2.0f;
+
+		public override void Enter(EnemyController c)
+		{
+			c.moveTarget = c.NearestPlayer;
+			if (c.NearestPlayer != null)
+				c.SetNavTarget(c.NearestPlayer.GlobalPosition);
+		}
+		public override void PhysicsUpdate(EnemyController c, double delta)
+		{
+			if (c.NearestPlayer == null) return;
+			c.moveTarget = c.NearestPlayer;
+
+			float dist = c.GlobalPosition.DistanceTo(c.NearestPlayer.GlobalPosition);
+			if (dist <= DirectApproachDistance || c.navigationAgent.IsNavigationFinished())
+			{
+				c.PlayAttackAnim();
+				c.MoveTowards(c.NearestPlayer.GlobalPosition, delta);
+			}
+			else
+			{
+				c.PlayWalkAnim();
+				c.NavigateTo(c.NearestPlayer.GlobalPosition, delta);
+			}
+		}
+	}
 
 	public class AttackForgeState : EnemyStateBase
 	{
-		// Same threshold as MoveToForgeState — keeps the two states consistent.
 		private const float DirectApproachDistance = 2.0f;
 
-        public override void Enter(EnemyController c)
-        {
-            //GD.Print($"[{c.Name}] Enter AttackForgeState. Forge={c.Forge?.GlobalPosition.ToString() ?? "null"}");
-            c.moveTarget = c.Forge;
-            if (c.Forge != null)
-                c.SetNavTarget(c.Forge.GlobalPosition);
-        }
+		public override void Enter(EnemyController c)
+		{
+			c.moveTarget = c.Forge;
+			if (c.Forge != null)
+				c.SetNavTarget(c.Forge.GlobalPosition);
+		}
 
-        public override void PhysicsUpdate(EnemyController c, double delta)
-        {
-            if (c.Forge == null) return;
-            c.PlayWalkAnim();
+		public override void PhysicsUpdate(EnemyController c, double delta)
+		{
+			if (c.Forge == null) return;
 
 			float dist = c.GlobalPosition.DistanceTo(c.Forge.GlobalPosition);
-
-            if (dist <= DirectApproachDistance || c.navigationAgent.IsNavigationFinished())
-            {
-                c.PlayAttackAnim();
-                c.MoveTowards(c.navigationAgent.GetNextPathPosition(), delta);
-            }
-            else
-            {
-                c.PlayWalkAnim();
-                c.NavigateTo(c.Forge.GlobalPosition, delta);
-            }
-        }
-    }
+			if (dist <= DirectApproachDistance || c.navigationAgent.IsNavigationFinished())
+			{
+				c.PlayAttackAnim();
+				c.MoveTowards(c.Forge.GlobalPosition, delta);
+			}
+			else
+			{
+				c.PlayWalkAnim();
+				c.NavigateTo(c.Forge.GlobalPosition, delta);
+			}
+		}
+	}
 
     public class FleeState : EnemyStateBase
     {
