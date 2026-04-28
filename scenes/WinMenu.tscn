@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://da4vh0gwogx5w"]
+
+[ext_resource type="Texture2D" uid="uid://wsa4piaey4k3" path="res://assets/textures/CaleDwarf.png" id="1_44pu4"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0raux"]
+
+[node name="WinMenu" type="Node2D" unique_id=106680283]
+
+[node name="RetryButton" type="Button" parent="." unique_id=1651672683]
+offset_left = 391.99997
+offset_top = 163.0
+offset_right = 840.0
+offset_bottom = 283.0
+scale = Vector2(0.8400012, 0.7599994)
+focus_neighbor_top = NodePath(".")
+focus_neighbor_bottom = NodePath("../SettingsButton")
+focus_next = NodePath("../SettingsButton")
+focus_previous = NodePath("../QuitButton")
+theme_override_font_sizes/font_size = 40
+text = "Retry"
+
+[node name="SettingsButton" type="Button" parent="." unique_id=2095921222]
+offset_left = 391.99997
+offset_top = 323.0
+offset_right = 840.0
+offset_bottom = 443.0
+scale = Vector2(0.8400012, 0.7599994)
+focus_neighbor_top = NodePath("../RetryButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+focus_next = NodePath("../QuitButton")
+focus_previous = NodePath("../RetryButton")
+theme_override_font_sizes/font_size = 40
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="." unique_id=1899182554]
+offset_left = 392.0
+offset_top = 483.00003
+offset_right = 840.0
+offset_bottom = 603.0
+scale = Vector2(0.8400012, 0.7599994)
+focus_neighbor_top = NodePath("../SettingsButton")
+focus_previous = NodePath("../SettingsButton")
+theme_override_font_sizes/font_size = 40
+text = "Main Menu"
+
+[node name="FurnaceImahe" type="TextureRect" parent="." unique_id=1212233361]
+offset_left = 6.000004
+offset_top = 1.0000005
+offset_right = 506.0
+offset_bottom = 101.0
+scale = Vector2(0.21428046, 1)
+texture = ExtResource("1_44pu4")
+expand_mode = 1
+flip_v = true
+
+[node name="FurnaceImahe2" type="TextureRect" parent="." unique_id=405122279]
+offset_left = 1042.0001
+offset_top = 1.0000019
+offset_right = 1542.0001
+offset_bottom = 101.0
+scale = Vector2(0.21428046, 1)
+texture = ExtResource("1_44pu4")
+expand_mode = 1
+flip_h = true
+flip_v = true
+
+[node name="FurnaceImahe3" type="TextureRect" parent="." unique_id=944359431]
+offset_left = 1038.0001
+offset_top = 549.0
+offset_right = 1538.0001
+offset_bottom = 649.0
+scale = Vector2(0.21428046, 1)
+texture = ExtResource("1_44pu4")
+expand_mode = 1
+flip_h = true
+
+[node name="FurnaceImahe4" type="TextureRect" parent="." unique_id=384933577]
+offset_left = 7.000003
+offset_top = 548.0
+offset_right = 507.0
+offset_bottom = 648.0
+scale = Vector2(0.21428046, 1)
+texture = ExtResource("1_44pu4")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=62039461]
+z_index = -1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.860407, 16.15729)
+texture = SubResource("CompressedTexture2D_0raux")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=496385764]
+z_index = -1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.750067, 16.369858)
+color = Color(0.11372549, 0.18431373, 0.3372549, 0.4745098)
+
+[node name="Label" type="Label" parent="." unique_id=1166856295]
+offset_left = 436.0
+offset_top = 33.0
+offset_right = 710.0
+offset_bottom = 116.0
+theme_override_font_sizes/font_size = 60
+text = "You Won!"

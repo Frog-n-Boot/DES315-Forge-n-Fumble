@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bvm88hjpchhgf"]
+
+[ext_resource type="ArrayMesh" uid="uid://b0h4gb8otdmre" path="res://assets/models/FinalAssets_Low/Foliage/fol_treetrunk_low.obj" id="1_igxuc"]
+[ext_resource type="Material" uid="uid://b48wwrdwdinn5" path="res://assets/models/FinalAssets_Low/Foliage/treetrunk.tres" id="2_v4182"]
+[ext_resource type="ArrayMesh" uid="uid://bhsoamh00nsgy" path="res://assets/models/FinalAssets_Low/Foliage/fol_treeleaves_low.obj" id="3_gtd17"]
+[ext_resource type="Texture2D" uid="uid://cvuq04ldhiixd" path="res://assets/models/FinalAssets_Low/Foliage/Sprce_foilagesheet.png" id="4_6623a"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ni7xv"]
+albedo_texture = ExtResource("4_6623a")
+
+[node name="FolTreetrunkLow" type="Node3D" unique_id=1016778218 groups=["navigation_mesh_source_group", "xray"]]
+
+[node name="FolTreetrunkLow" type="MeshInstance3D" parent="." unique_id=1214845701]
+mesh = ExtResource("1_igxuc")
+surface_material_override/0 = ExtResource("2_v4182")
+
+[node name="FolTreeleavesLow" type="MeshInstance3D" parent="." unique_id=2023147373]
+mesh = ExtResource("3_gtd17")
+surface_material_override/0 = SubResource("StandardMaterial3D_ni7xv")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=309705165]
+height = 5.64
+vertices = PackedVector3Array(-0.25618654, 0, -0.4541747, 0.19810963, 0, -0.5230892, 0.5181703, 0, -0.22642268, 0.50905985, 0, 0.26552162, 0.06266588, 0, 0.41128317, -0.39283806, 0, 0.22908133)

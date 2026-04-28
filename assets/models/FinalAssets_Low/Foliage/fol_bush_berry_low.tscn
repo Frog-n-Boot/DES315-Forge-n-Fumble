@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://duuv6poc2gxge"]
+
+[ext_resource type="ArrayMesh" uid="uid://coqgekq1dj3iq" path="res://assets/models/FinalAssets_Low/Foliage/fol_bush_berry_low.obj" id="1_lrlpd"]
+[ext_resource type="Texture2D" uid="uid://cvuq04ldhiixd" path="res://assets/models/FinalAssets_Low/Foliage/Sprce_foilagesheet.png" id="2_q7f7o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t6qou"]
+albedo_texture = ExtResource("2_q7f7o")
+
+[node name="FolBushBerryLow" type="Node3D" unique_id=696546659 groups=["navigation_mesh_source_group"]]
+
+[node name="FolBushBerryLow" type="MeshInstance3D" parent="." unique_id=1192203279]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.070349574, 0, 0.12877369)
+mesh = ExtResource("1_lrlpd")
+surface_material_override/0 = SubResource("StandardMaterial3D_t6qou")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=698557081]
+height = 2.33
+vertices = PackedVector3Array(-0.3048732, 0, -0.21270593, 0.017702043, 0, -0.41368318, 0.44536787, 0, -0.20413244, 0.54107964, 0, 0.20939556, 0.4983297, 0, 0.6657913, -0.007974803, 0, 0.77390945, -0.32855582, 0, 0.75802124, -0.41573605, 0, 0.22474621)
+affect_navigation_mesh = true

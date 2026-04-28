@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dao4u1md7hkct"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l4k4j"]
+albedo_color = Color(0, 0.2784314, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_l4k4j"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qjrbg"]
+
+[node name="Floor" type="Node3D" unique_id=1232964611]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=173877090 groups=["World"]]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1655990644]
+material_override = SubResource("StandardMaterial3D_l4k4j")
+mesh = SubResource("PlaneMesh_l4k4j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1833488816]
+transform = Transform3D(2, 0, 0, 0, 0.05, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("BoxShape3D_qjrbg")

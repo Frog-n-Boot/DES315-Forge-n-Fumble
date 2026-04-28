@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cux5m3nn2f5ds"]
+
+[ext_resource type="ArrayMesh" uid="uid://dkbogbm4148ej" path="res://assets/models/FinalAssets_Low/Lowpolies_interor/Int_stool_low.obj" id="1_xiyjs"]
+[ext_resource type="Material" uid="uid://dybi0h3puja63" path="res://assets/materials/Texture_sets/Lowpolly_interior_Textures/furniture.tres" id="2_0h80n"]
+
+[node name="IntStoolLow" type="Node3D" unique_id=2102236486]
+
+[node name="IntStoolLow" type="MeshInstance3D" parent="." unique_id=166463548]
+mesh = ExtResource("1_xiyjs")
+surface_material_override/0 = ExtResource("2_0h80n")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=1492214409]
+height = 0.7
+vertices = PackedVector3Array(-0.29839268, 0, -0.169156, -0.12742987, 0, -0.29579502, 0.08627352, 0, -0.29421204, 0.2556531, 0, -0.17073898, 0.32372162, 0, 0.030300563, 0.2572362, 0, 0.23134004, 0.09102246, 0, 0.35323012, -0.12268093, 0, 0.35797906, -0.29839268, 0, 0.23134004, -0.3648781, 0, 0.027134588)
+affect_navigation_mesh = true

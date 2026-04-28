@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://c6k5q27uaxle2"]
+
+[ext_resource type="PackedScene" uid="uid://2dvvlktwdavs" path="res://assets/models/FinalAssets_Low/Ore/Copper_Ore.tscn" id="1_0gdy0"]
+[ext_resource type="Script" uid="uid://cy6spy2s7uv1l" path="res://src/Player/ItemData.cs" id="1_m7oet"]
+[ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="2_30rq1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tq7pv"]
+atlas = ExtResource("2_30rq1")
+region = Rect2(401, 248, 53, 39)
+
+[resource]
+script = ExtResource("1_m7oet")
+name = "Copper_Ore"
+itemScene = ExtResource("1_0gdy0")
+itemTexture = SubResource("AtlasTexture_tq7pv")
+metadata/_custom_type_script = "uid://cy6spy2s7uv1l"

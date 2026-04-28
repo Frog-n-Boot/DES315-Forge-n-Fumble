@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://2nwhxfu7pfbg"]
+
+[ext_resource type="Script" uid="uid://cid6v0iox3id7" path="res://src/Stations/AssemblyStation.cs" id="1_7f1fa"]
+[ext_resource type="PackedScene" uid="uid://c37xqn66ss1o8" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Sword.tscn" id="2_r34y0"]
+[ext_resource type="Texture2D" path="res://assets/models/FinalAssets_Low/Interior_Models/furntiture_comb_BaseCol.tga" id="2_rogsa"]

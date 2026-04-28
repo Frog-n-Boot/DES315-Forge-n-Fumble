@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://d1y4lf17i3iid"]
+
+[ext_resource type="Texture2D" uid="uid://bmsvh2x5p4847" path="res://assets/materials/Texture_sets/Item_Textures/sword_scnd_rough_low_BaseCol.tga" id="1_c726u"]
+[ext_resource type="Script" uid="uid://c25evsd3j0b" path="res://src/Weapons/Sword.cs" id="1_j6w72"]
+[ext_resource type="Texture2D" uid="uid://dh0ha8nt5av2t" path="res://assets/materials/Texture_sets/Item_Textures/sword_scnd_rough_low_Normal.tga" id="2_j6w72"]
+[ext_resource type="PackedScene" uid="uid://di5odw2tmde5j" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Sword.tscn" id="2_jlpgu"]
+[ext_resource type="Texture2D" uid="uid://cfllkfsxak7hb" path="res://assets/materials/Texture_sets/Item_Textures/sword_frts_rough_low_Normal.tga" id="3_jlpgu"]
+[ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="3_v6vne"]
+[ext_resource type="Texture2D" uid="uid://tbrctcwppirl" path="res://assets/textures/UI/ui_x_button.tres" id="4_pgajg"]
+[ext_resource type="Texture2D" uid="uid://dw7bk1nhlrupf" path="res://assets/materials/Texture_sets/Item_Textures/sword_scnd_rough_low_ORM.tga" id="4_w7j66"]
+[ext_resource type="Texture2D" uid="uid://cmhg5fabsggpk" path="res://assets/textures/UI/ui_keyboard_e_button.tres" id="5_pgajg"]
+[ext_resource type="ArrayMesh" uid="uid://vmdklfvgul40" path="res://assets/models/FinalAssets_Low/Items_Models/Sword_first_low.obj" id="5_v6vne"]
+[ext_resource type="AudioStream" uid="uid://c01r2egd4skm" path="res://assets/Sounds/SFX/SwordBreak.wav" id="8_w7j66"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xpjli"]
+atlas = ExtResource("3_v6vne")
+region = Rect2(632, 31, 63, 190)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_pgajg"]
+albedo_texture = ExtResource("1_c726u")
+albedo_texture_force_srgb = true
+orm_texture = ExtResource("4_w7j66")
+normal_enabled = true
+normal_texture = ExtResource("3_jlpgu")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_j6w72")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jlpgu"]
+size = Vector3(5.340587, 1.6914063, 8.853933)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w7j66"]
+size = Vector3(1.742096, 1.691742, 4.7293167)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_v6vne"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[node name="IronDullSword" type="Node3D" unique_id=803566957 node_paths=PackedStringArray("audio", "weaponTextureRect", "pickUpArea", "weaponBody") groups=["DullSword", "Sword", "Weapon"]]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+script = ExtResource("1_j6w72")
+sharpenedVersion = ExtResource("2_jlpgu")
+audio = NodePath("SwordBreak")
+damage = 1
+maxDurability = 10
+weaponTexture = SubResource("AtlasTexture_xpjli")
+weaponPromptTexture = Array[Texture2D]([ExtResource("4_pgajg"), ExtResource("5_pgajg")])
+weaponTextureRect = NodePath("Sprite3D/SubViewport/TextureRect")
+pickUpArea = NodePath("StaticBody3D/Area3D")
+weaponBody = NodePath("StaticBody3D")
+
+[node name="SwordFirstLow" type="MeshInstance3D" parent="." unique_id=1223151136]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+material_override = SubResource("ORMMaterial3D_pgajg")
+mesh = ExtResource("5_v6vne")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1134160719 groups=["DullSword", "Sword", "Weapon"]]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1129674876 groups=["DullSword", "Sword", "Weapon"]]
+transform = Transform3D(0.20340535, 7.280779e-16, 0, -9.030358e-17, 1.6399672, 0, 0, 0, 0.09999808, 0.004674003, 1.1159198, -0.022993883)
+shape = SubResource("BoxShape3D_jlpgu")
+disabled = true
+
+[node name="Area3D" type="Area3D" parent="StaticBody3D" unique_id=107202934 groups=["DullSword", "Sword", "Weapon"]]
+collision_layer = 24
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D/Area3D" unique_id=1042465750]
+transform = Transform3D(0.62693906, 0, 0, 0, 1.6399509, 0, 0, 0, 0.18563555, 0.004778548, 1.1241063, -0.01556235)
+shape = SubResource("BoxShape3D_w7j66")
+
+[node name="SwordBreak" type="AudioStreamPlayer3D" parent="." unique_id=1636900952]
+stream = ExtResource("8_w7j66")
+volume_db = -60.0
+max_db = -24.0
+max_polyphony = 10
+bus = &"SFX"
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=889598787]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4590406, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_v6vne")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=289028794]
+transparent_bg = true
+size = Vector2i(50, 50)
+
+[node name="TextureRect" type="TextureRect" parent="Sprite3D/SubViewport" unique_id=98445824]
+offset_right = 40.0
+offset_bottom = 40.0

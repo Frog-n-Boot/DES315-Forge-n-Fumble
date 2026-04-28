@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://daeufm6bct2sk"]
+
+[ext_resource type="Texture2D" uid="uid://cvuq04ldhiixd" path="res://assets/models/FinalAssets_Low/Foliage/Sprce_foilagesheet.png" id="1_mdq84"]
+[ext_resource type="ArrayMesh" uid="uid://cvwkutj2u6d12" path="res://assets/models/FinalAssets_Low/Foliage/fol_ferns_low.obj" id="2_jnovn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ru8ab"]
+albedo_texture = ExtResource("1_mdq84")
+
+[node name="FolFernsLow" type="MeshInstance3D" unique_id=861193161 groups=["navigation_mesh_source_group"]]
+material_override = SubResource("StandardMaterial3D_ru8ab")
+mesh = ExtResource("2_jnovn")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=153832839]
+height = 2.33
+vertices = PackedVector3Array(-0.39555103, 0, -0.412357, 0.003857538, 0, -0.58317316, 0.40075392, 0, -0.40984496, 0.56403416, 0, -0.01043646, 0.40828985, 0, 0.39399618, 0.003857538, 0, 0.56983644, -0.38299114, 0, 0.40404418, -0.5588314, 0, 0.0046355654)
+affect_navigation_mesh = true

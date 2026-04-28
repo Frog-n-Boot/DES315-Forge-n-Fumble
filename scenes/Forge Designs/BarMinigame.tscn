@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://cy0xanroejtfd"]
+
+[ext_resource type="Script" uid="uid://by2c55xka33c5" path="res://src/BarMinigame.cs" id="1_euy6x"]
+[ext_resource type="Texture2D" uid="uid://cfesbuy201qlg" path="res://assets/materials/Texture_sets/Item_Textures/SwordPNG.png" id="1_nga5a"]
+[ext_resource type="Texture2D" uid="uid://u60gttmgjlop" path="res://assets/textures/GreenSquare.png" id="1_ttenv"]
+[ext_resource type="Texture2D" uid="uid://cvosdiqb43467" path="res://assets/textures/RedSquare.png" id="2_euy6x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n3qxr"]
+size = Vector2(346.6071, 346.01764)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxj5x"]
+size = Vector2(158.71277, 216.24875)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_euy6x"]
+size = Vector2(128.72177, 39.030846)
+
+[node name="BarMinigame" type="Node2D" unique_id=838992982 node_paths=PackedStringArray("rigidBox", "textureProgressBar", "itemToCatch")]
+position = Vector2(359.99997, 254)
+scale = Vector2(0.4757961, 1.3640924)
+script = ExtResource("1_euy6x")
+rigidBox = NodePath("Outside/RigidBody2D")
+textureProgressBar = NodePath("TextureProgressBar")
+itemToCatch = NodePath("Sword")
+moveTime = 0.5
+
+[node name="Outside" type="Sprite2D" parent="." unique_id=1126272418]
+position = Vector2(-1.6566088, 32.551483)
+scale = Vector2(0.327443, 1)
+texture = ExtResource("1_ttenv")
+
+[node name="GrooveJoint2D" type="GrooveJoint2D" parent="Outside" unique_id=623132200]
+position = Vector2(-6.305176, -171.54263)
+node_a = NodePath("../StaticBody2D")
+node_b = NodePath("../RigidBody2D")
+length = 350.0
+initial_offset = 170.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Outside" unique_id=1883705650]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Outside/StaticBody2D" unique_id=1306033641]
+position = Vector2(6.418457, -1.5258789e-05)
+scale = Vector2(1.0000001, 1)
+shape = SubResource("RectangleShape2D_n3qxr")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Outside" unique_id=1385271456]
+scale = Vector2(5.621425, 0.5451132)
+lock_rotation = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Outside/RigidBody2D" unique_id=714756516]
+position = Vector2(0.57095337, -0.6724243)
+scale = Vector2(0.31491017, 0.35447922)
+shape = SubResource("RectangleShape2D_xxj5x")
+
+[node name="Inside" type="Sprite2D" parent="Outside/RigidBody2D" unique_id=1129350852]
+scale = Vector2(0.15745497, 0.22281069)
+texture = ExtResource("2_euy6x")
+
+[node name="Sword" type="Sprite2D" parent="." unique_id=1309287508]
+position = Vector2(0.4452169, -112.59997)
+scale = Vector2(0.6041269, 0.12420682)
+texture = ExtResource("1_nga5a")
+
+[node name="Area2D" type="Area2D" parent="Sword" unique_id=1723563859]
+scale = Vector2(1, 14.668122)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword/Area2D" unique_id=1495879334]
+position = Vector2(1.7106934, -0.28433418)
+shape = SubResource("RectangleShape2D_euy6x")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1802742756]
+offset_left = 63.05228
+offset_top = -159.08014
+offset_right = 438.05228
+offset_bottom = 213.91986
+scale = Vector2(0.15930372, 1)
+fill_mode = 3
+texture_under = ExtResource("2_euy6x")
+texture_progress = ExtResource("1_ttenv")
+
+[node name="ProgressTimer" type="Timer" parent="." unique_id=78565770]
+wait_time = 0.2
+autostart = true
+
+[node name="ItemTimer" type="Timer" parent="." unique_id=1172211941]
+wait_time = 0.2
+autostart = true
+
+[connection signal="body_entered" from="Sword/Area2D" to="." method="OnBodyEntered"]
+[connection signal="body_exited" from="Sword/Area2D" to="." method="OnBodyExited"]
+[connection signal="timeout" from="ProgressTimer" to="." method="OnTimerTimeout"]
+[connection signal="timeout" from="ItemTimer" to="." method="OnItemTimerTimeout"]

@@ -1,0 +1,223 @@
+[gd_scene format=3 uid="uid://bm6vf4tjk48gj"]
+
+[ext_resource type="Script" uid="uid://bdwnaqw5jg3si" path="res://src/Stations/SmeltingStation.cs" id="1_ph4aw"]
+[ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="2_vocjd"]
+[ext_resource type="Texture2D" uid="uid://cmhg5fabsggpk" path="res://assets/textures/UI/ui_keyboard_e_button.tres" id="3_8inme"]
+[ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/Resources/CraftingRecipes.cs" id="3_oiry0"]
+[ext_resource type="PackedScene" uid="uid://c36fijnqqehnq" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Ingot.tscn" id="3_wq66q"]
+[ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="4_0l8vc"]
+[ext_resource type="PackedScene" uid="uid://o7vvnubwicff" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Ingot.tscn" id="4_5kmee"]
+[ext_resource type="PackedScene" uid="uid://bay85dbpt3qio" path="res://assets/models/FinalAssets_Low/Items_Models/Gold_Ingot.tscn" id="5_wq66q"]
+[ext_resource type="ArrayMesh" uid="uid://o2fxtu8po2fr" path="res://assets/models/FinalAssets_Low/WorkStations/Furnace_low.obj" id="6_0ahcc"]
+[ext_resource type="Texture2D" uid="uid://bll315yt7blkd" path="res://assets/materials/Texture_sets/WorkStations/Furance_low_BaseCol.tga" id="6_ohbk7"]
+[ext_resource type="PackedScene" uid="uid://kxj85aq1b0n0" path="res://assets/models/FinalAssets_Low/Items_Models/Damas_Ingot.tscn" id="6_sx61v"]
+[ext_resource type="Texture2D" uid="uid://bj6c60ek3rd8c" path="res://assets/materials/Texture_sets/WorkStations/Furance_low_ORM.tga" id="7_2jum7"]
+[ext_resource type="Texture2D" uid="uid://cw0s6r8rhgp8c" path="res://assets/materials/Texture_sets/WorkStations/Furance_low_Normal.tga" id="8_yd14g"]
+[ext_resource type="AudioStream" uid="uid://d31rmb5i75h54" path="res://assets/Sounds/SFX/InitalForgeActivation.wav" id="10_yd14g"]
+[ext_resource type="AudioStream" uid="uid://dyrnndgvln2a8" path="res://assets/Sounds/SFX/ForgeAfterActivationAdjusted.wav" id="15_8inme"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8inme"]
+atlas = ExtResource("2_vocjd")
+region = Rect2(114, 365, 40, 40)
+
+[sub_resource type="Resource" id="Resource_04qyv"]
+script = ExtResource("3_oiry0")
+recipeName = "Copper_Ingot"
+requiredItemNames = PackedStringArray("Copper_Ore")
+ouputName = "Copper_Ingot"
+ouputScene = ExtResource("3_wq66q")
+ouputGroup = "pickable"
+metadata/_custom_type_script = "uid://1bo1o367ybgk"
+
+[sub_resource type="Resource" id="Resource_i1han"]
+script = ExtResource("3_oiry0")
+recipeName = "Iron_Ingot"
+requiredItemNames = PackedStringArray("Iron_Ore")
+ouputName = "Iron_Ingot"
+ouputScene = ExtResource("4_5kmee")
+ouputGroup = "pickable"
+metadata/_custom_type_script = "uid://1bo1o367ybgk"
+
+[sub_resource type="Resource" id="Resource_7xevn"]
+script = ExtResource("3_oiry0")
+recipeName = "Gold_Ingot"
+requiredItemNames = PackedStringArray("Gold_Ore")
+ouputName = "Gold_Ingot"
+ouputScene = ExtResource("5_wq66q")
+ouputGroup = "pickable"
+metadata/_custom_type_script = "uid://1bo1o367ybgk"
+
+[sub_resource type="Resource" id="Resource_16tjv"]
+script = ExtResource("3_oiry0")
+recipeName = "Damas_Ingot"
+requiredItemNames = PackedStringArray("Damas_Ore")
+ouputName = "Damas_Ingot"
+ouputScene = ExtResource("6_sx61v")
+ouputGroup = "pickable"
+metadata/_custom_type_script = "uid://1bo1o367ybgk"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wq66q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vl1yp"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vrvjj"]
+height = 0.8371582
+radius = 0.08105469
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_vocjd"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vocjd"]
+load_path = "res://.godot/imported/Ui_sheet_ingame.webp-b3336d319029953e58c5bd00a8b70c18.s3tc.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jycwk"]
+atlas = SubResource("CompressedTexture2D_vocjd")
+region = Rect2(21, 519, 261, 39)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_jycwk"]
+viewport_path = NodePath("Sprite3D2/SubViewport")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbkhc"]
+atlas = ExtResource("2_vocjd")
+region = Rect2(114, 365, 40, 40)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i2ejw"]
+albedo_texture = ExtResource("6_ohbk7")
+normal_enabled = true
+normal_texture = ExtResource("8_yd14g")
+heightmap_enabled = true
+heightmap_texture = ExtResource("7_2jum7")
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_yd14g"]
+loop = false
+stream_count = 2
+stream_0 = ExtResource("10_yd14g")
+stream_1 = ExtResource("15_8inme")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jycwk"]
+
+[node name="Forge" type="Node3D" unique_id=994045895 node_paths=PackedStringArray("audio", "healthAura", "inputNode", "outputNode", "timeProgressBar", "stationName", "buttonTexture") groups=["Forge", "Station"]]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
+script = ExtResource("1_ph4aw")
+audio = NodePath("AudioStreamPlayer3D")
+healthAura = NodePath("Area3D")
+inputNode = NodePath("InputPort")
+outputNode = NodePath("OutputPort")
+timeProgressBar = NodePath("Sprite3D/SubViewport/TextureProgressBar")
+stationName = NodePath("Sprite3D/SubViewport/Label")
+buttonTexture = NodePath("Sprite3D2/SubViewport/TextureRect")
+controllerButtonTexture = SubResource("AtlasTexture_8inme")
+keyboardButtonTexture = ExtResource("3_8inme")
+craftDuration = 4.0
+recipes = Array[Object]([SubResource("Resource_04qyv"), SubResource("Resource_i1han"), SubResource("Resource_7xevn"), SubResource("Resource_16tjv")])
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1067101710 groups=["Forge"]]
+collision_layer = 160
+collision_mask = 6
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=250762080]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0)
+shape = SubResource("SphereShape3D_wq66q")
+
+[node name="InputPort" type="Node3D" parent="." unique_id=750325492]
+transform = Transform3D(31.928226, 0, 0, 0, 6.3082385, 0, 0, 0, 44.96865, -4.0128264, 3.270673, -0.43483275)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="InputPort" unique_id=812032035]
+transform = Transform3D(0.18727133, 0, 0, 0, 1, 0, 0, 0, 0.1909036, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_vl1yp")
+transparency = 1.0
+skeleton = NodePath("")
+
+[node name="Area3D" type="Area3D" parent="InputPort" unique_id=1490204633]
+transform = Transform3D(2, 0, 0, 0, 1.9999996, 0, 0, 0, 2, 0, 0, 0.021663403)
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InputPort/Area3D" unique_id=280831638]
+transform = Transform3D(1.5322744, 0, 0, 0, 0.99999666, 0, 0, 0, 1.0644153, 0.0003209561, -0.08996582, -0.0063336096)
+shape = SubResource("CylinderShape3D_vrvjj")
+
+[node name="OutputPort" parent="." unique_id=1251145266 instance=ExtResource("4_0l8vc")]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, -9.265402, 1.5173415, 0.013779168)
+
+[node name="Marker3D" type="Marker3D" parent="OutputPort" unique_id=789588761]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, -1.1305708)
+
+[node name="Marker3D2" type="Marker3D" parent="OutputPort" unique_id=2096358115]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0.895043)
+
+[node name="Marker3D3" type="Marker3D" parent="OutputPort" unique_id=101252873]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0.11307199)
+
+[node name="Marker3D4" type="Marker3D" parent="OutputPort" unique_id=1950173348]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0.53601336)
+
+[node name="Marker3D5" type="Marker3D" parent="OutputPort" unique_id=1420994869]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, -0.3264021)
+
+[node name="Marker3D6" type="Marker3D" parent="OutputPort" unique_id=2092157094]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, -0.71722806)
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=741148502]
+transform = Transform3D(-19.73044, 0, -5.144179e-07, -8.624448e-07, 22.770311, 2.9421272, 1.4937981e-06, 13.146447, -5.095914, -0.8250262, 15.043897, 0.36419868)
+texture = SubResource("ViewportTexture_vocjd")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D" unique_id=1009488754]
+transparent_bg = true
+size = Vector2i(100, 15)
+
+[node name="Label" type="Label" parent="Sprite3D/SubViewport" unique_id=1037346905]
+visible = false
+z_index = 1
+offset_left = 25.0
+offset_top = 45.0
+offset_right = 69.0
+offset_bottom = 94.0
+text = "Forge"
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Sprite3D/SubViewport" unique_id=1924511821]
+offset_right = 261.0
+offset_bottom = 40.0
+scale = Vector2(0.3809055, 0.3809055)
+texture_progress = SubResource("AtlasTexture_jycwk")
+
+[node name="Sprite3D2" type="Sprite3D" parent="." unique_id=1410507609]
+transform = Transform3D(-6.9999995, 3.059797e-07, 5.2997234e-07, 5.2997257e-07, 6.062178, 3.5000002, -3.0597965e-07, 3.5000002, -6.062178, -0.32537392, 0.7638029, -7.0186863)
+texture = SubResource("ViewportTexture_jycwk")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D2" unique_id=243265782]
+transparent_bg = true
+size = Vector2i(41, 40)
+
+[node name="TextureRect" type="TextureRect" parent="Sprite3D2/SubViewport" unique_id=210235904]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_sbkhc")
+
+[node name="FurnaceLow" type="MeshInstance3D" parent="." unique_id=1274855034]
+transform = Transform3D(-2.857143, 0, -2.4977936e-07, 0, 2.857143, 0, 2.4977936e-07, 0, -2.857143, 0, 0, 0.33177614)
+material_override = SubResource("StandardMaterial3D_i2ejw")
+mesh = ExtResource("6_0ahcc")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1841039846]
+visible = false
+stream = SubResource("AudioStreamPlaylist_yd14g")
+volume_db = -40.0
+max_db = -24.0
+bus = &"SFX"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1161138031]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8203022, 3.5038965, 0)
+light_color = Color(2.4304428, 0.6644703, 0, 1)
+light_energy = 1.5
+omni_range = 3.0
+
+[node name="Area3D" type="Area3D" parent="." unique_id=2011341028]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5253863, 2.1853385, -0.8195835)
+collision_layer = 160
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1789318158]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0.18530273, 0.77709883)
+shape = SubResource("SphereShape3D_jycwk")

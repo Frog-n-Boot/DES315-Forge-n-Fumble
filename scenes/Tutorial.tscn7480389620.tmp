@@ -1,0 +1,209 @@
+[gd_scene format=3 uid="uid://bag1qnax1it55"]
+
+[ext_resource type="Script" uid="uid://bk2uam5leqcv8" path="res://src/Player/PlayerSpawner.cs" id="1_ci5ev"]
+[ext_resource type="Texture2D" uid="uid://1o5xtfd8hydv" path="res://assets/textures/tu 4.webp" id="1_q5ijt"]
+[ext_resource type="Texture2D" uid="uid://dbvr1dqhh8kyn" path="res://assets/textures/tu 2.webp" id="2_bi4s5"]
+[ext_resource type="PackedScene" uid="uid://8roa2xkb2ipl" path="res://assets/prefabs/Player.tscn" id="2_pgr2e"]
+[ext_resource type="Script" uid="uid://dnqtfi3fpu8ue" path="res://src/Camera/CameraController.cs" id="3_pgr2e"]
+[ext_resource type="Texture2D" uid="uid://r7wddf5hbwsn" path="res://assets/textures/tu 3.webp" id="3_xi6p3"]
+[ext_resource type="Texture2D" uid="uid://b3fr0jckkg0mm" path="res://assets/textures/Tu 1.webp" id="4_e4hrd"]
+[ext_resource type="Resource" uid="uid://cgsgoisaxb6rf" path="res://assets/resources/Recipes/SwordRecipe.tres" id="7_0hjnf"]
+[ext_resource type="Script" uid="uid://1bo1o367ybgk" path="res://src/Resources/CraftingRecipes.cs" id="8_q5ijt"]
+[ext_resource type="PackedScene" uid="uid://cmd758glwlnly" path="res://assets/models/FinalAssets_Low/WorkStations/Grindstone.tscn" id="10_ei5ly"]
+[ext_resource type="PackedScene" uid="uid://bay85dbpt3qio" path="res://assets/models/FinalAssets_Low/Items_Models/Gold_Ingot.tscn" id="11_f47pi"]
+[ext_resource type="PackedScene" uid="uid://g1gfmktihg8t" path="res://assets/models/FinalAssets_Low/WorkStations/Anvil.tscn" id="11_m6ekv"]
+[ext_resource type="PackedScene" uid="uid://bm6vf4tjk48gj" path="res://assets/prefabs/forge.tscn" id="11_tfuon"]
+[ext_resource type="Script" uid="uid://bqbrwko4kb7sp" path="res://src/Enemy/EnemyController.cs" id="16_18x7b"]
+[ext_resource type="PackedScene" uid="uid://c36fijnqqehnq" path="res://assets/models/FinalAssets_Low/Items_Models/Copper_Ingot.tscn" id="17_4tybr"]
+[ext_resource type="PackedScene" uid="uid://2dvvlktwdavs" path="res://assets/models/FinalAssets_Low/Ore/Copper_Ore.tscn" id="18_j4y01"]
+[ext_resource type="Script" uid="uid://taddex4cilqa" path="res://src/Item/LootTable.cs" id="21_4tybr"]
+[ext_resource type="PackedScene" uid="uid://o7vvnubwicff" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Ingot.tscn" id="21_dn1de"]
+[ext_resource type="Script" uid="uid://brp6gsap0s2ok" path="res://src/UI/HealthBar.cs" id="21_tfuon"]
+[ext_resource type="PackedScene" uid="uid://d1y4lf17i3iid" path="res://assets/models/FinalAssets_Low/Items_Models/Iron_Dull_Sword.tscn" id="23_jw24r"]
+[ext_resource type="PackedScene" uid="uid://jnghu007q1m" path="res://assets/models/FinalAssets_Low/Items_Models/Healthpack.tscn" id="23_oyacv"]
+[ext_resource type="ArrayMesh" uid="uid://dppnkx243qlre" path="res://assets/models/FinalAssets_Low/Items_Models/Ballista_Bottom_element_low.obj" id="23_pl2ve"]
+[ext_resource type="ArrayMesh" uid="uid://d0fkdoavdcc5o" path="res://assets/models/FinalAssets_Low/Items_Models/Ballista_Top_element_low.obj" id="24_3bp12"]
+[ext_resource type="ArrayMesh" uid="uid://ch821ffso52fw" path="res://assets/models/FinalAssets_Low/Items_Models/handheld_ballista.obj" id="25_4tybr"]
+[ext_resource type="Script" uid="uid://dli7kb5c5sowk" path="res://src/Mangers/TutorialManager.cs" id="27_bi4s5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j4y01"]
+albedo_texture = ExtResource("1_q5ijt")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_oyacv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f0oxr"]
+albedo_texture = ExtResource("2_bi4s5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dn1de"]
+albedo_texture = ExtResource("3_xi6p3")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3s0s1"]
+albedo_texture = ExtResource("4_e4hrd")
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_0a2r4"]
+
+[sub_resource type="Resource" id="Resource_bi4s5"]
+script = ExtResource("8_q5ijt")
+recipeName = "Iron_Dull_Sword"
+requiredItemNames = PackedStringArray("Iron_Ingot")
+ouputName = "Iron_Dull_Sword"
+ouputScene = ExtResource("23_jw24r")
+ouputGroup = "Weapon"
+metadata/_custom_type_script = "uid://1bo1o367ybgk"
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mcs8j"]
+sky_top_color = Color(0.31378818, 0.45320868, 0.4966985, 1)
+sky_horizon_color = Color(0.7277069, 0.76223963, 0.76771057, 1)
+ground_bottom_color = Color(0.27311468, 0.27182508, 0.25021914, 1)
+ground_horizon_color = Color(0.7277069, 0.76223963, 0.76771057, 1)
+
+[sub_resource type="Sky" id="Sky_7l3mh"]
+sky_material = SubResource("ProceduralSkyMaterial_mcs8j")
+
+[sub_resource type="Environment" id="Environment_wkaxc"]
+background_mode = 2
+sky = SubResource("Sky_7l3mh")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rx2rv"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7vc5l"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_v1uvm"]
+radius = 0.6381836
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_wwsfe"]
+viewport_path = NodePath("HealthBar/SubViewport")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_cgb57"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1y4d5"]
+sky_top_color = Color(0.5620234, 0.4562606, 0.1947913, 1)
+sky_horizon_color = Color(0.8877065, 0.40235606, 7.70092e-07, 1)
+sky_curve = 0.0891909
+
+[sub_resource type="Sky" id="Sky_60v6u"]
+sky_material = SubResource("ProceduralSkyMaterial_1y4d5")
+
+[sub_resource type="Environment" id="Environment_47rdh"]
+background_mode = 2
+sky = SubResource("Sky_60v6u")
+tonemap_mode = 2
+glow_enabled = true
+fog_mode = 1
+fog_density = 1.0
+fog_depth_end = 242.5
+volumetric_fog_density = 0.0
+
+[node name="TestingLab" type="StaticBody3D" unique_id=127569902]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1914045173]
+transform = Transform3D(20, 0, 0, 0, 102, 0, 0, 0, 30, -62.754032, -0.028385594, -17.252653)
+material_override = SubResource("StandardMaterial3D_j4y01")
+mesh = SubResource("PlaneMesh_oyacv")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1977020187]
+transform = Transform3D(20, 0, 0, 0, 145.082, 0, 0, 0, 30, 64.9805, -0.028385714, -17.134506)
+material_override = SubResource("StandardMaterial3D_f0oxr")
+mesh = SubResource("PlaneMesh_oyacv")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=1425927920]
+transform = Transform3D(20, 0, 0, 0, 145.082, 0, 0, 0, 30, 193.2207, -0.028385594, -16.541855)
+material_override = SubResource("StandardMaterial3D_dn1de")
+mesh = SubResource("PlaneMesh_oyacv")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="." unique_id=2060831325]
+transform = Transform3D(20, 0, 0, 0, 145.082, 0, 0, 0, 30, 320.2782, -0.028385594, -16.541859)
+material_override = SubResource("StandardMaterial3D_3s0s1")
+mesh = SubResource("PlaneMesh_oyacv")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1695761306]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_0a2r4")
+
+[node name="Forge" parent="CollisionShape3D" unique_id=994045895 instance=ExtResource("11_tfuon")]
+transform = Transform3D(-0.083333336, 0, 1.25829835e-08, 0, 0.083333336, 0, -1.25829835e-08, 0, -0.083333336, -11.358131, 0, -3.0079582)
+
+[node name="Anvil" parent="CollisionShape3D" unique_id=1158721071 instance=ExtResource("11_m6ekv")]
+transform = Transform3D(1.8874477e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, 1.8874477e-08, 12.874092, 0, -3.0479155)
+recipes = Array[Object]([ExtResource("7_0hjnf"), SubResource("Resource_bi4s5")])
+
+[node name="Grindstone" parent="CollisionShape3D" unique_id=1536885273 instance=ExtResource("10_ei5ly")]
+transform = Transform3D(-1.0927847e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.0927847e-08, 10.07971, 0, -0.4805858)
+
+[node name="Anvil2" parent="CollisionShape3D" unique_id=688992065 instance=ExtResource("11_m6ekv")]
+transform = Transform3D(1.8874477e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, 1.8874477e-08, 55.259365, -6.357829e-07, -2.9493666)
+
+[node name="Grindstone2" parent="CollisionShape3D" unique_id=838819154 instance=ExtResource("10_ei5ly")]
+transform = Transform3D(-1.0927847e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.0927847e-08, 54.128456, -6.357829e-07, -0.38926157)
+
+[node name="Copper_Ingot" parent="CollisionShape3D" unique_id=474887611 instance=ExtResource("17_4tybr")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -10.563124, 0, -2.5142593)
+
+[node name="Copper_Ore" parent="CollisionShape3D" unique_id=2110523039 instance=ExtResource("18_j4y01")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -8.826789, 0.0025, 0.27915272)
+shouldDespawn = false
+
+[node name="Copper_Ore2" parent="CollisionShape3D" unique_id=60489756 instance=ExtResource("18_j4y01")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -8.69658, 0.0025, -0.07318052)
+shouldDespawn = false
+
+[node name="Copper_Ore3" parent="CollisionShape3D" unique_id=608290316 instance=ExtResource("18_j4y01")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -8.420842, 0.0025, 0.26383385)
+shouldDespawn = false
+
+[node name="Copper_Ore4" parent="CollisionShape3D" unique_id=1159909176 instance=ExtResource("18_j4y01")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -8.329682, 0.0025, -0.00356706)
+shouldDespawn = false
+
+[node name="Copper_Ore5" parent="CollisionShape3D" unique_id=1690293563 instance=ExtResource("18_j4y01")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, -8.056205, 0.0025, 0.31852895)
+shouldDespawn = false
+
+[node name="Forge2" parent="CollisionShape3D" unique_id=414176730 instance=ExtResource("11_tfuon")]
+transform = Transform3D(-0.083333336, 0, 1.25829835e-08, 0, 0.083333336, 0, -1.25829835e-08, 0, -0.083333336, 53.257187, 0, -4.7166758)
+
+[node name="Copper_Ore6" parent="CollisionShape3D" unique_id=754020436 instance=ExtResource("18_j4y01")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 51.362103, 0.0025, -3.3444667)
+shouldDespawn = false
+
+[node name="Copper_Ore7" parent="CollisionShape3D" unique_id=300861122 instance=ExtResource("18_j4y01")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 51.49231, 0.0025, -3.6967998)
+shouldDespawn = false
+
+[node name="Copper_Ore8" parent="CollisionShape3D" unique_id=224734069 instance=ExtResource("18_j4y01")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 51.76805, 0.0025, -3.359785)
+shouldDespawn = false
+
+[node name="Copper_Ore9" parent="CollisionShape3D" unique_id=502607709 instance=ExtResource("18_j4y01")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 51.859207, 0.0025, -3.6271858)
+shouldDespawn = false
+
+[node name="Copper_Ore10" parent="CollisionShape3D" unique_id=681565344 instance=ExtResource("18_j4y01")]
+transform = Transform3D(0.16666667, 0, 0, 0, 0.16666667, 0, 0, 0, 0.16666667, 51.103554, 0.0025, -3.699991)
+shouldDespawn = false
+
+[node name="IronIngot" parent="CollisionShape3D" unique_id=2071596505 instance=ExtResource("21_dn1de")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -10.197745, 0, -2.752647)
+
+[node name="IronIngot2" parent="CollisionShape3D" unique_id=662424415 instance=ExtResource("21_dn1de")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 9.977717, 0, -5.559349)
+
+[node name="IronIngot4" parent="CollisionShape3D" unique_id=190457992 instance=ExtResource("21_dn1de")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 30.209877, 0, -2.8568525)
+
+[node name="IronIngot3" parent="CollisionShape3D" unique_id=982635605 instance=ExtResource("21_dn1de")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 10.546371, 0, -5.3318872)
+
+[node name="GoldIngot" parent="CollisionShape3D" unique_id=223212018 instance=ExtResource("11_f47pi")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -9.855608, 0, -2.9475126)
+
+[node name="World" type="Node" parent="." unique_id=653261365]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"

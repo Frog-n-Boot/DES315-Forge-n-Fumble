@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c14d6xj6opusf"]
+
+[ext_resource type="Texture2D" uid="uid://cahm5mxyp8ywy" path="res://assets/materials/Texture_sets/Character_Textures/Goblin Textures/Goblin_low_BaseCol.tga" id="1_6dqxy"]
+[ext_resource type="Texture2D" uid="uid://cslvoi6uak42y" path="res://assets/materials/Texture_sets/Character_Textures/Goblin Textures/Goblin_low_ORM.tga" id="2_d3ggw"]
+[ext_resource type="Texture2D" uid="uid://c2jocuuepy32p" path="res://assets/materials/Texture_sets/Character_Textures/Goblin Textures/Goblin_low_Normal.tga" id="3_jt8xc"]
+
+[resource]
+albedo_texture = ExtResource("1_6dqxy")
+normal_enabled = true
+normal_texture = ExtResource("3_jt8xc")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_d3ggw")

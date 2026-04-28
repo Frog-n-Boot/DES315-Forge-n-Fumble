@@ -1,0 +1,9 @@
+[gd_resource type="FoliageResource" format=3 uid="uid://bx24iks2fvavl"]
+
+[ext_resource type="ArrayMesh" uid="uid://b0h4gb8otdmre" path="res://assets/models/FinalAssets_Low/Foliage/fol_treetrunk_low.obj" id="1_2b3xe"]
+
+[sub_resource type="FoliageDefinitionResource" id="FoliageDefinitionResource_ce7o4"]
+mesh = ExtResource("1_2b3xe")
+
+[resource]
+definition = SubResource("FoliageDefinitionResource_ce7o4")

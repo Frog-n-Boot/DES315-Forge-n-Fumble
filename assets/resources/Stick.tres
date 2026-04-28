@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bonxxcw20fc18"]
+
+[ext_resource type="Script" uid="uid://cy6spy2s7uv1l" path="res://src/ItemData.cs" id="1_fchr8"]
+[ext_resource type="PackedScene" uid="uid://bp4fm727bn0cj" path="res://assets/models/FinalAssets_Low/Items_Models/Stick.tscn" id="1_n5kb3"]
+
+[resource]
+script = ExtResource("1_fchr8")
+name = "Stick"
+itemScene = ExtResource("1_n5kb3")
+metadata/_custom_type_script = "uid://cy6spy2s7uv1l"

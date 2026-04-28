@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://c381khip0st2r"]
+
+[ext_resource type="Texture2D" uid="uid://cvuq04ldhiixd" path="res://assets/models/FinalAssets_Low/Foliage/Sprce_foilagesheet.png" id="1_q58vh"]
+[ext_resource type="ArrayMesh" uid="uid://bgei7kuk3q8jp" path="res://assets/models/FinalAssets_Low/Foliage/fol_flowery_patch_low.obj" id="2_0nxg1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2hent"]
+albedo_texture = ExtResource("1_q58vh")
+
+[node name="FolFloweryPatchLow" type="MeshInstance3D" unique_id=157052016 groups=["navigation_mesh_source_group"]]
+material_override = SubResource("StandardMaterial3D_2hent")
+mesh = ExtResource("2_0nxg1")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=917028798]
+height = 2.33
+vertices = PackedVector3Array(-0.31900337, 0, -0.36133158, 0.003857538, 0, -0.58317316, 0.3155502, 0, -0.36439067, 0.33254373, 0, -0.008389235, 0.25650993, 0, 0.2064845, -0.042400464, 0, 0.38218793, -0.32529783, 0, 0.352658, -0.4450407, 0, -0.04176946)
+affect_navigation_mesh = true

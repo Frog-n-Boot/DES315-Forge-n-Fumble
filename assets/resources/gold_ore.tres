@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://viwodjsqvjas"]
+
+[ext_resource type="Script" uid="uid://cy6spy2s7uv1l" path="res://src/Player/ItemData.cs" id="1_56wwd"]
+[ext_resource type="PackedScene" uid="uid://dgguk5limafel" path="res://assets/models/FinalAssets_Low/Ore/Gold_Ore.tscn" id="1_j2vw8"]
+[ext_resource type="Texture2D" uid="uid://ddass423gcdp4" path="res://assets/textures/UI/Ui_sheet_ingame.webp" id="2_k7rly"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6g2p4"]
+atlas = ExtResource("2_k7rly")
+region = Rect2(519, 247, 53, 39)
+
+[resource]
+script = ExtResource("1_56wwd")
+name = "Gold_Ore"
+itemScene = ExtResource("1_j2vw8")
+itemTexture = SubResource("AtlasTexture_6g2p4")
+metadata/_custom_type_script = "uid://cy6spy2s7uv1l"

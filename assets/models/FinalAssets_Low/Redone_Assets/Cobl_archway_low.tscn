@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bmre2ran8suad"]
+
+[ext_resource type="ArrayMesh" uid="uid://d1tkusp0rw8hx" path="res://assets/models/FinalAssets_Low/Structure_models/Cobble_arch_Faceremoved_revrs.obj" id="1_lrjko"]
+[ext_resource type="Material" uid="uid://dp140br76vlls" path="res://assets/materials/Texture_sets/Environment_Textures/cobble_forge.tres" id="2_lrjko"]
+
+[node name="Cobl_archway_rev" type="Node3D" unique_id=1216911531 groups=["xray"]]
+
+[node name="Cobl_archway_reversed" type="MeshInstance3D" parent="." unique_id=1950556591]
+transform = Transform3D(0.72, 0, 0, 0, 0.72, 0, 0, 0, 0.72, 0, 0, 0)
+mesh = ExtResource("1_lrjko")
+surface_material_override/0 = ExtResource("2_lrjko")
+
+[node name="NavigationObstacle3D_01" type="NavigationObstacle3D" parent="." unique_id=494175072]
+visible = false
+height = 1.8
+vertices = PackedVector3Array(-0.80635864, 0, -1.1815612, -0.80489683, 0, -0.5705035, 0.79098463, 0, -0.5922655, 0.7784544, 0, -1.1779248)
+
+[node name="NavigationObstacle3D_02" type="NavigationObstacle3D" parent="." unique_id=1107849378]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8013656, 0)
+visible = false
+height = 0.7
+vertices = PackedVector3Array(-0.7970727, 0, -1.177491, -0.78938067, 0, 1.27578, 0.7557229, 0, 1.2685261, 0.7774848, 0, -1.1833285)
+affect_navigation_mesh = true

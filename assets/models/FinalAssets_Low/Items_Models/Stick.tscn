@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bp4fm727bn0cj"]
+
+[ext_resource type="Script" uid="uid://clfvpil4wiy1t" path="res://src/Item/Pickable.cs" id="1_ep6bg"]
+[ext_resource type="Texture2D" uid="uid://bdnp2pelon8t8" path="res://assets/materials/Texture_sets/Item_Textures/Boxstick_comb_low_BaseCol.tga" id="2_6v8es"]
+[ext_resource type="ArrayMesh" uid="uid://ba47xfda5acya" path="res://assets/models/FinalAssets_Low/Items_Models/Stick_low.obj" id="2_kldnw"]
+[ext_resource type="Texture2D" uid="uid://cd8ejhf3w3lcw" path="res://assets/materials/Texture_sets/Item_Textures/Boxstick_comb_low_ORM.tga" id="3_6v8es"]
+[ext_resource type="Texture2D" uid="uid://dfytb5ad7y8k3" path="res://assets/materials/Texture_sets/Item_Textures/Boxstick_comb_low_Normal.tga" id="4_3g5m4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bk0rn"]
+size = Vector3(2.68396, 1.5491028, 1.2504883)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_63ekp"]
+albedo_texture = ExtResource("2_6v8es")
+normal_enabled = true
+normal_texture = ExtResource("4_3g5m4")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_6v8es")
+
+[node name="Stick" type="Node3D" unique_id=70957572 groups=["pickable"]]
+transform = Transform3D(-2, 1.7484555e-07, 0, -1.7484555e-07, -2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=978192712 groups=["pickable"]]
+transform = Transform3D(0.13241065, 0, 0, 0, 0.11347759, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_ep6bg")
+itemDataPath = "uid://bonxxcw20fc18"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=542827446]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.30743405, -0.24470523, -0.00024414063)
+visible = false
+shape = SubResource("BoxShape3D_bk0rn")
+
+[node name="StickLow" type="MeshInstance3D" parent="StaticBody3D" unique_id=1602883904]
+transform = Transform3D(7.552263, 0, 0, 0, 8.812313, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("ORMMaterial3D_63ekp")
+mesh = ExtResource("2_kldnw")
+skeleton = NodePath("../..")

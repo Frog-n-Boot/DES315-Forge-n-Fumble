@@ -1,0 +1,202 @@
+[gd_scene format=3 uid="uid://b8a87u3vesy3q"]
+
+[ext_resource type="Script" uid="uid://bqbrwko4kb7sp" path="res://src/Enemy/EnemyController.cs" id="1_8itjo"]
+[ext_resource type="Script" uid="uid://dfgcclikd3kvh" path="res://src/Enemy/AI/EnemyBehaviourData.cs" id="2_qlugu"]
+[ext_resource type="Script" uid="uid://bf02wgjk36psn" path="res://src/Enemy/EnemyData.cs" id="3_v4oau"]
+[ext_resource type="Animation" uid="uid://ca63e72dl2f34" path="res://assets/animations/enemy/GoblinAttack.anim" id="4_tywbv"]
+[ext_resource type="Script" uid="uid://ffkwq65inqng" path="res://src/Enemy/AI/AIBrain.cs" id="4_u2d28"]
+[ext_resource type="Animation" uid="uid://dlst8ajkmstyo" path="res://assets/animations/enemy/GoblinDeath.anim" id="5_nghf3"]
+[ext_resource type="Script" uid="uid://brp6gsap0s2ok" path="res://src/UI/HealthBar.cs" id="6_c2ay5"]
+[ext_resource type="Animation" uid="uid://cdf8ihwar8slh" path="res://assets/animations/enemy/GoblinWalk.anim" id="6_qlugu"]
+[ext_resource type="Animation" uid="uid://blndgkgu3vk4i" path="res://assets/animations/enemy/SkeletonAttack.anim" id="7_v4oau"]
+[ext_resource type="Animation" uid="uid://cop7jcun713s8" path="res://assets/animations/enemy/SkeletonDeath.anim" id="8_k4bng"]
+[ext_resource type="Animation" uid="uid://dgb2ugdkhr1ce" path="res://assets/animations/enemy/SkeletonWalk.anim" id="9_ootcd"]
+
+[sub_resource type="Resource" id="Resource_k4bng"]
+script = ExtResource("3_v4oau")
+metadata/_custom_type_script = "uid://bf02wgjk36psn"
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qlugu"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_pfjfy"]
+height = 2.1748047
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_d71qb"]
+viewport_path = NodePath("HealthBar/SubViewport")
+
+[sub_resource type="Gradient" id="Gradient_d71qb"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7f00o"]
+gradient = SubResource("Gradient_d71qb")
+width = 256
+
+[sub_resource type="Gradient" id="Gradient_m6wt4"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_84fkr"]
+gradient = SubResource("Gradient_m6wt4")
+width = 256
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_82iww"]
+radius = 0.6381836
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xm78t"]
+_data = {
+&"GoblinAttack": ExtResource("4_tywbv"),
+&"GoblinDeath": ExtResource("5_nghf3"),
+&"GoblinWalk": ExtResource("6_qlugu")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_72r1g"]
+_data = {
+&"SkeletonAttack": ExtResource("7_v4oau"),
+&"SkeletonDeath": ExtResource("8_k4bng"),
+&"SkeletonWalk": ExtResource("9_ootcd")
+}
+
+[node name="Enemy" type="CharacterBody3D" unique_id=356561528 node_paths=PackedStringArray("mesh", "collisionArea", "navigationAgent", "audioStream", "animPlayer", "audioPlayer") groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 235
+script = ExtResource("1_8itjo")
+enemyData = SubResource("Resource_k4bng")
+mesh = NodePath("Armature/Skeleton3D/MeshInstance3D")
+collisionArea = NodePath("Area3D")
+navigationAgent = NodePath("NavigationAgent3D")
+audioStream = NodePath("EnemyDeathSounds")
+animPlayer = NodePath("AnimationPlayer")
+audioPlayer = NodePath("EnemyDeathSounds")
+
+[node name="Armature" type="Node3D" parent="." unique_id=543957702]
+
+[node name="Skeleton3D" type="Skeleton3D" parent="Armature" unique_id=182396063]
+bones/0/name = "BoneBody"
+bones/0/parent = -1
+bones/0/rest = Transform3D(1, -9.992006e-15, 2.3841856e-07, -1.2936698e-09, 0.9999852, 0.005426086, -2.3841507e-07, -0.005426086, 0.9999852, 0, 0, 0)
+bones/0/enabled = true
+bones/0/position = Vector3(0, 0, 0)
+bones/0/rotation = Quaternion(-0.002713053, 1.19208835e-07, -3.2341615e-10, 0.9999963)
+bones/0/scale = Vector3(1, 0.99999994, 0.99999994)
+bones/1/name = "BoneHead.001"
+bones/1/parent = 0
+bones/1/rest = Transform3D(1, -1.2936598e-09, 3.5380418e-12, 1.2936601e-09, 0.9999853, -0.005426003, 3.4814122e-12, 0.005426003, 0.9999853, 6.25473e-11, 0.69996667, -2.991408e-09)
+bones/1/enabled = true
+bones/1/position = Vector3(6.25473e-11, 0.69996667, -2.991408e-09)
+bones/1/rotation = Quaternion(0.0027130113, 1.0604514e-14, 6.468323e-10, 0.9999963)
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/name = "BoneHand.002.L"
+bones/2/parent = 0
+bones/2/rest = Transform3D(-0.63114184, 0.77013856, -0.09244662, -0.7756469, -0.6257641, 0.082407005, 0.005615044, 0.123716466, 0.99230164, 0.5602083, 0.50668013, 0.040097166)
+bones/2/enabled = true
+bones/2/position = Vector3(0.5602083, 0.5066802, 0.040097173)
+bones/2/rotation = Quaternion(-0.024085682, 0.05717533, 0.90127796, -0.42877606)
+bones/2/scale = Vector3(0.9999998, 0.99999994, 0.9999999)
+bones/3/name = "BoneHeel.003.L"
+bones/3/parent = 0
+bones/3/rest = Transform3D(1, 2.220446e-16, 4.7683366e-07, -2.5872955e-09, -0.99998546, 0.0054259924, 4.7682667e-07, -0.0054259924, -0.99998546, 0.31017187, -0.09428672, -0.032795314)
+bones/3/enabled = true
+bones/3/position = Vector3(0.31017187, -0.09428674, -0.03279531)
+bones/3/rotation = Quaternion(0.9999963, -6.4682604e-10, 2.3841592e-07, -0.002713006)
+bones/3/scale = Vector3(1, 1.0000001, 1.0000001)
+bones/4/name = "BoneMidFoot.004.L"
+bones/4/parent = 3
+bones/4/rest = Transform3D(0.9322102, 0.36191732, 7.3475303e-07, -8.34465e-07, 1.1920929e-07, 1.0000001, 0.36191732, -0.9322102, 4.131355e-07, 1.2874809e-09, 0.16331501, 2.078194e-09)
+bones/4/enabled = true
+bones/4/position = Vector3(1.2874809e-09, 0.16331501, 2.078194e-09)
+bones/4/rotation = Quaternion(-0.6950197, -0.13018209, -0.13018265, 0.6950199)
+bones/4/scale = Vector3(1, 1, 1.0000001)
+bones/5/name = "BoneToes.005.L"
+bones/5/parent = 4
+bones/5/rest = Transform3D(0.999482, -0.031993285, -0.003482021, 0.03202231, 0.99945, 0.008627006, 0.0032040994, -0.00873404, 0.9999567, -1.01615e-08, 0.28858998, -2.3155522e-09)
+bones/5/enabled = true
+bones/5/position = Vector3(-1.01615e-08, 0.28858998, -2.3155522e-09)
+bones/5/rotation = Quaternion(-0.0043408643, -0.0016717621, 0.01600612, 0.9998612)
+bones/5/scale = Vector3(0.99999994, 1.0000001, 1)
+bones/6/name = "BoneHand.002.R"
+bones/6/parent = 0
+bones/6/rest = Transform3D(-0.63114166, -0.77013874, 0.0924462, 0.77564675, -0.62576413, 0.08240702, -0.005615322, 0.12371616, 0.9923017, -0.56020844, 0.50668013, 0.040096898)
+bones/6/enabled = true
+bones/6/position = Vector3(-0.5602083, 0.50668013, 0.0400969)
+bones/6/rotation = Quaternion(0.024085484, 0.05717525, 0.90127796, 0.4287761)
+bones/6/scale = Vector3(0.9999996, 1, 0.99999994)
+bones/7/name = "BoneHeel003.R"
+bones/7/parent = 0
+bones/7/rest = Transform3D(1, 2.1729783e-17, -3.5522457e-12, 1.9296186e-14, -0.99998546, 0.0054259924, -3.5521933e-12, -0.0054259924, -0.99998546, -0.3101718, -0.09428673, -0.032795466)
+bones/7/enabled = true
+bones/7/position = Vector3(-0.31017184, -0.09428675, -0.032795463)
+bones/7/rotation = Quaternion(0.9999963, 4.8571063e-15, -1.7760623e-12, -0.002713006)
+bones/7/scale = Vector3(1, 1.0000001, 1.0000001)
+bones/8/name = "BoneMidFoot.004.R"
+bones/8/parent = 7
+bones/8/rest = Transform3D(0.9322102, -0.36191732, -7.3475303e-07, 8.34465e-07, 1.1920929e-07, 1.0000001, -0.36191732, -0.9322102, 4.131355e-07, -1.2786026e-09, 0.163315, 2.007417e-09)
+bones/8/enabled = true
+bones/8/position = Vector3(-1.2786026e-09, 0.163315, 2.007417e-09)
+bones/8/rotation = Quaternion(-0.6950197, 0.13018209, 0.13018265, 0.6950199)
+bones/8/scale = Vector3(1, 1, 1.0000001)
+bones/9/name = "BoneToes.005.R"
+bones/9/parent = 8
+bones/9/rest = Transform3D(0.999482, 0.031993285, 0.0034820233, -0.03202231, 0.99945, 0.008627006, -0.0032041017, -0.00873404, 0.9999567, 3.9972097e-08, 0.28859, -1.9025848e-09)
+bones/9/enabled = true
+bones/9/position = Vector3(3.9972097e-08, 0.28859, -1.9025848e-09)
+bones/9/rotation = Quaternion(-0.0043408633, 0.0016717633, -0.01600612, 0.9998612)
+bones/9/scale = Vector3(0.99999994, 1.0000001, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Armature/Skeleton3D" unique_id=941343698]
+mesh = SubResource("CylinderMesh_qlugu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1909118665]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5761719, 0)
+shape = SubResource("CylinderShape3D_pfjfy")
+
+[node name="HealthBar" type="Sprite3D" parent="." unique_id=833760103]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0)
+visible = false
+billboard = 1
+texture = SubResource("ViewportTexture_d71qb")
+
+[node name="SubViewport" type="SubViewport" parent="HealthBar" unique_id=1475723139]
+size = Vector2i(200, 30)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HealthBar/SubViewport" unique_id=1396994971]
+offset_right = 256.0
+offset_bottom = 64.0
+value = 50.0
+texture_under = SubResource("GradientTexture2D_7f00o")
+texture_progress = SubResource("GradientTexture2D_84fkr")
+tint_under = Color(1, 0, 0, 1)
+tint_progress = Color(0, 1, 0, 1)
+script = ExtResource("6_c2ay5")
+targetPath = NodePath("../../..")
+isForge = false
+isEnemy = true
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1859868463 groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 235
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1172694664]
+shape = SubResource("CylinderShape3D_82iww")
+
+[node name="AI" type="Node" parent="." unique_id=130780360 node_paths=PackedStringArray("_controller")]
+script = ExtResource("4_u2d28")
+_controller = NodePath("..")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=758582845]
+path_desired_distance = 3.2
+path_max_distance = 60.01
+avoidance_enabled = true
+radius = 0.3
+time_horizon_obstacles = 0.5
+use_3d_avoidance = true
+debug_path_custom_color = Color(1, 0, 0, 1)
+
+[node name="EnemyDeathSounds" type="AudioStreamPlayer3D" parent="." unique_id=1675157472]
+volume_db = -50.0
+max_polyphony = 20
+bus = &"SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1605215104]
+libraries/GoblinAnimations = SubResource("AnimationLibrary_xm78t")
+libraries/SkeletonAnimations = SubResource("AnimationLibrary_72r1g")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1992914578]
+
+[connection signal="body_entered" from="Area3D" to="." method="OnBodyEntered"]

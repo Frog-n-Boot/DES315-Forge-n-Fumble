@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://706c56ie3ke"]
+
+[ext_resource type="Script" uid="uid://bdt0s16a5rcia" path="res://src/Weapons/Ballista.cs" id="1_m1e06"]
+[ext_resource type="PackedScene" uid="uid://cayfp8m51s7np" path="res://assets/models/FinalAssets_Low/Items_Models/Crossbow.tscn" id="2_j6oho"]
+[ext_resource type="PackedScene" uid="uid://ds1kx4ru8gie6" path="res://assets/models/FinalAssets_Low/Items_Models/Arrow.tscn" id="2_wgmww"]
+[ext_resource type="PackedScene" uid="uid://lh8ch32dur2r" path="res://assets/models/StationPort.tscn" id="3_n82r5"]
+[ext_resource type="AudioStream" uid="uid://clu5cxqv4p82n" path="res://assets/Sounds/SFX/ArrowShot1.wav" id="5_oitbg"]
+[ext_resource type="AudioStream" uid="uid://dcydee0xx4hyh" path="res://assets/Sounds/SFX/ArrowShot2.wav" id="6_gxrrl"]
+[ext_resource type="AudioStream" uid="uid://bvros01eimu8e" path="res://assets/Sounds/SFX/ArrowShot3.wav" id="7_2yli3"]
+[ext_resource type="AudioStream" uid="uid://cuye7148tmyo2" path="res://assets/Sounds/SFX/ArrowShot4.wav" id="8_7htg4"]
+[ext_resource type="AudioStream" uid="uid://du0s0ob33nkfk" path="res://assets/Sounds/SFX/ArrowShot5.wav" id="9_53mlu"]
+[ext_resource type="AudioStream" uid="uid://crnicpt4cm6vl" path="res://assets/Sounds/SFX/ArrowShot6.wav" id="10_whrhr"]
+[ext_resource type="AudioStream" uid="uid://dqfesdlvly7dk" path="res://assets/Sounds/SFX/ArrowShot7.wav" id="11_8h8ea"]
+[ext_resource type="AudioStream" uid="uid://5oond83reqi" path="res://assets/Sounds/SFX/ArrowShot8.wav" id="12_56sbd"]
+[ext_resource type="AudioStream" uid="uid://bdwbh8dx80xdj" path="res://assets/Sounds/SFX/ArrowShot9.wav" id="13_w6fnt"]
+[ext_resource type="AudioStream" uid="uid://duxa6q488bcjk" path="res://assets/Sounds/SFX/ArrowShot10.wav" id="14_aolek"]
+[ext_resource type="ArrayMesh" uid="uid://d2w54yxgv34j" path="res://assets/models/FinalAssets_Low/WorkStations/Ballista/Ballista_Bottom_element_low.obj" id="14_m2h7f"]
+[ext_resource type="Material" uid="uid://24hwnxagoffj" path="res://assets/models/FinalAssets_Low/WorkStations/Ballista/ballista.tres" id="14_wgmww"]
+[ext_resource type="ArrayMesh" uid="uid://dfauyerha08a2" path="res://assets/models/FinalAssets_Low/WorkStations/Ballista/Ballista_Top_element_low.obj" id="16_j6oho"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_sl1qq"]
+streams_count = 10
+stream_0/stream = ExtResource("5_oitbg")
+stream_1/stream = ExtResource("6_gxrrl")
+stream_2/stream = ExtResource("7_2yli3")
+stream_3/stream = ExtResource("8_7htg4")
+stream_4/stream = ExtResource("9_53mlu")
+stream_5/stream = ExtResource("10_whrhr")
+stream_6/stream = ExtResource("11_8h8ea")
+stream_7/stream = ExtResource("12_56sbd")
+stream_8/stream = ExtResource("13_w6fnt")
+stream_9/stream = ExtResource("14_aolek")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e7812"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_m1e06"]
+
+[node name="Ballista" type="Node3D" unique_id=1571022317 node_paths=PackedStringArray("arrowSpawnPosition", "ballistaHead", "ballistaBarrel", "inputNode", "label", "audio") groups=["Ballista"]]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+script = ExtResource("1_m1e06")
+arrowSpawnPosition = NodePath("BallistaTopElementLow/BallistaBarrel/ArrowSpawnLocation")
+ballistaHead = NodePath("BallistaTopElementLow")
+crossbowScene = ExtResource("2_j6oho")
+ballistaBarrel = NodePath("BallistaTopElementLow/BallistaBarrel")
+arrowScene = ExtResource("2_wgmww")
+inputNode = NodePath("BallistaTopElementLow/StaticBody3D/StationPort")
+arrowCount = 20
+label = NodePath("CanvasLayer/Node3D/Label3D")
+audio = NodePath("AudioStreamPlayer3D")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2121636395]
+
+[node name="Node3D" type="Node3D" parent="CanvasLayer" unique_id=1037465994]
+transform = Transform3D(-0.10386822, 0, 0.49802622, 0, 3.4232113, 0, -4.7299213, 0, -0.010936562, 0, 3.545107, 0)
+visible = false
+
+[node name="Label3D" type="Label3D" parent="CanvasLayer/Node3D" unique_id=1012313719]
+visible = false
+text = "There"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=134283511]
+stream = SubResource("AudioStreamRandomizer_sl1qq")
+volume_db = -40.0
+max_db = -24.0
+max_polyphony = 20
+bus = &"SFX"
+
+[node name="BallistaBottomElementLow" type="MeshInstance3D" parent="." unique_id=1196528612]
+transform = Transform3D(0.71428573, 0, 0, 0, 0.71428573, 0, 0, 0, 0.71428573, 0, 0, 0)
+material_override = ExtResource("14_wgmww")
+mesh = ExtResource("14_m2h7f")
+
+[node name="BallistaTopElementLow" type="MeshInstance3D" parent="." unique_id=369042352]
+transform = Transform3D(0.71428573, 0, 0, 0, 0.71428573, 0, 0, 0, 0.71428573, 0, 0, 0)
+material_override = ExtResource("14_wgmww")
+mesh = ExtResource("16_j6oho")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="BallistaTopElementLow" unique_id=440704571]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0, 0)
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BallistaTopElementLow/StaticBody3D" unique_id=1945830702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9050009, 0)
+shape = SubResource("CapsuleShape3D_e7812")
+debug_color = Color(0, 0.6, 0.7, 0.42)
+
+[node name="StationPort" parent="BallistaTopElementLow/StaticBody3D" unique_id=750325492 instance=ExtResource("3_n82r5")]
+transform = Transform3D(0.49451265, 0, 0, 0, 0.9419282, 0, 0, 0, 0.6492386, -0.018610239, 0.5, 0.60249853)
+
+[node name="BallistaBarrel" type="Node3D" parent="BallistaTopElementLow" unique_id=309150814]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, 0, 0, 0)
+
+[node name="ArrowSpawnLocation" type="Node3D" parent="BallistaTopElementLow/BallistaBarrel" unique_id=1309432331]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.8982694, 0.7900001, 1.2700133, -0.048)
+visible = false
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="BallistaTopElementLow/BallistaBarrel/ArrowSpawnLocation" unique_id=1444911399]
+transform = Transform3D(1, 0, 0, 0, 0.33043814, 0, 0, 0, 0.2738446, -0.18170571, -0.027641058, 0.07790413)
+mesh = SubResource("BoxMesh_m1e06")
+skeleton = NodePath("../../../StaticBody3D")

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://ceepwtmv7qxv2"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8r7yd"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Sprite3D" type="Sprite3D" unique_id=1328028810]
+transform = Transform3D(0.15082002, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+texture = SubResource("ViewportTexture_8r7yd")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=667985267]
+size = Vector2i(200, 30)

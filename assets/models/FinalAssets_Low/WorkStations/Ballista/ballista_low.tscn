@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://ckdbymnig1ugx"]
+
+[ext_resource type="ArrayMesh" uid="uid://bsn3blt5m0qpa" path="res://assets/models/FinalAssets_Low/WorkStations/Ballista/Ballista_low.obj" id="1_75l1a"]
+[ext_resource type="Material" uid="uid://24hwnxagoffj" path="res://assets/models/FinalAssets_Low/WorkStations/Ballista/ballista.tres" id="2_0qo43"]
+[ext_resource type="ArrayMesh" uid="uid://cuv7ohbcv8lsn" path="res://assets/models/FinalAssets_Low/WorkStations/Ballista/bal_arrow_low.obj" id="3_tiw06"]
+[ext_resource type="ArrayMesh" uid="uid://c43hp3ywoafxp" path="res://assets/models/FinalAssets_Low/WorkStations/Ballista/bal_string_drawn_low.obj" id="4_r4ftq"]
+
+[node name="BallistaLow" type="Node3D" unique_id=778935564]
+
+[node name="BallistaLow" type="MeshInstance3D" parent="." unique_id=603047974]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.041783094, 0, 0)
+mesh = ExtResource("1_75l1a")
+surface_material_override/0 = ExtResource("2_0qo43")
+
+[node name="BalArrowLow" type="MeshInstance3D" parent="." unique_id=1117403981]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.018635511, 1.1834142, -0.12620416)
+material_override = ExtResource("2_0qo43")
+mesh = ExtResource("3_tiw06")
+
+[node name="BalStringDrawnLow" type="MeshInstance3D" parent="." unique_id=346623080]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03308034, 0, 0)
+material_override = ExtResource("2_0qo43")
+mesh = ExtResource("4_r4ftq")

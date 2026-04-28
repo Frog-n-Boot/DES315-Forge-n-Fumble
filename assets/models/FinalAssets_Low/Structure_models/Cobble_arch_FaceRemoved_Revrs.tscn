@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cck5flinoognp"]
+
+[ext_resource type="ArrayMesh" uid="uid://d1tkusp0rw8hx" path="res://assets/models/FinalAssets_Low/Structure_models/Cobble_arch_Faceremoved_revrs.obj" id="1_586vj"]
+[ext_resource type="Material" uid="uid://dp140br76vlls" path="res://assets/materials/Texture_sets/Environment_Textures/cobble_forge.tres" id="2_pgvw1"]
+
+[node name="Node3D" type="Node3D" unique_id=1448650713 groups=["xray"]]
+
+[node name="CobbleArchFaceremovedRevrs" type="MeshInstance3D" parent="." unique_id=1298882190]
+transform = Transform3D(0.72, 0, 0, 0, 0.72, 0, 0, 0, 0.72, 0, 0, 0)
+mesh = ExtResource("1_586vj")
+surface_material_override/0 = ExtResource("2_pgvw1")

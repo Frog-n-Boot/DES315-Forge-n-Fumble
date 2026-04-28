@@ -1,0 +1,11 @@
+[gd_resource type="ORMMaterial3D" format=3 uid="uid://24hwnxagoffj"]
+
+[ext_resource type="Texture2D" uid="uid://u3knh3uuu45l" path="res://assets/models/FinalAssets_Low/WorkStations/Ballista/ballista_comb_BaseCol.tga" id="1_7ewhg"]
+[ext_resource type="Texture2D" uid="uid://dn424gmnpx0l1" path="res://assets/models/FinalAssets_Low/WorkStations/Ballista/ballista_comb_Normal.tga" id="2_rd3my"]
+[ext_resource type="Texture2D" uid="uid://bkncmwrhm7xrq" path="res://assets/models/FinalAssets_Low/WorkStations/Ballista/ballista_comb_ORM.tga" id="3_xvoyx"]
+
+[resource]
+albedo_texture = ExtResource("1_7ewhg")
+orm_texture = ExtResource("3_xvoyx")
+normal_enabled = true
+normal_texture = ExtResource("2_rd3my")

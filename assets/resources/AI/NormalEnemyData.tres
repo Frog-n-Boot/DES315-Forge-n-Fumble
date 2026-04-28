@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://calih72lg8n07"]
+
+[ext_resource type="Material" uid="uid://c14d6xj6opusf" path="res://assets/materials/Texture_sets/Character_Textures/Goblin Textures/goblin_material.tres" id="1_7n161"]
+[ext_resource type="Script" uid="uid://dfgcclikd3kvh" path="res://src/Enemy/AI/EnemyBehaviourData.cs" id="1_fl57o"]
+[ext_resource type="Script" uid="uid://bf02wgjk36psn" path="res://src/Enemy/EnemyData.cs" id="1_ptvci"]
+[ext_resource type="Script" uid="uid://cafetq1ji4h5b" path="res://src/Enemy/AI/AttackForge.cs" id="2_fl57o"]
+[ext_resource type="Script" uid="uid://b5ljy5ajp4m3g" path="res://src/Enemy/AI/AttackPlayer.cs" id="3_433q0"]
+[ext_resource type="AudioStream" uid="uid://di7wor1ufp2cs" path="res://assets/Sounds/SFX/GoblinDeathSound.wav" id="4_fl57o"]
+[ext_resource type="ArrayMesh" uid="uid://ddna22yt5xn4q" path="res://assets/models/FinalAssets_Low/Character_Models/Goblin_low.mesh" id="5_fl57o"]
+[ext_resource type="Script" uid="uid://dcjcfda4rr8x3" path="res://src/Enemy/AI/MoveToForge.cs" id="6_42ah4"]
+[ext_resource type="Skin" uid="uid://by0geq85qph2r" path="res://assets/models/FinalAssets_Low/Character_Models/Goblin_low_skin.res" id="7_433q0"]
+[ext_resource type="Script" uid="uid://by87lhisv36nt" path="res://src/Enemy/AI/ChasePlayer.cs" id="7_fl57o"]
+
+[sub_resource type="Resource" id="Resource_kxpql"]
+script = ExtResource("2_fl57o")
+metadata/_custom_type_script = "uid://cafetq1ji4h5b"
+
+[sub_resource type="Resource" id="Resource_820ot"]
+script = ExtResource("3_433q0")
+metadata/_custom_type_script = "uid://b5ljy5ajp4m3g"
+
+[sub_resource type="Resource" id="Resource_433q0"]
+script = ExtResource("6_42ah4")
+metadata/_custom_type_script = "uid://dcjcfda4rr8x3"
+
+[sub_resource type="Resource" id="Resource_6praf"]
+script = ExtResource("7_fl57o")
+metadata/_custom_type_script = "uid://by87lhisv36nt"
+
+[resource]
+script = ExtResource("1_ptvci")
+enemyName = "Goblin"
+damage = 1
+speed = 3.0
+color = Color(1, 1, 1, 1)
+lootDropChance = 30.0
+enemyMat = ExtResource("1_7n161")
+enemyMesh = ExtResource("5_fl57o")
+deathSound = ExtResource("4_fl57o")
+soundPitch = 1.0
+enemySkin = ExtResource("7_433q0")
+isStationary = true
+attackBehaviours = Array[ExtResource("1_fl57o")]([SubResource("Resource_kxpql"), SubResource("Resource_820ot")])
+movementBehaviour = Array[ExtResource("1_fl57o")]([SubResource("Resource_433q0"), SubResource("Resource_6praf")])
+metadata/_custom_type_script = "uid://bf02wgjk36psn"

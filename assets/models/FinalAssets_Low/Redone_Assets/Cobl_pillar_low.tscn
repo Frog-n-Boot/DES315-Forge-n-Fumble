@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dvhojin78rtxa"]
+
+[ext_resource type="ArrayMesh" uid="uid://w3kyqtevasnv" path="res://assets/models/FinalAssets_Low/Redone_Assets/cobl_pillar_low.obj" id="1_sbfuh"]
+[ext_resource type="Material" uid="uid://dp140br76vlls" path="res://assets/materials/Texture_sets/Environment_Textures/cobble_forge.tres" id="2_sbfuh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sbfuh"]
+size = Vector3(1.180481, 2.2884827, 1.1705017)
+
+[node name="CoblPillarLow" type="Node3D" unique_id=1439026198 groups=["xray"]]
+
+[node name="CoblPillarLow" type="MeshInstance3D" parent="." unique_id=1143804065]
+transform = Transform3D(0.72, 0, 0, 0, 0.72, 0, 0, 0, 0.72, 0, 0, 0)
+mesh = ExtResource("1_sbfuh")
+surface_material_override/0 = ExtResource("2_sbfuh")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1137601960]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2098533087]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.015350342, 1.233845, 0.018447876)
+shape = SubResource("BoxShape3D_sbfuh")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=2123104527]
+visible = false
+height = 2.5
+vertices = PackedVector3Array(-0.6164272, 0, -0.57646894, 0.5797162, 0, -0.56963384, 0.58655167, 0, 0.6196746, -0.6198449, 0, 0.6196746)
+affect_navigation_mesh = true

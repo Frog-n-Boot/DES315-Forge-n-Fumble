@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://d0xhjv8gumn4f"
+path="res://.godot/imported/Rock_2_low.obj-e89f89dd0ca64e5b41d5343a3532864b.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Rock_2_low.obj-e89f89dd0ca64e5b41d5343a3532864b.mesh"]
+
+source_file="res://assets/models/FinalAssets_Low/Environment_Models/Rock_2_low.obj"
+dest_files=["res://.godot/imported/Rock_2_low.obj-e89f89dd0ca64e5b41d5343a3532864b.mesh", "res://.godot/imported/Rock_2_low.obj-e89f89dd0ca64e5b41d5343a3532864b.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

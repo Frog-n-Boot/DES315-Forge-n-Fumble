@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dhpc1tieo3k73"]
+
+[ext_resource type="PackedScene" uid="uid://u8cm8ijserkw" path="res://assets/animations/player/rig/DwarfRig.blend" id="1_skt1t"]
+
+[node name="DwarfRig" unique_id=1931430618 instance=ExtResource("1_skt1t")]
+
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(647991623) index="0" unique_id=987967957]
+bones/0/position = Vector3(-1.8820784e-17, 0.08047863, -5.8207637e-11)
+bones/0/rotation = Quaternion(-0.002713053, 1.1920884e-07, -3.2341615e-10, 0.99999636)
+bones/1/rotation = Quaternion(0.0027130113, 1.060462e-14, 6.468323e-10, 0.99999636)
+bones/2/position = Vector3(0.5602083, 0.5066802, 0.040097177)
+bones/2/rotation = Quaternion(-0.024085682, 0.05717533, 0.90127796, -0.42877606)
+bones/3/position = Vector3(0.31017187, -0.09428673, -0.03279531)
+bones/3/rotation = Quaternion(0.99999636, -6.468261e-10, 2.3841594e-07, -0.002713006)
+bones/5/rotation = Quaternion(-0.0043408643, -0.0016717621, 0.01600612, 0.9998612)
+bones/6/position = Vector3(-0.5602083, 0.5066802, 0.0400969)
+bones/6/rotation = Quaternion(0.024085479, 0.057175245, 0.90127796, 0.42877612)
+bones/7/position = Vector3(-0.31017184, -0.09428675, -0.032795463)
+bones/7/rotation = Quaternion(0.99999636, 4.8571063e-15, -1.7760624e-12, -0.002713006)
+bones/9/rotation = Quaternion(-0.0043408633, 0.0016717633, -0.01600612, 0.9998612)
