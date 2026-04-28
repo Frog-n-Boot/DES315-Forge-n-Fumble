@@ -3,10 +3,11 @@
 [ext_resource type="Script" uid="uid://7x71makbgbgu" path="res://scenes/splash_screen.gd" id="1_l2g8s"]
 [ext_resource type="Texture2D" uid="uid://bkhjpcidblfei" path="res://froggysketch-logoTRANSPARENT.webp" id="2_rc2kg"]
 [ext_resource type="Texture2D" uid="uid://47qpemik7pvh" path="res://logo_large_color_light.png" id="3_rc2kg"]
+[ext_resource type="Texture2D" uid="uid://car7luhnba77b" path="res://src/Item/Logo_AbertayUni_White_WithTM.png" id="4_m7gka"]
 
 [sub_resource type="Animation" id="Animation_l2g8s"]
 resource_name = "FadeOut"
-length = 6.0
+length = 5.0
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -15,8 +16,8 @@ tracks/0/path = NodePath("TeamLogo:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 1.1, 1.5, 2.5),
-"transitions": PackedFloat32Array(2, 2, 0.5, 2),
+"times": PackedFloat32Array(-0.5, 2, 3.04, 5),
+"transitions": PackedFloat32Array(2, 2, 0.5, 0.5),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
@@ -27,8 +28,20 @@ tracks/1/path = NodePath("GodotLogo:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(3.1, 4.1, 4.5, 5.5),
-"transitions": PackedFloat32Array(2, 0.5, 1, 0.5),
+"times": PackedFloat32Array(-0.5, 2, 3.04, 5),
+"transitions": PackedFloat32Array(2, 2, 0.5, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3, 3.04, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
@@ -59,6 +72,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0.1254902)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m7gka"]
 _data = {
@@ -74,6 +99,7 @@ script = ExtResource("1_l2g8s")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=875356934]
 
 [node name="TeamLogo" type="Node2D" parent="." unique_id=242782268]
+position = Vector2(334, -123)
 
 [node name="Sprite2D" type="Sprite2D" parent="TeamLogo" unique_id=797927393]
 position = Vector2(659, 338.99997)
@@ -86,6 +112,8 @@ autoplay = &"FadeOut"
 
 [node name="GodotLogo" type="Node2D" parent="." unique_id=175753379]
 modulate = Color(1, 1, 1, 0.1254902)
+position = Vector2(-101, -20)
+scale = Vector2(0.6800003, 0.6800003)
 
 [node name="Sprite2D" type="Sprite2D" parent="GodotLogo" unique_id=661486861]
 texture_filter = 1
@@ -101,5 +129,13 @@ z_index = -1
 position = Vector2(638.76196, 358.7411)
 scale = Vector2(-1276.5239, 718.4822)
 mesh = SubResource("BoxMesh_m7gka")
+
+[node name="Node2D2" type="Node2D" parent="." unique_id=523351099]
+modulate = Color(1, 1, 1, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D2" unique_id=1858310980]
+position = Vector2(622, 516)
+scale = Vector2(0.5999988, 0.5999988)
+texture = ExtResource("4_m7gka")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -767,7 +767,7 @@ normalEnemyData = ExtResource("15_8gny2")
 fastEnemyData = ExtResource("16_s3wmy")
 strongEnemyData = ExtResource("17_gdcyb")
 maxWaves = 6
-startingEnemiesPerWave = 10
+startingEnemiesPerWave = 40
 enemyIncreasedPerWave = 2
 enemiesRemaining = NodePath("../UI/EnemiesLeft")
 wavesRemaining = NodePath("../UI/WaveRemaining")
@@ -1086,9 +1086,10 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("23_siyqs")
 theme_override_font_sizes/font_size = 40
-current_tab = 0
+current_tab = 1
 
 [node name="Sound" type="Control" parent="UI/SettingsMenu/Panel/TabContainer" unique_id=1989203924]
+visible = false
 layout_mode = 2
 focus_neighbor_right = NodePath("../Display")
 metadata/_tab_index = 0
@@ -1180,7 +1181,6 @@ focus_neighbor_top = NodePath("../../MusicVolumeLabel/MusicVolumeSlider")
 focus_neighbor_bottom = NodePath("../../../../ApplyButton")
 
 [node name="Display" type="Control" parent="UI/SettingsMenu/Panel/TabContainer" unique_id=1109690702]
-visible = false
 layout_mode = 2
 focus_neighbor_left = NodePath("../Sound")
 focus_neighbor_right = NodePath("../Controls")
@@ -1588,7 +1588,10 @@ goldOre = ExtResource("21_in2eo")
 damasOre = SubResource("PackedScene_5grtr")
 healthPackObject = ExtResource("23_gjpm3")
 
-[node name="IronOre" parent="." unique_id=904125942 instance=ExtResource("20_0qimb")]
+[node name="IronOre2" parent="." unique_id=868928352 instance=ExtResource("20_0qimb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.191524, 4.7683716e-07, 5.3548493)
+
+[node name="IronOre" parent="IronOre2" unique_id=1508063866 instance=ExtResource("20_0qimb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.403659, 4.7683716e-07, 5.3548493)
 
 [node name="LevelManager" type="Node" parent="." unique_id=100606422]
