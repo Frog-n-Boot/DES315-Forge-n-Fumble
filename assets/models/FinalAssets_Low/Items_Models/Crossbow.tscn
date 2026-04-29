@@ -22,14 +22,9 @@ size = Vector3(1.3369141, 0.3399048, 2.0297241)
 [sub_resource type="ViewportTexture" id="ViewportTexture_8kgqf"]
 viewport_path = NodePath("Sprite3D/SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vqm1a"]
-albedo_color = Color(0.17369911, 1.872587e-07, 4.2114408e-08, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_vqm1a"]
-
 [node name="Crossbow" type="Node3D" unique_id=1323232309 node_paths=PackedStringArray("shootingDirectionMesh", "firePoint", "weaponTextureRect", "pickUpArea", "weaponBody") groups=["Weapon"]]
 script = ExtResource("1_c8bbo")
-shootingDirectionMesh = NodePath("MeshInstance3D")
+shootingDirectionMesh = NodePath("")
 maxArrow = 10
 fireRate = 0.5
 projectileScene = ExtResource("2_2itnu")
@@ -78,11 +73,6 @@ size = Vector2i(50, 50)
 [node name="TextureRect" type="TextureRect" parent="Sprite3D/SubViewport" unique_id=761548947]
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=403107224]
-transform = Transform3D(0.08911103, 0, 0, 0, 0.040631343, 0, 0, 0, 4, 0, 0, 1.2118266)
-material_override = SubResource("StandardMaterial3D_vqm1a")
-mesh = SubResource("BoxMesh_vqm1a")
 
 [node name="TripleShot" type="Node" parent="." unique_id=1289583969]
 script = ExtResource("8_y13of")
