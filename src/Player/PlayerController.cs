@@ -61,6 +61,10 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 	private Label3D pickupPrompt;
 	private Node3D pickupNode;
 
+	// Crossbow offsets
+	private static readonly Vector3 CrossbowPosOffset = new Vector3(-0.75f, 0.85f, 0.35f);
+	private static readonly Vector3 CrossbowRotOffset = new Vector3(Mathf.DegToRad(-9.0f), Mathf.DegToRad(-0.1f), Mathf.DegToRad(-130.0f));
+
 	[Signal] public delegate void PlayerHealthChangedEventHandler(int current, int max);
 	[Signal] public delegate void DiedEventHandler();
 	Forge forge;
@@ -827,7 +831,8 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			}
 			if(currentWeapon is Crossbow)
 			{
-				weapon.Rotation = new Vector3 (0 ,0 ,0);
+				weapon.Position = CrossbowPosOffset;
+				weapon.Rotation = CrossbowRotOffset;
 			}
 			weapon.SetEnemyCollisionEnabled(true);
 
