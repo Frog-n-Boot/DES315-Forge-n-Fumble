@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://b1n3r3vfn58fy"]
+
+[ext_resource type="Script" uid="uid://dqc47f5uqqrhk" path="res://scenes/cutscene.gd" id="1_g23k1"]
+[ext_resource type="VideoStream" uid="uid://cv15woj7naru2" path="res://assets/Videos/ForgeAndFumbleOpeningCinematicFinal2.ogv" id="1_s4rvo"]
+
+[node name="Cutscene" type="Node2D" unique_id=726277366]
+script = ExtResource("1_g23k1")
+
+[node name="Control" type="Control" parent="." unique_id=330264068]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1299.0
+offset_bottom = 717.0
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="Control" unique_id=1098570820]
+layout_mode = 0
+offset_right = 1287.0
+offset_bottom = 707.0
+stream = ExtResource("1_s4rvo")
+volume_db = -80.0
+autoplay = true
+expand = true
