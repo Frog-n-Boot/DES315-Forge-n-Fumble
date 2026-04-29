@@ -426,7 +426,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 		else if (currentWeapon is Crossbow bow2)
 		{
 			
-			bow2.shootingDirectionMesh.Visible = true;
+			//bow2.shootingDirectionMesh.Visible = true;
 
 			if (Input.IsActionPressed("attack"))
 			{
@@ -1052,7 +1052,7 @@ public partial class PlayerController : CharacterBody3D, ItemCarrier
 			}
 			else if (weapon is Crossbow bow)
 			{
-				bow.shootingDirectionMesh.Visible = false;
+				//bow.shootingDirectionMesh.Visible = false;
 
 				if (bow.sourceBallista != null)
 				{

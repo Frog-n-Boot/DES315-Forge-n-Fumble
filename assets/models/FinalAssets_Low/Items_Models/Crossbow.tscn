@@ -22,9 +22,11 @@ size = Vector3(1.3369141, 0.3399048, 2.0297241)
 [sub_resource type="ViewportTexture" id="ViewportTexture_8kgqf"]
 viewport_path = NodePath("Sprite3D/SubViewport")
 
+[sub_resource type="BoxMesh" id="BoxMesh_y13of"]
+
 [node name="Crossbow" type="Node3D" unique_id=1323232309 node_paths=PackedStringArray("shootingDirectionMesh", "firePoint", "weaponTextureRect", "pickUpArea", "weaponBody") groups=["Weapon"]]
 script = ExtResource("1_c8bbo")
-shootingDirectionMesh = NodePath("")
+shootingDirectionMesh = NodePath("MeshInstance3D")
 maxArrow = 10
 fireRate = 0.5
 projectileScene = ExtResource("2_2itnu")
@@ -76,3 +78,8 @@ offset_bottom = 40.0
 
 [node name="TripleShot" type="Node" parent="." unique_id=1289583969]
 script = ExtResource("8_y13of")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1176710466]
+transform = Transform3D(0.20846415, 0, 0, 0, 0.14895304, 0, 0, 0, 2.3131244, 0, 0, 1.973409)
+visible = false
+mesh = SubResource("BoxMesh_y13of")
