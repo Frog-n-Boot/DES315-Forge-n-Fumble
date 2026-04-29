@@ -6,16 +6,9 @@
 [node name="Cutscene" type="Node2D" unique_id=726277366]
 script = ExtResource("1_g23k1")
 
-[node name="Control" type="Control" parent="." unique_id=330264068]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1299.0
-offset_bottom = 717.0
-
-[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="Control" unique_id=1098570820]
-layout_mode = 0
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=1098570820]
 offset_right = 1287.0
-offset_bottom = 707.0
+offset_bottom = 744.0
 stream = ExtResource("1_s4rvo")
 volume_db = -80.0
 autoplay = true
