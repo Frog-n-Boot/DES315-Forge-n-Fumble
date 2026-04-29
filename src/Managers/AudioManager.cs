@@ -38,7 +38,7 @@ public partial class AudioManager : Node
 			musicPlayer.Play();
 		}));
 
-		tween.TweenProperty(musicPlayer, "volume_db", -80, fadeInDuration);
+		tween.TweenProperty(musicPlayer, "volume_db", -60, fadeInDuration);
 	}
 
 	public void StopMusic(float fadeOutDuration = 1.5f)
