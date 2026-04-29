@@ -14,9 +14,14 @@ public partial class AudioManager : Node
 		instance = this;
 		musicPlayer = new AudioStreamPlayer();
 		musicPlayer.Bus = "Music";
+		musicPlayer.Finished += OnMusicFinished;
 		AddChild(musicPlayer);
 	}
 
+	private void OnMusicFinished()
+	{
+		musicPlayer.Play();
+	}
 	public void PlayMusic(AudioStream stream, float fadeOutDuration = 1.5f, float fadeInDuration = 1.1f)
 	{
 		if (!musicPlayer.Playing)
